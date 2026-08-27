@@ -1,0 +1,70 @@
+"""解析 v3.2 契约：以 v3.1 完整数据契约为底稿，叠加科学口径变更。"""
+from __future__ import annotations
+
+from copy import deepcopy
+from pathlib import Path
+from typing import Any
+
+import yaml
+
+
+class V32ContractError(ValueError):
+    pass
+
+
+def _deep_merge(base: dict[str, Any], overlay: dict[str, Any]) -> dict[str, Any]:
+    result = deepcopy(base)
+    for key, value in overlay.items():
+        if (
+            key in result
+            and isinstance(result[key], dict)
+            and isinstance(value, dict)
+        ):
+            result[key] = _deep_merge(result[key], value)
+        else:
+            result[key] = deepcopy(value)
+    return result
+
+
+def load_v32_contract(
+    root: Path,
+    *,
+    base_filename: str = "model_contract.yaml",
+    overlay_filename: str = "model_contract_v3_2_overlay.yaml",
+) -> dict[str, Any]:
+    root = Path(root)
+    base_path = root / base_filename
+    overlay_path = root / overlay_filename
+    if not base_path.is_file() or not overlay_path.is_file():
+        raise V32ContractError("base contract and v3.2 overlay are both required")
+    base = yaml.safe_load(base_path.read_text(encoding="utf-8"))
+    overlay = yaml.safe_load(overlay_path.read_text(encoding="utf-8"))
+    if not isinstance(base, dict) or not isinstance(overlay, dict):
+        raise V32ContractError("contracts must decode to mappings")
+    resolved = _deep_merge(base, overlay)
+    if resolved.get("contract", {}).get("version") != "3.2.0":
+        raise V32ContractError("resolved contract must be v3.2.0")
+    baseline = resolved.get("planning_baseline", {})
+    if baseline.get("formula") != "S_plan_0 = 2.0 * P_plus_2021":
+        raise V32ContractError("v3.2 common planning baseline formula is not frozen")
+    if baseline.get("future_decision_year_peak_allowed_in_baseline") is not False:
+        raise V32ContractError("future decision-year information leakage is forbidden")
+    if resolved.get("optimization", {}).get("direct_policy_cost_comparison_allowed") is not True:
+        raise V32ContractError("same-baseline policy cost comparison must be enabled")
+    return resolved
+
+
+def write_resolved_v32_contract(root: Path, output_path: Path) -> Path:
+    resolved = load_v32_contract(root)
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(
+        yaml.safe_dump(
+            resolved,
+            allow_unicode=True,
+            sort_keys=False,
+            width=120,
+        ),
+        encoding="utf-8",
+    )
+    return output_path
