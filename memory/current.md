@@ -20,7 +20,7 @@
   - **能力口径收窄**：NEW-TIE-01 按主干路径口径仍 8.0 MW（反向改由受端主干热限 8.66 MVA 绑定）；仅当 70 mm² 支线弱段在转供路径时下探 4.0 → 区间 [4.0, 8.0]；经济结论全区间稳健；河东线代理值 pf 0.90~0.98 不改变结论；新增受端同时段余量前置条件；
   - **引擎修复（红—绿—重构）**：`scenario_s1_forward` 如实核算 served/unserved/覆盖率＋umax＋load_factor 仿真内降载；S1 门禁对碎片化馈线记 False；`tests/test_tie_case.py` 12 项全绿；复算产物 `output/tie_case/20260826-172438/`（S3 数字与前版完全一致）；
 - **同步登记**：AGENTS.md 升 v3.3；TIE-CASE-CONCLUSIONS.md 三处修订；问题台账补录 TIE-001 断点明细＋碎片化事项；审查清单 6.3 行更新＋重分析复核条目；报告正文与 docx 无需改动（数字不变、正文未引用 S1/S2）。
-- **Git 基线（本次任务）**：首个提交 `48acbd4a93ad3ba16c203ad0e335360bc33b0717`，1095 个文件；远端 `origin/main` 已核验指向同一提交。SSH 认证成功，远端原为空。
+- **Git 基线（本次任务）**：首个项目提交 `48acbd4a93ad3ba16c203ad0e335360bc33b0717`，1095 个文件；推送后的 memory 证据提交为 `416a5a4a7ed8ee63168350fd05d29f778524dd2f`，远端 `origin/main` 已核验指向后者。SSH 认证成功，远端原为空。
 - **Git 安全边界**：已排除 `Tushare.ma`、`.claude` 本地锁/设置、`memory/codex-export/`、缓存、`__pycache__`、`.gstack/` 和重复的 `参考文献/前沿调研.tar.gz`（171,513,560 bytes）；暂存区未发现常见私钥/令牌模式，未发现超过 100 MB 的暂存文件。
 
 ## 进行中 / 下一步
