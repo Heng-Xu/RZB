@@ -33,6 +33,7 @@ jobs:
         working-directory: 实验/研究
         run: |
           pytest -q \
+            tests/test_v32_contract.py \
             tests/test_v32_common_baseline.py \
             tests/test_v32_recommendation.py \
             tests/test_v32_storage_chronology.py \
