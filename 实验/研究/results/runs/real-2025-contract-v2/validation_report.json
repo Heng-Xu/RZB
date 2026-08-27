@@ -1,0 +1,29 @@
+{
+  "counts": {
+    "county_scheme_rows": 48,
+    "dispatch_playback_rows": 17136,
+    "matrix_110_rows": 8,
+    "matrix_35_rows": 8,
+    "processed_output_count": 16,
+    "quality_flag_rows": 70
+  },
+  "hard_assertions": {
+    "A001_no_cross_voltage_aggregation": true,
+    "A002_fixed_positive_synchronous_denominator": true,
+    "A003_storage_does_not_change_denominator": true,
+    "A004_no_active_pv_shedding_decision": true,
+    "A005_no_global_10kv_transfer_decision": true,
+    "A006_parallel_beta_once": true,
+    "A007_real_candidate_ids_only": true,
+    "A008_B_cost_not_above_A": true,
+    "A009_C0_zero_cost_and_status_visible": true,
+    "A010_qx_grade_A_requires_approved_map": true,
+    "A011_no_P50_P90_empirical_labels": true,
+    "A012_lineage_present": true,
+    "A013_anonymized_ids_only": true,
+    "matrix_release_gates_passed": true,
+    "network_check_internal_only": true,
+    "selected_dispatch_playback_passed": true
+  },
+  "status": "pass"
+}

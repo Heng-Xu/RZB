@@ -1,0 +1,6 @@
+﻿tie_id,side,feeder_alias,path_status,nominal_path_km,dominant_conductor,dominant_length_km,parameter_grade,imax_base_a,imax_upper_ref_a,thermal_base_mva,thermal_upper_mva,interpretation
+TIE-002,墩集侧,dnan,READY,2.25,JKLYJ/Q-10-240,2.25,B+,500,550,8.6603,9.5263,首个案例整条源端→联络点路径均为240绝缘主干；导线热限敏感性约8.66~9.53 MVA
+TIE-002,河湾侧,hpao,READY,2.75,LGJ-10-240→LGJ-240/30,2.75,B+,550,562,9.5263,9.7341,55个物理档距均为LGJ-10-240；按240/30映射。热限约9.53~9.73 MVA
+TIE-003,墩集侧,dxi,READY_DEBUG_TOPOLOGY,3.25,JKLYJ/Q-10-240,3.25,B+,500,550,8.6603,9.5263,源端→王场湖支线14现有物理路径全部为240绝缘导线
+TIE-003,河湾侧,hpao,READY_WITH_R020_DEBUG_CHAIN,2.0,LGJ-10-240→LGJ-240/30,2.0,B+,550,562,9.5263,9.7341,物理档距均为LGJ-10-240，另含R020零长度设备链
+TIE-001,河湾侧,hdong,BLOCKED_BY_EXISTING_TOPOLOGY_GAPS,,预计以JL(GD)/G1A-240/40为主,,B,550,595.22,9.5263,10.3095,先闭环hdong R010~R014，再重新统计真实源端→93路径

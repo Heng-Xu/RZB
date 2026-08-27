@@ -1,0 +1,5 @@
+﻿scenario_id,scenario_name,purpose,load_boundary_rule,pv_rule,station_boundary_rule,line_limit_rule,voltage_rule,q_rule,synchronization_status,formal_use
+S0_TOPOLOGY_ONLY,基准拓扑审计,正常开关状态、孤岛、环路、源端可达性,不要求负荷数值,不要求PV,不启用,不启用,不启用,不启用,N/A,YES_TOPOLOGY
+S1_FEEDER_STRESS,馈线正向应力包络,局部联络正向转供及热稳/电压能力,六线采用SRC06历史最大P；hdong用544.57A×10kV×√3×PF0.95代理；节点按现场kVA权重,PV factor=0基准，另做0.1敏感性,站级容量/年度峰值作容量筛查，不宣称同一历史时刻,"min(导线Imax_base,SRC06馈线最大允许电流)",硬0.93~1.07pu；优选0.95~1.05pu,PF0.95；0.90/0.98敏感性,ENVELOPE_NOT_HISTORICAL_SYNCHRONOUS,PLANNING_ENVELOPE
+S2_REVERSE_PV,高PV反送应力,反向潮流、过电压、反向转供,S1空间权重，load_factor=0.3/0.5/0.7,已知PV容量×0.8/0.9/1.0；dnan可用7.34MW峰值锚点；hpao=0,2025站级最小净负荷与2026PV典型记录仅作边界一致性校核,同S1,0.93~1.07pu,负荷PF0.95；PV unity PF基准,PLANNING_SCENARIO_WITH_REAL_ANCHORS,PLANNING_STRESS
+S3_TRANSFER_SWEEP,联络最大转供扫描,识别最大转供与首个绑定约束,分别以S1/S2基础状态扫描,继承基础场景,同时检查站端容量和N-1筛查边界,effective_rate_a_base；另跑upper sensitivity,0.93~1.07pu,继承,SCENARIO_BASED,YES_PLANNING

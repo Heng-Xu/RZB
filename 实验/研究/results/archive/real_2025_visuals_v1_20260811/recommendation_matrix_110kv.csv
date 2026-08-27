@@ -1,0 +1,18 @@
+﻿指标,QX-00001,QX-00003,QX-00004,QX-00005,QX-00007,QX-00008,QX-00009,QX-00010
+推荐容载比 R_rec（EAC最小可行；110 kV正式）,2.71,3.09,3.30,2.29,2.42,不可行,不可行,不可行
+推荐方案/状态,B,B,B,B,B,A/B不可行,A/B不可行,A/B不可行
+现状正式 R0,2.62,3.09,3.30,2.24,2.42,2.42,2.31,2.69
+官方 R参考,2.62,3.09,3.30,2.24,2.42,2.42,2.31,2.69
+光伏容量渗透率 PV/S0,37.2%,49.3%,35.2%,68.3%,0.0%,27.8%,43.4%,59.4%
+光伏功率比 PV/P+,97.3%,152.3%,116.1%,152.7%,0.0%,67.3%,100.3%,159.9%
+公用变容量 S0 (MVA),1425.0,966.5,2094.0,2139.5,3701.0,1839.0,1877.0,1979.5
+正向峰值 P+ (MW),544.55,313.03,634.28,956.45,1528.82,759.56,813.38,734.91
+反向峰值 P− (MW),—,—,—,—,—,—,—,—
+A措施（扩容；储能）,无扩容；储能138模块,无扩容；储能173模块,无扩容；储能124模块,无扩容；储能1265模块,无扩容；储能0模块,不可行：connection_bay_unavailable,不可行：missing_three_scenarios,不可行：missing_three_scenarios
+A EAC (万元/年),483.1,604.7,433.5,4417.6,0.0,—,—,—
+B措施（扩容；储能）,EXP-QX-00001-BDZ-00058-01；储能19模块,无扩容；储能173模块,无扩容；储能124模块,EXP-QX-00005-BDZ-00162-01；储能695模块,无扩容；储能0模块,不可行：connection_bay_unavailable,不可行：missing_three_scenarios,不可行：missing_three_scenarios
+B EAC (万元/年),189.3,604.7,433.5,2549.5,0.0,—,—,—
+当前经济措施,current-case B: expansion=EXP-QX-00001-BDZ-00058-01; storage_modules=19,current-case B: expansion=none; storage_modules=173,current-case B: expansion=none; storage_modules=124,current-case B: expansion=EXP-QX-00005-BDZ-00162-01; storage_modules=695,no incremental measure under modeled current constraints,no feasible modeled measure; BDZ-00043:storage_required_but_no_available_connection_bay,no feasible modeled measure; BDZ-00014:missing_three_scenarios,no feasible modeled measure; BDZ-00145:missing_three_scenarios
+C0状态,noncompliant,noncompliant,noncompliant,noncompliant,compliant,noncompliant,noncompliant,noncompliant
+证据等级,B,B,B,C,B,B,B,B
+数据/可行性备注,"reverse static extrema are bounds, not synchronous county peaks; 2026 PV is context only; C0=noncompliant; A=feasible(feasible); B=feasible(feasible)","reverse static extrema are bounds, not synchronous county peaks; 2026 PV is context only; C0=noncompliant; A=feasible(feasible); B=feasible(feasible)","reverse static extrema are bounds, not synchronous county peaks; 2026 PV is context only; C0=noncompliant; A=feasible(feasible); B=feasible(feasible)","2025 transformer-hour map is not source-owner approved; reverse static extrema are bounds, not synchronous county peaks; 2026 PV is context only; C0=noncompliant; A=feasible(feasible); B=feasible(feasible)","reverse static extrema are bounds, not synchronous county peaks; 2026 PV is context only; C0=compliant; A=feasible(feasible); B=feasible(feasible)","reverse static extrema are bounds, not synchronous county peaks; 2026 PV is context only; C0=noncompliant; A=infeasible(BDZ-00043:storage_required_but_no_available_connection_bay); B=infeasible(BDZ-00043:storage_required_but_no_available_connection_bay)","reverse static extrema are bounds, not synchronous county peaks; 2026 PV is context only; C0=noncompliant; A=infeasible(BDZ-00014:missing_three_scenarios); B=infeasible(BDZ-00014:missing_three_scenarios)","reverse static extrema are bounds, not synchronous county peaks; 2026 PV is context only; C0=noncompliant; A=infeasible(BDZ-00145:missing_three_scenarios); B=infeasible(BDZ-00145:missing_three_scenarios)"

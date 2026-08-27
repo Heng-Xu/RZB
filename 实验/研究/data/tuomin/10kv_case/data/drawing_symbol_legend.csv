@@ -1,0 +1,6 @@
+﻿calibration_id,anchor_object,known_status,drawing_locator,symbol_fill_observed,candidate_semantics,calibration_result,rule_for_agent
+CAL-01,TIE-007,CLOSED,hdong 48 ↔ hzhen 49,PENDING_IMAGE_REVIEW,黑/空白二选一,PENDING,这是唯一已确认CLOSED高置信锚点，必须优先定位
+CAL-02,TIE-002,OPEN,dnan 42-4 ↔ hpao 59,PENDING_IMAGE_REVIEW,黑/空白二选一,PENDING,高置信OPEN锚点
+CAL-03,TIE-001,OPEN,dzhen 24-13-17 ↔ hdong 93,PENDING_IMAGE_REVIEW,黑/空白二选一,PENDING,高置信OPEN锚点；dzhen侧节点挂接尚需拓扑修复但状态已确认
+CAL-04,TIE-003,OPEN,dxi WCH14 ↔ hpao WCH1,PENDING_IMAGE_REVIEW,黑/空白二选一,PENDING,中高置信OPEN锚点
+CAL-RULE,全图例,N/A,六张图纸,N/A,仅当≥1个CLOSED锚点与≥3个OPEN锚点表现出完全一致的两类填充语义时，才建立全局图例,PENDING,若任一锚点冲突，则禁止全局推广，改为逐开关人工核验

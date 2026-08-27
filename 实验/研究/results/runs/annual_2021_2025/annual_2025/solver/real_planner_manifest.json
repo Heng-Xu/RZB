@@ -1,0 +1,32 @@
+{
+  "contract_sha256": "0f326b29625fff67d073cff50228008199bb1e0676f56e94203dc6e412bba5b5",
+  "contract_version": "2.0.0",
+  "hard_assertions": {
+    "A002_fixed_positive_denominator": true,
+    "A004_no_active_pv_shedding_decision": true,
+    "A005_no_global_10kv_transfer_decision": true,
+    "A007_real_candidate_ids_only": true,
+    "A008_B_cost_not_above_A": true,
+    "A009_C0_zero_cost_visible_noncompliance": true
+  },
+  "input_fingerprint": "0cd42479992b41230f84f3db7cc3732a886da86c9d137e70e27f17c95e9ea9ef",
+  "output_files": {
+    "real_plan_actions.csv": {
+      "rows": 633,
+      "sha256": "e64880d2e398e81fe5b9e6672f14f7f783f5007d5cf533ce6729ac54c856680a"
+    },
+    "real_plan_county_solutions.csv": {
+      "rows": 48,
+      "sha256": "e369c3b2f3ce1f222057e981a4ded5b5a34a28c1f13bd888374902926cfc585b"
+    },
+    "real_plan_dispatch_playback.csv.gz": {
+      "rows": 17136,
+      "sha256": "804b485dcf69028adf5dba13f957bdfbe4da2a1e98f9a1fd939e40707bbc90bc"
+    },
+    "real_plan_station_options.csv": {
+      "rows": 293,
+      "sha256": "8770b0d9364fd6f087d66a25d82e8c6efbf127ed5b34d7963519290e26eea962"
+    }
+  },
+  "real_planner_version": "1.0.0"
+}

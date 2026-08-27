@@ -1,0 +1,142 @@
+{
+  "adapter_version": "1.1.0",
+  "contract_id": "xuzhou-clr-real-data-2025",
+  "contract_sha256": "0f326b29625fff67d073cff50228008199bb1e0676f56e94203dc6e412bba5b5",
+  "contract_version": "2.0.0",
+  "dataset_fingerprint": "6d1ccb8e05bf891a450240ae183646bfa0b4b59d4c61b605d96309e1f3731daa",
+  "dataset_id": "real_2025",
+  "output_files": {
+    "asset_scope_summary.csv": {
+      "rows": 16,
+      "sha256": "a094f59dee30f8553911c4346b60da519ba65416bb4cd92e1bf43faf29350434"
+    },
+    "cost_cases.csv": {
+      "rows": 18,
+      "sha256": "bbd5bae73a6bd11bd13a96c3f5a2ee9c952a9e24b8f36c1b78ec18b7cfabc446"
+    },
+    "county_clr_reference.csv": {
+      "rows": 16,
+      "sha256": "be1b1120eed092e711618ade27c2a74bc7060d4784ca3fe6df6815816d274df0"
+    },
+    "data_quality_issues.csv": {
+      "rows": 7,
+      "sha256": "b330d5e4d3db8eb98c62c544e60874fd069b0ca4b13deb249d60b064fea0213d"
+    },
+    "expansion_candidates.csv": {
+      "rows": 92,
+      "sha256": "164bdf140f0336dd1caa6f3358c0d03652b8bbdad1d68d39d8e99676abedd11a"
+    },
+    "network_lines_110kv.csv": {
+      "rows": 364,
+      "sha256": "43941f465940ddf8e730fdefb2217a74641ac9eab4d98cbffbbd95fe0f00b2a5"
+    },
+    "pv_profile_2025.csv": {
+      "rows": 8760,
+      "sha256": "ce411382aac5a60cf182e032944f2ee45c20947826b02a5a17449efcba9563c9"
+    },
+    "station_master.csv": {
+      "rows": 235,
+      "sha256": "6f79f5ac21ccf495503df039099f9973fc64e1f8483cb1ee59acf1fa2001311b"
+    },
+    "station_pv_snapshot.csv": {
+      "rows": 186,
+      "sha256": "3a1c7e9a148e07936dd151a618fc63e66f94f4292c79f2a506c948b526b0242e"
+    },
+    "station_static_load.csv": {
+      "rows": 212,
+      "sha256": "d090300e8caa3b83c3e4338d84e88e692a4f40c57fdb75a4561617b7ce8e551a"
+    },
+    "timeseries_column_map_2025.csv": {
+      "rows": 58,
+      "sha256": "934fab92e51c6ace6688a61ccedddbf05fa59f289e73e76937766a7589a43738"
+    },
+    "timeseries_quality_issues.csv": {
+      "rows": 58,
+      "sha256": "1b035f72460ed7f2f37ab84551f6819ebac56cb6ccf4d01e8a73eb5af2538652"
+    },
+    "transformer_hourly_2025.csv.gz": {
+      "rows": 508080,
+      "sha256": "3e9c49adce26f6ad8d36eba8ca1eb60406da1e20c02b1528e6389db68ec37217"
+    },
+    "transformer_master.csv": {
+      "rows": 425,
+      "sha256": "10fa2b9401cefebfe06897d9df4db6c640c4ee82a72d4fb95f28a3779deb79ce"
+    },
+    "transformer_static_load.csv": {
+      "rows": 425,
+      "sha256": "ad16f83af586923477c0951a8a872aaf1048022bae47bceea1d46f8ba91a2957"
+    }
+  },
+  "quality_gate": {
+    "county_voltage_reference_rows": 16,
+    "pv_profile_hours": 8760,
+    "qx00005_stations_110kv": 21,
+    "qx00005_transformers_110kv": 42,
+    "qx00005_transformers_35kv_context": 16,
+    "timeseries_status": "candidate_only_stage2_required"
+  },
+  "source_files": {
+    "110（35）kv设备明细.xlsx": {
+      "bytes": 221855,
+      "sha256": "f0144a48c89031b732d6bcf436b48f1890dc20e353e56bc90c90c3861e09d208"
+    },
+    "2025设备负载统计表.xlsx": {
+      "bytes": 26251664,
+      "sha256": "563180da9b4fd16012c14ddb974e76ce1f06dfdd8ca13816a2ac529901b91176"
+    },
+    "README_Agent_建模数据引用与使用说明_V1.2.md": {
+      "bytes": 24908,
+      "sha256": "ba827ef37afb2c0dbe585e1a2fa67f596e956d4261bbe0dc1c4c1d91d6cea78f"
+    },
+    "光伏8760小时数据.xlsx": {
+      "bytes": 336227,
+      "sha256": "e923691ffe6073e8ad0f75729745d6e66261a32e0807c6d8e757689d0a956f5d"
+    },
+    "光伏装机.xlsx": {
+      "bytes": 53158,
+      "sha256": "88dd63f0d0e3b8aaed07b77bdba235da35967faefa6a9ff64b92e805559a42ec"
+    },
+    "江苏徐州王沟等110千伏输变电工程建设规模及投资汇总表(1).pdf": {
+      "bytes": 225508,
+      "sha256": "2b1d9090075c4a74aac06e9b7308d3db8263e504f6141f06764ec01937b944ae"
+    },
+    "江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx": {
+      "bytes": 19492,
+      "sha256": "110081ca62981f08a97f5b353bde277cb8ea774c1433e76552ece75994b1537e"
+    },
+    "计划项目明细表.et": {
+      "bytes": 39424,
+      "sha256": "860c32a133428d0f70e3a5b4be0a4a48e68742704c0444d7ef9cd0700d60bccf"
+    },
+    "近5年容载比.xlsx": {
+      "bytes": 16888,
+      "sha256": "f64be1be4955a268e97edc2678b2a39c3e89f651b7f40cc96e2e700395fe45a1"
+    },
+    "逐月分县分布式光伏.xlsx": {
+      "bytes": 16815,
+      "sha256": "64b5f1a7a6cf210bd43be0b1b8bf5bca549c0160432e8a76a149e90087335539"
+    },
+    "邳州10kV线路基础数据表.xlsx": {
+      "bytes": 66832,
+      "sha256": "120d7d9cfa59a3b7b8abdd424773b18b1b5420bc2160249d0bf30d76615619d7"
+    },
+    "邳州主变负载率.xlsx": {
+      "bytes": 14899475,
+      "sha256": "38837890ab239005f7ce26b33a3510d948a13abfea1ad8dae387b8ef8a83e911"
+    },
+    "高压网架结构.xlsx": {
+      "bytes": 33353,
+      "sha256": "20558f3981136efe38a24950d405a34d1eea6563d0245110f5deb281f848b9f8"
+    }
+  },
+  "source_root_name": "电网建模数据_Agent整合版_V1.2",
+  "timeseries_review": {
+    "approved_110kv_columns": 0,
+    "conditional_columns": 56,
+    "formal_hourly_use_allowed": false,
+    "grade_a_ready": false,
+    "mapping_fingerprint": "934fab92e51c6ace6688a61ccedddbf05fa59f289e73e76937766a7589a43738",
+    "rejected_columns": 2,
+    "total_columns": 58
+  }
+}

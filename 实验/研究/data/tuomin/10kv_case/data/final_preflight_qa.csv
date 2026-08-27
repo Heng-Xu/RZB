@@ -1,0 +1,12 @@
+﻿qa_id,priority,category,issue,status,impact,prepared_resolution,remaining_action
+QF01,P0,STATION_MAPPING,六条馈线→110kV站归属,PASS,局部10kV联络案例的源端边界,墩振/墩西/墩南→墩集变BDZ-00027；河东/河炮/河镇→河湾变BDZ-00048，已完整落库。,NONE
+QF02,P0,FEEDER_BOUNDARY,六线P/I/运行限额,PASS_WITH_ANOMALY_GUARD,潮流/热限基础,六线已提取；hdong P=0与电流/负载率冲突，规划P用I×PF0.95代理。,如后续获得河东实际同步P，可覆盖代理值
+QF03,P0,LINE_LIMIT,线路/馈线运行限额,PASS_PLANNING,防止仅按导线Imax高估,"1124边 effective_rate=min(导线Imax, SRC06馈线最大允许电流)。",某具体开关若成为绑定瓶颈，再定点核铭牌
+QF04,P0,STATION_BOUNDARY,墩集/河湾站及四台主变边界,PASS,站端源/受端能力与N-1筛查,墩集100MVA(50+50)、河湾150MVA(100+50)，主变容量、年度正反向极值、N-1台账已入库。,NONE for station-aggregated 10kV case
+QF05,P0,LOAD_SPATIAL,节点负荷空间分布,PASS_PLANNING_SEED,压降/支路潮流,旧现场容量观察映射到当前节点；缺细分子节点时聚合至父主杆；按kVA权重闭合至馈线P。,若分布方式成为约束，跑uniform-leaf敏感性
+QF06,P0,PV_SPATIAL,PV位置/容量,PARTIAL_BUT_SCENARIO_READY,反向潮流/电压,dzhen已定位6600/6650kVA；hdong/hzhen总量聚合；hpao=0；dnan有7.34MW实际峰值出力锚点。,dnan完整装机总量未知，但不阻断高PV规划场景
+QF07,P0,SWITCH_STATE,8处关键联络正常状态,PASS,基准拓扑,7 OPEN + TIE-007 CLOSED 已继承。,普通分段开关按图纸黑/空白符号校准
+QF08,P0,TOPOLOGY,TIE-002,PASS_FIRST_CASE,首个规划案例,两侧路径、线路参数、馈线边界、节点注入种子、站端边界均已准备。,NONE before calculation
+QF09,P1,TOPOLOGY,TIE-001 / TIE-003局部拓扑断点,PARTIAL,后续两条跨站联络,R005/R010-R014/R020已进入拓扑patch任务。,Agent依据现有图纸闭环后计算
+QF10,P1,SYNCHRONIZATION,无六线同时间戳P/Q历史断面,NO_LONGER_BLOCKS_PLANNING,不能宣称历史真实同步断面,采用明确的规划包络场景，禁止把各馈线年度极值简单相加冒充同步断面。,后续若有SCADA同步断面可替换
+QF11,P2,OPTIONAL_REFINEMENT,馈线→10kV母线段→具体主变归属,OPTIONAL_NOT_REQUIRED,仅影响把转供结果进一步精确归因到单台主变/母线段,当前局部10kV案例按已确认的110kV站级等值源端建模；六线→站点映射已经完整。,只有后续明确要求单台主变级N-1归因时再补，不是当前缺口

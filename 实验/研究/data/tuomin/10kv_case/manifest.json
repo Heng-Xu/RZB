@@ -1,0 +1,289 @@
+{
+  "package": "10kV_AgentReady_V5_2",
+  "created_at": "2026-08-20",
+  "main_fix": "Removed false critical gap: feeder-to-station mapping is complete; bus-section/specific-transformer mapping is optional for current station-equivalent case.",
+  "quality_summary": {
+    "version": "V5.2",
+    "old_desensitized_package_integrated": true,
+    "hawan_station_id": "BDZ-00048",
+    "feeders_prepared": 6,
+    "stations_prepared": 2,
+    "transformers_prepared": 4,
+    "physical_edges_parameterized": 1124,
+    "field_asset_observations_seeded": 98,
+    "node_load_seed_rows": 31,
+    "node_pv_seed_rows": 12,
+    "all_load_seed_feeders_close_to_boundary_P": true,
+    "first_case_TIE002_preparation": "READY_FOR_PLANNING_CALCULATION",
+    "critical_mapping_gaps_for_current_station_aggregated_case": [],
+    "optional_refinement": "feeder_to_10kV_bus_section_to_specific_transformer",
+    "TIE002_data_preparation": "READY"
+  },
+  "files": [
+    {
+      "path": "10kV案例建模_AgentReady_V5.xlsx",
+      "size_bytes": 421731,
+      "sha256": "fd272019a7b4d754429c6dc5e8e24ae6d03107705bfd0c7efd535fe6d2d676fd"
+    },
+    {
+      "path": "10kV案例建模_AgentReady_V5_2.xlsx",
+      "size_bytes": 457831,
+      "sha256": "d003764521ff0b06aa0fd407a9123d2a8aab72c0a4e013e022945391d0bb3243"
+    },
+    {
+      "path": "11种导线电缆_R-X-Imax_待补模板.xlsx",
+      "size_bytes": 6628,
+      "sha256": "06ba379b941ccf8d07f4ac7623218c600468e8c5066d9d2ca54420296013c910"
+    },
+    {
+      "path": "AGENT_START_PROMPT.md",
+      "size_bytes": 852,
+      "sha256": "5f9f805d1b77874f03ca0dff993b7e534453331590241bdd06c202b3cdf0f732"
+    },
+    {
+      "path": "DATA_QUALITY_FINAL.md",
+      "size_bytes": 763,
+      "sha256": "5f30700511aa24b2174fec632f89726e6c2b7e8a748e935d9f2bf709b1c18cc1"
+    },
+    {
+      "path": "MODEL_CONFIG.yaml",
+      "size_bytes": 1946,
+      "sha256": "efa0a4f25598e8007dc234cddaca4ba0f56d911e22b33c8e57cd1a7dda61c04a"
+    },
+    {
+      "path": "MODEL_SCHEMA.json",
+      "size_bytes": 1127,
+      "sha256": "b089dae0283c910420b8d71f508f7f15bbdacbbe526d2d08769c2c89ed27fc11"
+    },
+    {
+      "path": "OLD_DATA_RECOVERY.md",
+      "size_bytes": 997,
+      "sha256": "42777dc2a873dc190e51cb5f0a3e5a9aeef635337a4a5120f630b25c804dfceb"
+    },
+    {
+      "path": "README_AGENT.md",
+      "size_bytes": 2480,
+      "sha256": "5674cb0905192556563eec13da3a94bd0a3c7fe6abf7ee103875c1eff7723d23"
+    },
+    {
+      "path": "case_results_template.csv",
+      "size_bytes": 198,
+      "sha256": "2c003149c4eb6f5a3d79699596bbcc4db2a12eae214ce3226a584ac7d2e5dc5b"
+    },
+    {
+      "path": "data/agent_tasks.csv",
+      "size_bytes": 1576,
+      "sha256": "00083481cf80a246c8019b0e0ff64c5ce2b517dc1cbed8de434a46e0f9a7b1be"
+    },
+    {
+      "path": "data/alias_mapping.csv",
+      "size_bytes": 1522,
+      "sha256": "8e4160f345ffee46d8687107156b86883a1af9bd969f8d9a0283e281cd796644"
+    },
+    {
+      "path": "data/asset_observation_seed.csv",
+      "size_bytes": 19976,
+      "sha256": "e0a41a0e39dc3e0f0afc89d5508b64bfbcccd0d1e93d5ae12a86e27bb63fed0d"
+    },
+    {
+      "path": "data/assumptions_debug.csv",
+      "size_bytes": 747,
+      "sha256": "cc174e853fb663ac6ada8298b2d45755e2a40042d654be60f935a7b9ba41d9e7"
+    },
+    {
+      "path": "data/base_debug_edges.csv",
+      "size_bytes": 184190,
+      "sha256": "b9d02a087d4b24ab31bdc4e588627c4e30ff06f00524d0d864c995c431df93b3"
+    },
+    {
+      "path": "data/conductor_master.csv",
+      "size_bytes": 3920,
+      "sha256": "8109980fadc83e7688b07deceeafa5a5dac03e95602bc27482a6c6770b18c0f9"
+    },
+    {
+      "path": "data/conductor_parameter_library_v1.csv",
+      "size_bytes": 6463,
+      "sha256": "f09d75a7fea1824f7556aa31b9bab60e12925c400b0fcceed5ab1d0976eb6fa1"
+    },
+    {
+      "path": "data/conductor_parameter_request.csv",
+      "size_bytes": 2105,
+      "sha256": "0653111704ab962862b1322a1d1bf1736ca71eb0fbd170211241a0f06342676c"
+    },
+    {
+      "path": "data/conductor_source_log.csv",
+      "size_bytes": 2541,
+      "sha256": "c477cd48ffc4b132b8879c61d0f7317abea8db14f32b1d0ba4f4c2a70e235ca6"
+    },
+    {
+      "path": "data/data_readiness.csv",
+      "size_bytes": 1148,
+      "sha256": "9c4c33d75acdfd1d27945ce1c06a8e194c8b7b22cc953bcd799f0cee01f9f882"
+    },
+    {
+      "path": "data/drawing_symbol_legend.csv",
+      "size_bytes": 941,
+      "sha256": "abf3c7589267e8a8969aea27c909d379b2255b7c7cd650cbb99ed763b3c7c2ac"
+    },
+    {
+      "path": "data/feeder_master.csv",
+      "size_bytes": 2547,
+      "sha256": "ca2e87eb992154fe1a4da51aa2858b18a43454330267168c0984952139bdac8d"
+    },
+    {
+      "path": "data/final_preflight_qa.csv",
+      "size_bytes": 2631,
+      "sha256": "178e11ca596964824918cc41e02682957f2963a57bfbbd2d015c1282df5f91b1"
+    },
+    {
+      "path": "data/injection_summary.csv",
+      "size_bytes": 1743,
+      "sha256": "d5ecc3bef8eb97d49cbd66128ea9772254b46c26aa9b57b1d47098ffea9b363e"
+    },
+    {
+      "path": "data/key_tie_path_parameter_impact.csv",
+      "size_bytes": 1060,
+      "sha256": "5eab7d07ec94df48662f2bdfc147f875b8387ff2d2b0390c8015441f51ee5ffe"
+    },
+    {
+      "path": "data/legacy_extract_plan.csv",
+      "size_bytes": 760,
+      "sha256": "f6d9c09aeed2d021bdcc9692b232f04d80e49d4db1aac3b859bf23c6e39fd2b6"
+    },
+    {
+      "path": "data/load_seed_closure_check.csv",
+      "size_bytes": 462,
+      "sha256": "ac944656f25aff981a629aa5bdae06f330a51322adf9aeb8293f79a784f13c0f"
+    },
+    {
+      "path": "data/node_load_seed_pf095.csv",
+      "size_bytes": 7180,
+      "sha256": "45e70a63ebf6674cd81656ed81d7770acfe04cf06224fe369ebf9629b84932ee"
+    },
+    {
+      "path": "data/node_master.csv",
+      "size_bytes": 199688,
+      "sha256": "70975a8f19891e11e73ec428931b6355b17ad1a710b8c4a7832523dcb4d8162d"
+    },
+    {
+      "path": "data/node_pv_seed.csv",
+      "size_bytes": 2788,
+      "sha256": "96bd233e54a9e64e27ca529b69f9798b4b4b2135f95f49694f78fbf0be6b044d"
+    },
+    {
+      "path": "data/operating_scenarios_prepared.csv",
+      "size_bytes": 1445,
+      "sha256": "50a5c73c4d05dd930fe3519f65843b153f23db32ec9c1b3fa86110e31a5420a9"
+    },
+    {
+      "path": "data/physical_edges.csv",
+      "size_bytes": 434875,
+      "sha256": "6bae759f6ddb33888a3c1434ddc9f4a83398c6fccf1e22d3d73cc935fed8342e"
+    },
+    {
+      "path": "data/provenance_sources.csv",
+      "size_bytes": 637,
+      "sha256": "1e190a19dcbbf3441e80e0ebc48ca04bceb54a492138370718da117d5fa474a6"
+    },
+    {
+      "path": "data/qa_gate.csv",
+      "size_bytes": 2631,
+      "sha256": "178e11ca596964824918cc41e02682957f2963a57bfbbd2d015c1282df5f91b1"
+    },
+    {
+      "path": "data/scenario_master.csv",
+      "size_bytes": 1445,
+      "sha256": "50a5c73c4d05dd930fe3519f65843b153f23db32ec9c1b3fa86110e31a5420a9"
+    },
+    {
+      "path": "data/source_master.csv",
+      "size_bytes": 2479,
+      "sha256": "5bfc89d80af81b15bdc6f9cb98bb3ff968f6f7066ad6d3673875973b63515711"
+    },
+    {
+      "path": "data/source_to_tie_paths_v2.csv",
+      "size_bytes": 116,
+      "sha256": "a5e62959bf1e7fbd252dab6cb7a4493ed6cf4c6b9231cdacf34c121beb2b0060"
+    },
+    {
+      "path": "data/station_boundary_2025.csv",
+      "size_bytes": 1004,
+      "sha256": "0e461d2acd367b0a22fabf6e19a31f1ea1c093f5ee5a8d2b6857ed942511796e"
+    },
+    {
+      "path": "data/station_pv_anchors_2026.csv",
+      "size_bytes": 975,
+      "sha256": "42f1a21d080aa23adfbae06cffd21c12e0923267c0f1119d3ab6ef94a7e4cf02"
+    },
+    {
+      "path": "data/switch_master.csv",
+      "size_bytes": 3534,
+      "sha256": "a4a06b132fd91ef77fbcf177c679f99d67693f3becfe9d9b0ecd87ba2c872291"
+    },
+    {
+      "path": "data/switch_state_fusion.csv",
+      "size_bytes": 6092,
+      "sha256": "8ecd2d0465a4810677b413bd745d08be35a7342d19ba603e41cffb67f484b2eb"
+    },
+    {
+      "path": "data/tie_master.csv",
+      "size_bytes": 3293,
+      "sha256": "442b82863fd3d02a780e41f7fadeeded3f5c90c6389e9b1d417fc1f898ed8f18"
+    },
+    {
+      "path": "data/topology_repairs_v2.csv",
+      "size_bytes": 119,
+      "sha256": "ba205b1ce88c569cf99400a857a4dde2c92ea7338017dcb5c0a82276e1c34c19"
+    },
+    {
+      "path": "data/transformer_boundary_2025.csv",
+      "size_bytes": 1159,
+      "sha256": "66721163c3275e999442d246a4876b27de88573dbdac65ca097ba2f452b94a97"
+    },
+    {
+      "path": "evidence/contact.png",
+      "size_bytes": 589789,
+      "sha256": "d0f54066c09a34d70a0ed5b8e006c460d2a5f14b8bc3ce7c4337913eff386439"
+    },
+    {
+      "path": "evidence/hpao_wangchanghu_context.png",
+      "size_bytes": 28294,
+      "sha256": "dd302af0a14b9af11b87c47659db4c538b0d8824d0590afb727095072cd6a9e3"
+    },
+    {
+      "path": "parameter_gate_template.json",
+      "size_bytes": 578,
+      "sha256": "e8ffd861a786da37d7c5b2d517049b4dac6f60be6c67f644949be91a8a942629"
+    },
+    {
+      "path": "qa_patch_log_template.csv",
+      "size_bytes": 264,
+      "sha256": "5e5fe31fe1abba9533ba43394578a4a7ff9118ddc191a3ca4beebe28f680e7cd"
+    },
+    {
+      "path": "quality_summary.json",
+      "size_bytes": 629,
+      "sha256": "04a27d30a2f4a10a6c90d9a545e91f4f76473988bfe23f1b98b8628a53925ec2"
+    },
+    {
+      "path": "run_manifest_template.json",
+      "size_bytes": 272,
+      "sha256": "b02dfb0fae360d1b0a64e4d9967c7db7a96ad42a315ddb5b907ce02b9d73cc55"
+    },
+    {
+      "path": "source/10kV案例建模前期准备_V2_新结构化表格与图纸.xlsx",
+      "size_bytes": 129536,
+      "sha256": "cb09a66b193435d223b5ce4275587dbf71619e8c51472fc54dc4afe53b271d7d"
+    },
+    {
+      "path": "source/10kv.7z",
+      "size_bytes": 2631049,
+      "sha256": "21f846c0bfcd010e78b93695ccb97b46301b860db15f2d944290d57cda9a6cec"
+    },
+    {
+      "path": "source/数据_脱敏_原始.zip",
+      "size_bytes": 34035531,
+      "sha256": "a12898d3925ba7439a168225ab98e4aeb6ffc03c2a187db4ebf9c4990a36945b"
+    }
+  ]
+}

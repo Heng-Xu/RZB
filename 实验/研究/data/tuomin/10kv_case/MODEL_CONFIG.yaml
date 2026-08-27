@@ -1,0 +1,63 @@
+project: xuzhou_10kv_tie_case
+version: V5.1
+mode_default: PLANNING_STRICT
+unknown_token: NEED_CONFIRM
+
+scope:
+  stations:
+    BDZ-00027: 墩集变
+    BDZ-00048: 河湾变
+  feeder_ids: [PZXL-00099, PZXL-00097, PZXL-00092, PZXL-00154, PZXL-00161, PZXL-00173]
+  base_kv: 10
+
+prepared_inputs:
+  feeder_master: data/feeder_master.csv
+  station_boundary: data/station_boundary_2025.csv
+  transformer_boundary: data/transformer_boundary_2025.csv
+  station_pv_anchors: data/station_pv_anchors_2026.csv
+  physical_edges: data/physical_edges.csv
+  load_seed: data/node_load_seed_pf095.csv
+  pv_seed: data/node_pv_seed.csv
+  scenarios: data/operating_scenarios_prepared.csv
+  final_qa: data/final_preflight_qa.csv
+  raw_old_package: source/数据_脱敏_原始.zip
+
+electrical_limits:
+  branch_effective_limit_rule: min(conductor_Imax_base, feeder_max_allowed_current_SRC06)
+  voltage_hard_pu: [0.93, 1.07]
+  voltage_preferred_pu: [0.95, 1.05]
+  q_if_missing:
+    pf_base: 0.95
+    pf_sensitivity: [0.90, 0.95, 0.98]
+
+load_allocation:
+  base_method: normalize_observed_field_transformer_kva_to_feeder_boundary_P
+  spatial_sensitivity: uniform_leaf
+  hdong_boundary:
+    raw_2025_max_p_mw: 0
+    status: anomaly
+    planning_proxy_rule: sqrt(3)*10kV*2025_max_current*0.95
+
+switches:
+  confirmed_ties:
+    TIE-001: OPEN
+    TIE-002: OPEN
+    TIE-003: OPEN
+    TIE-004: OPEN
+    TIE-005: OPEN
+    TIE-006: OPEN
+    TIE-007: CLOSED
+    TIE-008: OPEN
+  drawing_symbol_calibration_required_for_ordinary_sectional_switches: true
+
+case_priority: [TIE-002, TIE-001, TIE-003]
+
+optional_refinement:
+  feeder_to_10kv_bus_section_to_transformer_mapping:
+    status: optional_not_required_for_current_case
+    current_model_source_level: station_equivalent
+    required_only_for_exact_single_transformer_N1_attribution: true
+
+interpretation:
+  annual_feeder_maxima_are_not_synchronous: true
+  scenarios_are_planning_envelopes_unless_timestamped_SCADA_is_supplied: true

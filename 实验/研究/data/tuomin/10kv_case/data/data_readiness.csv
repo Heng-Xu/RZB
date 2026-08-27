@@ -1,0 +1,10 @@
+﻿data_item,current_status,source,model_usage,remaining_gap
+六条馈线→站点映射,READY,既有人工确认 + SRC06起点站码,三条墩集馈线→BDZ-00027；三条河湾馈线→BDZ-00048,NONE
+六线2025馈线边界,READY,SRC06,P/I/最大允许电流/长度/半径,hdong P异常已代理并做PF敏感性
+站/主变边界,READY,SRC01/SRC02+设备明细,站级容量与N-1筛查,NONE for station-aggregated case
+线路R/X/Imax,READY_PLANNING,V5公开参数库+SRC06,effective rate取较小值,C-PROXY若成为瓶颈再复核
+节点负荷,READY_PLANNING_SEED,旧现场容量观察,kVA权重→馈线P闭合,仅需空间敏感性
+节点PV,SCENARIO_READY,现场记录+V5汇总,节点/馈线总量+PV factor,dnan完整装机总量未知但有7.34MW峰值出力锚点
+关键联络状态,READY,上一轮人工确认,7 OPEN + TIE-007 CLOSED,普通分段开关按图纸校准
+运行场景,READY,真实极值锚点+规划敏感性,S1/S2/S3,无同步SCADA时不称历史同步断面
+馈线→母线段→具体主变,OPTIONAL_REFINEMENT,当前资料未明确,当前站级等值源端模型不需要,仅单台主变级N-1归因时才需要

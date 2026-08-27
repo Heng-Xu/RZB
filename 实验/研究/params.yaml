@@ -1,0 +1,41 @@
+# LEGACY_SYNTHETIC_ONLY：本文件仅为2026-07-22合成M1回归保留。
+# 真实数据模型必须读取 model_contract.yaml；不得把本文件中的弃光、联络、
+# 通用50 MVA扩容或2030占位参数带入正式结果。
+legacy_notice:
+  status: deprecated_for_real_data
+  authoritative_contract: model_contract.yaml
+  allowed_use: synthetic_m1_regression_only
+
+# params.yaml — 旧M1全局参数(保留以兼容现有合成测试)
+tau_max:            # 分布式电源最大出力系数 DL/T 2041-2025 §3.7;取值=甲方07.20口径,书面出处待确认(收资清单③)
+  kv220: 0.90
+  kv110: 0.95
+  kv10: 0.97
+beta:               # 变压器最大反向负载率 DL/T 2041-2025 §6.4
+  split_mode: 0.80  # 分列/单台运行 §6.4(a)
+  parallel_rule: "n_minus_1"  # 并列:按 N-1 反向不过载折算 §6.4(b) → (n-1)/n * split_mode
+eta:                # 新能源利用率 国能发电力〔2024〕44号;省定目标待确认(收资清单②)
+  base: 0.98
+  sensitivity: [0.95, 0.90]   # 90%=44号文下限外边界
+k_ol: 1.30          # 站内主变事故短时过载系数 [待核对: DL/T 572 / GB1094.7 条款];站间转带取 1.0
+r_cap_scheme_a: 2.0 # 方案A红线 配电网规划设计技术导则(修订稿) §6.2.2.1
+radius_km:          # 中压供电半径上限 [待核对: DL/T 5729-2016 分区限值表]
+  urban: 3.0
+  rural: 15.0
+voltage_dev_pct: 7  # 10kV电压偏差 [待核对: GB/T 12325-2008]
+costs:              # 基线复用 实验/有EA/datasets/cost_params/baseline_costs.yaml;单价定额待甲方(收资清单⑨)
+  source: "../有EA/datasets/cost_params/baseline_costs.yaml"
+  switch_install_wanyuan: 15          # 加装分段/联络开关 万元/台(占位,待定额)
+  switching_op_wanyuan: 0.1           # 单次计划倒闸操作费 ε(防无意义切分)
+  tie_newline_wanyuan_per_km: 80      # 新建10kV线路(附录情景用,占位)
+  expand_wanyuan_per_50mva: 800       # [占位待定额] 主变扩容 万元/50MVA(Task6);CRF按寿命30年、贴现率同储能年化
+  curtail_price_yuan_kwh: 0.35        # [占位待定额] 弃光成本 元/kWh(Task6 O3 目标项;baseline另有0.4口径,以此占位为准)
+milp:
+  backend: linopy
+  typical_days: 12          # 代表日数(另强制加正/反极端日2天)
+  time_step_h: 1.0
+  mip_gap: 0.01
+synthetic:
+  seed: 20260721
+  counties: [XY, PZ]        # 新沂/邳州代号
+  planning_year_scale: {load_kp: 1.05, pv_growth: 1.6}   # 2030外推占位系数(M1不启用)

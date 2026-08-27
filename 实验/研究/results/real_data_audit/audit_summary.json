@@ -1,0 +1,32 @@
+{
+  "archive": {
+    "file": "电网建模数据_Agent整合版_V1.2.zip",
+    "bytes": 34710343,
+    "sha256": "a8ee4006223b39efdcdc4434c4b315d25ef395a3de1a684e049a70925ab5bec7",
+    "extracted_files": 13
+  },
+  "scope": {
+    "stations_110kv": 21,
+    "transformers_110kv": 42,
+    "transformers_35kv_context": 16,
+    "network_lines_touching_scope": 40,
+    "feeders_in_scope": 342
+  },
+  "capacity_mva": {
+    "historical_2025": 2139.5,
+    "station_src01": 2221.0,
+    "unit_year_end": 2239.5
+  },
+  "pv": {
+    "online_mw": 1460.9273,
+    "pipeline_mw": 260.4057,
+    "profile_hours": 8760,
+    "equivalent_full_load_hours": 1297.1
+  },
+  "mapping": {
+    "2025_score_below_0_25": 51,
+    "2026_snapshot_error_le_0_5_mw": 32,
+    "approval_status": "candidate_only"
+  },
+  "decision": "layered_redesign_recommended"
+}

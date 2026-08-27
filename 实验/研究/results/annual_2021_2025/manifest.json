@@ -1,0 +1,152 @@
+{
+  "constraints": {
+    "action_modes": [
+      "ACTION_EXPANSION_ONLY",
+      "ACTION_STORAGE_ONLY",
+      "ACTION_COMBINED_EXPANSION_STORAGE"
+    ],
+    "cross_voltage_aggregation": false,
+    "evidence_codes": [
+      "EVIDENCE_A",
+      "EVIDENCE_B",
+      "EVIDENCE_C"
+    ],
+    "fixed_positive_denominator": true,
+    "scheme_codes": [
+      "SCHEME_C0",
+      "SCHEME_A",
+      "SCHEME_B"
+    ]
+  },
+  "contract_sha256": "0f326b29625fff67d073cff50228008199bb1e0676f56e94203dc6e412bba5b5",
+  "docx_status": "created",
+  "formal_2025_run_manifest_sha256": "ace952bb51c5cc4f328f619874c4732ea02256794141bc877137241303a24079",
+  "historical_backtest_claimed": false,
+  "output_files": {
+    "annual_matrix_2021_110kv.csv": {
+      "bytes": 10864,
+      "sha256": "beaea1abd6d1eeb91de5d2fa37065dadfbfd1de04c83b7bdf0945b2e0dee75a6"
+    },
+    "annual_matrix_2021_110kv.md": {
+      "bytes": 1774,
+      "sha256": "e2a40a994498fdc7fa3b15132d6fdeeb43f9a4fbcd7375fd6a0101a69e453716"
+    },
+    "annual_matrix_2021_35kv.csv": {
+      "bytes": 10338,
+      "sha256": "b91af6b19cec67d97276ff4cd50dddd22b5e1cd6d9734b6715e6bd22b0e5b818"
+    },
+    "annual_matrix_2021_35kv.md": {
+      "bytes": 1772,
+      "sha256": "827c173185677b30636f23f3aa367921db989a3239bb8907008db06109f77485"
+    },
+    "annual_matrix_2022_110kv.csv": {
+      "bytes": 11614,
+      "sha256": "c93ca5441809537642016549664897a6896abadca94dbe04ab8ae7cf1c60d9ad"
+    },
+    "annual_matrix_2022_110kv.md": {
+      "bytes": 1865,
+      "sha256": "7c1aaef583a55cef89a18e6ecb2064a442b7432f1284e20aeab1f73982692824"
+    },
+    "annual_matrix_2022_35kv.csv": {
+      "bytes": 11641,
+      "sha256": "07da20771e904ab4d5d6ed5ee3e21d08e3c9640add4b4db9042b831e45d4e928"
+    },
+    "annual_matrix_2022_35kv.md": {
+      "bytes": 1863,
+      "sha256": "e2ce76a2a7a424cd46877e21b5e7d1603df6a5339d7ceab15a24e10231e4aa1d"
+    },
+    "annual_matrix_2023_110kv.csv": {
+      "bytes": 11674,
+      "sha256": "43669d2fdbc4f108c3e9e1a675efd78e62af8327f06f4c87f6504f7882eee50d"
+    },
+    "annual_matrix_2023_110kv.md": {
+      "bytes": 1868,
+      "sha256": "f69d71ceb7db7e81b4360f2b4e66edc3e449a2ae53e90d15454132ff52caba03"
+    },
+    "annual_matrix_2023_35kv.csv": {
+      "bytes": 10909,
+      "sha256": "4da1deca1650f38c907553242e82904f9d54e5c849dee337fb6002f408c490f0"
+    },
+    "annual_matrix_2023_35kv.md": {
+      "bytes": 1855,
+      "sha256": "6c21f46383123d1064473166231ceb36d04651bed06400a5dec616c83856b4ea"
+    },
+    "annual_matrix_2024_110kv.csv": {
+      "bytes": 11783,
+      "sha256": "c72ced4346bb8c36b3aa8b2ff4dbf213ed8a4011292432eed9eef7f39c0ad77a"
+    },
+    "annual_matrix_2024_110kv.md": {
+      "bytes": 1861,
+      "sha256": "37a65b46eece32562f7feb05cd63acaa2f3abff6cc841fb16033078d098f3cd0"
+    },
+    "annual_matrix_2024_35kv.csv": {
+      "bytes": 11440,
+      "sha256": "808dbe721204657c7a208e661d97ccfb553311f49c36ffa79744f31348168b46"
+    },
+    "annual_matrix_2024_35kv.md": {
+      "bytes": 1852,
+      "sha256": "563e61b5f3c774f3f886bf0037142d4b0aa27c96f8f1b218495c2ef8bfe93b43"
+    },
+    "annual_matrix_2025_110kv.csv": {
+      "bytes": 11701,
+      "sha256": "455e5b8940a5f4c176f1796d28a738e385b305c8346443746aa3ee4fb052fa8f"
+    },
+    "annual_matrix_2025_110kv.md": {
+      "bytes": 1702,
+      "sha256": "3c38f40e406d2dda3fc74acd6c476bbf7a83670c72c02a743c3ada67763a2f5a"
+    },
+    "annual_matrix_2025_35kv.csv": {
+      "bytes": 11304,
+      "sha256": "30c02f63c459a01e3a68bb1c0d806ef704c6875464c574e696684901c7b35352"
+    },
+    "annual_matrix_2025_35kv.md": {
+      "bytes": 1692,
+      "sha256": "a40dc2546465f300847fcdf1e04b4456714d5bab39bbbc90c85ae9d7e3ad384d"
+    },
+    "annual_solution_modes_2021_2025.csv": {
+      "bytes": 427116,
+      "sha256": "a74c666e72a4b76670cc50ffe3c902c142297103d7119bc718323f17dd794000"
+    },
+    "final_recommendation_interval_110kv.csv": {
+      "bytes": 5539,
+      "sha256": "dc658d531672692cbdf34ea49a7cc0f6b7f3f8b75882c4f4d2e3499039d356f5"
+    },
+    "final_recommendation_interval_110kv.md": {
+      "bytes": 2097,
+      "sha256": "9ba21e5fc9f38458a90b9c210ecde0216d74a2d5cacdb34b8493c7105db498cc"
+    },
+    "final_recommendation_interval_35kv.csv": {
+      "bytes": 5513,
+      "sha256": "69aa3f0477392d2d331f24aa6aac59a9abeffb2e6c7d67ba583d4f1a86d677a6"
+    },
+    "final_recommendation_interval_35kv.md": {
+      "bytes": 2108,
+      "sha256": "0ba6a6b9c34321df1d85c8a6771e504501b7d8c8873b154bc89965b888b5a63f"
+    },
+    "manifest.json": {
+      "bytes": 5202,
+      "sha256": "d2c383af9a9434f61a2c3cc513475032c4f0ab1045c12e4125632eceef3c6793"
+    },
+    "五年年度容载比推荐矩阵与最终区间.docx": {
+      "bytes": 22879,
+      "sha256": "5483eea94bc0cf1355e08e1ed48bcbcc83b4deb661b50820ad87d7ad562c66df"
+    },
+    "五年年度容载比推荐矩阵与最终区间.md": {
+      "bytes": 56568,
+      "sha256": "4c28626b6a545218257ee92699273753b0fc153a397ed0236ecdd631e2297756"
+    }
+  },
+  "run_id": "annual_2021_2025_project_output_v1",
+  "source_reference_sha256": "f64be1be4955a268e97edc2678b2a39c3e89f651b7f40cc96e2e700395fe45a1",
+  "voltage_levels_kv": [
+    110,
+    35
+  ],
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ]
+}

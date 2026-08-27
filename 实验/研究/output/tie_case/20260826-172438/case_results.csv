@@ -1,0 +1,11 @@
+﻿run_id,scenario_id,tie_id,direction,transfer_mw,served_load_mw,unserved_mw,umin_pu,max_loading_pct,binding_constraint,sectionalizing_switches,tie_state,formal_or_debug,parameter_gate_pass,notes
+20260826-172438,S1_FEEDER_STRESS,-,-,,0.0,8.2344,1.0,0.0,TOPOLOGY_FRAGMENTED,,-,PLANNING_ENVELOPE,False,PZXL-00099 boundary_P=8.2344MW. topology_fragmented(load_coverage=0.0%)
+20260826-172438,S1_FEEDER_STRESS,-,-,,2.465,0.9288,0.99593,30.01,TOPOLOGY_FRAGMENTED,,-,PLANNING_ENVELOPE,False,PZXL-00097 boundary_P=3.393804MW. topology_fragmented(load_coverage=72.63%)
+20260826-172438,S1_FEEDER_STRESS,-,-,,6.5296,0.0,0.95863,84.39,,,-,PLANNING_ENVELOPE,True,PZXL-00092 boundary_P=6.529596MW.
+20260826-172438,S1_FEEDER_STRESS,-,-,,3.4957,5.4649,1.0,0.0,TOPOLOGY_FRAGMENTED,,-,PLANNING_ENVELOPE,False,PZXL-00154 boundary_P=8.960618MW. hdong P=proxy_i_pf095(√3×10kV×I×0.95) topology_fragmented(load_coverage=39.01%)
+20260826-172438,S1_FEEDER_STRESS,-,-,,0.0963,1.7913,0.99999,1.06,TOPOLOGY_FRAGMENTED,,-,PLANNING_ENVELOPE,False,PZXL-00161 boundary_P=1.88759MW. topology_fragmented(load_coverage=5.1%)
+20260826-172438,S1_FEEDER_STRESS,-,-,,6.2899,0.0,0.98665,54.21,,,-,PLANNING_ENVELOPE,True,PZXL-00173 boundary_P=6.289937MW.
+20260826-172438,S3_TRANSFER_SWEEP,TIE-002,from_to,4.75,4.75,1.78,,,path_thermal_limit(4.94MVA),TIE-002 CLOSED; 分段开关序列待拓扑闭环后细化,normal=OPEN; operation=CLOSE_FOR_TRANSFER,PLANNING_ENVELOPE,True,host_spare=76.26MVA path_min=4.9363MVA
+20260826-172438,S3_TRANSFER_SWEEP,TIE-002,to_from,1.75,1.75,0.138,,,sending_feeder_load_exhausted(1.89MW),TIE-002 CLOSED; 分段开关序列待拓扑闭环后细化,normal=OPEN; operation=CLOSE_FOR_TRANSFER,PLANNING_ENVELOPE,True,host_spare=40.79MVA path_min=4.9363MVA
+20260826-172438,S3_TRANSFER_SWEEP,TIE-003,from_to,3.25,3.25,0.144,,,sending_feeder_load_exhausted(3.39MW),TIE-003 CLOSED; 分段开关序列待拓扑闭环后细化,normal=OPEN; operation=CLOSE_FOR_TRANSFER,PLANNING_ENVELOPE,True,host_spare=76.26MVA path_min=4.9363MVA
+20260826-172438,S3_TRANSFER_SWEEP,TIE-003,to_from,1.75,1.75,0.138,,,sending_feeder_load_exhausted(1.89MW),TIE-003 CLOSED; 分段开关序列待拓扑闭环后细化,normal=OPEN; operation=CLOSE_FOR_TRANSFER,PLANNING_ENVELOPE,True,host_spare=40.79MVA path_min=4.9363MVA

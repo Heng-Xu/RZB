@@ -1,0 +1,37 @@
+{
+  "contract_sha256": "0f326b29625fff67d073cff50228008199bb1e0676f56e94203dc6e412bba5b5",
+  "hard_assertions": {
+    "35kv_no_unique_discrete_optimum_claim": true,
+    "B_eac_not_above_A_when_both_feasible": true,
+    "C0_zero_cost_noncompliance_visible": true,
+    "anonymized_region_ids_only": true,
+    "fixed_positive_peak_matches_baseline": true,
+    "no_cross_layer_cost_aggregation": true,
+    "qx00005_parent_4_plus_4_preserved": true,
+    "separate_eight_row_voltage_matrices": true
+  },
+  "input_fingerprint": "41483aa3a30ba136c34a10e665a7464713439fad154c682043ecc3a1a31d8918",
+  "matrix_version": "1.0.0",
+  "output_files": {
+    "matrix_110kv.csv": {
+      "bytes": 8649,
+      "sha256": "f2ebda9cffd63b212fbce743d88445abc2b2e1360817d58abcef33e59dee6701"
+    },
+    "matrix_110kv.md": {
+      "bytes": 15882,
+      "sha256": "de6f5e9f452ff45f284049a863c1c4d0286f6cdf3338bedae6804e58836fb7b7"
+    },
+    "matrix_35kv.csv": {
+      "bytes": 10893,
+      "sha256": "31c1329855b3849c51af47e7784cd05ec194f0efd8dd9b790777c50229bc7e74"
+    },
+    "matrix_35kv.md": {
+      "bytes": 18102,
+      "sha256": "a1e43720811c40059ce818710bcb2e3705035ed1cb0a8301977a0d1cf2ef0e90"
+    },
+    "parent_supply_mapping_35kv.csv": {
+      "bytes": 26745,
+      "sha256": "da880f9174d8997fa36c15027d00249ad59cc60d1e0c59e384f6c84bd8bdcccf"
+    }
+  }
+}

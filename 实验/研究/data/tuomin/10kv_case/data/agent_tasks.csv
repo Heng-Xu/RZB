@@ -1,0 +1,11 @@
+﻿task_id,priority,task,instruction,inputs,outputs,gate
+A0,P0,完整性检查,核验manifest、六馈线/两站主键、1124边100%参数化,prepared data masters,import_report.json,fail-stop
+A1,P0,基准拓扑构建,加载physical_edges+switches+ties；TIE-007必须CLOSED，其余按确认状态,physical/switch/tie masters,base_operational_graph,环路/孤岛审计
+A2,P0,普通开关图例校准,用TIE-007(CLOSED)和TIE-001/002/003(OPEN)反标图纸黑/空白语义,drawings + switch_state_fusion,switch_symbol_patch.csv,锚点一致才批量应用
+A3,P0,负荷/PV注入生成,直接读取node_load_seed_pf095 + node_pv_seed；不再重新抽旧脱敏数据,prepared injection seeds,injection_cases.csv,馈线总P闭合
+A4,P0,TIE-002基准/转供扫描,S1/S2分别闭合TIE-002并枚举切分点保持辐射，求双向最大转供,S1/S2 + TIE-002,case_TIE002_results.csv,输出绑定约束
+A5,P0,敏感性,PF 0.90/0.95/0.98、X±15%、Imax base/upper、uniform-leaf空间对照,scenario parameters,TIE002_sensitivity.csv,结论稳定性
+A6,P1,TIE-001拓扑闭环,完成R005/R010-R014设备边修复后计算,drawings,topology_patch_log.csv,路径连通
+A7,P1,TIE-003拓扑闭环,正式核R020设备链后计算,drawings,topology_patch_log.csv,路径连通
+A8,P2,三通道联合互济,共同站级容量、线路、电压、径向约束下联合求解；禁止简单相加,three tie cases,station_mutual_aid_results.csv,单通道通过
+A9,P0,结果追溯,记录场景、参数等级、源数据、patch、solver版本、假设,all,run_manifest.json,可复现

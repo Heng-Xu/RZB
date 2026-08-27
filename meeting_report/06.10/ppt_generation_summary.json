@@ -1,0 +1,2608 @@
+{
+  "generated_at": "2026-06-09T16:04:59",
+  "output": "reports/06.10/battery_trajectory_group_meeting_20260610.pptx",
+  "runtime": {
+    "python": "/home/xh/anaconda3/envs/batteryAGIING/bin/python",
+    "torch_cuda_available": false,
+    "torch_cuda_device_count": 0,
+    "nvidia_smi_gpus": [],
+    "probe_mode": "isolated_python",
+    "nvidia_smi_error": "CalledProcessError(9, ['nvidia-smi', '--query-gpu=index,name,memory.used,memory.total', '--format=csv,noheader'])"
+  },
+  "slides": 3,
+  "font_levels": [
+    20,
+    14,
+    12,
+    10,
+    8,
+    7
+  ],
+  "metric_windows": "10/20/40/80",
+  "metric_columns": [
+    "rmse_mean",
+    "rmse_std",
+    "mape_mean",
+    "mape_std"
+  ],
+  "full_tables": {
+    "HUST": {
+      "dataset": "HUST",
+      "rows": [
+        {
+          "label": "Hybrid 主线",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0069",
+                "best": true
+              },
+              {
+                "text": "0.0077",
+                "best": true
+              },
+              {
+                "text": "0.0080",
+                "best": true
+              },
+              {
+                "text": "0.0078",
+                "best": true
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0008",
+                "best": false
+              },
+              {
+                "text": "0.0018",
+                "best": false
+              },
+              {
+                "text": "0.0022",
+                "best": false
+              },
+              {
+                "text": "0.0020",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.64",
+                "best": true
+              },
+              {
+                "text": "0.73",
+                "best": true
+              },
+              {
+                "text": "0.74",
+                "best": true
+              },
+              {
+                "text": "0.70",
+                "best": true
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.08",
+                "best": false
+              },
+              {
+                "text": "0.17",
+                "best": false
+              },
+              {
+                "text": "0.19",
+                "best": false
+              },
+              {
+                "text": "0.16",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "LSTM",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0266",
+                "best": false
+              },
+              {
+                "text": "0.0258",
+                "best": false
+              },
+              {
+                "text": "0.0242",
+                "best": false
+              },
+              {
+                "text": "0.0241",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0054",
+                "best": false
+              },
+              {
+                "text": "0.0043",
+                "best": false
+              },
+              {
+                "text": "0.0024",
+                "best": false
+              },
+              {
+                "text": "0.0017",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "2.36",
+                "best": false
+              },
+              {
+                "text": "2.28",
+                "best": false
+              },
+              {
+                "text": "2.16",
+                "best": false
+              },
+              {
+                "text": "2.13",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.48",
+                "best": false
+              },
+              {
+                "text": "0.39",
+                "best": false
+              },
+              {
+                "text": "0.21",
+                "best": false
+              },
+              {
+                "text": "0.19",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "LSTM-PINN",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0346",
+                "best": false
+              },
+              {
+                "text": "0.0256",
+                "best": false
+              },
+              {
+                "text": "0.0234",
+                "best": false
+              },
+              {
+                "text": "0.0287",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0220",
+                "best": false
+              },
+              {
+                "text": "0.0041",
+                "best": false
+              },
+              {
+                "text": "0.0027",
+                "best": false
+              },
+              {
+                "text": "0.0141",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "3.14",
+                "best": false
+              },
+              {
+                "text": "2.27",
+                "best": false
+              },
+              {
+                "text": "2.08",
+                "best": false
+              },
+              {
+                "text": "2.60",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "2.08",
+                "best": false
+              },
+              {
+                "text": "0.38",
+                "best": false
+              },
+              {
+                "text": "0.25",
+                "best": false
+              },
+              {
+                "text": "1.28",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "xPatch-DT",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0082",
+                "best": false
+              },
+              {
+                "text": "0.0088",
+                "best": false
+              },
+              {
+                "text": "0.0089",
+                "best": false
+              },
+              {
+                "text": "0.0122",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0018",
+                "best": false
+              },
+              {
+                "text": "0.0005",
+                "best": false
+              },
+              {
+                "text": "0.0012",
+                "best": false
+              },
+              {
+                "text": "0.0046",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.76",
+                "best": false
+              },
+              {
+                "text": "0.80",
+                "best": false
+              },
+              {
+                "text": "0.81",
+                "best": false
+              },
+              {
+                "text": "1.11",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.17",
+                "best": false
+              },
+              {
+                "text": "0.07",
+                "best": false
+              },
+              {
+                "text": "0.13",
+                "best": false
+              },
+              {
+                "text": "0.39",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "BatteryGPT",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0232",
+                "best": false
+              },
+              {
+                "text": "0.0212",
+                "best": false
+              },
+              {
+                "text": "0.0227",
+                "best": false
+              },
+              {
+                "text": "0.0214",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0017",
+                "best": false
+              },
+              {
+                "text": "0.0024",
+                "best": false
+              },
+              {
+                "text": "0.0026",
+                "best": false
+              },
+              {
+                "text": "0.0029",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "2.15",
+                "best": false
+              },
+              {
+                "text": "1.96",
+                "best": false
+              },
+              {
+                "text": "2.14",
+                "best": false
+              },
+              {
+                "text": "2.06",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.20",
+                "best": false
+              },
+              {
+                "text": "0.20",
+                "best": false
+              },
+              {
+                "text": "0.27",
+                "best": false
+              },
+              {
+                "text": "0.28",
+                "best": false
+              }
+            ]
+          }
+        }
+      ],
+      "source_files": {
+        "Hybrid 主线": {
+          "010": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/HUST/Four_models_20260602_seed_summary.csv"
+        },
+        "LSTM": {
+          "010": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/HUST/Four_models_20260602_seed_summary.csv"
+        },
+        "LSTM-PINN": {
+          "010": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/HUST/Four_models_20260602_seed_summary.csv"
+        },
+        "xPatch-DT": {
+          "010": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/HUST/Four_models_20260602_seed_summary.csv"
+        },
+        "BatteryGPT": {
+          "010": "compare/results/HUST/BatteryGPT_20260604_bs32_seed_summary.csv",
+          "020": "compare/results/HUST/BatteryGPT_20260604_bs32_seed_summary.csv",
+          "040": "compare/results/HUST/BatteryGPT_20260604_bs32_seed_summary.csv",
+          "080": "compare/results/HUST/BatteryGPT_20260604_bs32_seed_summary.csv"
+        }
+      },
+      "seed_counts": {
+        "Hybrid 主线": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "LSTM": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "LSTM-PINN": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "xPatch-DT": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "BatteryGPT": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        }
+      }
+    },
+    "XJTU": {
+      "dataset": "XJTU",
+      "rows": [
+        {
+          "label": "Hybrid 主线",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0079",
+                "best": true
+              },
+              {
+                "text": "0.0075",
+                "best": true
+              },
+              {
+                "text": "0.0074",
+                "best": true
+              },
+              {
+                "text": "0.0072",
+                "best": true
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0011",
+                "best": false
+              },
+              {
+                "text": "0.0011",
+                "best": false
+              },
+              {
+                "text": "0.0006",
+                "best": false
+              },
+              {
+                "text": "0.0013",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.69",
+                "best": true
+              },
+              {
+                "text": "0.67",
+                "best": true
+              },
+              {
+                "text": "0.65",
+                "best": true
+              },
+              {
+                "text": "0.62",
+                "best": true
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.09",
+                "best": false
+              },
+              {
+                "text": "0.11",
+                "best": false
+              },
+              {
+                "text": "0.07",
+                "best": false
+              },
+              {
+                "text": "0.14",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "LSTM",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0324",
+                "best": false
+              },
+              {
+                "text": "0.0280",
+                "best": false
+              },
+              {
+                "text": "0.0258",
+                "best": false
+              },
+              {
+                "text": "0.0247",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0031",
+                "best": false
+              },
+              {
+                "text": "0.0029",
+                "best": false
+              },
+              {
+                "text": "0.0008",
+                "best": false
+              },
+              {
+                "text": "0.0012",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "3.11",
+                "best": false
+              },
+              {
+                "text": "2.56",
+                "best": false
+              },
+              {
+                "text": "2.20",
+                "best": false
+              },
+              {
+                "text": "2.14",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.32",
+                "best": false
+              },
+              {
+                "text": "0.25",
+                "best": false
+              },
+              {
+                "text": "0.07",
+                "best": false
+              },
+              {
+                "text": "0.15",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "LSTM-PINN",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0307",
+                "best": false
+              },
+              {
+                "text": "0.0281",
+                "best": false
+              },
+              {
+                "text": "0.0282",
+                "best": false
+              },
+              {
+                "text": "0.0241",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0037",
+                "best": false
+              },
+              {
+                "text": "0.0023",
+                "best": false
+              },
+              {
+                "text": "0.0030",
+                "best": false
+              },
+              {
+                "text": "0.0013",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "2.78",
+                "best": false
+              },
+              {
+                "text": "2.46",
+                "best": false
+              },
+              {
+                "text": "2.35",
+                "best": false
+              },
+              {
+                "text": "2.02",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.38",
+                "best": false
+              },
+              {
+                "text": "0.18",
+                "best": false
+              },
+              {
+                "text": "0.36",
+                "best": false
+              },
+              {
+                "text": "0.18",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "xPatch-DT",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0231",
+                "best": false
+              },
+              {
+                "text": "0.0120",
+                "best": false
+              },
+              {
+                "text": "0.0122",
+                "best": false
+              },
+              {
+                "text": "0.0140",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0247",
+                "best": false
+              },
+              {
+                "text": "0.0014",
+                "best": false
+              },
+              {
+                "text": "0.0004",
+                "best": false
+              },
+              {
+                "text": "0.0017",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "2.01",
+                "best": false
+              },
+              {
+                "text": "1.00",
+                "best": false
+              },
+              {
+                "text": "0.98",
+                "best": false
+              },
+              {
+                "text": "1.16",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "2.22",
+                "best": false
+              },
+              {
+                "text": "0.15",
+                "best": false
+              },
+              {
+                "text": "0.04",
+                "best": false
+              },
+              {
+                "text": "0.16",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "BatteryGPT",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0164",
+                "best": false
+              },
+              {
+                "text": "0.0169",
+                "best": false
+              },
+              {
+                "text": "0.0184",
+                "best": false
+              },
+              {
+                "text": "0.0209",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0023",
+                "best": false
+              },
+              {
+                "text": "0.0023",
+                "best": false
+              },
+              {
+                "text": "0.0016",
+                "best": false
+              },
+              {
+                "text": "0.0010",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "1.36",
+                "best": false
+              },
+              {
+                "text": "1.40",
+                "best": false
+              },
+              {
+                "text": "1.55",
+                "best": false
+              },
+              {
+                "text": "1.90",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.18",
+                "best": false
+              },
+              {
+                "text": "0.23",
+                "best": false
+              },
+              {
+                "text": "0.15",
+                "best": false
+              },
+              {
+                "text": "0.13",
+                "best": false
+              }
+            ]
+          }
+        }
+      ],
+      "source_files": {
+        "Hybrid 主线": {
+          "010": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/XJTU/Four_models_20260602_seed_summary.csv"
+        },
+        "LSTM": {
+          "010": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/XJTU/Four_models_20260602_seed_summary.csv"
+        },
+        "LSTM-PINN": {
+          "010": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/XJTU/Four_models_20260602_seed_summary.csv"
+        },
+        "xPatch-DT": {
+          "010": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/XJTU/Four_models_20260602_seed_summary.csv"
+        },
+        "BatteryGPT": {
+          "010": "compare/results/XJTU/BatteryGPT_20260604_bs32_seed_summary.csv",
+          "020": "compare/results/XJTU/BatteryGPT_20260604_bs32_seed_summary.csv",
+          "040": "compare/results/XJTU/BatteryGPT_20260604_bs32_seed_summary.csv",
+          "080": "compare/results/XJTU/BatteryGPT_20260604_bs32_seed_summary.csv"
+        }
+      },
+      "seed_counts": {
+        "Hybrid 主线": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "LSTM": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "LSTM-PINN": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "xPatch-DT": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "BatteryGPT": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        }
+      }
+    },
+    "MIT": {
+      "dataset": "MIT",
+      "rows": [
+        {
+          "label": "Hybrid 主线",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0124",
+                "best": true
+              },
+              {
+                "text": "0.0131",
+                "best": true
+              },
+              {
+                "text": "0.0143",
+                "best": true
+              },
+              {
+                "text": "0.0129",
+                "best": true
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0043",
+                "best": false
+              },
+              {
+                "text": "0.0051",
+                "best": false
+              },
+              {
+                "text": "0.0038",
+                "best": false
+              },
+              {
+                "text": "0.0032",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.96",
+                "best": true
+              },
+              {
+                "text": "1.01",
+                "best": true
+              },
+              {
+                "text": "1.10",
+                "best": true
+              },
+              {
+                "text": "0.98",
+                "best": true
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.38",
+                "best": false
+              },
+              {
+                "text": "0.40",
+                "best": false
+              },
+              {
+                "text": "0.35",
+                "best": false
+              },
+              {
+                "text": "0.27",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "LSTM",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0334",
+                "best": false
+              },
+              {
+                "text": "0.0359",
+                "best": false
+              },
+              {
+                "text": "0.0312",
+                "best": false
+              },
+              {
+                "text": "0.0273",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0086",
+                "best": false
+              },
+              {
+                "text": "0.0121",
+                "best": false
+              },
+              {
+                "text": "0.0080",
+                "best": false
+              },
+              {
+                "text": "0.0080",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "2.59",
+                "best": false
+              },
+              {
+                "text": "2.88",
+                "best": false
+              },
+              {
+                "text": "2.38",
+                "best": false
+              },
+              {
+                "text": "2.14",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.96",
+                "best": false
+              },
+              {
+                "text": "1.12",
+                "best": false
+              },
+              {
+                "text": "0.88",
+                "best": false
+              },
+              {
+                "text": "0.86",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "LSTM-PINN",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0446",
+                "best": false
+              },
+              {
+                "text": "0.0388",
+                "best": false
+              },
+              {
+                "text": "0.0573",
+                "best": false
+              },
+              {
+                "text": "0.0390",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0208",
+                "best": false
+              },
+              {
+                "text": "0.0141",
+                "best": false
+              },
+              {
+                "text": "0.0258",
+                "best": false
+              },
+              {
+                "text": "0.0180",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "3.48",
+                "best": false
+              },
+              {
+                "text": "2.96",
+                "best": false
+              },
+              {
+                "text": "4.60",
+                "best": false
+              },
+              {
+                "text": "2.96",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "1.76",
+                "best": false
+              },
+              {
+                "text": "1.27",
+                "best": false
+              },
+              {
+                "text": "2.19",
+                "best": false
+              },
+              {
+                "text": "1.42",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "xPatch-DT",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0404",
+                "best": false
+              },
+              {
+                "text": "0.0506",
+                "best": false
+              },
+              {
+                "text": "0.0449",
+                "best": false
+              },
+              {
+                "text": "0.0517",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0098",
+                "best": false
+              },
+              {
+                "text": "0.0018",
+                "best": false
+              },
+              {
+                "text": "0.0111",
+                "best": false
+              },
+              {
+                "text": "0.0076",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "3.24",
+                "best": false
+              },
+              {
+                "text": "3.55",
+                "best": false
+              },
+              {
+                "text": "3.35",
+                "best": false
+              },
+              {
+                "text": "3.77",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.81",
+                "best": false
+              },
+              {
+                "text": "0.17",
+                "best": false
+              },
+              {
+                "text": "0.74",
+                "best": false
+              },
+              {
+                "text": "0.41",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "BatteryGPT",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0203",
+                "best": false
+              },
+              {
+                "text": "0.0206",
+                "best": false
+              },
+              {
+                "text": "0.0221",
+                "best": false
+              },
+              {
+                "text": "0.0219",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0030",
+                "best": false
+              },
+              {
+                "text": "0.0024",
+                "best": false
+              },
+              {
+                "text": "0.0040",
+                "best": false
+              },
+              {
+                "text": "0.0065",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "1.42",
+                "best": false
+              },
+              {
+                "text": "1.56",
+                "best": false
+              },
+              {
+                "text": "1.68",
+                "best": false
+              },
+              {
+                "text": "1.62",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.19",
+                "best": false
+              },
+              {
+                "text": "0.22",
+                "best": false
+              },
+              {
+                "text": "0.36",
+                "best": false
+              },
+              {
+                "text": "0.57",
+                "best": false
+              }
+            ]
+          }
+        }
+      ],
+      "source_files": {
+        "Hybrid 主线": {
+          "010": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "020": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "040": "compare/results/MIT/Four_models_20260606_seed_summary.csv",
+          "080": "compare/results/MIT/Four_models_20260606_seed_summary.csv"
+        },
+        "LSTM": {
+          "010": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "020": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "040": "compare/results/MIT/Four_models_20260606_seed_summary.csv",
+          "080": "compare/results/MIT/Four_models_20260606_seed_summary.csv"
+        },
+        "LSTM-PINN": {
+          "010": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "020": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "040": "compare/results/MIT/Four_models_20260606_seed_summary.csv",
+          "080": "compare/results/MIT/Four_models_20260606_seed_summary.csv"
+        },
+        "xPatch-DT": {
+          "010": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "020": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "040": "compare/results/MIT/Four_models_20260606_seed_summary.csv",
+          "080": "compare/results/MIT/Four_models_20260606_seed_summary.csv"
+        },
+        "BatteryGPT": {
+          "010": "compare/results/MIT/BatteryGPT_20260606_bs8_seed_summary.csv",
+          "020": "compare/results/MIT/BatteryGPT_20260606_bs8_seed_summary.csv",
+          "040": "compare/results/MIT/BatteryGPT_20260606_bs8_seed_summary.csv",
+          "080": "compare/results/MIT/BatteryGPT_20260606_bs8_seed_summary.csv"
+        }
+      },
+      "seed_counts": {
+        "Hybrid 主线": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "LSTM": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "LSTM-PINN": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "xPatch-DT": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "BatteryGPT": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        }
+      }
+    },
+    "TJU": {
+      "dataset": "TJU",
+      "rows": [
+        {
+          "label": "Hybrid 主线",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0178",
+                "best": false
+              },
+              {
+                "text": "0.0171",
+                "best": true
+              },
+              {
+                "text": "0.0151",
+                "best": true
+              },
+              {
+                "text": "0.0187",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0042",
+                "best": false
+              },
+              {
+                "text": "0.0034",
+                "best": false
+              },
+              {
+                "text": "0.0022",
+                "best": false
+              },
+              {
+                "text": "0.0055",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "1.76",
+                "best": false
+              },
+              {
+                "text": "1.61",
+                "best": true
+              },
+              {
+                "text": "1.42",
+                "best": true
+              },
+              {
+                "text": "1.85",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.43",
+                "best": false
+              },
+              {
+                "text": "0.32",
+                "best": false
+              },
+              {
+                "text": "0.22",
+                "best": false
+              },
+              {
+                "text": "0.56",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "LSTM",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0195",
+                "best": false
+              },
+              {
+                "text": "0.0192",
+                "best": false
+              },
+              {
+                "text": "0.0205",
+                "best": false
+              },
+              {
+                "text": "0.0226",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0031",
+                "best": false
+              },
+              {
+                "text": "0.0039",
+                "best": false
+              },
+              {
+                "text": "0.0051",
+                "best": false
+              },
+              {
+                "text": "0.0057",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "1.90",
+                "best": false
+              },
+              {
+                "text": "1.87",
+                "best": false
+              },
+              {
+                "text": "1.95",
+                "best": false
+              },
+              {
+                "text": "2.18",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.27",
+                "best": false
+              },
+              {
+                "text": "0.39",
+                "best": false
+              },
+              {
+                "text": "0.53",
+                "best": false
+              },
+              {
+                "text": "0.54",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "LSTM-PINN",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0231",
+                "best": false
+              },
+              {
+                "text": "0.0234",
+                "best": false
+              },
+              {
+                "text": "0.0238",
+                "best": false
+              },
+              {
+                "text": "0.0276",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0067",
+                "best": false
+              },
+              {
+                "text": "0.0075",
+                "best": false
+              },
+              {
+                "text": "0.0093",
+                "best": false
+              },
+              {
+                "text": "0.0145",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "2.22",
+                "best": false
+              },
+              {
+                "text": "2.27",
+                "best": false
+              },
+              {
+                "text": "2.26",
+                "best": false
+              },
+              {
+                "text": "2.70",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.65",
+                "best": false
+              },
+              {
+                "text": "0.77",
+                "best": false
+              },
+              {
+                "text": "0.97",
+                "best": false
+              },
+              {
+                "text": "1.48",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "xPatch-DT",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0245",
+                "best": false
+              },
+              {
+                "text": "0.0273",
+                "best": false
+              },
+              {
+                "text": "0.0225",
+                "best": false
+              },
+              {
+                "text": "0.0198",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0054",
+                "best": false
+              },
+              {
+                "text": "0.0061",
+                "best": false
+              },
+              {
+                "text": "0.0053",
+                "best": false
+              },
+              {
+                "text": "0.0048",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "2.41",
+                "best": false
+              },
+              {
+                "text": "2.71",
+                "best": false
+              },
+              {
+                "text": "2.20",
+                "best": false
+              },
+              {
+                "text": "1.92",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.54",
+                "best": false
+              },
+              {
+                "text": "0.59",
+                "best": false
+              },
+              {
+                "text": "0.58",
+                "best": false
+              },
+              {
+                "text": "0.52",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "BatteryGPT",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0176",
+                "best": true
+              },
+              {
+                "text": "0.0174",
+                "best": false
+              },
+              {
+                "text": "0.0186",
+                "best": false
+              },
+              {
+                "text": "0.0176",
+                "best": true
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0039",
+                "best": false
+              },
+              {
+                "text": "0.0046",
+                "best": false
+              },
+              {
+                "text": "0.0063",
+                "best": false
+              },
+              {
+                "text": "0.0048",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "1.71",
+                "best": true
+              },
+              {
+                "text": "1.73",
+                "best": false
+              },
+              {
+                "text": "1.85",
+                "best": false
+              },
+              {
+                "text": "1.79",
+                "best": true
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.45",
+                "best": false
+              },
+              {
+                "text": "0.50",
+                "best": false
+              },
+              {
+                "text": "0.72",
+                "best": false
+              },
+              {
+                "text": "0.54",
+                "best": false
+              }
+            ]
+          }
+        }
+      ],
+      "source_files": {
+        "Hybrid 主线": {
+          "010": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "020": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "040": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "080": "compare/results/TJU/Four_models_20260604_seed_summary.csv"
+        },
+        "LSTM": {
+          "010": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "020": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "040": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "080": "compare/results/TJU/Four_models_20260604_seed_summary.csv"
+        },
+        "LSTM-PINN": {
+          "010": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "020": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "040": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "080": "compare/results/TJU/Four_models_20260604_seed_summary.csv"
+        },
+        "xPatch-DT": {
+          "010": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "020": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "040": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "080": "compare/results/TJU/Four_models_20260604_seed_summary.csv"
+        },
+        "BatteryGPT": {
+          "010": "compare/results/TJU/BatteryGPT_20260607_bs16_seed_summary.csv",
+          "020": "compare/results/TJU/BatteryGPT_20260607_bs16_seed_summary.csv",
+          "040": "compare/results/TJU/BatteryGPT_20260607_bs16_seed_summary.csv",
+          "080": "compare/results/TJU/BatteryGPT_20260607_bs16_seed_summary.csv"
+        }
+      },
+      "seed_counts": {
+        "Hybrid 主线": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "LSTM": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "LSTM-PINN": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "xPatch-DT": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "BatteryGPT": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        }
+      }
+    }
+  },
+  "ablation_tables": {
+    "HUST": {
+      "dataset": "HUST",
+      "rows": [
+        {
+          "label": "主线",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0069",
+                "best": true
+              },
+              {
+                "text": "0.0077",
+                "best": true
+              },
+              {
+                "text": "0.0080",
+                "best": true
+              },
+              {
+                "text": "0.0078",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0008",
+                "best": false
+              },
+              {
+                "text": "0.0018",
+                "best": false
+              },
+              {
+                "text": "0.0022",
+                "best": false
+              },
+              {
+                "text": "0.0020",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.64",
+                "best": true
+              },
+              {
+                "text": "0.73",
+                "best": true
+              },
+              {
+                "text": "0.74",
+                "best": true
+              },
+              {
+                "text": "0.70",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.08",
+                "best": false
+              },
+              {
+                "text": "0.17",
+                "best": false
+              },
+              {
+                "text": "0.19",
+                "best": false
+              },
+              {
+                "text": "0.16",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "去 BV 损失",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0074",
+                "best": false
+              },
+              {
+                "text": "0.0081",
+                "best": false
+              },
+              {
+                "text": "0.0090",
+                "best": false
+              },
+              {
+                "text": "0.0078",
+                "best": true
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0006",
+                "best": false
+              },
+              {
+                "text": "0.0012",
+                "best": false
+              },
+              {
+                "text": "0.0029",
+                "best": false
+              },
+              {
+                "text": "0.0025",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.71",
+                "best": false
+              },
+              {
+                "text": "0.76",
+                "best": false
+              },
+              {
+                "text": "0.85",
+                "best": false
+              },
+              {
+                "text": "0.70",
+                "best": true
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.07",
+                "best": false
+              },
+              {
+                "text": "0.09",
+                "best": false
+              },
+              {
+                "text": "0.25",
+                "best": false
+              },
+              {
+                "text": "0.21",
+                "best": false
+              }
+            ]
+          }
+        }
+      ],
+      "source_files": {
+        "主线": {
+          "010": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/HUST/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/HUST/Four_models_20260602_seed_summary.csv"
+        },
+        "去 BV 损失": {
+          "010": "compare/results/BV_ablation/HUST/BV_ablation_20260608_seed_summary.csv",
+          "020": "compare/results/BV_ablation/HUST/BV_ablation_20260608_seed_summary.csv",
+          "040": "compare/results/BV_ablation/HUST/BV_ablation_20260608_seed_summary.csv",
+          "080": "compare/results/BV_ablation/HUST/BV_ablation_20260608_seed_summary.csv"
+        }
+      },
+      "seed_counts": {
+        "主线": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "去 BV 损失": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        }
+      }
+    },
+    "XJTU": {
+      "dataset": "XJTU",
+      "rows": [
+        {
+          "label": "主线",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0079",
+                "best": true
+              },
+              {
+                "text": "0.0075",
+                "best": true
+              },
+              {
+                "text": "0.0074",
+                "best": true
+              },
+              {
+                "text": "0.0072",
+                "best": true
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0011",
+                "best": false
+              },
+              {
+                "text": "0.0011",
+                "best": false
+              },
+              {
+                "text": "0.0006",
+                "best": false
+              },
+              {
+                "text": "0.0013",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.69",
+                "best": true
+              },
+              {
+                "text": "0.67",
+                "best": true
+              },
+              {
+                "text": "0.65",
+                "best": true
+              },
+              {
+                "text": "0.62",
+                "best": true
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.09",
+                "best": false
+              },
+              {
+                "text": "0.11",
+                "best": false
+              },
+              {
+                "text": "0.07",
+                "best": false
+              },
+              {
+                "text": "0.14",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "去 BV 损失",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0082",
+                "best": false
+              },
+              {
+                "text": "0.0092",
+                "best": false
+              },
+              {
+                "text": "0.0104",
+                "best": false
+              },
+              {
+                "text": "0.0092",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0010",
+                "best": false
+              },
+              {
+                "text": "0.0029",
+                "best": false
+              },
+              {
+                "text": "0.0008",
+                "best": false
+              },
+              {
+                "text": "0.0019",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.74",
+                "best": false
+              },
+              {
+                "text": "0.84",
+                "best": false
+              },
+              {
+                "text": "0.92",
+                "best": false
+              },
+              {
+                "text": "0.79",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.09",
+                "best": false
+              },
+              {
+                "text": "0.28",
+                "best": false
+              },
+              {
+                "text": "0.07",
+                "best": false
+              },
+              {
+                "text": "0.16",
+                "best": false
+              }
+            ]
+          }
+        }
+      ],
+      "source_files": {
+        "主线": {
+          "010": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "020": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "040": "compare/results/XJTU/Four_models_20260602_seed_summary.csv",
+          "080": "compare/results/XJTU/Four_models_20260602_seed_summary.csv"
+        },
+        "去 BV 损失": {
+          "010": "compare/results/BV_ablation/XJTU/BV_ablation_20260608_seed_summary.csv",
+          "020": "compare/results/BV_ablation/XJTU/BV_ablation_20260608_seed_summary.csv",
+          "040": "compare/results/BV_ablation/XJTU/BV_ablation_20260608_seed_summary.csv",
+          "080": "compare/results/BV_ablation/XJTU/BV_ablation_20260608_seed_summary.csv"
+        }
+      },
+      "seed_counts": {
+        "主线": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "去 BV 损失": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        }
+      }
+    },
+    "MIT": {
+      "dataset": "MIT",
+      "rows": [
+        {
+          "label": "主线",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0124",
+                "best": true
+              },
+              {
+                "text": "0.0131",
+                "best": false
+              },
+              {
+                "text": "0.0143",
+                "best": false
+              },
+              {
+                "text": "0.0129",
+                "best": true
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0043",
+                "best": false
+              },
+              {
+                "text": "0.0051",
+                "best": false
+              },
+              {
+                "text": "0.0038",
+                "best": false
+              },
+              {
+                "text": "0.0032",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.96",
+                "best": true
+              },
+              {
+                "text": "1.01",
+                "best": false
+              },
+              {
+                "text": "1.10",
+                "best": false
+              },
+              {
+                "text": "0.98",
+                "best": true
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.38",
+                "best": false
+              },
+              {
+                "text": "0.40",
+                "best": false
+              },
+              {
+                "text": "0.35",
+                "best": false
+              },
+              {
+                "text": "0.27",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "去 BV 损失",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0127",
+                "best": false
+              },
+              {
+                "text": "0.0121",
+                "best": true
+              },
+              {
+                "text": "0.0136",
+                "best": true
+              },
+              {
+                "text": "0.0137",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0059",
+                "best": false
+              },
+              {
+                "text": "0.0040",
+                "best": false
+              },
+              {
+                "text": "0.0036",
+                "best": false
+              },
+              {
+                "text": "0.0033",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "0.96",
+                "best": false
+              },
+              {
+                "text": "0.98",
+                "best": true
+              },
+              {
+                "text": "1.04",
+                "best": true
+              },
+              {
+                "text": "1.06",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.47",
+                "best": false
+              },
+              {
+                "text": "0.32",
+                "best": false
+              },
+              {
+                "text": "0.33",
+                "best": false
+              },
+              {
+                "text": "0.25",
+                "best": false
+              }
+            ]
+          }
+        }
+      ],
+      "source_files": {
+        "主线": {
+          "010": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "020": "compare/results/MIT/Four_models_20260605_seed_summary.csv",
+          "040": "compare/results/MIT/Four_models_20260606_seed_summary.csv",
+          "080": "compare/results/MIT/Four_models_20260606_seed_summary.csv"
+        },
+        "去 BV 损失": {
+          "010": "compare/results/BV_ablation/MIT/BV_ablation_20260608_seed_summary.csv",
+          "020": "compare/results/BV_ablation/MIT/BV_ablation_20260608_seed_summary.csv",
+          "040": "compare/results/BV_ablation/MIT/BV_ablation_20260608_seed_summary.csv",
+          "080": "compare/results/BV_ablation/MIT/BV_ablation_20260608_seed_summary.csv"
+        }
+      },
+      "seed_counts": {
+        "主线": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "去 BV 损失": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        }
+      }
+    },
+    "TJU": {
+      "dataset": "TJU",
+      "rows": [
+        {
+          "label": "主线",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0178",
+                "best": true
+              },
+              {
+                "text": "0.0171",
+                "best": false
+              },
+              {
+                "text": "0.0151",
+                "best": true
+              },
+              {
+                "text": "0.0187",
+                "best": false
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0042",
+                "best": false
+              },
+              {
+                "text": "0.0034",
+                "best": false
+              },
+              {
+                "text": "0.0022",
+                "best": false
+              },
+              {
+                "text": "0.0055",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "1.76",
+                "best": true
+              },
+              {
+                "text": "1.61",
+                "best": false
+              },
+              {
+                "text": "1.42",
+                "best": true
+              },
+              {
+                "text": "1.85",
+                "best": false
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.43",
+                "best": false
+              },
+              {
+                "text": "0.32",
+                "best": false
+              },
+              {
+                "text": "0.22",
+                "best": false
+              },
+              {
+                "text": "0.56",
+                "best": false
+              }
+            ]
+          }
+        },
+        {
+          "label": "去 BV 损失",
+          "metrics": {
+            "rmse_mean": [
+              {
+                "text": "0.0193",
+                "best": false
+              },
+              {
+                "text": "0.0164",
+                "best": true
+              },
+              {
+                "text": "0.0151",
+                "best": false
+              },
+              {
+                "text": "0.0183",
+                "best": true
+              }
+            ],
+            "rmse_std": [
+              {
+                "text": "0.0063",
+                "best": false
+              },
+              {
+                "text": "0.0028",
+                "best": false
+              },
+              {
+                "text": "0.0022",
+                "best": false
+              },
+              {
+                "text": "0.0036",
+                "best": false
+              }
+            ],
+            "mape_mean": [
+              {
+                "text": "1.88",
+                "best": false
+              },
+              {
+                "text": "1.59",
+                "best": true
+              },
+              {
+                "text": "1.43",
+                "best": false
+              },
+              {
+                "text": "1.75",
+                "best": true
+              }
+            ],
+            "mape_std": [
+              {
+                "text": "0.63",
+                "best": false
+              },
+              {
+                "text": "0.30",
+                "best": false
+              },
+              {
+                "text": "0.21",
+                "best": false
+              },
+              {
+                "text": "0.37",
+                "best": false
+              }
+            ]
+          }
+        }
+      ],
+      "source_files": {
+        "主线": {
+          "010": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "020": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "040": "compare/results/TJU/Four_models_20260604_seed_summary.csv",
+          "080": "compare/results/TJU/Four_models_20260604_seed_summary.csv"
+        },
+        "去 BV 损失": {
+          "010": "compare/results/BV_ablation/TJU/BV_ablation_20260608_seed_summary.csv",
+          "020": "compare/results/BV_ablation/TJU/BV_ablation_20260608_seed_summary.csv",
+          "040": "compare/results/BV_ablation/TJU/BV_ablation_20260608_seed_summary.csv",
+          "080": "compare/results/BV_ablation/TJU/BV_ablation_20260608_seed_summary.csv"
+        }
+      },
+      "seed_counts": {
+        "主线": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        },
+        "去 BV 损失": {
+          "010": 5,
+          "020": 5,
+          "040": 5,
+          "080": 5
+        }
+      }
+    }
+  },
+  "paper_outline": {
+    "summary_text": "本项目围绕公开电池退化数据集的早期轨迹预测，构建融合仿真数据、域适应、BV 物理损失与不确定性估计的 Hybrid 主线模型；在 HUST、XJTU、MIT、TJU 四个数据集上统一电池级划分、固定历史窗口和跨 seed 统计口径，并通过 BatteryGPT、LSTM、LSTM-PINN、xPatch-DT 等对比方法验证模型精度与物理约束贡献。",
+    "outline": [
+      "1 引言：电池健康轨迹预测需求、公开数据集泛化挑战、物理约束学习的研究动机。",
+      "2 相关工作：数据驱动 SOH/RUL 预测、物理信息神经网络、域适应与大模型序列建模方法。",
+      "3 方法：Hybrid 主干、仿真-真实数据融合、域适应对齐、BV 残差损失、不确定性估计。",
+      "4 实验设置：HUST/XJTU/MIT/TJU 数据集，电池级划分，固定历史窗口，baseline 与消融方案。",
+      "5 结果与分析：全量对比、BV 损失消融、跨窗口稳定性、误差来源与典型轨迹案例。",
+      "6 结论：总结方法收益，讨论数据集迁移限制与后续多工况扩展。"
+    ],
+    "has_image_placeholder": true
+  }
+}

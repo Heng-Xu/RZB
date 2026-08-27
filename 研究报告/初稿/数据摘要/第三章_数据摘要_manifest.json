@@ -1,0 +1,115 @@
+{
+  "dataset_id": "real_2021_2025",
+  "generated_for": "research_report_chapters_1_to_3",
+  "input_files": {
+    "annual_reference.csv": {
+      "sha256": "6f62cbc4481feed71927952474bbd01f28cbfb7de3289276040415f59df7ad7f",
+      "bytes": 22615
+    },
+    "annual_asset_whitelist.csv": {
+      "sha256": "20c414917cdcae03b1d82acc5669e748e477d626fe9fdd83449a977c9b45df8f",
+      "bytes": 1122420
+    },
+    "asset_scope_summary.csv": {
+      "sha256": "1833ac02310f3ae544d073655147b630dd3ed50621514e9b7630982005690778",
+      "bytes": 4530
+    },
+    "timeseries_quality_issues.csv": {
+      "sha256": "96cb34383d4beb6c2ba54fc038884576f2ee796170fd980705faefb7175e00d8",
+      "bytes": 6645
+    },
+    "data_quality_issues.csv": {
+      "sha256": "7b18ac1d3feea7816b0dcc6c558e2a1f292eba8a0b70e394bb119f792306b52c",
+      "bytes": 9457
+    },
+    "station_pv_snapshot.csv": {
+      "sha256": "411e3248adc2fa0b6ea2dbbf34e31fee9ad53a77bd51621fe777455df1183093",
+      "bytes": 66177
+    },
+    "manifest.json": {
+      "sha256": "f5090a8ffaec269f4a1a8759e7141aab160e2ec0cccef91d55fcf58543cc03d0",
+      "bytes": 7848
+    },
+    "transformer_hourly_2022.csv.gz": {
+      "sha256": "f92b960d861ffd9e921e84cc46c7e7d749ed36e3725d7e75000a2dbfec372252",
+      "bytes": 4285359
+    },
+    "transformer_hourly_2023.csv.gz": {
+      "sha256": "7ddc789469750f0d99510de84276e52a90cf794ce9ebebadc08741a628072e33",
+      "bytes": 4371075
+    },
+    "transformer_hourly_2024.csv.gz": {
+      "sha256": "f907e891be00df1e672a98654c47e0db3d8f4286324646918d0595555760baa5",
+      "bytes": 4567325
+    },
+    "transformer_hourly_2025.csv.gz": {
+      "sha256": "9d37f6c28e51efcea26f4a7bbb98bee092653f20e9a8e093144643cb06d5220f",
+      "bytes": 4783073
+    }
+  },
+  "quality_gate": {
+    "formal_multicondition_years": [
+      2025
+    ],
+    "formal_region_id": "QX-00005",
+    "formal_voltage_kv": 110,
+    "formal_transformer_count": 40,
+    "formal_station_count": 20,
+    "known_2024_anomaly_values_mw": [
+      -7319.0,
+      -6858.0,
+      16630.0
+    ],
+    "pv_snapshot_role": "2026_cross_year_context_only"
+  },
+  "output_files": {
+    "数据摘要/第三章_年度片区指标.csv": {
+      "sha256": "6c24fee1f508fec2f773c97fd75f1e23a7cf1f88882b46f68fa9d132134ff75d",
+      "bytes": 22581
+    },
+    "数据摘要/第三章_逐时数据质量.csv": {
+      "sha256": "e59798275cd40194e3de811c6f49d573ea25195e26307f4037f71d1b8cf1d279",
+      "bytes": 1014
+    },
+    "数据摘要/第三章_典型片区2025逐时聚合.csv.gz": {
+      "sha256": "3dd52c5c23f60f10544eb3061123c60a09f149c8a3613aeeb2416ba8486de025",
+      "bytes": 86990
+    },
+    "数据摘要/第三章_典型片区多工况统计.csv": {
+      "sha256": "4e06a863f92e932f3b48e45a8fd132aba54f1b75d8bae66ffc4c45cc46a821a6",
+      "bytes": 584
+    },
+    "数据摘要/第三章_数据库规模与血缘.md": {
+      "sha256": "ba89b6a9d3836822ca49650727b04f4ead4d93b5fd15c838fb21d1402e1fccf0",
+      "bytes": 1695
+    },
+    "图表/图1-1_研究技术路线.png": {
+      "sha256": "fdcb7156636a8ef401cf410aa071515ccddb23484d83e578384233b4dfdf3e79",
+      "bytes": 68716
+    },
+    "图表/图3-1_八片区110kV容载比年度变化.png": {
+      "sha256": "2ddb910d7946b942390216f0e6b9f7b409008daa26221d2cd994d2117ce7ea42",
+      "bytes": 120958
+    },
+    "图表/图3-2_典型片区容量同步峰值与容载比变化.png": {
+      "sha256": "a03b7233c7155d14f449995bda86f23a5b16b1a8cd45a70e360f8e60927498df",
+      "bytes": 103394
+    },
+    "图表/图3-3_典型年度净负荷持续曲线.png": {
+      "sha256": "93df308c57a9ae6be1218231c2580c9c919f5adc8f4b829f5f6bf61b7675edef",
+      "bytes": 95144
+    },
+    "图表/图3-4_典型日正反向运行曲线.png": {
+      "sha256": "4742d9cc0c5478f6f985843b3d585ca71dc3b3a42868c58bc66569f229da2d6e",
+      "bytes": 157829
+    },
+    "图表/图3-5_指标作用机制示意图.png": {
+      "sha256": "dc2108519eaa1d752509e557a428d6ecf1f5d49ee68cbe5d8bb9a3beff5dc295",
+      "bytes": 89239
+    },
+    "图表/图3-6_数据库构建流程.png": {
+      "sha256": "17d5ac97f779243f71ed0248de4d21b50263f9f2a6f5f07239ac157e1483d402",
+      "bytes": 102110
+    }
+  }
+}

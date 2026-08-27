@@ -1,0 +1,10 @@
+tie_id,station_a,station_b,n_channels,conductor_type,ampacity_mw,sigma_load,sigma_pv,switch_mode,sensitive
+T01,S07,S08,1,LGJ-150,11.05,0.2332,0.2446,outage,True
+T02,S02,S03,1,LGJ-185,10.974,0.1446,0.06,loop,False
+T03,S01,S02,1,LGJ-150,10.154,0.1882,0.2347,loop,False
+T04,S04,S06,1,LGJ-150,9.736,0.2967,0.1343,loop,False
+T05,S01,S03,2,LGJ-185,11.982,0.1559,0.1785,outage,False
+T06,S03,S04,2,LGJ-240,9.845,0.1484,0.0857,outage,False
+T07,S06,S07,2,LGJ-185,10.469,0.1623,0.0806,outage,False
+T08,S10,S11,1,LGJ-240,11.124,0.188,0.2258,loop,True
+T09,S04,S05,1,LGJ-150,8.907,0.2157,0.1028,forbidden,False

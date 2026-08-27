@@ -1,0 +1,17 @@
+{
+  "version": "V5.1",
+  "TIE002_planning_case_allowed": true,
+  "checks": {
+    "hawan_station_mapping": "PASS",
+    "six_feeder_boundaries": "PASS_WITH_HDONG_PROXY",
+    "station_boundaries": "PASS",
+    "conductor_parameters": "PASS_PLANNING",
+    "effective_operating_limits": "PASS",
+    "load_spatial_seed": "PASS_PLANNING",
+    "pv_scenario_seed": "PASS_WITH_DNAN_CAPACITY_GAP",
+    "confirmed_tie_states": "PASS",
+    "TIE002_topology": "PASS",
+    "feeder_to_bus_section_to_transformer": "MISSING_NOT_BLOCKING_STATION_AGGREGATED_CASE"
+  },
+  "blocking_for_TIE002": []
+}

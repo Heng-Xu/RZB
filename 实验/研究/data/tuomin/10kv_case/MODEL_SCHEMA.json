@@ -1,0 +1,29 @@
+{
+  "version": "V5.1",
+  "primary_keys": {
+    "feeder": "PZXL_ID",
+    "station": "BDZ_ID",
+    "node": "node_id",
+    "edge": "edge_id",
+    "tie": "tie_id"
+  },
+  "authoritative_prepared_files": {
+    "feeder": "data/feeder_master.csv",
+    "station": "data/station_boundary_2025.csv",
+    "transformer": "data/transformer_boundary_2025.csv",
+    "edges": "data/physical_edges.csv",
+    "load_seed": "data/node_load_seed_pf095.csv",
+    "pv_seed": "data/node_pv_seed.csv",
+    "scenarios": "data/operating_scenarios_prepared.csv",
+    "qa": "data/final_preflight_qa.csv"
+  },
+  "rules": [
+    "unknown must not be converted to zero",
+    "hdong raw max P=0 is an anomaly, not a physical zero",
+    "SRC06 raw installed_capacity_kVA is retained only for audit and not used as load/PV capacity",
+    "annual feeder maxima are not synchronous",
+    "effective branch current limit = min(conductor base ampacity, feeder maximum allowed current)",
+    "field transformer capacities define planning spatial weights, not actual instantaneous load",
+    "exact feeder-to-bus-section-to-transformer mapping remains unavailable"
+  ]
+}

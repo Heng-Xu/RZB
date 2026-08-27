@@ -1,0 +1,81 @@
+{
+  "generator": "scripts/gen_synthetic.py",
+  "params_snapshot": {
+    "seed": 20260721,
+    "n_stations": 12,
+    "n_zones": 5,
+    "counties": [
+      "XY",
+      "PZ"
+    ],
+    "zone_map": {
+      "Z1": {
+        "county": "XY",
+        "area_type": "urban",
+        "stations": [
+          "S01",
+          "S02",
+          "S03"
+        ]
+      },
+      "Z2": {
+        "county": "XY",
+        "area_type": "rural",
+        "stations": [
+          "S04",
+          "S05",
+          "S06"
+        ]
+      },
+      "Z3": {
+        "county": "XY",
+        "area_type": "rural",
+        "stations": [
+          "S07",
+          "S08"
+        ]
+      },
+      "Z4": {
+        "county": "PZ",
+        "area_type": "urban",
+        "stations": [
+          "S09",
+          "S10"
+        ]
+      },
+      "Z5": {
+        "county": "PZ",
+        "area_type": "rural",
+        "stations": [
+          "S11",
+          "S12"
+        ]
+      }
+    },
+    "parallel_stations": [
+      "S05",
+      "S11"
+    ],
+    "tmy_source_year": 2005,
+    "tmy_utc_to_cst_shift_hours": 8
+  },
+  "files": {
+    "stations.csv": "fcc782509affdc82e052f82198de4bedc23b6a25d7c45b91ad3cc8ed4643dba8",
+    "transformers.csv": "2cebe58547dc7aacc60024873a17b18be8f26690083ca409ecf7e41b1634fb84",
+    "ties.csv": "02dfc1b5785ac4462794e46068ac14e4cccbcc04297d47396e89b75096177086",
+    "pv_registry.csv": "e58da856fb8c0b0ac5d800a02fa13825c48384a18386de48ae92713aeffe0d40",
+    "pv_profiles/shape_xuzhou.csv": "5d392de4dc7d320a0ab251392bfe964cb257df62353a82c52a5d696d01aabd63",
+    "load_curves/S01.csv": "af9ea87898217f465db5c0079ca4b6e784760d82f04eedbe6e47f791a032ea6e",
+    "load_curves/S02.csv": "4e353500d4955992e7e17f3d2a4acfdac0eb60ecd29cfb942c2e66da0aec7af9",
+    "load_curves/S03.csv": "734de20541d3f93950221f5c426cf2ce877f8e283525ed87a0a653055bb0755e",
+    "load_curves/S04.csv": "de54f48ed7b12dcd647929cfdc5569c1f358d23eaf104dd8221c5a600bd9b6e1",
+    "load_curves/S05.csv": "dc839f14b2f10acc7c98f8705eee408e6f0eda3fecd2270cb6c7355f2fee4cc6",
+    "load_curves/S06.csv": "c0975fad1beaa059d2a5d91c7742c45742293f74b51862130f9c905f9dadd850",
+    "load_curves/S07.csv": "60630830845dff97009c1192522f914d5c49ed40dde2ff68f351e03cc99acc5a",
+    "load_curves/S08.csv": "507a3ed17bed58a49be7a9908e878660f3477f13beecffb0741af4de5374859a",
+    "load_curves/S09.csv": "888832bdaf8a3de60bb19def35e53c3c8ca56892af4d143311fd2e621e2c4dc7",
+    "load_curves/S10.csv": "d26f4feabd511e4f89a435f5f23e6751c435e19c5fcf4bd502f58bba5c6ed090",
+    "load_curves/S11.csv": "fb61a846203cb7ac339eefa39315c020aa33ff98986e1e839f793b1e4286c90e",
+    "load_curves/S12.csv": "16dbbf9a79f6d83c55112b49b2a593f1749d6f42a2c11f82fe10a9e29ed00ee9"
+  }
+}

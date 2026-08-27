@@ -1,0 +1,9 @@
+﻿run_id,scenario_id,tie_id,direction,transfer_mw,served_load_mw,unserved_mw,umin_pu,max_loading_pct,binding_constraint,sectionalizing_switches,tie_state,formal_or_debug,parameter_gate_pass,notes
+20260824-160113,S1_FEEDER_STRESS,-,-,,8.2344,0.0,1.0,0.0,,,-,PLANNING_ENVELOPE,True,PZXL-00099 boundary_P=8.2344MW.
+20260824-160113,S1_FEEDER_STRESS,-,-,,3.393804,0.0,0.99593,30.01,,,-,PLANNING_ENVELOPE,True,PZXL-00097 boundary_P=3.393804MW.
+20260824-160113,S1_FEEDER_STRESS,-,-,,6.529596,0.0,0.95863,84.39,,,-,PLANNING_ENVELOPE,True,PZXL-00092 boundary_P=6.529596MW.
+20260824-160113,S1_FEEDER_STRESS,-,-,,8.960618,0.0,1.0,0.0,,,-,PLANNING_ENVELOPE,True,PZXL-00154 boundary_P=8.960618MW. hdong P=proxy_i_pf095(√3×10kV×I×0.95)
+20260824-160113,S1_FEEDER_STRESS,-,-,,1.88759,0.0,0.99999,1.06,,,-,PLANNING_ENVELOPE,True,PZXL-00161 boundary_P=1.88759MW.
+20260824-160113,S1_FEEDER_STRESS,-,-,,6.289937,0.0,0.98665,54.21,,,-,PLANNING_ENVELOPE,True,PZXL-00173 boundary_P=6.289937MW.
+20260824-160113,S3_TRANSFER_SWEEP,TIE-002,from_to,4.75,4.75,1.78,,,path_thermal_limit(4.94MVA),TIE-002 CLOSED; 分段开关序列待拓扑闭环后细化,normal=OPEN; operation=CLOSE_FOR_TRANSFER,PLANNING_ENVELOPE,True,host_spare=76.26MVA path_min=4.9363MVA
+20260824-160113,S3_TRANSFER_SWEEP,TIE-002,to_from,1.75,1.75,0.138,,,sending_feeder_load_exhausted(1.89MW),TIE-002 CLOSED; 分段开关序列待拓扑闭环后细化,normal=OPEN; operation=CLOSE_FOR_TRANSFER,PLANNING_ENVELOPE,True,host_spare=40.79MVA path_min=4.9363MVA

@@ -1,0 +1,23 @@
+{
+  "baseline_version": "1.0.0",
+  "contract_sha256": "0f326b29625fff67d073cff50228008199bb1e0676f56e94203dc6e412bba5b5",
+  "contract_version": "2.0.0",
+  "cos_phi": 0.95,
+  "hourly_mapping_approved": false,
+  "input_fingerprint": "6f5703efcd735cc3517531ecdd1cf4c5108a7181917c904d976287a9c7390249",
+  "output_files": {
+    "county_baseline.csv": {
+      "rows": 16,
+      "sha256": "e34950992652f9a5502ecee4723965b591f531131bf247f23c872e03e746b7be"
+    },
+    "station_baseline.csv": {
+      "rows": 212,
+      "sha256": "860bd4eec30e21733dc5bbab7259cf446e149546e81317fc0291991f5c3f2508"
+    },
+    "transformer_reverse_capacity.csv": {
+      "rows": 425,
+      "sha256": "32c324c34ae9c4fdb3ecb432e439e6c334635cf02291e45e2fd553fc1b585b1d"
+    }
+  },
+  "split_beta": 0.8
+}

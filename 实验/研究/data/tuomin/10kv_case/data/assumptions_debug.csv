@@ -1,0 +1,7 @@
+﻿assumption_id,item,base_value_or_rule,sensitivity,status,formal_label,note
+A01,缺Q时负荷功率因数,0.95,0.90/0.98,ACTIVE,PLANNING_ASSUMPTION,实际Q可覆盖
+A02,节点负荷空间分布,现场观察配变kVA权重,uniform-leaf,ACTIVE,PLANNING_ASSUMPTION,总P与馈线边界严格闭合
+A03,hdong馈线最大P,sqrt(3)*10kV*544.57A*0.95,PF0.90/0.98,ANOMALY_PROXY,PLANNING_PROXY,原始最大P=0不可用
+A04,PV无功,unity PF,必要时再加Q控制,ACTIVE,PLANNING_ASSUMPTION,
+A05,年度馈线极值同步性,禁止视为同步,N/A,FIXED_RULE,DATA_QUALITY_RULE,采用规划包络场景
+A06,线路有效热限,"min(导线Imax,馈线最大允许电流)",导线upper,ACTIVE,PLANNING_CONSERVATIVE,具体开关成为瓶颈时定点复核

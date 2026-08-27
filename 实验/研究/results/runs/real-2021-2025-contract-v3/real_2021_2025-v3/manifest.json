@@ -1,0 +1,174 @@
+{
+  "contract_sha256": "421ae63e9f70ee20b1cdf464226589fb7f035952578f853a67a40c8d4286d967",
+  "contract_version": "3.1.0",
+  "cost_manifest": {
+    "candidate_input_sha256": "c32d89d71a1357d41b3d2c9e1487498918cdac5df5a72f3abe6f49eb891ba7a2",
+    "contract_sha256": "421ae63e9f70ee20b1cdf464226589fb7f035952578f853a67a40c8d4286d967",
+    "contract_version": "3.1.0",
+    "cost_library_version": "3.0.0",
+    "dataset_id": "real_2021_2025",
+    "formal_paths": [
+      "PATH_OPT_CLR_UNBOUNDED",
+      "PATH_OPT_CLR_LE_2"
+    ],
+    "model_assumption_gate": "explicit",
+    "output_files": {
+      "cost_assumptions.csv": {
+        "rows": 5,
+        "sha256": "99faee2d247ac859156835f5c4cf4dabe08e12ea98540ed3c9422f47252f4cef"
+      },
+      "expansion_cost_library.csv": {
+        "rows": 92,
+        "sha256": "35595148cef4718f01c0e926c0749538428e98e7f8ea0c58d4af9745002fe024"
+      },
+      "storage_module_cost_boundaries.csv": {
+        "rows": 5,
+        "sha256": "91ed9e981197421df5ef1139e7834f54fff3bdda71895e26ea6e67de15c25a3d"
+      }
+    },
+    "price_year": 2025,
+    "storage_policy_note_sha256": "eaff5cc8d2b6d9d65dc0057b52197897e6b1506293b22127a0c12a50617d597f"
+  },
+  "dataset_id": "real_2021_2025",
+  "elasticity_frontier_points": 17,
+  "elasticity_sweep_completed": true,
+  "formal_matrices": {
+    "110kv_rows": 8,
+    "35kv_rows": 8
+  },
+  "formal_paths": [
+    "PATH_ACTUAL_2021_2025",
+    "PATH_OPT_CLR_UNBOUNDED",
+    "PATH_OPT_CLR_LE_2"
+  ],
+  "output_files": {
+    "county_110_recommendation_matrix.csv": {
+      "bytes": 6804,
+      "sha256": "191abbd63eb4236e38af08fd53320d37438cd75ed13701f23c641aaa976cfbc9"
+    },
+    "county_110_recommendation_matrix.docx": {
+      "bytes": 5495,
+      "sha256": "293cca8bcbb49074506642d58d89d06d14bc7e5ec0adf23c93d37fd39a7e67ef"
+    },
+    "county_35_recommendation_matrix.csv": {
+      "bytes": 5965,
+      "sha256": "3b05fe0925985b035eb1af0b98e15440219e736fc8489d467fea466cc5f5d17e"
+    },
+    "county_35_recommendation_matrix.docx": {
+      "bytes": 5310,
+      "sha256": "f15a1efd7a22a2ed1b970f883ec5a001174afd858f7f67cefb52d715b2442cc8"
+    },
+    "elasticity_frontier.csv": {
+      "bytes": 11139,
+      "sha256": "1bd79850af0de6dc07e00f4e20d770d051cd9a4eb0591ea9a2e16c25226e1257"
+    },
+    "path_action_results.csv": {
+      "bytes": 18001,
+      "sha256": "7764a8ccfaa1ae799160aae873f2602a795142cb9e0c5130d2479f82f98205b4"
+    },
+    "path_cost_breakdown.csv": {
+      "bytes": 3351,
+      "sha256": "1496f7461ad542faaf3855ef48c76d4256e3e5765dcae1ad8d77ab7d9a8e676c"
+    },
+    "path_physics_state_audit.csv": {
+      "bytes": 7918,
+      "sha256": "64679c38853743d51de2fd07947edcdea56e269e3e6bbe0af6893fffac702379"
+    },
+    "path_storage_dispatch_playback.csv.gz": {
+      "bytes": 5192737,
+      "sha256": "e9231474cad643b9c3cb4db35d99ef99082da38548d2dad499455e0d4acb7807"
+    },
+    "path_year_results.csv": {
+      "bytes": 38866,
+      "sha256": "83a2047afc923e07b87454b86464edafee526675b57c489136c1aaeb6ae26b6e"
+    },
+    "qx00005_path_validation.csv": {
+      "bytes": 5171,
+      "sha256": "af30adcdd21977a8d7d370cca4f812e04c81fdf0e0517f22e409fd8e4de7f2b9"
+    },
+    "内部容量网络压力检查.csv": {
+      "bytes": 59445,
+      "sha256": "4e7fe06c36bb079dc0484f1e906737ecb3d9a9b0860e659435b71e04d1056f4b"
+    },
+    "问题台账.md": {
+      "bytes": 1217,
+      "sha256": "fab38f33d31fcc9254f126fd92cf82f5101254d46f8094c742ca4371f39159c1"
+    }
+  },
+  "path_comparison_note": "严格路径起点为初始基准年容载比 2.0 的归一约定状态（S0=min(S2021, 2×min(P2021, min决策年峰))，仅容量侧记账、不计成本，峰值保持官方锚点），与不限制路径（2021 实际基准）起点不同；两路径 EAC 表征各自口径下的最优演进成本，不做跨口径增量比较。110 kV 正式层保留逐年 R≤2.0 安全网；35 kV 辅助层按 AGENTS §5 仅作辅助分析、不施加逐年上界。",
+  "path_cost_inclusion_validated": false,
+  "processed_manifest_sha256": "f5090a8ffaec269f4a1a8759e7141aab160e2ec0cccef91d55fcf58543cc03d0",
+  "sensitivity_cos_phi": [
+    0.9,
+    0.95,
+    1.0
+  ],
+  "strict_path_feasible_110kv_rows": 5,
+  "strict_path_feasible_35kv_rows": 3,
+  "time_physics_artifacts": {
+    "path_physics_state_audit.csv": {
+      "rows": 32,
+      "sha256": "64679c38853743d51de2fd07947edcdea56e269e3e6bbe0af6893fffac702379"
+    },
+    "path_storage_dispatch_playback.csv.gz": {
+      "rows": 364656,
+      "sha256": "e9231474cad643b9c3cb4db35d99ef99082da38548d2dad499455e0d4acb7807"
+    }
+  },
+  "time_physics_hard_gate_2025": true,
+  "time_physics_other_regions_method": "three_nonprobabilistic_empirical_duration_scenarios",
+  "time_physics_qx00005_110kv_method": "approved_2025_8760_station_playback_scaled_to_official_positive_peak",
+  "time_physics_scenario_manifest": {
+    "contract_sha256": "421ae63e9f70ee20b1cdf464226589fb7f035952578f853a67a40c8d4286d967",
+    "input_fingerprint": "1f21dead202b294a9818dc65e46d357b06af50a4ddaae0873b76f4412766d7af",
+    "output_files": {
+      "empirical_scenario_index.csv": {
+        "rows": 621,
+        "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+      },
+      "empirical_scenario_issues.csv": {
+        "rows": 5,
+        "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+      },
+      "empirical_station_scenarios.csv.gz": {
+        "rows": 14904,
+        "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+      }
+    },
+    "probabilistic_interpretation_allowed": false,
+    "scenario_builder_version": "1.0.0",
+    "scenario_fingerprint": "507be268e9c349faf873a3149ff34d86387e9a52c92c0349b0c655ce087e7e60",
+    "scenario_labels": [
+      "empirical_short",
+      "empirical_central",
+      "empirical_long"
+    ],
+    "source_sample_counts": {
+      "110": 4540,
+      "35": 1996
+    },
+    "target_station_count": 207
+  },
+  "timeseries_formal_hourly_use_allowed": true,
+  "timeseries_gate": {
+    "annual_gate_rule": "annual_asset_whitelist",
+    "approval_authority": "project_owner",
+    "approved_mapping_rows": 56,
+    "formal_hourly_use_allowed": true,
+    "formal_scope_approved_transformers": 40,
+    "formal_scope_id": "2025_QX-00005_110kv_operating",
+    "formal_scope_required_transformers": 40,
+    "grade_a_ready": true,
+    "qx00005_2025_110kv_operating_transformers_required": 40,
+    "rejected_mapping_rows": 2,
+    "year_end_only_excluded_from_2025_operating_gate": [
+      "QX-00005|110|BDZ-00056|#1",
+      "QX-00005|110|BDZ-00056|#2"
+    ],
+    "year_end_only_excluded_mapping_rows": 2
+  },
+  "timeseries_grade_a_ready": true,
+  "voltage_separation": true,
+  "word_presentation_spec": "docs/WORD-MATRIX-PRESENTATION-SPEC.md",
+  "word_presentation_version": "3.1"
+}

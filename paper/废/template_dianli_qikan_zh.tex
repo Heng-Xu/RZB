@@ -1,0 +1,148 @@
+% =====================================================================
+%  省级电力期刊中文论文 排版参考模板（LaTeX 骨架）
+%  适配：山东电力技术 / 浙江电力（两刊版式相近；具体以官网Word模板为准）
+%  规范依据：paper/对标期刊排版规范调研.md（2026-06-18 联网核验）
+%    - 浙江电力（官方已核）：正文6000~8000字(含图表)；摘要约300字(结构式,第三人称)；
+%      引言≥1000字；关键词3~8(中英对应)；参考文献 GB/T 7714-2015、建议≥15条、多近5年；
+%      须中英文题名/作者/单位/摘要/关键词；第一作者简介；基金项目首页脚注。
+%    - 山东电力技术（首选；细则待官网"排版校对要求"图片/Word模板最终核定）：
+%      正文≥5000字；摘要结构式中英对照；GB/T 7714-2015；需中图分类号、文献标志码。
+%  ⚠ 正文字体字号/页边距/分栏/章节编号等精确版式须以官方Word模板为准（见调研文档官方下载URL）。
+%  本骨架已预填本论文真实题名/摘要/公式/参考文献，可直接据 01_论文初稿_v1.md 灌正文。
+%  编译：xelatex（中文）。如需 GB/T 7714 自动著录，取消 gbt7714 相关注释并改用 biblatex。
+% =====================================================================
+\documentclass[a4paper,11pt]{ctexart}   % 二栏可改为 \documentclass[a4paper,11pt,twocolumn]{ctexart}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.0cm,right=2.0cm]{geometry}  % 以官方模板为准
+\captionsetup[figure]{name=图}   % 图题在下
+\captionsetup[table]{name=表}    % 表题在上
+\setlength{\parindent}{2em}
+
+% 章节编号：电力期刊惯用 0 引言、1、2 …（阿拉伯数字）
+\renewcommand{\thesection}{\arabic{section}}
+
+\title{\bfseries 高分布式新能源渗透率地区110\,kV电网容载比“一片一策”弹性决策方法}
+\author{许彦，袁瑞，童伟，等\\[2pt]
+\small（国网江苏电力设计咨询有限公司徐州勘测设计分公司，江苏 徐州 221005）}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+% ---------- 中文摘要（结构式，第三人称，约300字） ----------
+\noindent{\bfseries 摘要：}随着分布式新能源高比例接入，传统以刚性单值容载比为核心的110\,kV电网规划在投资效率与反送消纳、供电安全之间日益失衡。针对反送电能损耗未进入全寿命周期成本（LCC）结构、缺乏面向高压配电层的多维分类决策等问题，建立计及双向潮流电能损耗的年费用法LCC模型，将主变空载/负载损耗、反送越限弃光惩罚与N-1缺供可靠性成本统一纳入成本结构；以候选容载比逐档取最小年化成本为准则，构建（源荷比×电量渗透率×联络度×反送时长）分类决策方法，形成“一片一策”弹性容载比建议。基于IEEE 33节点系统与PVGIS实测气象的方法演示表明：刚性单值容载比2.0系统性次优，最优容载比是片区特征的函数，决策方法相对刚性2.0节省年化成本约1.7\%\,$\sim$\,4.7\%；容载比弹性呈多维条件性，其中“刚性单值次优、需差异化整定”为稳健结论，方向与幅度随负荷增长、N-1短时过载能力、反送时长等假设变化。
+
+\vspace{4pt}
+\noindent{\bfseries 关键词：}分布式新能源；容载比；弹性指标；全寿命周期成本；反送电；一片一策
+
+\vspace{2pt}
+\noindent{\bfseries 中图分类号：}TM715\qquad{\bfseries 文献标志码：}A
+
+% ---------- 英文摘要（投稿前请由作者完善翻译） ----------
+\vspace{6pt}
+\noindent{\bfseries Abstract:} With the high-penetration integration of distributed renewables, conventional 110\,kV grid planning centered on a rigid single-valued capacity-load ratio is increasingly imbalanced between investment efficiency and reverse-power accommodation/supply security. \emph{[此处补全英文摘要，与中文对应，结构式]}
+
+\vspace{2pt}
+\noindent{\bfseries Key words:} distributed renewables; capacity-load ratio; elasticity index; life-cycle cost; reverse power flow; case-specific strategy
+
+% =====================================================================
+\section{引言}
+% 引言≥1000字（浙江电力要求）。背景[2]、刚性容载比两难、导则双向调整导向[1]、
+% 现状[3-12]与三点不足、本文创新点（详 01_论文初稿_v1.md §1）。
+\emph{[正文据 01\_论文初稿\_v1.md 第1章灌入]}
+
+\section{弹性容载比指标与决策框架}
+容载比按现行导则（DL/T 5729—2023）净负荷口径定义，分母为最大正向净负荷（网供负荷扣除分布式电源出力）：
+\begin{equation}
+R_s=\frac{\sum_i S_{T,i}}{P_{\max}}
+\end{equation}
+源荷比与电量渗透率：
+\begin{equation}
+\lambda=\frac{P_{PV}}{P_{\max}},\qquad \eta=\frac{E_{PV}}{E_{load}}
+\end{equation}
+% 1.2 双向机理与条件性；1.3 多维分类决策框架（图2）。
+
+\section{双向Z4-LCC全寿命周期成本模型}
+年费用法总框架与资本回收系数：
+\begin{equation}
+C_{ann}=(C_{cap}-P_{sv})\,CRF(r,y)+C_{OM}+C_{loss}+C_{cur}+C_{rel}
+\end{equation}
+\begin{equation}
+CRF(r,y)=\frac{r(1+r)^{y}}{(1+r)^{y}-1}
+\end{equation}
+主变双向Z4损耗（含空载与正/反向负载损耗）：
+\begin{equation}
+C_{loss}^{tr}=c_e\!\left[P_0\cdot 8760+P_k\beta_f^{2}t_f+\alpha_r P_k\beta_r^{2}t_r\right]
+\end{equation}
+N-1对未来峰荷的缺额与可靠性成本，及容载比下探判据（$m=2$）：
+\begin{equation}
+\Delta S=\max\!\Big(0,\,S_{pk}(1+g)^{n}-\big[k_{ol}\tfrac{S_T}{m}(m-1)+cd\,S_{pk}\big]\Big)
+\end{equation}
+\begin{equation}
+R_s<\frac{2\big[(1+g)^{n}-cd\big]}{k_{ol}\cos\varphi}
+\end{equation}
+决策准则：
+\begin{equation}
+R_s^{*}=\arg\min_{R_s\in\mathcal{R}} C_{ann}(R_s\mid\lambda,\eta,cd,t_r)
+\end{equation}
+% 其余式(5)馈线损耗、(8)越限/弃光等据初稿补入。
+
+\section{算例分析}
+% 4.1参数(表1) 4.2渗透扫描(图4) 4.3决策矩阵(图3,表3) 4.4负荷增长与N-1过载敏感性(图5)
+% 4.5经济/权重鲁棒性(表2) 4.6区域算例(图6)。正文据初稿第4章灌入。
+\emph{[正文据 01\_论文初稿\_v1.md 第4章灌入]}
+
+% 图示例（图题在下）：
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.95\linewidth]{../实验/results/figures/fig5_lcc_comparison.png}
+  \caption{决策方法（自适应容载比）与刚性2.0年化成本对比}
+  \label{fig:lcc}
+\end{figure}
+
+% 表示例（表题在上）：
+\begin{table}[t]
+  \centering
+  \caption{算例系统与关键参数}
+  \label{tab:param}
+  \begin{tabular}{ll}
+    \toprule
+    参数 & 取值 \\
+    \midrule
+    折现率 / 计算年限 & 6\% / 25 年 \\
+    主变 $P_0$ / $P_k$ & 0.0007 / 0.0045 kW·kVA$^{-1}$ \\
+    反向限额 $\gamma$ / 反向损耗权重 $\alpha_r$ & 0.85 / 1.2 \\
+    $g$ / $n$ / $k_{ol}$ / $V_{oll}$ / $H_{eq}$ & 5\% / 5 / 1.3 / 15 元·kWh$^{-1}$ / 90 h \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{结论}
+\emph{[据 01\_论文初稿\_v1.md 第5章灌入]}
+
+% =====================================================================
+% 参考文献：GB/T 7714-2015 顺序编码制（已联网核验，详 01_论文初稿_v1.md）
+% 自动著录方案（可选）：\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+% =====================================================================
+\begin{thebibliography}{99}
+\bibitem{1} DL/T 5729—2023. 配电网规划设计技术导则[S]. 北京: 中国电力出版社, 2023.（替代 DL/T 5729—2016）
+\bibitem{2} 国家能源局. 新型电力系统发展蓝皮书[R]. 北京: 国家能源局, 2023.
+\bibitem{3} 宋钰, 郭玥, 王旭阳, 等. 分布式光伏接入配电网安全经济承载力评估[J]. 浙江电力, 2025, 44(11): 93-102.
+\bibitem{4} 徐非非, 冯华, 覃洪培, 等. 计及不确定性的配电网分布式光伏承载能力区间分析方法[J]. 浙江电力, 2023, 42(11): 86-95.
+\bibitem{5} 王成山, 罗凤章, 肖峻, 等. 基于主变互联关系的配电系统供电能力计算方法[J]. 中国电机工程学报, 2009, 29(13): 86-91.
+\bibitem{6} 肖峻, 张婷, 张跃, 等. 基于最大供电能力的配电网规划理念与方法[J]. 中国电机工程学报, 2013, 33(10): 106-113.
+\bibitem{7} 肖峻, 贺国伟. 考虑双向能量交换型负荷的配电网最大供电能力模型[J]. 电力系统自动化, 2022, 46(5): 11-24.
+\bibitem{8} 荆朝霞, 江昌旭, 王宏益. 考虑N-1安全约束的220\,kV片区电网最大供电能力计算[J]. 电力系统自动化, 2016, 40(19): 145-152.
+\bibitem{9} 刘炜彬, 等. 面向精细化规划的容载比参数优化方法研究[J]. 电气工程学报, 2025, 20(1). DOI: 10.11985/2025.01.020.
+\bibitem{10} 徐峰亮, 王克谦, 王文豪, 等. 计及运行灵活性的中压配电系统源-网-储协同扩展规划[J]. 中国电力, 2024, 57(7): 98-108.
+\bibitem{11} 李敬如, 白宇, 王旭阳, 等. 考虑主配协同的分布式光伏接入电网安全经济承载力计算方法[J]. 电力建设, 2025, 46(10): 113-121.
+\bibitem{12} 梁志峰, 夏俊荣, 孙檬檬, 等. 数据驱动的配电网分布式光伏承载力评估技术研究[J]. 电网技术, 2020, 44(7): 2430-2439.
+\bibitem{13} SAATY T L. The analytic hierarchy process[M]. New York: McGraw-Hill, 1980.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,13 @@
+﻿feeder_id,feeder_alias,node_id,node_name,pv_capacity_kva_seed,location_quality,scenario_pg_rule,source,note
+PZXL-00092,dnan,PZXL-00092-N0041,dnan线21杆,250,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,现场可确认的一处250kVA光伏；全馈线装机仍不完整
+PZXL-00099,dzhen,PZXL-00099-N0007,dzhen线07杆,250,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,
+PZXL-00099,dzhen,PZXL-00099-N0015,dzhen线15杆,2500,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,
+PZXL-00099,dzhen,PZXL-00099-N0024,dzhen线24杆,500,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,
+PZXL-00099,dzhen,PZXL-00099-N0024,dzhen线24杆,200,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,
+PZXL-00099,dzhen,PZXL-00099-N0024,dzhen线24杆,3150,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,
+PZXL-00097,dxi,PZXL-00097-N0049,dxi线06杆,200,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,
+PZXL-00097,dxi,PZXL-00097-N0059,dxi线15杆,2500,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,
+PZXL-00097,dxi,PZXL-00097-N0089,dxi线44杆,200,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,
+PZXL-00154,hdong,PZXL-00154-N0192,hdong线42杆,1890,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,馈线总PV=1890kVA，现场描述为该区域附近4个用户，合并至父节点
+PZXL-00173,hzhen,PZXL-00173-N0020,10kVhzhen线21#杆,2500,MEDIUM,Pg_MW=capacity_kVA/1000×pv_factor; unity-PF PV baseline,prior 01_10kV局部网架标准化输入_V2.xlsx / 05_CAPACITY_OBS or 03_RAW_CELLS,馈线总PV=2500kVA；精确拆分不可恢复，聚合到已知PV相关支路
+PZXL-00092,dnan,,FEEDER_LEVEL_ANCHOR,,FEEDER_LEVEL_ONLY,高PV场景可用总出力7.34MW作真实峰值锚点；不得解释为装机容量,prior field observation consolidated in V5,dnan完整PV装机容量不可由现有资料严格恢复

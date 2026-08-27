@@ -1,0 +1,2 @@
+﻿year,region_id,voltage_kv,transformer_count,station_count,timestamp_count,raw_positive_peak_mw,official_anchor_scale,positive_peak_mw,positive_peak_timestamp,reverse_peak_mw,reverse_peak_timestamp,positive_hours,low_positive_hours,low_positive_threshold_mw,reverse_hours,direction_transition_count,evidence_level,transformation
+2025,QX-00005,110,40,20,8760,951.66000000,1.00503331,956.45000000,2025-07-05T21:00:00,397.22936553,2025-05-01T12:00:00,7834,1122,191.29000000,926,418,EVIDENCE_A,"sum same-voltage formal devices by timestamp, then scale to official positive peak anchor"

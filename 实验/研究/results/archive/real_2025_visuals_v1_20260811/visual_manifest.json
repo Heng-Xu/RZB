@@ -1,0 +1,113 @@
+{
+  "visualization_version": "1.1.0",
+  "dataset": "real_2025",
+  "run_id": "real-2025-contract-v2",
+  "voltage_levels": [
+    35,
+    110
+  ],
+  "row_count": 16,
+  "input_files": {
+    "county_110_matrix.csv": {
+      "sha256": "dd152942bae5b4752fdaca9ac42f7c27fa0bd3770af5abe8c0e051a0e8043554"
+    },
+    "county_35_matrix.csv": {
+      "sha256": "5ffe628a259b90f327386a5b8acde3908c0ddfd94600f8804e14cb7579371f8c"
+    },
+    "manifest.json": {
+      "sha256": "7e69a2b16a00f94d114375cc40cd250e58bd3d5c1fc13c942f4d7f0ab063fa0d"
+    }
+  },
+  "chart_contracts": {
+    "clr_interval": {
+      "family": "uncertainty_and_benchmark",
+      "measure": "CLR",
+      "voltage_separated": true
+    },
+    "feasibility_eac": {
+      "family": "comparison_and_ranking",
+      "measure": "EAC",
+      "infeasible_without_fake_value": true
+    },
+    "evidence_quality": {
+      "family": "comparison_and_ranking",
+      "measure": "evidence_grade_and_issue_count",
+      "voltage_separated": true
+    },
+    "recommendation_matrix": {
+      "family": "tables_and_scorecards",
+      "measure": "current_cost_minimizing_R_rec_and_profile",
+      "voltage_separated": true,
+      "transposed_indicator_matrix": true
+    }
+  },
+  "output_files": {
+    "clr_interval_110kv.png": {
+      "bytes": 182809,
+      "sha256": "06f2bdc6dcbef91d2990cce9d4e955ed6cdd448616160600b92a08273efc874e"
+    },
+    "clr_interval_110kv.svg": {
+      "bytes": 142363,
+      "sha256": "74cc206757488d06534355d3a0da7203c423c9e1e1aa4d3b5b156acc7575bc2c"
+    },
+    "feasibility_eac_110kv.png": {
+      "bytes": 214403,
+      "sha256": "03ec776e83d47a242aa2737fa7f620ea5e2277450a39f1187063d2d108b945d9"
+    },
+    "feasibility_eac_110kv.svg": {
+      "bytes": 149801,
+      "sha256": "5b2ddb22be03d03a23f478bb372929554f1295f005e75e078f0efca40962bcc5"
+    },
+    "clr_interval_35kv.png": {
+      "bytes": 197197,
+      "sha256": "396e49bf8949aeff6c2bb93e2bfb7fc393aa75dcabd021fcedacdc4990d51dd0"
+    },
+    "clr_interval_35kv.svg": {
+      "bytes": 151484,
+      "sha256": "a16a0ce5560b210ce4cfede8a77c2d948ea42f8498f2a9e7b27200f36eb5a383"
+    },
+    "feasibility_eac_35kv.png": {
+      "bytes": 235949,
+      "sha256": "20dba7bf6872fee177172676e877571fe86fa577d7f7e3242ad818ff2e2f0bdb"
+    },
+    "feasibility_eac_35kv.svg": {
+      "bytes": 162181,
+      "sha256": "bcc00970142f9b0a78e4297efc377a537df1289697df60a828001999162e5931"
+    },
+    "evidence_quality.png": {
+      "bytes": 103406,
+      "sha256": "19774c2282d4d135ad1e4cadc4f89f9d9d7a6c178ce3f59b896c1837d9cb5cc5"
+    },
+    "evidence_quality.svg": {
+      "bytes": 94000,
+      "sha256": "ea15266e6f3c489919668c52727da1481a8d574fd24ba215f24d614689103dde"
+    },
+    "recommendation_matrix_110kv.csv": {
+      "bytes": 3627,
+      "sha256": "69634905a1444c1eeababe6471e85dab6dd90dc449749d9f11919f2988d0336e"
+    },
+    "recommendation_matrix_110kv.md": {
+      "bytes": 29547,
+      "sha256": "60530ba9a7ddef17e3f2f396ccd5a6b57f8b7d5a2c7eadad5b701e296e5b1439"
+    },
+    "recommendation_matrix_35kv.csv": {
+      "bytes": 4812,
+      "sha256": "34d9f28ddf9abb8cff9d062208bf3a1b05b2a35267d02eb7710a82802e71a78c"
+    },
+    "recommendation_matrix_35kv.md": {
+      "bytes": 33513,
+      "sha256": "6c14b4e56edb58165b1a2c0184e0b4f2ec659fdb915bda7095ef787450259a9b"
+    },
+    "visual_data.csv": {
+      "bytes": 8044,
+      "sha256": "60b0c32fed1b3d144d09d798919fd242520c0d5cc2770da023af71c49fe598b1"
+    },
+    "README.md": {
+      "bytes": 1102,
+      "sha256": "a644ba34e7c0d1e09ade5629fd40201f81871465f99bc09aa56c503b5a2f6e14"
+    }
+  },
+  "environment": {
+    "required_conda_environment": "xuzhou110kv_clr"
+  }
+}

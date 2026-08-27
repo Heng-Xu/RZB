@@ -1,0 +1,31 @@
+{
+  "contract_sha256": "0f326b29625fff67d073cff50228008199bb1e0676f56e94203dc6e412bba5b5",
+  "input_fingerprint": "fbaef4360844b9c0f5d537c8b1a1eb34b180b32f666258dcd6ee2272be49e5aa",
+  "output_files": {
+    "empirical_scenario_index.csv": {
+      "rows": 621,
+      "sha256": "8d6ce49477351f8afcc738a2a3719d00c2fac5f197466137dc425b6c099ae69e"
+    },
+    "empirical_scenario_issues.csv": {
+      "rows": 5,
+      "sha256": "86ac9e33f04c4fdec5e1b08294f9df52692475ff3be510d3d698d2084a1f0313"
+    },
+    "empirical_station_scenarios.csv.gz": {
+      "rows": 14904,
+      "sha256": "c8f63b4f3c1e7e51bd8b1b3b9d0ba1a1bf94b11e844ae9be1b8ba49b3d98a65f"
+    }
+  },
+  "probabilistic_interpretation_allowed": false,
+  "scenario_builder_version": "1.0.0",
+  "scenario_fingerprint": "ef3163f09c5c2cd24ea35512b94acb0ed8baf24ae2a78bc782b0419a0f91774b",
+  "scenario_labels": [
+    "empirical_short",
+    "empirical_central",
+    "empirical_long"
+  ],
+  "source_sample_counts": {
+    "110": 4540,
+    "35": 1996
+  },
+  "target_station_count": 207
+}

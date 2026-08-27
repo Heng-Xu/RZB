@@ -1,0 +1,455 @@
+from __future__ import annotations
+
+import json
+import sqlite3
+from datetime import datetime
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+
+ROOT = Path(__file__).resolve().parents[1]
+REPORT_DIR = ROOT / "reports" / "real_data_modeling_assessment"
+RESULT_DIR = ROOT / "results" / "real_data_audit"
+OUTPUT = REPORT_DIR / "artifact.json"
+
+summary = json.loads((RESULT_DIR / "audit_summary.json").read_text(encoding="utf-8"))
+generated_at = datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(timespec="seconds")
+
+
+queries = {
+    "capacity_report": """
+        WITH reviewed(scope, capacity_mva, stations, basis) AS (VALUES
+          ('2025运行', 2139.5, 20, '历史容载比'),
+          ('SRC01站级', 2221.0, 21, '站级汇总'),
+          ('年末设备', 2239.5, 21, 'SRC02/SRC03单台设备')
+        ) SELECT * FROM reviewed
+    """,
+    "historical_clr_report": """
+        WITH reviewed(year, capacity_10mva, load_10mw, clr) AS (VALUES
+          ('2021', 202.7, 73.177, 2.77),
+          ('2022', 204.55, 82.5004, 2.48),
+          ('2023', 215.1, 76.1232, 2.83),
+          ('2024', 216.95, 86.2662, 2.51),
+          ('2025', 213.95, 95.645, 2.24)
+        ) SELECT * FROM reviewed
+    """,
+    "pv_snapshot_report": """
+        WITH reviewed(category, capacity_mw, stations) AS (VALUES
+          ('已并网', 1460.9273, 21),
+          ('在途', 260.4057, 21),
+          ('合计场景', 1721.333, 21)
+        ) SELECT * FROM reviewed
+    """,
+    "readiness_report": """
+        WITH reviewed("order", level, status, first_release) AS (VALUES
+          (1, 'M0 站级静态筛选', '可直接开展', '21站；2025口径单列'),
+          (2, 'M1 扩建候选', '可直接构造', '使用SRC03离散候选和间隔'),
+          (3, 'M2 小时储能/弃光', '条件具备', '审批2025映射；补储能参数'),
+          (4, 'M3 110 kV N-1', '容量网络可做', '按电流限额；不声称AC/DC潮流'),
+          (5, 'M4 县域对标', '可直接开展', '月度PV单位保留待确认状态'),
+          (6, 'M5 10 kV联络', '主体禁用', '后续1-2站独立案例')
+        ) SELECT * FROM reviewed
+    """,
+    "hourly_quality_report": """
+        WITH reviewed(sheet, period, hours, active_columns, blank_rows, other_issue) AS (VALUES
+          ('Sheet1', '2022', 8760, 54, 1, '55-58列全空'),
+          ('Sheet2', '2023', 8760, 54, 2, '55-58列全空'),
+          ('Sheet3', '2024-2025', 17544, 58, 3, '3个数量级异常；后4列分期启用'),
+          ('Sheet4', '2026-01至07', 4992, 58, 1, '列顺序与2025不一致')
+        ) SELECT * FROM reviewed
+    """,
+    "model_adjustments_report": """
+        WITH reviewed(priority, item, current, required) AS (VALUES
+          (1, '10 kV联络变量', '全局优化', '主体移除；1-2站案例'),
+          (2, '容载比上限', '方案A硬R<=2.0', '对标/参数扫描，区分继承过容量'),
+          (3, '推荐容载比', '方案B未封顶结果即推荐值', '成本-可靠性-弃光前沿的区间'),
+          (4, '扩建变量', '所有站统一最多2x50 MVA', 'SRC03站级离散候选和间隔'),
+          (5, '主变时序映射', '默认列头可用/全年统一', '2022-2025与2026分版审批'),
+          (6, '光伏点位', '可随机分摊', '站级直接使用；馈线仅敏感性场景'),
+          (7, '110 kV网络', '合成DC网络及补造X', '真实容量网络和拓扑N-1'),
+          (8, '数据入口', '脚本硬编码synthetic', '参数化数据集根目录和空ties语义')
+        ) SELECT * FROM reviewed
+    """,
+    "open_items_report": """
+        WITH reviewed(priority, item, impact, owner_action) AS (VALUES
+          (1, '审批2025主变时序列映射', '正式小时基线', '复核候选CSV并签字冻结'),
+          (2, '补储能技术经济参数', '经济最优与方案排序', '提供CAPEX/OPEX、效率、寿命、退化、折现'),
+          (3, '确认月度分县光伏单位', '跨县绝对MW场景', '确认是否为万kW'),
+          (4, '确认2个外部边界节点类型', '网络边界注入', '确认BDZ-00336/BDZ-00362身份'),
+          (5, '补站-220 kV电源运行分区', '高压分区一级结论', '提供运行方式或接受首版只做站/县'),
+          (6, '补1-2站10 kV案例数据', '联络优化成本案例', '提供开关、开环点、候选路径和馈线PV映射')
+        ) SELECT * FROM reviewed
+    """,
+}
+
+
+def query_rows(sql: str) -> list[dict[str, object]]:
+    with sqlite3.connect(":memory:") as connection:
+        cursor = connection.execute(sql)
+        columns = [description[0] for description in cursor.description]
+        return [dict(zip(columns, row, strict=True)) for row in cursor.fetchall()]
+
+
+sources = [
+    {
+        "id": "data_contract",
+        "label": "Agent数据引用与使用说明书 V1.2",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/README_Agent_建模数据引用与使用说明_V1.2.md",
+    },
+    {
+        "id": "src01_02",
+        "label": "2025设备负载统计表（变电站1、主变1）",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/2025设备负载统计表.xlsx",
+    },
+    {
+        "id": "src03_04",
+        "label": "110（35）kV设备明细（变电站、线路）",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/110（35）kv设备明细.xlsx",
+    },
+    {
+        "id": "src05",
+        "label": "站级光伏装机快照",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/光伏装机.xlsx",
+    },
+    {
+        "id": "src06",
+        "label": "10 kV线路基础数据",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/邳州10kV线路基础数据表.xlsx",
+    },
+    {
+        "id": "src07",
+        "label": "主变小时净负荷候选序列",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/邳州主变负载率.xlsx",
+    },
+    {
+        "id": "src08",
+        "label": "近5年容载比",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/近5年容载比.xlsx",
+    },
+    {
+        "id": "src09",
+        "label": "逐月分县分布式光伏",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/逐月分县分布式光伏.xlsx",
+    },
+    {
+        "id": "src14",
+        "label": "2025年8760点光伏标幺曲线",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/光伏8760小时数据.xlsx",
+    },
+    {
+        "id": "audit_notebook",
+        "label": "真实数据完整性与建模可行性审计 Notebook",
+        "path": "notebooks/real_data_readiness_audit.ipynb",
+    },
+    {
+        "id": "existing_model",
+        "label": "既有实验建模方案与实现",
+        "path": "README.md",
+    },
+    {
+        "id": "capacity_report",
+        "label": "主变容量口径审计快照",
+        "path": "notebooks/real_data_readiness_audit.ipynb",
+        "query": {
+            "engine": "sqlite",
+            "language": "sql",
+            "sql": queries["capacity_report"],
+            "description": "复现SRC01、SRC02/SRC03与SRC08容量核对后的报告行。",
+            "executed_at": generated_at,
+        },
+    },
+    {
+        "id": "historical_clr_report",
+        "label": "QX-00005近5年110 kV容载比审计快照",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/近5年容载比.xlsx",
+        "query": {
+            "engine": "sqlite",
+            "language": "sql",
+            "sql": queries["historical_clr_report"],
+            "description": "复现源表2021-2025年容量、负荷和容载比行。",
+            "executed_at": generated_at,
+        },
+    },
+    {
+        "id": "pv_snapshot_report",
+        "label": "站级光伏容量聚合审计快照",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/光伏装机.xlsx",
+        "query": {
+            "engine": "sqlite",
+            "language": "sql",
+            "sql": queries["pv_snapshot_report"],
+            "description": "复现21座110 kV站已并网与在途光伏聚合结果。",
+            "executed_at": generated_at,
+        },
+    },
+    {
+        "id": "readiness_report",
+        "label": "建模层级就绪度审计快照",
+        "path": "notebooks/real_data_readiness_audit.ipynb",
+        "query": {
+            "engine": "sqlite",
+            "language": "sql",
+            "sql": queries["readiness_report"],
+            "description": "复现各模型层级的数据就绪度和首版边界。",
+            "executed_at": generated_at,
+        },
+    },
+    {
+        "id": "hourly_quality_report",
+        "label": "主变小时序列质量审计快照",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/邳州主变负载率.xlsx",
+        "query": {
+            "engine": "sqlite",
+            "language": "sql",
+            "sql": queries["hourly_quality_report"],
+            "description": "复现四个工作表的小时数、有效列和整行缺失统计。",
+            "executed_at": generated_at,
+        },
+    },
+    {
+        "id": "model_adjustments_report",
+        "label": "既有方案与真实数据边界对照快照",
+        "path": "notebooks/real_data_readiness_audit.ipynb",
+        "query": {
+            "engine": "sqlite",
+            "language": "sql",
+            "sql": queries["model_adjustments_report"],
+            "description": "复现按优先级整理的模型调整项。",
+            "executed_at": generated_at,
+        },
+    },
+    {
+        "id": "open_items_report",
+        "label": "正式求解前确认项快照",
+        "path": "data/tuomin/电网建模数据_Agent整合版_V1.2/README_Agent_建模数据引用与使用说明_V1.2.md",
+        "query": {
+            "engine": "sqlite",
+            "language": "sql",
+            "sql": queries["open_items_report"],
+            "description": "复现数据说明、审计结论和用户硬约束形成的待确认事项。",
+            "executed_at": generated_at,
+        },
+    },
+]
+
+
+artifact = {
+    "surface": "report",
+    "manifest": {
+        "version": 1,
+        "surface": "report",
+        "title": "真实数据完整性与后续建模方案评估",
+        "description": "QX-00005区域110 kV电网脱敏数据审计、现有方案冲突与推荐建模路线。",
+        "generatedAt": generated_at,
+        "cards": [],
+        "charts": [
+            {
+                "id": "capacity_reconciliation",
+                "title": "110 kV主变容量口径对照",
+                "subtitle": "2025运行口径与年末设备口径的差额由新投运站解释，单位为MVA。",
+                "type": "bar",
+                "dataset": "capacity_reconciliation",
+                "sourceId": "capacity_report",
+                "encodings": {
+                    "x": {"field": "scope", "type": "ordinal", "label": "容量口径"},
+                    "y": {"field": "capacity_mva", "type": "quantitative", "label": "容量", "format": "number"},
+                },
+                "yAxisTitle": "容量 (MVA)",
+                "valueFormat": "number",
+                "layout": "full",
+            },
+            {
+                "id": "historical_clr",
+                "title": "QX-00005历年110 kV容载比",
+                "subtitle": "2021-2025年官方县域口径；2025年为2.24，高于旧方案2.0硬上限。",
+                "type": "bar",
+                "dataset": "historical_clr",
+                "sourceId": "historical_clr_report",
+                "encodings": {
+                    "x": {"field": "year", "type": "ordinal", "label": "年份"},
+                    "y": {"field": "clr", "type": "quantitative", "label": "容载比", "format": "number"},
+                },
+                "yAxisTitle": "容载比",
+                "valueFormat": "number",
+                "layout": "full",
+            },
+            {
+                "id": "pv_snapshot",
+                "title": "站级光伏容量快照",
+                "subtitle": "21座110 kV站全覆盖；已并网与在途容量分别聚合，单位为MW。",
+                "type": "bar",
+                "dataset": "pv_snapshot",
+                "sourceId": "pv_snapshot_report",
+                "encodings": {
+                    "x": {"field": "category", "type": "ordinal", "label": "容量口径"},
+                    "y": {"field": "capacity_mw", "type": "quantitative", "label": "容量", "format": "number"},
+                },
+                "yAxisTitle": "容量 (MW)",
+                "valueFormat": "number",
+                "layout": "full",
+            },
+        ],
+        "tables": [
+            {
+                "id": "model_readiness",
+                "title": "各建模层级的数据就绪度",
+                "subtitle": "状态表示当前数据是否足以进入正式模型，而非源表是否存在。",
+                "dataset": "model_readiness",
+                "sourceId": "readiness_report",
+                "defaultSort": {"field": "order", "direction": "asc"},
+                "columns": [
+                    {"field": "level", "label": "层级", "type": "text"},
+                    {"field": "status", "label": "状态", "type": "text"},
+                    {"field": "first_release", "label": "首版处理", "type": "text"},
+                    {"field": "order", "label": "顺序", "format": "number"},
+                ],
+            },
+            {
+                "id": "hourly_quality",
+                "title": "主变小时序列质量摘要",
+                "subtitle": "四个工作表覆盖2022年至2026年7月；空白行和异常值必须显式标记。",
+                "dataset": "hourly_quality",
+                "sourceId": "hourly_quality_report",
+                "defaultSort": {"field": "sheet", "direction": "asc"},
+                "columns": [
+                    {"field": "sheet", "label": "工作表", "type": "text"},
+                    {"field": "period", "label": "覆盖期", "type": "text"},
+                    {"field": "hours", "label": "小时数", "format": "number"},
+                    {"field": "active_columns", "label": "有效列", "format": "number"},
+                    {"field": "blank_rows", "label": "整行空白", "format": "number"},
+                    {"field": "other_issue", "label": "其他问题", "type": "text"},
+                ],
+            },
+            {
+                "id": "model_adjustments",
+                "title": "既有方案必须调整的建模项",
+                "subtitle": "调整项来自源数据边界、用户硬约束和现有代码契约的交叉核对。",
+                "dataset": "model_adjustments",
+                "sourceId": "model_adjustments_report",
+                "defaultSort": {"field": "priority", "direction": "asc"},
+                "density": "dense",
+                "columns": [
+                    {"field": "item", "label": "建模项", "type": "text"},
+                    {"field": "current", "label": "既有方案", "type": "text"},
+                    {"field": "required", "label": "真实数据方案", "type": "text"},
+                    {"field": "priority", "label": "优先级", "format": "number"},
+                ],
+            },
+            {
+                "id": "open_items",
+                "title": "正式求解前的确认与补充项",
+                "subtitle": "这些事项不阻止静态分析开工，但会影响小时优化、经济性或分区结论。",
+                "dataset": "open_items",
+                "sourceId": "open_items_report",
+                "defaultSort": {"field": "priority", "direction": "asc"},
+                "columns": [
+                    {"field": "priority", "label": "优先级", "format": "number"},
+                    {"field": "item", "label": "事项", "type": "text"},
+                    {"field": "impact", "label": "影响", "type": "text"},
+                    {"field": "owner_action", "label": "建议动作", "type": "text"},
+                ],
+            },
+        ],
+        "sources": sources,
+        "blocks": [
+            {"id": "title", "type": "markdown", "body": "# 真实数据完整性与后续建模方案评估"},
+            {
+                "id": "technical_summary",
+                "type": "markdown",
+                "body": "## 结论：主体研究可以开工，但不能原样运行既有模型\n\n数据包不是总体缺失：静态资产、站级光伏、110 kV容量网络和标准光伏时序足以启动数据接入、基线评估和扩建候选构造。正式的2025小时级规划还需先审批58列时序映射并补齐储能经济参数。全局10 kV联络优化必须从主体模型移除，转为后续1-2座站的独立案例。推荐将主线改为“站/县基线 + 实际扩建候选 + 容载比成本-可靠性前沿 + 110 kV容量网络N-1”。",
+            },
+            {
+                "id": "capacity_heading",
+                "type": "markdown",
+                "body": "## 容量差异可以解释，不是源文件损坏\n\n单台主变权威表的年末容量为2239.5 MVA。剔除2025年底新投运、负荷尚未完全释放的 `BDZ-00056`（100 MVA）后，正好等于历史容载比表的2025运行口径2139.5 MVA。SRC01站级汇总另有 `BDZ-00005` 少计18.5 MVA，因此正式容量应以SRC02/SRC03单台设备为准，并同时维护2025校准范围与年末资产范围。",
+            },
+            {"id": "capacity_chart", "type": "chart", "chartId": "capacity_reconciliation", "layout": "full"},
+            {
+                "id": "readiness_heading",
+                "type": "markdown",
+                "body": "## 五个层级具备条件，10 kV联络只能做局部案例\n\n站级静态、扩建候选、县域对标可立即开展；小时储能模型在映射审批后可做；110 kV层可做基于电流限额的容量网络与拓扑N-1。馈线表虽覆盖342条线路，却没有光伏接入点、联络开关、开环点和候选路径，不能构造全局联络决策变量。",
+            },
+            {"id": "readiness_table", "type": "table", "tableId": "model_readiness", "layout": "full"},
+            {
+                "id": "clr_heading",
+                "type": "markdown",
+                "body": "## 2.0不应继续作为既有资产的全局硬上限\n\n官方县域口径2025年容载比为2.24，且既有站级静态值最高达到3.57。当前模型没有退役变量，强制 `R <= 2.0` 可能直接不可行，也可能诱导储能通过抬高正向或反向峰值来降低数值比值。2.0更适合作为对标线或参数扫描点；主体结论应来自成本、可靠性、弃光和N-1可行性的前沿，而不是单一硬阈值。",
+            },
+            {"id": "clr_chart", "type": "chart", "chartId": "historical_clr", "layout": "full"},
+            {
+                "id": "hourly_heading",
+                "type": "markdown",
+                "body": "## 2025小时序列可恢复，2026必须使用另一版映射\n\n58列时序的首行站码全部损坏为同一编号，只有26列保留主变号。2025候选匹配中51/58列的综合误差分数低于0.25，可作为人工审批底稿；但2026光伏快照反查显示列顺序已经变化，不能让四个工作表共用一张映射。每年3月的整行空白呈现外部时区ETL特征，另有少量随机缺失和3个数量级异常值，均应修复并留 `quality_flag`。",
+            },
+            {"id": "hourly_table", "type": "table", "tableId": "hourly_quality", "layout": "full"},
+            {
+                "id": "pv_heading",
+                "type": "markdown",
+                "body": "## 站级光伏容量完整，不需要在110 kV站间随机撒点\n\n21座站均有已并网和在途容量，已并网合计1460.9 MW，在途260.4 MW。未知的是10 kV馈线内的具体接入点，不能把站级容量按馈线负荷或配变容量随机分摊后当作真实拓扑。若必须研究点位不确定性，只能构造带标签的约束场景，用于敏感性分析，不得替代正式映射。",
+            },
+            {"id": "pv_chart", "type": "chart", "chartId": "pv_snapshot", "layout": "full"},
+            {
+                "id": "definitions",
+                "type": "markdown",
+                "body": "## 范围、口径与计算定义\n\n主体范围为 `QX-00005` 的21座110 kV站和42台110/10 kV主变；16台35 kV主变只解释58条时序。主变小时序列按净负荷处理，现状光伏不得再次扣减。未来新增光伏采用增量法：`P_net,future = P_net,base + load_growth - Delta_C_pv * phi_pv`。站级静态容载比只用于筛选，因为各站年度极值不同步；县域指标必须使用同步小时聚合或权威宏观表。",
+            },
+            {
+                "id": "methodology",
+                "type": "markdown",
+                "body": "## 审计方法\n\n审计按匿名主键核对站、主变、设备、线路、光伏和馈线基数；用容量恒等式解释跨表差异；逐小时检查时间连续性、整行缺失、列活跃区间和数量级异常；以2025年度极值及极值时刻构造匈牙利匹配候选，再用2026光伏快照独立检验列顺序稳定性。所有候选映射均保持 `candidate_only`，没有写入正式输入目录。",
+            },
+            {
+                "id": "model_specification",
+                "type": "markdown",
+                "body": "## 推荐模型：分层重构而非原方案小修\n\n首版先形成2025站级净负荷基线和县域同步指标；扩建变量仅取SRC03允许的离散候选，并受剩余10 kV间隔约束；储能、弃光和新增PV进入全年度或代表日规划，再做8760回放；110 kV线路按 `sqrt(3) * 110 kV * I_limit` 转换视在容量，并在明确功率因数假设后形成有功限额。对容载比目标进行参数扫描，输出成本-可靠性-弃光前沿和推荐区间。高压分区在缺少运行电源归属时暂不作为一级结论。",
+            },
+            {"id": "model_adjustments_table", "type": "table", "tableId": "model_adjustments", "layout": "full"},
+            {
+                "id": "limitations",
+                "type": "markdown",
+                "body": "## 限制、稳健性与不能声称的结论\n\n缺少完整R/X，首版只能称为容量网络或拓扑N-1，不能称精确AC/DC潮流。统一光伏曲线是场景曲线，不是21座站的独立实测；22:00-04:00仍有最大0.00433 p.u.的微小非零值，默认保留原始版本，清洗版仅作敏感性。月度分县光伏单位虽很可能是万kW，但源表未注明，绝对MW结论需甲方确认。储能参数未补齐前只能输出技术需求量和参数敏感性，不能宣称确定性经济最优。",
+            },
+            {
+                "id": "next_steps",
+                "type": "markdown",
+                "body": "## 建议执行顺序\n\n先冻结2025校准范围与年末资产范围，再人工审批 `timeseries_column_map_2022_2025`；随后实现真实数据适配、质量标记和2025站级基线；再补储能参数并生成容载比目标扫描；最后加入110 kV容量网络N-1和全年度回放。10 kV案例数据到位后另开独立输入和成本核算，不回填为全局变量。",
+            },
+            {"id": "open_items_table", "type": "table", "tableId": "open_items", "layout": "full"},
+            {
+                "id": "further_questions",
+                "type": "markdown",
+                "body": "## 本轮需要确定的问题\n\n是否同意将主体方案改为“站/县分层 + 实际扩建候选 + 容载比目标扫描的成本-可靠性前沿”，并把旧A/B方案保留为对照，而不再把旧方案的2.0硬上限和未封顶最优结果作为主结论？",
+            },
+        ],
+    },
+    "snapshot": {
+        "version": 1,
+        "generatedAt": generated_at,
+        "status": "ready",
+        "datasets": {
+            "headline": [
+                {
+                    "stations": summary["scope"]["stations_110kv"],
+                    "transformers": summary["scope"]["transformers_110kv"],
+                    "pv_online_mw": summary["pv"]["online_mw"],
+                    "pv_pipeline_mw": summary["pv"]["pipeline_mw"],
+                    "network_lines": summary["scope"]["network_lines_touching_scope"],
+                    "pv_profile_hours": summary["pv"]["profile_hours"],
+                    "pv_full_load_hours": summary["pv"]["equivalent_full_load_hours"],
+                }
+            ],
+            "capacity_reconciliation": query_rows(queries["capacity_report"]),
+            "historical_clr": query_rows(queries["historical_clr_report"]),
+            "pv_snapshot": query_rows(queries["pv_snapshot_report"]),
+            "model_readiness": query_rows(queries["readiness_report"]),
+            "hourly_quality": query_rows(queries["hourly_quality_report"]),
+            "model_adjustments": query_rows(queries["model_adjustments_report"]),
+            "open_items": query_rows(queries["open_items_report"]),
+        },
+    },
+    "sources": sources,
+}
+
+REPORT_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT.write_text(json.dumps(artifact, ensure_ascii=False, indent=2), encoding="utf-8")
+print(OUTPUT)

@@ -1,0 +1,20 @@
+﻿object_id,object_type,feeder_or_scope,locator,manual_status,manual_status_source,drawing_symbol_fill,drawing_inferred_status,final_normal_status,confidence,can_auto_apply,required_action
+TIE-001,TIE,站间,dzhen:24-13-17 ↔ hdong:93,OPEN,上一轮人工补录/标准化V2,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,OPEN,HIGH,YES,人工状态为主；图纸符号只做交叉校验，不因符号识别结果覆盖人工确认状态
+TIE-002,TIE,站间,dnan:42-4 ↔ hpao:59,OPEN,上一轮人工补录/标准化V2,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,OPEN,HIGH,YES,人工状态为主；图纸符号只做交叉校验，不因符号识别结果覆盖人工确认状态
+TIE-003,TIE,站间,dxi:15-37-14/WCH14 ↔ hpao:WCH1,OPEN,上一轮人工补录/标准化V2,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,OPEN,MEDIUM_HIGH,YES,人工状态为主；图纸符号只做交叉校验，不因符号识别结果覆盖人工确认状态
+TIE-004,TIE,站间,dzhen:24-15-10-4 ↔ hzhen:待定位,OPEN,上一轮人工补录/标准化V2,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,OPEN,MEDIUM,YES,人工状态为主；图纸符号只做交叉校验，不因符号识别结果覆盖人工确认状态
+TIE-005,TIE,站内,dzhen:15-14 ↔ dxi:15-15-2附近,OPEN,上一轮人工补录/标准化V2,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,OPEN,MEDIUM,YES,人工状态为主；图纸符号只做交叉校验，不因符号识别结果覆盖人工确认状态
+TIE-006,TIE,站内,dnan:26-5附近 ↔ dxi:15-31-4附近,OPEN,上一轮人工补录/标准化V2,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,OPEN,MEDIUM,YES,人工状态为主；图纸符号只做交叉校验，不因符号识别结果覆盖人工确认状态
+TIE-007,TIE,站内,hdong:48 ↔ hzhen:49,CLOSED,上一轮人工补录/标准化V2,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,CLOSED,HIGH,YES,人工状态为主；图纸符号只做交叉校验，不因符号识别结果覆盖人工确认状态
+TIE-008,TIE,站内,hdong:56-1附近 ↔ hzhen:56,OPEN,上一轮人工补录/标准化V2,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,OPEN,HIGH,YES,人工状态为主；图纸符号只做交叉校验，不因符号识别结果覆盖人工确认状态
+PZXL-00099-SW-R004,SECTIONAL_OR_DEVICE,dzhen,dzhen线07杆 ↔ dzhen线08杆,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00097-SW-R009,SECTIONAL_OR_DEVICE,dxi,dxi线23杆 ↔ dxi线24杆,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00154-SW-R013,SECTIONAL_OR_DEVICE,hdong,hdong线41杆 ↔ hdong线42杆,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00154-SW-R014,SECTIONAL_OR_DEVICE,hdong,hdong线73杆 ↔ hdong线74杆,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00161-SW-R016,SECTIONAL_OR_DEVICE,hpao,hpao线36杆 ↔ hpao线37杆,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00161-SW-R017,SECTIONAL_OR_DEVICE,hpao,hpao线42杆 ↔ hpao线43杆,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00161-SW-R018,SECTIONAL_OR_DEVICE,hpao,hpao线43杆 ↔ hpao线44杆,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00173-SW-R021,SECTIONAL_OR_DEVICE,hzhen,10kVhzhen线73#杆 ↔ 10kVhzhen线74#杆,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00161-SW-R020A,SECTIONAL_OR_DEVICE,hpao,hpao线43杆 ↔ VIRTUAL::hpao线2分支箱,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,MEDIUM_HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00161-SW-R020B,SECTIONAL_OR_DEVICE,hpao,VIRTUAL::hpao线2分支箱 ↔ VIRTUAL::hpao线王场湖支线1分支开关,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,MEDIUM_HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核
+PZXL-00161-SW-R020C,SECTIONAL_OR_DEVICE,hpao,VIRTUAL::hpao线王场湖支线1分支开关 ↔ hpao线王场湖支线1杆,NOT_COVERED,上一轮未覆盖全部普通分段开关,PENDING_IMAGE_REVIEW,PENDING_CALIBRATION,PENDING_SYMBOL_CALIBRATION,HIGH,NO,先用已知OPEN/CLOSED联络反标黑/空白图例；图例一致后可批量推断，实际被选为切分点的开关需正式复核

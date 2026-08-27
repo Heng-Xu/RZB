@@ -1,0 +1,6 @@
+﻿task_id,source,target,status,result,output_file,note
+L001,SRC06 邳州10kV线路基础数据表,六条PZXL,COMPLETED,已提取P/I/最大允许电流/长度/半径/起点站码,feeder_master.csv,hdong P=0已进入异常处理
+L002,SRC06 起点电站代号,河东/河炮/河镇,COMPLETED,三条均=BDZ-00048,feeder_master.csv,河湾站ID锁定
+L003,SRC01 变电站1,BDZ-00027/BDZ-00048,COMPLETED,站容量及2025最大/最小负荷已提取,station_boundary_2025.csv,
+L004,SRC02 主变1 + 110kV设备明细,两站四台主变,COMPLETED,容量/年度极值/接线/N-1等已提取,transformer_boundary_2025.csv,
+L005,光伏装机.xlsx,两站2026高PV锚点,COMPLETED,4条主变级典型记录已提取,station_pv_anchors_2026.csv,不同时刻不可求和

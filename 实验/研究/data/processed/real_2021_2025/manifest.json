@@ -1,0 +1,220 @@
+{
+  "adapter_version": "3.0.0",
+  "contract_id": "xuzhou-clr-real-data-2021-2025",
+  "contract_sha256": "32144483a068bb88aea5a1c4f47a89f0773bfd369d8214cc0f42959ce889c641",
+  "contract_version": "3.0.0",
+  "dataset_fingerprint": "f7fe6d53eac5a2243fca3d917dad98773aac74c761748bcab35ae9a8d30fd353",
+  "dataset_id": "real_2021_2025",
+  "output_files": {
+    "actual_asset_actions_2021_2025.csv": {
+      "bytes": 28686,
+      "sha256": "fe87ff2a33ed57ad57e4fafd7835cbebd5259df80038e9b7ccb114a8aba9a510"
+    },
+    "annual_asset_reconciliation.csv": {
+      "bytes": 29542,
+      "sha256": "73220227b6b34bb65cde56a367c5a0db4156f26b32ea6817631041617980e275"
+    },
+    "annual_asset_whitelist.csv": {
+      "bytes": 1122420,
+      "sha256": "20c414917cdcae03b1d82acc5669e748e477d626fe9fdd83449a977c9b45df8f"
+    },
+    "annual_reference.csv": {
+      "bytes": 22615,
+      "sha256": "6f62cbc4481feed71927952474bbd01f28cbfb7de3289276040415f59df7ad7f"
+    },
+    "asset_scope_summary.csv": {
+      "bytes": 4530,
+      "sha256": "1833ac02310f3ae544d073655147b630dd3ed50621514e9b7630982005690778"
+    },
+    "cost_cases.csv": {
+      "bytes": 6388,
+      "sha256": "5ecf14ec598ea584a8167bf034150c57f7a5ec2dd283f6a335c27ba7dd4e55e7"
+    },
+    "county_clr_reference.csv": {
+      "bytes": 5013,
+      "sha256": "b107d98ecf83de2e676e3d9a8ad11f24bad245c3bc9b23bb4ee72e4fbd36fa2e"
+    },
+    "data_quality_issues.csv": {
+      "bytes": 9457,
+      "sha256": "7b18ac1d3feea7816b0dcc6c558e2a1f292eba8a0b70e394bb119f792306b52c"
+    },
+    "expansion_candidates.csv": {
+      "bytes": 39777,
+      "sha256": "c32d89d71a1357d41b3d2c9e1487498918cdac5df5a72f3abe6f49eb891ba7a2"
+    },
+    "network_lines_110kv.csv": {
+      "bytes": 115698,
+      "sha256": "9c9e0b8e46f6b1e63ecaa2248d2411493c98680cf85b05d6c11abc3f9e5ff31d"
+    },
+    "pv_profile_2025.csv": {
+      "bytes": 2451631,
+      "sha256": "323100af314f6f431d6a34299d7b63ab676e9fd303dd3d1d478c9e272025c638"
+    },
+    "station_master.csv": {
+      "bytes": 67885,
+      "sha256": "9642387423d4d59776d3aaab909bf3d1d6929b41e39e63ff60d733bc842de465"
+    },
+    "station_pv_snapshot.csv": {
+      "bytes": 66177,
+      "sha256": "411e3248adc2fa0b6ea2dbbf34e31fee9ad53a77bd51621fe777455df1183093"
+    },
+    "station_static_load.csv": {
+      "bytes": 77284,
+      "sha256": "243bf9806e4e24eac2463eecea4df36207713d9a4dd1ade0183149cc9499b3f0"
+    },
+    "timeseries_column_map_2022_2026_review.csv": {
+      "bytes": 104973,
+      "sha256": "de93c04c59e3d8d670859ddd30234e9be2ba91499a3e46d6a31b00cfeb22b4f5"
+    },
+    "timeseries_column_map_2025.csv": {
+      "bytes": 38828,
+      "sha256": "a93c0c7e15e7bba5d0b8427cc8742d318577a4e2ae05063f940a6b955cbc4e33"
+    },
+    "timeseries_mapping_approval.csv": {
+      "bytes": 26852,
+      "sha256": "fc7346acfee921b5fd4d418eb96f6506f15362c68eecf43ffa17a3886e5a1e11"
+    },
+    "timeseries_quality_issues.csv": {
+      "bytes": 6645,
+      "sha256": "96cb34383d4beb6c2ba54fc038884576f2ee796170fd980705faefb7175e00d8"
+    },
+    "transformer_hourly_2022.csv.gz": {
+      "bytes": 4285359,
+      "sha256": "f92b960d861ffd9e921e84cc46c7e7d749ed36e3725d7e75000a2dbfec372252"
+    },
+    "transformer_hourly_2023.csv.gz": {
+      "bytes": 4371075,
+      "sha256": "7ddc789469750f0d99510de84276e52a90cf794ce9ebebadc08741a628072e33"
+    },
+    "transformer_hourly_2024.csv.gz": {
+      "bytes": 4567325,
+      "sha256": "f907e891be00df1e672a98654c47e0db3d8f4286324646918d0595555760baa5"
+    },
+    "transformer_hourly_2025.csv.gz": {
+      "bytes": 4783073,
+      "sha256": "9d37f6c28e51efcea26f4a7bbb98bee092653f20e9a8e093144643cb06d5220f"
+    },
+    "transformer_master.csv": {
+      "bytes": 145883,
+      "sha256": "461b12e2d1b37a571c31d2631134286255aedc78f2fa50d09ba5212532583116"
+    },
+    "transformer_static_load.csv": {
+      "bytes": 150071,
+      "sha256": "a1cdf859ac34cd8424011a09c8b583eece89820869df93c6620a30b70fa976ba"
+    }
+  },
+  "quality_gate": {
+    "annual_reference_years": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "hourly_series_total": 58,
+    "known_2024_anomaly_count": 3,
+    "qx00005_operating_2025_stations_110kv": 20,
+    "qx00005_operating_2025_transformers_110kv": 40,
+    "qx00005_stations_110kv": 21,
+    "qx00005_transformers_110kv": 42,
+    "qx00005_transformers_35kv_context": 16
+  },
+  "source_files": {
+    "110（35）kv设备明细.xlsx": {
+      "bytes": 221855,
+      "sha256": "f0144a48c89031b732d6bcf436b48f1890dc20e353e56bc90c90c3861e09d208"
+    },
+    "2025设备负载统计表.xlsx": {
+      "bytes": 26251664,
+      "sha256": "563180da9b4fd16012c14ddb974e76ce1f06dfdd8ca13816a2ac529901b91176"
+    },
+    "README_Agent_建模数据引用与使用说明_V1.2.md": {
+      "bytes": 24908,
+      "sha256": "ba827ef37afb2c0dbe585e1a2fa67f596e956d4261bbe0dc1c4c1d91d6cea78f"
+    },
+    "光伏8760小时数据.xlsx": {
+      "bytes": 336227,
+      "sha256": "e923691ffe6073e8ad0f75729745d6e66261a32e0807c6d8e757689d0a956f5d"
+    },
+    "光伏装机.xlsx": {
+      "bytes": 53158,
+      "sha256": "88dd63f0d0e3b8aaed07b77bdba235da35967faefa6a9ff64b92e805559a42ec"
+    },
+    "江苏徐州王沟等110千伏输变电工程建设规模及投资汇总表(1).pdf": {
+      "bytes": 225508,
+      "sha256": "2b1d9090075c4a74aac06e9b7308d3db8263e504f6141f06764ec01937b944ae"
+    },
+    "江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx": {
+      "bytes": 19492,
+      "sha256": "110081ca62981f08a97f5b353bde277cb8ea774c1433e76552ece75994b1537e"
+    },
+    "计划项目明细表.et": {
+      "bytes": 39424,
+      "sha256": "860c32a133428d0f70e3a5b4be0a4a48e68742704c0444d7ef9cd0700d60bccf"
+    },
+    "近5年容载比.xlsx": {
+      "bytes": 16888,
+      "sha256": "f64be1be4955a268e97edc2678b2a39c3e89f651b7f40cc96e2e700395fe45a1"
+    },
+    "逐月分县分布式光伏.xlsx": {
+      "bytes": 16815,
+      "sha256": "64b5f1a7a6cf210bd43be0b1b8bf5bca549c0160432e8a76a149e90087335539"
+    },
+    "邳州10kV线路基础数据表.xlsx": {
+      "bytes": 66832,
+      "sha256": "120d7d9cfa59a3b7b8abdd424773b18b1b5420bc2160249d0bf30d76615619d7"
+    },
+    "邳州主变负载率.xlsx": {
+      "bytes": 14899475,
+      "sha256": "38837890ab239005f7ce26b33a3510d948a13abfea1ad8dae387b8ef8a83e911"
+    },
+    "高压网架结构.xlsx": {
+      "bytes": 33353,
+      "sha256": "20558f3981136efe38a24950d405a34d1eea6563d0245110f5deb281f848b9f8"
+    }
+  },
+  "source_root_name": "电网建模数据_Agent整合版_V1.2",
+  "timeseries_gate": {
+    "annual_gate_rule": "annual_asset_whitelist",
+    "approval_authority": "project_owner",
+    "approved_mapping_rows": 56,
+    "formal_hourly_use_allowed": true,
+    "formal_scope_approved_transformers": 40,
+    "formal_scope_id": "2025_QX-00005_110kv_operating",
+    "formal_scope_required_transformers": 40,
+    "grade_a_ready": true,
+    "qx00005_2025_110kv_operating_transformers_required": 40,
+    "rejected_mapping_rows": 2,
+    "year_end_only_excluded_from_2025_operating_gate": [
+      "QX-00005|110|BDZ-00056|#1",
+      "QX-00005|110|BDZ-00056|#2"
+    ],
+    "year_end_only_excluded_mapping_rows": 2
+  },
+  "timeseries_review": {
+    "approved_columns": 56,
+    "approved_formal_rows": 40,
+    "approved_rows": 56,
+    "candidate_map_sha256": "b83f400a357173ebeb29dcdaef1276b9e9be3986a56c5e1629ac8bf326a421c4",
+    "conditional_columns": 0,
+    "formal_hourly_use_allowed": true,
+    "formal_years": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "grade_a_ready": true,
+    "hourly_output_rows": {
+      "2022": 508080,
+      "2023": 508080,
+      "2024": 509472,
+      "2025": 508080
+    },
+    "rejected_columns": 2,
+    "required_formal_rows": 40,
+    "review_rows": 290,
+    "source_sha256": "38837890ab239005f7ce26b33a3510d948a13abfea1ad8dae387b8ef8a83e911",
+    "total_columns": 58
+  }
+}

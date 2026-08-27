@@ -1,0 +1,1582 @@
+
+===== SRC01_STATIONS =====
+{
+  "valid_rows_all_voltage_county": 266,
+  "rows_by_voltage": {
+    "110": 157,
+    "220": 49,
+    "35": 55,
+    "500": 5
+  },
+  "scope_rows": 21,
+  "scope_unique_station_ids": 21,
+  "duplicate_station_ids": [],
+  "capacity_sum_mva": 2221.0,
+  "missing_capacity": [],
+  "missing_annual_max": [
+    "BDZ-00056"
+  ],
+  "missing_annual_min": [
+    "BDZ-00056"
+  ],
+  "reverse_flow_station_count": 17,
+  "zero_or_missing_extrema_station_ids": [
+    "BDZ-00056"
+  ],
+  "static_station_clr_range": [
+    1.0127,
+    3.5714
+  ],
+  "highest_static_clr": [
+    {
+      "station_id": "BDZ-00037",
+      "clr": 3.5714
+    },
+    {
+      "station_id": "BDZ-00021",
+      "clr": 3.1969
+    },
+    {
+      "station_id": "BDZ-00095",
+      "clr": 3.1526
+    },
+    {
+      "station_id": "BDZ-00172",
+      "clr": 2.8711
+    },
+    {
+      "station_id": "BDZ-00031",
+      "clr": 2.7846
+    }
+  ]
+}
+
+===== SRC02_TRANSFORMERS =====
+{
+  "all_transformer_rows": 520,
+  "scope_110_rows": 42,
+  "scope_35_rows": 16,
+  "scope_110_unique_keys": 42,
+  "scope_110_station_count": 21,
+  "units_per_station": {
+    "BDZ-00005": 2,
+    "BDZ-00016": 2,
+    "BDZ-00021": 2,
+    "BDZ-00022": 2,
+    "BDZ-00026": 2,
+    "BDZ-00027": 2,
+    "BDZ-00028": 2,
+    "BDZ-00031": 2,
+    "BDZ-00037": 2,
+    "BDZ-00048": 2,
+    "BDZ-00056": 2,
+    "BDZ-00095": 2,
+    "BDZ-00096": 2,
+    "BDZ-00124": 2,
+    "BDZ-00135": 2,
+    "BDZ-00141": 2,
+    "BDZ-00146": 2,
+    "BDZ-00147": 2,
+    "BDZ-00162": 2,
+    "BDZ-00164": 2,
+    "BDZ-00172": 2
+  },
+  "capacity_sum_mva": 2239.5,
+  "station_capacity_differences_mva": {
+    "BDZ-00005": 18.5
+  },
+  "missing_annual_max_keys": [
+    "BDZ-00056/#1",
+    "BDZ-00056/#2"
+  ],
+  "missing_annual_min_keys": [
+    "BDZ-00056/#1",
+    "BDZ-00056/#2"
+  ],
+  "negative_min_transformer_count": 35,
+  "heavy_transformer_count": 10
+}
+
+===== SRC03_EQUIPMENT =====
+{
+  "scope_rows": 42,
+  "scope_stations": 21,
+  "key_missing_in_equipment": [],
+  "key_extra_in_equipment": [],
+  "capacity_conflicts": {},
+  "expandable_station_count": 14,
+  "expandable_capacity_sum_mva": 793.0,
+  "remaining_10kv_bays_sum": 131.0,
+  "stations_with_no_remaining_10kv_bay": [
+    "BDZ-00021",
+    "BDZ-00027",
+    "BDZ-00028",
+    "BDZ-00048",
+    "BDZ-00141",
+    "BDZ-00147"
+  ],
+  "n_minus_1_not_yes": []
+}
+
+===== SRC04_NETWORK =====
+{
+  "all_110kv_lines": 364,
+  "county_tagged_lines": 50,
+  "lines_touching_research_station": 40,
+  "unique_touching_line_ids": 40,
+  "duplicate_touching_line_ids": [],
+  "boundary_node_count": 8,
+  "boundary_nodes": [
+    "BDZ-00186",
+    "BDZ-00195",
+    "BDZ-00199",
+    "BDZ-00220",
+    "BDZ-00222",
+    "BDZ-00238",
+    "BDZ-00336",
+    "BDZ-00362"
+  ],
+  "missing_or_zero_current_limit_lines": [],
+  "missing_length_lines": [],
+  "max_load_rate_over_100_lines": [],
+  "research_only_connected_components": [
+    [
+      "BDZ-00048"
+    ],
+    [
+      "BDZ-00135"
+    ],
+    [
+      "BDZ-00022",
+      "BDZ-00146",
+      "BDZ-00162"
+    ],
+    [
+      "BDZ-00124"
+    ],
+    [
+      "BDZ-00027"
+    ],
+    [
+      "BDZ-00016"
+    ],
+    [
+      "BDZ-00095"
+    ],
+    [
+      "BDZ-00172"
+    ],
+    [
+      "BDZ-00031"
+    ],
+    [
+      "BDZ-00028"
+    ],
+    [
+      "BDZ-00147"
+    ],
+    [
+      "BDZ-00164"
+    ],
+    [
+      "BDZ-00141"
+    ],
+    [
+      "BDZ-00096"
+    ],
+    [
+      "BDZ-00005"
+    ],
+    [
+      "BDZ-00056"
+    ],
+    [
+      "BDZ-00037"
+    ],
+    [
+      "BDZ-00021"
+    ],
+    [
+      "BDZ-00026"
+    ]
+  ],
+  "research_station_degree_in_full_touching_graph": {
+    "BDZ-00005": 2,
+    "BDZ-00016": 2,
+    "BDZ-00021": 1,
+    "BDZ-00022": 3,
+    "BDZ-00026": 1,
+    "BDZ-00027": 2,
+    "BDZ-00028": 2,
+    "BDZ-00031": 1,
+    "BDZ-00037": 2,
+    "BDZ-00048": 2,
+    "BDZ-00056": 2,
+    "BDZ-00095": 1,
+    "BDZ-00096": 2,
+    "BDZ-00124": 2,
+    "BDZ-00135": 2,
+    "BDZ-00141": 2,
+    "BDZ-00146": 2,
+    "BDZ-00147": 2,
+    "BDZ-00162": 2,
+    "BDZ-00164": 1,
+    "BDZ-00172": 1
+  }
+}
+
+===== SRC05_PV_CAPACITY =====
+{
+  "scope_rows": 42,
+  "scope_station_count": 21,
+  "rows_per_station": {
+    "BDZ-00005": 2,
+    "BDZ-00016": 2,
+    "BDZ-00021": 2,
+    "BDZ-00022": 2,
+    "BDZ-00026": 2,
+    "BDZ-00027": 2,
+    "BDZ-00028": 2,
+    "BDZ-00031": 2,
+    "BDZ-00037": 2,
+    "BDZ-00048": 2,
+    "BDZ-00056": 2,
+    "BDZ-00095": 2,
+    "BDZ-00096": 2,
+    "BDZ-00124": 2,
+    "BDZ-00135": 2,
+    "BDZ-00141": 2,
+    "BDZ-00146": 2,
+    "BDZ-00147": 2,
+    "BDZ-00162": 2,
+    "BDZ-00164": 2,
+    "BDZ-00172": 2
+  },
+  "missing_station_ids": [],
+  "extra_station_ids": [],
+  "online_total_mw": 1460.9273,
+  "pipeline_total_mw": 260.4057,
+  "online_plus_pipeline_total_mw": 1721.333,
+  "rated_capacity_total_mva": 2259.5,
+  "rated_capacity_difference_vs_src01_mva": 38.5,
+  "snapshot_time_min": "2026-03-23 12:30:00",
+  "snapshot_time_max": "2026-05-29 12:30:00",
+  "negative_capacity_rows": [],
+  "station_totals": {
+    "BDZ-00005": {
+      "online": 66.2681,
+      "pipeline": 17.2341,
+      "rated": 100.0
+    },
+    "BDZ-00016": {
+      "online": 108.8329,
+      "pipeline": 26.7341,
+      "rated": 150.0
+    },
+    "BDZ-00021": {
+      "online": 52.8346,
+      "pipeline": 9.4115,
+      "rated": 100.0
+    },
+    "BDZ-00022": {
+      "online": 111.3674,
+      "pipeline": 18.3275,
+      "rated": 81.5
+    },
+    "BDZ-00026": {
+      "online": 34.2047,
+      "pipeline": 5.2208,
+      "rated": 113.0
+    },
+    "BDZ-00027": {
+      "online": 91.437,
+      "pipeline": 7.678,
+      "rated": 100.0
+    },
+    "BDZ-00028": {
+      "online": 4.1951,
+      "pipeline": 0.1227,
+      "rated": 163.0
+    },
+    "BDZ-00031": {
+      "online": 76.4907,
+      "pipeline": 20.1585,
+      "rated": 113.0
+    },
+    "BDZ-00037": {
+      "online": 67.7256,
+      "pipeline": 23.7573,
+      "rated": 100.0
+    },
+    "BDZ-00048": {
+      "online": 38.2698,
+      "pipeline": 2.191,
+      "rated": 150.0
+    },
+    "BDZ-00056": {
+      "online": 46.7159,
+      "pipeline": 5.4557,
+      "rated": 100.0
+    },
+    "BDZ-00095": {
+      "online": 71.2506,
+      "pipeline": 9.9667,
+      "rated": 100.0
+    },
+    "BDZ-00096": {
+      "online": 13.1422,
+      "pipeline": 1.95,
+      "rated": 160.0
+    },
+    "BDZ-00124": {
+      "online": 88.9002,
+      "pipeline": 13.3841,
+      "rated": 113.0
+    },
+    "BDZ-00135": {
+      "online": 163.9895,
+      "pipeline": 19.388,
+      "rated": 113.0
+    },
+    "BDZ-00141": {
+      "online": 100.8137,
+      "pipeline": 27.6006,
+      "rated": 100.0
+    },
+    "BDZ-00146": {
+      "online": 71.3756,
+      "pipeline": 16.2057,
+      "rated": 100.0
+    },
+    "BDZ-00147": {
+      "online": 25.1524,
+      "pipeline": 4.2441,
+      "rated": 100.0
+    },
+    "BDZ-00162": {
+      "online": 75.1229,
+      "pipeline": 10.5661,
+      "rated": 40.0
+    },
+    "BDZ-00164": {
+      "online": 85.9068,
+      "pipeline": 9.9696,
+      "rated": 63.0
+    },
+    "BDZ-00172": {
+      "online": 66.9316,
+      "pipeline": 10.8396,
+      "rated": 100.0
+    }
+  }
+}
+
+===== SRC06_FEEDERS =====
+{
+  "all_rows": 403,
+  "unique_feeder_ids": 403,
+  "duplicate_feeder_ids": [],
+  "research_station_feeder_rows": 342,
+  "research_stations_with_feeders": 20,
+  "research_stations_without_feeders": [
+    "BDZ-00056"
+  ],
+  "feeders_per_station": {
+    "BDZ-00005": 8,
+    "BDZ-00016": 21,
+    "BDZ-00021": 15,
+    "BDZ-00022": 11,
+    "BDZ-00026": 34,
+    "BDZ-00027": 23,
+    "BDZ-00028": 38,
+    "BDZ-00031": 20,
+    "BDZ-00037": 11,
+    "BDZ-00048": 24,
+    "BDZ-00095": 10,
+    "BDZ-00096": 21,
+    "BDZ-00124": 13,
+    "BDZ-00135": 10,
+    "BDZ-00141": 14,
+    "BDZ-00146": 13,
+    "BDZ-00147": 19,
+    "BDZ-00162": 8,
+    "BDZ-00164": 13,
+    "BDZ-00172": 16
+  },
+  "negative_max_active_count": 97,
+  "reverse_flag_yes_count": 97,
+  "negative_without_reverse_flag": [],
+  "reverse_flag_without_negative_active": [],
+  "missing_max_current": 10,
+  "missing_max_active": 10,
+  "length_component_mismatch_count": 0,
+  "length_component_mismatch_examples": [],
+  "load_rate_mismatch_count": 0,
+  "load_rate_mismatch_examples": [],
+  "connected_transformer_capacity_kva_sum": 4162007.0
+}
+
+===== SRC14_PV_PROFILE =====
+{
+  "row_count": 8760,
+  "timestamp_unique_count": 8760,
+  "timestamp_missing_count": 0,
+  "start": "2025-01-01 00:00:00",
+  "end": "2025-12-31 23:00:00",
+  "non_hourly_gap_count": 0,
+  "phi_missing_count": 0,
+  "phi_min": 0.0,
+  "phi_max": 0.995849922,
+  "phi_mean": 0.148071099,
+  "equivalent_full_load_hours": 1297.1,
+  "out_of_range_count": 0,
+  "scaled_3408_max_abs_error_mw": 0.0,
+  "night_hours": 3650,
+  "night_positive_count": 3213,
+  "night_phi_max": 0.077868372,
+  "exact_zero_count": 739
+}
+
+===== SRC07_HOURLY =====
+{
+  "Sheet1": {
+    "row_count": 8760,
+    "data_columns": 58,
+    "start": "2022-01-01 00:00:00",
+    "end": "2022-12-31 23:00:00",
+    "timestamp_unique": 8760,
+    "timestamp_missing": 0,
+    "duplicate_timestamp_count": 0,
+    "non_hourly_gap_count": 0,
+    "year_counts": {
+      "2022": 8760
+    },
+    "all_series_missing_row_count": 1,
+    "all_series_missing_timestamps": [
+      "2022-03-13 02:00:00"
+    ],
+    "parse_error_cells": 0,
+    "active_column_count": 54,
+    "fully_missing_columns_1_based": [
+      55,
+      56,
+      57,
+      58
+    ],
+    "partially_missing_columns": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 1,
+      "13": 1,
+      "14": 1,
+      "15": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 1,
+      "20": 1,
+      "21": 1,
+      "22": 1,
+      "23": 1,
+      "24": 1,
+      "25": 1,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "29": 1,
+      "30": 1,
+      "31": 1,
+      "32": 1,
+      "33": 1,
+      "34": 1,
+      "35": 1,
+      "36": 1,
+      "37": 1,
+      "38": 1,
+      "39": 1,
+      "40": 1,
+      "41": 1,
+      "42": 1,
+      "43": 1,
+      "44": 1,
+      "45": 1,
+      "46": 1,
+      "47": 1,
+      "48": 1,
+      "49": 1,
+      "50": 1,
+      "51": 1,
+      "52": 1,
+      "53": 1,
+      "54": 1
+    },
+    "min_value": -10.14,
+    "max_value": 52.37,
+    "negative_value_count": 4777,
+    "row1_unique_station_labels": [
+      "BDZ-00141"
+    ]
+  },
+  "Sheet2": {
+    "row_count": 8760,
+    "data_columns": 58,
+    "start": "2023-01-01 00:00:00",
+    "end": "2023-12-31 23:00:00",
+    "timestamp_unique": 8760,
+    "timestamp_missing": 0,
+    "duplicate_timestamp_count": 0,
+    "non_hourly_gap_count": 0,
+    "year_counts": {
+      "2023": 8760
+    },
+    "all_series_missing_row_count": 2,
+    "all_series_missing_timestamps": [
+      "2023-03-12 02:00:00",
+      "2023-11-17 16:00:00"
+    ],
+    "parse_error_cells": 0,
+    "active_column_count": 54,
+    "fully_missing_columns_1_based": [
+      55,
+      56,
+      57,
+      58
+    ],
+    "partially_missing_columns": {
+      "1": 2,
+      "2": 2,
+      "3": 2,
+      "4": 2,
+      "5": 2,
+      "6": 2,
+      "7": 2,
+      "8": 2,
+      "9": 2,
+      "10": 2,
+      "11": 2,
+      "12": 2,
+      "13": 2,
+      "14": 2,
+      "15": 2,
+      "16": 2,
+      "17": 2,
+      "18": 2,
+      "19": 2,
+      "20": 2,
+      "21": 2,
+      "22": 2,
+      "23": 2,
+      "24": 2,
+      "25": 2,
+      "26": 2,
+      "27": 2,
+      "28": 2,
+      "29": 2,
+      "30": 2,
+      "31": 2,
+      "32": 2,
+      "33": 2,
+      "34": 2,
+      "35": 2,
+      "36": 2,
+      "37": 2,
+      "38": 2,
+      "39": 2,
+      "40": 2,
+      "41": 2,
+      "42": 2,
+      "43": 2,
+      "44": 2,
+      "45": 2,
+      "46": 2,
+      "47": 2,
+      "48": 2,
+      "49": 2,
+      "50": 2,
+      "51": 2,
+      "52": 2,
+      "53": 2,
+      "54": 2
+    },
+    "min_value": -8.74,
+    "max_value": 60.88,
+    "negative_value_count": 18312,
+    "row1_unique_station_labels": [
+      "BDZ-00141"
+    ]
+  },
+  "Sheet3": {
+    "row_count": 17544,
+    "data_columns": 58,
+    "start": "2024-01-01 00:00:00",
+    "end": "2025-12-31 23:00:00",
+    "timestamp_unique": 17544,
+    "timestamp_missing": 0,
+    "duplicate_timestamp_count": 0,
+    "non_hourly_gap_count": 0,
+    "year_counts": {
+      "2024": 8784,
+      "2025": 8760
+    },
+    "all_series_missing_row_count": 3,
+    "all_series_missing_timestamps": [
+      "2024-03-10 02:00:00",
+      "2024-05-22 20:00:00",
+      "2025-03-09 02:00:00"
+    ],
+    "parse_error_cells": 0,
+    "active_column_count": 58,
+    "fully_missing_columns_1_based": [],
+    "partially_missing_columns": {
+      "1": 3,
+      "2": 3,
+      "3": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 3,
+      "10": 3,
+      "11": 3,
+      "12": 3,
+      "13": 3,
+      "14": 3,
+      "15": 3,
+      "16": 3,
+      "17": 3,
+      "18": 3,
+      "19": 3,
+      "20": 3,
+      "21": 3,
+      "22": 3,
+      "23": 3,
+      "24": 3,
+      "25": 3,
+      "26": 3,
+      "27": 3,
+      "28": 3,
+      "29": 3,
+      "30": 3,
+      "31": 3,
+      "32": 3,
+      "33": 3,
+      "34": 3,
+      "35": 3,
+      "36": 3,
+      "37": 3,
+      "38": 3,
+      "39": 3,
+      "40": 3,
+      "41": 3,
+      "42": 3,
+      "43": 3,
+      "44": 3,
+      "45": 3,
+      "46": 3,
+      "47": 3,
+      "48": 3,
+      "49": 3,
+      "50": 3,
+      "51": 3,
+      "52": 3,
+      "53": 3,
+      "54": 3,
+      "55": 3906,
+      "56": 3906,
+      "57": 16216,
+      "58": 16216
+    },
+    "min_value": -7319.0,
+    "max_value": 16630.0,
+    "negative_value_count": 131153,
+    "row1_unique_station_labels": [
+      "BDZ-00141"
+    ]
+  },
+  "Sheet4": {
+    "row_count": 4992,
+    "data_columns": 58,
+    "start": "2026-01-01 00:00:00",
+    "end": "2026-07-27 23:00:00",
+    "timestamp_unique": 4992,
+    "timestamp_missing": 0,
+    "duplicate_timestamp_count": 0,
+    "non_hourly_gap_count": 0,
+    "year_counts": {
+      "2026": 4992
+    },
+    "all_series_missing_row_count": 1,
+    "all_series_missing_timestamps": [
+      "2026-03-08 02:00:00"
+    ],
+    "parse_error_cells": 0,
+    "active_column_count": 58,
+    "fully_missing_columns_1_based": [],
+    "partially_missing_columns": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 1,
+      "13": 1,
+      "14": 1,
+      "15": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 1,
+      "20": 1,
+      "21": 1,
+      "22": 1,
+      "23": 1,
+      "24": 1,
+      "25": 1,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "29": 1,
+      "30": 1,
+      "31": 1,
+      "32": 1,
+      "33": 1,
+      "34": 1,
+      "35": 1,
+      "36": 1,
+      "37": 1,
+      "38": 1,
+      "39": 1,
+      "40": 1,
+      "41": 1,
+      "42": 1,
+      "43": 1,
+      "44": 1,
+      "45": 1,
+      "46": 1,
+      "47": 1,
+      "48": 1,
+      "49": 1,
+      "50": 1,
+      "51": 1,
+      "52": 1,
+      "53": 1,
+      "54": 1,
+      "55": 1,
+      "56": 1,
+      "57": 1,
+      "58": 1
+    },
+    "min_value": -55.46,
+    "max_value": 56.03,
+    "negative_value_count": 56368,
+    "row1_unique_station_labels": [
+      "BDZ-00141"
+    ]
+  }
+}
+
+===== SRC07_MAPPING_DIAGNOSTIC =====
+{
+  "candidate_transformers": 58,
+  "active_2025_series": 58,
+  "unassigned_candidates": [],
+  "assigned_score_below_0_10": 37,
+  "assigned_score_below_0_25": 51,
+  "assigned_score_below_0_50": 56,
+  "unit_header_present_columns": 26,
+  "assignments": [
+    {
+      "series_column_1_based": 1,
+      "header_unit": "#1",
+      "candidate": "BDZ-00141/#1/110kV",
+      "score": 0.0381,
+      "independent_best_margin": 0.098,
+      "max_error_fraction": 0.018,
+      "min_error_fraction": 0.0074
+    },
+    {
+      "series_column_1_based": 2,
+      "header_unit": "#1",
+      "candidate": "BDZ-00096/#1/110kV",
+      "score": 0.07669,
+      "independent_best_margin": 0.09521,
+      "max_error_fraction": 0.0055,
+      "min_error_fraction": 0.03013
+    },
+    {
+      "series_column_1_based": 3,
+      "header_unit": null,
+      "candidate": "BDZ-00096/#2/110kV",
+      "score": 0.11556,
+      "independent_best_margin": 0.14187,
+      "max_error_fraction": 0.00088,
+      "min_error_fraction": 0.05062
+    },
+    {
+      "series_column_1_based": 4,
+      "header_unit": "#1",
+      "candidate": "BDZ-00028/#1/110kV",
+      "score": 0.04222,
+      "independent_best_margin": 0.23338,
+      "max_error_fraction": 0.02238,
+      "min_error_fraction": 0.0
+    },
+    {
+      "series_column_1_based": 5,
+      "header_unit": null,
+      "candidate": "BDZ-00028/#2/110kV",
+      "score": 0.0087,
+      "independent_best_margin": 0.1923,
+      "max_error_fraction": 0.0048,
+      "min_error_fraction": 0.0
+    },
+    {
+      "series_column_1_based": 6,
+      "header_unit": "#1",
+      "candidate": "BDZ-00124/#1/110kV",
+      "score": 0.2652,
+      "independent_best_margin": 0.1325,
+      "max_error_fraction": 0.0068,
+      "min_error_fraction": 0.0688
+    },
+    {
+      "series_column_1_based": 7,
+      "header_unit": null,
+      "candidate": "BDZ-00124/#2/110kV",
+      "score": 0.03476,
+      "independent_best_margin": 0.10894,
+      "max_error_fraction": 0.01079,
+      "min_error_fraction": 0.00794
+    },
+    {
+      "series_column_1_based": 8,
+      "header_unit": "#1",
+      "candidate": "BDZ-00026/#1/110kV",
+      "score": 0.01238,
+      "independent_best_margin": 0.12517,
+      "max_error_fraction": 0.00159,
+      "min_error_fraction": 0.00667
+    },
+    {
+      "series_column_1_based": 9,
+      "header_unit": "#1",
+      "candidate": "BDZ-00037/#1/110kV",
+      "score": 0.0,
+      "independent_best_margin": 0.24562,
+      "max_error_fraction": 0.0,
+      "min_error_fraction": 0.0
+    },
+    {
+      "series_column_1_based": 10,
+      "header_unit": null,
+      "candidate": "BDZ-00255/#2/35kV",
+      "score": 0.04122,
+      "independent_best_margin": 0.07368,
+      "max_error_fraction": 0.005,
+      "min_error_fraction": 0.01415
+    },
+    {
+      "series_column_1_based": 11,
+      "header_unit": null,
+      "candidate": "BDZ-00290/#1/35kV",
+      "score": 0.29325,
+      "independent_best_margin": 0.0094,
+      "max_error_fraction": 0.0155,
+      "min_error_fraction": 0.0
+    },
+    {
+      "series_column_1_based": 12,
+      "header_unit": null,
+      "candidate": "BDZ-00290/#2/35kV",
+      "score": 0.00953,
+      "independent_best_margin": 0.20017,
+      "max_error_fraction": 0.00286,
+      "min_error_fraction": 0.0
+    },
+    {
+      "series_column_1_based": 13,
+      "header_unit": null,
+      "candidate": "BDZ-00248/#1/35kV",
+      "score": 0.03975,
+      "independent_best_margin": 0.13675,
+      "max_error_fraction": 0.015,
+      "min_error_fraction": 0.007
+    },
+    {
+      "series_column_1_based": 14,
+      "header_unit": null,
+      "candidate": "BDZ-00314/#1/35kV",
+      "score": 0.33609,
+      "independent_best_margin": 0.0813,
+      "max_error_fraction": 0.11518,
+      "min_error_fraction": 0.08447
+    },
+    {
+      "series_column_1_based": 15,
+      "header_unit": null,
+      "candidate": "BDZ-00314/#2/35kV",
+      "score": 0.12229,
+      "independent_best_margin": 0.16621,
+      "max_error_fraction": 0.01462,
+      "min_error_fraction": 0.04475
+    },
+    {
+      "series_column_1_based": 16,
+      "header_unit": null,
+      "candidate": "BDZ-00135/#2/110kV",
+      "score": 0.147,
+      "independent_best_margin": 0.06081,
+      "max_error_fraction": 0.035,
+      "min_error_fraction": 0.063
+    },
+    {
+      "series_column_1_based": 17,
+      "header_unit": "#1",
+      "candidate": "BDZ-00135/#1/110kV",
+      "score": 0.03833,
+      "independent_best_margin": 0.38787,
+      "max_error_fraction": 0.00714,
+      "min_error_fraction": 0.01841
+    },
+    {
+      "series_column_1_based": 18,
+      "header_unit": null,
+      "candidate": "BDZ-00246/#1/35kV",
+      "score": 0.03603,
+      "independent_best_margin": 0.28227,
+      "max_error_fraction": 0.0,
+      "min_error_fraction": 0.02402
+    },
+    {
+      "series_column_1_based": 19,
+      "header_unit": null,
+      "candidate": "BDZ-00246/#2/35kV",
+      "score": 0.076,
+      "independent_best_margin": 0.0346,
+      "max_error_fraction": 0.012,
+      "min_error_fraction": 0.0285
+    },
+    {
+      "series_column_1_based": 20,
+      "header_unit": "#1",
+      "candidate": "BDZ-00048/#1/110kV",
+      "score": 0.01605,
+      "independent_best_margin": 0.13355,
+      "max_error_fraction": 0.004,
+      "min_error_fraction": 0.0067
+    },
+    {
+      "series_column_1_based": 21,
+      "header_unit": null,
+      "candidate": "BDZ-00325/#1/35kV",
+      "score": 0.03575,
+      "independent_best_margin": 0.20675,
+      "max_error_fraction": 0.0125,
+      "min_error_fraction": 0.0075
+    },
+    {
+      "series_column_1_based": 22,
+      "header_unit": null,
+      "candidate": "BDZ-00325/#2/35kV",
+      "score": 0.19094,
+      "independent_best_margin": 0.09581,
+      "max_error_fraction": 0.00625,
+      "min_error_fraction": 0.08625
+    },
+    {
+      "series_column_1_based": 23,
+      "header_unit": null,
+      "candidate": "BDZ-00141/#2/110kV",
+      "score": 0.0678,
+      "independent_best_margin": 0.0865,
+      "max_error_fraction": 0.007,
+      "min_error_fraction": 0.0318
+    },
+    {
+      "series_column_1_based": 24,
+      "header_unit": null,
+      "candidate": "BDZ-00255/#1/35kV",
+      "score": 0.14275,
+      "independent_best_margin": 0.03475,
+      "max_error_fraction": 0.0215,
+      "min_error_fraction": 0.05
+    },
+    {
+      "series_column_1_based": 25,
+      "header_unit": "#1",
+      "candidate": "BDZ-00005/#1/110kV",
+      "score": 0.111,
+      "independent_best_margin": 0.15225,
+      "max_error_fraction": 0.0,
+      "min_error_fraction": 0.0146
+    },
+    {
+      "series_column_1_based": 26,
+      "header_unit": null,
+      "candidate": "BDZ-00005/#2/110kV",
+      "score": 0.0274,
+      "independent_best_margin": 0.2548,
+      "max_error_fraction": 0.012,
+      "min_error_fraction": 0.004
+    },
+    {
+      "series_column_1_based": 27,
+      "header_unit": "#3",
+      "candidate": "BDZ-00247/#3/35kV",
+      "score": 0.0695,
+      "independent_best_margin": 0.8362,
+      "max_error_fraction": 0.036,
+      "min_error_fraction": 0.001
+    },
+    {
+      "series_column_1_based": 28,
+      "header_unit": "#4",
+      "candidate": "BDZ-00247/#4/35kV",
+      "score": 0.395,
+      "independent_best_margin": 0.6845,
+      "max_error_fraction": 0.063,
+      "min_error_fraction": 0.0
+    },
+    {
+      "series_column_1_based": 29,
+      "header_unit": "#1",
+      "candidate": "BDZ-00172/#1/110kV",
+      "score": 0.0672,
+      "independent_best_margin": 0.1436,
+      "max_error_fraction": 0.0048,
+      "min_error_fraction": 0.0188
+    },
+    {
+      "series_column_1_based": 30,
+      "header_unit": null,
+      "candidate": "BDZ-00172/#2/110kV",
+      "score": 0.0129,
+      "independent_best_margin": 0.1759,
+      "max_error_fraction": 0.004,
+      "min_error_fraction": 0.0046
+    },
+    {
+      "series_column_1_based": 31,
+      "header_unit": "#1",
+      "candidate": "BDZ-00021/#1/110kV",
+      "score": 0.1467,
+      "independent_best_margin": 0.2308,
+      "max_error_fraction": 0.0,
+      "min_error_fraction": 0.061
+    },
+    {
+      "series_column_1_based": 32,
+      "header_unit": "#3",
+      "candidate": "BDZ-00021/#3/110kV",
+      "score": 0.018,
+      "independent_best_margin": 0.50668,
+      "max_error_fraction": 0.0012,
+      "min_error_fraction": 0.0054
+    },
+    {
+      "series_column_1_based": 33,
+      "header_unit": null,
+      "candidate": "BDZ-00280/#2/35kV",
+      "score": 0.2265,
+      "independent_best_margin": 0.0304,
+      "max_error_fraction": 0.0665,
+      "min_error_fraction": 0.084
+    },
+    {
+      "series_column_1_based": 34,
+      "header_unit": null,
+      "candidate": "BDZ-00280/#1/35kV",
+      "score": 0.129,
+      "independent_best_margin": 0.042,
+      "max_error_fraction": 0.0704,
+      "min_error_fraction": 0.0132
+    },
+    {
+      "series_column_1_based": 35,
+      "header_unit": "#3",
+      "candidate": "BDZ-00037/#3/110kV",
+      "score": 0.1049,
+      "independent_best_margin": 0.27335,
+      "max_error_fraction": 0.0214,
+      "min_error_fraction": 0.0106
+    },
+    {
+      "series_column_1_based": 36,
+      "header_unit": null,
+      "candidate": "BDZ-00248/#2/35kV",
+      "score": 0.01225,
+      "independent_best_margin": 0.04215,
+      "max_error_fraction": 0.004,
+      "min_error_fraction": 0.0
+    },
+    {
+      "series_column_1_based": 37,
+      "header_unit": null,
+      "candidate": "BDZ-00048/#2/110kV",
+      "score": 0.0657,
+      "independent_best_margin": 0.14355,
+      "max_error_fraction": 0.0162,
+      "min_error_fraction": 0.0026
+    },
+    {
+      "series_column_1_based": 38,
+      "header_unit": "#3",
+      "candidate": "BDZ-00031/#3/110kV",
+      "score": 0.04381,
+      "independent_best_margin": 0.26709,
+      "max_error_fraction": 0.00365,
+      "min_error_fraction": 0.02365
+    },
+    {
+      "series_column_1_based": 39,
+      "header_unit": null,
+      "candidate": "BDZ-00031/#2/110kV",
+      "score": 0.0494,
+      "independent_best_margin": 0.14385,
+      "max_error_fraction": 0.0114,
+      "min_error_fraction": 0.0094
+    },
+    {
+      "series_column_1_based": 40,
+      "header_unit": null,
+      "candidate": "BDZ-00026/#2/110kV",
+      "score": 0.1008,
+      "independent_best_margin": 0.20436,
+      "max_error_fraction": 0.022,
+      "min_error_fraction": 0.0186
+    },
+    {
+      "series_column_1_based": 41,
+      "header_unit": "#3",
+      "candidate": "BDZ-00027/#3/110kV",
+      "score": 0.1812,
+      "independent_best_margin": 0.1592,
+      "max_error_fraction": 0.067,
+      "min_error_fraction": 0.0518
+    },
+    {
+      "series_column_1_based": 42,
+      "header_unit": "#1",
+      "candidate": "BDZ-00016/#1/110kV",
+      "score": 0.0437,
+      "independent_best_margin": 0.199,
+      "max_error_fraction": 0.0085,
+      "min_error_fraction": 0.0192
+    },
+    {
+      "series_column_1_based": 43,
+      "header_unit": "#2",
+      "candidate": "BDZ-00016/#2/110kV",
+      "score": 0.0654,
+      "independent_best_margin": 0.3103,
+      "max_error_fraction": 0.0084,
+      "min_error_fraction": 0.0352
+    },
+    {
+      "series_column_1_based": 44,
+      "header_unit": null,
+      "candidate": "BDZ-00027/#2/110kV",
+      "score": 0.0708,
+      "independent_best_margin": 0.29164,
+      "max_error_fraction": 0.023,
+      "min_error_fraction": 0.0242
+    },
+    {
+      "series_column_1_based": 45,
+      "header_unit": "#1",
+      "candidate": "BDZ-00164/#1/110kV",
+      "score": 0.10063,
+      "independent_best_margin": 0.07517,
+      "max_error_fraction": 0.00349,
+      "min_error_fraction": 0.02571
+    },
+    {
+      "series_column_1_based": 46,
+      "header_unit": null,
+      "candidate": "BDZ-00164/#2/110kV",
+      "score": 0.24206,
+      "independent_best_margin": 0.0852,
+      "max_error_fraction": 0.04952,
+      "min_error_fraction": 0.0927
+    },
+    {
+      "series_column_1_based": 47,
+      "header_unit": "#1",
+      "candidate": "BDZ-00147/#1/110kV",
+      "score": 0.0374,
+      "independent_best_margin": 0.21022,
+      "max_error_fraction": 0.0086,
+      "min_error_fraction": 0.0094
+    },
+    {
+      "series_column_1_based": 48,
+      "header_unit": null,
+      "candidate": "BDZ-00147/#2/110kV",
+      "score": 0.0447,
+      "independent_best_margin": 0.28436,
+      "max_error_fraction": 0.0156,
+      "min_error_fraction": 0.0068
+    },
+    {
+      "series_column_1_based": 49,
+      "header_unit": "#1",
+      "candidate": "BDZ-00162/#1/110kV",
+      "score": 0.07333,
+      "independent_best_margin": 0.12792,
+      "max_error_fraction": 0.00889,
+      "min_error_fraction": 0.04
+    },
+    {
+      "series_column_1_based": 50,
+      "header_unit": null,
+      "candidate": "BDZ-00162/#2/110kV",
+      "score": 0.27404,
+      "independent_best_margin": 0.02505,
+      "max_error_fraction": 0.00481,
+      "min_error_fraction": 0.13942
+    },
+    {
+      "series_column_1_based": 51,
+      "header_unit": "#1",
+      "candidate": "BDZ-00146/#1/110kV",
+      "score": 0.01125,
+      "independent_best_margin": 0.07635,
+      "max_error_fraction": 0.0025,
+      "min_error_fraction": 0.005
+    },
+    {
+      "series_column_1_based": 52,
+      "header_unit": null,
+      "candidate": "BDZ-00146/#2/110kV",
+      "score": 0.0175,
+      "independent_best_margin": 0.1193,
+      "max_error_fraction": 0.0025,
+      "min_error_fraction": 0.005
+    },
+    {
+      "series_column_1_based": 53,
+      "header_unit": "#1",
+      "candidate": "BDZ-00095/#1/110kV",
+      "score": 0.0285,
+      "independent_best_margin": 0.157,
+      "max_error_fraction": 0.0016,
+      "min_error_fraction": 0.0108
+    },
+    {
+      "series_column_1_based": 54,
+      "header_unit": null,
+      "candidate": "BDZ-00095/#2/110kV",
+      "score": 0.0348,
+      "independent_best_margin": 0.12908,
+      "max_error_fraction": 0.0016,
+      "min_error_fraction": 0.0216
+    },
+    {
+      "series_column_1_based": 55,
+      "header_unit": "#1",
+      "candidate": "BDZ-00022/#1/110kV",
+      "score": 0.08889,
+      "independent_best_margin": 0.13321,
+      "max_error_fraction": 0.0219,
+      "min_error_fraction": 0.01556
+    },
+    {
+      "series_column_1_based": 56,
+      "header_unit": null,
+      "candidate": "BDZ-00022/#2/110kV",
+      "score": 0.018,
+      "independent_best_margin": 0.5605,
+      "max_error_fraction": 0.0048,
+      "min_error_fraction": 0.0072
+    },
+    {
+      "series_column_1_based": 57,
+      "header_unit": "#1",
+      "candidate": "BDZ-00056/#1/110kV",
+      "score": 1000.0,
+      "independent_best_margin": 0.0296,
+      "max_error_fraction": NaN,
+      "min_error_fraction": NaN
+    },
+    {
+      "series_column_1_based": 58,
+      "header_unit": null,
+      "candidate": "BDZ-00056/#2/110kV",
+      "score": 1000.0,
+      "independent_best_margin": 0.0296,
+      "max_error_fraction": NaN,
+      "min_error_fraction": NaN
+    }
+  ],
+  "warning": "The assignment is diagnostic evidence only; source approval is still required."
+}
+
+===== SRC08_HISTORY_CLR =====
+{
+  "series_count": 18,
+  "research_county_110kv": {
+    "2021": {
+      "capacity_10kva": 202.7,
+      "load_10kw": 73.177,
+      "clr_reported": 2.77,
+      "clr_recomputed": 2.77
+    },
+    "2022": {
+      "capacity_10kva": 204.55,
+      "load_10kw": 82.5004193,
+      "clr_reported": 2.48,
+      "clr_recomputed": 2.4794
+    },
+    "2023": {
+      "capacity_10kva": 215.1,
+      "load_10kw": 76.1231803,
+      "clr_reported": 2.83,
+      "clr_recomputed": 2.8257
+    },
+    "2024": {
+      "capacity_10kva": 216.95,
+      "load_10kw": 86.2661537,
+      "clr_reported": 2.51,
+      "clr_recomputed": 2.5149
+    },
+    "2025": {
+      "capacity_10kva": 213.95,
+      "load_10kw": 95.645,
+      "clr_reported": 2.24,
+      "clr_recomputed": 2.2369
+    }
+  },
+  "2025_capacity_converted_mva": 2139.5,
+  "2025_capacity_difference_vs_src01_mva": -81.5,
+  "reported_recomputed_max_abs_difference": 0.005
+}
+
+===== KEY_STATION_DETAIL =====
+[
+  {
+    "station_id": "BDZ-00005",
+    "capacity_mva": 81.5,
+    "annual_max_mw": 37.24,
+    "annual_min_mw": -19.36,
+    "static_bidirectional_clr": 2.1885,
+    "pv_online_mw": 66.2681,
+    "pv_pipeline_mw": 17.2341,
+    "feeder_count": 8
+  },
+  {
+    "station_id": "BDZ-00016",
+    "capacity_mva": 150.0,
+    "annual_max_mw": 70.26,
+    "annual_min_mw": -33.5,
+    "static_bidirectional_clr": 2.1349,
+    "pv_online_mw": 108.8329,
+    "pv_pipeline_mw": 26.7341,
+    "feeder_count": 21
+  },
+  {
+    "station_id": "BDZ-00021",
+    "capacity_mva": 100.0,
+    "annual_max_mw": 31.28,
+    "annual_min_mw": -24.82,
+    "static_bidirectional_clr": 3.1969,
+    "pv_online_mw": 52.8346,
+    "pv_pipeline_mw": 9.4115,
+    "feeder_count": 15
+  },
+  {
+    "station_id": "BDZ-00022",
+    "capacity_mva": 81.5,
+    "annual_max_mw": 30.76,
+    "annual_min_mw": -47.8,
+    "static_bidirectional_clr": 1.705,
+    "pv_online_mw": 111.3674,
+    "pv_pipeline_mw": 18.3275,
+    "feeder_count": 11
+  },
+  {
+    "station_id": "BDZ-00026",
+    "capacity_mva": 113.0,
+    "annual_max_mw": 92.67,
+    "annual_min_mw": -19.31,
+    "static_bidirectional_clr": 1.2194,
+    "pv_online_mw": 34.2047,
+    "pv_pipeline_mw": 5.2208,
+    "feeder_count": 34
+  },
+  {
+    "station_id": "BDZ-00027",
+    "capacity_mva": 100.0,
+    "annual_max_mw": 59.21,
+    "annual_min_mw": -37.27,
+    "static_bidirectional_clr": 1.6889,
+    "pv_online_mw": 91.437,
+    "pv_pipeline_mw": 7.678,
+    "feeder_count": 23
+  },
+  {
+    "station_id": "BDZ-00028",
+    "capacity_mva": 163.0,
+    "annual_max_mw": 103.04,
+    "annual_min_mw": 0.0,
+    "static_bidirectional_clr": 1.5819,
+    "pv_online_mw": 4.1951,
+    "pv_pipeline_mw": 0.1227,
+    "feeder_count": 38
+  },
+  {
+    "station_id": "BDZ-00031",
+    "capacity_mva": 113.0,
+    "annual_max_mw": 40.58,
+    "annual_min_mw": -30.62,
+    "static_bidirectional_clr": 2.7846,
+    "pv_online_mw": 76.4907,
+    "pv_pipeline_mw": 20.1585,
+    "feeder_count": 20
+  },
+  {
+    "station_id": "BDZ-00037",
+    "capacity_mva": 100.0,
+    "annual_max_mw": 28.0,
+    "annual_min_mw": -27.6,
+    "static_bidirectional_clr": 3.5714,
+    "pv_online_mw": 67.7256,
+    "pv_pipeline_mw": 23.7573,
+    "feeder_count": 11
+  },
+  {
+    "station_id": "BDZ-00048",
+    "capacity_mva": 150.0,
+    "annual_max_mw": 73.74,
+    "annual_min_mw": -5.22,
+    "static_bidirectional_clr": 2.0342,
+    "pv_online_mw": 38.2698,
+    "pv_pipeline_mw": 2.191,
+    "feeder_count": 24
+  },
+  {
+    "station_id": "BDZ-00056",
+    "capacity_mva": 100.0,
+    "annual_max_mw": null,
+    "annual_min_mw": null,
+    "static_bidirectional_clr": null,
+    "pv_online_mw": 46.7159,
+    "pv_pipeline_mw": 5.4557,
+    "feeder_count": 0
+  },
+  {
+    "station_id": "BDZ-00095",
+    "capacity_mva": 100.0,
+    "annual_max_mw": 22.87,
+    "annual_min_mw": -31.72,
+    "static_bidirectional_clr": 3.1526,
+    "pv_online_mw": 71.2506,
+    "pv_pipeline_mw": 9.9667,
+    "feeder_count": 10
+  },
+  {
+    "station_id": "BDZ-00096",
+    "capacity_mva": 160.0,
+    "annual_max_mw": 69.44,
+    "annual_min_mw": 0.0,
+    "static_bidirectional_clr": 2.3041,
+    "pv_online_mw": 13.1422,
+    "pv_pipeline_mw": 1.95,
+    "feeder_count": 21
+  },
+  {
+    "station_id": "BDZ-00124",
+    "capacity_mva": 113.0,
+    "annual_max_mw": 61.93,
+    "annual_min_mw": -30.96,
+    "static_bidirectional_clr": 1.8246,
+    "pv_online_mw": 88.9002,
+    "pv_pipeline_mw": 13.3841,
+    "feeder_count": 13
+  },
+  {
+    "station_id": "BDZ-00135",
+    "capacity_mva": 113.0,
+    "annual_max_mw": 84.4,
+    "annual_min_mw": -59.9,
+    "static_bidirectional_clr": 1.3389,
+    "pv_online_mw": 163.9895,
+    "pv_pipeline_mw": 19.388,
+    "feeder_count": 10
+  },
+  {
+    "station_id": "BDZ-00141",
+    "capacity_mva": 100.0,
+    "annual_max_mw": 40.34,
+    "annual_min_mw": -37.96,
+    "static_bidirectional_clr": 2.4789,
+    "pv_online_mw": 100.8137,
+    "pv_pipeline_mw": 27.6006,
+    "feeder_count": 14
+  },
+  {
+    "station_id": "BDZ-00146",
+    "capacity_mva": 80.0,
+    "annual_max_mw": 25.9,
+    "annual_min_mw": -29.1,
+    "static_bidirectional_clr": 2.7491,
+    "pv_online_mw": 71.3756,
+    "pv_pipeline_mw": 16.2057,
+    "feeder_count": 13
+  },
+  {
+    "station_id": "BDZ-00147",
+    "capacity_mva": 100.0,
+    "annual_max_mw": 51.19,
+    "annual_min_mw": 0.95,
+    "static_bidirectional_clr": 1.9535,
+    "pv_online_mw": 25.1524,
+    "pv_pipeline_mw": 4.2441,
+    "feeder_count": 19
+  },
+  {
+    "station_id": "BDZ-00162",
+    "capacity_mva": 40.0,
+    "annual_max_mw": 19.4,
+    "annual_min_mw": -39.5,
+    "static_bidirectional_clr": 1.0127,
+    "pv_online_mw": 75.1229,
+    "pv_pipeline_mw": 10.5661,
+    "feeder_count": 8
+  },
+  {
+    "station_id": "BDZ-00164",
+    "capacity_mva": 63.0,
+    "annual_max_mw": 39.34,
+    "annual_min_mw": -31.95,
+    "static_bidirectional_clr": 1.6014,
+    "pv_online_mw": 85.9068,
+    "pv_pipeline_mw": 9.9696,
+    "feeder_count": 13
+  },
+  {
+    "station_id": "BDZ-00172",
+    "capacity_mva": 100.0,
+    "annual_max_mw": 34.83,
+    "annual_min_mw": -23.24,
+    "static_bidirectional_clr": 2.8711,
+    "pv_online_mw": 66.9316,
+    "pv_pipeline_mw": 10.8396,
+    "feeder_count": 16
+  }
+]
