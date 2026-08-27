@@ -40,4 +40,4 @@
 - `Heng-Xu/RZB` 已核实为公开且为空的 GitHub 仓库；项目目录含脱敏建模源数据、研究报告/Office/PDF、下载的参考文献和历史会话。
 - 负责人已确认可以上传项目材料。无论范围如何，根目录 `Tushare.ma`（本地凭据）、机器配置/锁文件、缓存和 `__pycache__` 均不上传。
 - `参考文献/前沿调研.tar.gz` 为 171,513,560 bytes，当前未安装 Git LFS；该归档与已解包参考文献目录重复，默认不纳入普通 Git。
-- 本地 Git 已初始化；`main` 已设置跟踪 `origin/main`，三次推送均成功，推送后远端指纹已通过 `git ls-remote --heads origin` 复核。
+- 本地 Git 已初始化；`main` 已设置跟踪 `origin/main`，各次推送均成功，推送后远端指纹已通过 `git ls-remote --heads origin` 复核。
