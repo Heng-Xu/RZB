@@ -1,6 +1,6 @@
 # 当前状态快照
 
-快照时间：2026-08-29 07:30（Asia/Shanghai）
+快照时间：2026-08-29 07:35（Asia/Shanghai）
 本次 memory 任务状态：`VERIFYING`
 任务：在 GitHub 分支 `model-v3.2-autonomous-review` 的真实代码、输入、日志和结果基础上完成 v3.2 模型终审、冻结、正式结果与研究报告支撑材料输出。
 状态依据：已读取根目录 `claude_session_1.txt` 并以其优先级接管；当前工作副本为 `/tmp/rzb-v32-work`，模型终审内容已提交为 `71d63615c8bc10ea3dac5b0bfe3f445c72e905dd`，记忆补充已提交为 `b24075a42344e3633be94e7b910e841c435e2a09` 并推送到远端。旧 v3.1 严格归一口径不再作为 v3.2 主模型。
@@ -8,8 +8,8 @@
 ## 本次接管核对
 
 - 根仓库分支为 `main`，相对 `origin/main` 落后 6 个提交；根目录用户 `prompt.md` 和 memory 修改保留，不在根仓库直接覆盖。
-- `/tmp/rzb-v32-work` 分支为 `model-v3.2-autonomous-review`，HEAD 为 `b24075a`；v3.2 实现、测试、契约、正式结果和报告材料已提交并推送。本快照另有待提交的 CI 工作流修正和回归测试，生成型合成结果文件为全量测试副作用，不纳入修正提交。
-- 推送后 Actions 中模型验证 `33219378246`、chronology preflight `33219378236`、实际资产主运行 `33219378228` 已 Success；正式基线 `33219378290` 曾 Failure。经本地复现确认，模型入口退出码为 0，失败原因是工作流读取已废弃的 `recommendation_matrix_v32_base.csv`，而当前入口实际生成 `policy_2025_summary.csv`；修正已写入工作流并由回归测试锁定，等待新提交后的远端复验。Rcap frontier `33219378257` 的最终结论仍需以 Actions 页面复核。
+- `/tmp/rzb-v32-work` 分支为 `model-v3.2-autonomous-review`，HEAD 为 `708a503643df85e166b8f6680c9b1c7d73856d7b`；v3.2 实现、测试、契约、正式结果、报告材料及正式基线 CI 修正已提交并推送。生成型合成结果文件为全量测试副作用，已恢复且未纳入修正提交。
+- 推送后 Actions 中模型验证 `33219378246`、chronology preflight `33219378236`、实际资产主运行 `33219378228` 和 Rcap frontier `33219378257` 已 Success；正式基线 `33219378290` 曾 Failure。经本地复现确认，模型入口退出码为 0，失败原因是工作流读取已废弃的 `recommendation_matrix_v32_base.csv`，而当前入口实际生成 `policy_2025_summary.csv`；修正已提交为 `708a503`。新正式基线 `33220722649` 已 Success 并生成 1 个 artifact（digest `sha256:f43b3c88547fa9a5ab4b8aaed9ffa62df3b56beb4d8812af2dc2bf9ab6be0aca`），新模型验证 `33220722628` 已 Success。
 
 ## 契约版本
 
@@ -45,10 +45,10 @@
 - 正式结果：`实验/研究/results/runs/real-2021-2025-v32-frozen/manifest.json`，模型版本 `3.2.0`，粗扫描 136 点、局部细化 104 点、敏感性场景 11 组；终审记录副本 SHA-256 `df4aaadeeed096b0ba86d595b0539c5d4ddf3469a34e9a3812fdd8c70deb2b63`。
 - v3.2 决策记录：`memory/decisions/2026-08-29-v3.2实际资产共同起点与冻结.md`。
 - Git 推送：`git push origin model-v3.2-autonomous-review` 退出码 0；`git ls-remote` 返回同一 SHA `71d63615c8bc10ea3dac5b0bfe3f445c72e905dd`。
-- 推送后 Actions：模型验证 `33219378246`、chronology preflight `33219378236`、实际资产主运行 `33219378228` 已 Success；正式基线 `33219378290` Failure 已定位为 CI 后处理文件名错误，修正待推送；Rcap frontier `33219378257` 待复核最终状态。
+- 推送后 Actions：模型验证 `33219378246`、chronology preflight `33219378236`、实际资产主运行 `33219378228`、Rcap frontier `33219378257` 已 Success；正式基线 `33219378290` Failure 已定位为 CI 后处理文件名错误；修正提交 `708a503` 已推送，新正式基线 `33220722649` 和模型验证 `33220722628` 均 Success，仅有 GitHub runner 的 Node.js 20 弃用 warning。
 - 根目录同步：已按提交文件清单同步至项目根目录；根目录 `main` 和原有 `prompt.md`/历史会话保留，不在根目录强行切换分支。
 
 ## 阻塞与下一步
 
 - 无需暂停的业务阻塞。远端 artifact/log 权限限制只影响逐字下载，不影响本地同 SHA 复核；TIE-001 按负责人决定不再收资。
-- 已定位并修正正式基线工作流的旧产物引用；下一步是提交回归修正、再次推送并记录新 Actions 结论。若 CI 仅出现 Node.js 弃用警告，不改变模型判定；若出现模型或数据失败，需重新打开终审而不是直接宣称完成。TIE-001 按负责人决定不再收资。
+- v3.2 模型、报告、门禁和 Git 上传均已完成；下一步只同步本快照到根目录并做最终工作树核对。GitHub 的 Node.js 20 弃用 warning 不改变模型判定；若后续重新运行出现模型或数据失败，需重新打开终审而不是直接宣称完成。TIE-001 按负责人决定不再收资。
