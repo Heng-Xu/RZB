@@ -77,6 +77,29 @@ def test_common_baseline_uses_2021_peak_only_and_has_no_future_information_leaka
     assert out["positive_peak_mw"].tolist() == pytest.approx([30.0, 45.0, 50.0, 55.0])
 
 
+def test_35kv_auxiliary_layer_keeps_physical_baseline_without_forced_clr2_reference(tmp_path) -> None:
+    _write_reference(tmp_path)
+    auxiliary = pd.DataFrame(
+        [
+            {
+                "year": 2022,
+                "region_id": "QX-A",
+                "voltage_kv": 35,
+                "capacity_mva": 60.0,
+                "baseline_capacity_mva": 60.0,
+                "positive_peak_mw": 20.0,
+                "reverse_peak_mw": 0.0,
+                "reverse_beta": 0.8,
+            }
+        ]
+    )
+    out = apply_common_planning_baseline(auxiliary, tmp_path)
+    # 35 kV 不在正式 CLR=2 政策归一范围，即使 annual_reference 没有其 2021 行，
+    # 也应直接沿用真实物理基线。
+    assert out.iloc[0]["planning_baseline_capacity_mva"] == pytest.approx(60.0)
+    assert out.iloc[0]["reported_baseline_capacity_mva"] == pytest.approx(60.0)
+
+
 def test_both_policy_paths_share_exactly_the_same_planning_baseline(tmp_path) -> None:
     _write_reference(tmp_path)
     annual = apply_common_planning_baseline(_annual(), tmp_path)
@@ -103,7 +126,7 @@ def test_both_policy_paths_share_exactly_the_same_planning_baseline(tmp_path) ->
     )
 
 
-def test_common_baseline_requires_a_2021_reference_for_every_group(tmp_path) -> None:
+def test_common_baseline_requires_a_2021_reference_for_every_formal_group(tmp_path) -> None:
     _write_reference(tmp_path)
     annual = pd.concat(
         [
