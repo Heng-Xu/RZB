@@ -3,7 +3,7 @@
 本模块先作为 v3.2 候选实现层复用已经回归验证的 v3 离散规划器，避免在
 科学口径尚在升级阶段复制求解核心。主要变化：
 
-1. 两条政策路径共享 ``S0_plan = 2 * P+_2021``；
+1. 110 kV 两条政策路径共享 ``S0_plan = 2 * P+_2021``；
 2. 物理资产基准与规划控制基准显式分层；
 3. 恢复同基线路径成本包含关系；
 4. 推荐量明确为 Rcap，实际 CLR 只作为对应实现结果。
@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 import pandas as pd
 
@@ -33,19 +33,25 @@ def apply_common_planning_baseline(
     processed_root: Path,
     *,
     baseline_clr: float = 2.0,
+    applies_to_voltage_kv: Iterable[int] = (110,),
 ) -> pd.DataFrame:
-    """为所有政策路径生成同一个 2021 规划控制基线。
+    """为正式政策比较层生成共同 2021 规划控制基线。
 
+    对 ``applies_to_voltage_kv``（默认仅 110 kV）：
     ``planning_baseline_capacity_mva = baseline_clr * P+_2021``。
     只读取 2021 年官方同步正向最大负荷，不读取任何决策期峰值，因此不会
     产生“用未来实际最低峰反推初始容量”的信息泄漏。
 
-    ``baseline_capacity_mva`` 是物理资产状态，保持原值；为了复用 v3.1
-    求解器，临时兼容列 ``reported_baseline_capacity_mva`` 与规划基线等值。
+    对 35 kV 等辅助层不执行 CLR=2.0 归一，规划基线直接等于物理资产基线。
+    ``baseline_capacity_mva`` 始终保持真实 2021 资产状态；为了复用 v3.1
+    求解器，兼容列 ``reported_baseline_capacity_mva`` 与规划基线等值。
     正式 v3.2 输出使用 ``planning_*`` 术语，不对甲方暴露旧兼容命名。
     """
     if not math.isfinite(float(baseline_clr)) or float(baseline_clr) <= 0:
         raise V32ModelError("baseline_clr must be positive and finite")
+    applied_voltages = {int(value) for value in applies_to_voltage_kv}
+    if not applied_voltages:
+        raise V32ModelError("at least one formal voltage level is required")
     required = {
         "year",
         "region_id",
@@ -71,38 +77,35 @@ def apply_common_planning_baseline(
     if ref_missing:
         raise V32ModelError(f"annual_reference.csv missing {sorted(ref_missing)}")
 
-    base = reference[reference["year"].eq(2021)][
-        ["region_id", "voltage_kv", "official_positive_peak_mw"]
-    ].copy()
+    base = reference[
+        reference["year"].eq(2021)
+        & reference["voltage_kv"].astype(int).isin(applied_voltages)
+    ][["region_id", "voltage_kv", "official_positive_peak_mw"]].copy()
     if base.empty:
-        raise V32ModelError("2021 official positive-peak reference is empty")
+        raise V32ModelError("2021 official positive-peak reference is empty for formal voltage levels")
     if base.duplicated(["region_id", "voltage_kv"]).any():
         raise V32ModelError("2021 reference has duplicate region-voltage rows")
-    base["planning_baseline_capacity_mva"] = (
-        float(baseline_clr) * pd.to_numeric(base["official_positive_peak_mw"], errors="raise")
+    base["formal_planning_baseline_mva"] = (
+        float(baseline_clr)
+        * pd.to_numeric(base["official_positive_peak_mw"], errors="raise")
     )
-    if (base["planning_baseline_capacity_mva"] <= 0).any():
-        raise V32ModelError("2021 positive peak must be positive for every modeled group")
+    if (base["formal_planning_baseline_mva"] <= 0).any():
+        raise V32ModelError("2021 positive peak must be positive for every formal group")
 
     out = annual.copy()
     out["region_id"] = out["region_id"].astype(str)
     base["region_id"] = base["region_id"].astype(str)
     out = out.merge(
-        base[
-            [
-                "region_id",
-                "voltage_kv",
-                "planning_baseline_capacity_mva",
-            ]
-        ],
+        base[["region_id", "voltage_kv", "formal_planning_baseline_mva"]],
         on=["region_id", "voltage_kv"],
         how="left",
         validate="many_to_one",
     )
-    if out["planning_baseline_capacity_mva"].isna().any():
+    formal_mask = out["voltage_kv"].astype(int).isin(applied_voltages)
+    if out.loc[formal_mask, "formal_planning_baseline_mva"].isna().any():
         missing_groups = (
             out.loc[
-                out["planning_baseline_capacity_mva"].isna(),
+                formal_mask & out["formal_planning_baseline_mva"].isna(),
                 ["region_id", "voltage_kv"],
             ]
             .drop_duplicates()
@@ -111,14 +114,19 @@ def apply_common_planning_baseline(
             .tolist()
         )
         raise V32ModelError(
-            "2021 planning baseline reference missing for groups: "
+            "2021 planning baseline reference missing for formal groups: "
             + ", ".join(missing_groups)
         )
+    out["planning_baseline_capacity_mva"] = pd.to_numeric(
+        out["baseline_capacity_mva"], errors="raise"
+    )
+    out.loc[formal_mask, "planning_baseline_capacity_mva"] = out.loc[
+        formal_mask, "formal_planning_baseline_mva"
+    ].astype(float)
+    out = out.drop(columns=["formal_planning_baseline_mva"])
 
-    # v3.1 planner compatibility alias.  Both paths receive the exact same column.
-    out["reported_baseline_capacity_mva"] = out[
-        "planning_baseline_capacity_mva"
-    ]
+    # v3.1 planner compatibility alias. Both policy paths receive the same column.
+    out["reported_baseline_capacity_mva"] = out["planning_baseline_capacity_mva"]
     return out
 
 
