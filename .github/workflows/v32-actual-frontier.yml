@@ -1,0 +1,115 @@
+name: v3.2 actual-asset Rcap frontier
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '实验/研究/src/v32_frontier.py'
+      - '实验/研究/src/v32_frontier_aggregate.py'
+      - '实验/研究/src/v32_policy.py'
+      - '实验/研究/src/v32_actual_pipeline.py'
+      - '实验/研究/src/v32_time_physics.py'
+      - '实验/研究/model_contract_v3_2_overlay.yaml'
+      - '.github/workflows/v32-actual-frontier.yml'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONPATH: .
+
+jobs:
+  frontier-point:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        rcap: ['1.5', '1.6', '1.7', '1.8', '1.9', '2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', '2.9', '3.0', 'unbounded']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install model dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy pandas scipy pyyaml xarray linopy highspy networkx scikit-learn
+      - name: Solve one actual-asset frontier point
+        working-directory: 实验/研究
+        env:
+          RCAP: ${{ matrix.rcap }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from src.v32_frontier import run_v32_frontier_point
+
+          raw = os.environ['RCAP']
+          rcap = None if raw == 'unbounded' else float(raw)
+          root = Path('.').resolve()
+          run_dir = root / 'results/runs/v32-actual-frontier-points' / raw
+          summary = run_v32_frontier_point(
+              root,
+              root / 'data/processed/real_2021_2025',
+              run_dir,
+              rcap=rcap,
+          )
+          print(summary.to_string(index=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v32-frontier-${{ matrix.rcap }}
+          path: 实验/研究/results/runs/v32-actual-frontier-points/${{ matrix.rcap }}/
+          if-no-files-found: error
+
+  aggregate-frontier:
+    needs: frontier-point
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install aggregation dependencies
+        run: python -m pip install pandas
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v32-frontier-*
+          path: 实验/研究/results/runs/v32-actual-frontier-artifacts
+      - name: Validate and aggregate coarse frontier
+        working-directory: 实验/研究
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          from src.v32_frontier_aggregate import (
+              build_coarse_recommendations,
+              validate_frontier_nested,
+          )
+
+          root = Path('.').resolve()
+          source = root / 'results/runs/v32-actual-frontier-artifacts'
+          files = sorted(source.glob('**/frontier_point.csv'))
+          if len(files) != 17:
+              raise RuntimeError(f'expected 17 frontier point files, got {len(files)}')
+          frontier = pd.concat([pd.read_csv(path) for path in files], ignore_index=True)
+          frontier['rcap_sort'] = pd.to_numeric(frontier['rcap_numeric'], errors='coerce').fillna(999.0)
+          frontier = frontier.sort_values(['region_id', 'rcap_sort'], kind='stable').drop(columns=['rcap_sort'])
+          validate_frontier_nested(frontier)
+          recommendations = build_coarse_recommendations(frontier, near_optimal_band=0.05)
+          out = root / 'results/runs/real-2021-2025-v32-actual-frontier'
+          out.mkdir(parents=True, exist_ok=True)
+          frontier.to_csv(out / 'elasticity_frontier_v32_actual_coarse.csv', index=False)
+          recommendations.to_csv(out / 'recommended_rcap_v32_actual_coarse.csv', index=False)
+          print('--- coarse recommendation ---')
+          print(recommendations.to_string(index=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v32-actual-frontier-coarse-results
+          path: 实验/研究/results/runs/real-2021-2025-v32-actual-frontier/
+          if-no-files-found: error
