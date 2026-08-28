@@ -44,13 +44,34 @@ def load_v32_contract(
     resolved = _deep_merge(base, overlay)
     if resolved.get("contract", {}).get("version") != "3.2.0":
         raise V32ContractError("resolved contract must be v3.2.0")
+
     baseline = resolved.get("planning_baseline", {})
-    if baseline.get("formula") != "S_plan_0 = 2.0 * P_plus_2021":
-        raise V32ContractError("v3.2 common planning baseline formula is not frozen")
-    if baseline.get("future_decision_year_peak_allowed_in_baseline") is not False:
+    if baseline.get("formula") != "S0 = actual_2021_installed_capacity":
+        raise V32ContractError("v3.2 primary baseline must be the actual 2021 asset state")
+    if baseline.get("future_decision_year_information_allowed") is not False:
         raise V32ContractError("future decision-year information leakage is forbidden")
-    if resolved.get("optimization", {}).get("direct_policy_cost_comparison_allowed") is not True:
-        raise V32ContractError("same-baseline policy cost comparison must be enabled")
+    if baseline.get("legacy_capacity_excess_treatment") != (
+        "grandfather_existing_capacity_without_forced_retirement"
+    ):
+        raise V32ContractError("legacy capacity grandfathering is not frozen")
+    if baseline.get("retirement_to_meet_rcap_forbidden") is not True:
+        raise V32ContractError("forced retirement for Rcap compliance must be forbidden")
+    if baseline.get("rigid_incremental_capacity_rule") != (
+        "DeltaS_y <= max(Rcap * P_plus_y - S_2021, 0)"
+    ):
+        raise V32ContractError("grandfathered incremental Rcap rule is not frozen")
+
+    optimization = resolved.get("optimization", {})
+    if optimization.get("direct_policy_cost_comparison_allowed") is not True:
+        raise V32ContractError("same-actual-baseline policy cost comparison must be enabled")
+    if optimization.get("retirement_candidates_in_primary_policy_model") is not False:
+        raise V32ContractError("retirement candidates are forbidden in the primary policy model")
+
+    benchmark = resolved.get("standardized_policy_benchmark", {})
+    if benchmark.get("formula") != "S_norm_0 = 2.0 * P_plus_2021":
+        raise V32ContractError("standardized 2.0 baseline benchmark must remain explicit")
+    if benchmark.get("role") != "secondary_sensitivity_only_not_primary_client_policy_model":
+        raise V32ContractError("standardized baseline must remain secondary sensitivity only")
     return resolved
 
 
