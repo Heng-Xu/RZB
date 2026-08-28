@@ -1,0 +1,103 @@
+name: v3.2 chronology preflight
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/v32-chronology-preflight.yml'
+      - '实验/研究/src/v32_time_physics.py'
+      - '实验/研究/src/v32_storage.py'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONPATH: .
+
+jobs:
+  qx00005-chronology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install model dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy pandas scipy pyyaml xarray linopy highspy networkx scikit-learn
+      - name: Compare daily-cyclic and continuous-8760 storage sizing
+        working-directory: 实验/研究
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import pandas as pd
+
+          from src.real_costs import build_real_cost_library
+          from src.v3_pipeline import _retirement_candidates
+          from src.v32_time_physics import V32TimePhysicsEvaluator
+
+          root = Path('.').resolve()
+          processed = root / 'data/processed/real_2021_2025'
+          work = root / 'results/runs/v32-chronology-preflight'
+          work.mkdir(parents=True, exist_ok=True)
+          contract = root / 'model_contract.yaml'
+
+          build_real_cost_library(processed, work / 'cost_library', contract)
+          cost_library = pd.read_csv(work / 'cost_library/expansion_cost_library.csv')
+          if 'available_year' not in cost_library.columns:
+              cost_library['available_year'] = 2022
+          retirements = _retirement_candidates(processed, cost_library)
+          candidates = pd.concat([cost_library, retirements], ignore_index=True, sort=False)
+
+          evaluator = V32TimePhysicsEvaluator(
+              processed,
+              work / 'time_physics',
+              candidates,
+              contract,
+          )
+          old_actions = pd.read_csv(
+              root / 'results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/path_action_results.csv'
+          )
+          summaries = []
+          comparisons = []
+          for path_id in ('PATH_OPT_CLR_UNBOUNDED', 'PATH_OPT_CLR_LE_2'):
+              group = old_actions[
+                  old_actions['path_id'].astype(str).eq(path_id)
+                  & old_actions['region_id'].astype(str).eq('QX-00005')
+                  & old_actions['voltage_kv'].astype(int).eq(110)
+              ]
+              selected = tuple(sorted(
+                  value for value in group.get('candidate_id', pd.Series(dtype=str)).dropna().astype(str)
+                  if value
+              ))
+              comparison = evaluator.chronology_comparison(selected, cos_phi=0.95)
+              comparison.insert(0, 'path_id', path_id)
+              comparisons.append(comparison)
+              result = evaluator.evaluator(0.95)('QX-00005', 110, 2025, selected)
+              summaries.append({
+                  'path_id': path_id,
+                  'selected_candidate_ids': list(selected),
+                  'continuous_feasible': bool(result.feasible),
+                  'continuous_required_storage_modules': int(result.required_storage_modules),
+                  'continuous_p_plus_mw': result.p_plus_mw,
+                  'continuous_p_minus_mw': result.p_minus_mw,
+                  'reason': result.reason,
+                  'daily_cyclic_required_storage_modules': int(comparison['daily_cyclic_modules'].sum()),
+              })
+          pd.concat(comparisons, ignore_index=True).to_csv(
+              work / 'qx00005_chronology_comparison.csv', index=False
+          )
+          (work / 'summary.json').write_text(
+              json.dumps(summaries, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          print(json.dumps(summaries, ensure_ascii=False, indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v32-chronology-preflight
+          path: 实验/研究/results/runs/v32-chronology-preflight/
+          if-no-files-found: error
