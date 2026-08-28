@@ -3,7 +3,7 @@
 快照时间：2026-08-29 07:40（Asia/Shanghai）
 本次 memory 任务状态：`COMPLETE`
 任务：在 GitHub 分支 `model-v3.2-autonomous-review` 的真实代码、输入、日志和结果基础上完成 v3.2 模型终审、冻结、正式结果与研究报告支撑材料输出。
-状态依据：已读取根目录 `claude_session_1.txt` 并以其优先级接管；当前工作副本为 `/tmp/rzb-v32-work`，模型终审内容已提交为 `71d63615c8bc10ea3dac5b0bfe3f445c72e905dd`，CI 修正为 `708a503643df85e166b8f6680c9b1c7d73856d7b`，记忆补充已提交为 `b24075a42344e3633be94e7b910e841c435e2a09` 和 `b008e7d9338ed77cad4c22c8670a01a3d220734a` 并推送到远端。旧 v3.1 严格归一口径不再作为 v3.2 主模型。
+状态依据：已读取根目录 `claude_session_1.txt` 并以其优先级接管；当前工作副本为 `/tmp/rzb-v32-work`，模型终审内容、CI 修正和记忆补充均已提交并推送到远端，最终本地分支与远端分支已完成 SHA 一致性核对。旧 v3.1 严格归一口径不再作为 v3.2 主模型。
 
 ## 本次接管核对
 
@@ -44,11 +44,11 @@
 - Word→PDF：`研究报告/初稿/渲染审查/全文初稿_渲染审查_2026-08-29_v32.pdf`，48 页、3,547,205 bytes，SHA-256 `d83359750a74b6394e20d408176e1cee5a5f951149a13bb6fa5f6c8c9f8be6e7`。
 - 正式结果：`实验/研究/results/runs/real-2021-2025-v32-frozen/manifest.json`，模型版本 `3.2.0`，粗扫描 136 点、局部细化 104 点、敏感性场景 11 组；终审记录副本 SHA-256 `df4aaadeeed096b0ba86d595b0539c5d4ddf3469a34e9a3812fdd8c70deb2b63`。
 - v3.2 决策记录：`memory/decisions/2026-08-29-v3.2实际资产共同起点与冻结.md`。
-- Git 推送：`git push origin model-v3.2-autonomous-review` 已成功上传终审内容、CI 修正及记忆记录；最近一次成功推送的提交为 `b008e7d9338ed77cad4c22c8670a01a3d220734a`，本快照提交后再做最终远端 SHA 核对。
+- Git 推送：`git push origin model-v3.2-autonomous-review` 已成功上传终审内容、CI 修正及记忆记录；最终 `git ls-remote --heads origin model-v3.2-autonomous-review` 已核对返回与当前工作副本 HEAD 相同的 SHA。
 - 推送后 Actions：模型验证 `33219378246`、chronology preflight `33219378236`、实际资产主运行 `33219378228`、Rcap frontier `33219378257` 已 Success；正式基线 `33219378290` Failure 已定位为 CI 后处理文件名错误；修正提交 `708a503` 已推送，新正式基线 `33220722649` 和模型验证 `33220722628` 均 Success，仅有 GitHub runner 的 Node.js 20 弃用 warning。
-- 根目录同步：已按提交文件清单同步至项目根目录；根目录 `main` 和原有 `prompt.md`/历史会话保留，不在根目录强行切换分支。
+- 根目录同步：已按最终提交文件清单同步至项目根目录并逐项 `cmp` 通过；根目录 `main` 和原有 `prompt.md`/历史会话保留，不在根目录强行切换分支。
 
 ## 阻塞与下一步
 
 - 无需暂停的业务阻塞。远端 artifact/log 权限限制只影响逐字下载，不影响本地同 SHA 复核；TIE-001 按负责人决定不再收资。
-- v3.2 模型、报告、门禁和 Git 上传均已完成；本快照提交后同步根目录并完成最终工作树核对即可结束本任务。GitHub 的 Node.js 20 弃用 warning 不改变模型判定；若后续重新运行出现模型或数据失败，需重新打开终审而不是直接宣称完成。TIE-001 按负责人决定不再收资。
+- v3.2 模型、报告、门禁、Git 上传、远端 SHA 核验和根目录同步均已完成，本任务结束。GitHub 的 Node.js 20 弃用 warning 不改变模型判定；若后续重新运行出现模型或数据失败，需重新打开终审而不是直接宣称完成。TIE-001 按负责人决定不再收资。
