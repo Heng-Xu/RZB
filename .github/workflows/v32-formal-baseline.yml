@@ -52,8 +52,8 @@ jobs:
           PY
           echo '--- policy cost comparison ---'
           cat results/runs/real-2021-2025-contract-v32-candidate/policy_cost_comparison.csv
-          echo '--- recommendation matrix ---'
-          cat results/runs/real-2021-2025-contract-v32-candidate/recommendation_matrix_v32_base.csv
+          echo '--- 2025 policy summary ---'
+          cat results/runs/real-2021-2025-contract-v32-candidate/policy_2025_summary.csv
           echo '--- chronology nonzero rows ---'
           python - <<'PY'
           import pandas as pd

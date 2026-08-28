@@ -1,15 +1,15 @@
 # 当前状态快照
 
-快照时间：2026-08-29 07:13（Asia/Shanghai）
+快照时间：2026-08-29 07:30（Asia/Shanghai）
 本次 memory 任务状态：`VERIFYING`
 任务：在 GitHub 分支 `model-v3.2-autonomous-review` 的真实代码、输入、日志和结果基础上完成 v3.2 模型终审、冻结、正式结果与研究报告支撑材料输出。
-状态依据：已读取根目录 `claude_session_1.txt` 并以其优先级接管；当前工作副本为 `/tmp/rzb-v32-work`，模型终审内容已提交为 `71d63615c8bc10ea3dac5b0bfe3f445c72e905dd` 并推送到远端。旧 v3.1 严格归一口径不再作为 v3.2 主模型。
+状态依据：已读取根目录 `claude_session_1.txt` 并以其优先级接管；当前工作副本为 `/tmp/rzb-v32-work`，模型终审内容已提交为 `71d63615c8bc10ea3dac5b0bfe3f445c72e905dd`，记忆补充已提交为 `b24075a42344e3633be94e7b910e841c435e2a09` 并推送到远端。旧 v3.1 严格归一口径不再作为 v3.2 主模型。
 
 ## 本次接管核对
 
 - 根仓库分支为 `main`，相对 `origin/main` 落后 6 个提交；根目录用户 `prompt.md` 和 memory 修改保留，不在根仓库直接覆盖。
-- `/tmp/rzb-v32-work` 分支为 `model-v3.2-autonomous-review`，HEAD 为 `71d6361`，本地工作树干净且与 `origin/model-v3.2-autonomous-review` 一致；v3.2 实现、测试、契约、正式结果和报告材料已提交并推送。
-- 远端最新三项门禁运行 `33137999022`、`33137999003`、`33137959155` 均为 `success`；公开 Actions API 对 artifact/job log 返回 401/403，artifact 内容以本地同 SHA 运行结果补核。
+- `/tmp/rzb-v32-work` 分支为 `model-v3.2-autonomous-review`，HEAD 为 `b24075a`；v3.2 实现、测试、契约、正式结果和报告材料已提交并推送。本快照另有待提交的 CI 工作流修正和回归测试，生成型合成结果文件为全量测试副作用，不纳入修正提交。
+- 推送后 Actions 中模型验证 `33219378246`、chronology preflight `33219378236`、实际资产主运行 `33219378228` 已 Success；正式基线 `33219378290` 曾 Failure。经本地复现确认，模型入口退出码为 0，失败原因是工作流读取已废弃的 `recommendation_matrix_v32_base.csv`，而当前入口实际生成 `policy_2025_summary.csv`；修正已写入工作流并由回归测试锁定，等待新提交后的远端复验。Rcap frontier `33219378257` 的最终结论仍需以 Actions 页面复核。
 
 ## 契约版本
 
@@ -39,16 +39,16 @@
 
 ## 最终验证证据（Git 已推送，Actions 异步核验中）
 
-- 固定全量回归：在 `实验/研究/` 执行 `env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr bash scripts/runtests.sh`，退出码 0，收集 250 项，`250 passed, 14 warnings`，耗时 524.07 s；警告均为 Matplotlib/pyparsing 弃用提示。
+- 固定全量回归：在 `实验/研究/` 执行 `env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr bash scripts/runtests.sh`，退出码 0，收集 251 项，`251 passed, 14 warnings`，耗时 521.69 s；警告均为 Matplotlib/pyparsing 弃用提示。新增测试先在旧工作流下失败，修正后通过；精确复现正式入口退出码 0，后处理文件检查也退出码 0。
 - 报告 S1–S4：`实验/研究/scripts/report_style_scan.py` 扫描第一至第七章，0 处标记；PDF 关键页第 40～43 页视觉抽查通过。
 - Word→PDF：`研究报告/初稿/渲染审查/全文初稿_渲染审查_2026-08-29_v32.pdf`，48 页、3,547,205 bytes，SHA-256 `d83359750a74b6394e20d408176e1cee5a5f951149a13bb6fa5f6c8c9f8be6e7`。
 - 正式结果：`实验/研究/results/runs/real-2021-2025-v32-frozen/manifest.json`，模型版本 `3.2.0`，粗扫描 136 点、局部细化 104 点、敏感性场景 11 组；终审记录副本 SHA-256 `df4aaadeeed096b0ba86d595b0539c5d4ddf3469a34e9a3812fdd8c70deb2b63`。
 - v3.2 决策记录：`memory/decisions/2026-08-29-v3.2实际资产共同起点与冻结.md`。
 - Git 推送：`git push origin model-v3.2-autonomous-review` 退出码 0；`git ls-remote` 返回同一 SHA `71d63615c8bc10ea3dac5b0bfe3f445c72e905dd`。
-- 推送后 Actions：模型验证 `33219378246` 为 Success；chronology preflight `33219378236` 为 Success；实际资产主运行 `33219378228` 与正式基线 `33219378290` 在快照时 In progress；Rcap frontier `33219378257` 在快照时 Queued。
+- 推送后 Actions：模型验证 `33219378246`、chronology preflight `33219378236`、实际资产主运行 `33219378228` 已 Success；正式基线 `33219378290` Failure 已定位为 CI 后处理文件名错误，修正待推送；Rcap frontier `33219378257` 待复核最终状态。
 - 根目录同步：已按提交文件清单同步至项目根目录；根目录 `main` 和原有 `prompt.md`/历史会话保留，不在根目录强行切换分支。
 
 ## 阻塞与下一步
 
 - 无需暂停的业务阻塞。远端 artifact/log 权限限制只影响逐字下载，不影响本地同 SHA 复核；TIE-001 按负责人决定不再收资。
-- 代码、结果和报告材料已上传；下一步为等待并记录推送后剩余 Actions 结论。若 CI 仅出现 Node.js 弃用警告，不改变模型判定；若出现模型或数据失败，需重新打开终审而不是直接宣称完成。
+- 已定位并修正正式基线工作流的旧产物引用；下一步是提交回归修正、再次推送并记录新 Actions 结论。若 CI 仅出现 Node.js 弃用警告，不改变模型判定；若出现模型或数据失败，需重新打开终审而不是直接宣称完成。TIE-001 按负责人决定不再收资。

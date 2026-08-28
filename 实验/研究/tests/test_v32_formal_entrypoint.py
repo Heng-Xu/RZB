@@ -8,6 +8,8 @@ import pytest
 from src import v32_actual_pipeline, v32_model, v32_pipeline
 from scripts.build_v32_formal_outputs import classify_recommendation_type
 
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
 
 def test_formal_v32_entrypoint_delegates_to_actual_asset_pipeline(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
@@ -94,3 +96,24 @@ def test_formal_recommendation_classification_does_not_force_rcap_value() -> Non
         == "技术约束优先型"
     )
     assert classify_recommendation_type(35, elastic_feasible=True, threshold_status=None) == "辅助层不施加逐年Rcap"
+
+
+def test_formal_baseline_workflow_reads_only_entrypoint_outputs() -> None:
+    workflow = (
+        PROJECT_ROOT / ".github/workflows/v32-formal-baseline.yml"
+    ).read_text(encoding="utf-8")
+
+    for filename in (
+        "policy_cost_comparison.csv",
+        "policy_2025_summary.csv",
+    ):
+        assert (
+            f"cat results/runs/real-2021-2025-contract-v32-candidate/{filename}"
+            in workflow
+        )
+    assert (
+        "p='results/runs/real-2021-2025-contract-v32-candidate/"
+        "qx00005_chronology_comparison.csv'"
+        in workflow
+    )
+    assert "recommendation_matrix_v32_base.csv" not in workflow
