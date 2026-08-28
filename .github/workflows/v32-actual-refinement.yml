@@ -1,0 +1,126 @@
+name: v3.2 actual-asset Rcap local refinement
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/v32-actual-refinement.yml'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONPATH: .
+
+jobs:
+  refine-point:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        rcap: ['2.165', '2.170', '2.171', '2.172', '2.175', '2.180', '2.350', '2.355', '2.359', '2.360', '2.365', '2.370', 'unbounded']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install model dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy pandas scipy pyyaml xarray linopy highspy networkx scikit-learn
+      - name: Solve refinement point
+        working-directory: 实验/研究
+        env:
+          RCAP: ${{ matrix.rcap }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from src.v32_frontier import run_v32_frontier_point
+          raw = os.environ['RCAP']
+          rcap = None if raw == 'unbounded' else float(raw)
+          root = Path('.').resolve()
+          out = root / 'results/runs/v32-actual-refinement-points' / raw
+          result = run_v32_frontier_point(
+              root,
+              root / 'data/processed/real_2021_2025',
+              out,
+              rcap=rcap,
+          )
+          print(result[result['region_id'].isin(['QX-00001','QX-00005'])].to_string(index=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v32-refine-${{ matrix.rcap }}
+          path: 实验/研究/results/runs/v32-actual-refinement-points/${{ matrix.rcap }}/frontier_point.csv
+          if-no-files-found: error
+
+  summarize-refinement:
+    needs: refine-point
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install pandas
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v32-refine-*
+          path: 实验/研究/results/runs/v32-actual-refinement-artifacts
+      - name: Locate release thresholds
+        working-directory: 实验/研究
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          root=Path('.').resolve()
+          files=sorted((root/'results/runs/v32-actual-refinement-artifacts').glob('**/frontier_point.csv'))
+          if len(files)!=13:
+              raise RuntimeError(f'expected 13 refinement files, got {len(files)}')
+          f=pd.concat([pd.read_csv(p) for p in files], ignore_index=True)
+          f['rcap_num']=pd.to_numeric(f['rcap_numeric'], errors='coerce')
+          f['cost_num']=pd.to_numeric(f['cumulative_in_service_eac_wanyuan'], errors='coerce')
+          rows=[]
+          for region in ['QX-00001','QX-00005']:
+              g=f[f['region_id'].astype(str).eq(region)].copy()
+              u=g[g['rcap'].astype(str).eq('unbounded')].iloc[0]
+              base=float(u['cost_num'])
+              numeric=g[g['rcap_num'].notna() & g['feasible'].astype(bool)].sort_values('rcap_num')
+              near=numeric[numeric['cost_num'] <= base*1.05 + 1e-7]
+              if near.empty:
+                  raise RuntimeError(f'{region}: refined near-optimal threshold not reached')
+              upper=float(near['rcap_num'].min())
+              below=numeric[numeric['rcap_num'] < upper].tail(1)
+              if below.empty:
+                  raise RuntimeError(f'{region}: no lower bracket')
+              lo=float(below.iloc[0]['rcap_num'])
+              at=near[near['rcap_num'].eq(upper)].iloc[0]
+              rows.append({
+                  'region_id':region,
+                  'refined_threshold_lower_exclusive':lo,
+                  'refined_threshold_upper_inclusive':upper,
+                  'cost_below_wanyuan':float(below.iloc[0]['cost_num']),
+                  'cost_at_threshold_wanyuan':float(at['cost_num']),
+                  'unbounded_cost_wanyuan':base,
+                  'storage_below':int(below.iloc[0]['storage_modules']),
+                  'storage_at_threshold':int(at['storage_modules']),
+                  'capacity_delta_below_mva':float(below.iloc[0]['capacity_action_delta_mva']),
+                  'capacity_delta_at_threshold_mva':float(at['capacity_action_delta_mva']),
+                  'physical_clr_at_threshold':float(at['physical_clr_2025']),
+              })
+          out=root/'results/runs/real-2021-2025-v32-actual-refinement'
+          out.mkdir(parents=True, exist_ok=True)
+          result=pd.DataFrame(rows)
+          result.to_csv(out/'refined_release_thresholds.csv', index=False)
+          print(result.to_string(index=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v32-actual-refined-threshold-results
+          path: 实验/研究/results/runs/real-2021-2025-v32-actual-refinement/
+          if-no-files-found: error
