@@ -1,7 +1,7 @@
 contract:
   version: "3.2.0"
-  status: "candidate_under_validation"
-  frozen_at: "2026-08-28"
+  status: "frozen"
+  frozen_at: "2026-08-29"
   change_note: "主政策实验改为2021实际资产共同起点、存量容量豁免且Rcap只约束决策期新增容量；保留2×P2021标准化起点为二级敏感性基准；分离Rcap与实际CLR；增加连续8760h SOC和beta敏感性"
 
 planning_baseline:
@@ -135,6 +135,10 @@ storage:
 sensitivity:
   cos_phi: [0.90, 0.95, 1.00]
   reverse_beta: [0.60, 0.80, 1.00]
+  net_load_scale: [0.95, 1.00, 1.05]
+  storage_cost_multiplier: [0.80, 1.00, 1.20]
+  expansion_cost_multiplier: [0.80, 1.00, 1.20]
+  pv_only_sensitivity: "not_executable_without_synchronous_load_pv_decomposition_and_feeder_point_evidence"
   near_optimal_band: [0.02, 0.05, 0.10]
   standardized_baseline_benchmark: true
   rule: "recommendation robustness is judged on the same Rcap dimension"

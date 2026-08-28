@@ -1,4 +1,4 @@
-# 徐州 2021—2025 真实数据 v3 运行手册
+# 徐州 2021—2025 真实数据 v3.2 运行手册
 
 ## 1. 固定环境与入口
 
@@ -16,13 +16,13 @@ env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr pytest -q tests
 env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr bash scripts/runtests.sh
 ```
 
-真实数据 v3 端到端：
+真实数据 v3.2 端到端：
 
 ```bash
 env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr python scripts/run_all.py --dataset real_2021_2025 --config model_contract.yaml --skip-gen
 ```
 
-正式运行目录为 `results/runs/real-2021-2025-contract-v3/<run_id>/`。运行 ID、契约快照、输入 SHA-256、求解状态、质量台账和输出 SHA-256 必须同时落盘。
+正式运行目录为 `results/runs/real-2021-2025-v32-frozen/`。运行 ID、契约快照、输入 SHA-256、求解状态、质量台账和输出 SHA-256 必须同时落盘。
 
 ## 2. 运行顺序
 
@@ -32,7 +32,7 @@ env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr python scripts/
 4. 按年度运行白名单判断逐时门禁。2025 QX-00005 110 kV 只要求 20 座站、40 台运行主变；BDZ-00056 年末新增两台不阻塞其余设备。
 5. 隔离 2024 年 `-7319`、`-6858` 和 `16630 MW` 三个异常值，保留原值和质量标记。
 6. 先计算路径自身同步正向/反向峰值、正式容载比和设备级缺口，再进入动作和优化层。
-7. 用同一候选、物理约束、成本库和精度联合求解两条优化路径；严格路径从 2022 年起逐年施加 `R<=2.0`。
+7. 用同一实际资产起点、候选、物理约束、成本库和精度联合求解两条优化方案；严格方案从 2022 年起逐年约束 110 kV 新增容量。
 8. 分开生成 110 kV、35 kV 矩阵和技术附表；局部 10 kV 案例默认关闭、分别比较。
 9. 生成 Word 人工审查层、问题台账、契约快照和 manifest。
 
@@ -50,8 +50,8 @@ env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr python scripts/
 
 - 求解状态不是空值，所有不可行对象都有原因；
 - 每年资产范围、容量与官方锚点的差额可追溯；
-- 严格路径 2022、2023、2024、2025 年逐年 `R<=2.0`；
-- 不限制路径累计年化成本不高于严格路径；
+- 严格方案 2022、2023、2024、2025 年逐年满足新增容量控制；
+- 同一实际起点且两方案均可行时不限制方案累计年化成本不高于严格方案；
 - 110 kV 与 35 kV 未混算，父级映射不完整时未做联合枚举；
 - 无弃光变量、伪成本、伪容载比、未标记插补和随机馈线光伏事实化；
 - 两套矩阵、Word、技术附表、问题台账和 manifest 齐全，所有输出哈希已登记。

@@ -1,12 +1,7 @@
 """v3.2 同基线政策实验与弹性 Rcap 推荐逻辑。
 
-本模块先作为 v3.2 候选实现层复用已经回归验证的 v3 离散规划器，避免在
-科学口径尚在升级阶段复制求解核心。主要变化：
-
-1. 110 kV 两条政策路径共享 ``S0_plan = 2 * P+_2021``；
-2. 物理资产基准与规划控制基准显式分层；
-3. 恢复同基线路径成本包含关系；
-4. 推荐量明确为 Rcap，实际 CLR 只作为对应实现结果。
+本模块复用已经回归验证的离散规划器，但把 v3.2 的实际资产共同起点、
+存量豁免和 Rcap 推荐逻辑固定在正式入口之外，避免旧归一化基线重新渗入。
 """
 from __future__ import annotations
 
@@ -35,17 +30,11 @@ def apply_common_planning_baseline(
     baseline_clr: float = 2.0,
     applies_to_voltage_kv: Iterable[int] = (110,),
 ) -> pd.DataFrame:
-    """为正式政策比较层生成共同 2021 规划控制基线。
+    """为正式政策比较层生成实际 2021 在役资产共同基线。
 
-    对 ``applies_to_voltage_kv``（默认仅 110 kV）：
-    ``planning_baseline_capacity_mva = baseline_clr * P+_2021``。
-    只读取 2021 年官方同步正向最大负荷，不读取任何决策期峰值，因此不会
-    产生“用未来实际最低峰反推初始容量”的信息泄漏。
-
-    对 35 kV 等辅助层不执行 CLR=2.0 归一，规划基线直接等于物理资产基线。
-    ``baseline_capacity_mva`` 始终保持真实 2021 资产状态；为了复用 v3.1
-    求解器，兼容列 ``reported_baseline_capacity_mva`` 与规划基线等值。
-    正式 v3.2 输出使用 ``planning_*`` 术语，不对甲方暴露旧兼容命名。
+    ``baseline_capacity_mva`` 是历史存量实物容量，不被 Rcap 反向改写；
+    ``reported_baseline_capacity_mva`` 只是复用旧求解器约束列的内部别名。
+    ``baseline_clr`` 仍保留为兼容参数，但不参与正式 v3.2 起点计算。
     """
     if not math.isfinite(float(baseline_clr)) or float(baseline_clr) <= 0:
         raise V32ModelError("baseline_clr must be positive and finite")
@@ -63,69 +52,14 @@ def apply_common_planning_baseline(
     if missing:
         raise V32ModelError(f"annual frame missing {sorted(missing)}")
 
-    reference_path = Path(processed_root) / "annual_reference.csv"
-    if not reference_path.is_file():
-        raise V32ModelError("annual_reference.csv is required for the 2021 planning baseline")
-    reference = pd.read_csv(reference_path)
-    reference_required = {
-        "year",
-        "region_id",
-        "voltage_kv",
-        "official_positive_peak_mw",
-    }
-    ref_missing = reference_required - set(reference.columns)
-    if ref_missing:
-        raise V32ModelError(f"annual_reference.csv missing {sorted(ref_missing)}")
-
-    base = reference[
-        reference["year"].eq(2021)
-        & reference["voltage_kv"].astype(int).isin(applied_voltages)
-    ][["region_id", "voltage_kv", "official_positive_peak_mw"]].copy()
-    if base.empty:
-        raise V32ModelError("2021 official positive-peak reference is empty for formal voltage levels")
-    if base.duplicated(["region_id", "voltage_kv"]).any():
-        raise V32ModelError("2021 reference has duplicate region-voltage rows")
-    base["formal_planning_baseline_mva"] = (
-        float(baseline_clr)
-        * pd.to_numeric(base["official_positive_peak_mw"], errors="raise")
-    )
-    if (base["formal_planning_baseline_mva"] <= 0).any():
-        raise V32ModelError("2021 positive peak must be positive for every formal group")
-
     out = annual.copy()
-    out["region_id"] = out["region_id"].astype(str)
-    base["region_id"] = base["region_id"].astype(str)
-    out = out.merge(
-        base[["region_id", "voltage_kv", "formal_planning_baseline_mva"]],
-        on=["region_id", "voltage_kv"],
-        how="left",
-        validate="many_to_one",
-    )
-    formal_mask = out["voltage_kv"].astype(int).isin(applied_voltages)
-    if out.loc[formal_mask, "formal_planning_baseline_mva"].isna().any():
-        missing_groups = (
-            out.loc[
-                formal_mask & out["formal_planning_baseline_mva"].isna(),
-                ["region_id", "voltage_kv"],
-            ]
-            .drop_duplicates()
-            .astype(str)
-            .agg("|".join, axis=1)
-            .tolist()
-        )
-        raise V32ModelError(
-            "2021 planning baseline reference missing for formal groups: "
-            + ", ".join(missing_groups)
-        )
     out["planning_baseline_capacity_mva"] = pd.to_numeric(
         out["baseline_capacity_mva"], errors="raise"
     )
-    out.loc[formal_mask, "planning_baseline_capacity_mva"] = out.loc[
-        formal_mask, "formal_planning_baseline_mva"
-    ].astype(float)
-    out = out.drop(columns=["formal_planning_baseline_mva"])
+    if (out["planning_baseline_capacity_mva"] <= 0).any():
+        raise V32ModelError("actual 2021 planning baseline capacity must be positive")
 
-    # v3.1 planner compatibility alias. Both policy paths receive the same column.
+    # Planner compatibility alias. Both policy paths receive the same actual base.
     out["reported_baseline_capacity_mva"] = out["planning_baseline_capacity_mva"]
     return out
 
@@ -184,28 +118,14 @@ def run_common_baseline_policy_paths(
     if "reported_baseline_capacity_mva" not in annual.columns:
         raise V32ModelError("planner compatibility baseline column is missing")
 
-    unbounded = optimize_path(
+    from src.v32_policy import run_actual_asset_policy_paths
+
+    merged = run_actual_asset_policy_paths(
         annual,
         candidates,
-        path_id=PATH_OPT_UNBOUNDED,
-        **planner_kwargs,
+        planner_kwargs=planner_kwargs,
+        rigid_rcap=2.0,
     )
-    parts: list[dict[str, pd.DataFrame]] = [unbounded]
-    for voltage_kv, limit in ((110, 2.0), (35, math.inf)):
-        sub = annual[annual["voltage_kv"].astype(int).eq(voltage_kv)]
-        if sub.empty:
-            continue
-        parts.append(
-            optimize_path(
-                sub,
-                candidates,
-                path_id=PATH_OPT_STRICT,
-                clr_limit=limit,
-                **planner_kwargs,
-            )
-        )
-    merged = _merge_policy_outputs(parts)
-    validate_path_inclusion(merged["path_cost_breakdown"])
     return _attach_v32_planning_columns(merged, annual)
 
 
@@ -214,7 +134,6 @@ def _numeric_feasible_frontier(frontier: pd.DataFrame, region_id: str) -> pd.Dat
         "rcap",
         "region_id",
         "cumulative_in_service_eac_wanyuan",
-        "clr_2025",
         "storage_modules",
         "feasible",
     }
@@ -229,7 +148,12 @@ def _numeric_feasible_frontier(frontier: pd.DataFrame, region_id: str) -> pd.Dat
     sub["cost_numeric"] = pd.to_numeric(
         sub["cumulative_in_service_eac_wanyuan"], errors="coerce"
     )
-    sub["clr_numeric"] = pd.to_numeric(sub["clr_2025"], errors="coerce")
+    clr_column = (
+        "physical_clr_2025" if "physical_clr_2025" in sub.columns else "clr_2025"
+    )
+    if clr_column not in sub.columns:
+        raise V32ModelError("frontier missing physical_clr_2025")
+    sub["clr_numeric"] = pd.to_numeric(sub[clr_column], errors="coerce")
     return sub[
         sub["rcap_numeric"].notna()
         & sub["cost_numeric"].notna()
@@ -251,7 +175,11 @@ def recommended_rcap_interval(
     region_id: str,
     near_optimal_band: float = 0.05,
 ) -> dict[str, Any]:
-    """从一个场景的前沿提取 Rcap 近优带及对应实现 CLR 范围。"""
+    """提取同一场景的 Rcap 近优带，并单独记录实现 CLR 审计范围。
+
+    返回的 ``realized_clr_2025_*`` 仅用于结果解释和审计，不能与 Rcap
+    区间求交，也不参与推荐区间的形成。
+    """
     if not (0 <= float(near_optimal_band) < 1):
         raise V32ModelError("near_optimal_band must be in [0, 1)")
     valid = _numeric_feasible_frontier(frontier, region_id)
@@ -269,10 +197,34 @@ def recommended_rcap_interval(
             "reason": "no_feasible_numeric_rcap",
         }
 
-    best = float(valid["cost_numeric"].min())
+    unbounded = frontier[
+        frontier["region_id"].astype(str).eq(str(region_id))
+        & frontier["rcap"].astype(str).eq("unbounded")
+        & frontier["feasible"].astype(bool)
+    ]
+    best = (
+        float(pd.to_numeric(unbounded["cumulative_in_service_eac_wanyuan"], errors="raise").iloc[0])
+        if len(unbounded) == 1
+        else float(valid["cost_numeric"].min())
+    )
     band = valid[
         valid["cost_numeric"] <= best * (1.0 + float(near_optimal_band)) + 1e-9
     ].copy()
+    if band.empty:
+        return {
+            "region_id": region_id,
+            "rcap_interval_low": None,
+            "rcap_interval_high": None,
+            "rcap_point_estimate": None,
+            "realized_clr_2025_low": None,
+            "realized_clr_2025_high": None,
+            "rcap_points": [],
+            "interval_only": True,
+            "measure_flip": False,
+            "best_cost_wanyuan": best,
+            "near_optimal_band": float(near_optimal_band),
+            "reason": "no_finite_rcap_within_near_optimal_band",
+        }
     rcap_points = sorted(
         {round(float(value), 10) for value in band["rcap_numeric"]}
     )

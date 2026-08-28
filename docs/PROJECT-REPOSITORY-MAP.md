@@ -11,7 +11,7 @@
 | 进度接管 | `claude_session_1.txt` | 负责人确认的最新 Claude 接续记录；在进度、完成状态、遗留项和下一步方面优先于旧 memory |
 | 项目硬约束 | `AGENTS.md` | 环境、模型红线、报告文风、记忆和公开输出边界；当前 v3.4 |
 | 记忆承接 | `memory/INDEX.md`、`memory/current.md`、`memory/sessions/`、主题 memory | 长期决策、过程记录和当前快照；读取 Claude 记录后刷新 |
-| 机器契约 | `实验/研究/model_contract.yaml` | v3.1.0 模型参数、路径、指标、成本、输出和硬断言 |
+| 机器契约 | `实验/研究/model_contract.yaml` | v3.2.0 模型参数、路径、指标、成本、输出和硬断言 |
 | 执行方案 | `实验/研究/docs/IMPLEMENTATION-PLAN-REAL-2021-2025-V3.md` | v3 阶段方案和验收方法；其中早期状态段可能是历史记录 |
 | 建模规格 | `实验/研究/docs/REAL-DATA-MODEL-SPEC.md` | 真实数据接入、指标、约束、优化和发布口径 |
 | 执行 Skill | `skills/xuzhou-real-model/` | 建模 Agent 的执行规则及 `agents/openai.yaml` |
@@ -27,7 +27,7 @@
 |---|---|---|
 | `实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/` | `src/io_loader.py`、映射与审计脚本 | 站、主变、线路、光伏、成本和时序源数据；源目录只读 |
 | `实验/研究/data/tuomin/10kv_case/` | `src/tie_case/`、`scripts/run_tie_case.py` | TIE 局部案例的结构化输入、质量门禁和证据 |
-| `实验/研究/data/processed/real_2021_2025/` | `src/real_data_adapter.py`、`src/v3_pipeline.py` | 标准化主表、跨年映射、年度资产白名单、光伏曲线、小时序列和数据 manifest |
+| `实验/研究/data/processed/real_2021_2025/` | `src/real_data_adapter.py`、`src/v32_actual_pipeline.py` | 标准化主表、跨年映射、年度资产白名单、光伏曲线、小时序列和数据文件清单 |
 | `参考政策/储能成本依据/`、外部成本依据 | `src/real_costs.py`、成本审查 | 储能和扩容成本参数及适用说明 |
 
 ### 2.2 计算、校核与结果
@@ -41,7 +41,7 @@
 | 质量与网络筛查 | `src/real_network_check.py`、`src/verify_flow_n1.py`、`src/verify_dlt2041.py` | 容量网络压力筛查、设备/县区缺口和边界说明；缺阻抗时不宣称精确潮流 |
 | 测试 | `tests/` | 契约、数据、指标、规划、案例、输出和报告构建回归 |
 | 运行入口 | `scripts/run_all.py`、`scripts/run_annual_model.py` | v3 真实端到端、历史迁移回归和年度结果生成 |
-| 正式结果 | `results/runs/real-2021-2025-contract-v3/` | manifest、路径年度结果、措施、成本、弹性前沿、矩阵、问题台账和附表 |
+| 正式结果 | `results/runs/real-2021-2025-v32-frozen/` | 数据文件清单、方案年度结果、措施、成本、弹性前沿、矩阵、问题台账和附表 |
 
 ### 2.3 结果到报告
 
@@ -64,7 +64,7 @@
 2. 读取 `AGENTS.md`、`memory/INDEX.md`、`memory/current.md`，将旧快照与最新 Claude 记录对齐。
 3. 涉及 `实验/研究/` 时按 `AGENTS.md` 第 1 节依次读取 v3 计划、契约、数据规格、建模 Skill 和数据说明书；涉及报告时再加载报告 Skill。
 4. 只在 `实验/研究/` 目录使用 `xuzhou110kv_clr` 环境执行测试和模型入口。
-5. 以 `results/runs/real-2021-2025-contract-v3/` 下的 manifest、CSV/Markdown 和问题台账作为精确查值入口。
+5. 以 `results/runs/real-2021-2025-v32-frozen/` 下的数据文件清单、CSV/Markdown 和问题台账作为精确查值入口。
 6. 每次状态改变都刷新 `memory/current.md`，并在 `memory/sessions/YYYY-MM-DD/` 新增记录。
 
 ## 4. Git 追踪边界

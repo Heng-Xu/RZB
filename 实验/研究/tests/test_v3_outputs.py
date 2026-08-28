@@ -60,8 +60,8 @@ def test_transposed_word_matrix_uses_indicator_rows_and_anonymized_region_column
     with zipfile.ZipFile(path) as archive:
         document = archive.read("word/document.xml").decode("utf-8")
     assert "指标" in document
-    assert "片区01" in document
-    assert "QX-00001" not in document
+    assert "QX-00001" in document
+    assert "片区01" not in document
 
 
 def test_word_matrix_uses_v3_presentation_contract(tmp_path: Path) -> None:
@@ -92,7 +92,7 @@ def test_word_matrix_uses_v3_presentation_contract(tmp_path: Path) -> None:
     assert "PATH_OPT_CLR_UNBOUNDED" not in document
     assert "storage" not in document
     assert "new_third_transformer" not in document
-    assert "QX-00001" not in document
+    assert "QX-00001" in document
     assert "styles.xml" not in document
 
 
@@ -151,5 +151,6 @@ def test_build_v3_artifacts_writes_two_matrices_appendices_word_and_manifest(tmp
     saved = json.loads((tmp_path / "manifest.json").read_text(encoding="utf-8"))
     assert saved["dataset_id"] == "real_2021_2025"
     assert saved["formal_matrices"]["110kv_rows"] == 8
-    assert saved["word_presentation_version"] == "3.1"
+    assert saved["contract_version"] == "3.2.0"
+    assert saved["word_presentation_version"] == "3.2"
     assert manifest["output_files"]

@@ -1,4 +1,6 @@
-# real_2025 自动化运行手册
+# 历史归档：real_2025 自动化运行手册
+
+> 本文件仅用于 v3.1/迁移期复核，不是 v3.2 正式运行手册。正式入口为 `scripts/run_all.py --dataset real_2021_2025 --config model_contract.yaml --skip-gen`，正式路径和结果以 `results/runs/real-2021-2025-v32-frozen/` 为准；文中的 `real_2025`、`SCHEME_C0/A/B` 和旧矩阵不得用于正式报告。
 
 本文档只说明真实数据闭环的运行、产物和门禁，不替代业务规格，也不是对外正式报告。业务定义以项目根目录 `AGENTS.md`、`model_contract.yaml` 和 `docs/REAL-DATA-MODEL-SPEC.md` 为准。
 

@@ -1,0 +1,9 @@
+region_id,voltage_kv,near_optimal_band,scan_rcap_low,scan_rcap_high,threshold_status,coarse_release_threshold_lower,coarse_release_threshold_upper,minimum_near_optimal_rcap_on_grid,unbounded_cost_wanyuan,cost_below_threshold_wanyuan,cost_at_or_above_threshold_wanyuan,requires_local_refinement,interpretation
+QX-00001,110,0.05,1.5,3.0,binding_threshold_bracketed,2.3,2.4,2.4,188.18000856976303,481.9565559496808,188.18000856976303,True,该区间内存在最小非惩罚Rcap；再收紧将使最优技术组合或成本发生实质变化
+QX-00003,110,0.05,1.5,3.0,non_binding_not_identified_in_horizon,,,1.5,604.7015068817583,,604.7015068817583,False,扫描范围内Rcap均不改变最优投资组合，本规划期不识别唯一阈值
+QX-00004,110,0.05,1.5,3.0,non_binding_not_identified_in_horizon,,,1.5,433.53912471027945,,433.53912471027945,False,扫描范围内Rcap均不改变最优投资组合，本规划期不识别唯一阈值
+QX-00005,110,0.05,1.5,3.0,binding_threshold_bracketed,2.1,2.2,2.2,1745.5282990715316,3359.0522240281625,1745.5282990715316,True,该区间内存在最小非惩罚Rcap；再收紧将使最优技术组合或成本发生实质变化
+QX-00007,110,0.05,1.5,3.0,non_binding_not_identified_in_horizon,,,1.5,0.0,,0.0,False,扫描范围内Rcap均不改变最优投资组合，本规划期不识别唯一阈值
+QX-00008,110,0.05,1.5,3.0,not_formed_physical_infeasible,,,,,,,False,无上限方案仍物理不可行，不形成Rcap经济阈值
+QX-00009,110,0.05,1.5,3.0,not_formed_physical_infeasible,,,,,,,False,无上限方案仍物理不可行，不形成Rcap经济阈值
+QX-00010,110,0.05,1.5,3.0,not_formed_physical_infeasible,,,,,,,False,无上限方案仍物理不可行，不形成Rcap经济阈值

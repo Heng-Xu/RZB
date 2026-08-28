@@ -536,8 +536,10 @@ def build_cross_year_timeseries_artifacts(
     source_root = Path(source_root).resolve()
     processed_root = Path(processed_root).resolve()
     contract = yaml.safe_load(Path(contract_path).read_text(encoding="utf-8"))
-    if contract["contract"]["version"] != "3.1.0":
-        raise AnnualAssetScopeError("cross-year artifacts require model contract 3.1.0")
+    if str(contract["contract"]["version"]) not in {"3.1.0", "3.2.0"}:
+        raise AnnualAssetScopeError(
+            "cross-year artifacts require model contract 3.1.0 or 3.2.0"
+        )
     candidate_path = Path(candidate_map_path or (Path(__file__).resolve().parents[1] / CANDIDATE_FILE)).resolve()
     source_hash = _sha256(source_root / HOURLY_FILE)
     mapping, approval, review_result = _candidate_records(source_root, processed_root, candidate_path, source_hash)

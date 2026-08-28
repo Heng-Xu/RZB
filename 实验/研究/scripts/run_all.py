@@ -134,8 +134,8 @@ def main() -> int:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=ROOT / "results/runs/real-2021-2025-contract-v3/real_2021_2025-v3",
-        help="v3 运行结果目录",
+        default=ROOT / "results/runs/real-2021-2025-v32-formal",
+        help="v3.2 实际资产主模型运行结果目录",
     )
     parser.add_argument(
         "--existing-tie-case-options",
@@ -152,23 +152,23 @@ def main() -> int:
     args = parser.parse_args()
 
     if args.dataset == "real_2021_2025":
-        from src.v3_pipeline import run_v3_pipeline
+        from src.v32_actual_pipeline import run_v32_actual_baseline
 
         if args.skip_gen:
-            print("[real_2021_2025] --skip-gen accepted: v3 real pipeline has no synthetic generator")
-        run_v3_pipeline(
+            print("[real_2021_2025] --skip-gen accepted: v3.2 real pipeline has no synthetic generator")
+        manifest = run_v32_actual_baseline(
             project_root=ROOT,
             processed_root=args.processed_dir,
             run_dir=args.output_dir,
             contract_path=args.config,
-            existing_tie_case_options=args.existing_tie_case_options,
-            new_tie_line_case_options=args.new_tie_line_case_options,
         )
+        print("[real_2021_2025] v3.2 actual-asset baseline completed")
+        print(manifest)
         return 0
 
     if args.dataset == "real_2025":
         print(
-            "[real_2025] legacy migration entry is archive-only; use --dataset real_2021_2025 for formal v3",
+            "[real_2025] legacy migration entry is archive-only; use --dataset real_2021_2025 for formal v3.2",
             file=sys.stderr,
         )
         return 2

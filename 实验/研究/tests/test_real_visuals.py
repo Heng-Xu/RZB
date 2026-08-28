@@ -1,54 +1,61 @@
 from __future__ import annotations
 
-import json
 import zipfile
 from pathlib import Path
 
 import pandas as pd
-import pytest
 
-from src.v3_pipeline import run_v3_pipeline
+from src.v3_outputs import write_transposed_word_matrix
 
 
 ROOT = Path(__file__).resolve().parents[1]
 PROCESSED = ROOT / "data/processed/real_2021_2025"
-CONTRACT = ROOT / "model_contract.yaml"
 
 
-@pytest.fixture(scope="module")
-def release(tmp_path_factory: pytest.TempPathFactory) -> tuple[Path, dict]:
-    output = tmp_path_factory.mktemp("real_v3_visual_review")
-    return output, run_v3_pipeline(ROOT, PROCESSED, output, CONTRACT)
+def _review_matrix() -> pd.DataFrame:
+    regions = [f"QX-{index:05d}" for index in (1, 3, 4, 5, 7, 8, 9, 10)]
+    row = {
+        "voltage_kv": 110,
+        "evidence_grade": "EVIDENCE_B",
+        "asset_scope_id": "operating_2025",
+        "recommended_clr_interval": "本规划期Rcap不构成有效约束",
+        "recommended_clr_center": "不适用",
+        "recommended_clr_interval_effective_samples": 0,
+        "recommended_clr_interval_method": "不输出数值推荐",
+        "capacity_base_mva": 100.0,
+        "positive_peak_base_mw": 50.0,
+        "reverse_peak_base_mw": "未形成同步反向峰值",
+        "strict_path_incremental_cost": "未形成直接比较",
+        "positive_capacity_gap_mw": 0.0,
+        "reverse_hosting_gap_mw": 0.0,
+        "positive_gap_device_count": 0,
+        "reverse_gap_device_count": 0,
+        "measure_trigger_constraint": "none",
+        "recommended_measure": "无",
+    }
+    for path in ("PATH_ACTUAL_2021_2025", "PATH_OPT_CLR_UNBOUNDED", "PATH_OPT_CLR_LE_2"):
+        row[f"{path}_clr_2025"] = 2.0
+        row[f"{path}_cumulative_eac"] = 0.0
+    return pd.DataFrame([{**row, "region_id": region} for region in regions])
 
 
-def test_v3_review_data_keeps_two_eight_region_matrices(release: tuple[Path, dict]) -> None:
-    output, _ = release
-    frames = [pd.read_csv(output / f"county_{voltage}_recommendation_matrix.csv") for voltage in (110, 35)]
-    assert [len(frame) for frame in frames] == [8, 8]
-    assert [set(frame.voltage_kv) for frame in frames] == [{110}, {35}]
-    assert all(frame.region_id.str.fullmatch(r"QX-\d{5}").all() for frame in frames)
-    assert all(not frame.astype(str).apply(lambda column: column.str.contains("P50|P90", case=False, regex=True).any()).any() for frame in frames)
-
-
-def test_v3_review_package_uses_csv_as_exact_source_and_word_as_review_layer(
-    release: tuple[Path, dict],
-) -> None:
-    output, manifest = release
-    assert manifest["dataset_id"] == "real_2021_2025"
-    assert manifest["contract_version"] == "3.1.0"
+def test_v32_review_data_keeps_two_eight_region_matrices() -> None:
+    reference = pd.read_csv(PROCESSED / "annual_reference.csv")
     for voltage in (110, 35):
-        csv_path = output / f"county_{voltage}_recommendation_matrix.csv"
-        docx_path = output / f"county_{voltage}_recommendation_matrix.docx"
-        assert csv_path.name in manifest["output_files"]
-        assert docx_path.is_file()
-        with zipfile.ZipFile(docx_path) as archive:
-            assert "word/document.xml" in archive.namelist()
-            document = archive.read("word/document.xml").decode("utf-8")
-            assert "片区01" in document
-            if voltage == 110:
-                assert "正式推荐" in document
-            else:
-                assert "辅助分析" in document
-                assert "不可行的片区不形成正式唯一推荐" in document
-    saved = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
-    assert saved["voltage_separation"] is True
+        frame = reference[(reference.year == 2025) & (reference.voltage_kv == voltage)]
+        assert len(frame) == 8
+        assert frame.region_id.astype(str).str.fullmatch(r"QX-\d{5}").all()
+    assert not reference.astype(str).apply(
+        lambda column: column.str.contains("P50|P90", case=False, regex=True).any()
+    ).any()
+
+
+def test_v32_word_review_layer_uses_codes_and_r_cap_labels(tmp_path: Path) -> None:
+    path = tmp_path / "matrix.docx"
+    write_transposed_word_matrix(_review_matrix(), path, title="110 kV 县区正式推荐矩阵")
+    with zipfile.ZipFile(path) as archive:
+        document = archive.read("word/document.xml").decode("utf-8")
+    assert "QX-00001" in document
+    assert "片区01" not in document
+    assert "推荐 Rcap 区间" in document
+    assert "110 kV 县区正式推荐矩阵" in document

@@ -13,7 +13,11 @@ import pandas as pd
 
 from src.v3_pipeline import _annual_input, _timeseries_gate
 from src.v3_planner import PATH_OPT_STRICT, PATH_OPT_UNBOUNDED, optimize_path
-from src.v32_actual_pipeline import _planner_kwargs, _prepare_expansion_candidates
+from src.v32_actual_pipeline import (
+    _planner_kwargs,
+    _prepare_expansion_candidates,
+    scale_annual_net_load_input,
+)
 from src.v32_contract import load_v32_contract
 from src.v32_policy import apply_actual_asset_policy_baseline, prepare_grandfathered_rcap_control
 from src.v32_time_physics import V32TimePhysicsEvaluator
@@ -135,6 +139,9 @@ def run_v32_frontier_point(
     *,
     rcap: float | None,
     cos_phi: float | None = None,
+    net_load_scale: float = 1.0,
+    storage_cost_multiplier: float = 1.0,
+    expansion_cost_multiplier: float = 1.0,
 ) -> pd.DataFrame:
     """求解一个 110 kV Rcap 点并写出完整审计底稿。"""
     project_root = Path(project_root).resolve()
@@ -143,17 +150,30 @@ def run_v32_frontier_point(
     run_dir.mkdir(parents=True, exist_ok=True)
     if rcap is not None and (not math.isfinite(float(rcap)) or float(rcap) <= 0):
         raise V32FrontierError("rcap must be positive finite or None")
+    for name, value in (
+        ("net_load_scale", net_load_scale),
+        ("storage_cost_multiplier", storage_cost_multiplier),
+        ("expansion_cost_multiplier", expansion_cost_multiplier),
+    ):
+        if not math.isfinite(float(value)) or float(value) <= 0:
+            raise V32FrontierError(f"{name} must be positive finite")
 
     contract = load_v32_contract(project_root)
     gate = _timeseries_gate(processed_root)
     if not bool(gate.get("formal_hourly_use_allowed")):
         raise V32FrontierError("QX-00005 approved hourly evidence gate is not open")
     base_contract_path = project_root / "model_contract.yaml"
-    candidates, _ = _prepare_expansion_candidates(processed_root, run_dir, base_contract_path)
+    candidates, _ = _prepare_expansion_candidates(
+        processed_root,
+        run_dir,
+        base_contract_path,
+        expansion_cost_multiplier=float(expansion_cost_multiplier),
+    )
     annual = _annual_input(processed_root)
     annual_110 = annual[annual["voltage_kv"].astype(int).eq(110)].copy()
     if annual_110.empty:
         raise V32FrontierError("110 kV formal annual input is empty")
+    annual_110 = scale_annual_net_load_input(annual_110, float(net_load_scale))
 
     pf = (
         float(contract["technical_parameters"]["cos_phi"]["baseline"])
@@ -165,8 +185,14 @@ def run_v32_frontier_point(
         run_dir / "time_physics",
         candidates,
         base_contract_path,
+        net_load_scale=float(net_load_scale),
     )
-    kwargs = _planner_kwargs(contract, evaluator, cos_phi=pf)
+    kwargs = _planner_kwargs(
+        contract,
+        evaluator,
+        cos_phi=pf,
+        storage_cost_multiplier=float(storage_cost_multiplier),
+    )
     if rcap is None:
         model_input = apply_actual_asset_policy_baseline(annual_110)
         path_id = PATH_OPT_UNBOUNDED
@@ -195,5 +221,8 @@ def run_v32_frontier_point(
     costs.to_csv(run_dir / "path_cost_breakdown.csv", index=False)
     summary = _summarize_point(rcap=rcap, years=years, actions=actions, costs=costs)
     summary["cos_phi"] = pf
+    summary["net_load_scale"] = float(net_load_scale)
+    summary["storage_cost_multiplier"] = float(storage_cost_multiplier)
+    summary["expansion_cost_multiplier"] = float(expansion_cost_multiplier)
     summary.to_csv(run_dir / "frontier_point.csv", index=False)
     return summary

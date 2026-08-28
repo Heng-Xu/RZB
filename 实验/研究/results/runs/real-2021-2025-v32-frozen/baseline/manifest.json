@@ -1,0 +1,70 @@
+{
+  "base_contract_sha256": "31f277767ea98ede89de794357bfce88a88de2cf45943cd1e70b0cc6b700958f",
+  "common_physical_baseline": "actual_2021_installed_capacity",
+  "contract_version": "3.2.0",
+  "cost_manifest": {
+    "candidate_input_sha256": "c32d89d71a1357d41b3d2c9e1487498918cdac5df5a72f3abe6f49eb891ba7a2",
+    "contract_sha256": "31f277767ea98ede89de794357bfce88a88de2cf45943cd1e70b0cc6b700958f",
+    "contract_version": "3.2.0",
+    "cost_library_version": "3.0.0",
+    "dataset_id": "real_2021_2025",
+    "formal_paths": [
+      "PATH_OPT_CLR_UNBOUNDED",
+      "PATH_OPT_CLR_LE_2"
+    ],
+    "model_assumption_gate": "explicit",
+    "output_files": {
+      "cost_assumptions.csv": {
+        "rows": 5,
+        "sha256": "b7aa537b2c2eea07a8360ae4ef504747ffac53ddd056a4ce5e96de2eec1ecce6"
+      },
+      "expansion_cost_library.csv": {
+        "rows": 92,
+        "sha256": "35595148cef4718f01c0e926c0749538428e98e7f8ea0c58d4af9745002fe024"
+      },
+      "storage_module_cost_boundaries.csv": {
+        "rows": 5,
+        "sha256": "59d11f3de2fd8b8dfb8451b885b4fb424f4d5c5028b2a67f9d0f01e7d5334056"
+      }
+    },
+    "price_year": 2025,
+    "storage_policy_note_sha256": "eaff5cc8d2b6d9d65dc0057b52197897e6b1506293b22127a0c12a50617d597f"
+  },
+  "dataset_id": "real_2021_2025",
+  "direct_policy_cost_comparison_allowed": true,
+  "formal_clr_output": "physical_clr = installed_capacity_mva / synchronized_positive_peak_mw",
+  "initial_physical_diagnostics": {
+    "basis": "2025 zero-action station time-physics state; not a full AC潮流 result",
+    "file": "initial_physical_diagnostics.csv",
+    "rows": 16
+  },
+  "model_role": "primary_actual_asset_grandfathered_incremental_rcap",
+  "model_version": "3.2.0",
+  "policy_control_ratio_is_internal_audit_metric": true,
+  "processed_manifest_sha256": "18a4570a6078e3e2673e710a34c85e79f5c3b8703d4f2fa1c66991c058881985",
+  "qx00005_110kv_time_method": "approved_8760_continuous_soc_primary_plus_daily_cyclic_reference",
+  "qx00005_continuous_soc_artifacts": {
+    "continuous_soc_validation": "all_written_curve_rows_passed_SOC_physical_audit",
+    "curve_points": 61320,
+    "paths": [
+      "PATH_OPT_CLR_LE_2",
+      "PATH_OPT_CLR_UNBOUNDED"
+    ],
+    "qx00005_continuous_soc_8760.csv.gz": {
+      "rows": 61320,
+      "sha256": "703cb93e1bc1a4b5c8727b20492a8d232e72e0d2d508ec234dfe88f1fe813216"
+    },
+    "qx00005_continuous_soc_summary.csv": {
+      "rows": 40,
+      "sha256": "5a72dc892c37b89add5ee769e44f2b76817aec6b95de8db945f6d29b347a3b83"
+    }
+  },
+  "rcap_frontier_completed": false,
+  "report_update_allowed": false,
+  "retirement_candidates_enabled": false,
+  "rigid_capacity_rule": "DeltaS <= max(2.0*P_plus_y - S_2021, 0)",
+  "rigid_policy": "legacy_capacity_grandfathered_incremental_Rcap_2.0",
+  "sensitivity_completed": false,
+  "status": "baseline_policy_paths_with_audited_qx00005_continuous_soc",
+  "timeseries_formal_hourly_use_allowed": true
+}

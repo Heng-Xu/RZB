@@ -1,0 +1,674 @@
+{
+  "baseline_definition": "actual_2021_installed_capacity_with_existing_capacity_grandfathered",
+  "baseline_evidence_files": [
+    {
+      "bytes": 2925,
+      "file": "baseline/manifest.json",
+      "role": "baseline",
+      "sha256": "0a45ba695aa71691f2aca7e4da7554c75095cf8b980a03013835c78446d5f6e0"
+    },
+    {
+      "bytes": 3172,
+      "file": "baseline/policy_2025_summary.csv",
+      "role": "baseline",
+      "sha256": "892f3f90c7ff69f165de8084ccd138ebbe92cd528343a3fd51a3bfab8f725c38"
+    },
+    {
+      "bytes": 2120,
+      "file": "baseline/policy_cost_comparison.csv",
+      "role": "baseline",
+      "sha256": "cc0d5b28347cd0ea2ce160b1decb68452204675f6fa8dabff9da68793fcbaaeb"
+    },
+    {
+      "bytes": 29241,
+      "file": "baseline/policy_path_year_results.csv",
+      "role": "baseline",
+      "sha256": "325a582ad110f684af320d5e0d19b39579c9fc1194adecc74d84e946feda4d65"
+    },
+    {
+      "bytes": 2631,
+      "file": "baseline/policy_path_action_results.csv",
+      "role": "baseline",
+      "sha256": "de1920854be9fa78aae4f2551cf9ba938c91acb0f9f903f9d8d5342ef0e7e98b"
+    },
+    {
+      "bytes": 1832,
+      "file": "baseline/policy_path_cost_breakdown.csv",
+      "role": "baseline",
+      "sha256": "d7bb5f0cf8b4a27defada0759795e8a05aaf353c708ff650b99b749219854969"
+    },
+    {
+      "bytes": 17478,
+      "file": "baseline/actual_path_year_results.csv",
+      "role": "baseline",
+      "sha256": "40f810c9080caefaa2949c79adf83f28a99979efe3a656828b901bc87906b330"
+    },
+    {
+      "bytes": 14463,
+      "file": "baseline/actual_path_action_results.csv",
+      "role": "baseline",
+      "sha256": "1c9ec069e3713ada9998901d7537d2baf73d6f6619905d1da0ce1dc2aae2ec2e"
+    },
+    {
+      "bytes": 1535,
+      "file": "baseline/actual_path_cost_breakdown.csv",
+      "role": "baseline",
+      "sha256": "5831999e7649d7ee3877edbcaa383a788c739beebd820b6277bc07987064f78b"
+    },
+    {
+      "bytes": 2513,
+      "file": "baseline/region_gap_summary.csv",
+      "role": "baseline",
+      "sha256": "f657fa547e902764599f8bd8421091e24585a85144a18cf082892c4a2c4f073f"
+    },
+    {
+      "bytes": 26104,
+      "file": "baseline/station_gap_diagnostics.csv",
+      "role": "baseline",
+      "sha256": "74db29a96bba12a9d48c3473f7d4404aaba94d4f09185e2e604e382e9df8c5c9"
+    },
+    {
+      "bytes": 2883,
+      "file": "baseline/initial_physical_diagnostics.csv",
+      "role": "baseline",
+      "sha256": "06d7510221a7144b87b623dc1959c251ccbec33aefb06188536a29e1d7484a3c"
+    },
+    {
+      "bytes": 4023,
+      "file": "baseline/qx00005_chronology_comparison.csv",
+      "role": "baseline",
+      "sha256": "8d60a9c924caa05d50a5d99fe7e2f327d2ba378dc847612e61bbc1ae294fb6b6"
+    },
+    {
+      "bytes": 1892,
+      "file": "baseline/cost_library/cost_assumptions.csv",
+      "role": "baseline_cost_library",
+      "sha256": "b7aa537b2c2eea07a8360ae4ef504747ffac53ddd056a4ce5e96de2eec1ecce6"
+    },
+    {
+      "bytes": 984,
+      "file": "baseline/cost_library/cost_manifest.json",
+      "role": "baseline_cost_library",
+      "sha256": "b26809bfb91545b8951fdc3cdfa36937b727a0ec9016394e2ffd40fc2c8a7843"
+    },
+    {
+      "bytes": 58832,
+      "file": "baseline/cost_library/expansion_cost_library.csv",
+      "role": "baseline_cost_library",
+      "sha256": "35595148cef4718f01c0e926c0749538428e98e7f8ea0c58d4af9745002fe024"
+    },
+    {
+      "bytes": 2199,
+      "file": "baseline/cost_library/storage_module_cost_boundaries.csv",
+      "role": "baseline_cost_library",
+      "sha256": "59d11f3de2fd8b8dfb8451b885b4fb424f4d5c5028b2a67f9d0f01e7d5334056"
+    },
+    {
+      "bytes": 1030,
+      "file": "baseline/time_physics/empirical_duration_manifest.json",
+      "role": "baseline_time_physics",
+      "sha256": "245efbd6551d449f4cf439ad209ac95b2ee80280ae7f32e02c45da9d2d690574"
+    },
+    {
+      "bytes": 421835,
+      "file": "baseline/time_physics/empirical_scenario_index.csv",
+      "role": "baseline_time_physics",
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "bytes": 2596,
+      "file": "baseline/time_physics/empirical_scenario_issues.csv",
+      "role": "baseline_time_physics",
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "bytes": 162016,
+      "file": "baseline/time_physics/empirical_station_scenarios.csv.gz",
+      "role": "baseline_time_physics",
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "bytes": 985228,
+      "file": "baseline/qx00005_soc/qx00005_continuous_soc_8760.csv.gz",
+      "role": "baseline_qx00005_soc",
+      "sha256": "703cb93e1bc1a4b5c8727b20492a8d232e72e0d2d508ec234dfe88f1fe813216"
+    },
+    {
+      "bytes": 10621,
+      "file": "baseline/qx00005_soc/qx00005_continuous_soc_summary.csv",
+      "role": "baseline_qx00005_soc",
+      "sha256": "5a72dc892c37b89add5ee769e44f2b76817aec6b95de8db945f6d29b347a3b83"
+    }
+  ],
+  "baseline_manifest_sha256": "0a45ba695aa71691f2aca7e4da7554c75095cf8b980a03013835c78446d5f6e0",
+  "contract_sha256": "31f277767ea98ede89de794357bfce88a88de2cf45943cd1e70b0cc6b700958f",
+  "dataset_id": "real_2021_2025",
+  "direct_policy_cost_comparison": "allowed_when_both_paths_feasible_on_same_actual_baseline",
+  "formal_paths": [
+    "PATH_ACTUAL_2021_2025",
+    "PATH_OPT_CLR_UNBOUNDED",
+    "PATH_OPT_CLR_LE_2"
+  ],
+  "frontier_points": 136,
+  "model_version": "3.2.0",
+  "notes": [
+    "Rcap推荐不与实现CLR取交集",
+    "非绑定片区不强制给推荐Rcap数值",
+    "EENS和弃光未建模，不以0填充",
+    "10kV局部案例为容量包络/局部工程化互济分析，不是完整AC潮流"
+  ],
+  "output_files": {
+    "baseline/actual_path_action_results.csv": {
+      "bytes": 14463,
+      "sha256": "1c9ec069e3713ada9998901d7537d2baf73d6f6619905d1da0ce1dc2aae2ec2e"
+    },
+    "baseline/actual_path_cost_breakdown.csv": {
+      "bytes": 1535,
+      "sha256": "5831999e7649d7ee3877edbcaa383a788c739beebd820b6277bc07987064f78b"
+    },
+    "baseline/actual_path_year_results.csv": {
+      "bytes": 17478,
+      "sha256": "40f810c9080caefaa2949c79adf83f28a99979efe3a656828b901bc87906b330"
+    },
+    "baseline/cost_library/cost_assumptions.csv": {
+      "bytes": 1892,
+      "sha256": "b7aa537b2c2eea07a8360ae4ef504747ffac53ddd056a4ce5e96de2eec1ecce6"
+    },
+    "baseline/cost_library/cost_manifest.json": {
+      "bytes": 984,
+      "sha256": "b26809bfb91545b8951fdc3cdfa36937b727a0ec9016394e2ffd40fc2c8a7843"
+    },
+    "baseline/cost_library/expansion_cost_library.csv": {
+      "bytes": 58832,
+      "sha256": "35595148cef4718f01c0e926c0749538428e98e7f8ea0c58d4af9745002fe024"
+    },
+    "baseline/cost_library/storage_module_cost_boundaries.csv": {
+      "bytes": 2199,
+      "sha256": "59d11f3de2fd8b8dfb8451b885b4fb424f4d5c5028b2a67f9d0f01e7d5334056"
+    },
+    "baseline/initial_physical_diagnostics.csv": {
+      "bytes": 2883,
+      "sha256": "06d7510221a7144b87b623dc1959c251ccbec33aefb06188536a29e1d7484a3c"
+    },
+    "baseline/policy_2025_summary.csv": {
+      "bytes": 3172,
+      "sha256": "892f3f90c7ff69f165de8084ccd138ebbe92cd528343a3fd51a3bfab8f725c38"
+    },
+    "baseline/policy_cost_comparison.csv": {
+      "bytes": 2120,
+      "sha256": "cc0d5b28347cd0ea2ce160b1decb68452204675f6fa8dabff9da68793fcbaaeb"
+    },
+    "baseline/policy_path_action_results.csv": {
+      "bytes": 2631,
+      "sha256": "de1920854be9fa78aae4f2551cf9ba938c91acb0f9f903f9d8d5342ef0e7e98b"
+    },
+    "baseline/policy_path_cost_breakdown.csv": {
+      "bytes": 1832,
+      "sha256": "d7bb5f0cf8b4a27defada0759795e8a05aaf353c708ff650b99b749219854969"
+    },
+    "baseline/policy_path_year_results.csv": {
+      "bytes": 29241,
+      "sha256": "325a582ad110f684af320d5e0d19b39579c9fc1194adecc74d84e946feda4d65"
+    },
+    "baseline/qx00005_chronology_comparison.csv": {
+      "bytes": 4023,
+      "sha256": "8d60a9c924caa05d50a5d99fe7e2f327d2ba378dc847612e61bbc1ae294fb6b6"
+    },
+    "baseline/qx00005_soc/qx00005_continuous_soc_8760.csv.gz": {
+      "bytes": 985228,
+      "sha256": "703cb93e1bc1a4b5c8727b20492a8d232e72e0d2d508ec234dfe88f1fe813216"
+    },
+    "baseline/qx00005_soc/qx00005_continuous_soc_summary.csv": {
+      "bytes": 10621,
+      "sha256": "5a72dc892c37b89add5ee769e44f2b76817aec6b95de8db945f6d29b347a3b83"
+    },
+    "baseline/region_gap_summary.csv": {
+      "bytes": 2513,
+      "sha256": "f657fa547e902764599f8bd8421091e24585a85144a18cf082892c4a2c4f073f"
+    },
+    "baseline/station_gap_diagnostics.csv": {
+      "bytes": 26104,
+      "sha256": "74db29a96bba12a9d48c3473f7d4404aaba94d4f09185e2e604e382e9df8c5c9"
+    },
+    "baseline/time_physics/empirical_duration_manifest.json": {
+      "bytes": 1030,
+      "sha256": "245efbd6551d449f4cf439ad209ac95b2ee80280ae7f32e02c45da9d2d690574"
+    },
+    "baseline/time_physics/empirical_scenario_index.csv": {
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    "baseline/time_physics/empirical_scenario_issues.csv": {
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    "baseline/time_physics/empirical_station_scenarios.csv.gz": {
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    "data_quality_review.csv": {
+      "bytes": 1618,
+      "sha256": "d6deca06e08941c961d05a64b2efedb8f674cfabeab1ef71e69583910d9dfed1"
+    },
+    "elasticity_frontier_v32_actual_coarse.csv": {
+      "bytes": 23521,
+      "sha256": "33ee8e4508b7e26a64dc030cd0cf6b559e1db6891c71b50fb8e73f3e087fc14a"
+    },
+    "elasticity_frontier_v32_actual_refined.csv": {
+      "bytes": 18487,
+      "sha256": "552e232e486f897997e28076d685acb3b64906598513e4c311927b2204a67b92"
+    },
+    "figures/10kv_local_case_boundary.png": {
+      "bytes": 159906,
+      "sha256": "34a2ce57c41bea5fb5b213f343764b87bf4c308b0e1735dff2521019337dd4b1"
+    },
+    "figures/constraint_gap_summary.png": {
+      "bytes": 62623,
+      "sha256": "98c008629d9071094eb61f173ac8a5070aefcac23c54e6a707b60cd501e25b4b"
+    },
+    "figures/qx00005_soc_8760.png": {
+      "bytes": 260855,
+      "sha256": "e4903120b6d07502cf745064ae137238c8972d6be54ecbf9baacba06d71a3147"
+    },
+    "figures/rcap_capacity_storage.png": {
+      "bytes": 92612,
+      "sha256": "2d0b536764ddf9b5e3338f5189dd6dad91515e8b11705aeaa4610a88304367dd"
+    },
+    "figures/rcap_cost_frontier.png": {
+      "bytes": 101134,
+      "sha256": "e0e18bc63112e9a87de5f5c119136b93fabbd26f7c037bf70e097a4f056e30d3"
+    },
+    "formal_matrix_110kv.csv": {
+      "bytes": 11834,
+      "sha256": "d4b73db262499d7ade0d639de0451081af6ece9dedb66a0d632eaa89a0eb2f63"
+    },
+    "formal_matrix_110kv.docx": {
+      "bytes": 5400,
+      "sha256": "ed8a54c6c1a1dfcf09a1298be89b3f6f5c6e4563c999dcd9a797848ec6209b24"
+    },
+    "formal_matrix_110kv.md": {
+      "bytes": 4141,
+      "sha256": "5e8749629aa90663986d46829ed1e9a81a8387d2cb678470634b60f5d7ea76e1"
+    },
+    "formal_matrix_35kv.csv": {
+      "bytes": 11480,
+      "sha256": "64a7cec0b1e7785cbabf1de2798ffaf602ecf51437c1a6c019aa9889838056c5"
+    },
+    "formal_matrix_35kv.docx": {
+      "bytes": 5103,
+      "sha256": "248e945f21940d39d53b0d0ee675197c4d23dffc73118c2983430a991273e94d"
+    },
+    "formal_matrix_35kv.md": {
+      "bytes": 3887,
+      "sha256": "29932a0cc8f0d5e35c1b3f052652976926de755f970e6d12132e727cca61a574"
+    },
+    "formal_result_notes.md": {
+      "bytes": 361,
+      "sha256": "ff18f0a06ed8647132263ba113bc9a850b25432a7b8d1a30ec79b4b76ad3099a"
+    },
+    "model_science_review.md": {
+      "bytes": 4458,
+      "sha256": "5088c318421d335b04242330ffc637d0a994f5bca58447ebd362e92424ba5c8b"
+    },
+    "rcap_robust_near_optimal_summary.csv": {
+      "bytes": 6143,
+      "sha256": "0c71e204a4d7f8f1e90d2a118fcb38696f443e52f5a47e7ea8dc61f9b1f996c1"
+    },
+    "rcap_sensitivity_frontiers_coarse.csv": {
+      "bytes": 303345,
+      "sha256": "e763332d75aa09545d0f2385e9618042144582bdacb149be472cf8d67a6c549d"
+    },
+    "rcap_sensitivity_thresholds_coarse.csv": {
+      "bytes": 17629,
+      "sha256": "816fcc36bf39b1cfbd830f1ad17b1151c4956a3ed659b56b39f5be91c982d599"
+    },
+    "rcap_thresholds_v32_actual_coarse.csv": {
+      "bytes": 1730,
+      "sha256": "2939dceb36d40c3b4ec94b11dfe6b53ccc73fc4190ceba70a4f33dddf264da7a"
+    },
+    "rcap_thresholds_v32_actual_refined.csv": {
+      "bytes": 669,
+      "sha256": "8445820f7e89187bd000e5eca962620d3cf00c7285794cd502d200746d990111"
+    },
+    "report_support/10kv_case_conclusions.md": {
+      "bytes": 9210,
+      "sha256": "57687487c97bebce1f6624f14bd6dc97aacf992191c2eaf218babf47c989f0af"
+    },
+    "report_support/10kv_case_reanalysis.md": {
+      "bytes": 10725,
+      "sha256": "8ebe6dbb6ab4f02d10a1852be79097eab3b0b73506818ee49aad21f06ba38375"
+    },
+    "report_support/modeling_method_summary.md": {
+      "bytes": 12607,
+      "sha256": "690ece4865f981365772539488ae562553713bbc19a75b57278c66c7122b5b80"
+    },
+    "report_support/v32_final_review_and_freeze.md": {
+      "bytes": 9092,
+      "sha256": "17cc5711bfa626a6e8f574969a920191262ad7dc2ad85846f768bf8698284946"
+    }
+  },
+  "processed_manifest_sha256": "18a4570a6078e3e2673e710a34c85e79f5c3b8703d4f2fa1c66991c058881985",
+  "rcap_definition": "planning_period_incremental_capacity_control_on_110kv_only",
+  "refined_frontier_points": 104,
+  "report_facing_ids_only": true,
+  "report_support_files": [
+    {
+      "bytes": 12607,
+      "file": "report_support/modeling_method_summary.md",
+      "role": "report_support",
+      "sha256": "690ece4865f981365772539488ae562553713bbc19a75b57278c66c7122b5b80",
+      "source": "分析/2026-08-26-建模思路与真实方法总结_甲方汇报辅助.md"
+    },
+    {
+      "bytes": 10725,
+      "file": "report_support/10kv_case_reanalysis.md",
+      "role": "report_support",
+      "sha256": "8ebe6dbb6ab4f02d10a1852be79097eab3b0b73506818ee49aad21f06ba38375",
+      "source": "分析/2026-08-26-10kV联络案例重分析_收资定稿口径.md"
+    },
+    {
+      "bytes": 9210,
+      "file": "report_support/10kv_case_conclusions.md",
+      "role": "report_support",
+      "sha256": "57687487c97bebce1f6624f14bd6dc97aacf992191c2eaf218babf47c989f0af",
+      "source": "docs/TIE-CASE-CONCLUSIONS.md"
+    },
+    {
+      "bytes": 9092,
+      "file": "report_support/v32_final_review_and_freeze.md",
+      "role": "report_support",
+      "sha256": "17cc5711bfa626a6e8f574969a920191262ad7dc2ad85846f768bf8698284946",
+      "source": "分析/2026-08-29-v3.2模型终审与冻结记录.md"
+    }
+  ],
+  "run_evidence_inventory": {
+    "frontier_coarse": [
+      {
+        "bytes": 1635,
+        "role": "frontier_coarse",
+        "sha256": "f72b2f5ad67b565828a095f3cc1d4fedeaebd24f33e190eec1dda5fea86c4511",
+        "source": "/tmp/rzb-v32-frontier/1.5/frontier_point.csv"
+      },
+      {
+        "bytes": 1620,
+        "role": "frontier_coarse",
+        "sha256": "3c067cce132e7b57d638265e6cc2f4e91dc9edc967fbb2f34edd6df28e5297b7",
+        "source": "/tmp/rzb-v32-frontier/1.6/frontier_point.csv"
+      },
+      {
+        "bytes": 1650,
+        "role": "frontier_coarse",
+        "sha256": "f3b111d03798ab4857e55a1262396ed7596167465aee5d30a300920ebf59ff88",
+        "source": "/tmp/rzb-v32-frontier/1.7/frontier_point.csv"
+      },
+      {
+        "bytes": 1635,
+        "role": "frontier_coarse",
+        "sha256": "22eab40cef43fd8510ef0e87926de52d16292b1127232ef1d86598baf514d434",
+        "source": "/tmp/rzb-v32-frontier/1.8/frontier_point.csv"
+      },
+      {
+        "bytes": 1650,
+        "role": "frontier_coarse",
+        "sha256": "ea37d0cb433bb173a7acf4008ab968fcab395729d48c2c7bff45e0b796253f20",
+        "source": "/tmp/rzb-v32-frontier/1.9/frontier_point.csv"
+      },
+      {
+        "bytes": 1620,
+        "role": "frontier_coarse",
+        "sha256": "646ee36d9a8a6c28ee46443941372dfced276f1a88cc928c9bb03596deb9c244",
+        "source": "/tmp/rzb-v32-frontier/2.0/frontier_point.csv"
+      },
+      {
+        "bytes": 1634,
+        "role": "frontier_coarse",
+        "sha256": "fe9a5f091aeeb697e9bcbe1cac517eda269216c46c6a4fdc4ad00bba67da17db",
+        "source": "/tmp/rzb-v32-frontier/2.1/frontier_point.csv"
+      },
+      {
+        "bytes": 1696,
+        "role": "frontier_coarse",
+        "sha256": "3e58c30b7f2e161cd1107c6d08ee089add2051218f1a209aa9e5a87530265cbb",
+        "source": "/tmp/rzb-v32-frontier/2.2/frontier_point.csv"
+      },
+      {
+        "bytes": 1726,
+        "role": "frontier_coarse",
+        "sha256": "48f20742a840b7d7fd6627703ab01f1577a52cf540afe72cfe29abf0869454ea",
+        "source": "/tmp/rzb-v32-frontier/2.3/frontier_point.csv"
+      },
+      {
+        "bytes": 1773,
+        "role": "frontier_coarse",
+        "sha256": "7a0138ecbc887299036943f8d07938b7df75e7701bc8eddfc55656cb0f75178b",
+        "source": "/tmp/rzb-v32-frontier/2.4/frontier_point.csv"
+      },
+      {
+        "bytes": 1773,
+        "role": "frontier_coarse",
+        "sha256": "ac7741adb98d90f6791d173a9cd8e8cf5b5394623696f1bac96de647afaa142e",
+        "source": "/tmp/rzb-v32-frontier/2.5/frontier_point.csv"
+      },
+      {
+        "bytes": 1773,
+        "role": "frontier_coarse",
+        "sha256": "806f2daabe52865e9bca3320f825d2fe1cafeb75c2ca4aa639a457aa962cc2b9",
+        "source": "/tmp/rzb-v32-frontier/2.6/frontier_point.csv"
+      },
+      {
+        "bytes": 1773,
+        "role": "frontier_coarse",
+        "sha256": "0f5a201816a6b13d47963a191ace4f59fb2b2ca10874e17e7199865342b76617",
+        "source": "/tmp/rzb-v32-frontier/2.7/frontier_point.csv"
+      },
+      {
+        "bytes": 1773,
+        "role": "frontier_coarse",
+        "sha256": "580583e654da7ab69125183732ab461f63291428b247b80853132133d7567116",
+        "source": "/tmp/rzb-v32-frontier/2.8/frontier_point.csv"
+      },
+      {
+        "bytes": 1773,
+        "role": "frontier_coarse",
+        "sha256": "88f6eb0ed9b416b663c29727bdbb7343b2b5a0ea1d75c4921d11df514c45b47e",
+        "source": "/tmp/rzb-v32-frontier/2.9/frontier_point.csv"
+      },
+      {
+        "bytes": 1787,
+        "role": "frontier_coarse",
+        "sha256": "b3bdd0dbe5016855c84e8259a8dc5788b1d9af4003c61eeaf0a4c9e8a6ff0258",
+        "source": "/tmp/rzb-v32-frontier/3.0/frontier_point.csv"
+      },
+      {
+        "bytes": 1643,
+        "role": "frontier_coarse",
+        "sha256": "16063d292164ad2cbd271def52edb5e0ae53be4ed20df2340e2eea19d9e156d7",
+        "source": "/tmp/rzb-v32-frontier/unbounded/frontier_point.csv"
+      }
+    ],
+    "frontier_refined": [
+      {
+        "bytes": 1687,
+        "role": "frontier_refined",
+        "sha256": "698596b7a724d595089f262392d5257dc04a346a478599133d16903fa19de5d3",
+        "source": "/tmp/rzb-v32-refinement/2.165/frontier_point.csv"
+      },
+      {
+        "bytes": 1668,
+        "role": "frontier_refined",
+        "sha256": "434c7dbfc8f3939418ea954545bfbe58a8abaffd81d0855b7e259910a1852e0d",
+        "source": "/tmp/rzb-v32-refinement/2.170/frontier_point.csv"
+      },
+      {
+        "bytes": 1687,
+        "role": "frontier_refined",
+        "sha256": "597025cfeb6e75f767fcfd316e5a0dababcd7173e9f14b94cdf2ef61c43dfcb8",
+        "source": "/tmp/rzb-v32-refinement/2.171/frontier_point.csv"
+      },
+      {
+        "bytes": 1734,
+        "role": "frontier_refined",
+        "sha256": "f01e7a30c5072807cb77d7762eec960f3729faa2cff8db2e9b0db335e0e98b19",
+        "source": "/tmp/rzb-v32-refinement/2.172/frontier_point.csv"
+      },
+      {
+        "bytes": 1734,
+        "role": "frontier_refined",
+        "sha256": "3289ba8008e35348d941b06e994dd2d5ba03c056da887eb0e9bc76aeb3542392",
+        "source": "/tmp/rzb-v32-refinement/2.175/frontier_point.csv"
+      },
+      {
+        "bytes": 1715,
+        "role": "frontier_refined",
+        "sha256": "2e3a0e934286a0ef002433fd16f4cf6a386356d4e90b18277653d9c9988e8b4d",
+        "source": "/tmp/rzb-v32-refinement/2.180/frontier_point.csv"
+      },
+      {
+        "bytes": 1743,
+        "role": "frontier_refined",
+        "sha256": "5a907948c98815b4cca1ff309071667305bd686b1586f342cc4d83d2f909aab6",
+        "source": "/tmp/rzb-v32-refinement/2.350/frontier_point.csv"
+      },
+      {
+        "bytes": 1760,
+        "role": "frontier_refined",
+        "sha256": "5baa2dc8c7037cac0b350dc82f70ee94d372f836f4755b347a08fc3c1afb0833",
+        "source": "/tmp/rzb-v32-refinement/2.355/frontier_point.csv"
+      },
+      {
+        "bytes": 1760,
+        "role": "frontier_refined",
+        "sha256": "2c62b1c7b214fbcfbc137ef0a1d5128b8130d49802fb79e5ac31f8dfb9193471",
+        "source": "/tmp/rzb-v32-refinement/2.359/frontier_point.csv"
+      },
+      {
+        "bytes": 1790,
+        "role": "frontier_refined",
+        "sha256": "8a1672a49485074a30e87f60e2b7e9f04e0c9c174f127f17bdec52e9794b7e77",
+        "source": "/tmp/rzb-v32-refinement/2.360/frontier_point.csv"
+      },
+      {
+        "bytes": 1807,
+        "role": "frontier_refined",
+        "sha256": "67d2950f38ba08b596362ad5717470f8edf4ec4ac89c98c2a696ca300637b33f",
+        "source": "/tmp/rzb-v32-refinement/2.365/frontier_point.csv"
+      },
+      {
+        "bytes": 1790,
+        "role": "frontier_refined",
+        "sha256": "fd850b4ed18f466ac6de3d9d929e2c73e968e42e8a6b5deed93c3a06467b45a1",
+        "source": "/tmp/rzb-v32-refinement/2.370/frontier_point.csv"
+      },
+      {
+        "bytes": 1643,
+        "role": "frontier_refined",
+        "sha256": "16063d292164ad2cbd271def52edb5e0ae53be4ed20df2340e2eea19d9e156d7",
+        "source": "/tmp/rzb-v32-refinement/unbounded/frontier_point.csv"
+      }
+    ],
+    "sensitivity_coarse": [
+      {
+        "bytes": 26158,
+        "role": "sensitivity_coarse",
+        "sha256": "8c0ed45d40fe14e05fe96811d03f3c3a6de86d99f9f0083d16b312a4bd7ef743",
+        "source": "/tmp/rzb-v32-sensitivity/pf090_beta080/parameter_frontier.csv"
+      },
+      {
+        "bytes": 26335,
+        "role": "sensitivity_coarse",
+        "sha256": "65e447435f2e9f1a93040871537f4d47d52f76d90a176c78f566b02f33884ca1",
+        "source": "/tmp/rzb-v32-sensitivity/pf095_beta060/parameter_frontier.csv"
+      },
+      {
+        "bytes": 26335,
+        "role": "sensitivity_coarse",
+        "sha256": "d3b31ef3c439c08b5aa64a1607a45018f9eb513e42d289976448fc0758800d99",
+        "source": "/tmp/rzb-v32-sensitivity/pf095_beta080/parameter_frontier.csv"
+      },
+      {
+        "bytes": 26335,
+        "role": "sensitivity_coarse",
+        "sha256": "1cf06dba5f3610d0b44e609c22c08a04b2380b71c0a32be0bff379601175ec41",
+        "source": "/tmp/rzb-v32-sensitivity/pf095_beta100/parameter_frontier.csv"
+      },
+      {
+        "bytes": 26062,
+        "role": "sensitivity_coarse",
+        "sha256": "4078c532b123c6308910e9dd3fc5981d38c1e1ffda1cd86311d9ff502acb98b2",
+        "source": "/tmp/rzb-v32-sensitivity/pf100_beta080/parameter_frontier.csv"
+      }
+    ],
+    "stress_coarse": [
+      {
+        "bytes": 28984,
+        "role": "stress_coarse",
+        "sha256": "9921fcfc0d659de6e62013ff3cc4cab34f3b90893a463e111535c7607ca3b384",
+        "source": "/tmp/rzb-v32-sensitivity-suite/expansion_cost_080/parameter_frontier.csv"
+      },
+      {
+        "bytes": 28984,
+        "role": "stress_coarse",
+        "sha256": "fe2ab7c1e6f563fd1040be090284ce0507125d24227934f72035f5bdd0fae954",
+        "source": "/tmp/rzb-v32-sensitivity-suite/expansion_cost_120/parameter_frontier.csv"
+      },
+      {
+        "bytes": 29235,
+        "role": "stress_coarse",
+        "sha256": "8192349fca76035bc911d0a53200ed2cc2568bfcae347f3b232d0a16c43eaf89",
+        "source": "/tmp/rzb-v32-sensitivity-suite/net_load_095/parameter_frontier.csv"
+      },
+      {
+        "bytes": 29823,
+        "role": "stress_coarse",
+        "sha256": "487f7beff47510de88ca0be53a8f31df3bec6802f9d57ca4ff417aea39276dcc",
+        "source": "/tmp/rzb-v32-sensitivity-suite/net_load_105/parameter_frontier.csv"
+      },
+      {
+        "bytes": 28953,
+        "role": "stress_coarse",
+        "sha256": "e9610eff5aeb79e4d18ad879432ce09215d29edc162daf9de5353011e78b60c4",
+        "source": "/tmp/rzb-v32-sensitivity-suite/storage_cost_080/parameter_frontier.csv"
+      },
+      {
+        "bytes": 28914,
+        "role": "stress_coarse",
+        "sha256": "95bddb7229bff02a059fdbdd387d8f1a0d2e4f0e41e02560fc79c7ca94cac177",
+        "source": "/tmp/rzb-v32-sensitivity-suite/storage_cost_120/parameter_frontier.csv"
+      }
+    ]
+  },
+  "sensitivity_scenarios": [
+    "pf0.90_beta0.80",
+    "pf0.95_beta0.60",
+    "pf0.95_beta0.80",
+    "pf0.95_beta0.80_ec0.80",
+    "pf0.95_beta0.80_ec1.20",
+    "pf0.95_beta0.80_nl0.95",
+    "pf0.95_beta0.80_nl1.05",
+    "pf0.95_beta0.80_sc0.80",
+    "pf0.95_beta0.80_sc1.20",
+    "pf0.95_beta1.00",
+    "pf1.00_beta0.80"
+  ],
+  "source_files": [
+    {
+      "bytes": 7848,
+      "role": "processed_manifest",
+      "sha256": "18a4570a6078e3e2673e710a34c85e79f5c3b8703d4f2fa1c66991c058881985",
+      "source_label": "data/processed/real_2021_2025/manifest.json"
+    },
+    {
+      "bytes": 23074,
+      "role": "model_contract",
+      "sha256": "31f277767ea98ede89de794357bfce88a88de2cf45943cd1e70b0cc6b700958f",
+      "source_label": "model_contract.yaml"
+    },
+    {
+      "bytes": 2925,
+      "role": "baseline_manifest",
+      "sha256": "0a45ba695aa71691f2aca7e4da7554c75095cf8b980a03013835c78446d5f6e0",
+      "source_label": "/tmp/rzb-v32-baseline-frozen/manifest.json"
+    }
+  ],
+  "status": "MODEL V3.2 FROZEN"
+}

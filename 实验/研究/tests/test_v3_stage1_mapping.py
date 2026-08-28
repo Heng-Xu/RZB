@@ -130,7 +130,7 @@ def test_v3_manifest_records_gate_and_input_output_hashes(processed: tuple[Path,
     output, manifest = processed
     saved = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
     assert saved["dataset_id"] == "real_2021_2025"
-    assert saved["contract_version"] == "3.1.0"
+    assert saved["contract_version"] == "3.2.0"
     assert saved["timeseries_gate"]["grade_a_ready"] is False
     assert saved["timeseries_gate"]["annual_gate_rule"] == "annual_asset_whitelist"
     assert saved["source_files"]

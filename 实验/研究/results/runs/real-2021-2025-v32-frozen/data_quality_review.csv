@@ -1,0 +1,12 @@
+check_id,status,finding,evidence
+DQ-001,通过,标准化数据 manifest、源文件 SHA-256 和年度表 lineage 可回查,data/processed/real_2021_2025/manifest.json
+DQ-002,通过,2025 年 QX-00005 110 kV 运行口径为 20 座站、40 台主变，年末新增设备未混入,annual_asset_whitelist.csv
+DQ-003,通过,2024 年三个异常值保留原值并隔离,data_quality_issues.csv
+DQ-004,限制,2021 官方年度锚点与当前设备投运范围不能还原历史设备动作，实际路径成本保持未识别,annual_asset_reconciliation.csv;actual_path_cost_breakdown.csv
+DQ-005,限制,少数静态站表与主变主数据存在未静默修正的编码范围差异,station_gap_diagnostics.csv;initial_physical_diagnostics.csv
+DQ-006,假设,扩建候选缺少可用年份时按 2022 年起可用，带质量标记,baseline/cost_library/expansion_cost_library.csv
+DQ-007,限制,光伏为 2026 站级快照，与 2025 负荷组合只作跨年背景量，不作历史回测,station_pv_snapshot.csv;formal_matrix_110kv.csv
+DQ-008,边界,缺少同步负荷—光伏分解和馈线点位，不执行纯光伏敏感性或随机撒点事实化,model_contract.yaml;formal_result_notes.md
+DQ-009,边界,QX-00005 以外片区采用经验时长情景，证据等级不高于 B,baseline/time_physics/empirical_scenario_index.csv
+DQ-010,边界,六馈线结构化拓扑为碎片森林，跨站联络后电压和支路负载不升级为完整 AC 结论,docs/TIE-CASE-CONCLUSIONS.md
+DQ-011,边界,缺少阻抗时只做内部容量网络压力筛查，不声称精确 AC/DC 潮流,formal_matrix_110kv.md;model_science_review.md

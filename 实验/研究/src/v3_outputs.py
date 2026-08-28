@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+import yaml
 
 
 class V3OutputError(ValueError):
@@ -36,10 +37,10 @@ WORD_PATH_LABELS = {
 WORD_REQUIRED_DISPLAY_FIELDS = {
     "asset_scope_id",
     "evidence_grade",
-    "recommended_clr_interval",
-    "recommended_clr_center",
-    "recommended_clr_interval_effective_samples",
-    "recommended_clr_interval_method",
+    "recommended_rcap_interval",
+    "recommended_rcap_center",
+    "recommended_rcap_interval_effective_samples",
+    "recommended_rcap_interval_method",
     "capacity_base_mva",
     "positive_peak_base_mw",
     "reverse_peak_base_mw",
@@ -64,8 +65,8 @@ WORD_DISPLAY_GROUPS: tuple[tuple[str, tuple[tuple[str, str], ...]], ...] = (
         (
             ("资产范围", "asset_scope_id"),
             ("证据等级", "evidence_grade"),
-            ("推荐容载比区间", "recommended_clr_interval"),
-            ("推荐容载比中心值", "recommended_clr_center"),
+            ("推荐 Rcap 区间", "recommended_rcap_interval"),
+            ("推荐 Rcap 中心值", "recommended_rcap_center"),
             ("措施触发约束", "measure_trigger_constraint"),
             ("推荐措施", "recommended_measure"),
         ),
@@ -73,8 +74,8 @@ WORD_DISPLAY_GROUPS: tuple[tuple[str, tuple[tuple[str, str], ...]], ...] = (
     (
         "推荐区间依据",
         (
-            ("推荐区间有效样本数", "recommended_clr_interval_effective_samples"),
-            ("推荐区间形成方法", "recommended_clr_interval_method"),
+            ("推荐区间有效样本数", "recommended_rcap_interval_effective_samples"),
+            ("推荐区间形成方法", "recommended_rcap_interval_method"),
         ),
     ),
     (
@@ -187,13 +188,13 @@ def _format_word_value(field: str, value: Any) -> str:
                 if item.strip()
             ]
             return "、".join(dict.fromkeys(labels)) or "数据证据不足"
-        if field == "recommended_clr_interval":
+        if field == "recommended_rcap_interval":
             return text.replace("-", "–")
         return text
 
-    if field == "recommended_clr_interval_effective_samples" or field.endswith("_device_count"):
+    if field == "recommended_rcap_interval_effective_samples" or field.endswith("_device_count"):
         return str(int(value))
-    if field == "recommended_clr_center" or field.endswith("_clr_2025"):
+    if field == "recommended_rcap_center" or field.endswith("_clr_2025"):
         return f"{float(value):.3f}"
     if field.endswith("_cumulative_eac") or field == "strict_path_incremental_cost":
         return f"{float(value):,.2f}"
@@ -204,16 +205,26 @@ def _format_word_value(field: str, value: Any) -> str:
 
 def _build_word_rows(matrix: pd.DataFrame, voltage: int) -> list[dict[str, Any]]:
     """构造固定行序的 Word 展示行，不依赖 DataFrame 列顺序。"""
+    normalized = matrix.copy()
+    # 兼容历史调用方的机器列名；正式 v3.2 矩阵使用 Rcap 命名。
+    aliases = {
+        "recommended_clr_interval": "recommended_rcap_interval",
+        "recommended_clr_center": "recommended_rcap_center",
+        "recommended_clr_interval_effective_samples": "recommended_rcap_interval_effective_samples",
+        "recommended_clr_interval_method": "recommended_rcap_interval_method",
+    }
+    for old, current in aliases.items():
+        if current not in normalized.columns and old in normalized.columns:
+            normalized[current] = normalized[old]
     required = WORD_REQUIRED_DISPLAY_FIELDS | WORD_PATH_FIELDS
-    missing = sorted(required - set(matrix.columns))
+    missing = sorted(required - set(normalized.columns))
     if missing:
         raise V3OutputError(f"matrix missing Word display fields: {missing}")
-    if set(matrix["voltage_kv"].astype(int)) != {int(voltage)}:
+    if set(normalized["voltage_kv"].astype(int)) != {int(voltage)}:
         raise V3OutputError(f"Word matrix voltage mismatch for {voltage} kV")
-    if len(matrix) != 8 or matrix["region_id"].duplicated().any():
+    if len(normalized) != 8 or normalized["region_id"].duplicated().any():
         raise V3OutputError("formal matrix must contain eight unique regions")
 
-    normalized = matrix.copy()
     normalized["region_id"] = normalized["region_id"].astype(str)
     regions = sorted(normalized["region_id"].tolist())
     lookup = normalized.set_index("region_id").loc[regions]
@@ -221,7 +232,7 @@ def _build_word_rows(matrix: pd.DataFrame, voltage: int) -> list[dict[str, Any]]
         {
             "kind": "header",
             "field": None,
-            "cells": ["指标", *[f"片区{index:02d}" for index in range(1, 9)]],
+            "cells": ["指标", *regions],
         }
     ]
     for group, fields in WORD_DISPLAY_GROUPS:
@@ -289,7 +300,7 @@ def _cell_shading(kind: str, field: str | None, text: str, first_col: bool) -> t
         return "FCE4D6", "9C0006"
     if field and ("PATH_OPT_CLR_LE_2" in field or field == "strict_path_incremental_cost"):
         return "FFF2CC", "7F6000"
-    if field in {"recommended_clr_interval", "recommended_clr_center", "recommended_measure"}:
+    if field in {"recommended_rcap_interval", "recommended_rcap_center", "recommended_measure"}:
         return "E2F0D9", "375623"
     return "FFFFFF", "404040"
 
@@ -370,11 +381,11 @@ def _document_xml(title: str, rows: list[dict[str, Any]], voltage: int) -> str:
         if voltage == 110
         else "说明：35 kV 为辅助分析矩阵，不替代 110 kV 正式推荐；严格路径不可行的片区不形成正式唯一推荐。"
     )
-    subtitle = "8 片区｜2021 年共同基准｜2022—2025 年决策期｜2025 年价格口径"
+    subtitle = "8 个编码片区｜2021 年实际在役资产共同基准｜2022—2025 年决策期｜2025 年价格口径"
     footnotes = [
         "注：正式容载比只使用同电压等级公用变容量除以该路径、该年度同步正向最大净负荷；反向峰值和反向承载力单列。",
-        "注：推荐区间来自不限制容载比成本最小可行结果及已验证敏感性结果；“未识别”不等于 0，“不可行”不等于缺失。",
-        "注：数据映射、异常值、历史范围、成本闭合和跨年光伏快照见“实验/研究/分析/v3真实数据问题补充说明_供甲方汇报.md”。",
+        "注：推荐 Rcap 区间来自 Rcap—累计年化成本前沿、局部细化和同一 Rcap 维度的敏感性；不与实现 CLR 取交集。",
+        "注：数据映射、异常值、历史范围、成本闭合和跨年光伏快照见同目录模型科学性终审记录。",
     ]
     paragraphs = (
         _paragraph_xml(title, style="Title", align="center", bold=True, color="17365D", size=32, space_after=100)
@@ -407,7 +418,7 @@ def _styles_xml() -> str:
 def _footer_xml() -> str:
     return f'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:ftr xmlns:w="{W_NS}">
-  <w:p><w:pPr><w:jc w:val="center"/></w:pPr>{_run_xml("v3 真实数据｜Word 人工审查层｜精确查值以同目录 CSV 为准｜第 ", color="808080", size=14)}<w:r><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:instrText xml:space="preserve"> PAGE </w:instrText></w:r><w:r><w:fldChar w:fldCharType="end"/></w:r></w:p>
+  <w:p><w:pPr><w:jc w:val="center"/></w:pPr>{_run_xml("v3.2 真实数据｜Word 人工审查层｜精确查值以同目录 CSV 为准｜第 ", color="808080", size=14)}<w:r><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:instrText xml:space="preserve"> PAGE </w:instrText></w:r><w:r><w:fldChar w:fldCharType="end"/></w:r></w:p>
 </w:ftr>'''
 
 
@@ -460,6 +471,15 @@ def _write_csv(path: Path, frame: pd.DataFrame) -> None:
     frame.to_csv(path, index=False, lineterminator="\n", float_format="%.10g")
 
 
+def _contract_version(contract_path: Path) -> str:
+    """从实际契约读取产物版本，避免发布器继续写死旧版本。"""
+    document = yaml.safe_load(Path(contract_path).read_text(encoding="utf-8"))
+    version = document.get("contract", {}).get("version") if isinstance(document, dict) else None
+    if not version:
+        raise V3OutputError(f"contract version is missing: {contract_path}")
+    return str(version)
+
+
 def build_v3_artifacts(
     output_dir: Path,
     matrix_110: pd.DataFrame,
@@ -504,8 +524,9 @@ def build_v3_artifacts(
             ]
         )
     _write_csv(output_dir / "内部容量网络压力检查.csv", network_check)
+    version = _contract_version(contract_path)
     (output_dir / "问题台账.md").write_text(
-        "# v3 问题与修正台账\n\n" + (problem_log or "无新增问题。") + "\n",
+        f"# v{version} 问题与修正台账\n\n" + (problem_log or "无新增问题。") + "\n",
         encoding="utf-8",
     )
     output_files = {
@@ -515,12 +536,12 @@ def build_v3_artifacts(
     }
     manifest = {
         "dataset_id": "real_2021_2025",
-        "contract_version": "3.1.0",
+        "contract_version": version,
         "contract_sha256": _sha256(Path(contract_path)),
         "formal_matrices": {"110kv_rows": 8, "35kv_rows": 8},
         "voltage_separation": True,
         "formal_paths": ["PATH_ACTUAL_2021_2025", "PATH_OPT_CLR_UNBOUNDED", "PATH_OPT_CLR_LE_2"],
-        "word_presentation_version": "3.1",
+        "word_presentation_version": version.rsplit(".", 1)[0],
         "word_presentation_spec": "docs/WORD-MATRIX-PRESENTATION-SPEC.md",
         "output_files": output_files,
     }

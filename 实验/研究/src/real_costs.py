@@ -347,8 +347,8 @@ def build_real_cost_library(
     output_dir = Path(output_dir).resolve()
     contract_path = Path(contract_path).resolve()
     contract = yaml.safe_load(contract_path.read_text(encoding="utf-8"))
-    if contract["contract"]["version"] != "3.1.0":
-        raise RealCostError("v3 cost library requires model contract 3.1.0")
+    if contract["contract"]["version"] not in {"3.1.0", "3.2.0"}:
+        raise RealCostError("real cost library requires model contract 3.1.0 or 3.2.0")
     if contract["costs"]["expansion_capex"]["generic_800_wanyuan_per_50mva_allowed"]:
         raise RealCostError("generic 800-wanyuan expansion placeholder must be disabled")
     candidate_path = processed_root / "expansion_candidates.csv"

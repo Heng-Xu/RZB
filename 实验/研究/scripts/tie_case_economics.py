@@ -106,8 +106,8 @@ def main() -> int:
     args = parser.parse_args()
 
     contract = yaml.safe_load(Path(args.contract).read_text(encoding="utf-8"))
-    if contract["contract"]["version"] != "3.1.0":
-        raise SystemExit("requires model contract 3.1.0")
+    if str(contract["contract"]["version"]) not in {"3.1.0", "3.2.0"}:
+        raise SystemExit("requires model contract 3.1.0 or 3.2.0")
     module_power = float(contract["storage"]["module"]["power_mw"])
     case_root = Path(args.case_root)
     tie_output = Path(args.output)

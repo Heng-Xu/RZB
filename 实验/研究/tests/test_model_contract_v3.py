@@ -16,7 +16,7 @@ def _contract() -> dict:
 def test_v3_contract_uses_one_2021_baseline_and_three_paths() -> None:
     contract = _contract()
     assert contract["contract"]["id"] == "xuzhou-clr-real-data-2021-2025"
-    assert contract["contract"]["version"] == "3.1.0"
+    assert contract["contract"]["version"] == "3.2.0"
     assert contract["scope"]["common_baseline_year"] == 2021
     assert contract["scope"]["decision_years"] == [2022, 2023, 2024, 2025]
     assert set(contract["paths"]) == {
@@ -43,20 +43,13 @@ def test_v3_contract_uses_cumulative_eac_and_strict_clr_from_2022() -> None:
     assert objective["price_year"] == 2025
     assert objective["years"] == [2022, 2023, 2024, 2025]
     strict = contract["paths"]["PATH_OPT_CLR_LE_2"]
-    assert strict["clr_limit"] == 2.0
+    assert strict["rcap"] == 2.0
     assert strict["constraint_start_year"] == 2022
-    # 3.1.0: 严格路径起点为归一约定状态，废止跨口径 EAC 包含关系。
-    normalization = strict["baseline_normalization"]
-    assert normalization["applies_to_voltage_kv"] == [110]
-    assert (
-        normalization["formula"]
-        == "S0 = min(S_2021, 2 × min(P_2021, min_decision_year_peak))"
-    )
-    assert normalization["side"] == "capacity_only_peaks_remain_official_src08_anchors"
-    assert contract["optimization"]["invariants"] == [
-        "both_formal_paths_present_for_every_region_voltage",
-        "strict_path_clr_limit_applies_to_110kv_only",
-    ]
+    assert contract["planning_baseline"]["formula"] == "S0 = actual_2021_installed_capacity"
+    assert strict["legacy_capacity_grandfathered"] is True
+    assert strict["forced_retirement_for_rcap_compliance"] is False
+    assert "both_formal_paths_present_for_every_region_voltage" in contract["optimization"]["invariants"]
+    assert "elastic_cost_not_greater_than_rigid_cost_when_both_feasible" in contract["optimization"]["invariants"]
 
 
 def test_v3_contract_restores_elasticity_sweep_as_third_experiment() -> None:
@@ -67,8 +60,10 @@ def test_v3_contract_restores_elasticity_sweep_as_third_experiment() -> None:
     assert len(points) == 16
     assert all(abs(points[i + 1] - points[i] - 0.1) < 1e-9 for i in range(len(points) - 1))
     assert sweep["include_unbounded_point"] is True
-    assert sweep["baseline"] == "same_normalized_strict_start_state"
-    assert sweep["recommendation_rule"].strip() != ""
+    assert sweep["baseline"] == "same_actual_2021_asset_baseline_with_legacy_capacity_grandfathering"
+    assert sweep["recommendation_dimension"] == "Rcap"
+    assert sweep["forbidden_operation"] == "intersect_Rcap_interval_with_realized_CLR_interval"
+    assert sweep["robust_intersection_rule"].startswith("intersect_Rcap")
 
 
 def test_v3_mapping_gate_is_annual_asset_whitelist_based() -> None:
@@ -103,4 +98,3 @@ def test_project_constraints_and_skill_reference_v3_terms() -> None:
     }
     for text in (agents, skill, prompt):
         assert required <= {term for term in required if term in text}
-

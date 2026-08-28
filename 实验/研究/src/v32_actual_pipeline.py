@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -35,6 +36,53 @@ class V32ActualPipelineError(ValueError):
     """v3.2 实际资产主政策流水线不满足发布前置条件。"""
 
 
+def scale_annual_net_load_input(
+    annual: pd.DataFrame,
+    factor: float,
+) -> pd.DataFrame:
+    """构造净负荷比例压力场景，保留 2021 实际资产基线不变。
+
+    当前正式数据没有可同步拆分的负荷与光伏逐时对，因此这里不把场景
+    命名为“纯负荷”或“纯光伏”变化；正、反向净负荷峰值按同一比例缩放，
+    是可追溯的系统净负荷压力测试。
+    """
+    value = float(factor)
+    if not math.isfinite(value) or value <= 0:
+        raise V32ActualPipelineError("net-load sensitivity factor must be positive and finite")
+    out = annual.copy()
+    for column in (
+        "positive_peak_mw",
+        "reverse_peak_mw",
+        "forward_requirement_mw",
+        "reverse_requirement_mw",
+    ):
+        if column in out.columns:
+            out[column] = pd.to_numeric(out[column], errors="raise") * value
+    return out
+
+
+def scale_expansion_candidate_costs(
+    candidates: pd.DataFrame,
+    factor: float,
+) -> pd.DataFrame:
+    """只缩放扩建候选成本列，返回不改写来源的敏感性副本。"""
+    value = float(factor)
+    if not math.isfinite(value) or value <= 0:
+        raise V32ActualPipelineError("expansion-cost sensitivity factor must be positive and finite")
+    out = candidates.copy()
+    cost_columns = {
+        "capex_low_wanyuan",
+        "capex_center_wanyuan",
+        "capex_high_wanyuan",
+        "eac_low_wanyuan_per_year",
+        "eac_center_wanyuan_per_year",
+        "eac_high_wanyuan_per_year",
+    }
+    for column in sorted(cost_columns.intersection(out.columns)):
+        out[column] = pd.to_numeric(out[column], errors="raise") * value
+    return out
+
+
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with Path(path).open("rb") as handle:
@@ -47,6 +95,8 @@ def _prepare_expansion_candidates(
     processed_root: Path,
     run_dir: Path,
     base_contract_path: Path,
+    *,
+    expansion_cost_multiplier: float = 1.0,
 ) -> tuple[pd.DataFrame, dict[str, Any]]:
     """主模型只保留可追溯扩建/新建候选，不生成“为压CLR而退役”候选。"""
     cost_manifest = build_real_cost_library(
@@ -68,6 +118,10 @@ def _prepare_expansion_candidates(
         raise V32ActualPipelineError(
             "primary expansion library unexpectedly contains retirement candidates"
         )
+    candidates = scale_expansion_candidate_costs(
+        candidates,
+        float(expansion_cost_multiplier),
+    )
     return candidates, cost_manifest
 
 
@@ -76,9 +130,15 @@ def _planner_kwargs(
     evaluator: V32TimePhysicsEvaluator,
     *,
     cos_phi: float,
+    storage_cost_multiplier: float = 1.0,
 ) -> dict[str, Any]:
+    if not math.isfinite(float(storage_cost_multiplier)) or float(storage_cost_multiplier) <= 0:
+        raise V32ActualPipelineError(
+            "storage-cost sensitivity factor must be positive and finite"
+        )
+
     def storage_action_capex(modules: int) -> float:
-        return storage_capex_wanyuan(modules, contract)
+        return float(storage_cost_multiplier) * storage_capex_wanyuan(modules, contract)
 
     def storage_action_eac(modules: int) -> float:
         return annualized_eac_wanyuan(
@@ -139,6 +199,45 @@ def _policy_cost_comparison(costs: pd.DataFrame) -> pd.DataFrame:
                 "rigid_minus_elastic_eac_wanyuan": delta,
                 "direct_comparison_allowed": bool(both_feasible),
                 "comparison_basis": "same_actual_2021_asset_baseline_grandfathered_incremental_rcap",
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def _initial_physical_diagnostics(
+    annual: pd.DataFrame,
+    evaluator: V32TimePhysicsEvaluator,
+    *,
+    cos_phi: float,
+) -> pd.DataFrame:
+    """记录 2025 零动作状态的首个物理门禁结果。
+
+    优化器为搜索效率会把多种异常压缩成“无可行状态”；该底稿保留
+    站级时序回放返回的首因和可修复候选，供正式表解释“为什么没有
+    扩容结果”，但不把首因当成完整潮流证明。
+    """
+    evaluate = evaluator.evaluator(float(cos_phi))
+    scope = annual[annual["year"].astype(int).eq(2025)][
+        ["region_id", "voltage_kv"]
+    ].drop_duplicates().sort_values(["region_id", "voltage_kv"], kind="stable")
+    rows: list[dict[str, Any]] = []
+    for row in scope.itertuples(index=False):
+        result = evaluate(str(row.region_id), int(row.voltage_kv), 2025, ())
+        rows.append(
+            {
+                "region_id": str(row.region_id),
+                "voltage_kv": int(row.voltage_kv),
+                "year": 2025,
+                "selected_candidate_ids": "",
+                "feasible": bool(result.feasible),
+                "required_storage_modules": int(result.required_storage_modules),
+                "p_plus_mw": result.p_plus_mw,
+                "p_minus_mw": result.p_minus_mw,
+                "reason": str(result.reason),
+                "repair_candidate_ids": ";".join(result.repair_candidate_ids),
+                "improvement_candidate_ids": ";".join(result.improvement_candidate_ids),
+                "diagnostic_basis": "2025 zero-action station time-physics state; not a full AC潮流 result",
+                "cos_phi": float(cos_phi),
             }
         )
     return pd.DataFrame(rows)
@@ -257,14 +356,23 @@ def run_v32_actual_baseline(
     project_root: Path,
     processed_root: Path,
     run_dir: Path,
+    *,
+    contract_path: Path | None = None,
 ) -> dict[str, Any]:
     project_root = Path(project_root).resolve()
     processed_root = Path(processed_root).resolve()
     run_dir = Path(run_dir).resolve()
     run_dir.mkdir(parents=True, exist_ok=True)
 
-    contract = load_v32_contract(project_root)
-    base_contract_path = project_root / "model_contract.yaml"
+    base_contract_path = (
+        Path(contract_path).resolve()
+        if contract_path is not None
+        else project_root / "model_contract.yaml"
+    )
+    contract = load_v32_contract(
+        project_root,
+        base_filename=base_contract_path.name,
+    )
     if not (processed_root / "manifest.json").is_file():
         raise V32ActualPipelineError(
             "v3.2 requires the audited real_2021_2025 processed dataset"
@@ -295,6 +403,17 @@ def run_v32_actual_baseline(
         candidates,
         base_contract_path,
     )
+    initial_physics = _initial_physical_diagnostics(
+        annual,
+        evaluator,
+        cos_phi=cos_phi,
+    )
+    initial_physics.to_csv(
+        run_dir / "initial_physical_diagnostics.csv",
+        index=False,
+        lineterminator="\n",
+        float_format="%.10g",
+    )
     planner = run_actual_asset_policy_paths(
         annual,
         candidates,
@@ -314,6 +433,11 @@ def run_v32_actual_baseline(
     summary.to_csv(run_dir / "policy_2025_summary.csv", index=False)
     chronology = _chronology_comparison(evaluator, actions, cos_phi=cos_phi)
     chronology.to_csv(run_dir / "qx00005_chronology_comparison.csv", index=False)
+    soc_artifacts = evaluator.write_qx00005_continuous_soc_artifacts(
+        planner,
+        run_dir / "qx00005_soc",
+        cos_phi=cos_phi,
+    )
 
     _actual_path_year_results(processed_root).to_csv(
         run_dir / "actual_path_year_results.csv", index=False
@@ -326,9 +450,11 @@ def run_v32_actual_baseline(
     )
 
     manifest = {
-        "model_version": "3.2.0-candidate",
+        "model_version": "3.2.0",
+        "dataset_id": "real_2021_2025",
+        "contract_version": str(contract["contract"]["version"]),
         "model_role": "primary_actual_asset_grandfathered_incremental_rcap",
-        "status": "baseline_policy_paths_before_rcap_frontier_and_sensitivity",
+        "status": "baseline_policy_paths_with_audited_qx00005_continuous_soc",
         "processed_manifest_sha256": _sha256(processed_root / "manifest.json"),
         "base_contract_sha256": _sha256(base_contract_path),
         "cost_manifest": cost_manifest,
@@ -341,6 +467,12 @@ def run_v32_actual_baseline(
         "policy_control_ratio_is_internal_audit_metric": True,
         "qx00005_110kv_time_method": "approved_8760_continuous_soc_primary_plus_daily_cyclic_reference",
         "timeseries_formal_hourly_use_allowed": True,
+        "qx00005_continuous_soc_artifacts": soc_artifacts,
+        "initial_physical_diagnostics": {
+            "file": "initial_physical_diagnostics.csv",
+            "rows": int(len(initial_physics)),
+            "basis": "2025 zero-action station time-physics state; not a full AC潮流 result",
+        },
         "rcap_frontier_completed": False,
         "sensitivity_completed": False,
         "report_update_allowed": False,

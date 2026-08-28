@@ -182,7 +182,8 @@ def _required_storage_modules(
     p_plus = positive_peak_mw
     p_minus = reverse_peak_mw
     if path_id == PATH_OPT_STRICT:
-        # 3.1.0：CLR 按报告口径容量（归一约定起点）核算；物理容量只用于缺口与储能定容。
+        # v3.2：严格控制检查使用存量豁免后的规划辅助容量；正式物理 CLR
+        # 仍使用实际在役容量并在结果中单列。
         reporting = capacity_mva if clr_reporting_mva is None else clr_reporting_mva
         if p_plus <= 1e-12 or reporting / p_plus > clr_limit + 1e-9:
             raise V3PlannerError("strict CLR limit is infeasible for this installed state")
@@ -223,7 +224,8 @@ def _evaluate_state(
     capacity = base_capacity + sum(candidate.delta_capacity_mva for index, candidate in enumerate(candidates) if state_mask & (1 << index))
     if capacity <= 0:
         raise V3PlannerError("installed capacity must remain positive")
-    # 3.1.0 记账口径：报告容量 = 归一约定起点 + 同一动作增量；物理容量不变。
+    # v3.2 规划辅助容量 = 实际 2021 存量的控制基线 + 同一动作增量；
+    # 物理容量始终保留实际资产状态。
     reported_base = _numeric_column(
         annual_row, ("reported_baseline_capacity_mva",), default=base_capacity
     )

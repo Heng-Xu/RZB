@@ -1,0 +1,17 @@
+region_id,voltage_kv,year,selected_candidate_ids,feasible,required_storage_modules,p_plus_mw,p_minus_mw,reason,repair_candidate_ids,improvement_candidate_ids,diagnostic_basis,cos_phi
+QX-00001,35,2025,,False,85,,,BDZ-00249:storage_required_but_no_available_connection_bay,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00001,110,2025,,True,138,,,three_empirical_duration_scenarios_feasible,,EXP-QX-00001-BDZ-00058-01;EXP-QX-00001-BDZ-00105-01;EXP-QX-00001-BDZ-00116-01,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00003,35,2025,,True,145,,,three_empirical_duration_scenarios_feasible,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00003,110,2025,,True,173,,,three_empirical_duration_scenarios_feasible,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00004,35,2025,,False,206,,,BDZ-00287:storage_required_but_no_available_connection_bay,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00004,110,2025,,True,124,,,three_empirical_duration_scenarios_feasible,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00005,35,2025,,False,0,,,BDZ-00247:missing_three_scenarios_or_exact_8760,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00005,110,2025,,True,962,956.45,364.9549582,approved_2025_8760_continuous_soc_playback_feasible,,EXP-QX-00005-BDZ-00162-01;EXP-QX-00005-BDZ-00164-01,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00007,35,2025,,False,0,,,BDZ-00271:missing_three_scenarios_or_exact_8760,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00007,110,2025,,True,0,,,three_empirical_duration_scenarios_feasible,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00008,35,2025,,False,9,,,BDZ-00293:storage_required_but_no_available_connection_bay,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00008,110,2025,,False,55,,,BDZ-00043:storage_required_but_no_available_connection_bay,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00009,35,2025,,True,0,,,three_empirical_duration_scenarios_feasible,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00009,110,2025,,False,0,,,BDZ-00014:missing_three_scenarios_or_exact_8760,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00010,35,2025,,True,613,,,three_empirical_duration_scenarios_feasible,,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95
+QX-00010,110,2025,,False,2017,,,BDZ-00120:storage_required_but_no_available_connection_bay,EXP-QX-00010-BDZ-00120-01,,2025 zero-action station time-physics state; not a full AC潮流 result,0.95

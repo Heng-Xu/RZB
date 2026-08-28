@@ -1,4 +1,10 @@
-"""真实数据 v3 端到端流水线。"""
+"""历史 v3.1 端到端兼容层与 v3.2 数据适配辅助函数。
+
+正式 v3.2 入口是 ``src.v32_actual_pipeline``。本模块中的
+``run_v3_pipeline``、归一化严格基线和旧弹性扫描仅保留作历史回归，不能
+生成或证明 v3.2 正式结果；v3.2 只复用本模块的年度输入、时序门禁和事实
+路径读取辅助函数。
+"""
 from __future__ import annotations
 
 import json
@@ -446,7 +452,9 @@ def _network_screen(processed_root: Path) -> pd.DataFrame:
 
 
 def _apply_strict_baseline(annual: pd.DataFrame, processed_root: Path) -> pd.DataFrame:
-    """严格路径起点约定（2026-08-24 定版口径，记账式归一）。
+    """历史 v3.1 归一化严格基线，仅供旧结果回归，禁止用于 v3.2。
+
+    旧口径如下，不能作为当前研究方案：
 
     ``S0 = min(S_2021, 2 × min(P_2021, min决策年峰))`` 仅作为**报告口径**：
     写入新列 ``reported_baseline_capacity_mva``，用于严格路径的 CLR 计算
@@ -483,7 +491,7 @@ def _run_formal_paths(
     candidates: pd.DataFrame,
     planner_kwargs: dict[str, Any],
 ) -> dict[str, pd.DataFrame]:
-    """分别求解两条优化路径并合并为统一输出结构。
+    """历史 v3.1 两路径实现，仅供旧结果回归，禁止用于 v3.2。
 
     不限制路径使用实际 2021 基准；严格路径使用归一后的约定起点。
     110 kV 正式层保留逐年 ``R<=2.0`` 安全网；35 kV 辅助层按 AGENTS §5
@@ -587,7 +595,7 @@ def _run_elasticity_sweep(
     planner_kwargs: dict[str, Any],
     contract: dict[str, Any],
 ) -> pd.DataFrame | None:
-    """第三类实验：容载比上限弹性扫描（继承 2026-08-09 冻结方案，3.1.0 恢复）。
+    """历史 v3.1 弹性扫描，仅供旧结果回归，禁止用于 v3.2。
 
     在 110 kV 正式层以同一归一起点逐点求最优演进成本，产出
     「Rcap—累计在役EAC」前沿；无上限点即不限制路径口径。

@@ -69,11 +69,12 @@ def _write_manifest(output_root: Path, contract_path: Path, source_files: dict[s
     fingerprint = hashlib.sha256(
         json.dumps(payload, ensure_ascii=False, sort_keys=True).encode("utf-8")
     ).hexdigest()
+    contract_data = yaml.safe_load(Path(contract_path).read_text(encoding="utf-8"))
     manifest = {
         "dataset_id": DATASET_ID,
         "adapter_version": ADAPTER_VERSION,
         "contract_id": "xuzhou-clr-real-data-2021-2025",
-        "contract_version": "3.1.0",
+        "contract_version": str(contract_data["contract"]["version"]),
         "contract_sha256": _sha256(contract_path),
         "dataset_fingerprint": fingerprint,
         "source_root_name": "电网建模数据_Agent整合版_V1.2",
@@ -121,8 +122,8 @@ def adapt_real_2021_2025(
     if not source_root.is_dir():
         raise RealDataV3Error(f"source root not found: {source_root}")
     contract = yaml.safe_load(contract_path.read_text(encoding="utf-8"))
-    if contract["contract"]["version"] != "3.1.0":
-        raise RealDataV3Error("v3 adapter requires model contract 3.1.0")
+    if str(contract["contract"]["version"]) not in {"3.1.0", "3.2.0"}:
+        raise RealDataV3Error("v3 adapter requires model contract 3.1.0 or 3.2.0")
     regions = set(contract["scope"]["regions"])
     source_files = _source_registry(source_root)
     before_hashes = {name: item["sha256"] for name, item in source_files.items()}

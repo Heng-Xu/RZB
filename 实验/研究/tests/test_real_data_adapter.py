@@ -116,5 +116,5 @@ def test_v3_manifest_reproducibly_hashes_sources_and_outputs(adapted: tuple[Path
     saved = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
     assert first["dataset_fingerprint"] == second["dataset_fingerprint"]
     assert saved["dataset_id"] == "real_2021_2025"
-    assert saved["contract_version"] == "3.1.0"
+    assert saved["contract_version"] == "3.2.0"
     assert all(len(item["sha256"]) == 64 for item in saved["source_files"].values())

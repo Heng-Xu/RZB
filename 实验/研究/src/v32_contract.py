@@ -1,4 +1,4 @@
-"""解析 v3.2 契约：以 v3.1 完整数据契约为底稿，叠加科学口径变更。"""
+"""解析 v3.2 契约及其唯一的实际资产共同基线口径。"""
 from __future__ import annotations
 
 from copy import deepcopy

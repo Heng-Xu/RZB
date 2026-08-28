@@ -16,7 +16,11 @@ import yaml
 
 from src.v3_pipeline import _annual_input, _timeseries_gate
 from src.v3_planner import PATH_OPT_STRICT, PATH_OPT_UNBOUNDED, optimize_path
-from src.v32_actual_pipeline import _planner_kwargs, _prepare_expansion_candidates
+from src.v32_actual_pipeline import (
+    _planner_kwargs,
+    _prepare_expansion_candidates,
+    scale_annual_net_load_input,
+)
 from src.v32_contract import load_v32_contract
 from src.v32_frontier import _attach_metrics, _summarize_point
 from src.v32_policy import apply_actual_asset_policy_baseline, prepare_grandfathered_rcap_control
@@ -55,12 +59,22 @@ def run_v32_parameter_frontier(
     reverse_beta: float,
     rcap_points: Iterable[float],
     include_unbounded: bool = True,
+    net_load_scale: float = 1.0,
+    storage_cost_multiplier: float = 1.0,
+    expansion_cost_multiplier: float = 1.0,
 ) -> pd.DataFrame:
     """在一个参数场景下求给定 Rcap 前沿，返回 110 kV 汇总。"""
     if not math.isfinite(float(cos_phi)) or not (0 < float(cos_phi) <= 1):
         raise V32SensitivityError("cos_phi must be in (0,1]")
     if not math.isfinite(float(reverse_beta)) or not (0 <= float(reverse_beta) <= 1):
         raise V32SensitivityError("reverse_beta must be in [0,1]")
+    for name, value in (
+        ("net_load_scale", net_load_scale),
+        ("storage_cost_multiplier", storage_cost_multiplier),
+        ("expansion_cost_multiplier", expansion_cost_multiplier),
+    ):
+        if not math.isfinite(float(value)) or float(value) <= 0:
+            raise V32SensitivityError(f"{name} must be positive finite")
     points = sorted({round(float(value), 10) for value in rcap_points})
     if not points or any(not math.isfinite(value) or value <= 0 for value in points):
         raise V32SensitivityError("rcap_points must contain positive finite values")
@@ -80,19 +94,27 @@ def run_v32_parameter_frontier(
         reverse_beta=float(reverse_beta),
     )
     candidates, _ = _prepare_expansion_candidates(
-        processed_root, run_dir, base_contract_path
+        processed_root,
+        run_dir,
+        base_contract_path,
+        expansion_cost_multiplier=float(expansion_cost_multiplier),
     )
     annual = _annual_input(processed_root)
     annual = annual[annual["voltage_kv"].astype(int).eq(110)].copy()
+    annual = scale_annual_net_load_input(annual, float(net_load_scale))
     annual["reverse_beta"] = float(reverse_beta)
     evaluator = V32TimePhysicsEvaluator(
         processed_root,
         run_dir / "time_physics",
         candidates,
         scenario_contract,
+        net_load_scale=float(net_load_scale),
     )
     kwargs = _planner_kwargs(
-        resolved, evaluator, cos_phi=float(cos_phi)
+        resolved,
+        evaluator,
+        cos_phi=float(cos_phi),
+        storage_cost_multiplier=float(storage_cost_multiplier),
     )
 
     summaries: list[pd.DataFrame] = []
@@ -130,17 +152,28 @@ def run_v32_parameter_frontier(
         )
         summary["cos_phi"] = float(cos_phi)
         summary["reverse_beta"] = float(reverse_beta)
+        summary["net_load_scale"] = float(net_load_scale)
+        summary["storage_cost_multiplier"] = float(storage_cost_multiplier)
+        summary["expansion_cost_multiplier"] = float(expansion_cost_multiplier)
         summaries.append(summary)
 
     frontier = pd.concat(summaries, ignore_index=True, sort=False)
-    frontier["scenario_id"] = (
-        f"pf{float(cos_phi):.2f}_beta{float(reverse_beta):.2f}"
-    )
+    scenario_id = f"pf{float(cos_phi):.2f}_beta{float(reverse_beta):.2f}"
+    if not math.isclose(float(net_load_scale), 1.0):
+        scenario_id += f"_nl{float(net_load_scale):.2f}"
+    if not math.isclose(float(storage_cost_multiplier), 1.0):
+        scenario_id += f"_sc{float(storage_cost_multiplier):.2f}"
+    if not math.isclose(float(expansion_cost_multiplier), 1.0):
+        scenario_id += f"_ec{float(expansion_cost_multiplier):.2f}"
+    frontier["scenario_id"] = scenario_id
     frontier.to_csv(run_dir / "parameter_frontier.csv", index=False)
     metadata = {
         "scenario_id": frontier["scenario_id"].iloc[0],
         "cos_phi": float(cos_phi),
         "reverse_beta": float(reverse_beta),
+        "net_load_scale": float(net_load_scale),
+        "storage_cost_multiplier": float(storage_cost_multiplier),
+        "expansion_cost_multiplier": float(expansion_cost_multiplier),
         "rcap_points": points,
         "include_unbounded": bool(include_unbounded),
         "physical_baseline": "actual_2021_installed_capacity",

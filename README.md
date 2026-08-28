@@ -14,7 +14,7 @@
 4. [`skills/xuzhou-real-model/SKILL.md`](skills/xuzhou-real-model/SKILL.md) 及其 [`agents/openai.yaml`](skills/xuzhou-real-model/agents/openai.yaml)；
 5. [`skills/xuzhou-report-writing/SKILL.md`](skills/xuzhou-report-writing/SKILL.md)（涉及报告撰写时）。
 
-最新接续记录登记：v3 建模主体、10 kV 联络案例重分析、七章研究报告初稿、Word/PDF 渲染闭环和 207 项全量回归已完成；负责人仍需进行 Word/WPS 目录页码和版式终审。该状态以 `claude_session_1.txt` 为最新进度依据，不能只根据旧版计划文件的历史状态判断。
+最新接续记录登记：v3.2 建模主体、10 kV 联络案例重分析、七章研究报告活动稿、Word/PDF 渲染闭环和全量回归已完成；负责人仍需进行 Word/WPS 目录页码和版式终审。该状态以 `claude_session_1.txt` 为最新进度依据，不能只根据旧版计划文件的历史状态判断。
 
 ## 项目依赖主链
 
@@ -32,7 +32,7 @@ AGENTS.md / model_contract.yaml / 真实数据规格 / 项目 Skill
 实验/研究/src/ + scripts/ + tests/
              │（指标、物理约束、候选、优化、局部案例、校核）
              ▼
-实验/研究/results/runs/real-2021-2025-contract-v3/
+实验/研究/results/runs/real-2021-2025-v32-frozen/
              │（路径结果、成本、前沿、矩阵、问题台账、manifest）
              ▼
 实验/研究/分析/ + 研究报告/初稿/ + tools/
@@ -51,13 +51,13 @@ env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr bash scripts/ru
 env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr python scripts/run_all.py --dataset real_2021_2025 --config model_contract.yaml --skip-gen
 ```
 
-正式研究只使用 v3 三个路径：`PATH_ACTUAL_2021_2025`、`PATH_OPT_CLR_UNBOUNDED` 和 `PATH_OPT_CLR_LE_2`。旧 `real_2025`、旧年度矩阵和 `SCHEME_C0/A/B` 只能用于归档或迁移回归。
+正式研究只使用 v3.2 三个方案代码：`PATH_ACTUAL_2021_2025`、`PATH_OPT_CLR_UNBOUNDED` 和 `PATH_OPT_CLR_LE_2`。两条优化方案均从 2021 年实际在役资产起步；旧 `real_2025`、旧年度矩阵和 `SCHEME_C0/A/B` 只能用于归档或迁移回归。
 
 ## 关键证据入口
 
 - 建模方法与自查：[实验/研究/分析/2026-08-26-建模思路与真实方法总结_甲方汇报辅助.md](实验/研究/分析/2026-08-26-建模思路与真实方法总结_甲方汇报辅助.md)
 - 10 kV 局部案例边界：[实验/研究/分析/2026-08-26-10kV联络案例重分析_收资定稿口径.md](实验/研究/分析/2026-08-26-10kV联络案例重分析_收资定稿口径.md)
-- v3 正式运行结果：[实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/](实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/)
+- v3.2 冻结结果：[实验/研究/results/runs/real-2021-2025-v32-frozen/](实验/研究/results/runs/real-2021-2025-v32-frozen/)
 - 报告章节和审查材料：[研究报告/初稿/](研究报告/初稿/)
 - 报告撰写工作流：[skills/xuzhou-report-writing/SKILL.md](skills/xuzhou-report-writing/SKILL.md)
 

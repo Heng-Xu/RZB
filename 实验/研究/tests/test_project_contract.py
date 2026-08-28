@@ -30,7 +30,7 @@ def test_authoritative_files_exist() -> None:
 
 def test_contract_scope_and_reference_rows() -> None:
     contract = _load(ROOT / "model_contract.yaml")
-    assert contract["contract"]["version"] == "3.1.0"
+    assert contract["contract"]["version"] == "3.2.0"
     assert contract["scope"]["common_baseline_year"] == 2021
     assert contract["scope"]["decision_years"] == [2022, 2023, 2024, 2025]
 
@@ -64,18 +64,13 @@ def test_contract_referenced_sources_exist() -> None:
 def test_strict_path_and_path_cost_invariant_are_machine_readable() -> None:
     contract = _load(ROOT / "model_contract.yaml")
     strict = contract["paths"]["PATH_OPT_CLR_LE_2"]
-    assert strict["clr_limit"] == 2.0
+    assert strict["rcap"] == 2.0
     assert strict["constraint_start_year"] == 2022
-    # 3.1.0：起点归一为记账口径，跨口径 EAC 包含关系废止。
-    normalization = strict["baseline_normalization"]
-    assert normalization["applies_to_voltage_kv"] == [110]
-    assert normalization["cost_treatment"] == (
-        "assumed_starting_state_not_counted_in_decision_period_eac"
-    )
-    assert contract["optimization"]["invariants"] == [
-        "both_formal_paths_present_for_every_region_voltage",
-        "strict_path_clr_limit_applies_to_110kv_only",
-    ]
+    assert contract["planning_baseline"]["formula"] == "S0 = actual_2021_installed_capacity"
+    assert strict["legacy_capacity_grandfathered"] is True
+    assert strict["forced_retirement_for_rcap_compliance"] is False
+    assert "both_formal_paths_present_for_every_region_voltage" in contract["optimization"]["invariants"]
+    assert "elastic_cost_not_greater_than_rigid_cost_when_both_feasible" in contract["optimization"]["invariants"]
     sweep = contract["elasticity_sweep"]
     assert sweep["applies_to_voltage_kv"] == [110]
     assert sweep["include_unbounded_point"] is True

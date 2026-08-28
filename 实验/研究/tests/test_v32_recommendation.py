@@ -29,7 +29,7 @@ def test_recommendation_returns_rcap_band_and_realized_clr_band_as_different_fie
             (2.0, "QX-A", 100.0, 1.91, 4, 50.0, True),
             (2.1, "QX-A", 102.0, 1.96, 4, 50.0, True),
             (2.2, "QX-A", 140.0, 2.03, 6, 100.0, True),
-            ("unbounded", "QX-A", 90.0, 2.17, 2, 50.0, True),
+            ("unbounded", "QX-A", 100.0, 2.17, 2, 50.0, True),
         ]
     )
     result = recommended_rcap_interval(frontier, region_id="QX-A", near_optimal_band=0.05)

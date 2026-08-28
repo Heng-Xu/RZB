@@ -62,15 +62,14 @@ def _retirement_candidate() -> pd.DataFrame:
     )
 
 
-def test_common_baseline_uses_2021_peak_only_and_has_no_future_information_leakage(tmp_path) -> None:
+def test_common_baseline_uses_2021_actual_asset_capacity_without_future_information_leakage(tmp_path) -> None:
     _write_reference(tmp_path)
     source = _annual()
     out = apply_common_planning_baseline(source, tmp_path)
 
-    # 2021 P+=40 MW -> S0_plan=2*40=80 MVA。
-    # 2022 实际峰只有 30 MW；如果错误引用未来最小峰则会得到 60 MVA。
-    assert out["planning_baseline_capacity_mva"].tolist() == pytest.approx([80.0] * 4)
-    assert out["reported_baseline_capacity_mva"].tolist() == pytest.approx([80.0] * 4)
+    # 2021 实际在役容量为 100 MVA；规划基线不得改写成 2*P2021=80 MVA。
+    assert out["planning_baseline_capacity_mva"].tolist() == pytest.approx([100.0] * 4)
+    assert out["reported_baseline_capacity_mva"].tolist() == pytest.approx([100.0] * 4)
 
     # 物理资产状态不被连续缩放或伪造。
     assert out["baseline_capacity_mva"].tolist() == pytest.approx([100.0] * 4)
@@ -114,8 +113,8 @@ def test_both_policy_paths_share_exactly_the_same_planning_baseline(tmp_path) ->
     rigid = years[years["path_id"].eq("PATH_OPT_CLR_LE_2")].sort_values("year")
 
     # 两方案起点相同；差异只来自是否施加 R<=2.0。
-    assert elastic.iloc[0]["planning_baseline_capacity_mva"] == pytest.approx(80.0)
-    assert rigid.iloc[0]["planning_baseline_capacity_mva"] == pytest.approx(80.0)
+    assert elastic.iloc[0]["planning_baseline_capacity_mva"] == pytest.approx(100.0)
+    assert rigid.iloc[0]["planning_baseline_capacity_mva"] == pytest.approx(100.0)
 
     costs = result["path_cost_breakdown"].set_index("path_id")
     assert costs.loc["PATH_OPT_CLR_UNBOUNDED", "status"] == "feasible"
@@ -126,27 +125,7 @@ def test_both_policy_paths_share_exactly_the_same_planning_baseline(tmp_path) ->
     )
 
 
-def test_common_baseline_requires_a_2021_reference_for_every_formal_group(tmp_path) -> None:
-    _write_reference(tmp_path)
-    annual = pd.concat(
-        [
-            _annual(),
-            pd.DataFrame(
-                [
-                    {
-                        "year": 2022,
-                        "region_id": "QX-MISSING",
-                        "voltage_kv": 110,
-                        "capacity_mva": 50.0,
-                        "baseline_capacity_mva": 50.0,
-                        "positive_peak_mw": 25.0,
-                        "reverse_peak_mw": 0.0,
-                        "reverse_beta": 0.8,
-                    }
-                ]
-            ),
-        ],
-        ignore_index=True,
-    )
-    with pytest.raises(ValueError, match="2021"):
+def test_common_baseline_requires_actual_capacity_for_every_group(tmp_path) -> None:
+    annual = _annual().drop(columns=["baseline_capacity_mva"])
+    with pytest.raises(ValueError, match="baseline_capacity_mva"):
         apply_common_planning_baseline(annual, tmp_path)

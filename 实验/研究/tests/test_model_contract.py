@@ -14,7 +14,7 @@ def _contract() -> dict:
 
 def test_real_contract_is_v3_and_covers_eight_anonymized_regions() -> None:
     contract = _contract()
-    assert contract["contract"]["version"] == "3.1.0"
+    assert contract["contract"]["version"] == "3.2.0"
     assert contract["scope"]["common_baseline_year"] == 2021
     assert contract["scope"]["decision_years"] == [2022, 2023, 2024, 2025]
     assert len(contract["scope"]["regions"]) == 8
@@ -61,8 +61,11 @@ def test_strict_path_starts_in_2022_without_changing_2021_baseline() -> None:
     contract = _contract()
     strict = contract["paths"]["PATH_OPT_CLR_LE_2"]
     assert strict["common_baseline_year"] == 2021
-    assert strict["clr_limit"] == 2.0
+    assert strict["rcap"] == 2.0
     assert strict["constraint_start_year"] == 2022
+    assert contract["planning_baseline"]["formula"] == "S0 = actual_2021_installed_capacity"
+    assert strict["legacy_capacity_grandfathered"] is True
+    assert strict["forced_retirement_for_rcap_compliance"] is False
     assert contract["optimization"]["objective"]["includes_2021_existing_assets"] is False
 
 
