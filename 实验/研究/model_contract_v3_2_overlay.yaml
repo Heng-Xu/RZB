@@ -1,39 +1,41 @@
 contract:
   version: "3.2.0"
   status: "candidate_under_validation"
-  frozen_at: "2026-08-27"
-  change_note: "统一CLR=2.0规划基线、恢复同基线路径成本比较、Rcap与实现CLR分离、增加连续年度SOC与beta敏感性"
+  frozen_at: "2026-08-28"
+  change_note: "主政策实验改为2021实际资产共同起点、存量容量豁免且Rcap只约束决策期新增容量；保留2×P2021标准化起点为二级敏感性基准；分离Rcap与实际CLR；增加连续8760h SOC和beta敏感性"
 
 planning_baseline:
   applies_to_voltage_kv: [110]
   baseline_year: 2021
-  baseline_clr: 2.0
-  load_reference: "official_synchronous_positive_annual_grid_supply_peak_2021"
-  formula: "S_plan_0 = 2.0 * P_plus_2021"
-  future_decision_year_peak_allowed_in_baseline: false
-  physical_asset_state_separate: true
-  action_delta_shared_between_physical_and_planning_states: true
-  baseline_adjustment_cost_treatment: "counterfactual_policy_start_state_not_a_decision_period_action"
-  interpretation: "planning_control_state_not_measured_installed_capacity"
+  formula: "S0 = actual_2021_installed_capacity"
+  source: "official_2021_in_service_capacity_anchor"
+  future_decision_year_information_allowed: false
+  physical_and_planning_start_state_identical: true
+  interpretation: "measured_existing_asset_state"
+  legacy_capacity_excess_treatment: "grandfather_existing_capacity_without_forced_retirement"
+  retirement_to_meet_rcap_forbidden: true
+  rigid_incremental_capacity_rule: "DeltaS_y <= max(Rcap * P_plus_y - S_2021, 0)"
+  equivalent_total_capacity_rule: "S_y <= max(S_2021, Rcap * P_plus_y)"
 
 paths:
   PATH_OPT_CLR_UNBOUNDED:
-    display_name: "弹性容载比规划（统一CLR=2.0规划基线）"
-    role: "minimum_cumulative_in_service_eac_without_uniform_clr_cap"
+    display_name: "弹性容载比规划（2021实际资产共同起点）"
+    role: "minimum_cumulative_in_service_eac_without_uniform_rcap"
     eligible_for_optimization_rank: true
     common_baseline_year: 2021
     decision_years: [2022, 2023, 2024, 2025]
     clr_limit: null
     constraint_start_year: null
   PATH_OPT_CLR_LE_2:
-    display_name: "刚性容载比规划（统一CLR=2.0规划基线，持续R≤2.0）"
-    role: "minimum_cumulative_in_service_eac_with_uniform_clr_cap"
+    display_name: "刚性容载比规划（2021实际资产共同起点，存量豁免、增量Rcap=2.0）"
+    role: "minimum_cumulative_in_service_eac_with_grandfathered_incremental_rcap"
     eligible_for_optimization_rank: true
     common_baseline_year: 2021
     decision_years: [2022, 2023, 2024, 2025]
-    clr_limit: 2.0
+    rcap: 2.0
     constraint_start_year: 2022
-    baseline_normalization: null
+    legacy_capacity_grandfathered: true
+    forced_retirement_for_rcap_compliance: false
 
 optimization:
   shared_inputs:
@@ -45,25 +47,27 @@ optimization:
     same_physical_asset_baseline: true
   invariants:
     - "both_formal_paths_present_for_every_region_voltage"
-    - "both_policy_paths_share_identical_planning_baseline"
-    - "both_policy_paths_share_identical_physical_baseline"
-    - "strict_path_clr_limit_applies_to_110kv_only"
+    - "both_policy_paths_share_actual_2021_asset_baseline"
+    - "strict_path_rcap_controls_incremental_capacity_on_110kv_only"
+    - "legacy_capacity_is_not_forced_to_retire_for_rcap_compliance"
     - "elastic_cost_not_greater_than_rigid_cost_when_both_feasible"
+  retirement_candidates_in_primary_policy_model: false
   direct_policy_cost_comparison_allowed: true
   policy_incremental_cost_formula: "C_rigid - C_elastic"
 
 elasticity_sweep:
-  role: "planning_clr_cap_frontier_for_policy_recommendation"
+  role: "planning_rcap_frontier_for_policy_recommendation"
   applies_to_voltage_kv: [110]
   rcap_points: [1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0]
   include_unbounded_point: true
-  baseline: "same_common_planning_baseline_S0_2P2021"
+  baseline: "same_actual_2021_asset_baseline_with_legacy_capacity_grandfathering"
   coarse_step: 0.1
   local_refinement_enabled: true
   near_optimal_band: 0.05
   near_optimal_band_sensitivity: [0.02, 0.05, 0.10]
   recommendation_dimension: "Rcap"
   realized_clr_is_separate_output: true
+  realized_clr_definition: "physical_installed_capacity_mva / synchronized_positive_peak_mw"
   robust_intersection_rule: "intersect_Rcap_near_optimal_sets_across_parameter_scenarios_only"
   forbidden_operation: "intersect_Rcap_interval_with_realized_CLR_interval"
   output:
@@ -72,24 +76,38 @@ elasticity_sweep:
       - "rcap"
       - "region_id"
       - "cumulative_in_service_eac_wanyuan"
-      - "clr_2025"
+      - "physical_clr_2025"
       - "storage_modules"
       - "capacity_action_delta_mva"
       - "feasible"
   recommendation_outputs:
     - "recommended_rcap_interval"
     - "recommended_rcap_center"
-    - "realized_clr_2025_interval"
+    - "realized_physical_clr_2025_interval"
     - "measure_flip"
     - "sensitivity_robust"
 
+standardized_policy_benchmark:
+  enabled: true
+  role: "secondary_sensitivity_only_not_primary_client_policy_model"
+  formula: "S_norm_0 = 2.0 * P_plus_2021"
+  future_decision_year_information_allowed: false
+  physical_asset_state_separate: true
+  direct_client_cost_conclusion_allowed: false
+  note: "用于检验结论对标准化起点假设的敏感性，不替代实际资产共同起点主模型"
+
 metrics:
   formal_clr:
-    state_numerator: "planning_capacity_mva"
-    formula: "R_plan_path_year = S_plan_path_year_same_voltage / P_plus_path_year"
-    physical_capacity_is_separate_metric: true
+    numerator: "physical_installed_capacity_mva"
+    denominator: "synchronized_positive_annual_grid_supply_peak_mw"
+    formula: "R_path_year = S_installed_path_year / P_plus_path_year"
+    policy_control_ratio_is_formal_clr: false
     reverse_peak_is_separate_metric: true
     reverse_peak_must_not_be_formal_denominator: true
+  policy_control:
+    parameter: "Rcap"
+    role: "incremental_capacity_planning_control_parameter"
+    legacy_capacity_may_make_physical_clr_exceed_rcap: true
 
 technical_parameters:
   reverse_beta:
@@ -118,6 +136,7 @@ sensitivity:
   cos_phi: [0.90, 0.95, 1.00]
   reverse_beta: [0.60, 0.80, 1.00]
   near_optimal_band: [0.02, 0.05, 0.10]
+  standardized_baseline_benchmark: true
   rule: "recommendation robustness is judged on the same Rcap dimension"
 
 time_model:
