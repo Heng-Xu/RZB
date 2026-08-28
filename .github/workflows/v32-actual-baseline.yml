@@ -1,0 +1,68 @@
+name: v3.2 actual-asset primary baseline
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/v32-actual-baseline.yml'
+      - '实验/研究/src/v32_actual_pipeline.py'
+      - '实验/研究/src/v32_policy.py'
+      - '实验/研究/src/v32_time_physics.py'
+      - '实验/研究/src/v32_storage.py'
+      - '实验/研究/src/v32_physics.py'
+      - '实验/研究/model_contract_v3_2_overlay.yaml'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONPATH: .
+
+jobs:
+  primary-actual-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install model dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy pandas scipy pyyaml xarray linopy highspy networkx scikit-learn
+      - name: Run primary actual-asset v3.2 baseline
+        working-directory: 实验/研究
+        run: |
+          rm -rf results/runs/real-2021-2025-v32-actual-primary
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from src.v32_actual_pipeline import run_v32_actual_baseline
+
+          root = Path('.').resolve()
+          run_dir = root / 'results/runs/real-2021-2025-v32-actual-primary'
+          manifest = run_v32_actual_baseline(
+              root,
+              root / 'data/processed/real_2021_2025',
+              run_dir,
+          )
+          print(json.dumps(manifest, ensure_ascii=False, indent=2))
+          PY
+          echo '--- policy cost comparison ---'
+          cat results/runs/real-2021-2025-v32-actual-primary/policy_cost_comparison.csv
+          echo '--- 2025 policy summary ---'
+          cat results/runs/real-2021-2025-v32-actual-primary/policy_2025_summary.csv
+          echo '--- QX-00005 chronology nonzero rows ---'
+          python - <<'PY'
+          import pandas as pd
+          p='results/runs/real-2021-2025-v32-actual-primary/qx00005_chronology_comparison.csv'
+          d=pd.read_csv(p)
+          print(d[(d['daily_cyclic_modules'].fillna(0)!=0)|(d['continuous_8760_modules'].fillna(0)!=0)].to_string(index=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v32-actual-primary-baseline-results
+          path: 实验/研究/results/runs/real-2021-2025-v32-actual-primary/
+          if-no-files-found: error
