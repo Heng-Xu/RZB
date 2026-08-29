@@ -52,3 +52,12 @@
 
 - 无需暂停的业务阻塞。远端 artifact/log 权限限制只影响逐字下载，不影响本地同 SHA 复核；TIE-001 按负责人决定不再收资。
 - v3.2 模型、报告、门禁、Git 上传、远端 SHA 核验和根目录同步均已完成，本任务结束。GitHub 的 Node.js 20 弃用 warning 不改变模型判定；若后续重新运行出现模型或数据失败，需重新打开终审而不是直接宣称完成。TIE-001 按负责人决定不再收资。
+
+## 本轮远端分支复核
+
+时间：2026-08-29 10:02（Asia/Shanghai）
+
+- 远端确认存在两个分支：`main`=`3f02962a99a61981ceeb9b99d1fd3cc3dbc7d55a`；`model-v3.2-autonomous-review`=`7850b3e94e154ffad1437105744420f7f5e41a22`。
+- v3.2 工作副本 `/tmp/rzb-v32-work` 工作树干净；执行 `git push origin model-v3.2-autonomous-review` 退出码 0，返回 `Everything up-to-date`，随后 `git ls-remote --heads` 核验两条分支指纹一致。
+- 根目录最新完整 `prompt.md` 与 `memory/sessions/2026-08-28/2335-v3.2终审接管.md` 已逐字同步到 v3.2 工作副本；未同步根目录无关缓存、旧临时结果或开发工具目录。
+- 未对 `main` 做强制推送、覆盖或合并；v3.2 成果继续以 `model-v3.2-autonomous-review` 为远端交付分支。
