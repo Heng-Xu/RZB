@@ -1,55 +1,43 @@
 # 当前状态快照
 
-快照时间：2026-09-01 09:57（Asia/Shanghai）
-状态：`IMPLEMENTING`
-任务：在 `model-v3.2-autonomous-review` 分支继续完成 v3.2 接管文档治理、契约一致性、CI 依赖触发、旧模型隔离、稳健性复核、报告终审和冻结复现闭环。
+快照时间：2026-09-01 11:40（Asia/Shanghai）
+状态：`COMPLETE`
+任务：完成 v3.2 自主接管、模型/契约/CI 治理、联合稳健性复核、报告终审、冻结复现和远端验证。
 
 ## 当前 Git 与验证基线
 
-- 当前分支：`model-v3.2-autonomous-review`。
-- 接管基线本地/远端 HEAD：`866bff87527a4bb5d0215ea789bdada21e7af0ec`；2026-09-01 首次 `git fetch` 后无新增远端提交。实时 HEAD 以 Git 命令为准，并在每批提交后更新本节验证记录。
-- 当前契约：`实验/研究/model_contract.yaml` v3.2.0，状态 `frozen`。
-- 最近一次完整模型验证提交：`708a503643df85e166b8f6680c9b1c7d73856d7b`；GitHub Actions `v3.2 model validation` 运行 `33220722628` 与 `v3.2 formal baseline run` 运行 `33220722649` 均为 `success`。当前 HEAD 后续仅含 memory/docs 类 `[skip ci]` 提交，尚无最终 HEAD 的完整 release 验证链。
-- 正式结果目录：`实验/研究/results/runs/real-2021-2025-v32-frozen/`；接管前顶层 manifest SHA-256 为 `6a9b5609850e6784f6a086452ea70f821bc1f13cc5d19858ad54f3829b2ed7ac`。
-- 接管前 frozen 产物只读副本：`/tmp/rzb-v32-frozen-prechange.3KkNkr/real-2021-2025-v32-frozen/`。
+- 分支：`model-v3.2-autonomous-review`。
+- 本轮最终模型验证与冻结验证的基准提交：`fee3625c43d3f42b7514fbade69d7585813d38ec`；后续仅有 memory/handoff 文档提交，当前分支尖以 `git rev-parse HEAD` 为准。
+- GitHub Actions：`v3.2 model validation` run `33466902615`（run 50）成功；`v3.2 frozen package verification` run `33466902676`（run 6）成功。
+- 冻结清单生成验证提交：`b6c0429eabf639b83f309038dd7415c95cd0540c`；冻结包 manifest SHA-256：`b23efc98f93c7e8c01bd5b642cad78b3219baa790151679a5c1c7c11459f78f9`。
+- 正式结果：`实验/研究/results/runs/real-2021-2025-v32-frozen/`；契约 SHA-256 `073e49e4e0ae49a1c221e1b26176e87117946506e941801dcccdb31d0671685d`；processed manifest SHA-256 `18a4570a6078e3e2673e710a34c85e79f5c3b8703d4f2fa1c66991c058881985`。
 
 ## 冻结主模型口径
 
-- 两条优化方案均从 2021 年实际在役资产共同起点出发，既有容量存量豁免。
-- `PATH_OPT_CLR_UNBOUNDED` 不设统一 Rcap 上限；`PATH_OPT_CLR_LE_2` 仅对 110 kV 规划期新增容量实施 `DeltaS_y <= max(Rcap * P_plus_y - S_2021, 0)`。
-- 物理 CLR 与规划控制参数 Rcap 分离；存量豁免后物理 CLR 可高于 Rcap。
-- 两方案输入与求解口径相同且均可行时，可直接比较累计年化成本，并满足弹性方案成本不高于刚性方案。
-- `2×P2021` 仅为二级标准化敏感性基准；主模型不生成满足 Rcap 的退役候选；EENS、弃光无完整证据时不得填 0。
+- `contract=3.2.0 frozen`；两条优化路径均从 2021 实际在役资产共同起点出发，存量容量豁免。
+- `PATH_OPT_CLR_UNBOUNDED` 不设统一 Rcap 上限；`PATH_OPT_CLR_LE_2` 仅约束 110 kV 规划期新增容量：`DeltaS_y <= max(2.0 * P_plus_y - S_2021, 0)`。
+- 物理 CLR 与规划控制参数 Rcap 分离；不为满足 Rcap 生成退役候选；两路径均可行时直接比较累计在役等效年成本，弹性成本不高于刚性成本。
+- `2×P2021` 仅二级标准化敏感性基准；EENS 与弃光无完整证据时不填 0。
 
-## 已完成的接管治理
+## 已完成工作与验证证据
 
-- `prompt.md` 与 `NEXT-SESSION-PROMPT.md` 已重建为短 v3.2 接续；治理前原文移入 `memory/archive/` 并标记 `HISTORICAL / SUPERSEDED`。
-- `memory/INDEX.md`、`memory/README.md`、`memory/next-session-prompt.md` 与 `AGENTS.md` 已改为实时 Git/Actions、frozen contract、正式输入/结果优先。
-- `claude_session_1.txt` 和两个曾被标记为当前接续依据的 2026-08-27 session 已在文件头标记历史归档；原文未删除。
-- 已新增 repository governance、contract consistency 与 workflow dependency 三组防回退测试；2026-09-01 首次运行得到 11 个预期失败、2 个通过，证明旧状态、schema、legacy guard、freeze SHA 和 CI 依赖缺口可复现。
-- `model_contract.yaml` 已成为 v3.2 业务语义 canonical source；overlay 缩减为只读版本标记层，`load_v32_contract()` 会拒绝任何业务语义漂移。
-- 逐时状态已与正式门禁统一为 `approved_for_2025_qx00005_110kv_operating_scope`：40/40 台 QX-00005 110 kV 运行主变正式可用，16 列 35 kV 仅作背景，2 列年末设备排除。
-- 前沿正式字段统一为 `capacity_action_delta_mva`；连续 8760 h、近优带与方法定位字段已从 overlay 合并回 canonical base。
-- 契约与项目约束回归：22 项通过（0.86 s）；真实逐时适配与审批回归：12 项通过（173.78 s）。
-- 新增 `.github/v32-dependency-policy.yaml` 和静态防回退测试；七个既有 v3.2 workflow 及新增 frozen package verification 均支持 `workflow_dispatch.target_ref`，checkout 后记录真实 40 位 SHA。
-- baseline/frontier/refinement/sensitivity/chronology/freeze 的触发路径已覆盖 canonical base、overlay、processed 输入及传递模型依赖；refinement/sensitivity 不再只因 workflow 自身变化而运行。
-- 首次推送依赖策略后发现重型流程订阅 `v32-*.yml` 会造成横向重复重算；已用失败测试复现并收紧为“策略文件 + 本工作流自身”，仅快速 CI 横向订阅全部 v3.2 workflow。防扇出测试 5 项通过（0.12 s）。
-- chronology preflight 已改为调用当前 v3.2 actual baseline，不再读旧 v3 动作或拼入退役候选；各运行/汇总 manifest 增加 `validation_commit_sha`。
-- CI/来源追踪回归 30 项通过（1.49 s）；8 个 workflow YAML 解析通过，相关 Python 文件 `py_compile` 通过。
-- `scripts/run_annual_model.py` 已改为归档入口：默认在数据读取和输出创建前返回 2，只有显式 `--legacy-archive-only` 才允许复现 v2 旧结果；正式入口/工作流引用检查与 legacy guard 共 10 项通过（1.02 s）。
+- 接续文档已清除 active v3.1 污染；旧提示词和历史 session 保留并标记 `HISTORICAL / SUPERSEDED`。
+- base/overlay/resolved 契约统一；逐时门禁限定为 QX-00005 2025 110 kV 运行口径 40 台主变，35 kV context-only 与 2 台年末设备不进入正式逐时门禁；前沿字段统一为 `capacity_action_delta_mva`。
+- CI 依赖触发链、workflow_dispatch、真实 SHA 溯源和重型流程防扇出已加固；冻结工作流补齐 numpy/scipy/xarray/linopy/highspy/networkx/scikit-learn 依赖。
+- `scripts/run_annual_model.py` 已隔离为显式 legacy 入口，正式 v3.2 入口/工作流不调用它。
+- 正式敏感性共 17 个情景，其中 6 个非笛卡尔联合压力情景；QX-00001 稳健近优下限仍为 `≥2.500`，QX-00005 仍为 `≥2.300`，扫描范围内未识别上界。
+- 冻结数值复现：baseline、SOC、核心成本/动作/矩阵/阈值逐字节一致；前沿旧字段值一致，仅新增 3 个审计乘数列；敏感性由 11 增至 17 情景，旧 22 个模型/物理/成本字段一致。
+- 固定全量入口：`278 passed`，退出码 0，用时 522.54 s；v3.2 专项测试 `67 passed`；报告/冻结/治理专项测试均通过。
+- `run_all.py --dataset real_2021_2025 --config model_contract.yaml --skip-gen` 退出码 0；当前 HEAD 运行结果与冻结 baseline 18 个核心文件逐字节一致，连续 SOC 61,320 条记录通过物理审计。
+- 报告全文与第一至第三章已完成 Word→PDF 渲染审查；PDF SHA-256 分别为 `cebd154e8d40c7fa7333cc4b3688f9c4adfd3aaeecc4fc885511b9eea50f0006`、`225eedcd1e6bd6beaf6e875c09ac8ecb00e72f457af165c2bd4fc64ce4680fbd`。
 
-## 仍在修复的问题
+## 仍然存在的科学限制
 
-1. frozen manifest 尚未登记验证 commit SHA；正式数值复现与差异审计尚未执行。
-2. 联合压力情景和报告第四、六、七章的最小一致性修正尚未完成。
-
-## 当前科学限制
-
-- 2021—2025 实际设备级毛动作与成本未闭合；实际方案成本继续写“未识别”。
-- 2026 站级光伏快照与 2025 负荷只作跨年背景；缺同步负荷—光伏分解时不执行纯 PV 事实敏感性。
-- QX-00005 以外片区证据不高于 `EVIDENCE_B`；缺阻抗、完整拓扑和运行方式时不升级为 AC/DC 潮流。
-- 10 kV 六馈线仍为碎片森林；TIE-001 不形成定量结论。
+- 2021—2025 实际设备级毛动作和实际路径成本不能由现有历史锚点完整回溯，实际路径成本保持“未识别”。
+- 光伏为 2026 站级快照，与 2025 负荷只作跨年背景；缺同步负荷—光伏分解，不执行纯 PV 事实敏感性。
+- QX-00005 以外片区证据不高于 `EVIDENCE_B`；缺阻抗、完整拓扑和运行方式时不升级为精确 AC/DC 潮流。
+- 10 kV 六馈线仍是碎片森林；跨站转供只按容量包络和受端同时段余量条件引用，TIE-001 不形成定量结论。
 
 ## 下一步
 
-复现 baseline/frontier/refinement/sensitivity，评估少量联合压力情景，修正报告并完成全量测试、正式产物临时重建与 frozen 差异审计，最后分批提交推送并在最终 SHA 上建立 Actions 验证链。
+无待修复的实现阻塞。若后续继续，只能在获得新的真实工程证据后按现有 v3.2 契约复算；新会话仍先以 Git、Actions、契约、正式输入和本快照为准，历史 memory/session 不得覆盖它们。

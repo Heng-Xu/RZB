@@ -1,7 +1,7 @@
 # 徐州 110 kV 项目记忆索引
 
-更新时间：2026-09-01（Asia/Shanghai）
-当前阶段：`model-v3.2-autonomous-review` 分支自主复核与冻结验证；`contract=3.2.0 frozen`。
+更新时间：2026-09-01 11:40（Asia/Shanghai）
+当前阶段：`model-v3.2-autonomous-review` 分支 v3.2 自主复核已完成；`contract=3.2.0 frozen`。
 
 ## 新会话读取顺序
 
@@ -16,6 +16,7 @@
 ## 当前权威位置
 
 - 当前状态与下一步：[`current.md`](current.md)
+- 最近一次完整模型/冻结验证基准：提交 `fee3625c43d3f42b7514fbade69d7585813d38ec`，Actions run `33466902615` / `33466902676` 均成功；当前尖以 Git 实时查值为准。
 - 长期业务约束：[`AGENTS.md`](../AGENTS.md)
 - 模型契约：[`model_contract.yaml`](../实验/研究/model_contract.yaml) 与 [`model_contract_v3_2_overlay.yaml`](../实验/研究/model_contract_v3_2_overlay.yaml)
 - 正式结果：`实验/研究/results/runs/real-2021-2025-v32-frozen/`
