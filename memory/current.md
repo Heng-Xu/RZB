@@ -52,7 +52,7 @@
 - 10 个场景目录 manifest 的逐文件字节数/SHA-256 门禁通过；20 条片区记录均为 `ROBUST`，QX-00001/QX-00005 阈值保持 2.359–2.360 / 2.171–2.172，稳健下限保持 2.5 / 2.3。
 - 本地 `--scenario all --grid coarse` 重跑 17 个正式场景得到 2312 行；与 frozen sensitivity 22 个共享字段按唯一键在 `rtol/atol=1e-12` 内一致，最大绝对数值差 `2.84e-14`；基准控制详细 actions/cost breakdown 逐项一致。
 - 报告 S1/S3 扫描 0 处标记；全文 v33 DOCX SHA-256 `b9bb28e3f731208127194d1789539e7cfc53570f7305712a2c1e8ce8c019317be`；A4 PDF 37 页、3,135,171 bytes，SHA-256 `2dc7e5dd2b73b97b4a04f1824ff274a0d9e0ceeb063b2c415b466d848931bf5b`。
-- tracked freeze receipt 位于 `实验/研究/results/runs/real-2021-2025-v32-frozen/freeze_verification_receipt.json`：frozen manifest SHA `b23efc98f93c7e8c01bd5b642cad78b3219baa790151679a5c1c7c11459f78f9`；generated/package SHA 为 `b6c0429eabf639b83f309038dd7415c95cd0540c`；checkout/last verified SHA 为 `470e8220a7c92f241c4b7a0449d98c584a15de56`；workflow `33473134836`，PASS。
+- tracked freeze receipt 位于 `实验/研究/results/runs/real-2021-2025-v32-frozen/freeze_verification_receipt.json`：frozen manifest SHA `b23efc98f93c7e8c01bd5b642cad78b3219baa790151679a5c1c7c11459f78f9`；generated/package SHA 为 `b6c0429eabf639b83f309038dd7415c95cd0540c`；checkout/last verified SHA 为 `470e8220a7c92f241c4b7a0449d98c584a15de56`；workflow `33475112260`，PASS。
 - 目标代码、正式证据、报告和治理变更均已提交；本快照随本次更新提交，工作区应保持干净。
 
 ## 下一步
