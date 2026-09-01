@@ -21,7 +21,7 @@ from src.v32_actual_pipeline import (
     _prepare_expansion_candidates,
     scale_annual_net_load_input,
 )
-from src.v32_contract import load_v32_contract
+from src.v32_contract import load_v32_contract, validation_commit_sha
 from src.v32_frontier import _attach_metrics, _summarize_point
 from src.v32_policy import apply_actual_asset_policy_baseline, prepare_grandfathered_rcap_control
 from src.v32_time_physics import V32TimePhysicsEvaluator
@@ -169,6 +169,7 @@ def run_v32_parameter_frontier(
     frontier.to_csv(run_dir / "parameter_frontier.csv", index=False)
     metadata = {
         "scenario_id": frontier["scenario_id"].iloc[0],
+        "validation_commit_sha": validation_commit_sha(project_root),
         "cos_phi": float(cos_phi),
         "reverse_beta": float(reverse_beta),
         "net_load_scale": float(net_load_scale),

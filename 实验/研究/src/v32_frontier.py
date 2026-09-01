@@ -5,6 +5,7 @@
 """
 from __future__ import annotations
 
+import json
 import math
 from pathlib import Path
 from typing import Any
@@ -18,7 +19,7 @@ from src.v32_actual_pipeline import (
     _prepare_expansion_candidates,
     scale_annual_net_load_input,
 )
-from src.v32_contract import load_v32_contract
+from src.v32_contract import load_v32_contract, validation_commit_sha
 from src.v32_policy import apply_actual_asset_policy_baseline, prepare_grandfathered_rcap_control
 from src.v32_time_physics import V32TimePhysicsEvaluator
 
@@ -225,4 +226,20 @@ def run_v32_frontier_point(
     summary["storage_cost_multiplier"] = float(storage_cost_multiplier)
     summary["expansion_cost_multiplier"] = float(expansion_cost_multiplier)
     summary.to_csv(run_dir / "frontier_point.csv", index=False)
+    (run_dir / "frontier_manifest.json").write_text(
+        json.dumps(
+            {
+                "model_version": "3.2.0",
+                "validation_commit_sha": validation_commit_sha(project_root),
+                "dataset_id": "real_2021_2025",
+                "rcap": _point_label(rcap),
+                "retirement_candidates_enabled": False,
+            },
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     return summary

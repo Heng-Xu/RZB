@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from src.v32_contract import validation_commit_sha  # noqa: E402
 from src.v32_frontier_aggregate import validate_frontier_nested  # noqa: E402
 from src.v32_model import recommended_rcap_interval  # noqa: E402
 from src.v32_threshold import classify_economic_release_thresholds  # noqa: E402
@@ -737,6 +738,7 @@ def build_v32_frozen_outputs(
     }
     manifest = {
         "model_version": "3.2.0",
+        "validation_commit_sha": validation_commit_sha(project_root),
         "status": "MODEL V3.2 FROZEN",
         "dataset_id": "real_2021_2025",
         "contract_sha256": _sha256(project_root / "model_contract.yaml"),

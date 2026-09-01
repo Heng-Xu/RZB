@@ -1,12 +1,32 @@
 name: v3.2 chronology preflight
 
 on:
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: 'Branch, tag, or 40-character commit SHA to validate'
+        required: false
+        type: string
   push:
     branches: [model-v3.2-autonomous-review]
     paths:
-      - '.github/workflows/v32-chronology-preflight.yml'
-      - '实验/研究/src/v32_time_physics.py'
-      - '实验/研究/src/v32_storage.py'
+      - '.github/v32-dependency-policy.yaml'
+      - '.github/workflows/v32-*.yml'
+      - '实验/研究/model_contract.yaml'
+      - '实验/研究/model_contract_v3_2_overlay.yaml'
+      - '实验/研究/data/processed/real_2021_2025/**'
+      - '实验/研究/src/v32_*.py'
+      - '实验/研究/src/v3_*.py'
+      - '实验/研究/src/real_*.py'
+      - '实验/研究/src/annual_asset_scope.py'
+      - '实验/研究/src/empirical_scenarios.py'
+      - '实验/研究/src/io_loader.py'
+      - '实验/研究/src/milp_planner.py'
+      - '实验/研究/src/legacy_milp_planner.py'
+      - '实验/研究/src/net_model.py'
+      - '实验/研究/src/links_sigma.py'
+      - '实验/研究/src/timeseries_mapping.py'
+      - '实验/研究/src/typical_days.py'
 
 permissions:
   contents: read
@@ -20,6 +40,10 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.target_ref || github.sha }}
+      - name: Record validated commit
+        run: echo "V32_VALIDATION_COMMIT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -34,67 +58,46 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import json
+          import os
+          import shutil
           import pandas as pd
 
-          from src.real_costs import build_real_cost_library
-          from src.v3_pipeline import _retirement_candidates
-          from src.v32_time_physics import V32TimePhysicsEvaluator
+          from src.v32_actual_pipeline import run_v32_actual_baseline
 
           root = Path('.').resolve()
           processed = root / 'data/processed/real_2021_2025'
           work = root / 'results/runs/v32-chronology-preflight'
-          work.mkdir(parents=True, exist_ok=True)
-          contract = root / 'model_contract.yaml'
-
-          build_real_cost_library(processed, work / 'cost_library', contract)
-          cost_library = pd.read_csv(work / 'cost_library/expansion_cost_library.csv')
-          if 'available_year' not in cost_library.columns:
-              cost_library['available_year'] = 2022
-          retirements = _retirement_candidates(processed, cost_library)
-          candidates = pd.concat([cost_library, retirements], ignore_index=True, sort=False)
-
-          evaluator = V32TimePhysicsEvaluator(
-              processed,
-              work / 'time_physics',
-              candidates,
-              contract,
+          shutil.rmtree(work, ignore_errors=True)
+          manifest = run_v32_actual_baseline(root, processed, work)
+          comparison = pd.read_csv(work / 'qx00005_chronology_comparison.csv')
+          required_paths = {'PATH_OPT_CLR_UNBOUNDED', 'PATH_OPT_CLR_LE_2'}
+          observed_paths = set(comparison['path_id'].astype(str))
+          if observed_paths != required_paths:
+              raise RuntimeError(f'chronology paths mismatch: {sorted(observed_paths)}')
+          summary = {
+              'validation_commit_sha': os.environ['V32_VALIDATION_COMMIT_SHA'],
+              'baseline_manifest_validation_commit_sha': manifest['validation_commit_sha'],
+              'retirement_candidates_enabled': manifest['retirement_candidates_enabled'],
+              'chronology_rows': int(len(comparison)),
+              'paths': sorted(observed_paths),
+              'continuous_soc_summary_rows': int(
+                  manifest['qx00005_continuous_soc_artifacts'][
+                      'qx00005_continuous_soc_summary.csv'
+                  ]['rows']
+              ),
+              'continuous_soc_curve_rows': int(
+                  manifest['qx00005_continuous_soc_artifacts'][
+                      'qx00005_continuous_soc_8760.csv.gz'
+                  ]['rows']
+              ),
+          }
+          if summary['retirement_candidates_enabled']:
+              raise RuntimeError('primary chronology preflight cannot enable retirements')
+          (work / 'preflight_summary.json').write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
           )
-          old_actions = pd.read_csv(
-              root / 'results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/path_action_results.csv'
-          )
-          summaries = []
-          comparisons = []
-          for path_id in ('PATH_OPT_CLR_UNBOUNDED', 'PATH_OPT_CLR_LE_2'):
-              group = old_actions[
-                  old_actions['path_id'].astype(str).eq(path_id)
-                  & old_actions['region_id'].astype(str).eq('QX-00005')
-                  & old_actions['voltage_kv'].astype(int).eq(110)
-              ]
-              selected = tuple(sorted(
-                  value for value in group.get('candidate_id', pd.Series(dtype=str)).dropna().astype(str)
-                  if value
-              ))
-              comparison = evaluator.chronology_comparison(selected, cos_phi=0.95)
-              comparison.insert(0, 'path_id', path_id)
-              comparisons.append(comparison)
-              result = evaluator.evaluator(0.95)('QX-00005', 110, 2025, selected)
-              summaries.append({
-                  'path_id': path_id,
-                  'selected_candidate_ids': list(selected),
-                  'continuous_feasible': bool(result.feasible),
-                  'continuous_required_storage_modules': int(result.required_storage_modules),
-                  'continuous_p_plus_mw': result.p_plus_mw,
-                  'continuous_p_minus_mw': result.p_minus_mw,
-                  'reason': result.reason,
-                  'daily_cyclic_required_storage_modules': int(comparison['daily_cyclic_modules'].sum()),
-              })
-          pd.concat(comparisons, ignore_index=True).to_csv(
-              work / 'qx00005_chronology_comparison.csv', index=False
-          )
-          (work / 'summary.json').write_text(
-              json.dumps(summaries, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
-          )
-          print(json.dumps(summaries, ensure_ascii=False, indent=2))
+          print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
           PY
       - uses: actions/upload-artifact@v4
         with:

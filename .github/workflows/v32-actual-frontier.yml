@@ -1,16 +1,32 @@
 name: v3.2 actual-asset Rcap frontier
 
 on:
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: 'Branch, tag, or 40-character commit SHA to validate'
+        required: false
+        type: string
   push:
     branches: [model-v3.2-autonomous-review]
     paths:
-      - '实验/研究/src/v32_frontier.py'
-      - '实验/研究/src/v32_frontier_aggregate.py'
-      - '实验/研究/src/v32_policy.py'
-      - '实验/研究/src/v32_actual_pipeline.py'
-      - '实验/研究/src/v32_time_physics.py'
+      - '.github/v32-dependency-policy.yaml'
+      - '.github/workflows/v32-*.yml'
+      - '实验/研究/model_contract.yaml'
       - '实验/研究/model_contract_v3_2_overlay.yaml'
-      - '.github/workflows/v32-actual-frontier.yml'
+      - '实验/研究/data/processed/real_2021_2025/**'
+      - '实验/研究/src/v32_*.py'
+      - '实验/研究/src/v3_*.py'
+      - '实验/研究/src/real_*.py'
+      - '实验/研究/src/annual_asset_scope.py'
+      - '实验/研究/src/empirical_scenarios.py'
+      - '实验/研究/src/io_loader.py'
+      - '实验/研究/src/milp_planner.py'
+      - '实验/研究/src/legacy_milp_planner.py'
+      - '实验/研究/src/net_model.py'
+      - '实验/研究/src/links_sigma.py'
+      - '实验/研究/src/timeseries_mapping.py'
+      - '实验/研究/src/typical_days.py'
 
 permissions:
   contents: read
@@ -29,6 +45,10 @@ jobs:
         rcap: ['1.5', '1.6', '1.7', '1.8', '1.9', '2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', '2.9', '3.0', 'unbounded']
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.target_ref || github.sha }}
+      - name: Record validated commit
+        run: echo "V32_VALIDATION_COMMIT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -71,6 +91,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.target_ref || github.sha }}
+      - name: Record validated commit
+        run: echo "V32_VALIDATION_COMMIT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -85,6 +109,8 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import json
+          import os
           import pandas as pd
           from src.v32_frontier_aggregate import (
               build_coarse_recommendations,
@@ -105,6 +131,12 @@ jobs:
           out.mkdir(parents=True, exist_ok=True)
           frontier.to_csv(out / 'elasticity_frontier_v32_actual_coarse.csv', index=False)
           recommendations.to_csv(out / 'recommended_rcap_v32_actual_coarse.csv', index=False)
+          (out / 'manifest.json').write_text(json.dumps({
+              'validation_commit_sha': os.environ['V32_VALIDATION_COMMIT_SHA'],
+              'frontier_point_files': len(files),
+              'frontier_rows': int(len(frontier)),
+              'retirement_candidates_enabled': False,
+          }, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
           print('--- coarse recommendation ---')
           print(recommendations.to_string(index=False))
           PY

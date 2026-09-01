@@ -1,0 +1,124 @@
+name: v3.2 frozen package verification
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: 'Branch, tag, or 40-character commit SHA to validate'
+        required: false
+        type: string
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/v32-dependency-policy.yaml'
+      - '.github/workflows/v32-*.yml'
+      - '实验/研究/model_contract.yaml'
+      - '实验/研究/model_contract_v3_2_overlay.yaml'
+      - '实验/研究/data/processed/real_2021_2025/**'
+      - '实验/研究/src/v32_*.py'
+      - '实验/研究/src/v3_*.py'
+      - '实验/研究/src/real_*.py'
+      - '实验/研究/src/annual_asset_scope.py'
+      - '实验/研究/src/empirical_scenarios.py'
+      - '实验/研究/src/io_loader.py'
+      - '实验/研究/src/milp_planner.py'
+      - '实验/研究/src/legacy_milp_planner.py'
+      - '实验/研究/src/net_model.py'
+      - '实验/研究/src/links_sigma.py'
+      - '实验/研究/src/timeseries_mapping.py'
+      - '实验/研究/src/typical_days.py'
+      - '实验/研究/scripts/build_v32_formal_outputs.py'
+      - '实验/研究/scripts/plot_v32_formal_outputs.py'
+      - '实验/研究/results/runs/real-2021-2025-v32-frozen/**'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONPATH: .
+
+jobs:
+  verify-frozen-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.target_ref || github.sha }}
+      - name: Record validated commit
+        run: echo "V32_VALIDATION_COMMIT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install verification dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas pyyaml pytest python-docx
+      - name: Verify frozen hashes, invariants, and governance
+        working-directory: 实验/研究
+        run: |
+          python -m pytest -q \
+            tests/test_v32_contract.py \
+            tests/test_v32_contract_consistency.py \
+            tests/test_v32_frozen_manifest.py \
+            tests/test_v32_repository_governance.py \
+            tests/test_v32_validation_provenance.py \
+            tests/test_v32_workflow_dependencies.py
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import os
+          import pandas as pd
+
+          root = Path('.').resolve()
+          frozen = root / 'results/runs/real-2021-2025-v32-frozen'
+          manifest_path = frozen / 'manifest.json'
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+
+          def sha256(path):
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+          mismatches = []
+          for relative, metadata in manifest['output_files'].items():
+              path = frozen / relative
+              actual = sha256(path) if path.is_file() else None
+              if actual != metadata['sha256']:
+                  mismatches.append({'file': relative, 'expected': metadata['sha256'], 'actual': actual})
+          if mismatches:
+              raise RuntimeError(f'frozen output hash mismatch: {mismatches[:5]}')
+
+          costs = pd.read_csv(frozen / 'baseline/policy_cost_comparison.csv')
+          feasible = costs[
+              costs['elastic_status'].astype(str).eq('feasible')
+              & costs['rigid_status'].astype(str).eq('feasible')
+          ]
+          if not (
+              feasible['elastic_cumulative_eac_wanyuan']
+              <= feasible['rigid_cumulative_eac_wanyuan'] + 1e-7
+          ).all():
+              raise RuntimeError('elastic cost exceeds rigid cost for a jointly feasible region')
+
+          evidence = {
+              'validation_commit_sha': os.environ['V32_VALIDATION_COMMIT_SHA'],
+              'frozen_manifest_sha256': sha256(manifest_path),
+              'frozen_manifest_validation_commit_sha': manifest['validation_commit_sha'],
+              'verified_output_files': len(manifest['output_files']),
+              'jointly_feasible_cost_rows': int(len(feasible)),
+              'status': 'PASS',
+          }
+          out = root / 'results/runs/v32-freeze-verification'
+          out.mkdir(parents=True, exist_ok=True)
+          (out / 'freeze_verification.json').write_text(
+              json.dumps(evidence, ensure_ascii=False, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+          )
+          print(json.dumps(evidence, ensure_ascii=False, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v32-freeze-verification
+          path: 实验/研究/results/runs/v32-freeze-verification/
+          if-no-files-found: warn

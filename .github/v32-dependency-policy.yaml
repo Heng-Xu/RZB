@@ -1,0 +1,62 @@
+version: 1
+
+# 本文件是 v3.2 Actions 路径依赖的机器可检验清单。工作流可以增加路径，
+# 但不得遗漏所属分组；tests/test_v32_workflow_dependencies.py 负责防回退。
+path_groups:
+  workflow_governance:
+    - ".github/v32-dependency-policy.yaml"
+    - ".github/workflows/v32-*.yml"
+  contracts:
+    - "实验/研究/model_contract.yaml"
+    - "实验/研究/model_contract_v3_2_overlay.yaml"
+  processed_inputs:
+    - "实验/研究/data/processed/real_2021_2025/**"
+  model_core:
+    - "实验/研究/src/v32_*.py"
+    - "实验/研究/src/v3_*.py"
+    - "实验/研究/src/real_*.py"
+    - "实验/研究/src/annual_asset_scope.py"
+    - "实验/研究/src/empirical_scenarios.py"
+    - "实验/研究/src/io_loader.py"
+    - "实验/研究/src/milp_planner.py"
+    - "实验/研究/src/legacy_milp_planner.py"
+    - "实验/研究/src/net_model.py"
+    - "实验/研究/src/links_sigma.py"
+    - "实验/研究/src/timeseries_mapping.py"
+    - "实验/研究/src/typical_days.py"
+  sensitivity_entry:
+    - "实验/研究/scripts/run_v32_sensitivity_suite.py"
+  formal_builder:
+    - "实验/研究/scripts/build_v32_formal_outputs.py"
+    - "实验/研究/scripts/plot_v32_formal_outputs.py"
+  frozen_package:
+    - "实验/研究/results/runs/real-2021-2025-v32-frozen/**"
+  fast_ci:
+    - "AGENTS.md"
+    - "skills/xuzhou-real-model/SKILL.md"
+    - "实验/研究/model_contract.yaml"
+    - "实验/研究/model_contract_v3_2_overlay.yaml"
+    - "实验/研究/src/**"
+    - "实验/研究/scripts/*v32*.py"
+    - "实验/研究/tests/**"
+    - "实验/研究/data/processed/real_2021_2025/manifest.json"
+    - "实验/研究/data/processed/real_2021_2025/timeseries_mapping_approval.csv"
+
+workflows:
+  v32-model-ci.yml: [fast_ci, workflow_governance]
+  v32-actual-baseline.yml: [contracts, processed_inputs, model_core, workflow_governance]
+  v32-formal-baseline.yml: [contracts, processed_inputs, model_core, workflow_governance]
+  v32-actual-frontier.yml: [contracts, processed_inputs, model_core, workflow_governance]
+  v32-actual-refinement.yml: [contracts, processed_inputs, model_core, workflow_governance]
+  v32-actual-sensitivity.yml: [contracts, processed_inputs, model_core, sensitivity_entry, workflow_governance]
+  v32-chronology-preflight.yml: [contracts, processed_inputs, model_core, workflow_governance]
+  v32-freeze-verification.yml: [contracts, processed_inputs, model_core, formal_builder, frozen_package, workflow_governance]
+
+heavy_workflows:
+  - v32-actual-baseline.yml
+  - v32-formal-baseline.yml
+  - v32-actual-frontier.yml
+  - v32-actual-refinement.yml
+  - v32-actual-sensitivity.yml
+  - v32-chronology-preflight.yml
+  - v32-freeze-verification.yml

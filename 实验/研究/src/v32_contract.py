@@ -2,7 +2,10 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import os
 from pathlib import Path
+import re
+import subprocess
 from typing import Any
 
 import yaml
@@ -30,6 +33,29 @@ _FRONTIER_FIELDS = [
     "capacity_action_delta_mva",
     "feasible",
 ]
+
+
+def validation_commit_sha(project_root: Path) -> str:
+    """返回本次验证实际 checkout 的 40 位 Git commit SHA。"""
+    candidate = os.environ.get("V32_VALIDATION_COMMIT_SHA", "").strip()
+    if not candidate:
+        completed = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=Path(project_root),
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if completed.returncode != 0:
+            raise V32ContractError(
+                "validation commit SHA is unavailable; set V32_VALIDATION_COMMIT_SHA"
+            )
+        candidate = completed.stdout.strip()
+    if re.fullmatch(r"[0-9a-fA-F]{40}", candidate) is None:
+        raise V32ContractError(
+            "V32_VALIDATION_COMMIT_SHA must be a 40-character commit SHA"
+        )
+    return candidate.lower()
 
 
 def _deep_merge(base: dict[str, Any], overlay: dict[str, Any]) -> dict[str, Any]:

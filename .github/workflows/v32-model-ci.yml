@@ -1,14 +1,26 @@
 name: v3.2 model validation
 
 on:
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: 'Branch, tag, or 40-character commit SHA to validate'
+        required: false
+        type: string
   pull_request:
     branches: [main]
     paths:
+      - 'AGENTS.md'
+      - 'skills/xuzhou-real-model/SKILL.md'
       - '实验/研究/src/**'
+      - '实验/研究/scripts/*v32*.py'
       - '实验/研究/tests/**'
-      - '实验/研究/model_contract*.yaml'
-      - 'memory/decisions/**'
-      - '.github/workflows/v32-model-ci.yml'
+      - '实验/研究/model_contract.yaml'
+      - '实验/研究/model_contract_v3_2_overlay.yaml'
+      - '实验/研究/data/processed/real_2021_2025/manifest.json'
+      - '实验/研究/data/processed/real_2021_2025/timeseries_mapping_approval.csv'
+      - '.github/v32-dependency-policy.yaml'
+      - '.github/workflows/v32-*.yml'
   push:
     branches: [model-v3.2-autonomous-review]
 
@@ -24,6 +36,10 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.target_ref || github.sha }}
+      - name: Record validated commit
+        run: echo "V32_VALIDATION_COMMIT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -37,6 +53,7 @@ jobs:
         run: |
           pytest -q \
             tests/test_v32_contract.py \
+            tests/test_v32_contract_consistency.py \
             tests/test_v32_common_baseline.py \
             tests/test_v32_grandfathered_policy.py \
             tests/test_v32_frontier.py \
@@ -44,5 +61,8 @@ jobs:
             tests/test_v32_recommendation.py \
             tests/test_v32_storage_chronology.py \
             tests/test_v32_physics.py \
+            tests/test_v32_repository_governance.py \
+            tests/test_v32_validation_provenance.py \
+            tests/test_v32_workflow_dependencies.py \
             tests/test_v3_planner.py \
             tests/test_v3_time_physics.py

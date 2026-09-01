@@ -26,7 +26,7 @@ from src.v3_pipeline import (
     _annual_input,
     _timeseries_gate,
 )
-from src.v32_contract import load_v32_contract
+from src.v32_contract import load_v32_contract, validation_commit_sha
 from src.v32_physics import build_station_gap_diagnostics
 from src.v32_policy import run_actual_asset_policy_paths
 from src.v32_time_physics import V32TimePhysicsEvaluator
@@ -451,6 +451,7 @@ def run_v32_actual_baseline(
 
     manifest = {
         "model_version": "3.2.0",
+        "validation_commit_sha": validation_commit_sha(project_root),
         "dataset_id": "real_2021_2025",
         "contract_version": str(contract["contract"]["version"]),
         "model_role": "primary_actual_asset_grandfathered_incremental_rcap",
