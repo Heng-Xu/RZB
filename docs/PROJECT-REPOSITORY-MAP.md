@@ -40,7 +40,7 @@
 | 10 kV 局部案例 | `src/tie_case/engine.py`、`scripts/run_tie_case.py` | 现有联络切分、新建线路独立解析；不做全县联络优化 |
 | 质量与网络筛查 | `src/real_network_check.py`、`src/verify_flow_n1.py`、`src/verify_dlt2041.py` | 容量网络压力筛查、设备/县区缺口和边界说明；缺阻抗时不宣称精确潮流 |
 | 测试 | `tests/` | 契约、数据、指标、规划、案例、输出和报告构建回归 |
-| 运行入口 | `scripts/run_all.py`、`scripts/run_annual_model.py` | v3 真实端到端、历史迁移回归和年度结果生成 |
+| 运行入口 | `scripts/run_all.py`；`scripts/run_annual_model.py --legacy-archive-only` | 前者是 v3.2 真实端到端入口；后者仅复现 v2 历史年度归档，默认拒绝执行 |
 | 正式结果 | `results/runs/real-2021-2025-v32-frozen/` | 数据文件清单、方案年度结果、措施、成本、弹性前沿、矩阵、问题台账和附表 |
 
 ### 2.3 结果到报告

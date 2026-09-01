@@ -1,5 +1,9 @@
 #!/usr/bin/env python
-"""生成 2021--2025 年度 C0/A/B 诊断矩阵和最终 Word 推荐表。"""
+"""归档用 v2 年度 C0/A/B 诊断入口。
+
+该脚本不属于 v3.2 正式运行链。默认拒绝执行；只有为复核历史归档而显式
+传入 ``--legacy-archive-only`` 时才允许生成旧 ``real_2025`` 产物。
+"""
 from __future__ import annotations
 
 import argparse
@@ -311,10 +315,24 @@ def build_outputs(years: list[int]) -> Path:
     return final_root
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser()
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="HISTORICAL v2 archive runner; never a v3.2 formal entrypoint"
+    )
+    parser.add_argument(
+        "--legacy-archive-only",
+        action="store_true",
+        help="explicitly allow reproduction of superseded v2 archive outputs",
+    )
     parser.add_argument("--years", nargs="+", type=int, default=ANNUAL_YEARS)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+    if not args.legacy_archive_only:
+        print(
+            "refused: this is a legacy archive runner, not a v3.2 formal entrypoint; "
+            "pass --legacy-archive-only only when reproducing superseded evidence",
+            file=sys.stderr,
+        )
+        return 2
     invalid = sorted(set(args.years) - set(ANNUAL_YEARS))
     if invalid:
         parser.error(f"years must be within {ANNUAL_YEARS}, got {invalid}")

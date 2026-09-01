@@ -35,12 +35,12 @@
 - baseline/frontier/refinement/sensitivity/chronology/freeze 的触发路径已覆盖 canonical base、overlay、processed 输入及传递模型依赖；refinement/sensitivity 不再只因 workflow 自身变化而运行。
 - chronology preflight 已改为调用当前 v3.2 actual baseline，不再读旧 v3 动作或拼入退役候选；各运行/汇总 manifest 增加 `validation_commit_sha`。
 - CI/来源追踪回归 30 项通过（1.49 s）；8 个 workflow YAML 解析通过，相关 Python 文件 `py_compile` 通过。
+- `scripts/run_annual_model.py` 已改为归档入口：默认在数据读取和输出创建前返回 2，只有显式 `--legacy-archive-only` 才允许复现 v2 旧结果；正式入口/工作流引用检查与 legacy guard 共 10 项通过（1.02 s）。
 
 ## 仍在修复的问题
 
-1. `scripts/run_annual_model.py` 尚未加默认拒绝执行的归档守卫。
-2. frozen manifest 尚未登记验证 commit SHA；正式数值复现与差异审计尚未执行。
-3. 联合压力情景和报告第四、六、七章的最小一致性修正尚未完成。
+1. frozen manifest 尚未登记验证 commit SHA；正式数值复现与差异审计尚未执行。
+2. 联合压力情景和报告第四、六、七章的最小一致性修正尚未完成。
 
 ## 当前科学限制
 
@@ -51,4 +51,4 @@
 
 ## 下一步
 
-隔离 legacy 年度入口；随后复现 baseline/frontier/refinement/sensitivity，评估少量联合压力情景，修正报告并完成全量测试、正式产物临时重建与 frozen 差异审计，最后分批提交推送并在最终 SHA 上建立 Actions 验证链。
+复现 baseline/frontier/refinement/sensitivity，评估少量联合压力情景，修正报告并完成全量测试、正式产物临时重建与 frozen 差异审计，最后分批提交推送并在最终 SHA 上建立 Actions 验证链。
