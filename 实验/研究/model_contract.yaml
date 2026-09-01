@@ -142,7 +142,7 @@ elasticity_sweep:
       - "cumulative_in_service_eac_wanyuan"
       - "physical_clr_2025"
       - "storage_modules"
-      - "expansion_mva"
+      - "capacity_action_delta_mva"
       - "feasible"
   recommendation_outputs:
     - "recommended_rcap_interval"
@@ -158,6 +158,8 @@ sensitivity:
   storage_cost_multiplier: [0.80, 1.00, 1.20]
   expansion_cost_multiplier: [0.80, 1.00, 1.20]
   pv_only_sensitivity: "not_executable_without_synchronous_load_pv_decomposition_and_feeder_point_evidence"
+  near_optimal_band: [0.02, 0.05, 0.10]
+  standardized_baseline_benchmark: true
   rule: "recommendation robustness is judged on the same Rcap dimension"
 
 standardized_policy_benchmark:
@@ -216,7 +218,15 @@ data:
       - "data/processed/real_2021_2025/transformer_hourly_2023.csv.gz"
       - "data/processed/real_2021_2025/transformer_hourly_2024.csv.gz"
       - "data/processed/real_2021_2025/transformer_hourly_2025.csv.gz"
-    current_status: "candidate_only"
+    current_status: "approved_for_2025_qx00005_110kv_operating_scope"
+    formal_scope_id: "2025_QX-00005_110kv_operating"
+    formal_hourly_use_allowed: true
+    grade_a_ready: true
+    formal_scope_approved_transformers: 40
+    formal_scope_required_transformers: 40
+    context_only_35kv_columns: 16
+    context_only_35kv_formal_hourly_use_allowed: false
+    year_end_only_rejected_columns: 2
     source_years: [2022, 2023, 2024, 2025, 2026]
     source_sheet_by_year:
       2022: "Sheet1"
@@ -358,6 +368,12 @@ storage:
   arbitrary_grid_arbitrage_allowed: false
   site_rule: "requires_available_connection_or_explicit_site_candidate"
   exact_feeder_siting_claim_allowed: false
+  continuous_validation:
+    qx00005_110kv_required: true
+    chronology_hours: 8760
+    evidence_grade: "EVIDENCE_A"
+    compare_against_daily_cyclic: true
+    material_difference_requires_model_review: true
 
 costs:
   currency: "CNY"
@@ -424,7 +440,7 @@ pv:
 
 time_model:
   qx00005:
-    formal_method_after_mapping: "full_8760_hourly_optimization_and_playback"
+    formal_method_after_mapping: "approved_8760_chronological_playback_plus_daily_cyclic_conservative_reference"
     evidence_grade: "EVIDENCE_A"
   other_regions:
     formal_method: "static_real_data_plus_qx00005_empirical_duration_transfer"
@@ -437,6 +453,16 @@ time_model:
     expansion_requirement: true
     storage_power_lower_bound: true
     storage_energy_unique_value: false
+
+method_positioning:
+  ahp:
+    core_optimization_method: false
+    allowed_role: "optional_descriptive_region_classification_only"
+    may_determine_recommended_rcap: false
+  reliability:
+    objective_eens_enabled: false
+    reason: "insufficient_full_network_and_full_region_hourly_evidence_for_traceable_EENS"
+    role: "hard_physical_constraints_and_supported_internal_screens"
 
 cross_voltage:
   separate_matrices: true

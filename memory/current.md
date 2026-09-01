@@ -27,15 +27,17 @@
 - `memory/INDEX.md`、`memory/README.md`、`memory/next-session-prompt.md` 与 `AGENTS.md` 已改为实时 Git/Actions、frozen contract、正式输入/结果优先。
 - `claude_session_1.txt` 和两个曾被标记为当前接续依据的 2026-08-27 session 已在文件头标记历史归档；原文未删除。
 - 已新增 repository governance、contract consistency 与 workflow dependency 三组防回退测试；2026-09-01 首次运行得到 11 个预期失败、2 个通过，证明旧状态、schema、legacy guard、freeze SHA 和 CI 依赖缺口可复现。
+- `model_contract.yaml` 已成为 v3.2 业务语义 canonical source；overlay 缩减为只读版本标记层，`load_v32_contract()` 会拒绝任何业务语义漂移。
+- 逐时状态已与正式门禁统一为 `approved_for_2025_qx00005_110kv_operating_scope`：40/40 台 QX-00005 110 kV 运行主变正式可用，16 列 35 kV 仅作背景，2 列年末设备排除。
+- 前沿正式字段统一为 `capacity_action_delta_mva`；连续 8760 h、近优带与方法定位字段已从 overlay 合并回 canonical base。
+- 契约与项目约束回归：22 项通过（0.86 s）；真实逐时适配与审批回归：12 项通过（173.78 s）。
 
 ## 仍在修复的问题
 
-1. `model_contract.yaml` 的逐时状态与 40 台 110 kV 运行主变正式获批门禁尚未统一。
-2. base/overlay 的前沿字段 schema 尚未统一，loader 尚未拒绝语义漂移。
-3. GitHub Actions 重型工作流依赖触发范围、手动调度与验证 SHA 记录尚未补齐。
-4. `scripts/run_annual_model.py` 尚未加默认拒绝执行的归档守卫。
-5. frozen manifest 尚未登记验证 commit SHA；正式数值复现与差异审计尚未执行。
-6. 联合压力情景和报告第四、六、七章的最小一致性修正尚未完成。
+1. GitHub Actions 重型工作流依赖触发范围、手动调度与验证 SHA 记录尚未补齐。
+2. `scripts/run_annual_model.py` 尚未加默认拒绝执行的归档守卫。
+3. frozen manifest 尚未登记验证 commit SHA；正式数值复现与差异审计尚未执行。
+4. 联合压力情景和报告第四、六、七章的最小一致性修正尚未完成。
 
 ## 当前科学限制
 
@@ -46,4 +48,4 @@
 
 ## 下一步
 
-按失败测试先行依次完成 active handoff 治理、契约一致性、CI 依赖覆盖、legacy 隔离；随后复现 baseline/frontier/refinement/sensitivity，评估少量联合压力情景，修正报告并完成全量测试、正式产物临时重建与 frozen 差异审计，最后分批提交推送并在最终 SHA 上建立 Actions 验证链。
+完成 CI 依赖覆盖与 legacy 隔离；随后复现 baseline/frontier/refinement/sensitivity，评估少量联合压力情景，修正报告并完成全量测试、正式产物临时重建与 frozen 差异审计，最后分批提交推送并在最终 SHA 上建立 Actions 验证链。

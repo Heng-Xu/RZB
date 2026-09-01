@@ -222,7 +222,11 @@ def review_real_timeseries_mapping(
     processed_root = Path(processed_root).resolve()
     contract_path = Path(contract_path).resolve()
     contract = yaml.safe_load(contract_path.read_text(encoding="utf-8"))
-    if contract["data"]["timeseries"]["current_status"] != "candidate_only":
+    current_status = contract["data"]["timeseries"]["current_status"]
+    if current_status not in {
+        "candidate_only",
+        "approved_for_2025_qx00005_110kv_operating_scope",
+    }:
         raise TimeseriesMappingError("unexpected contract time-series status")
     required_processed = ["transformer_master.csv", "manifest.json"]
     for filename in required_processed:

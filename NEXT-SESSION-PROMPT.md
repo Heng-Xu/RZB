@@ -17,7 +17,7 @@
 9. 当前报告及生成/审查脚本；
 10. 最后读取 memory/current.md。claude_session_1.txt、memory/archive 和旧 session 只作 HISTORICAL / SUPERSEDED 历史追溯。
 
-当前 contract=3.2.0 frozen。正式主模型固定为“2021实际在役资产共同起点 + 存量容量豁免 + Rcap只约束110 kV规划期新增容量”。两方案均可行时可以直接比较累计年化成本；弹性方案可行域包含刚性方案可行域。物理 CLR 与 Rcap 分离，物理 CLR 可以因既有存量而高于 Rcap。2×P2021 只作二级标准化敏感性基准；主模型不为满足 Rcap 生成退役候选。
+当前 contract=3.2.0 frozen。正式方案代码只有 PATH_ACTUAL_2021_2025、PATH_OPT_CLR_UNBOUNDED 和 PATH_OPT_CLR_LE_2。主模型固定为“2021实际在役资产共同起点 + 存量容量豁免 + Rcap只约束110 kV规划期新增容量”。两方案均可行时可以直接比较累计年化成本；弹性方案可行域包含刚性方案可行域。物理 CLR 与 Rcap 分离，物理 CLR 可以因既有存量而高于 Rcap。逐时证据按年度资产白名单审批；2×P2021 只作二级标准化敏感性基准；主模型不为满足 Rcap 生成退役候选。
 
 正式结果目录：实验/研究/results/runs/real-2021-2025-v32-frozen/。
 
