@@ -1,0 +1,28 @@
+{
+  "candidate_input_sha256": "c32d89d71a1357d41b3d2c9e1487498918cdac5df5a72f3abe6f49eb891ba7a2",
+  "contract_sha256": "cbbc788cb819c7c9b44e94541daa4fb6b95c5ea00e3685d80ba43df8d6329d30",
+  "contract_version": "3.2.0",
+  "cost_library_version": "3.0.0",
+  "dataset_id": "real_2021_2025",
+  "formal_paths": [
+    "PATH_OPT_CLR_UNBOUNDED",
+    "PATH_OPT_CLR_LE_2"
+  ],
+  "model_assumption_gate": "explicit",
+  "output_files": {
+    "cost_assumptions.csv": {
+      "rows": 5,
+      "sha256": "e103f9e08cbdf2cd3a7d8661c78e04cfb94a4f89c26b97a33603bb056bc6f6e9"
+    },
+    "expansion_cost_library.csv": {
+      "rows": 92,
+      "sha256": "8b112d05239c9ab32fc2428c8b03b9c6429c77e66e732525799bc431d61550ba"
+    },
+    "storage_module_cost_boundaries.csv": {
+      "rows": 5,
+      "sha256": "f95c987345a9ce8169c7e8243b546a63e38343ad0691442aab3de484439b52a5"
+    }
+  },
+  "price_year": 2025,
+  "storage_policy_note_sha256": "eaff5cc8d2b6d9d65dc0057b52197897e6b1506293b22127a0c12a50617d597f"
+}

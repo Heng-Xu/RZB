@@ -1,0 +1,25 @@
+{
+  "direct_client_cost_conclusion_allowed": false,
+  "enabled": true,
+  "files": {
+    "standardized_baseline.csv": {
+      "bytes": 3158,
+      "sha256": "13654e49252a81564c8314f044201419fdc22c2751670b60bec699e25a337cfe"
+    }
+  },
+  "formula": "S_norm_0 = 2.0 * P_plus_2021",
+  "input_files": {
+    "data/processed/real_2021_2025/annual_reference.csv": {
+      "bytes": 22615,
+      "sha256": "6f62cbc4481feed71927952474bbd01f28cbfb7de3289276040415f59df7ad7f"
+    }
+  },
+  "model_version": "3.2.0",
+  "not_for_client_main_conclusion": true,
+  "not_for_formal_matrix": true,
+  "physical_asset_state_separate": true,
+  "primary_policy_model": false,
+  "role": "secondary_standardized_counterfactual_benchmark",
+  "scenario_id": "S_NORM_2P_PLUS_2021",
+  "schema_version": "v3.2.secondary-standardized-benchmark.v1"
+}

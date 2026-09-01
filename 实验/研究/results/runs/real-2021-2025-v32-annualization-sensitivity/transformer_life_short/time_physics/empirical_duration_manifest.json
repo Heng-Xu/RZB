@@ -1,0 +1,31 @@
+{
+  "contract_sha256": "f620a7a9c678d2a140fbe0164cb00ec758436cc5dcf6f7b00ce3ac387869ed9e",
+  "input_fingerprint": "1f21dead202b294a9818dc65e46d357b06af50a4ddaae0873b76f4412766d7af",
+  "output_files": {
+    "empirical_scenario_index.csv": {
+      "rows": 621,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    "empirical_scenario_issues.csv": {
+      "rows": 5,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    "empirical_station_scenarios.csv.gz": {
+      "rows": 14904,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    }
+  },
+  "probabilistic_interpretation_allowed": false,
+  "scenario_builder_version": "1.0.0",
+  "scenario_fingerprint": "934a3e8d83db50c312c2b74ad81778a13c00dc6444e130c02e384568f8d2f24c",
+  "scenario_labels": [
+    "empirical_short",
+    "empirical_central",
+    "empirical_long"
+  ],
+  "source_sample_counts": {
+    "110": 4540,
+    "35": 1996
+  },
+  "target_station_count": 207
+}

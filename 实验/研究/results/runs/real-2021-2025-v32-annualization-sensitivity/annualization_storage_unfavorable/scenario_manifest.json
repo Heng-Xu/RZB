@@ -1,0 +1,63 @@
+{
+  "scenario_id": "annualization_storage_unfavorable",
+  "scenario_name": "annualization_storage_unfavorable",
+  "validation_commit_sha": "e8a56a84962404b5bde8f93de972e28e79babc72",
+  "cos_phi": 0.95,
+  "reverse_beta": 0.8,
+  "net_load_scale": 1.0,
+  "storage_cost_multiplier": 1.0,
+  "expansion_cost_multiplier": 1.0,
+  "parameters": {
+    "cos_phi": 0.95,
+    "reverse_beta": 0.8,
+    "net_load_scale": 1.0,
+    "storage_cost_multiplier": 1.0,
+    "expansion_cost_multiplier": 1.0
+  },
+  "rcap_points": [
+    2.0,
+    2.1,
+    2.15,
+    2.16,
+    2.17,
+    2.171,
+    2.172,
+    2.18,
+    2.2,
+    2.3,
+    2.35,
+    2.359,
+    2.36,
+    2.37,
+    2.4,
+    2.5,
+    2.6,
+    2.7,
+    2.8,
+    2.9,
+    3.0
+  ],
+  "include_unbounded": true,
+  "physical_baseline": "actual_2021_installed_capacity",
+  "retirement_candidates_enabled": false,
+  "scenario_contract": "scenario_contract.yaml",
+  "annualization": {
+    "discount_rate": 0.08,
+    "storage_life_years": 8,
+    "transformer_measure_life_years": 30,
+    "storage_fixed_om_fraction_per_year": 0.045,
+    "transformer_fixed_om_fraction_per_year": 0.018
+  },
+  "annualization_overrides": {
+    "discount_rate": 0.08,
+    "storage_life_years": 8,
+    "transformer_measure_life_years": 30,
+    "storage_fixed_om_fraction_per_year": 0.045,
+    "transformer_fixed_om_fraction_per_year": 0.018
+  },
+  "region_ids": [
+    "QX-00001",
+    "QX-00005"
+  ],
+  "baseline_control": false
+}

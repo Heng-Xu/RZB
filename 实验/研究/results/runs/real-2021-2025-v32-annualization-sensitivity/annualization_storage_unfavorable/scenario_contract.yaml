@@ -1,0 +1,757 @@
+contract:
+  id: xuzhou-clr-real-data-2021-2025
+  version: 3.2.0
+  status: frozen
+  frozen_at: '2026-08-29'
+  change_note: 主政策实验改为2021实际资产共同起点、存量容量豁免且Rcap只约束决策期新增容量；保留2×P2021标准化起点为二级敏感性基准；分离Rcap与实际CLR；增加连续8760h SOC和beta敏感性
+  authoritative_spec: docs/REAL-DATA-MODEL-SPEC.md
+  execution_plan: docs/IMPLEMENTATION-PLAN-REAL-2021-2025-V3.md
+  output_conventions: docs/PROJECT-OUTPUT-CONVENTIONS.md
+  runbook: docs/ANNUAL-2021-2025-RUNBOOK.md
+  legacy_params: params.yaml
+environment:
+  conda_name: xuzhou110kv_clr
+  conda_prefix: /home/xh/anaconda3/envs/xuzhou110kv_clr
+  command_working_directory: 实验/研究
+  mplconfigdir: /tmp/mplcfg_xuzhou
+  canonical_contract_test_command: env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr pytest -q tests/test_model_contract_v3.py
+  canonical_test_command: env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr bash scripts/runtests.sh
+  target_real_e2e_command: env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr python scripts/run_all.py --dataset
+    real_2021_2025 --config model_contract.yaml --skip-gen
+scope:
+  common_baseline_year: 2021
+  base_year: 2021
+  decision_years:
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  price_year: 2025
+  analysis_mode: multi_year_joint_optimization
+  regions:
+  - QX-00007
+  - QX-00003
+  - QX-00005
+  - QX-00010
+  - QX-00009
+  - QX-00001
+  - QX-00004
+  - QX-00008
+  voltage_levels_kv:
+  - 110
+  - 35
+  formal_matrix_voltage_kv: 110
+  auxiliary_matrix_voltage_kv: 35
+  matrix_reporting_granularity: region_and_voltage_for_both_levels
+  decision_unit: station_or_transformer
+  reporting_unit: region_and_voltage
+  anonymized_ids_only: true
+  excluded:
+  - future_year_forecast
+  - historical_backtest_claim
+  - global_10kv_tie_optimization
+  - curtailment_decision_and_cost
+  - system_level_open_capacity_grade
+  - unqualified_ac_or_dc_power_flow_claim
+planning_baseline:
+  applies_to_voltage_kv:
+  - 110
+  baseline_year: 2021
+  formula: S0 = actual_2021_installed_capacity
+  source: official_2021_in_service_capacity_anchor
+  future_decision_year_information_allowed: false
+  physical_and_planning_start_state_identical: true
+  interpretation: measured_existing_asset_state
+  legacy_capacity_excess_treatment: grandfather_existing_capacity_without_forced_retirement
+  retirement_to_meet_rcap_forbidden: true
+  rigid_incremental_capacity_rule: DeltaS_y <= max(Rcap * P_plus_y - S_2021, 0)
+  equivalent_total_capacity_rule: S_y <= max(S_2021, Rcap * P_plus_y)
+paths:
+  PATH_ACTUAL_2021_2025:
+    display_name: 2021—2025实际
+    role: fact_comparison_only
+    eligible_for_optimization_rank: false
+    common_baseline_year: 2021
+    years:
+    - 2021
+    - 2022
+    - 2023
+    - 2024
+    - 2025
+    incremental_cost_status: device_level_gross_actions_required
+  PATH_OPT_CLR_UNBOUNDED:
+    display_name: 弹性容载比规划（2021实际资产共同起点）
+    role: minimum_cumulative_in_service_eac_without_uniform_rcap
+    eligible_for_optimization_rank: true
+    common_baseline_year: 2021
+    decision_years:
+    - 2022
+    - 2023
+    - 2024
+    - 2025
+    clr_limit: null
+    constraint_start_year: null
+  PATH_OPT_CLR_LE_2:
+    display_name: 刚性容载比规划（2021实际资产共同起点，存量豁免、增量Rcap=2.0）
+    role: minimum_cumulative_in_service_eac_with_grandfathered_incremental_rcap
+    eligible_for_optimization_rank: true
+    common_baseline_year: 2021
+    decision_years:
+    - 2022
+    - 2023
+    - 2024
+    - 2025
+    rcap: 2.0
+    constraint_start_year: 2022
+    legacy_capacity_grandfathered: true
+    forced_retirement_for_rcap_compliance: false
+optimization:
+  objective:
+    code: MIN_CUMULATIVE_IN_SERVICE_EAC_2022_2025
+    years:
+    - 2022
+    - 2023
+    - 2024
+    - 2025
+    price_year: 2025
+    includes_2021_existing_assets: false
+    annual_outputs:
+    - annual_capex_wanyuan
+    - annual_in_service_eac_wanyuan
+    - cumulative_capex_wanyuan
+    - cumulative_in_service_eac_wanyuan
+  shared_inputs:
+    same_candidates: true
+    same_physical_constraints: true
+    same_cost_library: true
+    same_solver_precision: true
+    same_planning_baseline: true
+    same_physical_asset_baseline: true
+  invariants:
+  - both_formal_paths_present_for_every_region_voltage
+  - both_policy_paths_share_actual_2021_asset_baseline
+  - strict_path_rcap_controls_incremental_capacity_on_110kv_only
+  - legacy_capacity_is_not_forced_to_retire_for_rcap_compliance
+  - elastic_cost_not_greater_than_rigid_cost_when_both_feasible
+  retirement_candidates_in_primary_policy_model: false
+  direct_policy_cost_comparison_allowed: true
+  policy_incremental_cost_formula: C_rigid - C_elastic
+  state_carries_forward: true
+  action_in_service_from投运_year: true
+elasticity_sweep:
+  role: planning_rcap_frontier_for_policy_recommendation
+  applies_to_voltage_kv:
+  - 110
+  rcap_points:
+  - 1.5
+  - 1.6
+  - 1.7
+  - 1.8
+  - 1.9
+  - 2.0
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
+  - 2.6
+  - 2.7
+  - 2.8
+  - 2.9
+  - 3.0
+  include_unbounded_point: true
+  baseline: same_actual_2021_asset_baseline_with_legacy_capacity_grandfathering
+  coarse_step: 0.1
+  local_refinement_enabled: true
+  near_optimal_band: 0.05
+  near_optimal_band_sensitivity:
+  - 0.02
+  - 0.05
+  - 0.1
+  recommendation_dimension: Rcap
+  realized_clr_is_separate_output: true
+  realized_clr_definition: physical_installed_capacity_mva / synchronized_positive_peak_mw
+  robust_intersection_rule: intersect_Rcap_near_optimal_sets_across_parameter_scenarios_only
+  forbidden_operation: intersect_Rcap_interval_with_realized_CLR_interval
+  output:
+    frontier_csv: elasticity_frontier_v32.csv
+    fields:
+    - rcap
+    - region_id
+    - cumulative_in_service_eac_wanyuan
+    - physical_clr_2025
+    - storage_modules
+    - capacity_action_delta_mva
+    - feasible
+  recommendation_outputs:
+  - recommended_rcap_interval
+  - recommended_rcap_center
+  - realized_physical_clr_2025_interval
+  - measure_flip
+  - sensitivity_robust
+sensitivity:
+  cos_phi:
+  - 0.9
+  - 0.95
+  - 1.0
+  reverse_beta:
+  - 0.6
+  - 0.8
+  - 1.0
+  net_load_scale:
+  - 0.95
+  - 1.0
+  - 1.05
+  storage_cost_multiplier:
+  - 0.8
+  - 1.0
+  - 1.2
+  expansion_cost_multiplier:
+  - 0.8
+  - 1.0
+  - 1.2
+  pv_only_sensitivity: not_executable_without_synchronous_load_pv_decomposition_and_feeder_point_evidence
+  near_optimal_band:
+  - 0.02
+  - 0.05
+  - 0.1
+  standardized_baseline_benchmark: true
+  rule: recommendation robustness is judged on the same Rcap dimension
+standardized_policy_benchmark:
+  enabled: true
+  role: secondary_sensitivity_only_not_primary_client_policy_model
+  formula: S_norm_0 = 2.0 * P_plus_2021
+  future_decision_year_information_allowed: false
+  physical_asset_state_separate: true
+  direct_client_cost_conclusion_allowed: false
+  note: 用于检验结论对标准化起点假设的敏感性，不替代实际资产共同起点主模型
+data:
+  source_root: data/tuomin/电网建模数据_Agent整合版_V1.2
+  source_read_only: true
+  processed_root: data/processed/real_2021_2025
+  audit_root: results/real_data_audit
+  source_contract: data/tuomin/电网建模数据_Agent整合版_V1.2/README_Agent_建模数据引用与使用说明_V1.2.md
+  archive:
+    file: data/tuomin/电网建模数据_Agent整合版_V1.2.zip
+    sha256: a8ee4006223b39efdcdc4434c4b315d25ef395a3de1a684e049a70925ab5bec7
+  required_lineage_fields:
+  - source_ref
+  - source_version
+  - transformation
+  - scenario_id
+  - quality_flag
+  - source_sha256
+  expected_qx00005_counts:
+    stations_110kv: 21
+    operating_2025_stations_110kv: 20
+    transformers_110kv: 42
+    operating_2025_transformers_110kv: 40
+    transformers_35kv_context: 16
+    hourly_series_total: 58
+    network_lines_touching_scope: 40
+    feeders_in_scope: 342
+    pv_profile_hours: 8760
+  source_precedence:
+    capacity_and_equipment:
+    - SRC02
+    - SRC03
+    static_extrema:
+    - SRC01
+    hourly_net_load:
+    - SRC07
+    - approved_timeseries_map
+    county_peak_and_clr_reference:
+    - SRC08
+    station_pv_snapshot:
+    - SRC05
+    pv_shape:
+    - SRC14
+    network_capacity_graph:
+    - SRC04
+  forbidden_joins:
+  - left: 高压网架结构.xlsx
+    right: authoritative_station_tables
+    reason: station_code_system_not_mapped
+  timeseries:
+    review_map: data/processed/real_2021_2025/timeseries_column_map_2022_2026_review.csv
+    candidate_map: results/real_data_audit/timeseries_column_map_2025_candidate.csv
+    formal_map_target: data/processed/real_2021_2025/timeseries_mapping_approval.csv
+    hourly_targets:
+    - data/processed/real_2021_2025/transformer_hourly_2022.csv.gz
+    - data/processed/real_2021_2025/transformer_hourly_2023.csv.gz
+    - data/processed/real_2021_2025/transformer_hourly_2024.csv.gz
+    - data/processed/real_2021_2025/transformer_hourly_2025.csv.gz
+    current_status: approved_for_2025_qx00005_110kv_operating_scope
+    formal_scope_id: 2025_QX-00005_110kv_operating
+    formal_hourly_use_allowed: true
+    grade_a_ready: true
+    formal_scope_approved_transformers: 40
+    formal_scope_required_transformers: 40
+    context_only_35kv_columns: 16
+    context_only_35kv_formal_hourly_use_allowed: false
+    year_end_only_rejected_columns: 2
+    source_years:
+    - 2022
+    - 2023
+    - 2024
+    - 2025
+    - 2026
+    source_sheet_by_year:
+      2022: Sheet1
+      2023: Sheet2
+      2024: Sheet3
+      2025: Sheet3
+      2026: Sheet4
+    split_110kv: 42
+    split_35kv: 16
+    approval_authority: project_owner
+    grade_a_gate: all_devices_in_annual_operating_whitelist_approved
+    operating_whitelist_2025_110kv_transformers: 40
+    year_end_only_exclusions_2025:
+    - QX-00005|110|BDZ-00056|#1
+    - QX-00005|110|BDZ-00056|#2
+    preserve_source_headers_for_columns_1_based:
+    - 11
+    - 12
+    - 27
+    - 28
+    formal_years:
+    - 2022
+    - 2023
+    - 2024
+    - 2025
+    year_2026_use: partial_cross_check_only
+    grade_a_requires_approved_map: true
+  data_quality:
+    2024_isolated_points:
+    - timestamp: 2024-11-23 04:00
+      source_column_1_based: 31
+      source_header: BDZ-00021
+      raw_value_mw: -7319
+    - timestamp: 2024-11-29 07:00
+      source_column_1_based: 31
+      source_header: BDZ-00021
+      raw_value_mw: -6858
+    - timestamp: 2024-12-08 15:00
+      source_column_1_based: 32
+      source_header: BDZ-00021
+      raw_value_mw: 16630
+    missing_data_policy: adjacent_hour_linear_interpolation_with_quality_flag
+asset_scopes:
+  qx00005_110kv:
+    operating_2025_mva: 2139.5
+    operating_2025_station_count: 20
+    operating_2025_transformer_count: 40
+    year_end_2025_mva: 2239.5
+    year_end_2025_station_count: 21
+    new_station_explaining_difference: BDZ-00056
+    new_station_capacity_mva: 100.0
+    src01_station_sum_mva: 2221.0
+    src01_undercount_station: BDZ-00005
+    src01_undercount_mva: 18.5
+  unresolved_35kv: []
+official_2025_reference:
+  source: SRC08
+  role: reference_and_peak_anchor_not_optimization_truth
+  rows:
+  - region_id: QX-00007
+    voltage_kv: 110
+    capacity_mva: 3701.0
+    peak_mw: 1528.82
+    clr: 2.42
+  - region_id: QX-00003
+    voltage_kv: 110
+    capacity_mva: 966.5
+    peak_mw: 313.03
+    clr: 3.09
+  - region_id: QX-00005
+    voltage_kv: 110
+    capacity_mva: 2139.5
+    peak_mw: 956.45
+    clr: 2.24
+  - region_id: QX-00010
+    voltage_kv: 110
+    capacity_mva: 1979.5
+    peak_mw: 734.91
+    clr: 2.69
+  - region_id: QX-00009
+    voltage_kv: 110
+    capacity_mva: 1877.0
+    peak_mw: 813.38
+    clr: 2.31
+  - region_id: QX-00001
+    voltage_kv: 110
+    capacity_mva: 1425.0
+    peak_mw: 544.55
+    clr: 2.62
+  - region_id: QX-00004
+    voltage_kv: 110
+    capacity_mva: 2094.0
+    peak_mw: 634.28
+    clr: 3.3
+  - region_id: QX-00008
+    voltage_kv: 110
+    capacity_mva: 1839.0
+    peak_mw: 759.56
+    clr: 2.42
+  - region_id: QX-00007
+    voltage_kv: 35
+    capacity_mva: 36.0
+    peak_mw: 14.68
+    clr: 2.45
+  - region_id: QX-00003
+    voltage_kv: 35
+    capacity_mva: 302.0
+    peak_mw: 124.78
+    clr: 2.42
+  - region_id: QX-00005
+    voltage_kv: 35
+    capacity_mva: 275.0
+    peak_mw: 147.65
+    clr: 1.86
+  - region_id: QX-00010
+    voltage_kv: 35
+    capacity_mva: 232.0
+    peak_mw: 79.75
+    clr: 2.91
+  - region_id: QX-00009
+    voltage_kv: 35
+    capacity_mva: 274.3
+    peak_mw: 89.0
+    clr: 3.08
+  - region_id: QX-00001
+    voltage_kv: 35
+    capacity_mva: 276.5
+    peak_mw: 119.49
+    clr: 2.31
+  - region_id: QX-00004
+    voltage_kv: 35
+    capacity_mva: 250.0
+    peak_mw: 106.61
+    clr: 2.34
+  - region_id: QX-00008
+    voltage_kv: 35
+    capacity_mva: 164.3
+    peak_mw: 82.31
+    clr: 2.0
+metrics:
+  net_load_sign:
+    positive: import_from_upstream
+    negative: reverse_export_to_upstream
+  path_net_load_formula: P_net = P_actual + P_charge - P_discharge + P_tie
+  aggregate_before_peak: true
+  formal_clr:
+    numerator: physical_installed_capacity_mva
+    denominator: synchronized_positive_annual_grid_supply_peak_mw
+    formula: R_path_year = S_installed_path_year / P_plus_path_year
+    p_plus_formula: max_t(max(sum_i(P_net_path_i_t), 0))
+    p_minus_formula: max_t(max(-sum_i(P_net_path_i_t), 0))
+    denominator_direction: positive_only
+    denominator_fixed_across_paths: false
+    denominator_recomputed_from_path_net_load: true
+    storage_may_change_denominator: true
+    reverse_peak_is_separate_metric: true
+    reverse_peak_must_not_be_formal_denominator: true
+    policy_control_ratio_is_formal_clr: false
+  policy_control:
+    parameter: Rcap
+    role: incremental_capacity_planning_control_parameter
+    legacy_capacity_may_make_physical_clr_exceed_rcap: true
+  anti_gaming:
+    storage_charge_may_cross_zero_to_positive: false
+    storage_discharge_may_export: false
+    source_net_load_may_subtract_existing_pv_again: false
+    static_device_extrema_may_sum_as_sync_peak: false
+  device_gaps:
+    positive_capacity_gap: max(P_forward_peak_i - H_forward_i, 0)
+    reverse_hosting_gap: max(P_reverse_peak_i - H_reverse_i, 0)
+    clr_above_2_alone_triggers_measure: false
+technical_parameters:
+  cos_phi:
+    baseline: 0.95
+    sensitivity:
+    - 0.9
+    - 0.95
+    - 1.0
+    evidence_type: model_assumption
+  reverse_beta:
+    split_or_single: 0.8
+    sensitivity:
+    - 0.6
+    - 0.8
+    - 1.0
+    evidence_type: engineering_baseline_with_sensitivity_not_universal_physical_constant
+    parallel_formula: min(beta_scenario, (S_total - S_largest) / S_total)
+    multiply_by_beta_after_parallel_formula: false
+    unknown_operation_mode: report_split_parallel_sensitivity_interval
+  network_check:
+    role: internal_only
+    visible_matrix_row: false
+    method_without_impedance: capacity_network_contingency_screen
+    prohibited_claim: precise_ac_or_dc_power_flow
+storage:
+  representation: equivalent_portfolio_inside_transformer_supply_area
+  module:
+    power_mw: 0.1
+    energy_mwh: 0.215
+    integer_count: true
+  soc:
+    min_fraction: 0.1
+    max_fraction: 0.9
+    daily_cyclic: true
+    daily_cyclic_role: conservative_daily_sizing_reference
+    continuous_chronology_validation: true
+    continuous_cycle_boundary: whole_series_start_end_only
+  efficiency:
+    charge: 0.95
+    discharge: 0.95
+    evidence_type: model_assumption
+  simultaneous_charge_discharge_allowed: false
+  charging_rule: only_absorb_local_reverse_or_surplus_power_without_crossing_zero
+  discharging_rule: only_serve_local_positive_load_without_export
+  arbitrary_grid_arbitrage_allowed: false
+  site_rule: requires_available_connection_or_explicit_site_candidate
+  exact_feeder_siting_claim_allowed: false
+  continuous_validation:
+    qx00005_110kv_required: true
+    chronology_hours: 8760
+    evidence_grade: EVIDENCE_A
+    compare_against_daily_cyclic: true
+    material_difference_requires_model_review: true
+costs:
+  currency: CNY
+  price_year: 2025
+  output_units:
+    capex: wanyuan
+    eac: wanyuan_per_year
+  storage_capex:
+    source_note: ../../参考政策/储能成本依据/来源与适用说明.md
+    module_range_n:
+    - 1
+    - 10
+    formula_1_to_10_wanyuan: 6.8382 + 20.3618 * N
+    block_size_modules: 10
+    block_cost_wanyuan: 210.456262
+    formula_above_10_wanyuan: 'for N=10*k+r: 210.456262*k + I(r>0)*(6.8382+20.3618*r)'
+    direct_linear_extrapolation_above_10_allowed: false
+    sensitivity_yuan_per_wh:
+    - 0.9789
+    - 1.2651
+    source_anchors:
+    - name: Suzhou
+      modules: 1
+      cost_wanyuan: 27.2
+      price_type: tender_ceiling
+    - name: Liuyang
+      modules: 10
+      cost_wanyuan: 210.456262
+      price_type: actual_award
+  expansion_capex:
+    source: SRC10
+    generic_800_wanyuan_per_50mva_allowed: false
+    third_transformer_50mva_dynamic_range_wanyuan:
+    - 1170.0
+    - 1516.0
+    candidate_types_must_differ:
+    - new_third_transformer
+    - replacement_or_uprating
+    - new_station
+    - line_or_bay_project
+    replacement_delta_formula: new_rating_mva - old_rating_mva
+    missing_63_80_100mva_cost_rule: use_type_matched_range_and_sensitivity_not_fake_point_estimate
+  annualization:
+    formula: CRF(r,n)=r*(1+r)^n/((1+r)^n-1)
+    discount_rate: 0.08
+    storage_life_years: 8
+    transformer_measure_life_years: 30
+    storage_fixed_om_fraction_per_year: 0.045
+    transformer_fixed_om_fraction_per_year: 0.018
+    evidence_type: model_assumptions_requiring_sensitivity
+    sensitivity:
+      discount_rate:
+      - 0.04
+      - 0.06
+      - 0.08
+      storage_life_years:
+      - 8
+      - 10
+      - 12
+      transformer_measure_life_years:
+      - 25
+      - 30
+      - 35
+      storage_fixed_om_fraction_per_year:
+      - 0.015
+      - 0.03
+      - 0.045
+      transformer_fixed_om_fraction_per_year:
+      - 0.01
+      - 0.018
+      - 0.025
+  actual_path_unknown_cost: 未识别
+pv:
+  current_net_load_already_contains_existing_pv: true
+  subtract_existing_pv_again: false
+  station_capacity_known: true
+  feeder_point_mapping_known: false
+  random_feeder_allocation_as_fact_allowed: false
+  random_or_constrained_siting_use: labeled_sensitivity_for_future_local_case_only
+  standard_profile:
+    source: SRC14
+    hours: 8760
+    field: 光伏出力系数（原始值）
+    range:
+    - 0.0
+    - 0.995849922
+    source_capacity_3408mw_may_be_assigned_to_station: false
+  curtailment:
+    active_decision: false
+    cost_in_objective: false
+    historical_curtailment_claim_allowed: false
+time_model:
+  qx00005:
+    formal_method_after_mapping: approved_8760_chronological_playback_plus_daily_cyclic_conservative_reference
+    evidence_grade: EVIDENCE_A
+  other_regions:
+    formal_method: static_real_data_plus_qx00005_empirical_duration_transfer
+    scenarios:
+    - empirical_short
+    - empirical_central
+    - empirical_long
+    p50_p90_labels_allowed: false
+    evidence_grade: EVIDENCE_B
+    recommendation_rule: minimum_eac_solution_feasible_in_all_three_empirical_scenarios
+    unique_hourly_claim_allowed: false
+  static_peak_use:
+    expansion_requirement: true
+    storage_power_lower_bound: true
+    storage_energy_unique_value: false
+method_positioning:
+  ahp:
+    core_optimization_method: false
+    allowed_role: optional_descriptive_region_classification_only
+    may_determine_recommended_rcap: false
+  reliability:
+    objective_eens_enabled: false
+    reason: insufficient_full_network_and_full_region_hourly_evidence_for_traceable_EENS
+    role: hard_physical_constraints_and_supported_internal_screens
+cross_voltage:
+  separate_matrices: true
+  aggregate_35_and_110: false
+  simply_sum_costs: false
+  sequential_propagation_without_parent_map: false
+  joint_or_enumeration_requires_complete_parent_map: true
+  qx00005_35kv_parent_context:
+    station_count: 8
+    supplied_by_in_scope_110kv: 4
+    supplied_by_220kv: 4
+evidence_grades:
+  EVIDENCE_A: approved_real_2025_8760_with_quality_flags_and_full_playback
+  EVIDENCE_B: real_static_data_plus_empirical_duration_scenarios
+  EVIDENCE_C: unresolved_asset_mapping_parent_mapping_or_candidate_gap
+local_10kv_cases:
+  global_optimization_enabled: false
+  existing_tie_reconfiguration:
+    cli_option: --existing-tie-case-options
+    display_name: 现有10 kV联络切分案例
+    default_enabled: false
+    independent_approval: true
+    independent_failure: true
+  new_tie_line:
+    cli_option: --new-tie-line-case-options
+    display_name: 新建10 kV联络线路案例
+    default_enabled: false
+    independent_approval: true
+    independent_failure: true
+  combination_rule: explicit_compatibility_and_dependencies_only
+  required_checks:
+  - county_power_conservation
+  - no_duplicate_reverse_power_relief
+  - no_duplicate_capacity_avoidance
+  - no_duplicate_cost
+outputs:
+  formal_run_root: results/runs/real-2021-2025-v32-frozen
+  formal_110_matrix:
+    required_region_count: 8
+    required_fields:
+    - region_id
+    - evidence_grade
+    - asset_scope_id
+    - recommended_clr_interval
+    - PATH_ACTUAL_2021_2025_clr_2025
+    - PATH_OPT_CLR_UNBOUNDED_clr_2025
+    - PATH_OPT_CLR_LE_2_clr_2025
+    - PATH_ACTUAL_2021_2025_cumulative_eac
+    - PATH_OPT_CLR_UNBOUNDED_cumulative_eac
+    - PATH_OPT_CLR_LE_2_cumulative_eac
+    - strict_path_incremental_cost
+    - positive_capacity_gap_mw
+    - reverse_hosting_gap_mw
+    - positive_gap_device_count
+    - reverse_gap_device_count
+    - recommended_measure
+    - evidence_grade
+  auxiliary_35_matrix:
+    required_region_count: 8
+    reporting_granularity: region
+    unique_optimum_without_station_candidates_allowed: false
+    additional_fields:
+    - parent_supply_mapping_status
+    - technical_gap_mw
+    - expansion_cost_range_wanyuan
+    - positive_capacity_gap_mw
+    - reverse_hosting_gap_mw
+    - positive_gap_device_count
+    - reverse_gap_device_count
+    - measure_trigger_constraint
+  technical_appendices:
+  - qx00005_path_validation.csv
+  - path_year_results.csv
+  - path_action_results.csv
+  - path_cost_breakdown.csv
+  - 内部容量网络压力检查.csv
+  n_minus_1_visible_row_allowed: false
+  report_language: current_condition_economic_measures_and_corresponding_clr_range
+  word_matrix_orientation: transposed_indicator_rows_and_anonymized_region_columns
+  legacy_artifact_policy: archive_with_legacy_contract_warning
+hard_assertions:
+- id: A001
+  expression: no_cross_voltage_capacity_load_pv_or_cost_aggregation
+- id: A002
+  expression: formal_clr_uses_path_specific_positive_synchronous_peak_only
+- id: A003
+  expression: storage_cannot_cross_zero_or_export_and_recomputes_path_peak
+- id: A004
+  expression: no_curtailment_variable_or_cost
+- id: A005
+  expression: no_global_10kv_tie_decision
+- id: A006
+  expression: parallel_beta_not_multiplied_by_0_8_twice
+- id: A007
+  expression: all_actions_come_from_traceable_discrete_candidates
+- id: A008
+  expression: both_policy_paths_start_from_actual_2021_asset_state_and_legacy_capacity_is_grandfathered
+- id: A009
+  expression: actual_path_is_not_optimization_rank_eligible
+- id: A010
+  expression: qx00005_grade_a_requires_annual_whitelist_approval
+- id: A011
+  expression: empirical_scenarios_are_not_labeled_P50_or_P90
+- id: A012
+  expression: source_lineage_and_quality_flags_are_preserved
+- id: A013
+  expression: output_uses_anonymized_ids_only
+- id: A014
+  expression: strict_path_clr_limit_starts_in_2022
+legacy_history:
+  status: archive_only_not_formal_v3_output
+  historical_contract_versions:
+  - 2.0.0
+  historical_artifacts:
+  - real_2025
+  - five_independent_annual_matrices
+  historical_scheme_codes:
+  - SCHEME_C0
+  - SCHEME_A
+  - SCHEME_B
+  migration_rule: legacy_values_may_be_used_for_regression_or_archive_only

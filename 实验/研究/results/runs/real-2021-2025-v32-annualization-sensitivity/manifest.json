@@ -1,0 +1,264 @@
+{
+  "annualization_base": {
+    "discount_rate": 0.06,
+    "storage_fixed_om_fraction_per_year": 0.03,
+    "storage_life_years": 10,
+    "transformer_fixed_om_fraction_per_year": 0.018,
+    "transformer_measure_life_years": 30
+  },
+  "annualization_contract_ranges": {
+    "discount_rate": [
+      0.04,
+      0.06,
+      0.08
+    ],
+    "storage_fixed_om_fraction_per_year": [
+      0.015,
+      0.03,
+      0.045
+    ],
+    "storage_life_years": [
+      8,
+      10,
+      12
+    ],
+    "transformer_fixed_om_fraction_per_year": [
+      0.01,
+      0.018,
+      0.025
+    ],
+    "transformer_measure_life_years": [
+      25,
+      30,
+      35
+    ]
+  },
+  "files": {
+    "annualization_action_eac.csv": {
+      "bytes": 44718,
+      "sha256": "33445411db52a408b5a120a08785e8e4c7415f6a85fa9f6ac43a5eba7fc0fe18"
+    },
+    "annualization_classification.csv": {
+      "bytes": 2668,
+      "sha256": "d03a28b6f58280cc8e2cca0ac1ba94dffad201c65473081745dfbebdda71ef81"
+    },
+    "annualization_core_summary.csv": {
+      "bytes": 6183,
+      "sha256": "fd8818740e0704aad657e00124511eb6486cbf3e36639320c152fca9f4af678a"
+    },
+    "annualization_robust_summary.csv": {
+      "bytes": 2181,
+      "sha256": "03e55eb11d310b4275c0830de85424c8a77d7619d2f357dfaea2f9c219d78acb"
+    },
+    "annualization_storage_favorable/parameter_action_results.csv": {
+      "bytes": 15221,
+      "sha256": "5be0fcc8dfbb09776861c4b90f1d66bdf2f2c4cec72cc0c4372797f961cf1720"
+    },
+    "annualization_storage_favorable/parameter_cost_breakdown.csv": {
+      "bytes": 4616,
+      "sha256": "845a241f78472db0365ea91560e31f4c291cb6345467e10adbd8900d55032302"
+    },
+    "annualization_storage_favorable/parameter_frontier.csv": {
+      "bytes": 12641,
+      "sha256": "1239123e276b564dfe468ba697628c3bcb306a37d0b284764a20def39e303dfc"
+    },
+    "annualization_storage_favorable/scenario_manifest.json": {
+      "bytes": 1433,
+      "sha256": "fe0571bdbc8288514969e8a3ba59e0f7f6a945f1725b101e57035bd46e9000af"
+    },
+    "annualization_storage_unfavorable/parameter_action_results.csv": {
+      "bytes": 15341,
+      "sha256": "bd310cbcb5e5c7b94c40da26660ff555d27ed9c393c74830f23624d425013e01"
+    },
+    "annualization_storage_unfavorable/parameter_cost_breakdown.csv": {
+      "bytes": 4710,
+      "sha256": "b424ee826fe4916f50a5aae636d8fdbf893d98e1053b4ef66eaf0b740d0c1d76"
+    },
+    "annualization_storage_unfavorable/parameter_frontier.csv": {
+      "bytes": 12735,
+      "sha256": "da71dec333a03e34e0649e8c2933490fda0002a459f7e8a4cc098162633f26ba"
+    },
+    "annualization_storage_unfavorable/scenario_manifest.json": {
+      "bytes": 1435,
+      "sha256": "0980103ade482b2b59a0d56e149f83197b24d2ca17b6301be33adb60ea3d7ee0"
+    },
+    "annualization_thresholds.csv": {
+      "bytes": 5004,
+      "sha256": "4023f0374ba729ce323e24b9e5aa084e088e143b4efa89ea0dbe7693a71fb471"
+    },
+    "discount_rate_high/parameter_action_results.csv": {
+      "bytes": 14285,
+      "sha256": "d37abf5e6700f9b803fc499a4079241ad61820e0ed1ec69033dcf5a92b42265e"
+    },
+    "discount_rate_high/parameter_cost_breakdown.csv": {
+      "bytes": 4044,
+      "sha256": "11d98cc2d77d158a911f1c571c280f47923ec8403448386604aa995af4709c8a"
+    },
+    "discount_rate_high/parameter_frontier.csv": {
+      "bytes": 12069,
+      "sha256": "a9de480c782caef01307f1e969cdcfd249df33efec41e4121d19f6b5f1625097"
+    },
+    "discount_rate_high/scenario_manifest.json": {
+      "bytes": 1405,
+      "sha256": "9b7a9f730d6da43a642a31f0b869f625ccd82cefafdb1adb77847e6eef7a467d"
+    },
+    "discount_rate_low/parameter_action_results.csv": {
+      "bytes": 14245,
+      "sha256": "9f070a2203e4622076836428acb1d8894398fa8189b3b32cd2ef8e9785ba5ee7"
+    },
+    "discount_rate_low/parameter_cost_breakdown.csv": {
+      "bytes": 3984,
+      "sha256": "bcb27a1a9c73e641552cb8a250a77e8aa92d23ce5d4da1e8ec956e3b6176c043"
+    },
+    "discount_rate_low/parameter_frontier.csv": {
+      "bytes": 12009,
+      "sha256": "67f202c77c7ab14600cb45e831034023a79a8aac6458dc2b03d533ca7109e5d7"
+    },
+    "discount_rate_low/scenario_manifest.json": {
+      "bytes": 1403,
+      "sha256": "5f733b843f239909fcde1c7215585e40de13d8f353cb5f2a4d95d83dc5cb107f"
+    },
+    "storage_high_om_transformer_low_om/parameter_action_results.csv": {
+      "bytes": 15437,
+      "sha256": "856151563bfe464aa85509fe863c520fa4f0cb040beab8f1439b217712f4a6d8"
+    },
+    "storage_high_om_transformer_low_om/parameter_cost_breakdown.csv": {
+      "bytes": 4754,
+      "sha256": "5d27eb14698c02d3509bd1f9269988274954e36f3c3872a29208e514a1f64387"
+    },
+    "storage_high_om_transformer_low_om/parameter_frontier.csv": {
+      "bytes": 12779,
+      "sha256": "2eb6777289ef9f7cf4b6945a75648417a4e6cd2b872aabe9cfab8b13f24f60e0"
+    },
+    "storage_high_om_transformer_low_om/scenario_manifest.json": {
+      "bytes": 1437,
+      "sha256": "8071ab539b07acf0624782277e20a6b5e4ee6acbe4bf8a824305b5d2e959130d"
+    },
+    "storage_life_long/parameter_action_results.csv": {
+      "bytes": 14247,
+      "sha256": "1bcc8d966dfb5e6f784b5e716e31323518aaa2b172781cbedf70d47b934d1afa"
+    },
+    "storage_life_long/parameter_cost_breakdown.csv": {
+      "bytes": 4006,
+      "sha256": "531153962ab7adcb0f5fed693bf498c0eb948549ac878b4a66443831d799e86d"
+    },
+    "storage_life_long/parameter_frontier.csv": {
+      "bytes": 12031,
+      "sha256": "d25a7d55da0701ac37bef606c6dc79604de83a3d6792ab70645b2362276ec6a6"
+    },
+    "storage_life_long/scenario_manifest.json": {
+      "bytes": 1403,
+      "sha256": "6e3861d4d2eaf0de8cfe5eff30f8768c8e52bacb1f263a2042bee0abe99d65d4"
+    },
+    "storage_life_short/parameter_action_results.csv": {
+      "bytes": 14317,
+      "sha256": "c7e691ccc654e9cc4bc164067da9f4e9611d8ee4271e5ddf5ecf1f2624c51acc"
+    },
+    "storage_life_short/parameter_cost_breakdown.csv": {
+      "bytes": 4050,
+      "sha256": "68e40b27fe888d2323f0f6ad616f60e422de7b0e187de87e8a8802c9f530fcce"
+    },
+    "storage_life_short/parameter_frontier.csv": {
+      "bytes": 12075,
+      "sha256": "5f3c17256f226ab6364a8a1683b2d4e4cfdbc7eac1d82625578c7a8b496bf441"
+    },
+    "storage_life_short/scenario_manifest.json": {
+      "bytes": 1403,
+      "sha256": "9203331c5821088f236aa62dc74a9b9d430cdbd7d338348deed6511235182c90"
+    },
+    "storage_low_om_transformer_high_om/parameter_action_results.csv": {
+      "bytes": 15443,
+      "sha256": "bbbe3b7c68caf0803ab3c18322c7edd140a33e9e3d25df34f49fb2da3552e69e"
+    },
+    "storage_low_om_transformer_high_om/parameter_cost_breakdown.csv": {
+      "bytes": 4760,
+      "sha256": "d3d9caf0a847d799b0e47a1d528ee4479fa614168f954e64e9e674b5ea0aa323"
+    },
+    "storage_low_om_transformer_high_om/parameter_frontier.csv": {
+      "bytes": 12785,
+      "sha256": "f187263d7468538e3ab7ada44fa26e6c3bc5bf604fec6b4aae4e924876aad30f"
+    },
+    "storage_low_om_transformer_high_om/scenario_manifest.json": {
+      "bytes": 1439,
+      "sha256": "fe56a530f47205371b670883629980c379560240e241a9be7115ff7aa71387d1"
+    },
+    "transformer_life_long/parameter_action_results.csv": {
+      "bytes": 14539,
+      "sha256": "392bbb1fcef69b3cbfaa79715241355ac0db1c49c81eb13ab3ac2a56e5c74c7c"
+    },
+    "transformer_life_long/parameter_cost_breakdown.csv": {
+      "bytes": 4194,
+      "sha256": "9f16432bacd8639ce8915dd3de4fd396cb1eea7bacec8dc5c99f76cf2bd6b22b"
+    },
+    "transformer_life_long/parameter_frontier.csv": {
+      "bytes": 12219,
+      "sha256": "c753176a90c29fec3df40c8dba16ad8d7ac995f4346c541143f46c48a9de39f4"
+    },
+    "transformer_life_long/scenario_manifest.json": {
+      "bytes": 1411,
+      "sha256": "e862b1b72cd80b10e7df5b273942c1c6d181ca1f161ed78f605c4969db8e2085"
+    },
+    "transformer_life_short/parameter_action_results.csv": {
+      "bytes": 14609,
+      "sha256": "98ef868ae821736616bbd219d6872fbb08bec5620d4f03d4c7956c7de2d84c9d"
+    },
+    "transformer_life_short/parameter_cost_breakdown.csv": {
+      "bytes": 4238,
+      "sha256": "019bf186833d36090bfee6ef904ccd1e0af32346a74ac9004e2bbccff3cb027b"
+    },
+    "transformer_life_short/parameter_frontier.csv": {
+      "bytes": 12263,
+      "sha256": "54f7ad071b5620f8892e125eb1f72ffee7453f77a3588651895ea516975ff774"
+    },
+    "transformer_life_short/scenario_manifest.json": {
+      "bytes": 1413,
+      "sha256": "d22c69dadf3627ca4ac8cd13fac101c672c532c23b9a81318b39f06368404a4d"
+    }
+  },
+  "generated_from_commit_sha": "e8a56a84962404b5bde8f93de972e28e79babc72",
+  "model_version": "3.2.0",
+  "near_optimal_band": 0.05,
+  "primary_model_unchanged": true,
+  "rcap_points": [
+    2.0,
+    2.1,
+    2.15,
+    2.16,
+    2.17,
+    2.171,
+    2.172,
+    2.18,
+    2.2,
+    2.3,
+    2.35,
+    2.359,
+    2.36,
+    2.37,
+    2.4,
+    2.5,
+    2.6,
+    2.7,
+    2.8,
+    2.9,
+    3.0
+  ],
+  "region_ids": [
+    "QX-00001",
+    "QX-00005"
+  ],
+  "scenario_count": 10,
+  "scenario_ids": [
+    "discount_rate_low",
+    "discount_rate_high",
+    "storage_life_short",
+    "storage_life_long",
+    "transformer_life_short",
+    "transformer_life_long",
+    "storage_high_om_transformer_low_om",
+    "storage_low_om_transformer_high_om",
+    "annualization_storage_unfavorable",
+    "annualization_storage_favorable"
+  ],
+  "schema_version": "v3.2.annualization-sensitivity.v1",
+  "status": "secondary_annualization_sensitivity_not_primary_client_result"
+}
