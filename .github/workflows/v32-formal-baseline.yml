@@ -11,7 +11,7 @@ on:
     branches: [model-v3.2-autonomous-review]
     paths:
       - '.github/v32-dependency-policy.yaml'
-      - '.github/workflows/v32-*.yml'
+      - '.github/workflows/v32-formal-baseline.yml'
       - '实验/研究/model_contract.yaml'
       - '实验/研究/model_contract_v3_2_overlay.yaml'
       - '实验/研究/data/processed/real_2021_2025/**'

@@ -5,7 +5,6 @@ version: 1
 path_groups:
   workflow_governance:
     - ".github/v32-dependency-policy.yaml"
-    - ".github/workflows/v32-*.yml"
   contracts:
     - "实验/研究/model_contract.yaml"
     - "实验/研究/model_contract_v3_2_overlay.yaml"
@@ -33,6 +32,7 @@ path_groups:
     - "实验/研究/results/runs/real-2021-2025-v32-frozen/**"
   fast_ci:
     - "AGENTS.md"
+    - ".github/workflows/v32-*.yml"
     - "skills/xuzhou-real-model/SKILL.md"
     - "实验/研究/model_contract.yaml"
     - "实验/研究/model_contract_v3_2_overlay.yaml"

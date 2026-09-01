@@ -55,6 +55,15 @@ def test_processed_manifest_is_an_explicit_heavy_model_dependency() -> None:
         assert "实验/研究/model_contract_v3_2_overlay.yaml" in paths, name
 
 
+def test_heavy_workflow_changes_do_not_fan_out_to_every_heavy_run() -> None:
+    policy = _load_yaml(POLICY_PATH)
+    for name in policy["heavy_workflows"]:
+        workflow = _load_yaml(PROJECT_ROOT / ".github/workflows" / name)
+        paths = set(workflow["on"]["push"]["paths"])
+        assert f".github/workflows/{name}" in paths, name
+        assert ".github/workflows/v32-*.yml" not in paths, name
+
+
 def test_chronology_workflow_uses_current_v32_actions_without_retirements() -> None:
     text = (
         PROJECT_ROOT / ".github/workflows/v32-chronology-preflight.yml"

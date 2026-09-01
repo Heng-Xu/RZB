@@ -33,6 +33,7 @@
 - 契约与项目约束回归：22 项通过（0.86 s）；真实逐时适配与审批回归：12 项通过（173.78 s）。
 - 新增 `.github/v32-dependency-policy.yaml` 和静态防回退测试；七个既有 v3.2 workflow 及新增 frozen package verification 均支持 `workflow_dispatch.target_ref`，checkout 后记录真实 40 位 SHA。
 - baseline/frontier/refinement/sensitivity/chronology/freeze 的触发路径已覆盖 canonical base、overlay、processed 输入及传递模型依赖；refinement/sensitivity 不再只因 workflow 自身变化而运行。
+- 首次推送依赖策略后发现重型流程订阅 `v32-*.yml` 会造成横向重复重算；已用失败测试复现并收紧为“策略文件 + 本工作流自身”，仅快速 CI 横向订阅全部 v3.2 workflow。防扇出测试 5 项通过（0.12 s）。
 - chronology preflight 已改为调用当前 v3.2 actual baseline，不再读旧 v3 动作或拼入退役候选；各运行/汇总 manifest 增加 `validation_commit_sha`。
 - CI/来源追踪回归 30 项通过（1.49 s）；8 个 workflow YAML 解析通过，相关 Python 文件 `py_compile` 通过。
 - `scripts/run_annual_model.py` 已改为归档入口：默认在数据读取和输出创建前返回 2，只有显式 `--legacy-archive-only` 才允许复现 v2 旧结果；正式入口/工作流引用检查与 legacy guard 共 10 项通过（1.02 s）。
