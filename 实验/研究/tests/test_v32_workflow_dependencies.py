@@ -81,3 +81,20 @@ def test_sensitivity_workflow_runs_every_formal_scenario() -> None:
     matrix = workflow["jobs"]["parameter-scenario"]["strategy"]["matrix"]["include"]
     assert {item["scenario"] for item in matrix} == set(FORMAL_SCENARIOS)
     assert "EXPECTED_SCENARIO_COUNT: '17'" in path.read_text(encoding="utf-8")
+
+
+def test_freeze_workflow_installs_dependencies_needed_by_governance_imports() -> None:
+    text = (
+        PROJECT_ROOT / ".github/workflows/v32-freeze-verification.yml"
+    ).read_text(encoding="utf-8")
+    required = (
+        "numpy",
+        "scipy",
+        "xarray",
+        "linopy",
+        "highspy",
+        "networkx",
+        "scikit-learn",
+    )
+    for package in required:
+        assert package in text, package
