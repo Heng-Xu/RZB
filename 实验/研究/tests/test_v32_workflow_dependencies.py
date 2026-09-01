@@ -83,6 +83,16 @@ def test_sensitivity_workflow_runs_every_formal_scenario() -> None:
     assert "EXPECTED_SCENARIO_COUNT: '17'" in path.read_text(encoding="utf-8")
 
 
+def test_annualization_workflow_runs_the_registered_targeted_scenarios() -> None:
+    path = PROJECT_ROOT / ".github/workflows/v32-annualization-sensitivity.yml"
+    workflow = _load_yaml(path)
+    text = path.read_text(encoding="utf-8")
+    assert workflow["jobs"]["annualization-sensitivity"]["steps"]
+    assert "run_v32_annualization_sensitivity.py" in text
+    assert "--scenario all" in text
+    assert "scenario_count'] != 10" in text
+
+
 def test_freeze_workflow_installs_dependencies_needed_by_governance_imports() -> None:
     text = (
         PROJECT_ROOT / ".github/workflows/v32-freeze-verification.yml"

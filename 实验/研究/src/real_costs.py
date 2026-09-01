@@ -341,6 +341,8 @@ def build_real_cost_library(
     processed_root: Path,
     output_dir: Path,
     contract_path: Path,
+    *,
+    source_root: Path | None = None,
 ) -> dict[str, Any]:
     """生成真实离散候选和储能模块的可追溯成本库。"""
     processed_root = Path(processed_root).resolve()
@@ -354,7 +356,8 @@ def build_real_cost_library(
     candidate_path = processed_root / "expansion_candidates.csv"
     candidates = pd.read_csv(candidate_path)
     contract_hash = _sha256(contract_path)
-    source_note = (contract_path.parent / contract["costs"]["storage_capex"]["source_note"]).resolve()
+    source_base = contract_path.parent if source_root is None else Path(source_root).resolve()
+    source_note = (source_base / contract["costs"]["storage_capex"]["source_note"]).resolve()
     if not source_note.is_file():
         raise RealCostError(f"storage cost source note missing: {source_note}")
     policy_hash = _sha256(source_note)

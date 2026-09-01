@@ -1,0 +1,79 @@
+name: v3.2 EAC annualization sensitivity
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: 'Branch, tag, or 40-character commit SHA to validate'
+        required: false
+        type: string
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/v32-dependency-policy.yaml'
+      - '.github/workflows/v32-annualization-sensitivity.yml'
+      - '实验/研究/model_contract.yaml'
+      - '实验/研究/model_contract_v3_2_overlay.yaml'
+      - '实验/研究/data/processed/real_2021_2025/**'
+      - '实验/研究/src/v32_*.py'
+      - '实验/研究/src/v32_annualization.py'
+      - '实验/研究/src/v3_*.py'
+      - '实验/研究/src/real_*.py'
+      - '实验/研究/src/annual_asset_scope.py'
+      - '实验/研究/src/empirical_scenarios.py'
+      - '实验/研究/src/io_loader.py'
+      - '实验/研究/src/milp_planner.py'
+      - '实验/研究/src/legacy_milp_planner.py'
+      - '实验/研究/src/net_model.py'
+      - '实验/研究/src/links_sigma.py'
+      - '实验/研究/src/timeseries_mapping.py'
+      - '实验/研究/src/typical_days.py'
+      - '实验/研究/scripts/run_v32_annualization_sensitivity.py'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONPATH: .
+
+jobs:
+  annualization-sensitivity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.target_ref || github.sha }}
+      - name: Record validated commit
+        run: echo "V32_VALIDATION_COMMIT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install model dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy pandas scipy pyyaml xarray linopy highspy networkx scikit-learn
+      - name: Run targeted EAC annualization sensitivity
+        working-directory: 实验/研究
+        run: |
+          python scripts/run_v32_annualization_sensitivity.py \
+            --scenario all \
+            --output-root results/runs/real-2021-2025-v32-annualization-sensitivity
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('results/runs/real-2021-2025-v32-annualization-sensitivity/manifest.json')
+          manifest = json.loads(path.read_text(encoding='utf-8'))
+          if manifest['scenario_count'] != 10:
+              raise RuntimeError(f"expected 10 annualization scenarios, got {manifest['scenario_count']}")
+          if manifest['primary_model_unchanged'] is not True:
+              raise RuntimeError('annualization sensitivity must not modify primary model')
+          print(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v32-annualization-sensitivity
+          path: 实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/
+          if-no-files-found: error

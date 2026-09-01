@@ -97,12 +97,14 @@ def _prepare_expansion_candidates(
     base_contract_path: Path,
     *,
     expansion_cost_multiplier: float = 1.0,
+    source_root: Path | None = None,
 ) -> tuple[pd.DataFrame, dict[str, Any]]:
     """主模型只保留可追溯扩建/新建候选，不生成“为压CLR而退役”候选。"""
     cost_manifest = build_real_cost_library(
         processed_root,
         run_dir / "cost_library",
         base_contract_path,
+        source_root=source_root,
     )
     candidates = pd.read_csv(run_dir / "cost_library" / "expansion_cost_library.csv")
     if "available_year" not in candidates.columns:
