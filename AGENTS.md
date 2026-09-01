@@ -1,23 +1,24 @@
 # 项目级 Agent 硬约束
 
-当前约束版本：3.4  
-定版日期：2026-08-27  
+当前约束版本：3.5
+定版日期：2026-09-01
 状态：v3.2 模型已冻结，正式研究报告进入负责人终审
-本版变更：§12.5 明确根目录 `claude_session_1.txt` 为负责人确认的最新中断接续记录，在进度、完成状态、遗留项和下一步方面优先于较旧的项目 memory，并要求后续 Agent 读取后刷新 memory。此前 3.3（2026-08-26）：§5.1 TIE-001 按负责人决定不再收资、最终口径"不形成定量结论"；增补六馈线结构化拓扑碎片化事实与转供能力容量包络口径。
+本版变更：§1、§10、§12 按 2026-09-01 接管事实更新：实时 Git/Actions、frozen v3.2 契约、正式输入与正式结果优先于历史会话；`claude_session_1.txt` 改为 `HISTORICAL / SUPERSEDED` 历史追溯材料；完成门槛明确校验新增容量 Rcap 包络而非要求物理 CLR≤2.0。此前 3.4（2026-08-27）登记过旧 Claude 接续优先级，现已被本版替代。
 
 ## 1. 指令优先级与必读文件
 
-涉及 `实验/研究/` 的分析、实现、测试、映射、求解、出表或报告工作，开始前依次读取：
+涉及 `实验/研究/` 的分析、实现、测试、映射、求解、出表或报告工作，先核对当前分支、Git 本地/远端 HEAD、新增 diff 和对应 GitHub Actions `head_sha`，再依次读取：
 
-0. 根目录 `claude_session_1.txt`（负责人确认的最新中断接续记录；用于确认当前进度、已完成项、遗留项和下一步）以及 `memory/INDEX.md` 与 `memory/current.md`（第 12 节；用于承接已登记的长期状态）
-1. `实验/研究/docs/IMPLEMENTATION-PLAN-REAL-2021-2025-V3.md`
-2. `实验/研究/model_contract.yaml`
-3. `实验/研究/docs/REAL-DATA-MODEL-SPEC.md`
-4. `skills/xuzhou-real-model/SKILL.md`
-5. `实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/README_Agent_建模数据引用与使用说明_V1.2.md`
-6. 涉及储能成本时读取 `参考政策/储能成本依据/来源与适用说明.md`
+0. `实验/研究/model_contract.yaml`、`实验/研究/model_contract_v3_2_overlay.yaml` 与 `src/v32_contract.py` 解析后的 resolved contract；
+1. `实验/研究/data/processed/real_2021_2025/manifest.json`、`timeseries_mapping_approval.csv` 和正式 frozen 结果 manifest；
+2. `实验/研究/docs/IMPLEMENTATION-PLAN-REAL-2021-2025-V3.md`；
+3. `实验/研究/docs/REAL-DATA-MODEL-SPEC.md`；
+4. `skills/xuzhou-real-model/SKILL.md`；
+5. `实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/README_Agent_建模数据引用与使用说明_V1.2.md`；
+6. 涉及储能成本时读取 `参考政策/储能成本依据/来源与适用说明.md`；
+7. 最后读取 `memory/INDEX.md` 与 `memory/current.md` 承接已登记状态。`claude_session_1.txt`、`memory/archive/` 和旧 session 只作历史追溯。
 
-冲突优先级：本文件 > v3 `model_contract.yaml` > v3 实施计划 > v3 模型规格 > 数据说明书 > 旧代码、旧结果和早期报告。
+模型定义冲突优先级：本文件 > frozen v3.2 base/overlay/resolved contract > 正式代码 > 正式输入与正式结果 > v3 实施计划与模型规格 > 报告 > memory、prompt 和历史 session。进度事实以实时 Git、Actions 和 `memory/current.md` 的可验证记录为准。
 
 迁移期特殊规则：若 `model_contract.yaml` 的版本仍低于 `3.0.0`，说明它尚未完成迁移；此时 `IMPLEMENTATION-PLAN-REAL-2021-2025-V3.md` 优先于旧契约。不得因旧契约仍写 `real_2025`、固定分母或 `SCHEME_C0/A/B` 而回退已批准的 v3 业务定义。
 
@@ -157,7 +158,7 @@ env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr python scripts/
 - `real_2021_2025` 端到端入口通过；
 - 年度资产、映射、异常修正和实际行动可追溯；
 - 两路径各自路径齐备、口径标注明确；同一实际资产起点且均可行时累计 EAC 可直接比较，不可行对象不形成比较；
-- 严格路径逐年 `R<=2.0`；
+- 严格方案逐年满足 110 kV 新增容量包络 `DeltaS_y<=max(2.0×P_plus_y-S_2021,0)`；存量豁免后的物理 CLR 可高于 2.0；
 - 110/35 kV 未混算；
 - 无弃光、伪成本、伪 CLR 或未标记插补；
 - 两套矩阵、Word、技术附表、问题台账和 manifest 齐全。
@@ -178,11 +179,11 @@ env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr python scripts/
 
 ## 12. 项目记忆（memory/）自动存储与读取
 
-`memory/` 是本项目跨会话状态的唯一权威位置，服务于模型切换、会话中断和长任务交接。目录规范见 `memory/README.md`。
+`memory/` 保存本项目跨会话状态，服务于模型切换、会话中断和长任务交接；它不能覆盖实时 Git/Actions、模型契约、正式输入或正式结果。目录规范见 `memory/README.md`。
 
 ### 12.1 启动读取（强制）
 
-新会话在执行第 1 节任务前，须按以下顺序读取：根目录 `claude_session_1.txt`，再读取 `memory/INDEX.md` 和 `memory/current.md`，确认当前状态、已完成项和下一步优先级。`claude_session_1.txt` 是项目负责人确认的最新中断接续记录；就当前进度、已完成项、遗留项和下一步而言，其优先级高于较旧的 `memory/INDEX.md` 与 `memory/current.md`。不得用较旧 memory 覆盖其中的最新事实。若记录缺失或仍存在无法消解的冲突，先停止业务操作并向项目负责人确认，不得自行虚构状态。
+新会话按第 1 节先用 Git、Actions、frozen contract、正式输入和正式结果建立事实基线，最后读取 `memory/INDEX.md` 和 `memory/current.md` 确认已登记的遗留项。`claude_session_1.txt` 是截至 2026-08-27 的历史中断记录，已标记 `HISTORICAL / SUPERSEDED`；不得用其中的 v3.1 进度或口径覆盖当前 v3.2 事实。若实时证据之间仍存在无法消解的冲突，按第 9 节暂停边界处理，不得自行虚构状态。
 
 ### 12.2 写入时机（自动，无需用户确认）
 
@@ -208,10 +209,10 @@ env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr python scripts/
 
 - 本节与第 1 节同等级；按本节更新记忆属于第 9 节的自动继续范围，不需要暂停或请求确认。
 - 根目录 `NEXT-SESSION-PROMPT.md` 是接手指令模板；`memory/next-session-prompt.md` 维护其与实际进度的差异。状态事实以 `memory/current.md` 为准。
-- 本项目 `.git` 曾确认不可用：记忆以文件本身为准，关键产物登记 SHA-256，不虚构提交记录；若日后 git 可用，可在记忆更新后附加提交，但不得以提交替代文件内容。
+- 本项目已接入 GitHub 仓库 `Heng-Xu/RZB`；记忆更新必须记录实际分支、可验证 SHA 和 Actions `head_sha`，但提交记录不能替代产物内容、manifest 与 SHA-256。
 
-### 12.5 负责人确认的最新历史会话优先级（2026-08-27）
+### 12.5 历史会话归档边界（2026-09-01）
 
-- 根目录 `claude_session_1.txt` 是当前项目最新的 Claude 接续记录。项目负责人已确认：它在进度事实、任务完成状态、遗留事项和下一步安排方面优先于较旧的 `memory/INDEX.md`、`memory/current.md` 和根目录提示词。
-- 上述优先级仅用于接管和进度统一，不改变模型、物理、数据和报告约束。`AGENTS.md`、`model_contract.yaml` 及其同步后的负责人决策仍是业务口径权威；历史会话中明确提出的口径变化，必须同步写入相应权威文件后才生效。
-- 后续 Agent 读取 `claude_session_1.txt` 后，须立即将确认的最新状态刷新到 `memory/current.md`，并在 `memory/sessions/YYYY-MM-DD/` 新增记录；不得让旧 memory 再次成为接手依据。
+- 根目录 `claude_session_1.txt`、`memory/archive/` 和已标记 `HISTORICAL / SUPERSEDED` 的 session 保留原文作为审计历史，不是当前接续依据。
+- 历史材料中的业务口径只有已同步到本文件、frozen contract 或正式代码后才有效；v3.1 的不同起点、成本不可比、固定分母和标准化主基线均已废止。
+- 后续 Agent 应把实时 Git/Actions、正式输入/结果与 `memory/current.md` 的差异写入新 session，不得改写旧 session 来制造连续性。

@@ -1,38 +1,39 @@
 # 徐州 110 kV 项目记忆索引
 
-更新时间：2026-08-29 07:40（Asia/Shanghai）
-当前状态：v3.2 模型终审、正式结果、报告闭环、Git 上传和修正后的 Actions 核验均已完成，当前进入最终记账 `COMPLETE`；进度冲突时先以根目录 `claude_session_1.txt` 核实事实，再结合 `memory/current.md`；旧 v3.1 结果仅作历史证据。
-工作目录：`/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究`
+更新时间：2026-09-01（Asia/Shanghai）
+当前阶段：`model-v3.2-autonomous-review` 分支自主复核与冻结验证；`contract=3.2.0 frozen`。
 
-## 新会话必读（顺序固定）
+## 新会话读取顺序
 
-1. [最新 Claude 接续记录](../claude_session_1.txt)（负责人确认的最新进度依据；若会话末尾因模型/网络中断，再检查其后的 Git 提交）
-2. [项目代理约束](../AGENTS.md)（当前 v3.4 硬约束）
-3. [当前状态快照](current.md)（由最新历史事实与 Git 证据共同刷新）
-4. [本轮 ChatGPT 接管复核与方案讨论基线](sessions/2026-08-27/1552-ChatGPT接管复核与方案讨论基线.md)
-5. [下窗口提示词](../NEXT-SESSION-PROMPT.md) 与 [差异说明](next-session-prompt.md)
-6. `skills/xuzhou-real-model/SKILL.md`
-7. 其余按 AGENTS.md 第 1 节顺序读取
+1. 先以 Git 建立实时事实：`fetch/status/branch/log`、远端 HEAD、GitHub Actions `head_sha`。
+2. 读取 [`AGENTS.md`](../AGENTS.md)。
+3. 读取 base contract、v3.2 overlay、`load_v32_contract()` resolved contract、processed manifest、审批表和 frozen 正式结果。
+4. 读取 [`current.md`](current.md) 获取正在执行的遗留项、命令与验证证据。
+5. 按任务读取项目 Skill、报告和技术底稿。
 
-## 按任务读取
+根目录 [`prompt.md`](../prompt.md) 与 [`NEXT-SESSION-PROMPT.md`](../NEXT-SESSION-PROMPT.md) 是短接续入口。`claude_session_1.txt`、`memory/archive/` 及 2026-09-01 前 session 均为 **HISTORICAL / SUPERSEDED**；可用于追溯决策过程，不能覆盖当前 Git、frozen v3.2 contract、正式输入和正式结果。
 
-- [建模思路与真实方法总结（甲方汇报辅助＋自查标准）](../实验/研究/分析/2026-08-26-建模思路与真实方法总结_甲方汇报辅助.md) — 汇报前必读；含建模自查 10 问与报告章节映射；如与更晚重分析/契约冲突，以更晚来源为准
-- [10 kV 联络案例重分析（收资定稿口径）](../实验/研究/分析/2026-08-26-10kV联络案例重分析_收资定稿口径.md) — 联络案例汇报/答疑前必读；能力区间、碎片化边界、代理稳健性
-- [v3 建模进度与当前结果（报告急用版）](../研究报告/建模进度/2026-08-14_v3建模进度与当前结果_报告急用版.md) — 历史阶段结论汇总；正式数字仍以 v3 结果目录/manifest 为准
-- [数据问题与甲方解释汇总](../实验/研究/分析/v3真实数据问题补充说明_供甲方汇报.md)
-- 课题背景笔记：[FG-NSGA-II 收敛结果](fg-nsga2-convergence.md)、[项目状态](project-state.md)、[实验模型设计](experiment-model-design.md)、[论文写作方案](paper-writing-plan.md)（均为 2026-07 论文轨记录，与 v3 业务定义冲突时以 AGENTS.md/model_contract 为准）
+## 当前权威位置
 
-## 记忆写入入口
+- 当前状态与下一步：[`current.md`](current.md)
+- 长期业务约束：[`AGENTS.md`](../AGENTS.md)
+- 模型契约：[`model_contract.yaml`](../实验/研究/model_contract.yaml) 与 [`model_contract_v3_2_overlay.yaml`](../实验/研究/model_contract_v3_2_overlay.yaml)
+- 正式结果：`实验/研究/results/runs/real-2021-2025-v32-frozen/`
+- 本轮计划：`实验/研究/docs/superpowers/plans/2026-09-01-v32-autonomous-review.md`
+- 新记录：`sessions/YYYY-MM-DD/HHMM-主题.md`，只增不改
 
-- 当前状态只更新 [`current.md`](current.md)。
-- 已确认的长期决策写入 `decisions/`，并同步 AGENTS.md、`model_contract.yaml` 或 Skill。
-- 过程记录追加写入 `sessions/YYYY-MM-DD/HHMM-主题.md`，不覆盖旧文件。
-- 每次任务状态改变和会话结束前必须自动更新，不要只在聊天窗口保留交接信息。
+## 不再作为当前接续依据的材料
 
-## 当前阶段指针
+- [`claude_session_1.txt`](../claude_session_1.txt)：截至 2026-08-27 的中断会话导出，含已被 v3.2 取代的进度事实。
+- [`sessions/2026-08-27/1519-Git基线推送与Claude优先级登记.md`](sessions/2026-08-27/1519-Git基线推送与Claude优先级登记.md)：历史 Git 建仓记录。
+- [`sessions/2026-08-27/1552-ChatGPT接管复核与方案讨论基线.md`](sessions/2026-08-27/1552-ChatGPT接管复核与方案讨论基线.md)：v3.1 历史讨论基线。
+- `archive/2026-09-01-*-pre-v32-review.md`：治理前的混合提示词原文。
 
-Git 基线、方案复核、科学性终审、冻结结果、研究报告活动稿、Word→PDF 闭环、正式基线工作流修正、新一轮 Actions 核验和根目录 memory 同步已完成；项目可进入七章正式报告定稿。具体已完成项和下一步以 `claude_session_1.txt`、其后 Git 提交与最新 `current.md` 合并判断。旧结果不得冒充 v3 正式结果。
+这些文件保留原始内容，不删除历史证据；文件头的归档标识决定其读取角色。
 
-## 历史导出
+## 记忆写入
 
-项目级 Claude 接续记录为根目录 `claude_session_1.txt`；`codex-export/` 是机器级原始会话导出，可能含其他项目或本地配置，公开 Git 版本默认排除。
+- 状态变化、关键验证和会话结束时更新 `current.md`。
+- 过程证据新增到 `sessions/`，不得覆盖旧 session。
+- 已确认且影响后续实现的长期决策写入 `decisions/`，并同步到 `AGENTS.md`、contract 或项目 Skill。
+- 大型产物只登记路径、大小、SHA-256、命令和退出码。

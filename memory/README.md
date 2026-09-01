@@ -8,7 +8,7 @@
 |---|---|---|
 | `INDEX.md` | 新会话的唯一导航入口、当前状态指针 | 必读 |
 | `current.md` | 当前任务的可执行快照；只保留最新状态 | 必读 |
-| `../claude_session_1.txt` | 负责人确认的最新 Claude 中断接续记录；进度冲突时优先于旧 memory | 必读 |
+| `../claude_session_1.txt` | 截至 2026-08-27 的历史 Claude 中断导出，已标记 `HISTORICAL / SUPERSEDED` | 历史追溯 |
 | `next-session-prompt.md` | 下窗口提示词与根目录交接文件的差异说明 | 接手时读 |
 | `decisions/` | 已确认且影响后续实现的长期决策 | 追加式 |
 | `sessions/YYYY-MM-DD/` | 每次会话的追加式状态记录 | 只增不改 |
@@ -18,7 +18,7 @@
 
 ## 自动加载
 
-仓库根目录 `AGENTS.md` 第 12 节已将本目录纳入强制启动流程。新会话必须先读根目录 `claude_session_1.txt`，再读 `INDEX.md` 和 `current.md`，然后按第 1 节顺序读取其余必读文件。就进度、完成状态、遗留项和下一步而言，`claude_session_1.txt` 优先于较旧 memory；模型与业务口径仍以 `AGENTS.md`、`model_contract.yaml` 及同步后的负责人决策为准。
+仓库根目录 `AGENTS.md` 第 12 节已将本目录纳入启动流程。新会话先以实时 Git/Actions、frozen contract、正式输入和正式结果建立事实基线，最后读取 `INDEX.md` 与 `current.md` 承接遗留项。`claude_session_1.txt`、`archive/` 和旧 session 只作历史追溯，不能覆盖 v3.2 当前事实。
 
 ## 状态写入
 
@@ -30,9 +30,9 @@
 
 - 不保存 Token、密码、个人隐私或未脱敏的甲方敏感数据。
 - 大文件只登记路径、大小、SHA-256 和退出码，不入库。
-- 本项目 `.git` 曾确认不可用：记忆以文件本身为准，关键产物登记 SHA-256；若日后 git 可用，可在每次记忆更新后附加一次提交，但不得以提交记录替代文件。
+- 本项目现已接入 GitHub 仓库 `Heng-Xu/RZB`；记忆应记录实际分支、SHA 和 Actions `head_sha`，同时继续登记关键产物 SHA-256。提交记录不能替代文件内容和 manifest。
 - `memory/` 不能替代 `model_contract.yaml`、实施计划、问题台账等权威文件；规则变更必须同步到对应权威文件后，才在 `decisions/` 登记。
-- `codex-export/` 是机器级原始导出，可能混入其他项目和本地配置，不作为公开仓库的项目历史；项目接续以 `claude_session_1.txt` 和 `sessions/` 为准。
+- `codex-export/` 是机器级原始导出，可能混入其他项目和本地配置，不作为公开仓库的项目历史；当前接续以实时仓库事实、`current.md` 和新增 `sessions/` 为准。
 
 ## 原始会话导出（可选兜底）
 

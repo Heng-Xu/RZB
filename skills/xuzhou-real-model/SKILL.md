@@ -9,21 +9,22 @@ description: Use when implementing, reviewing, testing, mapping, solving, visual
 
 本技能只服务项目 `实验/研究/` 下的真实数据工作。旧 synthetic M1、旧 `real_2025`、旧五年独立 C0/A/B 矩阵只能回归或归档，不能决定 v3 业务定义。
 
-开始工作前依次完整读取：
+开始工作前先核对 Git/远端 HEAD 与 Actions `head_sha`，再依次完整读取：
 
 1. 根目录 `AGENTS.md`（含第 12 节项目记忆规则）；
-2. `memory/INDEX.md` 与 `memory/current.md`；
-3. `实验/研究/docs/IMPLEMENTATION-PLAN-REAL-2021-2025-V3.md`；
-4. `实验/研究/model_contract.yaml`；
+2. `实验/研究/model_contract.yaml`、`model_contract_v3_2_overlay.yaml` 和 resolved contract；
+3. processed manifest、逐时审批表及 frozen 正式结果 manifest；
+4. `实验/研究/docs/IMPLEMENTATION-PLAN-REAL-2021-2025-V3.md`；
 5. `实验/研究/docs/REAL-DATA-MODEL-SPEC.md`；
 6. `实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/README_Agent_建模数据引用与使用说明_V1.2.md`；
-7. 涉及储能成本时读取 `参考政策/储能成本依据/来源与适用说明.md`。
+7. 涉及储能成本时读取 `参考政策/储能成本依据/来源与适用说明.md`；
+8. 最后读取 `memory/INDEX.md` 与 `memory/current.md` 承接当前任务。历史 session 只作追溯。
 
 如果 `model_contract.yaml` 版本低于 `3.2.0`，它是待迁移的旧契约。此时按 `AGENTS.md` 与 v3 实施计划先完成迁移，不得用旧契约否决已批准的 v3.2 定义。
 
 ## 2. 不得重新讨论的唯一方案
 
-共同基准是 2021 年实际状态，决策期是 2022—2025 年，价格统一折算为 2025 年。2021 年既有资产对不限制路径是共同沉没成本。
+共同基准是 2021 年实际状态，决策期是 2022—2025 年，价格统一折算为 2025 年。2021 年既有资产对两条优化方案均为共同沉没成本。
 
 正式路径只有：
 
@@ -56,7 +57,7 @@ R = S / P_plus
 - v2 固定干预前分母已经废止。
 - 储能充电只能吸收本时段原有反向功率，不能跨过零点制造正向峰值；放电只能服务本地正向负荷，不能反送或套利。
 - 反向承载力按设备级计算：分列/单台 `beta=0.8`；并列组 `beta=min(0.8,(S_total-S_largest)/S_total)`，不能二次乘 0.8。
-- 正向容量缺口、反向承载缺口和严格 CLR 约束分别记录触发原因；CLR 大于 2 本身不自动触发扩容或储能。
+- 正向容量缺口、反向承载缺口和新增容量 Rcap 包络分别记录触发原因；物理 CLR 大于 2 本身不自动触发扩容或储能。
 - 扩容、减容、退役、替换都必须来自可追溯的离散候选；减容成本按同电压、同容量扩容成本对称计价，投资为正，不抵扣残值。
 - 主体模型不能出现弃光变量、隐含弃光成本、连续虚构容量或全县 10 kV 联络决策。
 
@@ -84,7 +85,7 @@ R = S / P_plus
 2. 阶段 1：跨年时序映射、项目负责人审批、年度资产白名单和实际行动台账；
 3. 阶段 2：路径自身 CLR、同步峰值和正反向缺口；
 4. 阶段 3：真实离散扩容/减容候选、储能和成本库；
-5. 阶段 4：两条 2022—2025 多年度联合优化路径（严格路径先做起点归一）；
+5. 阶段 4：两条 2022—2025 多年度联合优化方案（共同采用 2021 实际资产起点，严格方案仅增加新增容量 Rcap 包络）；
 6. 阶段 4b：弹性扫描 `Rcap=1.5~3.0` 步长 0.1 加无上限点，产出 Rcap—成本前沿与推荐区间依据；
 7. 阶段 5：110/35 kV 分层模型及两个独立 10 kV 局部案例接口；
 8. 阶段 6：两套转置式矩阵、技术附表、Word、manifest 和归档；
@@ -99,7 +100,7 @@ env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr bash scripts/ru
 env MPLCONFIGDIR=/tmp/mplcfg_xuzhou conda run -n xuzhou110kv_clr python scripts/run_all.py --dataset real_2021_2025 --config model_contract.yaml --skip-gen
 ```
 
-不能仅凭进程退出码判断完成；还要审查求解状态、空值、映射门禁、年度容量守恒、严格路径逐年 CLR（110 kV）、两路径齐备性、弹性扫描前沿完整性（每个 Rcap 点均有全片区结果）、110/35 kV 分离和输出哈希。
+不能仅凭进程退出码判断完成；还要审查求解状态、空值、映射门禁、年度容量守恒、严格方案逐年新增容量 Rcap 包络（110 kV）、存量豁免后物理 CLR 的独立计算、两方案齐备性、弹性扫描前沿完整性（每个 Rcap 点均有全片区结果）、110/35 kV 分离和输出哈希。
 
 ## 6. 10 kV 局部案例接口
 

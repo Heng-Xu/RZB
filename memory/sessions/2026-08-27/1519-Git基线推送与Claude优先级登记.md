@@ -1,3 +1,7 @@
+# HISTORICAL / SUPERSEDED
+
+> 本记录保存 2026-08-27 建仓与当时的接续规则。其“Claude 记录最高优先”结论已由 2026-09-01 的 Git/Actions/frozen v3.2 事实优先规则替代，正文保留原样供审计。
+
 # Git 基线推送与 Claude 优先级登记
 
 - 时间：2026-08-27 15:19（Asia/Shanghai）
