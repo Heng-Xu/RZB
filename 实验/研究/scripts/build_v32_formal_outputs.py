@@ -147,6 +147,23 @@ def _collect_parameter_frontiers(root: Path) -> dict[str, pd.DataFrame]:
     return result
 
 
+def _count_joint_sensitivity_scenarios(
+    scenarios: dict[str, object],
+) -> int:
+    """按相对基准同时变化至少两个维度识别联合压力情景。"""
+    count = 0
+    for scenario_id in scenarios:
+        tokens = str(scenario_id).split("_")
+        changes = int(tokens[0] != "pf0.95")
+        changes += int(len(tokens) < 2 or tokens[1] != "beta0.80")
+        changes += sum(
+            token.startswith(("nl", "sc", "ec"))
+            for token in tokens[2:]
+        )
+        count += int(changes >= 2)
+    return count
+
+
 def _copy_file(source: Path, target: Path) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(_required(source), target)
@@ -561,10 +578,13 @@ def _science_review_markdown(
     refined_thresholds: pd.DataFrame,
     robust_summary: pd.DataFrame,
     baseline_manifest: dict[str, Any],
+    sensitivity_scenarios: dict[str, pd.DataFrame],
 ) -> str:
     qx5 = matrices[110].set_index("region_id").loc["QX-00005"]
     qx1 = matrices[110].set_index("region_id").loc["QX-00001"]
     qx5_soc = "baseline/qx00005_soc/qx00005_continuous_soc_summary.csv"
+    scenario_count = len(sensitivity_scenarios)
+    joint_scenario_count = _count_joint_sensitivity_scenarios(sensitivity_scenarios)
     return f"""# v3.2 模型科学性终审与冻结支撑记录
 
 状态：**MODEL V3.2 FROZEN**
@@ -582,6 +602,7 @@ def _science_review_markdown(
 - 候选为真实数据支撑的离散扩容候选；主政策模型不启用退役候选。
 - 规划器采用确定性的离散状态穷举/动态保留与 HiGHS 线性时序校核，不使用 NSGA-II 随机解；同一输入可复现同一结果。
 - Rcap 阈值取“5% 近优成本带首次达到的位置”并用局部点细化；稳健近优带只在 Rcap 维度上对参数场景求交，不把实现 CLR 与 Rcap 取交集。
+- 稳健近优交集覆盖 {scenario_count} 个正式敏感性情景，其中 {joint_scenario_count} 个为联合压力角点。纳入联合情景后，QX-00001、QX-00005 的稳健近优下限仍分别为 {_display(qx1['rcap_robust_near_optimal_lower'])} 和 {_display(qx5['rcap_robust_near_optimal_lower'])}，扫描范围内均未识别上界。
 - QX-00005 110 kV 使用审批后的 2025 年 8760 点连续 SOC 回放；其他片区为静态真实数据和经验时长情景，证据等级不高于 B。
 
 ## 3. 片区分类
@@ -693,7 +714,15 @@ def build_v32_frozen_outputs(
     }
     if not all(run_evidence.values()):
         raise FormalOutputError("one or more scan evidence inventories are empty")
-    science = _science_review_markdown(matrices, base_frontier, base_thresholds, refined_thresholds, robust, baseline_manifest)
+    science = _science_review_markdown(
+        matrices,
+        base_frontier,
+        base_thresholds,
+        refined_thresholds,
+        robust,
+        baseline_manifest,
+        coarse_sensitivity,
+    )
     (output_dir / "model_science_review.md").write_text(science, encoding="utf-8")
     (output_dir / "formal_result_notes.md").write_text(
         "# v3.2 冻结结果说明\n\n"
@@ -751,6 +780,8 @@ def build_v32_frozen_outputs(
         "frontier_points": int(len(base_frontier)),
         "refined_frontier_points": int(len(refined_frontier)),
         "sensitivity_scenarios": sorted(coarse_sensitivity),
+        "sensitivity_scenario_count": len(coarse_sensitivity),
+        "joint_sensitivity_scenario_count": _count_joint_sensitivity_scenarios(coarse_sensitivity),
         "source_files": source_files,
         "output_files": output_files,
         "baseline_evidence_files": baseline_copies,

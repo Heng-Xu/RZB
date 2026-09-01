@@ -6,7 +6,10 @@ import pandas as pd
 import pytest
 
 from src import v32_actual_pipeline, v32_model, v32_pipeline
-from scripts.build_v32_formal_outputs import classify_recommendation_type
+from scripts.build_v32_formal_outputs import (
+    _count_joint_sensitivity_scenarios,
+    classify_recommendation_type,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
@@ -117,3 +120,14 @@ def test_formal_baseline_workflow_reads_only_entrypoint_outputs() -> None:
         in workflow
     )
     assert "recommendation_matrix_v32_base.csv" not in workflow
+
+
+def test_joint_sensitivity_count_excludes_one_factor_scenarios() -> None:
+    scenarios = {
+        "pf0.90_beta0.80": object(),
+        "pf0.95_beta0.80_nl1.05": object(),
+        "pf0.95_beta0.80_nl1.05_sc1.20": object(),
+        "pf0.95_beta0.60_nl1.05": object(),
+        "pf0.95_beta0.80_sc0.80_ec1.20": object(),
+    }
+    assert _count_joint_sensitivity_scenarios(scenarios) == 3

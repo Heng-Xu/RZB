@@ -74,3 +74,64 @@ def test_frozen_client_facing_artifacts_do_not_contain_v2_scheme_or_denominator(
     for path in files:
         text = path.read_text(encoding="utf-8")
         assert not any(token in text for token in forbidden), path
+
+
+def test_active_report_sources_do_not_regress_to_superseded_model_language() -> None:
+    chapter_root = PROJECT_ROOT / "研究报告/初稿/章节"
+    files = sorted(chapter_root.glob("第*章_*.md"))
+    forbidden = (
+        "SCHEME_C0",
+        "SCHEME_A",
+        "SCHEME_B",
+        "固定干预前分母",
+        "成本不可直接比较",
+        "正式结果同时保留折现率",
+        "40 台主变对应的连续曲线",
+        "反向扩容",
+        "作为安全审查",
+        "年度资产白名单",
+        "质量门禁",
+        "负荷 seed",
+    )
+    client_name_forbidden = (
+        "墩集",
+        "河湾",
+        "王沟",
+        "墩南",
+        "河炮",
+        "河东",
+        "邳州",
+        "睢宁",
+        "新沂",
+        "沛县",
+        "丰县",
+        "铜山",
+        "贾汪",
+    )
+    for path in files:
+        text = path.read_text(encoding="utf-8")
+        assert not any(token in text for token in forbidden), path
+        assert not any(token in text for token in client_name_forbidden), path
+
+
+def test_report_chapters_are_synchronized_with_full_draft() -> None:
+    chapter_root = PROJECT_ROOT / "研究报告/初稿/章节"
+    full = (chapter_root / "研究报告全文初稿.md").read_text(encoding="utf-8")
+    for path in sorted(chapter_root.glob("第*章_*.md")):
+        assert path.read_text(encoding="utf-8").strip() in full, path
+
+
+def test_report_discloses_joint_sensitivity_and_soc_record_granularity() -> None:
+    chapter_root = PROJECT_ROOT / "研究报告/初稿/章节"
+    chapter4 = (chapter_root / "第四章_基于实际工程的电网建设成本模型.md").read_text(
+        encoding="utf-8"
+    )
+    chapter6 = (chapter_root / "第六章_典型案例验证.md").read_text(
+        encoding="utf-8"
+    )
+    assert "共 17 个敏感性情景" in chapter4
+    assert "6 个非笛卡尔联合压力情景" in chapter4
+    assert "稳健近优下限仍分别为 2.5 和 2.3" in chapter4
+    assert "40 条站点—方案审计记录" in chapter6
+    assert "7 个实际配置储能的站点—方案组合" in chapter6
+    assert "61320 条逐时记录" in chapter6
