@@ -23,6 +23,20 @@ class V32ModelError(ValueError):
     """v3.2 共同基线、政策路径或推荐前沿不满足发布条件。"""
 
 
+def intersect_unique_rcap_point_sets(
+    point_sets: Iterable[Iterable[float]],
+) -> list[float]:
+    """对同一 Rcap 维度的点集先去重再求交，避免控制复现被重复计权。"""
+    unique: list[frozenset[float]] = []
+    for values in point_sets:
+        points = frozenset(round(float(value), 10) for value in values)
+        if points and points not in unique:
+            unique.append(points)
+    if not unique:
+        return []
+    return sorted(set.intersection(*(set(points) for points in unique)))
+
+
 def apply_common_planning_baseline(
     annual: pd.DataFrame,
     processed_root: Path,
@@ -286,7 +300,7 @@ def robust_rcap_interval(
     if not point_sets or any(not points for points in point_sets):
         robust_points: list[float] = []
     else:
-        robust_points = sorted(set.intersection(*point_sets))
+        robust_points = intersect_unique_rcap_point_sets(point_sets)
     return {
         "region_id": region_id,
         "robust": bool(robust_points),

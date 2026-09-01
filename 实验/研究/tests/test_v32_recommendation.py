@@ -4,7 +4,11 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from src.v32_model import recommended_rcap_interval, robust_rcap_interval
+from src.v32_model import (
+    intersect_unique_rcap_point_sets,
+    recommended_rcap_interval,
+    robust_rcap_interval,
+)
 
 
 def _frontier(rows: list[tuple[float | str, str, float | None, float | None, int | None, float | None, bool]]) -> pd.DataFrame:
@@ -91,6 +95,12 @@ def test_robust_band_intersects_rcap_with_rcap_not_with_realized_clr() -> None:
     assert result["robust_rcap_interval_low"] == pytest.approx(2.0)
     assert result["robust_rcap_interval_high"] == pytest.approx(2.1)
     assert result["robust"] is True
+
+
+def test_robust_intersection_deduplicates_baseline_control_point_sets() -> None:
+    assert intersect_unique_rcap_point_sets(
+        [{2.3, 2.4, 2.5}, {2.3, 2.4, 2.5}, {2.4, 2.5, 2.6}]
+    ) == [2.4, 2.5]
 
 
 def test_no_feasible_numeric_rcap_returns_explicit_reason() -> None:

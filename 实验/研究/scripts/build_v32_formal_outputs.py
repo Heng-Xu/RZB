@@ -24,7 +24,10 @@ if str(ROOT) not in sys.path:
 
 from src.v32_contract import validation_commit_sha  # noqa: E402
 from src.v32_frontier_aggregate import validate_frontier_nested  # noqa: E402
-from src.v32_model import recommended_rcap_interval  # noqa: E402
+from src.v32_model import (  # noqa: E402
+    intersect_unique_rcap_point_sets,
+    recommended_rcap_interval,
+)
 from src.v32_threshold import classify_economic_release_thresholds  # noqa: E402
 from src.v3_outputs import write_transposed_word_matrix  # noqa: E402
 
@@ -298,7 +301,11 @@ def _build_robust_summary(
             if points:
                 point_sets.append(points)
             scenario_status.append(f"{label}:{','.join(f'{point:g}' for point in sorted(points)) or 'none'}")
-        robust = sorted(set.intersection(*point_sets)) if point_sets and len(point_sets) == len(scenarios) else []
+        robust = (
+            intersect_unique_rcap_point_sets(point_sets)
+            if point_sets and len(point_sets) == len(scenarios)
+            else []
+        )
         scan_high = float(pd.to_numeric(base["rcap_numeric"], errors="coerce").max())
         upper_identified = bool(robust and max(robust) < scan_high - 1e-9)
         rows.append({
