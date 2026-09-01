@@ -31,3 +31,21 @@ def test_formal_run_and_scan_manifests_record_validation_sha() -> None:
     )
     for path in paths:
         assert '"validation_commit_sha"' in path.read_text(encoding="utf-8"), path
+
+
+def test_freeze_workflow_and_receipt_model_three_commit_sha_roles() -> None:
+    workflow = (
+        ROOT.parents[1] / ".github/workflows/v32-freeze-verification.yml"
+    ).read_text(encoding="utf-8")
+    receipt = (ROOT / "scripts/write_v32_freeze_receipt.py").read_text(encoding="utf-8")
+    for field in (
+        "generated_from_commit_sha",
+        "package_commit_sha",
+        "checkout_verified_sha",
+        "last_verified_commit_sha",
+        "frozen_manifest_sha256",
+        "verification_workflow_run_id",
+    ):
+        assert field in receipt
+    assert "write_v32_freeze_receipt.py" in workflow
+    assert "freeze_verification_receipt.json" in workflow

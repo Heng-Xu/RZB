@@ -29,6 +29,7 @@ on:
       - '实验/研究/src/typical_days.py'
       - '实验/研究/scripts/build_v32_formal_outputs.py'
       - '实验/研究/scripts/plot_v32_formal_outputs.py'
+      - '实验/研究/scripts/write_v32_freeze_receipt.py'
       - '实验/研究/results/runs/real-2021-2025-v32-frozen/**'
 
 permissions:
@@ -64,7 +65,10 @@ jobs:
             tests/test_v32_frozen_manifest.py \
             tests/test_v32_repository_governance.py \
             tests/test_v32_validation_provenance.py \
-            tests/test_v32_workflow_dependencies.py
+            tests/test_v32_workflow_dependencies.py \
+            tests/test_v32_sensitivity_parameters.py \
+            tests/test_v32_annualization_sensitivity.py \
+            tests/test_v32_freeze_receipt.py
           python - <<'PY'
           from pathlib import Path
           import hashlib
@@ -116,9 +120,22 @@ jobs:
           )
           print(json.dumps(evidence, ensure_ascii=False, indent=2, sort_keys=True))
           PY
+      - name: Write three-SHA freeze verification receipt
+        working-directory: 实验/研究
+        run: |
+          python scripts/write_v32_freeze_receipt.py \
+            --frozen-root results/runs/real-2021-2025-v32-frozen \
+            --output results/runs/real-2021-2025-v32-frozen/freeze_verification_receipt.json \
+            --checkout-verified-sha "$V32_VALIDATION_COMMIT_SHA" \
+            --last-verified-commit-sha "$V32_VALIDATION_COMMIT_SHA" \
+            --workflow-run-id "$GITHUB_RUN_ID" \
+            --test-result PASS \
+            --core-artifact-verification PASS
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: v32-freeze-verification
-          path: 实验/研究/results/runs/v32-freeze-verification/
-          if-no-files-found: warn
+          path: |
+            实验/研究/results/runs/v32-freeze-verification/
+            实验/研究/results/runs/real-2021-2025-v32-frozen/freeze_verification_receipt.json
+          if-no-files-found: error
