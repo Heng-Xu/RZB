@@ -2,10 +2,10 @@
   "baseline_definition": "actual_2021_installed_capacity_with_existing_capacity_grandfathered",
   "baseline_evidence_files": [
     {
-      "bytes": 2925,
+      "bytes": 2996,
       "file": "baseline/manifest.json",
       "role": "baseline",
-      "sha256": "0a45ba695aa71691f2aca7e4da7554c75095cf8b980a03013835c78446d5f6e0"
+      "sha256": "6a8749b38d494faf05f22ada9a9dddab0e5e7df861a14b6a4e4c59cec6f3b273"
     },
     {
       "bytes": 3172,
@@ -83,13 +83,13 @@
       "bytes": 1892,
       "file": "baseline/cost_library/cost_assumptions.csv",
       "role": "baseline_cost_library",
-      "sha256": "b7aa537b2c2eea07a8360ae4ef504747ffac53ddd056a4ce5e96de2eec1ecce6"
+      "sha256": "61cca35a73246c6f43f075d3137835ff350b938e4f04000c2ec12562d0320805"
     },
     {
       "bytes": 984,
       "file": "baseline/cost_library/cost_manifest.json",
       "role": "baseline_cost_library",
-      "sha256": "b26809bfb91545b8951fdc3cdfa36937b727a0ec9016394e2ffd40fc2c8a7843"
+      "sha256": "e5abab29e7403209d3ee6ea9385adac4b156703a4e31c7a7ce2c6a662b6ba23d"
     },
     {
       "bytes": 58832,
@@ -101,13 +101,13 @@
       "bytes": 2199,
       "file": "baseline/cost_library/storage_module_cost_boundaries.csv",
       "role": "baseline_cost_library",
-      "sha256": "59d11f3de2fd8b8dfb8451b885b4fb424f4d5c5028b2a67f9d0f01e7d5334056"
+      "sha256": "8b434c5dd0905633bad5298c6807cc103f85743197a2e8a60783be6af561ad44"
     },
     {
       "bytes": 1030,
       "file": "baseline/time_physics/empirical_duration_manifest.json",
       "role": "baseline_time_physics",
-      "sha256": "245efbd6551d449f4cf439ad209ac95b2ee80280ae7f32e02c45da9d2d690574"
+      "sha256": "5e27f427e1e2a6a7f1c59a9094cd9115403c09a014bb8a70abfb23d8aa04c33d"
     },
     {
       "bytes": 421835,
@@ -140,8 +140,8 @@
       "sha256": "5a72dc892c37b89add5ee769e44f2b76817aec6b95de8db945f6d29b347a3b83"
     }
   ],
-  "baseline_manifest_sha256": "0a45ba695aa71691f2aca7e4da7554c75095cf8b980a03013835c78446d5f6e0",
-  "contract_sha256": "31f277767ea98ede89de794357bfce88a88de2cf45943cd1e70b0cc6b700958f",
+  "baseline_manifest_sha256": "6a8749b38d494faf05f22ada9a9dddab0e5e7df861a14b6a4e4c59cec6f3b273",
+  "contract_sha256": "073e49e4e0ae49a1c221e1b26176e87117946506e941801dcccdb31d0671685d",
   "dataset_id": "real_2021_2025",
   "direct_policy_cost_comparison": "allowed_when_both_paths_feasible_on_same_actual_baseline",
   "formal_paths": [
@@ -150,6 +150,7 @@
     "PATH_OPT_CLR_LE_2"
   ],
   "frontier_points": 136,
+  "joint_sensitivity_scenario_count": 6,
   "model_version": "3.2.0",
   "notes": [
     "Rcap推荐不与实现CLR取交集",
@@ -172,11 +173,11 @@
     },
     "baseline/cost_library/cost_assumptions.csv": {
       "bytes": 1892,
-      "sha256": "b7aa537b2c2eea07a8360ae4ef504747ffac53ddd056a4ce5e96de2eec1ecce6"
+      "sha256": "61cca35a73246c6f43f075d3137835ff350b938e4f04000c2ec12562d0320805"
     },
     "baseline/cost_library/cost_manifest.json": {
       "bytes": 984,
-      "sha256": "b26809bfb91545b8951fdc3cdfa36937b727a0ec9016394e2ffd40fc2c8a7843"
+      "sha256": "e5abab29e7403209d3ee6ea9385adac4b156703a4e31c7a7ce2c6a662b6ba23d"
     },
     "baseline/cost_library/expansion_cost_library.csv": {
       "bytes": 58832,
@@ -184,7 +185,7 @@
     },
     "baseline/cost_library/storage_module_cost_boundaries.csv": {
       "bytes": 2199,
-      "sha256": "59d11f3de2fd8b8dfb8451b885b4fb424f4d5c5028b2a67f9d0f01e7d5334056"
+      "sha256": "8b434c5dd0905633bad5298c6807cc103f85743197a2e8a60783be6af561ad44"
     },
     "baseline/initial_physical_diagnostics.csv": {
       "bytes": 2883,
@@ -232,7 +233,7 @@
     },
     "baseline/time_physics/empirical_duration_manifest.json": {
       "bytes": 1030,
-      "sha256": "245efbd6551d449f4cf439ad209ac95b2ee80280ae7f32e02c45da9d2d690574"
+      "sha256": "5e27f427e1e2a6a7f1c59a9094cd9115403c09a014bb8a70abfb23d8aa04c33d"
     },
     "baseline/time_physics/empirical_scenario_index.csv": {
       "bytes": 421835,
@@ -251,12 +252,12 @@
       "sha256": "d6deca06e08941c961d05a64b2efedb8f674cfabeab1ef71e69583910d9dfed1"
     },
     "elasticity_frontier_v32_actual_coarse.csv": {
-      "bytes": 23521,
-      "sha256": "33ee8e4508b7e26a64dc030cd0cf6b559e1db6891c71b50fb8e73f3e087fc14a"
+      "bytes": 25218,
+      "sha256": "ec828ad063a24195daff4c830e5784e03476ba0593e6d148c4814caec41155e5"
     },
     "elasticity_frontier_v32_actual_refined.csv": {
-      "bytes": 18487,
-      "sha256": "552e232e486f897997e28076d685acb3b64906598513e4c311927b2204a67b92"
+      "bytes": 19800,
+      "sha256": "66ba441d5d6ba5492a39a8f77e509e6a16dc0b086c8ed3f2ca580934e83d375d"
     },
     "figures/10kv_local_case_boundary.png": {
       "bytes": 159906,
@@ -284,7 +285,7 @@
     },
     "formal_matrix_110kv.docx": {
       "bytes": 5400,
-      "sha256": "ed8a54c6c1a1dfcf09a1298be89b3f6f5c6e4563c999dcd9a797848ec6209b24"
+      "sha256": "b9c79345840ce2721981a18811fe12e32bc45afdfc97b7ab9a6962176e330d91"
     },
     "formal_matrix_110kv.md": {
       "bytes": 4141,
@@ -296,7 +297,7 @@
     },
     "formal_matrix_35kv.docx": {
       "bytes": 5103,
-      "sha256": "248e945f21940d39d53b0d0ee675197c4d23dffc73118c2983430a991273e94d"
+      "sha256": "83477395e2a7391c8ed6957042650bc6b1649934f5860a2180343930eda1b185"
     },
     "formal_matrix_35kv.md": {
       "bytes": 3887,
@@ -307,20 +308,20 @@
       "sha256": "ff18f0a06ed8647132263ba113bc9a850b25432a7b8d1a30ec79b4b76ad3099a"
     },
     "model_science_review.md": {
-      "bytes": 4458,
-      "sha256": "5088c318421d335b04242330ffc637d0a994f5bca58447ebd362e92424ba5c8b"
+      "bytes": 4680,
+      "sha256": "cf1699df986b8e107ce98dc19ffdde0df10c4dc131e07cb79a797c0657de21e6"
     },
     "rcap_robust_near_optimal_summary.csv": {
-      "bytes": 6143,
-      "sha256": "0c71e204a4d7f8f1e90d2a118fcb38696f443e52f5a47e7ea8dc61f9b1f996c1"
+      "bytes": 9185,
+      "sha256": "60df6084ce5791b2f9242c0b8fcce96777b313a1276cb27a6b0c92f55a0e0db1"
     },
     "rcap_sensitivity_frontiers_coarse.csv": {
-      "bytes": 303345,
-      "sha256": "e763332d75aa09545d0f2385e9618042144582bdacb149be472cf8d67a6c549d"
+      "bytes": 487916,
+      "sha256": "a8b01981e9391b7b371a439efb3b4e9655c559f8c510ea46b5b803e8d9feae3c"
     },
     "rcap_sensitivity_thresholds_coarse.csv": {
-      "bytes": 17629,
-      "sha256": "816fcc36bf39b1cfbd830f1ad17b1151c4956a3ed659b56b39f5be91c982d599"
+      "bytes": 27493,
+      "sha256": "2a9e84733205b3a685e237a3af35b8b1f5979815191b215648b0aec84edc0752"
     },
     "rcap_thresholds_v32_actual_coarse.csv": {
       "bytes": 1730,
@@ -384,218 +385,218 @@
   "run_evidence_inventory": {
     "frontier_coarse": [
       {
-        "bytes": 1635,
+        "bytes": 1796,
         "role": "frontier_coarse",
-        "sha256": "f72b2f5ad67b565828a095f3cc1d4fedeaebd24f33e190eec1dda5fea86c4511",
-        "source": "/tmp/rzb-v32-frontier/1.5/frontier_point.csv"
+        "sha256": "8a501f2e32efb2497f03bf482f40e1d39d83459058061b6585b2c4e105369997",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/1.5/frontier_point.csv"
       },
       {
-        "bytes": 1620,
+        "bytes": 1781,
         "role": "frontier_coarse",
-        "sha256": "3c067cce132e7b57d638265e6cc2f4e91dc9edc967fbb2f34edd6df28e5297b7",
-        "source": "/tmp/rzb-v32-frontier/1.6/frontier_point.csv"
+        "sha256": "aeec5975ff5847a5dc9050a132c1ee5ae5b1aa7e6a70ff18bc3cbf77a16b1a4d",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/1.6/frontier_point.csv"
       },
       {
-        "bytes": 1650,
+        "bytes": 1811,
         "role": "frontier_coarse",
-        "sha256": "f3b111d03798ab4857e55a1262396ed7596167465aee5d30a300920ebf59ff88",
-        "source": "/tmp/rzb-v32-frontier/1.7/frontier_point.csv"
+        "sha256": "d9516fe6fc5519cb353ddfe3c6ed3db11684d29eadcb759e84884136123362f9",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/1.7/frontier_point.csv"
       },
       {
-        "bytes": 1635,
+        "bytes": 1796,
         "role": "frontier_coarse",
-        "sha256": "22eab40cef43fd8510ef0e87926de52d16292b1127232ef1d86598baf514d434",
-        "source": "/tmp/rzb-v32-frontier/1.8/frontier_point.csv"
+        "sha256": "a77a27d47993b853ab13b119c1b197094df4e31322d4214468c47a14f8aa0e5e",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/1.8/frontier_point.csv"
       },
       {
-        "bytes": 1650,
+        "bytes": 1811,
         "role": "frontier_coarse",
-        "sha256": "ea37d0cb433bb173a7acf4008ab968fcab395729d48c2c7bff45e0b796253f20",
-        "source": "/tmp/rzb-v32-frontier/1.9/frontier_point.csv"
+        "sha256": "2e71001ebe20cf280ebffd5d6ec80f81f8ba1d33f23d79b3300d3c8050e1a5f0",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/1.9/frontier_point.csv"
       },
       {
-        "bytes": 1620,
+        "bytes": 1781,
         "role": "frontier_coarse",
-        "sha256": "646ee36d9a8a6c28ee46443941372dfced276f1a88cc928c9bb03596deb9c244",
-        "source": "/tmp/rzb-v32-frontier/2.0/frontier_point.csv"
+        "sha256": "9c53083a38c2443bf81f918e9540022cabb1b867241e9c11b8fe68d74eb5b235",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.0/frontier_point.csv"
       },
       {
-        "bytes": 1634,
+        "bytes": 1795,
         "role": "frontier_coarse",
-        "sha256": "fe9a5f091aeeb697e9bcbe1cac517eda269216c46c6a4fdc4ad00bba67da17db",
-        "source": "/tmp/rzb-v32-frontier/2.1/frontier_point.csv"
+        "sha256": "b96fb4c9530ab2fea3f2279ac7a980189f1e688d2a7e1c1de5438c26481dd5a4",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.1/frontier_point.csv"
       },
       {
-        "bytes": 1696,
+        "bytes": 1857,
         "role": "frontier_coarse",
-        "sha256": "3e58c30b7f2e161cd1107c6d08ee089add2051218f1a209aa9e5a87530265cbb",
-        "source": "/tmp/rzb-v32-frontier/2.2/frontier_point.csv"
+        "sha256": "231187e7196cb2e6ef1939a6c65921570d756fdb84175d78de14e82ad3cc0037",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.2/frontier_point.csv"
       },
       {
-        "bytes": 1726,
+        "bytes": 1887,
         "role": "frontier_coarse",
-        "sha256": "48f20742a840b7d7fd6627703ab01f1577a52cf540afe72cfe29abf0869454ea",
-        "source": "/tmp/rzb-v32-frontier/2.3/frontier_point.csv"
+        "sha256": "492aaa763022c506d3bdfe2bfa49dc7b1d8dfee4e0162fabc2e921e0c27c0f2f",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.3/frontier_point.csv"
       },
       {
-        "bytes": 1773,
+        "bytes": 1934,
         "role": "frontier_coarse",
-        "sha256": "7a0138ecbc887299036943f8d07938b7df75e7701bc8eddfc55656cb0f75178b",
-        "source": "/tmp/rzb-v32-frontier/2.4/frontier_point.csv"
+        "sha256": "049623f2476ddf67ef592c53f5916432759427f125f30472aa7e6fc805c6f264",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.4/frontier_point.csv"
       },
       {
-        "bytes": 1773,
+        "bytes": 1934,
         "role": "frontier_coarse",
-        "sha256": "ac7741adb98d90f6791d173a9cd8e8cf5b5394623696f1bac96de647afaa142e",
-        "source": "/tmp/rzb-v32-frontier/2.5/frontier_point.csv"
+        "sha256": "074e9961c5a5684ea24ad1e59527cf7018ff0933b027860959a557109461b0cc",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.5/frontier_point.csv"
       },
       {
-        "bytes": 1773,
+        "bytes": 1934,
         "role": "frontier_coarse",
-        "sha256": "806f2daabe52865e9bca3320f825d2fe1cafeb75c2ca4aa639a457aa962cc2b9",
-        "source": "/tmp/rzb-v32-frontier/2.6/frontier_point.csv"
+        "sha256": "894d8aff4f66c52724ad8debc59c2cdac985efbc8e5787d0f7ca1ac0b27058e9",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.6/frontier_point.csv"
       },
       {
-        "bytes": 1773,
+        "bytes": 1934,
         "role": "frontier_coarse",
-        "sha256": "0f5a201816a6b13d47963a191ace4f59fb2b2ca10874e17e7199865342b76617",
-        "source": "/tmp/rzb-v32-frontier/2.7/frontier_point.csv"
+        "sha256": "d4e0da4b17e3c9dd93b9fcaa9d946844547668d25efadf18d560a8a693c0b64c",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.7/frontier_point.csv"
       },
       {
-        "bytes": 1773,
+        "bytes": 1934,
         "role": "frontier_coarse",
-        "sha256": "580583e654da7ab69125183732ab461f63291428b247b80853132133d7567116",
-        "source": "/tmp/rzb-v32-frontier/2.8/frontier_point.csv"
+        "sha256": "879e4a3bd6c46c9e54a32ea0746f5a4d008307891ed585b31dcc83e7ff13b597",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.8/frontier_point.csv"
       },
       {
-        "bytes": 1773,
+        "bytes": 1934,
         "role": "frontier_coarse",
-        "sha256": "88f6eb0ed9b416b663c29727bdbb7343b2b5a0ea1d75c4921d11df514c45b47e",
-        "source": "/tmp/rzb-v32-frontier/2.9/frontier_point.csv"
+        "sha256": "a928d1bc145079d99c202afc20c69fb2413915804f9f72d75d3f66231d0ccd9a",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/2.9/frontier_point.csv"
       },
       {
-        "bytes": 1787,
+        "bytes": 1948,
         "role": "frontier_coarse",
-        "sha256": "b3bdd0dbe5016855c84e8259a8dc5788b1d9af4003c61eeaf0a4c9e8a6ff0258",
-        "source": "/tmp/rzb-v32-frontier/3.0/frontier_point.csv"
+        "sha256": "61b95d097987f61b2fb49a06d92532474d28628bf6561e34cdb6c4092f65b802",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/3.0/frontier_point.csv"
       },
       {
-        "bytes": 1643,
+        "bytes": 1804,
         "role": "frontier_coarse",
-        "sha256": "16063d292164ad2cbd271def52edb5e0ae53be4ed20df2340e2eea19d9e156d7",
-        "source": "/tmp/rzb-v32-frontier/unbounded/frontier_point.csv"
+        "sha256": "de313a0f971151b7bc2e15c821c85e8ef902e447b7e42087adf192628a72e8f9",
+        "source": "/tmp/rzb-v32-review.z56RZv/frontier/unbounded/frontier_point.csv"
       }
     ],
     "frontier_refined": [
       {
-        "bytes": 1687,
+        "bytes": 1848,
         "role": "frontier_refined",
-        "sha256": "698596b7a724d595089f262392d5257dc04a346a478599133d16903fa19de5d3",
-        "source": "/tmp/rzb-v32-refinement/2.165/frontier_point.csv"
+        "sha256": "a9a6bdc98a991b363c70fd6f1e2a8c8b4183e72b46c15e0e85b6b0bf68af8c1d",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.165/frontier_point.csv"
       },
       {
-        "bytes": 1668,
+        "bytes": 1829,
         "role": "frontier_refined",
-        "sha256": "434c7dbfc8f3939418ea954545bfbe58a8abaffd81d0855b7e259910a1852e0d",
-        "source": "/tmp/rzb-v32-refinement/2.170/frontier_point.csv"
+        "sha256": "9d4b409f2ebe6f5778093ad64e694a7e6f7c2af3cba8f624b2da4576eec2a3d4",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.170/frontier_point.csv"
       },
       {
-        "bytes": 1687,
+        "bytes": 1848,
         "role": "frontier_refined",
-        "sha256": "597025cfeb6e75f767fcfd316e5a0dababcd7173e9f14b94cdf2ef61c43dfcb8",
-        "source": "/tmp/rzb-v32-refinement/2.171/frontier_point.csv"
+        "sha256": "61e2ebef66b8390a6f0380e4d0caa42fecc8638c001998a38678b8b5954298b7",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.171/frontier_point.csv"
       },
       {
-        "bytes": 1734,
+        "bytes": 1895,
         "role": "frontier_refined",
-        "sha256": "f01e7a30c5072807cb77d7762eec960f3729faa2cff8db2e9b0db335e0e98b19",
-        "source": "/tmp/rzb-v32-refinement/2.172/frontier_point.csv"
+        "sha256": "67823684302332287df75f56d8a0239f8760ea8675560a59344e1aaa6fb156a7",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.172/frontier_point.csv"
       },
       {
-        "bytes": 1734,
+        "bytes": 1895,
         "role": "frontier_refined",
-        "sha256": "3289ba8008e35348d941b06e994dd2d5ba03c056da887eb0e9bc76aeb3542392",
-        "source": "/tmp/rzb-v32-refinement/2.175/frontier_point.csv"
+        "sha256": "bb33755ca7903eee16bedaf3ee3389c73ac7fc76cd1036751a7f1e6a994fc33e",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.175/frontier_point.csv"
       },
       {
-        "bytes": 1715,
+        "bytes": 1876,
         "role": "frontier_refined",
-        "sha256": "2e3a0e934286a0ef002433fd16f4cf6a386356d4e90b18277653d9c9988e8b4d",
-        "source": "/tmp/rzb-v32-refinement/2.180/frontier_point.csv"
+        "sha256": "8244f819d08e355abfed135524e96b461b96189c45ceeda73ca7503ea3bf8480",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.180/frontier_point.csv"
       },
       {
-        "bytes": 1743,
+        "bytes": 1904,
         "role": "frontier_refined",
-        "sha256": "5a907948c98815b4cca1ff309071667305bd686b1586f342cc4d83d2f909aab6",
-        "source": "/tmp/rzb-v32-refinement/2.350/frontier_point.csv"
+        "sha256": "d7ecb2ac3f35c7907f1f0994c78d686b88c8840a7018c2e4508e3f72099a3250",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.350/frontier_point.csv"
       },
       {
-        "bytes": 1760,
+        "bytes": 1921,
         "role": "frontier_refined",
-        "sha256": "5baa2dc8c7037cac0b350dc82f70ee94d372f836f4755b347a08fc3c1afb0833",
-        "source": "/tmp/rzb-v32-refinement/2.355/frontier_point.csv"
+        "sha256": "46b7f546b8d70ae2b9b2cc1838750dc0860ef5de5f5f7891e9c2de82ac37da39",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.355/frontier_point.csv"
       },
       {
-        "bytes": 1760,
+        "bytes": 1921,
         "role": "frontier_refined",
-        "sha256": "2c62b1c7b214fbcfbc137ef0a1d5128b8130d49802fb79e5ac31f8dfb9193471",
-        "source": "/tmp/rzb-v32-refinement/2.359/frontier_point.csv"
+        "sha256": "bffe0c96ed041df45c628e1b391fe2c2aed923a439514ffb7bedb15d73af1c34",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.359/frontier_point.csv"
       },
       {
-        "bytes": 1790,
+        "bytes": 1951,
         "role": "frontier_refined",
-        "sha256": "8a1672a49485074a30e87f60e2b7e9f04e0c9c174f127f17bdec52e9794b7e77",
-        "source": "/tmp/rzb-v32-refinement/2.360/frontier_point.csv"
+        "sha256": "3beded642d143d9d86a14525f1fa83459904356a54ad1316fd9eb3b030be3158",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.360/frontier_point.csv"
       },
       {
-        "bytes": 1807,
+        "bytes": 1968,
         "role": "frontier_refined",
-        "sha256": "67d2950f38ba08b596362ad5717470f8edf4ec4ac89c98c2a696ca300637b33f",
-        "source": "/tmp/rzb-v32-refinement/2.365/frontier_point.csv"
+        "sha256": "531479ffabde131e79c2249c1038e8ee68e33d4584de9066f4f4a6fadf28416c",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.365/frontier_point.csv"
       },
       {
-        "bytes": 1790,
+        "bytes": 1951,
         "role": "frontier_refined",
-        "sha256": "fd850b4ed18f466ac6de3d9d929e2c73e968e42e8a6b5deed93c3a06467b45a1",
-        "source": "/tmp/rzb-v32-refinement/2.370/frontier_point.csv"
+        "sha256": "0f7744fdb29f4695a50fb9372fd6f8c2fc6b553f31173124808c5c17097c1aaa",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/2.370/frontier_point.csv"
       },
       {
-        "bytes": 1643,
+        "bytes": 1804,
         "role": "frontier_refined",
-        "sha256": "16063d292164ad2cbd271def52edb5e0ae53be4ed20df2340e2eea19d9e156d7",
-        "source": "/tmp/rzb-v32-refinement/unbounded/frontier_point.csv"
+        "sha256": "de313a0f971151b7bc2e15c821c85e8ef902e447b7e42087adf192628a72e8f9",
+        "source": "/tmp/rzb-v32-review.z56RZv/refinement/unbounded/frontier_point.csv"
       }
     ],
     "sensitivity_coarse": [
       {
-        "bytes": 26158,
+        "bytes": 27855,
         "role": "sensitivity_coarse",
-        "sha256": "8c0ed45d40fe14e05fe96811d03f3c3a6de86d99f9f0083d16b312a4bd7ef743",
-        "source": "/tmp/rzb-v32-sensitivity/pf090_beta080/parameter_frontier.csv"
+        "sha256": "8725feb96ab0255e71901e9005205b2760c7a20eff7a0db8d693ecd483cf3eda",
+        "source": "/tmp/rzb-v32-review.z56RZv/sensitivity/pf090_beta080/parameter_frontier.csv"
       },
       {
-        "bytes": 26335,
+        "bytes": 28032,
         "role": "sensitivity_coarse",
-        "sha256": "65e447435f2e9f1a93040871537f4d47d52f76d90a176c78f566b02f33884ca1",
-        "source": "/tmp/rzb-v32-sensitivity/pf095_beta060/parameter_frontier.csv"
+        "sha256": "726c0cff208e9a75a7d166c4f4a90fda1e74c9126f331e8965feb363b3fb1665",
+        "source": "/tmp/rzb-v32-review.z56RZv/sensitivity/pf095_beta060/parameter_frontier.csv"
       },
       {
-        "bytes": 26335,
+        "bytes": 28032,
         "role": "sensitivity_coarse",
-        "sha256": "d3b31ef3c439c08b5aa64a1607a45018f9eb513e42d289976448fc0758800d99",
-        "source": "/tmp/rzb-v32-sensitivity/pf095_beta080/parameter_frontier.csv"
+        "sha256": "ada3f34d35121628797b10f18e8ec2637104bb75e606acb0c9985e6cb7ee895d",
+        "source": "/tmp/rzb-v32-review.z56RZv/sensitivity/pf095_beta080/parameter_frontier.csv"
       },
       {
-        "bytes": 26335,
+        "bytes": 28032,
         "role": "sensitivity_coarse",
-        "sha256": "1cf06dba5f3610d0b44e609c22c08a04b2380b71c0a32be0bff379601175ec41",
-        "source": "/tmp/rzb-v32-sensitivity/pf095_beta100/parameter_frontier.csv"
+        "sha256": "631fa0bfe0668cd82000cd08e79a70b8b53082aaa1edf21f16f90f52ce86693b",
+        "source": "/tmp/rzb-v32-review.z56RZv/sensitivity/pf095_beta100/parameter_frontier.csv"
       },
       {
-        "bytes": 26062,
+        "bytes": 27759,
         "role": "sensitivity_coarse",
-        "sha256": "4078c532b123c6308910e9dd3fc5981d38c1e1ffda1cd86311d9ff502acb98b2",
-        "source": "/tmp/rzb-v32-sensitivity/pf100_beta080/parameter_frontier.csv"
+        "sha256": "46cc512b5040e5890e6fef10776c40cca6a30e7b3830fef8aad01d42990f10e8",
+        "source": "/tmp/rzb-v32-review.z56RZv/sensitivity/pf100_beta080/parameter_frontier.csv"
       }
     ],
     "stress_coarse": [
@@ -603,50 +604,93 @@
         "bytes": 28984,
         "role": "stress_coarse",
         "sha256": "9921fcfc0d659de6e62013ff3cc4cab34f3b90893a463e111535c7607ca3b384",
-        "source": "/tmp/rzb-v32-sensitivity-suite/expansion_cost_080/parameter_frontier.csv"
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/expansion_cost_080/parameter_frontier.csv"
       },
       {
         "bytes": 28984,
         "role": "stress_coarse",
         "sha256": "fe2ab7c1e6f563fd1040be090284ce0507125d24227934f72035f5bdd0fae954",
-        "source": "/tmp/rzb-v32-sensitivity-suite/expansion_cost_120/parameter_frontier.csv"
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/expansion_cost_120/parameter_frontier.csv"
+      },
+      {
+        "bytes": 30786,
+        "role": "stress_coarse",
+        "sha256": "3fa97a4d0e020e8644ded21b80c6a26c9f52a8045ff830abb5587b25387c56e2",
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/high_load_high_expansion/parameter_frontier.csv"
+      },
+      {
+        "bytes": 30807,
+        "role": "stress_coarse",
+        "sha256": "109dc631f8cdd50165ddf148fd974a6bcbd8a02a75b9709e18c0eec32fd884e8",
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/high_load_high_storage/parameter_frontier.csv"
+      },
+      {
+        "bytes": 30775,
+        "role": "stress_coarse",
+        "sha256": "4257ace08ebdedca6add14c088d4ed8adce0f4f88fabe9f96bf42315c4d2d93c",
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/high_load_low_expansion/parameter_frontier.csv"
+      },
+      {
+        "bytes": 29876,
+        "role": "stress_coarse",
+        "sha256": "b345106fc636cbc76a1a70aefe05d0d14ecfa23433794d45421ffd201b97a083",
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/high_storage_low_expansion/parameter_frontier.csv"
+      },
+      {
+        "bytes": 29823,
+        "role": "stress_coarse",
+        "sha256": "4741700064cf9320596c48d8dd5341f072b54a5afc563cb54a8a065e373d9474",
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/low_beta_high_load/parameter_frontier.csv"
+      },
+      {
+        "bytes": 29897,
+        "role": "stress_coarse",
+        "sha256": "7c8cb79ba1067cd6c8a913e978a306f6fac4c8ba4e4940c8249a5eda26ce8995",
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/low_storage_high_expansion/parameter_frontier.csv"
       },
       {
         "bytes": 29235,
         "role": "stress_coarse",
         "sha256": "8192349fca76035bc911d0a53200ed2cc2568bfcae347f3b232d0a16c43eaf89",
-        "source": "/tmp/rzb-v32-sensitivity-suite/net_load_095/parameter_frontier.csv"
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/net_load_095/parameter_frontier.csv"
       },
       {
         "bytes": 29823,
         "role": "stress_coarse",
         "sha256": "487f7beff47510de88ca0be53a8f31df3bec6802f9d57ca4ff417aea39276dcc",
-        "source": "/tmp/rzb-v32-sensitivity-suite/net_load_105/parameter_frontier.csv"
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/net_load_105/parameter_frontier.csv"
       },
       {
         "bytes": 28953,
         "role": "stress_coarse",
         "sha256": "e9610eff5aeb79e4d18ad879432ce09215d29edc162daf9de5353011e78b60c4",
-        "source": "/tmp/rzb-v32-sensitivity-suite/storage_cost_080/parameter_frontier.csv"
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/storage_cost_080/parameter_frontier.csv"
       },
       {
         "bytes": 28914,
         "role": "stress_coarse",
         "sha256": "95bddb7229bff02a059fdbdd387d8f1a0d2e4f0e41e02560fc79c7ca94cac177",
-        "source": "/tmp/rzb-v32-sensitivity-suite/storage_cost_120/parameter_frontier.csv"
+        "source": "/tmp/rzb-v32-review.z56RZv/stress-combined/storage_cost_120/parameter_frontier.csv"
       }
     ]
   },
+  "sensitivity_scenario_count": 17,
   "sensitivity_scenarios": [
     "pf0.90_beta0.80",
     "pf0.95_beta0.60",
+    "pf0.95_beta0.60_nl1.05",
     "pf0.95_beta0.80",
     "pf0.95_beta0.80_ec0.80",
     "pf0.95_beta0.80_ec1.20",
     "pf0.95_beta0.80_nl0.95",
     "pf0.95_beta0.80_nl1.05",
+    "pf0.95_beta0.80_nl1.05_ec0.80",
+    "pf0.95_beta0.80_nl1.05_ec1.20",
+    "pf0.95_beta0.80_nl1.05_sc1.20",
     "pf0.95_beta0.80_sc0.80",
+    "pf0.95_beta0.80_sc0.80_ec1.20",
     "pf0.95_beta0.80_sc1.20",
+    "pf0.95_beta0.80_sc1.20_ec0.80",
     "pf0.95_beta1.00",
     "pf1.00_beta0.80"
   ],
@@ -658,17 +702,18 @@
       "source_label": "data/processed/real_2021_2025/manifest.json"
     },
     {
-      "bytes": 23074,
+      "bytes": 24152,
       "role": "model_contract",
-      "sha256": "31f277767ea98ede89de794357bfce88a88de2cf45943cd1e70b0cc6b700958f",
+      "sha256": "073e49e4e0ae49a1c221e1b26176e87117946506e941801dcccdb31d0671685d",
       "source_label": "model_contract.yaml"
     },
     {
-      "bytes": 2925,
+      "bytes": 2996,
       "role": "baseline_manifest",
-      "sha256": "0a45ba695aa71691f2aca7e4da7554c75095cf8b980a03013835c78446d5f6e0",
-      "source_label": "/tmp/rzb-v32-baseline-frozen/manifest.json"
+      "sha256": "6a8749b38d494faf05f22ada9a9dddab0e5e7df861a14b6a4e4c59cec6f3b273",
+      "source_label": "/tmp/rzb-v32-review.z56RZv/baseline/manifest.json"
     }
   ],
-  "status": "MODEL V3.2 FROZEN"
+  "status": "MODEL V3.2 FROZEN",
+  "validation_commit_sha": "b6c0429eabf639b83f309038dd7415c95cd0540c"
 }
