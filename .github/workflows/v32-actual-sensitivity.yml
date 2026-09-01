@@ -34,6 +34,7 @@ permissions:
 
 env:
   PYTHONPATH: .
+  EXPECTED_SCENARIO_COUNT: '17'
 
 jobs:
   parameter-scenario:
@@ -45,20 +46,22 @@ jobs:
       matrix:
         include:
           - scenario: pf090_beta080
-            cos_phi: '0.90'
-            beta: '0.80'
           - scenario: pf095_beta060
-            cos_phi: '0.95'
-            beta: '0.60'
           - scenario: pf095_beta080
-            cos_phi: '0.95'
-            beta: '0.80'
           - scenario: pf095_beta100
-            cos_phi: '0.95'
-            beta: '1.00'
           - scenario: pf100_beta080
-            cos_phi: '1.00'
-            beta: '0.80'
+          - scenario: net_load_095
+          - scenario: net_load_105
+          - scenario: storage_cost_080
+          - scenario: storage_cost_120
+          - scenario: expansion_cost_080
+          - scenario: expansion_cost_120
+          - scenario: high_load_high_storage
+          - scenario: high_load_low_expansion
+          - scenario: high_load_high_expansion
+          - scenario: low_beta_high_load
+          - scenario: high_storage_low_expansion
+          - scenario: low_storage_high_expansion
     steps:
       - uses: actions/checkout@v4
         with:
@@ -77,33 +80,25 @@ jobs:
         working-directory: 实验/研究
         env:
           SCENARIO: ${{ matrix.scenario }}
-          COS_PHI: ${{ matrix.cos_phi }}
-          REVERSE_BETA: ${{ matrix.beta }}
         run: |
+          python scripts/run_v32_sensitivity_suite.py \
+            --scenario "$SCENARIO" \
+            --grid coarse \
+            --output-root results/runs/v32-actual-sensitivity
           python - <<'PY'
           import os
           from pathlib import Path
-          from src.v32_sensitivity import run_v32_parameter_frontier
+          import pandas as pd
 
-          root=Path('.').resolve()
           scenario=os.environ['SCENARIO']
-          points=[round(1.5+0.1*i,1) for i in range(16)]
-          f=run_v32_parameter_frontier(
-              root,
-              root/'data/processed/real_2021_2025',
-              root/'results/runs/v32-actual-sensitivity'/scenario,
-              cos_phi=float(os.environ['COS_PHI']),
-              reverse_beta=float(os.environ['REVERSE_BETA']),
-              rcap_points=points,
-              include_unbounded=True,
-          )
+          f=pd.read_csv(Path('results/runs/v32-actual-sensitivity/coarse')/scenario/'parameter_frontier.csv')
           cols=['rcap','region_id','feasible','cumulative_in_service_eac_wanyuan','physical_clr_2025','storage_modules','capacity_action_delta_mva']
           print(f[f['region_id'].isin(['QX-00001','QX-00005'])][cols].to_string(index=False))
           PY
       - uses: actions/upload-artifact@v4
         with:
           name: v32-sensitivity-${{ matrix.scenario }}
-          path: 实验/研究/results/runs/v32-actual-sensitivity/${{ matrix.scenario }}/
+          path: 实验/研究/results/runs/v32-actual-sensitivity/coarse/${{ matrix.scenario }}/
           if-no-files-found: error
 
   aggregate-sensitivity:
@@ -137,8 +132,9 @@ jobs:
           root=Path('.').resolve()
           source=root/'results/runs/v32-actual-sensitivity-artifacts'
           files=sorted(source.glob('**/parameter_frontier.csv'))
-          if len(files)!=5:
-              raise RuntimeError(f'expected 5 parameter frontiers, got {len(files)}')
+          expected=int(os.environ['EXPECTED_SCENARIO_COUNT'])
+          if len(files)!=expected:
+              raise RuntimeError(f'expected {expected} parameter frontiers, got {len(files)}')
           fronts=[]
           classes=[]
           for p in files:

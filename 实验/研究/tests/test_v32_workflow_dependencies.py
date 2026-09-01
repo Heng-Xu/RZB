@@ -4,6 +4,8 @@ from pathlib import Path
 
 import yaml
 
+from scripts.run_v32_sensitivity_suite import FORMAL_SCENARIOS
+
 
 RESEARCH_ROOT = Path(__file__).resolve().parents[1]
 PROJECT_ROOT = RESEARCH_ROOT.parents[1]
@@ -71,3 +73,11 @@ def test_chronology_workflow_uses_current_v32_actions_without_retirements() -> N
     assert "run_v32_actual_baseline" in text
     assert "_retirement_candidates" not in text
     assert "real-2021-2025-contract-v3" not in text
+
+
+def test_sensitivity_workflow_runs_every_formal_scenario() -> None:
+    path = PROJECT_ROOT / ".github/workflows/v32-actual-sensitivity.yml"
+    workflow = _load_yaml(path)
+    matrix = workflow["jobs"]["parameter-scenario"]["strategy"]["matrix"]["include"]
+    assert {item["scenario"] for item in matrix} == set(FORMAL_SCENARIOS)
+    assert "EXPECTED_SCENARIO_COUNT: '17'" in path.read_text(encoding="utf-8")
