@@ -44,6 +44,11 @@ def _write_fixture(tmp_path: Path) -> Path:
 
 这是正文段落，包含 **重点内容** 和 Times New Roman 123。
 
+$$
+\\Delta S_y \\leq \\max\\left(R_{\\mathrm{cap}}P_y^{+}-S_{2021},0\\right)
+$$
+（3-1）
+
 **表 1-1 测试数据表**
 
 | 指标 | 数值 |
@@ -101,6 +106,9 @@ def test_builder_renders_cover_headings_table_image_and_reference(tmp_path):
     assert doc.tables[0].cell(0, 0).text == "指标"
     assert doc.tables[0].cell(1, 1).text == "2.24"
     assert "w:drawing" in doc._element.xml
+    assert "m:oMath" in doc._element.xml
+    assert "\\Delta" not in doc._element.xml
+    assert "（3-1）" in doc._element.xml
 
 
 def test_builder_matches_template_page_and_typography(tmp_path):

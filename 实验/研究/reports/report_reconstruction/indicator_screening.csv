@@ -1,0 +1,7 @@
+﻿indicator_code,report_name,availability_regions,selected_for_core_matrix,screening_reason
+source_load_scale_ratio,现状源荷规模比,7,True,反映新能源装机相对正向最大负荷的规模；QX-00007 缺值，不补零；跨年组合仅用于横向判别。
+local_reverse_flow_ratio,局部最大反向功率比,8,True,八片区均可由站级年度极值计算，直接表征局部反向送电强度；不冒充片区同步反向峰值。
+network_capacity_support_margin,线路容量最小余度,8,True,八片区均有线路载荷率数据，可量化容量层面的网络支撑余度；不代表电压或完整潮流安全裕度。
+positive_peak_cagr_2021_2025,正向最大负荷年均增长率,8,True,八片区官方年度数据完整，能够区分规划期正向负荷变化对新增容量空间的影响。
+reverse_hosting_gap_ratio,反向承载缺口率,8,False,与现状源荷规模比的秩相关系数为 0.86，信息冗余；保留为规划响应诊断量。
+reverse_station_share,出现反向送电的站点比例,8,False,只能反映空间覆盖，不能反映反向功率幅值；由局部最大反向功率比替代。

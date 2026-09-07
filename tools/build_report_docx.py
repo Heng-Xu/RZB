@@ -17,11 +17,15 @@
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
 import math
 import re
+import subprocess
 import sys
+import tempfile
 import unicodedata
 from pathlib import Path
+from zipfile import ZipFile
 
 from docx import Document
 from docx.enum.section import WD_SECTION
@@ -31,6 +35,7 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt
 from PIL import Image
+from lxml import etree
 
 
 CJK = "仿宋_GB2312"
@@ -43,6 +48,7 @@ BODY_SIZE = 14
 BODY_LINE_TWIPS = 560  # 固定 28 pt，与项目模板一致
 TABLE_SIZE = 12
 CAPTION_SIZE = 12
+MATH_NS = "http://schemas.openxmlformats.org/officeDocument/2006/math"
 
 
 def _set_rfonts(rpr, cjk: str, latin: str) -> None:
@@ -303,6 +309,19 @@ def _estimate_toc_pages(md_path: Path, entries: list[dict[str, object]]) -> list
     while index < len(lines):
         stripped = lines[index].strip()
         if not stripped:
+            index += 1
+            continue
+
+        if stripped == "$$" or (stripped.startswith("$$") and stripped.endswith("$$")):
+            if stripped == "$$":
+                index += 1
+                while index < len(lines) and lines[index].strip() != "$$":
+                    index += 1
+            advance(34.0, keep_together=True)
+            index += 1
+            continue
+
+        if re.fullmatch(r"（\d+-\d+）", stripped):
             index += 1
             continue
 
@@ -707,6 +726,62 @@ def _add_image(doc: Document, md_path: Path, alt_text: str, image_ref: str) -> N
     caption.paragraph_format.keep_with_next = False
 
 
+def _pandoc_math_element(latex: str):
+    """借助 Pandoc 将 LaTeX 显示公式转换为 Word 原生 OMML。"""
+
+    with tempfile.TemporaryDirectory(prefix="report-math-") as tmp_dir:
+        tmp = Path(tmp_dir)
+        source = tmp / "formula.md"
+        output = tmp / "formula.docx"
+        source.write_text(f"$$\n{latex.strip()}\n$$\n", encoding="utf-8")
+        completed = subprocess.run(
+            ["pandoc", "--from", "markdown", "--to", "docx", str(source), "-o", str(output)],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if completed.returncode != 0:
+            raise RuntimeError(f"公式转换失败：{completed.stderr.strip()}")
+        with ZipFile(output) as archive:
+            root = etree.fromstring(archive.read("word/document.xml"))
+        math = root.find(f".//{{{MATH_NS}}}oMath")
+        if math is None:
+            raise RuntimeError(f"未生成 Word 公式对象：{latex}")
+        return deepcopy(math)
+
+
+def _set_equation_tabs(paragraph) -> None:
+    ppr = paragraph._p.get_or_add_pPr()
+    tabs = ppr.find(qn("w:tabs"))
+    if tabs is None:
+        tabs = OxmlElement("w:tabs")
+        ppr.append(tabs)
+    for existing in list(tabs):
+        tabs.remove(existing)
+    for value, position in (("center", "4100"), ("right", "8200")):
+        tab = OxmlElement("w:tab")
+        tab.set(qn("w:val"), value)
+        tab.set(qn("w:pos"), position)
+        tabs.append(tab)
+
+
+def _add_display_math(doc: Document, latex: str, equation_number: str | None = None) -> None:
+    paragraph = doc.add_paragraph(style="Normal")
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    paragraph.paragraph_format.keep_together = True
+    _set_no_indent(paragraph)
+    _set_exact_line_spacing(paragraph, 440)
+    _set_equation_tabs(paragraph)
+    leading_tab = paragraph.add_run()
+    leading_tab.add_tab()
+    paragraph._p.append(_pandoc_math_element(latex))
+    if equation_number:
+        number_run = paragraph.add_run()
+        number_run.add_tab()
+        number_run.add_text(equation_number)
+        set_run_fonts(number_run, BODY_SIZE)
+
+
 def render_md_into(
     doc: Document,
     md_path,
@@ -725,6 +800,30 @@ def render_md_into(
         line = lines[index].rstrip()
         stripped = line.strip()
         if not stripped:
+            index += 1
+            continue
+
+        if stripped == "$$":
+            formula_lines = []
+            index += 1
+            while index < len(lines) and lines[index].strip() != "$$":
+                formula_lines.append(lines[index])
+                index += 1
+            if index >= len(lines):
+                raise ValueError("显示公式缺少结束标记 $$")
+            equation_number = None
+            next_index = index + 1
+            while next_index < len(lines) and not lines[next_index].strip():
+                next_index += 1
+            if next_index < len(lines) and re.fullmatch(r"（\d+-\d+）", lines[next_index].strip()):
+                equation_number = lines[next_index].strip()
+                index = next_index
+            _add_display_math(doc, "\n".join(formula_lines), equation_number)
+            index += 1
+            continue
+
+        if stripped.startswith("$$") and stripped.endswith("$$") and len(stripped) > 4:
+            _add_display_math(doc, stripped[2:-2])
             index += 1
             continue
 

@@ -1,0 +1,43 @@
+@page {
+  size: A4;
+  margin: 25.4mm 31.7mm;
+  @bottom-center { content: counter(page); font: 9pt "Times New Roman"; }
+}
+html { font-family: "Times New Roman", "Noto Serif CJK SC", serif; color: #111; }
+body { font-size: 14pt; line-height: 2; text-align: justify; }
+header#title-block-header {
+  height: 235mm; display: flex; flex-direction: column; justify-content: center;
+  text-align: center; page-break-after: always;
+}
+h1.title { font-family: "Noto Sans CJK SC", sans-serif; font-size: 22pt; line-height: 1.55; margin: 0 0 18mm; }
+p.subtitle { font-family: "Noto Sans CJK SC", sans-serif; font-size: 22pt; font-weight: 700; }
+p.author, p.date { font-size: 16pt; font-weight: 700; }
+nav#TOC { page-break-after: always; }
+nav#TOC::before { content: "目　录"; display: block; text-align: center; font-size: 18pt; font-weight: 700; margin-bottom: 8mm; }
+nav#TOC ul { list-style: none; padding-left: 0; }
+nav#TOC ul ul { padding-left: 2em; }
+nav#TOC a { color: #111; text-decoration: none; }
+h1 { font-family: "Noto Sans CJK SC", sans-serif; font-size: 18pt; line-height: 1.55; page-break-before: always; margin: 0 0 5mm; }
+h1:first-of-type { page-break-before: auto; }
+h2, h3 { font-family: "Noto Sans CJK SC", sans-serif; font-size: 14pt; line-height: 2; break-after: avoid-page; margin: 4mm 0 2mm; }
+p { text-indent: 2em; margin: 0; orphans: 2; widows: 2; }
+figure { margin: 4mm auto; text-align: center; break-inside: avoid; }
+figure img, p > img { display: block; max-width: 100%; max-height: 185mm; margin: 3mm auto; }
+figcaption { font-size: 12pt; text-align: center; }
+table { width: 100%; border-collapse: collapse; font-size: 10.5pt; line-height: 1.35; margin: 2mm 0 5mm; break-inside: avoid; }
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+th, td { border: 0.5pt solid #333; padding: 1.5mm 1.2mm; text-align: center; vertical-align: middle; }
+th:first-child, td:first-child { text-align: left; }
+.caption, p:has(+ table) { break-after: avoid; }
+.math.display { text-align: center; text-indent: 0; margin: 2mm 0; break-inside: avoid; }
+p:has(math[display="block"]) { text-align: right; text-indent: 0; white-space: nowrap; }
+p:has(math[display="block"]) math[display="block"] {
+  display: inline-block; width: calc(100% - 4em); text-align: center; vertical-align: middle;
+}
+h2#主要符号 + p + p + table { font-size: 8.5pt; line-height: 1.05; }
+h2#主要符号 + p + p + table th,
+h2#主要符号 + p + p + table td { padding: 0.5mm 1mm; }
+img[src*="图4-1"] { max-height: 150mm; }
+code { font-family: "Times New Roman", "Noto Serif CJK SC", serif; }
+h1:last-of-type ~ p { font-size: 10pt; line-height: 1.4; }
