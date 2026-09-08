@@ -50,10 +50,10 @@ def flow_figure(out: Path, *, application: bool) -> None:
         labels = [
             "获取片区运行与规划数据",
             "计算 4 项核心指标",
-            "核查网络技术可行性",
-            "逐项匹配具体指标区间",
-            "识别未覆盖的指标组合",
-            "取得建议下限或非数值结论",
+            "核查设备、网络与接入技术条件",
+            "查找当前样本中的相似片区",
+            "判断是否需要专项 Rcap 扫描",
+            "识别建议下限或非数值结论",
             "比选扩建、储能与网络互济措施",
         ]
         title = "弹性容载比工程应用流程"
@@ -63,8 +63,8 @@ def flow_figure(out: Path, *, application: bool) -> None:
             "正向容量与反向承载校核",
             "离散扩建、储能及网络措施",
             "2021 年实际在役资产共同起点",
-            "弹性容载比控制值扫描与敏感性分析",
-            "片区指标—规划响应—建议映射",
+            "Rcap 扫描、局部细化与敏感性分析",
+            "运行特征—规划响应—建议映射",
         ]
         title = "研究技术路线"
     fig, ax = plt.subplots(figsize=(7.1, 8.0 if application else 7.2))
@@ -95,7 +95,7 @@ def concept_figure(out: Path) -> None:
     fig, ax = plt.subplots(figsize=(7.2, 4.4))
     ax.axis("off")
     boxes = [
-        (0.02, 0.58, 0.43, 0.30, "实际物理容载比\n在役变电容量 ÷ 同期正向年最大供电负荷\n用于描述实际容量配置状态"),
+        (0.02, 0.58, 0.43, 0.30, "实际物理容载比\n在役变电容量 ÷ 路径内同步正向年最大供电负荷\n用于描述实际容量配置状态"),
         (0.55, 0.58, 0.43, 0.30, "弹性容载比控制值\n只约束规划期新增变电容量\n用于控制新增容量空间"),
         (0.16, 0.10, 0.68, 0.25, "2021 年实际在役容量作为共同起点并保留\n因此实际物理容载比可高于规划控制值，且不构成违规"),
     ]
@@ -115,7 +115,7 @@ def indicator_figure(indicators: pd.DataFrame, out: Path) -> None:
     specs = [
         ("source_load_scale_ratio", "现状源荷规模比", "—"),
         ("local_reverse_flow_ratio", "局部最大反向潮流比例", "%"),
-        ("network_capacity_support_margin", "网络容量支撑裕度", "%"),
+        ("network_capacity_support_margin", "110 kV线路统计负载余度", "%"),
         ("positive_peak_cagr_2021_2025", "正向峰值负荷年均变化率", "%"),
     ]
     fig, axes = plt.subplots(2, 2, figsize=(8.0, 7.0), constrained_layout=True)
@@ -152,10 +152,10 @@ def frontier_figures(out_cost: Path, out_actions: Path) -> None:
         x = d[d.region_id.eq(region)].sort_values("rcap_numeric")
         ax.plot(x["rcap_numeric"], x["cumulative_in_service_eac_wanyuan"], marker="o", color=colors[region])
         ax.set_title(region)
-        ax.set_ylabel("年化规划成本 / （万元/年）")
+        ax.set_ylabel("规划期累计在役等年成本 / 万元")
         ax.grid(color="#E4E7EB")
     axes[-1].set_xlabel(r"弹性容载比控制值 $R_{\mathrm{cap}}$")
-    fig.suptitle("弹性容载比控制值与年化规划成本", fontweight="bold")
+    fig.suptitle("弹性容载比控制值与规划期累计在役等年成本", fontweight="bold")
     save(fig, out_cost)
 
     fig, axes = plt.subplots(2, 2, figsize=(8.0, 6.4), sharex=True, constrained_layout=True)
@@ -168,7 +168,7 @@ def frontier_figures(out_cost: Path, out_actions: Path) -> None:
         for ax in axes[row]:
             ax.grid(color="#E4E7EB")
     axes[0, 0].set_title("新增变电容量")
-    axes[0, 1].set_title("储能配置数量")
+    axes[0, 1].set_title("2025年储能配置数量")
     for ax in axes[-1]:
         ax.set_xlabel(r"弹性容载比控制值 $R_{\mathrm{cap}}$")
     fig.suptitle("控制值变化引起的规划措施转换", fontweight="bold")
