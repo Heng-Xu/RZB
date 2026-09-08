@@ -1,0 +1,121 @@
+name: final report build and science QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '研究报告/终稿/**'
+      - '实验/研究/scripts/build_final_report_figures.py'
+      - '实验/研究/scripts/check_final_report.py'
+      - '实验/研究/src/report_interval_matrix.py'
+      - 'tools/build_report_docx.py'
+      - '.github/workflows/report-final-build.yml'
+
+permissions:
+  contents: write
+
+env:
+  PYTHONPATH: .
+
+jobs:
+  build-final-report:
+    if: ${{ !contains(github.event.head_commit.message || '', '[report-artifacts]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Install document toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-writer libreoffice-core pandoc poppler-utils fonts-noto-cjk
+          python -m pip install --upgrade pip
+          python -m pip install numpy pandas matplotlib python-docx lxml pillow
+
+      - name: Prepare report source for DOCX renderer
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          report_dir = Path('研究报告/终稿')
+          source = report_dir / '国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md'
+          target = report_dir / '.report_build.md'
+          text = source.read_text(encoding='utf-8-sig')
+          old = '与之等价的总容量表达为 $S_y\\leq\\max(S_{2021},R_{\\mathrm{cap}}P_y^{+})$。'
+          new = '等价地，总容量上限由2021年既有容量与控制值对应容量两者中的较大值确定。'
+          if old not in text:
+              raise SystemExit('预期的行内公式片段不存在，拒绝静默构建')
+          target.write_text(text.replace(old, new), encoding='utf-8')
+          PY
+
+      - name: Regenerate report figures
+        run: |
+          python 实验/研究/scripts/build_final_report_figures.py \
+            --output-dir '研究报告/终稿/图表'
+
+      - name: Build final DOCX
+        run: |
+          python tools/build_report_docx.py \
+            --template '研究报告/中期研究报告初稿/03+XX项目-研究报告.docx' \
+            --input '研究报告/终稿/.report_build.md' \
+            --output '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.docx' \
+            --title '国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究' \
+            --subtitle '研究报告' \
+            --organization '国网江苏省电力有限公司徐州供电分公司' \
+            --date '2026年9月'
+
+      - name: Convert DOCX to PDF
+        shell: bash
+        run: |
+          DOCX='研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.docx'
+          PDF='研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.pdf'
+          rm -f "$PDF"
+          mkdir -p /tmp/lo-profile
+          libreoffice -env:UserInstallation=file:///tmp/lo-profile --headless --convert-to pdf --outdir '研究报告/终稿' "$DOCX"
+          test -s "$PDF"
+
+      - name: Run report semantic and numeric QA
+        run: |
+          python 实验/研究/scripts/check_final_report.py \
+            --root . \
+            --markdown '研究报告/终稿/.report_build.md' \
+            --docx '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.docx' \
+            --pdf '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.pdf' \
+            --output-dir '研究报告/终稿/内部审查'
+
+      - name: Render PDF pages for layout preflight
+        shell: bash
+        run: |
+          PDF='研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.pdf'
+          rm -rf /tmp/report-pages
+          mkdir -p /tmp/report-pages
+          pdftoppm -png -r 120 "$PDF" /tmp/report-pages/page >/dev/null 2>&1
+          count=$(find /tmp/report-pages -name 'page-*.png' | wc -l)
+          test "$count" -ge 30
+          echo "Rendered $count PDF pages for layout preflight"
+
+      - name: Remove temporary build source
+        if: always()
+        run: rm -f '研究报告/终稿/.report_build.md'
+
+      - name: Commit regenerated report artifacts
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '研究报告/终稿/图表' \
+                  '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.docx' \
+                  '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.pdf' \
+                  '研究报告/终稿/内部审查/数值追溯表.csv' \
+                  '研究报告/终稿/内部审查/自动检查结果.json'
+          if git diff --cached --quiet; then
+            echo 'No regenerated artifact changes to commit.'
+          else
+            git commit -m '重建终稿Word PDF及图件 [report-artifacts]'
+            git push origin HEAD:model-v3.2-autonomous-review
+          fi
