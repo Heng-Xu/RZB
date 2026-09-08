@@ -20,7 +20,7 @@ env:
 
 jobs:
   build-final-report:
-    if: ${{ !contains(github.event.head_commit.message || '', '[report-artifacts]') }}
+    if: ${{ !contains(github.event.head_commit.message || '', '[report-artifacts]') && !contains(github.event.head_commit.message || '', '[report-diagnostics]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -49,7 +49,13 @@ jobs:
           new = '等价地，总容量上限由2021年既有容量与控制值对应容量两者中的较大值确定。'
           if old not in text:
               raise SystemExit('预期的行内公式片段不存在，拒绝静默构建')
-          target.write_text(text.replace(old, new), encoding='utf-8')
+          text = text.replace(old, new)
+          marker = '程序以年度为离散步长对在役等年成本求和，正式输出字段为规划期累计在役等年成本，报告单位统一记为万元。'
+          clarified = marker + '表格统一采用“2022—2025年累计在役等年成本/万元”列示，图中采用“规划期累计在役等年成本/万元”标示。'
+          if marker not in text:
+              raise SystemExit('多年度成本说明段落不存在，拒绝静默构建')
+          text = text.replace(marker, clarified)
+          target.write_text(text, encoding='utf-8')
           PY
 
       - name: Regenerate report figures
@@ -86,6 +92,24 @@ jobs:
             --docx '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.docx' \
             --pdf '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.pdf' \
             --output-dir '研究报告/终稿/内部审查'
+
+      - name: Commit QA diagnostics on failure
+        if: failure()
+        shell: bash
+        run: |
+          if [ ! -f '研究报告/终稿/内部审查/自动检查结果.json' ]; then
+            echo 'No QA result file was produced.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '研究报告/终稿/内部审查/自动检查结果.json' '研究报告/终稿/内部审查/数值追溯表.csv'
+          if git diff --cached --quiet; then
+            echo 'No diagnostic changes to commit.'
+          else
+            git commit -m '更新终稿QA失败诊断 [report-diagnostics]'
+            git push origin HEAD:model-v3.2-autonomous-review
+          fi
 
       - name: Render PDF pages for layout preflight
         shell: bash
