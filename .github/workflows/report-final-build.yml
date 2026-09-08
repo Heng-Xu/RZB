@@ -55,6 +55,11 @@ jobs:
           if marker not in text:
               raise SystemExit('多年度成本说明段落不存在，拒绝静默构建')
           text = text.replace(marker, clarified)
+          table_marker = '## 4.3 指标筛选\n\n**表 4-1 候选指标筛选结果**'
+          table_replacement = '## 4.3 指标筛选\n\n候选指标筛选结果见表4-1。\n\n**表 4-1 候选指标筛选结果**'
+          if table_marker not in text:
+              raise SystemExit('表4-1位置不存在，拒绝静默构建')
+          text = text.replace(table_marker, table_replacement)
           target.write_text(text, encoding='utf-8')
           PY
 
