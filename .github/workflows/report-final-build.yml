@@ -45,21 +45,8 @@ jobs:
           source = report_dir / '国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md'
           target = report_dir / '.report_build.md'
           text = source.read_text(encoding='utf-8-sig')
-          old = '与之等价的总容量表达为 $S_y\\leq\\max(S_{2021},R_{\\mathrm{cap}}P_y^{+})$。'
-          new = '等价地，总容量上限由2021年既有容量与控制值对应容量两者中的较大值确定。'
-          if old not in text:
-              raise SystemExit('预期的行内公式片段不存在，拒绝静默构建')
-          text = text.replace(old, new)
-          marker = '程序以年度为离散步长对在役等年成本求和，正式输出字段为规划期累计在役等年成本，报告单位统一记为万元。'
-          clarified = marker + '表格统一采用“2022—2025年累计在役等年成本/万元”列示，图中采用“规划期累计在役等年成本/万元”标示。'
-          if marker not in text:
-              raise SystemExit('多年度成本说明段落不存在，拒绝静默构建')
-          text = text.replace(marker, clarified)
-          table_marker = '## 4.3 指标筛选\n\n**表 4-1 候选指标筛选结果**'
-          table_replacement = '## 4.3 指标筛选\n\n候选指标筛选结果见表4-1。\n\n**表 4-1 候选指标筛选结果**'
-          if table_marker not in text:
-              raise SystemExit('表4-1位置不存在，拒绝静默构建')
-          text = text.replace(table_marker, table_replacement)
+          if '$' in text.replace('$$', ''):
+              raise SystemExit('正文仍存在行内LaTeX，拒绝生成Word')
           target.write_text(text, encoding='utf-8')
           PY
 
@@ -112,7 +99,7 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No diagnostic changes to commit.'
           else
-            git commit -m '更新终稿QA失败诊断 [report-diagnostics]'
+            git commit -m '更新七章终稿QA失败诊断 [report-diagnostics]'
             git push origin HEAD:model-v3.2-autonomous-review
           fi
 
@@ -145,6 +132,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No regenerated artifact changes to commit.'
           else
-            git commit -m '重建终稿Word PDF及图件 [report-artifacts]'
+            git commit -m '重建七章终稿Word PDF及图件 [report-artifacts]'
             git push origin HEAD:model-v3.2-autonomous-review
           fi
