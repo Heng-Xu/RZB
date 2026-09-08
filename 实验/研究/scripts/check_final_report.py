@@ -248,13 +248,23 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
     page_count = int(match.group(1)) if match else 0
     if page_count < 30:
         issues.append(f"PDF页数异常：{page_count}")
-    sparse_pages = []
+
+    # 低文本页不直接判为空白：若页面含图题，则属于合法的图件主导页。
+    sparse_pages: list[int] = []
+    visual_only_pages: list[int] = []
+    visual_page_text: dict[str, str] = {}
     for page in range(1, page_count + 1):
         text = pdf_page_text(pdf, page)
-        if len(re.sub(r"\s+", "", text)) < 20:
-            sparse_pages.append(page)
+        compact = re.sub(r"\s+", "", text)
+        if len(compact) < 20:
+            if re.search(r"图\s*[1-7]-\d+", text):
+                visual_only_pages.append(page)
+                visual_page_text[str(page)] = text
+            else:
+                sparse_pages.append(page)
     if sparse_pages:
-        issues.append(f"PDF存在疑似空白页：{sparse_pages}")
+        issues.append(f"PDF存在疑似真实空白页：{sparse_pages}")
+
     full_pdf_text = subprocess.run(
         ["pdftotext", str(pdf), "-"], check=True, capture_output=True, text=True
     ).stdout
@@ -277,6 +287,8 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
         "table_count": len(word.tables),
         "native_math_count": math_count,
         "pdf_pages": page_count,
+        "visual_only_pages": visual_only_pages,
+        "visual_only_page_text": visual_page_text,
         "matrix_backtest_regions": len(backtest),
         "trace_rows": len(trace_rows),
     }
