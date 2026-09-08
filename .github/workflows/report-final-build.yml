@@ -92,6 +92,28 @@ jobs:
             --organization '国网江苏省电力有限公司徐州供电分公司' \
             --date '2026年9月'
 
+      - name: Allow body table rows to split across pages
+        shell: bash
+        run: |
+          python - <<'PY'
+          from docx import Document
+          from docx.oxml.ns import qn
+          path = '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.docx'
+          doc = Document(path)
+          changed = 0
+          for table in doc.tables:
+              for index, row in enumerate(table.rows):
+                  if index == 0:
+                      continue
+                  tr_pr = row._tr.get_or_add_trPr()
+                  cant_split = tr_pr.find(qn('w:cantSplit'))
+                  if cant_split is not None:
+                      tr_pr.remove(cant_split)
+                      changed += 1
+          doc.save(path)
+          print(f'Allowed {changed} body table rows to split across pages; header rows remain unsplittable.')
+          PY
+
       - name: Convert DOCX to PDF
         shell: bash
         run: |
