@@ -124,6 +124,19 @@ jobs:
           libreoffice -env:UserInstallation=file:///tmp/lo-profile --headless --convert-to pdf --outdir '研究报告/终稿' "$DOCX"
           test -s "$PDF"
 
+      - name: Record PDF page 24-26 context
+        shell: bash
+        run: |
+          PDF='研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.pdf'
+          OUT='研究报告/终稿/内部审查/PDF第24-26页文本上下文.txt'
+          mkdir -p '研究报告/终稿/内部审查'
+          : > "$OUT"
+          for p in 24 25 26; do
+            echo "===== PAGE $p =====" >> "$OUT"
+            pdftotext -f "$p" -l "$p" "$PDF" - >> "$OUT"
+            echo >> "$OUT"
+          done
+
       - name: Run report semantic and numeric QA
         run: |
           python 实验/研究/scripts/check_final_report.py \
@@ -143,7 +156,9 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '研究报告/终稿/内部审查/自动检查结果.json' '研究报告/终稿/内部审查/数值追溯表.csv'
+          git add '研究报告/终稿/内部审查/自动检查结果.json' \
+                  '研究报告/终稿/内部审查/数值追溯表.csv' \
+                  '研究报告/终稿/内部审查/PDF第24-26页文本上下文.txt'
           if git diff --cached --quiet; then
             echo 'No diagnostic changes to commit.'
           else
