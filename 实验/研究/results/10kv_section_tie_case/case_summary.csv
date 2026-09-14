@@ -1,0 +1,7 @@
+﻿item,value,unit,conclusion
+TIE-002_normal_state,OPEN,state,正常开环；故障/检修转供时才闭合
+dnan_source_to_tie_peak_loading,79.37,%,规划包络下热限通过；接近甲方80%控制线
+full_dnan_peak_transfer_to_hpao_loading,93.01,%,热限通过但超过甲方80%控制线；不建议把整线峰值负荷作为直接可转供量
+max_transfer_under_client_80pct,5.3524,MW,在PF=0.95与当前路径热限下的规划级上限
+restorable_fraction_under_client_80pct,81.97,%,按整线峰值负荷口径的最大可转供比例；实际应按分段负荷重新计算
+three_equal_section_demo_max_sections,2,sections,三等值段教学演示中，最多2段同时转供可满足80%控制线；非实测分段结论

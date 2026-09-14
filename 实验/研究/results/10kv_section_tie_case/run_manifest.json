@@ -1,0 +1,44 @@
+{
+  "case_id": "10KV_TIE002_SECTION_TIE_PLANNING_DEMO",
+  "tie_id": "TIE-002",
+  "source_feeder_id": "PZXL-00092",
+  "receiving_feeder_id": "PZXL-00161",
+  "source_path_km": 2.25,
+  "receiving_path_km": 2.75,
+  "source_path_limit_mva": 8.6603,
+  "receiving_path_limit_mva": 9.5263,
+  "pf": 0.95,
+  "client_control_ratio": 0.8,
+  "section_count_for_method_demo": 3,
+  "model_scope": "TOPOLOGY_CAPACITY_RECONFIGURATION_PLANNING_LEVEL",
+  "not_claimed": [
+    "FULL_AC_POWER_FLOW",
+    "SHORT_CIRCUIT_CURRENT",
+    "RELAY_SETTING_VALIDATION",
+    "FIELD_SWITCHING_INSTRUCTION",
+    "MEASURED_SECTION_LOADS"
+  ],
+  "normal_source_path": {
+    "scenario": "NORMAL_SOURCE_PATH_PEAK_ENVELOPE",
+    "transfer_p_mw": 6.529596,
+    "path_s_mva": 6.873258947368421,
+    "path_limit_mva": 8.6603,
+    "path_loading_pct": 79.36513685863564,
+    "thermal_pass": true,
+    "client_80pct_pass": true
+  },
+  "full_feeder_transfer": {
+    "scenario": "SOURCE_OUTAGE_FULL_FEEDER_TRANSFER",
+    "transfer_p_mw": 6.529596,
+    "source_peak_s_mva": 6.873258947368421,
+    "receiving_own_s_mva": 1.9869368421052633,
+    "receiving_total_s_mva": 8.860195789473684,
+    "receiving_path_limit_mva": 9.5263,
+    "receiving_path_loading_pct": 93.00773426696286,
+    "thermal_pass": true,
+    "client_80pct_pass": false,
+    "max_transfer_p_under_80pct_mw": 5.352398,
+    "max_restorable_fraction_under_80pct": 0.8197135014172393,
+    "unserved_if_strict_80pct_mw": 1.1771979999999997
+  }
+}

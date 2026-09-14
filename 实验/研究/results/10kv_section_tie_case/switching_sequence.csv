@@ -1,0 +1,9 @@
+﻿step,action,switch_operation_or_check,result
+0,NORMAL,源端断路器CLOSED；分段S1/S2 CLOSED；TIE-002 OPEN,基准开环运行
+1,TRIP,故障发生于A2，源端断路器跳闸,A1-A3暂时失电
+2,ISOLATE_UPSTREAM,断开A2上游边界分段开关S1,切断A1-A2连接
+3,ISOLATE_DOWNSTREAM,断开A2下游边界分段开关S2,故障段A2被两侧隔离
+4,RESTORE_UPSTREAM,重合/合上原馈线源端断路器,A1由原电源恢复；不是默认由邻线反送
+5,CHECK_TIE,校核TIE-002受端路径：转供A3=2.1765 MW，路径负载率=44.9%,通过80%控制线
+6,CLOSE_TIE,在容量、反向潮流、开环拓扑和保护方向性均允许后合TIE-002,A3由河炮线侧恢复供电
+7,FINAL,A2保持隔离；A1原源供电；A3联络转供,仅故障段停电，健康段恢复
