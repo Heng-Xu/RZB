@@ -1,7 +1,10 @@
 ﻿item,value,unit,conclusion
-TIE-002_normal_state,OPEN,state,正常开环；故障/检修转供时才闭合
-dnan_source_to_tie_peak_loading,79.37,%,规划包络下热限通过；接近甲方80%控制线
-full_dnan_peak_transfer_to_hpao_loading,93.01,%,热限通过但超过甲方80%控制线；不建议把整线峰值负荷作为直接可转供量
-max_transfer_under_client_80pct,5.3524,MW,在PF=0.95与当前路径热限下的规划级上限
-restorable_fraction_under_client_80pct,81.97,%,按整线峰值负荷口径的最大可转供比例；实际应按分段负荷重新计算
-three_equal_section_demo_max_sections,2,sections,三等值段教学演示中，最多2段同时转供可满足80%控制线；非实测分段结论
+TIE-002_normal_state,OPEN,state,正常按已确认状态开环；故障/检修重构时才考虑闭合
+dnan_source_path_conductor_loading,79.37,%,按240绝缘导线基准热限8.6603 MVA计算
+dnan_source_path_effective_loading,81.82,%,"按min(导线热限,馈线485 A运行允许值)=8.4004 MVA计算；正向负荷率，不套反向80%线"
+full_dnan_peak_transfer_to_hpao_loading,93.01,%,两馈线年度峰值同时出现的保守包络；容量通过但余度较小；不套反向80%线
+full_dnan_peak_transfer_capacity_pass,True,bool,受端有效路径上限9.5263 MVA下通过规划级容量筛查；保护仍需专项复核
+max_transfer_under_effective_path_limit,7.1624,MW,按PF=0.95和受端有效路径上限计算的正向转供容量上限
+three_equal_section_demo_capacity_max_sections,3,sections,三等值段教学演示中3段均满足容量底线；分段仍用于故障隔离、选择性恢复和保留运行余度
+pv_1p0_reverse_loading,77.05,%,零负荷抵消的保守反送上界；低于甲方80%反向潮流控制线
+pv_1p2_reverse_loading,92.46,%,零负荷抵消的保守反送上界；超过甲方80%反向潮流控制线但尚未超过路径容量底线
