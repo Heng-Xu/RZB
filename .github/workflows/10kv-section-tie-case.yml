@@ -10,6 +10,7 @@ on:
       - '实验/研究/data/tuomin/10kv_case/data/injection_summary.csv'
       - '实验/研究/data/tuomin/10kv_case/data/key_tie_path_parameter_impact.csv'
       - '实验/研究/data/tuomin/10kv_case/data/tie_master.csv'
+      - '实验/研究/data/tuomin/10kv_case/data/feeder_master.csv'
       - '.github/workflows/10kv-section-tie-case.yml'
 
 permissions:
@@ -37,7 +38,7 @@ jobs:
         run: |
           python 实验/研究/scripts/run_10kv_section_tie_case.py
 
-      - name: Verify core numeric results
+      - name: Verify core numeric and topology results
         run: |
           python - <<'PY'
           import json
@@ -46,22 +47,47 @@ jobs:
 
           root = Path('实验/研究/results/10kv_section_tie_case')
           summary = pd.read_csv(root / 'case_summary.csv', encoding='utf-8-sig')
-          values = dict(zip(summary['item'], summary['value']))
-          assert abs(float(values['dnan_source_to_tie_peak_loading']) - 79.37) < 0.02
-          assert abs(float(values['full_dnan_peak_transfer_to_hpao_loading']) - 93.01) < 0.02
-          assert abs(float(values['max_transfer_under_client_80pct']) - 5.3524) < 1e-4
-          assert abs(float(values['restorable_fraction_under_client_80pct']) - 81.97) < 0.02
-          assert int(float(values['three_equal_section_demo_max_sections'])) == 2
+          values = {str(k): str(v) for k, v in zip(summary['item'], summary['value'])}
 
+          # 送端墩南：导线热限口径79.37%，叠加馈线485A运行允许值后有效口径81.82%。
+          assert abs(float(values['dnan_source_path_conductor_loading']) - 79.37) < 0.02
+          assert abs(float(values['dnan_source_path_effective_loading']) - 81.82) < 0.02
+
+          # 正向故障转供只做容量底线，不错误套用甲方“反向潮流≤80%”控制线。
+          assert abs(float(values['full_dnan_peak_transfer_to_hpao_loading']) - 93.01) < 0.02
+          assert values['full_dnan_peak_transfer_capacity_pass'].lower() == 'true'
+          assert abs(float(values['max_transfer_under_effective_path_limit']) - 7.1624) < 1e-4
+          assert int(float(values['three_equal_section_demo_capacity_max_sections'])) == 3
+
+          # 80%只用于反向潮流包络。
           pv = pd.read_csv(root / 'pv_reverse_envelope.csv', encoding='utf-8-sig')
           row100 = pv.loc[pv['pv_scale'] == 1.0].iloc[0]
           row120 = pv.loc[pv['pv_scale'] == 1.2].iloc[0]
-          assert bool(row100['client_80pct_pass'])
-          assert not bool(row120['client_80pct_pass'])
+          row150 = pv.loc[pv['pv_scale'] == 1.5].iloc[0]
+          assert abs(float(row100['receiving_reverse_path_loading_pct']) - 77.05) < 0.02
+          assert bool(row100['client_reverse_80_pass'])
+          assert not bool(row120['client_reverse_80_pass'])
+          assert not bool(row150['thermal_operating_pass'])
+
+          # 分段识别与故障重构必须由图连通状态计算，不只是文字脚本。
+          sections = pd.read_csv(root / 'section_identification_demo.csv', encoding='utf-8-sig')
+          assert set(sections['section_id']) == {'A1', 'A2', 'A3'}
+          assert sections['component_id'].nunique() == 3
+
+          trace = pd.read_csv(root / 'topology_state_trace.csv', encoding='utf-8-sig')
+          step4 = trace.loc[trace['step'] == 4].iloc[0]
+          step6 = trace.loc[trace['step'] == 6].iloc[0]
+          assert step4['A1_supply'] == 'A_SOURCE'
+          assert step4['A3_supply'] == 'DEENERGIZED'
+          assert step6['A2_supply'] == 'FAULT'
+          assert step6['A3_supply'] == 'B_SOURCE'
+          assert bool(step6['radial_no_parallel_sources'])
 
           manifest = json.loads((root / 'run_manifest.json').read_text(encoding='utf-8'))
           assert manifest['tie_id'] == 'TIE-002'
           assert manifest['model_scope'] == 'TOPOLOGY_CAPACITY_RECONFIGURATION_PLANNING_LEVEL'
+          assert manifest['topology_engine'] == 'CONNECTED_COMPONENTS_FROM_SWITCH_STATES'
+          assert manifest['client_reverse_ratio_scope'] == 'REVERSE_FLOW_ONLY_NOT_GENERIC_FORWARD_LOADING_LIMIT'
           print('10kV TIE-002 planning case QA passed')
           PY
 
