@@ -20,17 +20,14 @@ jobs:
           ref: model-v3.2-autonomous-review
           fetch-depth: 0
 
-      - name: Patch final report source and build tools
-        run: python tools/patch_final_report_cn.py
+      - name: Patch inline math compatibility and visible codes
+        run: python tools/patch_inline_math_and_codes.py
 
-      - name: Commit patched source and tools
+      - name: Commit patched source and builder
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add 研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md
           git add tools/build_report_docx.py
-          git add 实验/研究/scripts/build_final_report_figures.py
-          git add 实验/研究/scripts/build_10kv_reverse_transfer_figure.py
-          git add 实验/研究/scripts/check_final_report.py
-          git commit -m '统一终稿中文术语并优化图表公式排版' || exit 0
+          git commit -m '修正终稿行内公式兼容并清理可见编码' || exit 0
           git push origin HEAD:model-v3.2-autonomous-review
