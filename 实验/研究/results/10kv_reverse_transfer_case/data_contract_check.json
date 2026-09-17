@@ -1,19 +1,25 @@
 {
   "passed": true,
-  "issues": [],
-  "warnings": [
-    "dnan has no final-unblocked verified sectional switch in current switch master; formal current case must stay at whole-feeder boundary transfer or treat a new/verified switch as an engineering action",
-    "node master has no GIS coordinates; exact new-tie route length/corridor optimization is not data-ready"
+  "blocking_gaps": [],
+  "nonblocking_refinements": [
+    "dnan 7.34 MW is feeder-level real output anchor; node/section PV spatial distribution is incomplete, so selective supply-unit numerical results must use scenario allocation or wait for finer PV mapping",
+    "node master has no GIS coordinates; exact new-tie corridor, route length and line-construction cost optimization are not data-ready",
+    "synchronous feeder/section load-PV time series are unavailable; current results are planning stress envelopes, not historical synchronous power-flow snapshots",
+    "protection direction, relay settings, short-circuit current and detailed switching sequence remain implementation-stage checks rather than planning-model inputs"
   ],
   "tie002_topology_ready": true,
-  "whole_feeder_boundary_transfer_ready": true,
-  "selective_section_transfer_ready": false,
-  "verified_dnan_sectional_switch_count": 0,
+  "existing_tie_planning_transfer_ready": true,
+  "switch_state_required_for_research_model": false,
+  "switch_modeling_rule": "ABSTRACT_AS_BOUNDARY_CONTROL_RESOURCE; REAL-TIME OPEN/CLOSED STATE IS IMPLEMENTATION DETAIL",
+  "radiality_rule": "RECONFIGURED_NETWORK_MUST_KEEP_SINGLE-SOURCE_RADIAL_OPERATION_AND_FORBID_PARALLEL_110KV_SOURCES_THROUGH_10KV",
+  "selective_supply_unit_framework_ready": true,
+  "selective_supply_unit_numeric_ready": false,
   "exact_new_tie_route_ready": false,
-  "current_model_scope": "EXISTING_TIE_WHOLE_FEEDER_BOUNDARY_RECONFIGURATION_PLUS_NEW_TIE_CAPACITY_AND_RECEIVER_FEEDER_SCREEN",
+  "current_model_scope": "SUPPLY_BOUNDARY_RECONFIGURATION_FOR_HIGH_PV_CROSS_STATION_REVERSE_POWER_TRANSFER",
   "data_semantics": {
     "dnan_pv_7_34_mw": "REAL_OUTPUT_PEAK_ANCHOR_NOT_COMPLETE_INSTALLED_CAPACITY",
     "station_minima": "INDEPENDENT_ANNUAL_STRESS_ANCHORS_NOT_SYNCHRONOUS_PAIR",
-    "node_loads": "PLANNING_SEEDS_NOT_SYNCHRONOUS_MEASUREMENTS"
+    "node_loads": "PLANNING_SEEDS_NOT_SYNCHRONOUS_MEASUREMENTS",
+    "switch_states": "IMPLEMENTATION_DETAIL_NOT_BLOCKING_RESEARCH_PLANNING_MODEL"
   }
 }
