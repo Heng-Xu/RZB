@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "issues": [],
+  "warnings": [
+    "dnan has no final-unblocked verified sectional switch in current switch master; formal current case must stay at whole-feeder boundary transfer or treat a new/verified switch as an engineering action",
+    "node master has no GIS coordinates; exact new-tie route length/corridor optimization is not data-ready"
+  ],
+  "tie002_topology_ready": true,
+  "whole_feeder_boundary_transfer_ready": true,
+  "selective_section_transfer_ready": false,
+  "verified_dnan_sectional_switch_count": 0,
+  "exact_new_tie_route_ready": false,
+  "current_model_scope": "EXISTING_TIE_WHOLE_FEEDER_BOUNDARY_RECONFIGURATION_PLUS_NEW_TIE_CAPACITY_AND_RECEIVER_FEEDER_SCREEN",
+  "data_semantics": {
+    "dnan_pv_7_34_mw": "REAL_OUTPUT_PEAK_ANCHOR_NOT_COMPLETE_INSTALLED_CAPACITY",
+    "station_minima": "INDEPENDENT_ANNUAL_STRESS_ANCHORS_NOT_SYNCHRONOUS_PAIR",
+    "node_loads": "PLANNING_SEEDS_NOT_SYNCHRONOUS_MEASUREMENTS"
+  }
+}
