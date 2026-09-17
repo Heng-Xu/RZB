@@ -246,7 +246,8 @@ def main() -> int:
     indicator_figure(indicators, out / "图4-1_典型片区核心指标.png")
     frontier_figures(out / "图5-1_弹性控制值成本前沿.png", out / "图5-2_弹性控制值规划响应.png")
     flow_figure(out / "图8-1_工程应用流程.png", application=True)
-    section_tie_figure(out / "图6-1_TIE002分段联络示意.png")
+    from build_10kv_reverse_transfer_figure import build as build_reverse_transfer_figure
+    build_reverse_transfer_figure(out / "图6-1_TIE002分段联络示意.png")
     print(f"WROTE 7 figures to {out}")
     return 0
 
