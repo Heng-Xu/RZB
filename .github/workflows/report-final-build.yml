@@ -7,6 +7,11 @@ on:
     paths:
       - '研究报告/终稿/**'
       - '实验/研究/scripts/build_final_report_figures.py'
+      - '实验/研究/scripts/build_10kv_reverse_transfer_figure.py'
+      - '实验/研究/scripts/run_10kv_reverse_transfer_case.py'
+      - '实验/研究/scripts/check_10kv_reverse_transfer_data.py'
+      - '实验/研究/src/feeder_10kv_reverse_transfer.py'
+      - '实验/研究/results/10kv_reverse_transfer_case/**'
       - '实验/研究/scripts/check_final_report.py'
       - '实验/研究/src/report_interval_matrix.py'
       - 'tools/build_report_docx.py'
@@ -35,6 +40,11 @@ jobs:
           sudo apt-get install -y --no-install-recommends libreoffice-writer libreoffice-core pandoc poppler-utils fonts-noto-cjk
           python -m pip install --upgrade pip
           python -m pip install numpy pandas matplotlib python-docx lxml pillow
+
+      - name: Validate 10kV reverse-transfer model
+        run: |
+          python 实验/研究/scripts/check_10kv_reverse_transfer_data.py
+          python 实验/研究/scripts/run_10kv_reverse_transfer_case.py
 
       - name: Prepare report source for DOCX renderer
         shell: bash
