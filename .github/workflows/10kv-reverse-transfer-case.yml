@@ -6,7 +6,9 @@ on:
     branches: [model-v3.2-autonomous-review]
     paths:
       - '实验/研究/src/feeder_10kv_reverse_transfer.py'
+      - '实验/研究/src/feeder_10kv_reverse_topology.py'
       - '实验/研究/scripts/run_10kv_reverse_transfer_case.py'
+      - '实验/研究/scripts/run_10kv_reverse_topology.py'
       - '实验/研究/data/tuomin/10kv_case/data/injection_summary.csv'
       - '实验/研究/data/tuomin/10kv_case/data/key_tie_path_parameter_impact.csv'
       - '实验/研究/data/tuomin/10kv_case/data/tie_master.csv'
@@ -38,6 +40,7 @@ jobs:
       - name: Run high-PV reverse transfer case
         run: |
           python 实验/研究/scripts/run_10kv_reverse_transfer_case.py
+          python 实验/研究/scripts/run_10kv_reverse_topology.py
 
       - name: Verify two-level planning logic and TIE-002 results
         run: |
@@ -85,6 +88,20 @@ jobs:
           assert len(alternates) >= 2
           assert alternates['feeder_level_capacity_pass'].astype(bool).all()
           assert (alternates['route_status'] == 'FEEDER_LEVEL_SCREEN_ONLY_ROUTE_AND_CORRIDOR_PENDING').all()
+
+          # 拓扑层必须显式验证：先退出原供电边界再合TIE-002，不能直接并列两站电源。
+          topo = pd.read_csv(root / 'boundary_reconfiguration_topology.csv', encoding='utf-8-sig')
+          normal = topo.loc[topo['state'] == 'NORMAL'].iloc[0]
+          transfer = topo.loc[topo['state'] == 'CLOSE_TIE_AFTER_BOUNDARY_OPEN'].iloc[0]
+          forbidden = topo.loc[topo['state'] == 'FORBIDDEN_DIRECT_TIE_CLOSE'].iloc[0]
+          assert normal['dnan_supply'] == 'DJ_SOURCE'
+          assert bool(normal['radial_no_parallel_sources'])
+          assert transfer['dnan_supply'] == 'HW_SOURCE'
+          assert transfer['hpao_supply'] == 'HW_SOURCE'
+          assert bool(transfer['radial_no_parallel_sources'])
+          assert not bool(forbidden['radial_no_parallel_sources'])
+          assert not bool(forbidden['planning_state_allowed'])
+          assert topo['check_matches_expected'].astype(bool).all()
 
           manifest = json.loads((root / 'run_manifest.json').read_text(encoding='utf-8'))
           assert manifest['model_core'] == 'HIGH_PV_REVERSE_POWER_CROSS_STATION_BOUNDARY_RECONFIGURATION'
