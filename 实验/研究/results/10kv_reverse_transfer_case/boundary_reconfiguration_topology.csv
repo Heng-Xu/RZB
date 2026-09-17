@@ -1,0 +1,5 @@
+﻿step,state,donor_boundary_closed,tie002_closed,receiver_boundary_closed,dnan_supply,hpao_supply,radial_no_parallel_sources,planning_state_allowed,expected_allowed,check_matches_expected,note
+0,NORMAL,True,False,True,DJ_SOURCE,HW_SOURCE,True,True,True,True,现状：墩南由墩集变供电，河炮由河湾变供电，站间联络分闸
+1,OPEN_DONOR_BOUNDARY,False,False,True,DEENERGIZED,HW_SOURCE,True,True,True,True,规划边界切换中间态：先退出墩南原供电边界，避免两站经10kV并列
+2,CLOSE_TIE_AFTER_BOUNDARY_OPEN,False,True,True,HW_SOURCE,HW_SOURCE,True,True,True,True,重构态：TIE-002投入，墩南供电边界转移至河湾变侧
+99,FORBIDDEN_DIRECT_TIE_CLOSE,True,True,True,PARALLEL_SOURCES_INVALID,PARALLEL_SOURCES_INVALID,False,False,False,True,禁止态：若原供电边界未退出即合联络，会形成两110kV电源经10kV并列
