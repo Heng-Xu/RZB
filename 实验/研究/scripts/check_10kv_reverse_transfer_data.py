@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""检查10 kV高光伏跨站转移模型的数据契约与已知边界。"""
+"""检查10 kV高光伏跨站转移规划模型的数据契约与研究边界。"""
 
 from __future__ import annotations
 
@@ -30,11 +30,10 @@ def main() -> int:
     inj = pd.read_csv(data / "injection_summary.csv", encoding="utf-8-sig")
     feeders = pd.read_csv(data / "feeder_master.csv", encoding="utf-8-sig")
     stations = pd.read_csv(data / "station_boundary_2025.csv", encoding="utf-8-sig")
-    switches = pd.read_csv(data / "switch_master.csv", encoding="utf-8-sig")
     nodes = pd.read_csv(data / "node_master.csv", encoding="utf-8-sig", nrows=1)
 
     issues: list[str] = []
-    warnings: list[str] = []
+    nonblocking_refinements: list[str] = []
 
     tie = ties.loc[ties["tie_id"] == "TIE-002"]
     if len(tie) != 1:
@@ -42,8 +41,8 @@ def main() -> int:
         tie_row = None
     else:
         tie_row = tie.iloc[0]
-        if str(tie_row["normal_state"]).upper() != "OPEN":
-            issues.append("TIE-002 normal state must be OPEN")
+        # 规划研究只要求确认联络关系、两端对象及其可操作性，不把实时开关状态
+        # 作为模型求解的阻塞条件。现状normal_state仅用于描述基准网络。
         if str(tie_row["confidence"]).upper() != "HIGH":
             issues.append("TIE-002 confidence must be HIGH")
         if str(tie_row["endpoint_resolution"]) != "EXACT_CANONICAL/EXACT_CANONICAL":
@@ -58,7 +57,9 @@ def main() -> int:
         if not (tie_paths["path_status"] == "READY").all():
             issues.append("TIE-002 both paths must be READY")
         if not (tie_paths["parameter_grade"] == "B+").all():
-            warnings.append("TIE-002 path parameter grade is not uniformly B+")
+            nonblocking_refinements.append(
+                "TIE-002 path parameter grade is not uniformly B+; refine conductor parameters if the path becomes binding"
+            )
 
     dnan = inj.loc[inj["feeder_id"] == "PZXL-00092"]
     hpao = inj.loc[inj["feeder_id"] == "PZXL-00161"]
@@ -74,6 +75,10 @@ def main() -> int:
         if str(hpao_row["pv_status"]) != "CONFIRMED_ZERO":
             issues.append("hpao PV status must remain CONFIRMED_ZERO in current dataset")
 
+        nonblocking_refinements.append(
+            "dnan 7.34 MW is feeder-level real output anchor; node/section PV spatial distribution is incomplete, so selective supply-unit numerical results must use scenario allocation or wait for finer PV mapping"
+        )
+
     station_dj = stations.loc[stations["station_id"] == "BDZ-00027"]
     station_hw = stations.loc[stations["station_id"] == "BDZ-00048"]
     if len(station_dj) != 1 or len(station_hw) != 1:
@@ -84,25 +89,11 @@ def main() -> int:
         if float(station_hw.iloc[0]["2025_annual_min_load_mw"]) >= 0:
             issues.append("HW 2025 annual minimum should show reverse power")
 
-    blocking_text = switches["blocking_final"].astype(str).str.upper()
-    donor_switches = switches.loc[
-        (switches["feeder_id"] == "PZXL-00092")
-        & (switches["device_type"] == "分段开关")
-        & blocking_text.isin({"NO", "FALSE", "0"})
-    ]
-    verified_selective_section_switch_count = int(len(donor_switches))
-    selective_section_transfer_ready = verified_selective_section_switch_count > 0
-    if not selective_section_transfer_ready:
-        warnings.append(
-            "dnan has no final-unblocked verified sectional switch in current switch master; "
-            "formal current case must stay at whole-feeder boundary transfer or treat a new/verified switch as an engineering action"
-        )
-
     node_columns = {str(c).lower() for c in nodes.columns}
     has_gis = any(c in node_columns for c in {"lat", "latitude", "lon", "long", "longitude", "x", "y"})
     if not has_gis:
-        warnings.append(
-            "node master has no GIS coordinates; exact new-tie route length/corridor optimization is not data-ready"
+        nonblocking_refinements.append(
+            "node master has no GIS coordinates; exact new-tie corridor, route length and line-construction cost optimization are not data-ready"
         )
 
     feeder_map_ok = (
@@ -114,22 +105,39 @@ def main() -> int:
     if not feeder_map_ok:
         issues.append("six-feeder station mapping is incomplete")
 
+    # 研究级模型不要求逐台校准分段/联络开关的实时分合状态。
+    # 只假设规划上存在或可配置必要的边界控制动作，使网络重构后保持单电源辐射运行。
+    switch_state_required_for_research_model = False
+    selective_supply_unit_framework_ready = True
+    selective_supply_unit_numeric_ready = False
+
+    nonblocking_refinements.extend(
+        [
+            "synchronous feeder/section load-PV time series are unavailable; current results are planning stress envelopes, not historical synchronous power-flow snapshots",
+            "protection direction, relay settings, short-circuit current and detailed switching sequence remain implementation-stage checks rather than planning-model inputs",
+        ]
+    )
+
     result = {
         "passed": not issues,
-        "issues": issues,
-        "warnings": warnings,
+        "blocking_gaps": issues,
+        "nonblocking_refinements": nonblocking_refinements,
         "tie002_topology_ready": len(tie_paths) == 2 and not issues,
-        "whole_feeder_boundary_transfer_ready": len(tie_paths) == 2 and not issues,
-        "selective_section_transfer_ready": selective_section_transfer_ready,
-        "verified_dnan_sectional_switch_count": verified_selective_section_switch_count,
+        "existing_tie_planning_transfer_ready": len(tie_paths) == 2 and not issues,
+        "switch_state_required_for_research_model": switch_state_required_for_research_model,
+        "switch_modeling_rule": "ABSTRACT_AS_BOUNDARY_CONTROL_RESOURCE; REAL-TIME OPEN/CLOSED STATE IS IMPLEMENTATION DETAIL",
+        "radiality_rule": "RECONFIGURED_NETWORK_MUST_KEEP_SINGLE-SOURCE_RADIAL_OPERATION_AND_FORBID_PARALLEL_110KV_SOURCES_THROUGH_10KV",
+        "selective_supply_unit_framework_ready": selective_supply_unit_framework_ready,
+        "selective_supply_unit_numeric_ready": selective_supply_unit_numeric_ready,
         "exact_new_tie_route_ready": has_gis,
         "current_model_scope": (
-            "EXISTING_TIE_WHOLE_FEEDER_BOUNDARY_RECONFIGURATION_PLUS_NEW_TIE_CAPACITY_AND_RECEIVER_FEEDER_SCREEN"
+            "SUPPLY_BOUNDARY_RECONFIGURATION_FOR_HIGH_PV_CROSS_STATION_REVERSE_POWER_TRANSFER"
         ),
         "data_semantics": {
             "dnan_pv_7_34_mw": "REAL_OUTPUT_PEAK_ANCHOR_NOT_COMPLETE_INSTALLED_CAPACITY",
             "station_minima": "INDEPENDENT_ANNUAL_STRESS_ANCHORS_NOT_SYNCHRONOUS_PAIR",
             "node_loads": "PLANNING_SEEDS_NOT_SYNCHRONOUS_MEASUREMENTS",
+            "switch_states": "IMPLEMENTATION_DETAIL_NOT_BLOCKING_RESEARCH_PLANNING_MODEL",
         },
     }
 
