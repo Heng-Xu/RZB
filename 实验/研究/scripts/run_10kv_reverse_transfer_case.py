@@ -6,8 +6,14 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
 import pandas as pd
+
+# 允许从仓库根目录直接执行本脚本，并保持与实验/研究下其他脚本一致的导入语义。
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.feeder_10kv_reverse_transfer import (
     build_case_summary,
