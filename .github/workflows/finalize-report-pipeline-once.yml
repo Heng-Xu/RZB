@@ -1,0 +1,62 @@
+name: finalize report pipeline once
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/finalize-report-pipeline-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Replace legacy 10kV fault figure generator and remove one-time workflows
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('实验/研究/scripts/build_final_report_figures.py')
+          text = path.read_text(encoding='utf-8')
+          pattern = r'def section_tie_figure\(out: Path\) -> None:\n.*?\n\ndef main\(\) -> int:'
+          replacement = '''def section_tie_figure(out: Path) -> None:\n    \"\"\"绘制TIE-002高光伏跨站供电边界重构示意。\n\n    该图服务于规划级反向功率空间转移研究，不再采用故障隔离/故障转供\n    作为10 kV专题主线。具体绘图实现集中维护在独立脚本中，避免两套图义漂移。\n    \"\"\"\n    from build_10kv_reverse_transfer_figure import build as build_reverse_transfer_figure\n\n    build_reverse_transfer_figure(out)\n\n\ndef main() -> int:'''
+          new_text, count = re.subn(pattern, replacement, text, flags=re.S)
+          if count != 1:
+              raise SystemExit(f'expected to replace one legacy section_tie_figure, got {count}')
+          if '故障定位后隔离A2' in new_text or 'A2\\n故障段' in new_text:
+              raise SystemExit('legacy fault-restoration figure semantics still present')
+          if 'build_reverse_transfer_figure(out)' not in new_text:
+              raise SystemExit('new reverse-transfer figure hook missing')
+          path.write_text(new_text, encoding='utf-8')
+
+          # 一次性修复/诊断工作流完成使命后移除，避免项目长期保留临时入口。
+          for rel in [
+              '.github/workflows/diagnose-report-page34-once.yml',
+              '.github/workflows/fix-final-report-build-once.yml',
+              '.github/workflows/finalize-report-pipeline-once.yml',
+          ]:
+              p = Path(rel)
+              if p.exists():
+                  p.unlink()
+          PY
+          git diff --check
+          grep -n 'def section_tie_figure' '实验/研究/scripts/build_final_report_figures.py'
+          grep -n 'build_reverse_transfer_figure' '实验/研究/scripts/build_final_report_figures.py'
+      - name: Commit persistent pipeline fix
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m '固化10kV高光伏边界重构图件并清理临时流程'
+          git fetch origin model-v3.2-autonomous-review
+          git rebase --autostash origin/model-v3.2-autonomous-review
+          git push origin HEAD:model-v3.2-autonomous-review
