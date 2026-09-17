@@ -11,7 +11,6 @@ on:
       - '实验/研究/data/tuomin/10kv_case/data/injection_summary.csv'
       - '实验/研究/data/tuomin/10kv_case/data/feeder_master.csv'
       - '实验/研究/data/tuomin/10kv_case/data/station_boundary_2025.csv'
-      - '实验/研究/data/tuomin/10kv_case/data/switch_master.csv'
       - '实验/研究/data/tuomin/10kv_case/data/node_master.csv'
       - '.github/workflows/10kv-reverse-data-contract.yml'
 
@@ -33,7 +32,7 @@ jobs:
       - name: Check reverse-transfer data contract
         run: python 实验/研究/scripts/check_10kv_reverse_transfer_data.py
 
-      - name: Verify expected known boundaries
+      - name: Verify planning-research boundary
         run: |
           python - <<'PY'
           import json
@@ -41,13 +40,16 @@ jobs:
           p = Path('实验/研究/results/10kv_reverse_transfer_case/data_contract_check.json')
           data = json.loads(p.read_text(encoding='utf-8'))
           assert data['passed'] is True
+          assert data['blocking_gaps'] == []
           assert data['tie002_topology_ready'] is True
-          assert data['whole_feeder_boundary_transfer_ready'] is True
-          assert data['selective_section_transfer_ready'] is False
-          assert data['verified_dnan_sectional_switch_count'] == 0
+          assert data['existing_tie_planning_transfer_ready'] is True
+          assert data['switch_state_required_for_research_model'] is False
+          assert data['selective_supply_unit_framework_ready'] is True
+          assert data['selective_supply_unit_numeric_ready'] is False
           assert data['exact_new_tie_route_ready'] is False
           assert data['data_semantics']['dnan_pv_7_34_mw'] == 'REAL_OUTPUT_PEAK_ANCHOR_NOT_COMPLETE_INSTALLED_CAPACITY'
-          print('10kV reverse-transfer data contract passed with known refinement gaps')
+          assert data['data_semantics']['switch_states'] == 'IMPLEMENTATION_DETAIL_NOT_BLOCKING_RESEARCH_PLANNING_MODEL'
+          print('10kV reverse-transfer research data contract passed: no blocking gap for planning-level study')
           PY
 
       - name: Commit data-contract result
@@ -58,6 +60,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No data-contract result changes.'
           else
-            git commit -m '更新10kV反向功率转移数据契约检查 [10kv-data-contract]'
+            git commit -m '更新10kV反向功率转移研究数据契约 [10kv-data-contract]'
             git push origin HEAD:model-v3.2-autonomous-review
           fi
