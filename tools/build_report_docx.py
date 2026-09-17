@@ -796,7 +796,6 @@ def _add_display_math(doc: Document, latex: str, equation_number: str | None = N
     paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
     paragraph.paragraph_format.keep_together = True
     _set_no_indent(paragraph)
-    _set_exact_line_spacing(paragraph, 680)
     _set_equation_tabs(paragraph)
     leading_tab = paragraph.add_run()
     leading_tab.add_tab()
@@ -806,7 +805,11 @@ def _add_display_math(doc: Document, latex: str, equation_number: str | None = N
         _render_equation_png(latex, image_path)
         with Image.open(image_path) as image:
             width_cm = image.width / 300.0 * 2.54
-        width_cm = min(11.8, max(2.0, width_cm))
+            height_pt = image.height / 300.0 * 72.0
+        # 公式段落高度按渲染图实际高度设置，避免分式、求和及上下标被固定行距裁切。
+        _set_exact_line_spacing(paragraph, int(max(760, (height_pt + 12.0) * 20)))
+        # 预留右侧公式编号空间，避免宽公式把“（x-x）”拆成两行。
+        width_cm = min(10.4, max(2.0, width_cm))
         equation_run = paragraph.add_run()
         equation_run.add_picture(str(image_path), width=Cm(width_cm))
 
@@ -931,15 +934,16 @@ def render_md_into(
             )
             caption.paragraph_format.keep_with_next = True
         elif in_references and re.match(r"^\\?\[\d+\]", stripped):
-            add_paragraph(
+            reference = add_paragraph(
                 doc,
                 _clean_inline(stripped),
                 size=BODY_SIZE,
                 align=WD_ALIGN_PARAGRAPH.JUSTIFY,
                 indent=False,
                 hanging=True,
-                line_twips=BODY_LINE_TWIPS,
+                line_twips=400,
             )
+            reference.paragraph_format.keep_together = True
         elif re.match(r"^(R\(|K_[A-Za-z]|CRF\()", stripped):
             add_paragraph(
                 doc,

@@ -95,14 +95,13 @@ def concept_figure(out: Path) -> None:
     fig, ax = plt.subplots(figsize=(7.2, 4.4))
     ax.axis("off")
     boxes = [
-        (0.02, 0.58, 0.43, 0.30, "实际物理容载比\n在役变电容量 ÷ 路径内同步正向年最大供电负荷\n用于描述实际容量配置状态"),
+        (0.02, 0.58, 0.43, 0.30, "实际物理容载比\n在役变电容量 / 同期正向年最大供电负荷\n反映实际容量配置状态"),
         (0.55, 0.58, 0.43, 0.30, "弹性容载比控制值\n只约束规划期新增变电容量\n用于控制新增容量空间"),
         (0.16, 0.10, 0.68, 0.25, "2021 年实际在役容量作为共同起点并保留\n因此实际物理容载比可高于规划控制值，且不构成违规"),
     ]
     for x, y, w, h, text in boxes:
         ax.add_patch(plt.Rectangle((x, y), w, h, fc="#F6F8FA", ec="#234F7D", lw=1.6))
         ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", linespacing=1.5)
-    ax.annotate("概念分离", xy=(0.50, 0.71), xytext=(0.50, 0.71), ha="center", color="#9C2F2F")
     ax.annotate("", xy=(0.36, 0.35), xytext=(0.25, 0.58), arrowprops=dict(arrowstyle="->", lw=1.5))
     ax.annotate("", xy=(0.64, 0.35), xytext=(0.75, 0.58), arrowprops=dict(arrowstyle="->", lw=1.5))
     ax.set_title("实际物理容载比与规划控制值的关系", pad=10, fontweight="bold")
