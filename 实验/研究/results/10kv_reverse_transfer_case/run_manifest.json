@@ -1,0 +1,82 @@
+{
+  "case_id": "10KV_TIE002_HIGH_PV_CROSS_STATION_REVERSE_TRANSFER_V1",
+  "model_core": "HIGH_PV_REVERSE_POWER_CROSS_STATION_BOUNDARY_RECONFIGURATION",
+  "tie_id": "TIE-002",
+  "donor_station": {
+    "id": "BDZ-00027",
+    "name": "墩集变",
+    "feeder_id": "PZXL-00092",
+    "annual_min_net_load_2025_mw": -37.27
+  },
+  "receiver_station": {
+    "id": "BDZ-00048",
+    "name": "河湾变",
+    "feeder_id": "PZXL-00161",
+    "annual_min_net_load_2025_mw": -5.22,
+    "n1_capacity_screen_mva": 50.0,
+    "reverse_headroom_screen_mw": 44.78
+  },
+  "existing_tie": {
+    "normal_state": "OPEN",
+    "donor_path_km": 2.25,
+    "receiver_path_km": 2.75,
+    "donor_effective_limit_mva": 8.4004,
+    "receiver_effective_limit_mva": 9.5263,
+    "client_reverse_ratio": 0.8,
+    "reverse_transfer_capacity_mw": 7.621040000000001
+  },
+  "pv_anchor": {
+    "donor_feeder_peak_output_mw": 7.34,
+    "semantics": "REAL_OUTPUT_PEAK_ANCHOR_NOT_COMPLETE_INSTALLED_CAPACITY"
+  },
+  "optimization": {
+    "level_1_existing_tie": "maximize donor reverse-flow relief using existing TIE-002 while preserving radial/open-loop operation and respecting source path capacity, receiver reverse-flow control and receiver station screening headroom",
+    "level_2_new_tie": "if residual export remains, size the minimum additional effective reverse-transfer capacity and screen alternate receiver feeders; exact route/corridor is not selected without GIS/CAD distance evidence",
+    "lexicographic_objectives": [
+      "MAXIMIZE_DONOR_REVERSE_RELIEF",
+      "MAXIMIZE_USE_OF_EXISTING_TIE_MINIMIZE_NEW_BUILD",
+      "MINIMIZE_REQUIRED_NEW_TIE_EFFECTIVE_CAPACITY"
+    ],
+    "decision_variables": [
+      "x_existing_mw",
+      "x_new_mw",
+      "receiver_feeder_candidate",
+      "supply_boundary_state_existing_or_new"
+    ]
+  },
+  "constraints": {
+    "net_surplus": "x_existing + x_new <= max(PV - local_load, 0)",
+    "donor_existing_path": "x_existing <= donor_path_effective_limit",
+    "receiver_existing_reverse_control": "x_existing <= client_reverse_ratio * receiver_path_effective_limit",
+    "receiver_station_screen": "x_existing + x_new <= receiver_station_reverse_headroom_screen",
+    "radiality": "existing/new tie transfer requires opening the original supply boundary before closing the cross-station tie; parallel 110-kV sources through 10-kV network are not allowed"
+  },
+  "scenario_semantics": {
+    "load_factors": [
+      0.0,
+      0.3,
+      0.5,
+      0.7
+    ],
+    "pv_scales": [
+      0.8,
+      0.9,
+      1.0,
+      1.2,
+      1.5
+    ],
+    "load_factor_zero": "ZERO_LOCAL_LOAD_CONSERVATIVE_EXPORT_UPPER_BOUND",
+    "load_factor_nonzero": "PLANNING_PROXY_FROM_FEEDER_ANNUAL_MAX_NOT_SYNCHRONOUS_MEASUREMENT",
+    "station_minima": "INDEPENDENT_ANNUAL_STRESS_ANCHORS_NOT_SYNCHRONOUS_DUAL_STATION_FLOW"
+  },
+  "new_tie_route_boundary": "current data can size required additional transfer capacity and screen receiver feeders; exact new-line endpoint/corridor/length requires GIS or field/CAD route evidence",
+  "not_claimed": [
+    "FAULT_DIAGNOSIS_AS_PRIMARY_OBJECTIVE",
+    "FULL_AC_POWER_FLOW",
+    "SHORT_CIRCUIT_CURRENT",
+    "RELAY_SETTING_VALIDATION",
+    "FIELD_SWITCHING_INSTRUCTION",
+    "SYNCHRONOUS_DUAL_STATION_POWER_FLOW",
+    "EXACT_NEW_LINE_ROUTE_OR_CONSTRUCTION_LENGTH"
+  ]
+}
