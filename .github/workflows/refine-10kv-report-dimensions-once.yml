@@ -1,0 +1,74 @@
+name: refine 10kV report dimensions once
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/refine-10kv-report-dimensions-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refine-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Refine 10kV model wording and dimensions
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md')
+          text = path.read_text(encoding='utf-8-sig')
+
+          replacements = [
+              (
+                  '对既有联络e，其可用于反向功率转移的能力同时受到送端路径、受端路径和受端变电站承接能力限制。设送端路径规划有效容量、受端路径规划有效容量和受端站剩余反向承接能力分别如式（5-1）所示，则既有联络可转移功率满足：',
+                  '对既有联络e，其可用于反向功率转移的能力同时受到送端路径、受端路径和受端变电站承接能力限制。设送端、受端路径规划有效容量分别为S_e,D^eff和S_e,R^eff，受端站剩余反向承接能力为H_R，则既有联络可转移有功功率满足：',
+              ),
+              (
+                  '0\\le P_{e,\\mathrm{tr}}\\le \\min\\left(S_{e,D}^{\\mathrm{eff}},\\beta S_{e,R}^{\\mathrm{eff}},H_R\\right)',
+                  '0\\le P_{e,\\mathrm{tr}}\\le \\min\\left(S_{e,D}^{\\mathrm{eff}}\\cos\\varphi_{\\mathrm{tr}},\\beta S_{e,R}^{\\mathrm{eff}}\\cos\\varphi_{\\mathrm{tr}},H_R\\right)',
+              ),
+              (
+                  '式中，β为反向功率通道控制系数。依据本项目专题分析采用的反向潮流控制条件，β取0.80。该80%控制线仅用于受端反向功率通道的规划筛查，不作为普通正向负荷转供的统一负载率上限，也不解释为国家或行业通用标准。',
+                  '式中，cosφtr为跨站反向功率转移的功率因数；β为反向功率通道控制系数。依据本项目专题分析采用的反向潮流控制条件，β取0.80。当前高光伏规划案例按cosφtr≈1.0进行容量换算。该80%控制线仅用于受端反向功率通道的规划筛查，不作为普通正向负荷转供的统一负载率上限，也不解释为国家或行业通用标准。',
+              ),
+              (
+                  'S_{\\mathrm{new}}^{\\min}=\\frac{G_{\\mathrm{res}}}{\\beta}',
+                  'S_{\\mathrm{new}}^{\\min}=\\frac{G_{\\mathrm{res}}}{\\beta\\cos\\varphi_{\\mathrm{tr}}}',
+              ),
+              (
+                  '式（5-4）按高光伏反向功率功率因数近似1.0进行规划级容量换算，因此所得MVA值可作为相应有功转移需求的有效容量下限。',
+                  '式（5-4）给出了由剩余有功转移需求反推新增联络容量的统一换算关系；当前案例取cosφtr≈1.0，因此所得MVA值可近似作为相应MW有功转移需求在80%控制条件下的有效容量下限。',
+              ),
+              (
+                  'X_{\\mathrm{TIE002}}=\\min\\left(8.4004,0.8\\times9.5263\\right)=7.62104\\ \\mathrm{MW}',
+                  'P_{\\mathrm{TIE002,tr}}^{\\max}=\\min\\left(8.4004\\times1.0,0.8\\times9.5263\\times1.0,44.78\\right)=7.62104\\ \\mathrm{MW}',
+              ),
+          ]
+
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'missing expected source text: {old[:80]}')
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit refined report source
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md'
+          git commit -m '细化10kV反向功率模型量纲与术语'
+          git fetch origin model-v3.2-autonomous-review
+          git rebase origin/model-v3.2-autonomous-review
+          git push origin HEAD:model-v3.2-autonomous-review
