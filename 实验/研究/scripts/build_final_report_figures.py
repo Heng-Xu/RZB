@@ -10,11 +10,11 @@ import sys
 
 import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch
 import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-PROJECT_ROOT = ROOT.parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
@@ -22,90 +22,115 @@ from src.report_interval_matrix import build_report_interval_outputs  # noqa: E4
 
 
 def setup_style() -> None:
-    font = "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc"
-    if Path(font).is_file():
-        fm.fontManager.addfont(font)
+    """统一图件中文字体、字号和输出精度，尽量与中文报告正文保持一致。"""
+    font = Path("/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc")
+    if font.is_file():
+        fm.fontManager.addfont(str(font))
     plt.rcParams.update(
         {
             "font.family": "serif",
-            "font.serif": ["Noto Serif CJK SC", "Noto Serif CJK JP", "SimSun"],
+            "font.serif": ["FangSong", "FangSong_GB2312", "Noto Serif CJK SC", "Noto Serif CJK JP", "SimSun"],
             "axes.unicode_minus": False,
-            "font.size": 12,
-            "axes.titlesize": 13.5,
-            "axes.labelsize": 12,
-            "legend.fontsize": 11,
-            "figure.dpi": 180,
-            "savefig.dpi": 360,
+            "font.size": 13,
+            "axes.titlesize": 15,
+            "axes.labelsize": 13,
+            "legend.fontsize": 12,
+            "xtick.labelsize": 11.5,
+            "ytick.labelsize": 11.5,
+            "figure.dpi": 220,
+            "savefig.dpi": 600,
         }
     )
 
 
 def save(fig: plt.Figure, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(path, bbox_inches="tight", pad_inches=0.10, facecolor="white")
+    fig.savefig(path, dpi=600, bbox_inches="tight", pad_inches=0.18, facecolor="white")
     plt.close(fig)
+
+
+def _rounded_box(ax, x, y, w, h, text, *, fc="#F6F8FA", ec="#355C7D", fs=13, lw=1.6) -> None:
+    patch = FancyBboxPatch(
+        (x, y), w, h,
+        boxstyle="round,pad=0.012,rounding_size=0.018",
+        facecolor=fc, edgecolor=ec, linewidth=lw,
+        transform=ax.transAxes,
+    )
+    ax.add_patch(patch)
+    ax.text(x + w / 2, y + h / 2, text, transform=ax.transAxes,
+            ha="center", va="center", fontsize=fs, linespacing=1.38)
 
 
 def flow_figure(out: Path, *, application: bool) -> None:
     if application:
         labels = [
             "获取片区运行与规划数据",
-            "计算 4 项核心指标",
+            "计算四项核心运行指标",
             "核查设备、网络与接入技术条件",
-            "查找当前样本中的相似片区",
-            "判断是否需要专项规划控制值扫描",
-            "识别建议下限或非数值结论",
-            "比选扩建、储能与网络互济措施",
+            "检索已验证的相似典型样本",
+            "开展弹性容载比规划控制值专项扫描",
+            "识别稳健建议下限及适用边界",
+            "比选变电扩建、储能与网络互济措施",
         ]
         title = "弹性容载比工程应用流程"
+        fig_h = 9.8
     else:
         labels = [
-            "年度容量、同步正向峰值与设备资料",
-            "正向容量与反向承载校核",
-            "离散扩建、储能及网络措施",
-            "2021 年实际在役资产共同起点",
-            "规划控制值扫描、局部细化与敏感性分析",
-            "运行特征—规划响应—建议映射",
+            "数据整理与口径统一\n容量、负荷、新能源及线路资料",
+            "运行特征识别\n正向供电压力与局部反向承载压力",
+            "工程措施建模\n变电扩建、储能及局部网络互济",
+            "统一规划起点\n2021年实际在役资产保持不变",
+            "规划优化分析\n控制值扫描、阈值细化与敏感性分析",
+            "差异化规划建议\n形成运行特征—规划响应—建议映射",
         ]
         title = "研究技术路线"
-    fig, ax = plt.subplots(figsize=(7.1, 8.0 if application else 7.2))
+        fig_h = 8.9
+
+    fig, ax = plt.subplots(figsize=(9.2, fig_h))
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
     ax.axis("off")
-    ys = np.linspace(0.88, 0.10, len(labels))
+    ax.text(0.5, 0.965, title, transform=ax.transAxes, ha="center", va="top",
+            fontsize=16, fontweight="bold")
+
+    top, bottom = 0.88, 0.07
+    ys = np.linspace(top, bottom, len(labels))
+    h = 0.085 if application else 0.10
     for i, (label, y) in enumerate(zip(labels, ys)):
-        ax.text(
-            0.5,
-            y,
-            label,
-            ha="center",
-            va="center",
-            fontsize=12,
-            bbox=dict(boxstyle="round,pad=0.55", fc="#F3F7FB", ec="#235789", lw=1.5),
-        )
+        _rounded_box(ax, 0.13, y - h / 2, 0.74, h, label,
+                     fc="#F5F8FB" if i % 2 == 0 else "#FAFBFC", fs=13.2)
         if i < len(labels) - 1:
+            next_y = ys[i + 1]
             ax.annotate(
                 "",
-                xy=(0.5, ys[i + 1] + 0.045),
-                xytext=(0.5, y - 0.045),
-                arrowprops=dict(arrowstyle="->", color="#235789", lw=1.6),
+                xy=(0.5, next_y + h / 2 + 0.006),
+                xytext=(0.5, y - h / 2 - 0.006),
+                xycoords=ax.transAxes,
+                arrowprops=dict(arrowstyle="-|>", color="#355C7D", lw=1.7, mutation_scale=13),
             )
-    ax.set_title(title, pad=14, fontweight="bold")
     save(fig, out)
 
 
 def concept_figure(out: Path) -> None:
-    fig, ax = plt.subplots(figsize=(7.2, 4.4))
+    fig, ax = plt.subplots(figsize=(9.6, 5.8))
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
     ax.axis("off")
-    boxes = [
-        (0.02, 0.58, 0.43, 0.30, "实际物理容载比\n在役变电容量 / 同期正向年最大供电负荷\n反映实际容量配置状态"),
-        (0.55, 0.58, 0.43, 0.30, "弹性容载比控制值\n只约束规划期新增变电容量\n用于控制新增容量空间"),
-        (0.16, 0.10, 0.68, 0.25, "2021 年实际在役容量作为共同起点并保留\n因此实际物理容载比可高于规划控制值，且不构成违规"),
-    ]
-    for x, y, w, h, text in boxes:
-        ax.add_patch(plt.Rectangle((x, y), w, h, fc="#F6F8FA", ec="#234F7D", lw=1.6))
-        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", linespacing=1.5)
-    ax.annotate("", xy=(0.36, 0.35), xytext=(0.25, 0.58), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.annotate("", xy=(0.64, 0.35), xytext=(0.75, 0.58), arrowprops=dict(arrowstyle="->", lw=1.5))
-    ax.set_title("实际物理容载比与规划控制值的关系", pad=10, fontweight="bold")
+    ax.text(0.5, 0.95, "实际物理容载比与弹性容载比规划控制值的关系",
+            ha="center", va="top", fontsize=16, fontweight="bold", transform=ax.transAxes)
+
+    _rounded_box(ax, 0.05, 0.56, 0.40, 0.24,
+                 "实际物理容载比\n在役变电总容量 ÷ 同期正向年最大供电负荷\n用于描述规划方案形成后的实际容量配置状态",
+                 fc="#F4F8FB", ec="#315B7D", fs=12.6)
+    _rounded_box(ax, 0.55, 0.56, 0.40, 0.24,
+                 "弹性容载比规划控制值\n仅约束规划期允许新增的变电容量\n用于调节扩建、储能和网络措施的选择空间",
+                 fc="#F8F6F1", ec="#8A673A", fs=12.6)
+    _rounded_box(ax, 0.16, 0.15, 0.68, 0.20,
+                 "共同规划基础：2021年实际在役容量保持在役并执行存量豁免\n规划控制值不追溯压减既有资产，因此实际物理容载比可高于规划控制值",
+                 fc="#F7F8FA", ec="#5E6875", fs=12.8)
+    for x in (0.25, 0.75):
+        ax.annotate("", xy=(0.50, 0.36), xytext=(x, 0.56), xycoords=ax.transAxes,
+                    arrowprops=dict(arrowstyle="-|>", lw=1.6, color="#5E6875", mutation_scale=12))
     save(fig, out)
 
 
@@ -113,31 +138,30 @@ def indicator_figure(indicators: pd.DataFrame, out: Path) -> None:
     d = indicators[indicators["region_id"].isin(["QX-00001", "QX-00005"])].sort_values("region_id")
     labels = d["region_id"].tolist()
     specs = [
-        ("source_load_scale_ratio", "现状源荷规模比", "—"),
+        ("source_load_scale_ratio", "现状源荷规模比", ""),
         ("local_reverse_flow_ratio", "局部最大反向潮流比例", "%"),
         ("network_capacity_support_margin", "110 kV线路统计负载余度", "%"),
         ("positive_peak_cagr_2021_2025", "正向峰值负荷年均变化率", "%"),
     ]
-    fig, axes = plt.subplots(2, 2, figsize=(8.6, 7.6), constrained_layout=True)
-    colors = ["#2F6B9A", "#5B8C5A", "#C27A28", "#8B5E83"]
+    fig, axes = plt.subplots(2, 2, figsize=(10.0, 7.8), constrained_layout=True)
+    colors = ["#355C7D", "#4F7B61", "#A06B32", "#775D78"]
     for ax, (col, title, unit), color in zip(axes.flat, specs, colors):
         values = d[col].astype(float).to_numpy()
         shown = values * 100 if unit == "%" else values
         y = np.arange(len(labels))
-        ax.axvline(0, color="#777", lw=0.8)
-        ax.scatter(shown, y, s=42, color=color, zorder=3)
+        ax.scatter(shown, y, s=72, color=color, zorder=3)
+        span = np.nanmax(shown) - np.nanmin(shown) if len(shown) else 1.0
+        offset = max(span * 0.08, 0.02 if unit == "" else 0.35)
         for x, yy in zip(shown, y):
-            if np.isnan(x):
-                ax.text(0, yy, "未识别", va="center", ha="left", color="#777")
-            else:
-                suffix = "%" if unit == "%" else ""
-                ax.text(x, yy - 0.22, f"{x:.2f}{suffix}", va="center", ha="center", fontsize=10)
+            suffix = "%" if unit == "%" else ""
+            ax.text(x + offset, yy, f"{x:.2f}{suffix}", va="center", ha="left", fontsize=11.5)
         ax.set_yticks(y, labels)
         ax.invert_yaxis()
-        ax.set_title(title)
-        ax.grid(axis="x", color="#E4E7EB", lw=0.8)
-        ax.set_xlabel(unit)
-    fig.suptitle("形成数值型弹性容载比建议片区核心指标", fontweight="bold")
+        ax.set_title(title, pad=10, fontweight="bold")
+        ax.grid(axis="x", color="#D9DEE5", lw=0.8, alpha=0.9)
+        ax.set_xlabel("比例" if unit == "%" else "比值")
+        ax.margins(x=0.22, y=0.35)
+    fig.suptitle("形成数值型规划建议的典型片区核心运行指标", fontsize=16, fontweight="bold")
     save(fig, out)
 
 
@@ -145,45 +169,37 @@ def frontier_figures(out_cost: Path, out_actions: Path) -> None:
     path = ROOT / "results/runs/real-2021-2025-v32-frozen/elasticity_frontier_v32_actual_coarse.csv"
     d = pd.read_csv(path)
     d = d[d["region_id"].isin(["QX-00001", "QX-00005"]) & d["rcap_numeric"].notna()].copy()
-    colors = {"QX-00001": "#2F6B9A", "QX-00005": "#D9792B"}
+    colors = {"QX-00001": "#355C7D", "QX-00005": "#A86432"}
 
-    fig, axes = plt.subplots(2, 1, figsize=(8.2, 6.8), sharex=True, constrained_layout=True)
+    fig, axes = plt.subplots(2, 1, figsize=(9.6, 7.8), sharex=True, constrained_layout=True)
     for ax, region in zip(axes, ["QX-00001", "QX-00005"]):
         x = d[d.region_id.eq(region)].sort_values("rcap_numeric")
-        ax.plot(x["rcap_numeric"], x["cumulative_in_service_eac_wanyuan"], marker="o", color=colors[region])
-        ax.set_title(region)
-        ax.set_ylabel("规划期累计在役等年成本 / 万元")
-        ax.grid(color="#E4E7EB")
+        ax.plot(x["rcap_numeric"], x["cumulative_in_service_eac_wanyuan"],
+                marker="o", markersize=4.8, linewidth=2.0, color=colors[region])
+        ax.set_title(region, loc="left", fontweight="bold")
+        ax.set_ylabel("规划期累计在役等年成本/万元")
+        ax.grid(color="#D9DEE5", linewidth=0.8)
     axes[-1].set_xlabel("弹性容载比规划控制值")
-    fig.suptitle("弹性容载比控制值与规划期累计在役等年成本", fontweight="bold")
+    fig.suptitle("规划控制值变化与规划期累计在役等年成本", fontsize=16, fontweight="bold")
     save(fig, out_cost)
 
-    fig, axes = plt.subplots(2, 2, figsize=(8.6, 7.0), sharex=True, constrained_layout=True)
+    fig, axes = plt.subplots(2, 2, figsize=(10.0, 7.8), sharex=True, constrained_layout=True)
     for row, region in enumerate(["QX-00001", "QX-00005"]):
         x = d[d.region_id.eq(region)].sort_values("rcap_numeric")
-        axes[row, 0].step(x["rcap_numeric"], x["capacity_action_delta_mva"], where="post", color=colors[region])
-        axes[row, 1].step(x["rcap_numeric"], x["storage_modules"], where="post", color=colors[region])
-        axes[row, 0].set_ylabel(f"{region}\n新增容量 / MVA")
-        axes[row, 1].set_ylabel("储能配置数量 / 个")
+        axes[row, 0].step(x["rcap_numeric"], x["capacity_action_delta_mva"], where="post",
+                          linewidth=2.0, color=colors[region])
+        axes[row, 1].step(x["rcap_numeric"], x["storage_modules"], where="post",
+                          linewidth=2.0, color=colors[region])
+        axes[row, 0].set_ylabel(f"{region}\n新增容量/MVA")
+        axes[row, 1].set_ylabel(f"{region}\n储能模块/个")
         for ax in axes[row]:
-            ax.grid(color="#E4E7EB")
-    axes[0, 0].set_title("新增变电容量")
-    axes[0, 1].set_title("2025年储能配置数量")
+            ax.grid(color="#D9DEE5", linewidth=0.8)
+    axes[0, 0].set_title("新增变电容量", fontweight="bold")
+    axes[0, 1].set_title("2025年储能配置", fontweight="bold")
     for ax in axes[-1]:
         ax.set_xlabel("弹性容载比规划控制值")
-    fig.suptitle("控制值变化引起的规划措施转换", fontweight="bold")
+    fig.suptitle("规划控制值变化引起的工程措施转换", fontsize=16, fontweight="bold")
     save(fig, out_actions)
-
-
-def section_tie_figure(out: Path) -> None:
-    """绘制TIE-002高光伏跨站供电边界重构示意。
-
-    该图服务于规划级反向功率空间转移研究，不再采用故障隔离/故障转供
-    作为10 kV专题主线。具体绘图实现集中维护在独立脚本中，避免两套图义漂移。
-    """
-    from build_10kv_reverse_transfer_figure import build as build_reverse_transfer_figure
-
-    build_reverse_transfer_figure(out)
 
 
 def main() -> int:
