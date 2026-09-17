@@ -1,0 +1,48 @@
+name: patch report page34 orphan once
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/patch-report-page34-orphan-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: model-v3.2-autonomous-review
+          fetch-depth: 0
+
+      - name: Shorten final paragraph of section 5.4
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md')
+          text = path.read_text(encoding='utf-8-sig')
+          old = '图5-1给出了工程应用顺序。对于新片区，应首先完成技术可行性校核，再计算4项核心指标并查找可比样本。如果与QX-00001或QX-00005特征相近，2.50或2.30只能作为Rcap专项扫描的参考起点，不能未经计算直接作为最终控制值。工程措施方面，变电扩建主要应对持续增长的正向峰值，储能主要承担局部时序调节，10 kV联络及供电边界重构主要用于缓解局部反向承载压力并改善反向功率空间分布；故障转供属于联络网架的附加可靠性价值。三类措施应围绕片区主要矛盾组合配置。'
+          new = '图5-1给出了工程应用顺序。新片区应先完成技术可行性校核，再计算4项核心指标并查找可比样本。与QX-00001或QX-00005特征相近时，2.50或2.30仅作为Rcap专项扫描起点，不能直接作为最终控制值。变电扩建、储能及10 kV供电边界重构等措施应针对片区主导矛盾组合配置；故障转供仅作为联络网架的附加可靠性价值。'
+          if old not in text:
+              raise SystemExit('target paragraph not found; source may have changed')
+          text = text.replace(old, new, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+          git diff --check
+
+      - name: Commit report source patch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md'
+          git commit -m '修正第五章末段分页并凝练工程结论'
+          git fetch origin model-v3.2-autonomous-review
+          git rebase --autostash origin/model-v3.2-autonomous-review
+          git push origin HEAD:model-v3.2-autonomous-review
