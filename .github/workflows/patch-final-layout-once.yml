@@ -1,0 +1,81 @@
+name: patch final report layout once
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/patch-final-layout-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: model-v3.2-autonomous-review
+          fetch-depth: 0
+
+      - name: Fix equation layout, concept figure, table lead-in and bibliography pagination
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          # 1. DOCX builder: dynamic equation line height, narrower equation images, compact references.
+          p = Path('tools/build_report_docx.py')
+          t = p.read_text(encoding='utf-8')
+          old = '''    _set_no_indent(paragraph)\n    _set_exact_line_spacing(paragraph, 680)\n    _set_equation_tabs(paragraph)\n    leading_tab = paragraph.add_run()\n    leading_tab.add_tab()\n\n    with tempfile.TemporaryDirectory(prefix="report-equation-") as tmp_dir:\n        image_path = Path(tmp_dir) / "equation.png"\n        _render_equation_png(latex, image_path)\n        with Image.open(image_path) as image:\n            width_cm = image.width / 300.0 * 2.54\n        width_cm = min(11.8, max(2.0, width_cm))\n        equation_run = paragraph.add_run()\n        equation_run.add_picture(str(image_path), width=Cm(width_cm))\n'''
+          new = '''    _set_no_indent(paragraph)\n    _set_equation_tabs(paragraph)\n    leading_tab = paragraph.add_run()\n    leading_tab.add_tab()\n\n    with tempfile.TemporaryDirectory(prefix="report-equation-") as tmp_dir:\n        image_path = Path(tmp_dir) / "equation.png"\n        _render_equation_png(latex, image_path)\n        with Image.open(image_path) as image:\n            width_cm = image.width / 300.0 * 2.54\n            height_pt = image.height / 300.0 * 72.0\n        # 公式段落高度按渲染图实际高度设置，避免分式、求和及上下标被固定行距裁切。\n        _set_exact_line_spacing(paragraph, int(max(760, (height_pt + 12.0) * 20)))\n        # 预留右侧公式编号空间，避免宽公式把“（x-x）”拆成两行。\n        width_cm = min(10.4, max(2.0, width_cm))\n        equation_run = paragraph.add_run()\n        equation_run.add_picture(str(image_path), width=Cm(width_cm))\n'''
+          if old not in t:
+              raise SystemExit('equation layout target not found')
+          t = t.replace(old, new, 1)
+
+          old_ref = '''        elif in_references and re.match(r"^\\\\?\\[\\d+\\]", stripped):\n            add_paragraph(\n                doc,\n                _clean_inline(stripped),\n                size=BODY_SIZE,\n                align=WD_ALIGN_PARAGRAPH.JUSTIFY,\n                indent=False,\n                hanging=True,\n                line_twips=BODY_LINE_TWIPS,\n            )\n'''
+          new_ref = '''        elif in_references and re.match(r"^\\\\?\\[\\d+\\]", stripped):\n            reference = add_paragraph(\n                doc,\n                _clean_inline(stripped),\n                size=BODY_SIZE,\n                align=WD_ALIGN_PARAGRAPH.JUSTIFY,\n                indent=False,\n                hanging=True,\n                line_twips=400,\n            )\n            reference.paragraph_format.keep_together = True\n'''
+          if old_ref not in t:
+              raise SystemExit('reference layout target not found')
+          t = t.replace(old_ref, new_ref, 1)
+          p.write_text(t, encoding='utf-8')
+
+          # 2. Figure 2-1: remove overlap-prone label and shorten left-box wording.
+          p = Path('实验/研究/scripts/build_final_report_figures.py')
+          t = p.read_text(encoding='utf-8')
+          old_left = '(0.02, 0.58, 0.43, 0.30, "实际物理容载比\\n在役变电容量 ÷ 路径内同步正向年最大供电负荷\\n用于描述实际容量配置状态"),'
+          new_left = '(0.02, 0.58, 0.43, 0.30, "实际物理容载比\\n在役变电容量 / 同期正向年最大供电负荷\\n反映实际容量配置状态"),'
+          if old_left not in t:
+              raise SystemExit('concept figure left box target not found')
+          t = t.replace(old_left, new_left, 1)
+          old_label = '    ax.annotate("概念分离", xy=(0.50, 0.71), xytext=(0.50, 0.71), ha="center", color="#9C2F2F")\n'
+          if old_label not in t:
+              raise SystemExit('concept figure label target not found')
+          t = t.replace(old_label, '', 1)
+          p.write_text(t, encoding='utf-8')
+
+          # 3. Main report source: prevent orphaned “4-1。” before table 4-1.
+          p = Path('研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md')
+          t = p.read_text(encoding='utf-8-sig')
+          old_sentence = '两个具有明显经济释放阈值的片区，其刚性与弹性方案对比见表4-1。'
+          new_sentence = '两个阈值型片区的刚性与弹性方案对比见表4-1。'
+          if old_sentence not in t:
+              raise SystemExit('table 4-1 lead-in target not found')
+          t = t.replace(old_sentence, new_sentence, 1)
+          p.write_text(t, encoding='utf-8')
+          PY
+          git diff --check
+
+      - name: Commit final layout fixes
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/build_report_docx.py \
+                  实验/研究/scripts/build_final_report_figures.py \
+                  '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md'
+          git commit -m '修复终稿公式图版面、概念图与分页细节'
+          git fetch origin model-v3.2-autonomous-review
+          git rebase --autostash origin/model-v3.2-autonomous-review
+          git push origin HEAD:model-v3.2-autonomous-review
