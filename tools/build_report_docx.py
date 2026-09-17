@@ -768,16 +768,48 @@ def _set_equation_tabs(paragraph) -> None:
         tabs.append(tab)
 
 
+def _render_equation_png(latex: str, output_path: Path) -> None:
+    """将正式LaTeX公式稳定渲染为透明高分辨率PNG，避免LibreOffice对OMML的兼容性缺陷。"""
+
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    clean = latex.strip().replace(r"\mbox{-}", "-")
+    clean = re.sub(r"\\le(?![A-Za-z])", r"\\leq", clean)
+    figure = plt.figure(figsize=(10.0, 1.4), dpi=200)
+    figure.patch.set_alpha(0.0)
+    figure.text(
+        0.5, 0.5, f"${clean}$",
+        ha="center", va="center", fontsize=18, color="black",
+    )
+    figure.savefig(
+        output_path, dpi=300, transparent=True,
+        bbox_inches="tight", pad_inches=0.025,
+    )
+    plt.close(figure)
+
+
 def _add_display_math(doc: Document, latex: str, equation_number: str | None = None) -> None:
     paragraph = doc.add_paragraph(style="Normal")
     paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
     paragraph.paragraph_format.keep_together = True
     _set_no_indent(paragraph)
-    _set_exact_line_spacing(paragraph, 440)
+    _set_exact_line_spacing(paragraph, 680)
     _set_equation_tabs(paragraph)
     leading_tab = paragraph.add_run()
     leading_tab.add_tab()
-    paragraph._p.append(_pandoc_math_element(latex))
+
+    with tempfile.TemporaryDirectory(prefix="report-equation-") as tmp_dir:
+        image_path = Path(tmp_dir) / "equation.png"
+        _render_equation_png(latex, image_path)
+        with Image.open(image_path) as image:
+            width_cm = image.width / 300.0 * 2.54
+        width_cm = min(11.8, max(2.0, width_cm))
+        equation_run = paragraph.add_run()
+        equation_run.add_picture(str(image_path), width=Cm(width_cm))
+
     if equation_number:
         number_run = paragraph.add_run()
         number_run.add_tab()

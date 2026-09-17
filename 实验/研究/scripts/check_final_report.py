@@ -228,10 +228,12 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
         document_xml = document_bytes.decode("utf-8")
     xml_root = etree.fromstring(document_bytes)
     math_count = len(xml_root.findall(".//{http://schemas.openxmlformats.org/officeDocument/2006/math}oMath"))
-    if math_count != len(expected_equations):
-        issues.append(f"Word原生公式数量应为{len(expected_equations)}，实际为{math_count}")
-    if document_xml.count("<w:drawing") != 7:
-        issues.append("Word嵌入图件数量不是7")
+    if math_count != 0:
+        issues.append(f"Word仍含可能导致LibreOffice异常的OMML公式对象：{math_count}")
+    drawing_count = document_xml.count("<w:drawing")
+    expected_drawings = len(expected_figure_numbers) + len(expected_equations)
+    if drawing_count != expected_drawings:
+        issues.append(f"Word嵌入图件数量应为{expected_drawings}（7幅正文图+{len(expected_equations)}幅公式图），实际为{drawing_count}")
     if len(word.tables) != 9:
         issues.append(f"Word表格数量应为9，实际为{len(word.tables)}")
     if "\\frac" in document_xml or "\\Delta" in document_xml or "$S_" in document_xml:
@@ -287,6 +289,7 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
         "figure_count": len(figure_refs),
         "table_count": len(word.tables),
         "native_math_count": math_count,
+        "equation_image_count": max(drawing_count - len(expected_figure_numbers), 0),
         "pdf_pages": page_count,
         "visual_only_pages": visual_only_pages,
         "visual_only_page_text": visual_page_text,
