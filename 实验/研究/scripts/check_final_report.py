@@ -144,9 +144,10 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
     equation_numbers = re.findall(r"^（(\d+-\d+)）$", source, re.M)
     expected_equations = (
         [f"2-{i}" for i in range(1, 6)]
-        + [f"3-{i}" for i in range(1, 5)]
+        + [f"3-{i}" for i in range(1, 8)]
         + [f"4-{i}" for i in range(1, 4)]
-        + ["5-1"]
+        + [f"5-{i}" for i in range(1, 6)]
+        + [f"6-{i}" for i in range(1, 3)]
     )
     if equation_numbers != expected_equations:
         issues.append(f"公式编号异常：{equation_numbers}")
@@ -227,8 +228,8 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
         document_xml = document_bytes.decode("utf-8")
     xml_root = etree.fromstring(document_bytes)
     math_count = len(xml_root.findall(".//{http://schemas.openxmlformats.org/officeDocument/2006/math}oMath"))
-    if math_count != 13:
-        issues.append(f"Word原生公式数量应为13，实际为{math_count}")
+    if math_count != len(expected_equations):
+        issues.append(f"Word原生公式数量应为{len(expected_equations)}，实际为{math_count}")
     if document_xml.count("<w:drawing") != 7:
         issues.append("Word嵌入图件数量不是7")
     if len(word.tables) != 9:
