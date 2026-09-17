@@ -1,0 +1,108 @@
+name: 10kV high-PV cross-station reverse transfer
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '实验/研究/src/feeder_10kv_reverse_transfer.py'
+      - '实验/研究/scripts/run_10kv_reverse_transfer_case.py'
+      - '实验/研究/data/tuomin/10kv_case/data/injection_summary.csv'
+      - '实验/研究/data/tuomin/10kv_case/data/key_tie_path_parameter_impact.csv'
+      - '实验/研究/data/tuomin/10kv_case/data/tie_master.csv'
+      - '实验/研究/data/tuomin/10kv_case/data/feeder_master.csv'
+      - '实验/研究/data/tuomin/10kv_case/data/station_boundary_2025.csv'
+      - '实验/研究/data/tuomin/10kv_case/data/station_pv_anchors_2026.csv'
+      - '.github/workflows/10kv-reverse-transfer-case.yml'
+
+permissions:
+  contents: write
+
+env:
+  PYTHONPATH: 实验/研究
+
+jobs:
+  run-reverse-transfer-case:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas
+
+      - name: Run high-PV reverse transfer case
+        run: |
+          python 实验/研究/scripts/run_10kv_reverse_transfer_case.py
+
+      - name: Verify two-level planning logic and TIE-002 results
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import pandas as pd
+
+          root = Path('实验/研究/results/10kv_reverse_transfer_case')
+          summary = pd.read_csv(root / 'case_summary.csv', encoding='utf-8-sig')
+          values = {str(k): str(v) for k, v in zip(summary['item'], summary['value'])}
+
+          assert values['model_core'] == 'HIGH_PV_REVERSE_POWER_CROSS_STATION_BOUNDARY_RECONFIGURATION'
+          assert abs(float(values['pv_peak_output_anchor_mw']) - 7.34) < 1e-9
+          assert abs(float(values['donor_path_effective_limit_mva']) - 8.4004) < 1e-4
+          assert abs(float(values['receiver_path_effective_limit_mva']) - 9.5263) < 1e-4
+          assert abs(float(values['existing_tie_reverse_capacity_mw']) - 7.62104) < 1e-5
+          assert abs(float(values['receiver_station_n1_screen_headroom_mw']) - 44.78) < 1e-6
+
+          # 当前7.34MW实际出力锚点在“零本地负荷”保守包络下仍可由既有TIE-002承接。
+          assert abs(float(values['current_zero_load_export_mw']) - 7.34) < 1e-9
+          assert abs(float(values['current_zero_load_existing_tie_loading_pct']) - 77.05) < 0.02
+          assert values['current_zero_load_new_tie_required'].lower() == 'false'
+
+          # S2代表性场景：30%负荷 + 当前PV锚点，净外送5.3811212MW。
+          assert abs(float(values['current_s2_lf030_export_mw']) - 5.3811212) < 1e-7
+
+          # 未来压力场景：既有联络不足时才进入新建联络容量定型。
+          assert abs(float(values['future_120pct_zero_load_residual_after_existing_mw']) - 1.18696) < 1e-5
+          assert abs(float(values['future_120pct_zero_load_new_tie_min_effective_mva']) - 1.4837) < 1e-4
+          assert abs(float(values['future_150pct_lf030_residual_after_existing_mw']) - 1.4300812) < 1e-7
+          assert abs(float(values['future_150pct_lf030_new_tie_min_effective_mva']) - 1.7876015) < 1e-7
+
+          sweep = pd.read_csv(root / 'tie002_reverse_transfer_sweep.csv', encoding='utf-8-sig')
+          current = sweep.loc[(sweep['load_factor'] == 0.0) & (sweep['pv_scale'] == 1.0)].iloc[0]
+          future = sweep.loc[(sweep['load_factor'] == 0.3) & (sweep['pv_scale'] == 1.5)].iloc[0]
+          assert bool(current['existing_tie_client_reverse_80_pass'])
+          assert not bool(current['new_tie_required'])
+          assert bool(future['new_tie_required'])
+          assert float(future['unresolved_after_receiver_station_screen_mw']) < 1e-9
+
+          receivers = pd.read_csv(root / 'new_tie_receiver_feeder_screen.csv', encoding='utf-8-sig')
+          stress = receivers.loc[receivers['design_scenario'] == 'S2_LF030_PV150']
+          alternates = stress.loc[~stress['is_existing_tie002_receiver'].astype(bool)]
+          assert len(alternates) >= 2
+          assert alternates['feeder_level_capacity_pass'].astype(bool).all()
+          assert (alternates['route_status'] == 'FEEDER_LEVEL_SCREEN_ONLY_ROUTE_AND_CORRIDOR_PENDING').all()
+
+          manifest = json.loads((root / 'run_manifest.json').read_text(encoding='utf-8'))
+          assert manifest['model_core'] == 'HIGH_PV_REVERSE_POWER_CROSS_STATION_BOUNDARY_RECONFIGURATION'
+          assert manifest['tie_id'] == 'TIE-002'
+          assert 'MAXIMIZE_DONOR_REVERSE_RELIEF' in manifest['optimization']['lexicographic_objectives']
+          assert 'FAULT_DIAGNOSIS_AS_PRIMARY_OBJECTIVE' in manifest['not_claimed']
+          assert 'GIS' in manifest['new_tie_route_boundary']
+          print('10kV high-PV reverse transfer planning QA passed')
+          PY
+
+      - name: Commit results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '实验/研究/results/10kv_reverse_transfer_case'
+          if git diff --cached --quiet; then
+            echo 'No result changes.'
+          else
+            git commit -m '更新10kV高光伏跨站转移结果 [10kv-reverse-artifacts]'
+            git push origin HEAD:model-v3.2-autonomous-review
+          fi
