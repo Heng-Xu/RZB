@@ -177,6 +177,8 @@ jobs:
             echo 'No diagnostic changes to commit.'
           else
             git commit -m '更新七章终稿QA失败诊断 [report-diagnostics]'
+            git fetch origin model-v3.2-autonomous-review
+            git rebase origin/model-v3.2-autonomous-review
             git push origin HEAD:model-v3.2-autonomous-review
           fi
 
@@ -211,5 +213,7 @@ jobs:
             echo 'No regenerated artifact changes to commit.'
           else
             git commit -m '重建七章终稿Word PDF及图件 [report-artifacts]'
+            git fetch origin model-v3.2-autonomous-review
+            git rebase origin/model-v3.2-autonomous-review
             git push origin HEAD:model-v3.2-autonomous-review
           fi
