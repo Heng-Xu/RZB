@@ -176,60 +176,14 @@ def frontier_figures(out_cost: Path, out_actions: Path) -> None:
 
 
 def section_tie_figure(out: Path) -> None:
-    """绘制TIE-002中间区段故障后的隔离与转供示意。"""
-    fig, ax = plt.subplots(figsize=(10.0, 4.4))
-    ax.set_xlim(0, 10)
-    ax.set_ylim(0, 4)
-    ax.axis("off")
+    """绘制TIE-002高光伏跨站供电边界重构示意。
 
-    y = 2.05
-    nodes = {
-        "A_SOURCE": (0.65, y),
-        "A1": (2.30, y),
-        "A2": (4.15, y),
-        "A3": (6.10, y),
-        "B_SOURCE": (9.15, y),
-    }
+    该图服务于规划级反向功率空间转移研究，不再采用故障隔离/故障转供
+    作为10 kV专题主线。具体绘图实现集中维护在独立脚本中，避免两套图义漂移。
+    """
+    from build_10kv_reverse_transfer_figure import build as build_reverse_transfer_figure
 
-    # 供电段与电源。
-    ax.text(*nodes["A_SOURCE"], "墩南侧电源", ha="center", va="center",
-            bbox=dict(boxstyle="round,pad=0.4", fc="#E8F1FA", ec="#235789", lw=1.4))
-    ax.text(*nodes["A1"], "A1\n上游健康段", ha="center", va="center",
-            bbox=dict(boxstyle="round,pad=0.4", fc="#EEF6EE", ec="#4E7D4E", lw=1.4))
-    ax.text(*nodes["A2"], "A2\n故障段", ha="center", va="center",
-            bbox=dict(boxstyle="round,pad=0.4", fc="#FCECEC", ec="#A63D40", lw=1.6))
-    ax.text(*nodes["A3"], "A3\n下游健康段", ha="center", va="center",
-            bbox=dict(boxstyle="round,pad=0.4", fc="#FFF7E8", ec="#B47A1F", lw=1.4))
-    ax.text(*nodes["B_SOURCE"], "河炮侧电源", ha="center", va="center",
-            bbox=dict(boxstyle="round,pad=0.4", fc="#E8F1FA", ec="#235789", lw=1.4))
-
-    # A源恢复A1。
-    ax.annotate("", xy=(1.78, y), xytext=(1.10, y),
-                arrowprops=dict(arrowstyle="->", lw=2.0, color="#235789"))
-    ax.text(1.42, y + 0.28, "原电源恢复", ha="center", fontsize=9)
-
-    # S1、S2打开，隔离故障段。
-    for x, label in [(3.22, "S1 断开"), (5.12, "S2 断开")]:
-        ax.plot([x - 0.18, x + 0.18], [y - 0.16, y + 0.16], color="#A63D40", lw=2.1)
-        ax.plot([x - 0.18, x + 0.18], [y + 0.16, y - 0.16], color="#A63D40", lw=2.1)
-        ax.text(x, y + 0.48, label, ha="center", color="#8B2E31", fontsize=9)
-
-    # 下游由B侧经TIE恢复。
-    ax.annotate("", xy=(6.68, y), xytext=(8.63, y),
-                arrowprops=dict(arrowstyle="->", lw=2.0, color="#B47A1F"))
-    ax.text(7.65, y + 0.28, "TIE-002 合闸转供", ha="center", fontsize=9)
-
-    # 故障与隔离说明。
-    ax.annotate("故障定位后隔离A2", xy=(4.15, 1.62), xytext=(4.15, 0.72),
-                ha="center", va="center",
-                arrowprops=dict(arrowstyle="->", color="#A63D40", lw=1.3),
-                bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#A63D40", lw=1.0))
-    ax.text(5.0, 3.25,
-            "典型恢复状态：A1由原电源供电，A2保持隔离，A3经联络由相邻馈线转供",
-            ha="center", va="center", fontsize=11,
-            bbox=dict(boxstyle="round,pad=0.45", fc="#F7F8FA", ec="#6B7280", lw=1.0))
-    ax.set_title("TIE-002分段隔离与联络转供示意", pad=10, fontweight="bold")
-    save(fig, out)
+    build_reverse_transfer_figure(out)
 
 
 def main() -> int:
