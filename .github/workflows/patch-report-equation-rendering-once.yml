@@ -1,0 +1,62 @@
+name: patch report equation rendering once
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/patch-report-equation-rendering-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: model-v3.2-autonomous-review
+          fetch-depth: 0
+
+      - name: Replace LibreOffice-fragile OMML display formulas with high-resolution equation images
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          builder = Path('tools/build_report_docx.py')
+          text = builder.read_text(encoding='utf-8')
+          old = '''def _add_display_math(doc: Document, latex: str, equation_number: str | None = None) -> None:\n    paragraph = doc.add_paragraph(style="Normal")\n    paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT\n    paragraph.paragraph_format.keep_together = True\n    _set_no_indent(paragraph)\n    _set_exact_line_spacing(paragraph, 440)\n    _set_equation_tabs(paragraph)\n    leading_tab = paragraph.add_run()\n    leading_tab.add_tab()\n    paragraph._p.append(_pandoc_math_element(latex))\n    if equation_number:\n        number_run = paragraph.add_run()\n        number_run.add_tab()\n        number_run.add_text(equation_number)\n        set_run_fonts(number_run, BODY_SIZE)\n'''
+          new = '''def _render_equation_png(latex: str, output_path: Path) -> None:\n    """将正式LaTeX公式稳定渲染为透明高分辨率PNG，避免LibreOffice对OMML的兼容性缺陷。"""\n\n    import matplotlib\n\n    matplotlib.use("Agg")\n    import matplotlib.pyplot as plt\n\n    clean = latex.strip().replace(r"\\mbox{-}", "-")\n    clean = re.sub(r"\\\\le(?![A-Za-z])", r"\\\\leq", clean)\n    figure = plt.figure(figsize=(10.0, 1.4), dpi=200)\n    figure.patch.set_alpha(0.0)\n    figure.text(\n        0.5, 0.5, f"${clean}$",\n        ha="center", va="center", fontsize=18, color="black",\n    )\n    figure.savefig(\n        output_path, dpi=300, transparent=True,\n        bbox_inches="tight", pad_inches=0.025,\n    )\n    plt.close(figure)\n\n\ndef _add_display_math(doc: Document, latex: str, equation_number: str | None = None) -> None:\n    paragraph = doc.add_paragraph(style="Normal")\n    paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT\n    paragraph.paragraph_format.keep_together = True\n    _set_no_indent(paragraph)\n    _set_exact_line_spacing(paragraph, 680)\n    _set_equation_tabs(paragraph)\n    leading_tab = paragraph.add_run()\n    leading_tab.add_tab()\n\n    with tempfile.TemporaryDirectory(prefix="report-equation-") as tmp_dir:\n        image_path = Path(tmp_dir) / "equation.png"\n        _render_equation_png(latex, image_path)\n        with Image.open(image_path) as image:\n            width_cm = image.width / 300.0 * 2.54\n        width_cm = min(11.8, max(2.0, width_cm))\n        equation_run = paragraph.add_run()\n        equation_run.add_picture(str(image_path), width=Cm(width_cm))\n\n    if equation_number:\n        number_run = paragraph.add_run()\n        number_run.add_tab()\n        number_run.add_text(equation_number)\n        set_run_fonts(number_run, BODY_SIZE)\n'''
+          if old not in text:
+              raise SystemExit('target _add_display_math implementation not found')
+          text = text.replace(old, new, 1)
+          builder.write_text(text, encoding='utf-8')
+
+          qa_path = Path('实验/研究/scripts/check_final_report.py')
+          qa = qa_path.read_text(encoding='utf-8')
+          old_qa = '''    math_count = len(xml_root.findall(".//{http://schemas.openxmlformats.org/officeDocument/2006/math}oMath"))\n    if math_count != len(expected_equations):\n        issues.append(f"Word原生公式数量应为{len(expected_equations)}，实际为{math_count}")\n    if document_xml.count("<w:drawing") != 7:\n        issues.append("Word嵌入图件数量不是7")\n'''
+          new_qa = '''    math_count = len(xml_root.findall(".//{http://schemas.openxmlformats.org/officeDocument/2006/math}oMath"))\n    if math_count != 0:\n        issues.append(f"Word仍含可能导致LibreOffice异常的OMML公式对象：{math_count}")\n    drawing_count = document_xml.count("<w:drawing")\n    expected_drawings = len(expected_figure_numbers) + len(expected_equations)\n    if drawing_count != expected_drawings:\n        issues.append(f"Word嵌入图件数量应为{expected_drawings}（7幅正文图+{len(expected_equations)}幅公式图），实际为{drawing_count}")\n'''
+          if old_qa not in qa:
+              raise SystemExit('target QA math/drawing block not found')
+          qa = qa.replace(old_qa, new_qa, 1)
+          qa = qa.replace(
+              '        "native_math_count": math_count,\n',
+              '        "native_math_count": math_count,\n        "equation_image_count": max(drawing_count - len(expected_figure_numbers), 0),\n',
+              1,
+          )
+          qa_path.write_text(qa, encoding='utf-8')
+          PY
+          git diff --check
+
+      - name: Commit robust equation rendering patch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/build_report_docx.py 实验/研究/scripts/check_final_report.py
+          git commit -m '修复终稿公式跨LibreOffice渲染兼容性'
+          git fetch origin model-v3.2-autonomous-review
+          git rebase --autostash origin/model-v3.2-autonomous-review
+          git push origin HEAD:model-v3.2-autonomous-review
