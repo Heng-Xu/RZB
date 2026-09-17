@@ -84,10 +84,11 @@ def main() -> int:
         if float(station_hw.iloc[0]["2025_annual_min_load_mw"]) >= 0:
             issues.append("HW 2025 annual minimum should show reverse power")
 
+    blocking_text = switches["blocking_final"].astype(str).str.upper()
     donor_switches = switches.loc[
         (switches["feeder_id"] == "PZXL-00092")
         & (switches["device_type"] == "分段开关")
-        & (switches["blocking_final"] == False)  # noqa: E712
+        & blocking_text.isin({"NO", "FALSE", "0"})
     ]
     verified_selective_section_switch_count = int(len(donor_switches))
     selective_section_transfer_ready = verified_selective_section_switch_count > 0
