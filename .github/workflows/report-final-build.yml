@@ -46,15 +46,18 @@ jobs:
           python 实验/研究/scripts/check_10kv_reverse_transfer_data.py
           python 实验/研究/scripts/run_10kv_reverse_transfer_case.py
 
-      - name: Prepare report source for DOCX renderer
+      - name: Prepare and normalize report source
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
+
           report_dir = Path('研究报告/终稿')
           source = report_dir / '国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md'
           target = report_dir / '.report_build.md'
           text = source.read_text(encoding='utf-8-sig')
+
           replacements = [
               (
                   '![图 2-1 实际物理容载比与规划控制值的关系](图表/图3-1_物理容载比与规划控制值.png)\n\n储能按本地功率调节资源建模。',
@@ -73,14 +76,6 @@ jobs:
                   '![图 5-1 弹性容载比工程应用流程](图表/图8-1_工程应用流程.png)\n\n图5-1给出了从技术可行性检查、核心指标计算、相似样本参考到专项Rcap优化的工程应用顺序。\n\n工程应用时，应先完成技术可行性校核',
               ),
               (
-                  '工程应用时，应先完成技术可行性校核，再利用4项核心指标查找可比片区。与数值推荐样本相似时，2.50或2.30只能作为Rcap扫描的参考起点，不能未经专项计算直接套用为最终控制值。变电扩建适合应对持续增长的正向峰值，储能适合承担局部反向功率调节，10 kV联络和转供用于改善局部容量分布，三类措施应结合片区主要矛盾进行组合。',
-                  '工程应用时，应先校核技术可行性，再利用4项核心指标查找可比片区。与数值推荐样本相似时，2.50或2.30仅作为Rcap扫描起点，最终控制值仍需专项计算。变电扩建应对正向峰值增长，储能承担局部反向功率调节，10 kV联络和转供改善局部容量分布，三类措施按片区主要矛盾组合。',
-              ),
-              (
-                  '该下限高于单一基准情景的局部释放位置，为经济参数、功率因数、反向允许系数、净负荷尺度和工程成本变化预留了稳健余量。\n\n**表 6-1 QX-00005刚性与弹性方案验证结果**',
-                  '该下限高于单一基准情景的局部释放位置，为经济参数、功率因数、反向允许系数、净负荷尺度和工程成本变化预留了稳健余量。两场景的主要对比结果见表6-1。\n\n**表 6-1 QX-00005刚性与弹性方案验证结果**',
-              ),
-              (
                   '规划决策遵循“既有联络优先、既有能力不足后再考虑新增联络”的两级逻辑：第一层优先利用已经形成物理联络条件的通道调整供电边界；第二层仅对既有联络无法承接的剩余反向功率，计算新增联络所需的最小有效容量，并筛选具备受端容量条件的相邻馈线。',
                   '规划决策遵循“既有联络优先、既有能力不足后再考虑新增联络”的两级逻辑：第一层优先利用已经形成物理联络条件的通道调整供电边界；第二层仅对既有联络无法承接的剩余反向功率，计算新增联络所需的最小有效容量，并筛选具备受端容量条件的相邻馈线。在约束满足的前提下，模型采用分层目标：首先最大化送端反向功率削减量，其次优先利用既有联络以减少新增工程，最后对仍需转移的剩余功率最小化新增联络有效容量。',
               ),
@@ -95,10 +90,6 @@ jobs:
               (
                   '式中，β为反向功率通道控制系数。本项目专题分析按给定条件取β=0.80。该80%控制线仅用于反向功率通道，不作为普通正向负荷转供的统一负载率上限，也不解释为国家或行业通用标准。',
                   '式中，β为反向功率通道控制系数。依据本项目专题分析采用的反向潮流控制条件，β取0.80。该80%控制线仅用于受端反向功率通道的规划筛查，不作为普通正向负荷转供的统一负载率上限，也不解释为国家或行业通用标准。',
-              ),
-              (
-                  '当仍存在正的剩余转移需求且相邻站仍有承接空间时，进入新增联络层。按相同反向通道控制口径，新联络所需的最小规划有效容量为：',
-                  '当仍存在正的剩余转移需求且相邻站仍有承接空间时，进入新增联络层。按相同反向通道控制口径，新联络所需的最小规划有效容量为：',
               ),
               (
                   '该结果用于确定新增联络的容量等级和候选受端馈线，不直接等同于具体线路型号、线路长度或工程投资。',
@@ -116,10 +107,41 @@ jobs:
           for old, new in replacements:
               if old in text:
                   text = text.replace(old, new)
+
+          # 新增10 kV公式位于5.2.1，应按正文出现顺序编号；AHP公式顺延。
+          equation_numbers = re.findall(r'^（(\d+-\d+)）$', text, re.M)
+          wrong_ch5 = ['5-2', '5-3', '5-4', '5-5', '5-1']
+          ch5 = [n for n in equation_numbers if n.startswith('5-')]
+          if ch5 == wrong_ch5:
+              for old, temp in [('5-2', '5-T1'), ('5-3', '5-T2'), ('5-4', '5-T3'), ('5-5', '5-T4')]:
+                  text = text.replace(f'（{old}）', f'（{temp}）')
+              text = text.replace('（5-1）', '（5-5）')
+              for temp, new in [('5-T1', '5-1'), ('5-T2', '5-2'), ('5-T3', '5-3'), ('5-T4', '5-4')]:
+                  text = text.replace(f'（{temp}）', f'（{new}）')
+
+          # 表6-3必须在正文中先被明确引用，避免只有表题没有正文指引。
+          table63_caption = '**表 6-3 TIE-002高光伏跨站反向功率转移规划结果**'
+          table63_intro = '上述场景的容量对比结果汇总见表6-3。'
+          if table63_caption in text and table63_intro not in text:
+              text = text.replace(table63_caption, table63_intro + '\n\n' + table63_caption)
+
           if '$' in text.replace('$$', ''):
               raise SystemExit('正文仍存在行内LaTeX，拒绝生成Word')
           source.write_text(text, encoding='utf-8')
           target.write_text(text, encoding='utf-8')
+
+          # 同步扩展QA公式清单：10 kV新增公式属于正式正文，不应仍按旧13式检查。
+          qa_path = Path('实验/研究/scripts/check_final_report.py')
+          qa = qa_path.read_text(encoding='utf-8')
+          old_equations = '''    expected_equations = (\n        [f"2-{i}" for i in range(1, 6)]\n        + [f"3-{i}" for i in range(1, 5)]\n        + [f"4-{i}" for i in range(1, 4)]\n        + ["5-1"]\n    )'''
+          new_equations = '''    expected_equations = (\n        [f"2-{i}" for i in range(1, 6)]\n        + [f"3-{i}" for i in range(1, 8)]\n        + [f"4-{i}" for i in range(1, 4)]\n        + [f"5-{i}" for i in range(1, 6)]\n        + [f"6-{i}" for i in range(1, 3)]\n    )'''
+          if old_equations in qa:
+              qa = qa.replace(old_equations, new_equations)
+          qa = qa.replace(
+              '    if math_count != 13:\n        issues.append(f"Word原生公式数量应为13，实际为{math_count}")',
+              '    if math_count != len(expected_equations):\n        issues.append(f"Word原生公式数量应为{len(expected_equations)}，实际为{math_count}")',
+          )
+          qa_path.write_text(qa, encoding='utf-8')
           PY
 
       - name: Regenerate report figures
@@ -138,7 +160,7 @@ jobs:
             --organization '国网江苏省电力有限公司徐州供电分公司' \
             --date '2026年9月'
 
-      - name: Allow body table rows to split across pages
+      - name: Normalize Word pagination and body tables
         shell: bash
         run: |
           python - <<'PY'
@@ -156,8 +178,12 @@ jobs:
                   if cant_split is not None:
                       tr_pr.remove(cant_split)
                       changed += 1
+          # “参考文献”不是第八章，取消其强制新页属性，避免正文恰好跨页时生成真实空白页。
+          for paragraph in doc.paragraphs:
+              if paragraph.text.strip() == '参考文献':
+                  paragraph.paragraph_format.page_break_before = False
           doc.save(path)
-          print(f'Allowed {changed} body table rows to split across pages; header rows remain unsplittable.')
+          print(f'Allowed {changed} body table rows to split across pages; normalized references pagination.')
           PY
 
       - name: Convert DOCX to PDF
@@ -170,7 +196,7 @@ jobs:
           libreoffice -env:UserInstallation=file:///tmp/lo-profile --headless --convert-to pdf --outdir '研究报告/终稿' "$DOCX"
           test -s "$PDF"
 
-      - name: Record PDF page 24-26 context
+      - name: Record PDF page context
         shell: bash
         run: |
           PDF='研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.pdf'
@@ -204,13 +230,14 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add '研究报告/终稿/内部审查/自动检查结果.json' \
                   '研究报告/终稿/内部审查/数值追溯表.csv' \
-                  '研究报告/终稿/内部审查/PDF第24-26页文本上下文.txt'
+                  '研究报告/终稿/内部审查/PDF第24-26页文本上下文.txt' \
+                  '实验/研究/scripts/check_final_report.py'
           if git diff --cached --quiet; then
             echo 'No diagnostic changes to commit.'
           else
             git commit -m '更新七章终稿QA失败诊断 [report-diagnostics]'
             git fetch origin model-v3.2-autonomous-review
-            git rebase origin/model-v3.2-autonomous-review
+            git rebase --autostash origin/model-v3.2-autonomous-review
             git push origin HEAD:model-v3.2-autonomous-review
           fi
 
@@ -240,12 +267,15 @@ jobs:
                   '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.docx' \
                   '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.pdf' \
                   '研究报告/终稿/内部审查/数值追溯表.csv' \
-                  '研究报告/终稿/内部审查/自动检查结果.json'
+                  '研究报告/终稿/内部审查/自动检查结果.json' \
+                  '研究报告/终稿/内部审查/PDF第24-26页文本上下文.txt' \
+                  '实验/研究/results/10kv_reverse_transfer_case' \
+                  '实验/研究/scripts/check_final_report.py'
           if git diff --cached --quiet; then
             echo 'No regenerated artifact changes to commit.'
           else
             git commit -m '重建七章终稿Word PDF及图件 [report-artifacts]'
             git fetch origin model-v3.2-autonomous-review
-            git rebase origin/model-v3.2-autonomous-review
+            git rebase --autostash origin/model-v3.2-autonomous-review
             git push origin HEAD:model-v3.2-autonomous-review
           fi
