@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""生成研究报告图6-1：TIE-002高光伏跨站供电边界重构示意。
+"""生成研究报告10 kV高光伏跨站供电边界重构示意图。
 
-图件仅表达规划级供电边界重构与反向功率转移关系，不表示现场实时开关状态或倒闸顺序。
+图件仅表达规划级供电边界重构与反向功率空间转移关系，
+不表示现场实时开关状态、保护动作或具体倒闸顺序。
 """
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ from pathlib import Path
 
 import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch
 
 
 def setup_style() -> None:
@@ -21,70 +23,82 @@ def setup_style() -> None:
     plt.rcParams.update(
         {
             "font.family": "serif",
-            "font.serif": ["Noto Serif CJK SC", "Noto Serif CJK JP", "SimSun"],
+            "font.serif": ["FangSong", "FangSong_GB2312", "Noto Serif CJK SC", "Noto Serif CJK JP", "SimSun"],
             "axes.unicode_minus": False,
-            "font.size": 11.5,
-            "figure.dpi": 180,
-            "savefig.dpi": 360,
+            "font.size": 13,
+            "figure.dpi": 220,
+            "savefig.dpi": 600,
         }
     )
 
 
-def box(ax, x, y, w, h, text, fc="#F7F8FA", ec="#4B5563", lw=1.3, fs=10.5):
-    ax.add_patch(plt.Rectangle((x, y), w, h, facecolor=fc, edgecolor=ec, linewidth=lw))
-    ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", fontsize=fs, linespacing=1.35)
+def box(ax, x, y, w, h, text, *, fc="#F7F8FA", ec="#53606D", lw=1.5, fs=12.4):
+    patch = FancyBboxPatch(
+        (x, y), w, h,
+        boxstyle="round,pad=0.018,rounding_size=0.035",
+        facecolor=fc, edgecolor=ec, linewidth=lw,
+    )
+    ax.add_patch(patch)
+    ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
+            fontsize=fs, linespacing=1.40)
 
 
-def arrow(ax, x1, y1, x2, y2, text=None, color="#334155", lw=1.8, style="->", dy=0.18):
-    ax.annotate("", xy=(x2, y2), xytext=(x1, y1), arrowprops=dict(arrowstyle=style, lw=lw, color=color))
+def arrow(ax, x1, y1, x2, y2, *, text=None, color="#44515E", lw=1.9, text_y=None):
+    ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
+                arrowprops=dict(arrowstyle="-|>", lw=lw, color=color, mutation_scale=14))
     if text:
-        ax.text((x1 + x2) / 2, (y1 + y2) / 2 + dy, text, ha="center", va="center", fontsize=9.5, color=color)
+        y = (y1 + y2) / 2 if text_y is None else text_y
+        ax.text((x1 + x2) / 2, y, text, ha="center", va="bottom", fontsize=11.2, color=color)
 
 
 def build(out: Path) -> None:
     setup_style()
-    fig, ax = plt.subplots(figsize=(11.8, 6.4))
-    ax.set_xlim(0, 12)
-    ax.set_ylim(0, 6.2)
+    fig, ax = plt.subplots(figsize=(13.0, 7.2))
+    ax.set_xlim(0, 13)
+    ax.set_ylim(0, 7.2)
     ax.axis("off")
 
-    # 110 kV站与10 kV馈线。
-    box(ax, 0.35, 3.95, 1.7, 1.0, "墩集变\n110 kV", fc="#EAF2F8", ec="#2F5D7E", lw=1.6)
-    box(ax, 9.95, 3.95, 1.7, 1.0, "河湾变\n110 kV", fc="#EAF2F8", ec="#2F5D7E", lw=1.6)
-    box(ax, 2.45, 3.95, 2.1, 1.0, "墩南线", fc="#F3F8F3", ec="#4E7D4E", lw=1.5)
-    box(ax, 7.45, 3.95, 2.1, 1.0, "河炮线", fc="#F3F8F3", ec="#4E7D4E", lw=1.5)
+    ax.text(6.5, 6.80, "高光伏条件下的跨站供电边界重构与反向功率转移",
+            ha="center", va="center", fontsize=16, fontweight="bold")
+    ax.text(6.5, 6.30,
+            "规划约束：保持10 kV单电源辐射运行；不允许两个110 kV电源经10 kV网络直接并列",
+            ha="center", va="center", fontsize=11.8,
+            bbox=dict(boxstyle="round,pad=0.35", facecolor="#FAFBFC", edgecolor="#6B7280", linewidth=1.1))
 
-    arrow(ax, 2.05, 4.45, 2.45, 4.45, "原供电关系", color="#2F5D7E", dy=0.28)
-    arrow(ax, 9.95, 4.45, 9.55, 4.45, "受端供电关系", color="#2F5D7E", dy=0.28)
+    # 主网络关系：四个信息块水平展开，避免文字、箭头互相覆盖。
+    y = 4.35
+    box(ax, 0.35, y, 1.75, 1.15, "墩集变\n110 kV送端", fc="#EAF2F8", ec="#315B7D", lw=1.7)
+    box(ax, 2.75, y, 2.55, 1.15, "墩南线高光伏供电单元\n光伏出力高于本地负荷\n形成净外送功率", fc="#FFF7E8", ec="#9A6B2E", lw=1.7)
+    box(ax, 5.95, y, 1.95, 1.15, "墩南—河炮\n既有联络通道", fc="#FCEFEF", ec="#9B4545", lw=1.7)
+    box(ax, 8.55, y, 2.15, 1.15, "河炮线\n受端10 kV通道", fc="#F1F7F1", ec="#4F7658", lw=1.7)
+    box(ax, 11.20, y, 1.45, 1.15, "河湾变\n110 kV受端", fc="#EAF2F8", ec="#315B7D", lw=1.7)
 
-    # 高光伏净外送单元。
-    box(ax, 3.05, 2.0, 2.1, 1.05, "高光伏供电单元\n光伏出力高于本地负荷\n形成净外送功率", fc="#FFF7E6", ec="#B7791F", lw=1.5)
-    arrow(ax, 4.10, 3.95, 4.10, 3.05, "反向功率上送", color="#B7791F", dy=0.0)
+    arrow(ax, 2.10, y + 0.58, 2.75, y + 0.58, text="原供电边界", color="#315B7D", text_y=5.12)
+    arrow(ax, 5.30, y + 0.58, 5.95, y + 0.58, text="边界调整", color="#9B4545", text_y=5.12)
+    arrow(ax, 7.90, y + 0.58, 8.55, y + 0.58, text="反向功率转移", color="#9B4545", text_y=5.12)
+    arrow(ax, 10.70, y + 0.58, 11.20, y + 0.58, text="受端承接", color="#4F7658", text_y=5.12)
 
-    # 现有联络。
-    box(ax, 5.25, 3.95, 1.5, 1.0, "墩南—河炮\n既有联络", fc="#FCEFEF", ec="#A13D3D", lw=1.6)
-    arrow(ax, 4.55, 4.45, 5.25, 4.45, "供电边界\n重构", color="#A13D3D", dy=0.38)
-    arrow(ax, 6.75, 4.45, 7.45, 4.45, "跨站转移", color="#A13D3D", dy=0.28)
+    # 下方按规划逻辑拆成三个独立信息块。
+    box(ax, 0.65, 2.15, 3.35, 1.25,
+        "送端减压\n跨站转移后，墩集变承担的反向功率减小\n用于缓解局部110 kV反向承载压力",
+        fc="#F3F8F3", ec="#4F7658", fs=11.8)
+    box(ax, 4.82, 2.15, 3.35, 1.25,
+        "既有联络优先\n同时校核送端路径、受端路径和河湾变\n剩余反向承接能力",
+        fc="#F7F8FA", ec="#53606D", fs=11.8)
+    box(ax, 9.00, 2.15, 3.35, 1.25,
+        "能力不足时再新增联络\n计算剩余需转移功率和最小有效容量\n筛选具备容量条件的候选受端馈线",
+        fc="#FFF8ED", ec="#9A6B2E", fs=11.8)
 
-    # 站间功率效果。
-    box(ax, 0.45, 1.10, 2.1, 1.15, "送端效果\n墩集变反向功率减小\nP_D' = P_D^0 + P_tr", fc="#EEF7EE", ec="#4E7D4E")
-    box(ax, 9.45, 1.10, 2.1, 1.15, "受端效果\n河湾变反向功率增加\nP_R' = P_R^0 - P_tr", fc="#EEF7EE", ec="#4E7D4E")
-    arrow(ax, 3.05, 2.52, 2.55, 1.68, "减压", color="#4E7D4E", dy=0.0)
-    arrow(ax, 8.50, 3.95, 10.45, 2.25, "受端承载校核", color="#4E7D4E", dy=0.05)
+    arrow(ax, 4.03, 4.35, 2.35, 3.40, color="#4F7658")
+    arrow(ax, 6.92, 4.35, 6.50, 3.40, color="#53606D")
+    arrow(ax, 9.63, 4.35, 10.68, 3.40, color="#9A6B2E")
 
-    # 两级规划逻辑。
-    box(ax, 3.15, 0.25, 5.7, 0.95,
-        "两级规划：优先利用墩南—河炮既有联络；既有能力不足时，\n再计算新增联络所需最小有效容量，并筛选河东、河镇等候选受端馈线",
-        fc="#F7F8FA", ec="#6B7280", lw=1.2, fs=10.0)
-
-    ax.text(6.0, 5.55,
-            "规划约束：保持10 kV单电源辐射运行；禁止两个110 kV电源经10 kV网络直接并列",
-            ha="center", va="center", fontsize=10.5,
-            bbox=dict(boxstyle="round,pad=0.35", fc="white", ec="#6B7280", lw=1.0))
-    ax.set_title("高光伏跨站供电边界重构示意", pad=12, fontweight="bold", fontsize=14)
+    box(ax, 1.55, 0.48, 9.90, 0.82,
+        "研究边界：本模型用于规划级拓扑与容量筛查；实时开关状态、具体倒闸顺序、交流潮流、短路电流及继电保护定值在工程实施阶段专项校核。",
+        fc="#FAFBFC", ec="#6B7280", lw=1.1, fs=11.4)
 
     out.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out, bbox_inches="tight", pad_inches=0.10, facecolor="white")
+    fig.savefig(out, dpi=600, bbox_inches="tight", pad_inches=0.18, facecolor="white")
     plt.close(fig)
 
 
