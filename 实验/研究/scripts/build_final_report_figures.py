@@ -22,26 +22,27 @@ from src.report_interval_matrix import build_report_interval_outputs  # noqa: E4
 
 
 def setup_style() -> None:
-    font = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
+    font = "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc"
     if Path(font).is_file():
         fm.fontManager.addfont(font)
     plt.rcParams.update(
         {
-            "font.sans-serif": ["Noto Sans CJK JP", "Noto Sans CJK SC", "SimHei"],
+            "font.family": "serif",
+            "font.serif": ["Noto Serif CJK SC", "Noto Serif CJK JP", "SimSun"],
             "axes.unicode_minus": False,
-            "font.size": 11,
-            "axes.titlesize": 13,
-            "axes.labelsize": 11,
-            "legend.fontsize": 10,
-            "figure.dpi": 140,
-            "savefig.dpi": 300,
+            "font.size": 12,
+            "axes.titlesize": 13.5,
+            "axes.labelsize": 12,
+            "legend.fontsize": 11,
+            "figure.dpi": 180,
+            "savefig.dpi": 360,
         }
     )
 
 
 def save(fig: plt.Figure, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(path, bbox_inches="tight", facecolor="white")
+    fig.savefig(path, bbox_inches="tight", pad_inches=0.10, facecolor="white")
     plt.close(fig)
 
 
@@ -52,7 +53,7 @@ def flow_figure(out: Path, *, application: bool) -> None:
             "计算 4 项核心指标",
             "核查设备、网络与接入技术条件",
             "查找当前样本中的相似片区",
-            "判断是否需要专项 Rcap 扫描",
+            "判断是否需要专项规划控制值扫描",
             "识别建议下限或非数值结论",
             "比选扩建、储能与网络互济措施",
         ]
@@ -63,7 +64,7 @@ def flow_figure(out: Path, *, application: bool) -> None:
             "正向容量与反向承载校核",
             "离散扩建、储能及网络措施",
             "2021 年实际在役资产共同起点",
-            "Rcap 扫描、局部细化与敏感性分析",
+            "规划控制值扫描、局部细化与敏感性分析",
             "运行特征—规划响应—建议映射",
         ]
         title = "研究技术路线"
@@ -117,7 +118,7 @@ def indicator_figure(indicators: pd.DataFrame, out: Path) -> None:
         ("network_capacity_support_margin", "110 kV线路统计负载余度", "%"),
         ("positive_peak_cagr_2021_2025", "正向峰值负荷年均变化率", "%"),
     ]
-    fig, axes = plt.subplots(2, 2, figsize=(8.0, 7.0), constrained_layout=True)
+    fig, axes = plt.subplots(2, 2, figsize=(8.6, 7.6), constrained_layout=True)
     colors = ["#2F6B9A", "#5B8C5A", "#C27A28", "#8B5E83"]
     for ax, (col, title, unit), color in zip(axes.flat, specs, colors):
         values = d[col].astype(float).to_numpy()
@@ -130,13 +131,13 @@ def indicator_figure(indicators: pd.DataFrame, out: Path) -> None:
                 ax.text(0, yy, "未识别", va="center", ha="left", color="#777")
             else:
                 suffix = "%" if unit == "%" else ""
-                ax.text(x, yy - 0.22, f"{x:.2f}{suffix}", va="center", ha="center", fontsize=8)
+                ax.text(x, yy - 0.22, f"{x:.2f}{suffix}", va="center", ha="center", fontsize=10)
         ax.set_yticks(y, labels)
         ax.invert_yaxis()
         ax.set_title(title)
         ax.grid(axis="x", color="#E4E7EB", lw=0.8)
         ax.set_xlabel(unit)
-    fig.suptitle("形成数值型Rcap建议片区核心指标实际值", fontweight="bold")
+    fig.suptitle("形成数值型弹性容载比建议片区核心指标", fontweight="bold")
     save(fig, out)
 
 
@@ -146,18 +147,18 @@ def frontier_figures(out_cost: Path, out_actions: Path) -> None:
     d = d[d["region_id"].isin(["QX-00001", "QX-00005"]) & d["rcap_numeric"].notna()].copy()
     colors = {"QX-00001": "#2F6B9A", "QX-00005": "#D9792B"}
 
-    fig, axes = plt.subplots(2, 1, figsize=(7.5, 6.3), sharex=True, constrained_layout=True)
+    fig, axes = plt.subplots(2, 1, figsize=(8.2, 6.8), sharex=True, constrained_layout=True)
     for ax, region in zip(axes, ["QX-00001", "QX-00005"]):
         x = d[d.region_id.eq(region)].sort_values("rcap_numeric")
         ax.plot(x["rcap_numeric"], x["cumulative_in_service_eac_wanyuan"], marker="o", color=colors[region])
         ax.set_title(region)
         ax.set_ylabel("规划期累计在役等年成本 / 万元")
         ax.grid(color="#E4E7EB")
-    axes[-1].set_xlabel(r"弹性容载比控制值 $R_{\mathrm{cap}}$")
+    axes[-1].set_xlabel("弹性容载比规划控制值")
     fig.suptitle("弹性容载比控制值与规划期累计在役等年成本", fontweight="bold")
     save(fig, out_cost)
 
-    fig, axes = plt.subplots(2, 2, figsize=(8.0, 6.4), sharex=True, constrained_layout=True)
+    fig, axes = plt.subplots(2, 2, figsize=(8.6, 7.0), sharex=True, constrained_layout=True)
     for row, region in enumerate(["QX-00001", "QX-00005"]):
         x = d[d.region_id.eq(region)].sort_values("rcap_numeric")
         axes[row, 0].step(x["rcap_numeric"], x["capacity_action_delta_mva"], where="post", color=colors[region])
@@ -169,7 +170,7 @@ def frontier_figures(out_cost: Path, out_actions: Path) -> None:
     axes[0, 0].set_title("新增变电容量")
     axes[0, 1].set_title("2025年储能配置数量")
     for ax in axes[-1]:
-        ax.set_xlabel(r"弹性容载比控制值 $R_{\mathrm{cap}}$")
+        ax.set_xlabel("弹性容载比规划控制值")
     fig.suptitle("控制值变化引起的规划措施转换", fontweight="bold")
     save(fig, out_actions)
 

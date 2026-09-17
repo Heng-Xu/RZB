@@ -15,16 +15,17 @@ import matplotlib.pyplot as plt
 
 
 def setup_style() -> None:
-    font = Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc")
+    font = Path("/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc")
     if font.is_file():
         fm.fontManager.addfont(str(font))
     plt.rcParams.update(
         {
-            "font.sans-serif": ["Noto Sans CJK JP", "Noto Sans CJK SC", "SimHei"],
+            "font.family": "serif",
+            "font.serif": ["Noto Serif CJK SC", "Noto Serif CJK JP", "SimSun"],
             "axes.unicode_minus": False,
-            "font.size": 10.5,
-            "figure.dpi": 140,
-            "savefig.dpi": 300,
+            "font.size": 11.5,
+            "figure.dpi": 180,
+            "savefig.dpi": 360,
         }
     )
 
@@ -42,7 +43,7 @@ def arrow(ax, x1, y1, x2, y2, text=None, color="#334155", lw=1.8, style="->", dy
 
 def build(out: Path) -> None:
     setup_style()
-    fig, ax = plt.subplots(figsize=(10.8, 5.8))
+    fig, ax = plt.subplots(figsize=(11.8, 6.4))
     ax.set_xlim(0, 12)
     ax.set_ylim(0, 6.2)
     ax.axis("off")
@@ -50,18 +51,18 @@ def build(out: Path) -> None:
     # 110 kV站与10 kV馈线。
     box(ax, 0.35, 3.95, 1.7, 1.0, "墩集变\n110 kV", fc="#EAF2F8", ec="#2F5D7E", lw=1.6)
     box(ax, 9.95, 3.95, 1.7, 1.0, "河湾变\n110 kV", fc="#EAF2F8", ec="#2F5D7E", lw=1.6)
-    box(ax, 2.45, 3.95, 2.1, 1.0, "墩南线\nPZXL-00092", fc="#F3F8F3", ec="#4E7D4E", lw=1.5)
-    box(ax, 7.45, 3.95, 2.1, 1.0, "河炮线\nPZXL-00161", fc="#F3F8F3", ec="#4E7D4E", lw=1.5)
+    box(ax, 2.45, 3.95, 2.1, 1.0, "墩南线", fc="#F3F8F3", ec="#4E7D4E", lw=1.5)
+    box(ax, 7.45, 3.95, 2.1, 1.0, "河炮线", fc="#F3F8F3", ec="#4E7D4E", lw=1.5)
 
     arrow(ax, 2.05, 4.45, 2.45, 4.45, "原供电关系", color="#2F5D7E", dy=0.28)
     arrow(ax, 9.95, 4.45, 9.55, 4.45, "受端供电关系", color="#2F5D7E", dy=0.28)
 
     # 高光伏净外送单元。
-    box(ax, 3.05, 2.0, 2.1, 1.05, "高光伏供电单元\nPV出力 > 本地负荷\n形成净外送 G", fc="#FFF7E6", ec="#B7791F", lw=1.5)
+    box(ax, 3.05, 2.0, 2.1, 1.05, "高光伏供电单元\n光伏出力高于本地负荷\n形成净外送功率", fc="#FFF7E6", ec="#B7791F", lw=1.5)
     arrow(ax, 4.10, 3.95, 4.10, 3.05, "反向功率上送", color="#B7791F", dy=0.0)
 
     # 现有联络。
-    box(ax, 5.25, 3.95, 1.5, 1.0, "TIE-002\n既有联络", fc="#FCEFEF", ec="#A13D3D", lw=1.6)
+    box(ax, 5.25, 3.95, 1.5, 1.0, "墩南—河炮\n既有联络", fc="#FCEFEF", ec="#A13D3D", lw=1.6)
     arrow(ax, 4.55, 4.45, 5.25, 4.45, "供电边界\n重构", color="#A13D3D", dy=0.38)
     arrow(ax, 6.75, 4.45, 7.45, 4.45, "跨站转移", color="#A13D3D", dy=0.28)
 
@@ -73,17 +74,17 @@ def build(out: Path) -> None:
 
     # 两级规划逻辑。
     box(ax, 3.15, 0.25, 5.7, 0.95,
-        "两级规划：优先利用既有TIE-002；若 G > 既有联络可转移能力，\n再计算新增联络所需最小有效容量并筛选河东/河镇等候选受端馈线",
+        "两级规划：优先利用墩南—河炮既有联络；既有能力不足时，\n再计算新增联络所需最小有效容量，并筛选河东、河镇等候选受端馈线",
         fc="#F7F8FA", ec="#6B7280", lw=1.2, fs=10.0)
 
     ax.text(6.0, 5.55,
             "规划约束：保持10 kV单电源辐射运行；禁止两个110 kV电源经10 kV网络直接并列",
             ha="center", va="center", fontsize=10.5,
             bbox=dict(boxstyle="round,pad=0.35", fc="white", ec="#6B7280", lw=1.0))
-    ax.set_title("TIE-002高光伏跨站供电边界重构示意", pad=12, fontweight="bold", fontsize=14)
+    ax.set_title("高光伏跨站供电边界重构示意", pad=12, fontweight="bold", fontsize=14)
 
     out.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out, bbox_inches="tight", facecolor="white")
+    fig.savefig(out, bbox_inches="tight", pad_inches=0.10, facecolor="white")
     plt.close(fig)
 
 

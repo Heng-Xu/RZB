@@ -88,6 +88,17 @@ def _set_exact_line_spacing(paragraph, line_twips: int = BODY_LINE_TWIPS) -> Non
     spacing.set(qn("w:lineRule"), "exact")
 
 
+def _set_at_least_line_spacing(paragraph, line_twips: int) -> None:
+    """公式段落采用最小行距，避免分式、根号及上下标被裁切。"""
+    ppr = paragraph._p.get_or_add_pPr()
+    spacing = ppr.find(qn("w:spacing"))
+    if spacing is None:
+        spacing = OxmlElement("w:spacing")
+        ppr.append(spacing)
+    spacing.set(qn("w:line"), str(line_twips))
+    spacing.set(qn("w:lineRule"), "atLeast")
+
+
 def set_first_line_indent(paragraph, chars: int = 2) -> None:
     ppr = paragraph._p.get_or_add_pPr()
     ind = ppr.find(qn("w:ind"))
@@ -385,10 +396,36 @@ def _estimate_toc_pages(md_path: Path, entries: list[dict[str, object]]) -> list
     return entry_pages
 
 
+def _pandoc_inline_math_element(latex: str):
+    """将LaTeX片段转换为可嵌入正文段落的Word原生行内公式。"""
+    with tempfile.TemporaryDirectory(prefix="report-inline-math-") as tmp_dir:
+        tmp = Path(tmp_dir)
+        source = tmp / "inline.md"
+        output = tmp / "inline.docx"
+        source.write_text(f"${latex.strip()}$\n", encoding="utf-8")
+        subprocess.run(["pandoc", "--from", "markdown", "--to", "docx", str(source), "-o", str(output)],
+                       check=True, capture_output=True, text=True)
+        with ZipFile(output) as archive:
+            root = etree.fromstring(archive.read("word/document.xml"))
+        math = root.find(f".//{{{MATH_NS}}}oMath")
+        if math is None:
+            raise RuntimeError(f"未生成Word行内公式：{latex}")
+        return deepcopy(math)
+
+
 def _add_runs(paragraph, text: str, size: float, *, bold: bool = False, cjk: str = CJK):
+    marker = re.compile(r"\[\[MATH:(.+?)\]\]")
     for segment, segment_bold in _split_bold(_clean_inline(text), bold):
-        run = paragraph.add_run(segment)
-        set_run_fonts(run, size, bold=segment_bold, cjk=cjk)
+        cursor = 0
+        for match in marker.finditer(segment):
+            if match.start() > cursor:
+                run = paragraph.add_run(segment[cursor:match.start()])
+                set_run_fonts(run, size, bold=segment_bold, cjk=cjk)
+            paragraph._p.append(_pandoc_inline_math_element(match.group(1)))
+            cursor = match.end()
+        if cursor < len(segment):
+            run = paragraph.add_run(segment[cursor:])
+            set_run_fonts(run, size, bold=segment_bold, cjk=cjk)
 
 
 def add_paragraph(
@@ -807,7 +844,9 @@ def _add_display_math(doc: Document, latex: str, equation_number: str | None = N
             width_cm = image.width / 300.0 * 2.54
             height_pt = image.height / 300.0 * 72.0
         # 公式段落高度按渲染图实际高度设置，避免分式、求和及上下标被固定行距裁切。
-        _set_exact_line_spacing(paragraph, int(max(760, (height_pt + 12.0) * 20)))
+        _set_at_least_line_spacing(paragraph, int(max(960, (height_pt + 22.0) * 20)))
+        paragraph.paragraph_format.space_before = Pt(4)
+        paragraph.paragraph_format.space_after = Pt(4)
         # 预留右侧公式编号空间，避免宽公式把“（x-x）”拆成两行。
         width_cm = min(10.4, max(2.0, width_cm))
         equation_run = paragraph.add_run()

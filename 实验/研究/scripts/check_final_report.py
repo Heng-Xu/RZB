@@ -96,10 +96,10 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
     required_semantics = [
         "2022—2025年规划期累计在役等年成本",
         "存量容量豁免",
-        "Rcap只约束规划期新增",
+        "弹性容载比规划控制值只约束规划期新增",
         "110 kV线路统计负载余度",
         "样本内一致性检查",
-        "本报告不虚构具体AHP权重值",
+        "本报告不虚构具体层次分析法权重值",
         "不能形成具有外推能力的连续四维区间",
     ]
     for phrase in required_semantics:
