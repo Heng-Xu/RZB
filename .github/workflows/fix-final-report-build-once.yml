@@ -1,0 +1,69 @@
+name: fix final report build once
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/fix-final-report-build-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: model-v3.2-autonomous-review
+          fetch-depth: 0
+
+      - name: Patch report source and figure generator
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          report = Path('研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md')
+          text = report.read_text(encoding='utf-8-sig')
+          replacements = {
+              '当$P_k<0$时': '当净有功功率小于0时',
+              '定义二元变量$x_k$表示供电归属：$x_k=0$表示仍由原110 kV变电站供电，$x_k=1$表示通过供电边界重构调整至相邻变电站供电范围': '定义二元供电归属变量：取0表示仍由原110 kV变电站供电，取1表示通过供电边界重构调整至相邻变电站供电范围',
+              '供电单元变量$x_k$用于建立可扩展的局部优化框架': '供电归属变量用于建立可扩展的局部优化框架',
+              '设送端、受端路径规划有效容量分别为$S_{e,D}^{\\mathrm{eff}}$和$S_{e,R}^{\\mathrm{eff}}$，受端站剩余反向承接能力为$H_R$，则既有联络可转移功率满足：': '设送端路径规划有效容量、受端路径规划有效容量和受端站剩余反向承接能力分别如式（5-2）所示，则既有联络可转移功率满足：',
+              '式中，$\\beta$为反向功率通道控制系数。本项目专题分析按给定条件取$\\beta=0.80$。': '式中，β为反向功率通道控制系数。本项目专题分析按给定条件取β=0.80。',
+              '若高光伏场景下净富余功率$G$超过既有联络可承接能力，则剩余需求为：': '若高光伏场景下的净富余功率超过既有联络可承接能力，则剩余需求为：',
+              '当$G_{\\mathrm{res}}>0$且相邻站仍有承接空间时，进入新增联络层。': '当仍存在正的剩余转移需求且相邻站仍有承接空间时，进入新增联络层。',
+          }
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'expected report text not found: {old}')
+              text = text.replace(old, new)
+          if '$' in text.replace('$$', ''):
+              raise SystemExit('inline LaTeX remains in report source after patch')
+          report.write_text(text, encoding='utf-8')
+
+          fig = Path('实验/研究/scripts/build_final_report_figures.py')
+          ftext = fig.read_text(encoding='utf-8')
+          old = '    section_tie_figure(out / "图6-1_TIE002分段联络示意.png")'
+          new = '    from build_10kv_reverse_transfer_figure import build as build_reverse_transfer_figure\n    build_reverse_transfer_figure(out / "图6-1_TIE002分段联络示意.png")'
+          if old not in ftext:
+              raise SystemExit('expected legacy figure call not found')
+          ftext = ftext.replace(old, new)
+          fig.write_text(ftext, encoding='utf-8')
+          PY
+
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md' \
+                  '实验/研究/scripts/build_final_report_figures.py'
+          if git diff --cached --quiet; then
+            echo 'No patch changes.'
+          else
+            git commit -m '修复终稿行内公式与10kV图件构建 [fix-report-build]'
+            git push origin HEAD:model-v3.2-autonomous-review
+          fi
