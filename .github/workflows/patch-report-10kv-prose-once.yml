@@ -1,0 +1,67 @@
+name: patch report 10kv prose once
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/patch-report-10kv-prose-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: model-v3.2-autonomous-review
+          fetch-depth: 0
+
+      - name: Remove duplicated 10kV prose and make normalization stable
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md')
+          text = path.read_text(encoding='utf-8-sig')
+
+          old1 = '10 kV局部互济在本研究中主要服务于高光伏条件下的反向承载压力再分配。规划决策遵循“既有联络优先、既有能力不足后再考虑新增联络”的两级逻辑：第一层优先利用已经形成物理联络条件的通道调整供电边界；第二层仅对既有联络无法承接的剩余反向功率，计算新增联络所需的最小有效容量，并筛选具备受端容量条件的相邻馈线。在约束满足的前提下，模型采用分层目标：首先最大化送端反向功率削减量，其次优先利用既有联络以减少新增工程，最后对仍需转移的剩余功率最小化新增联络有效容量。在约束满足的前提下，模型采用分层目标：首先最大化送端反向功率削减量，其次优先利用既有联络以减少新增工程，最后对仍需转移的剩余功率最小化新增联络有效容量。'
+          new1 = '10 kV局部互济在本研究中主要服务于高光伏条件下的反向承载压力再分配。规划采用“既有联络优先、既有能力不足再考虑新增联络”的两级策略：第一层利用已形成物理联络条件的通道调整供电边界；第二层针对既有联络无法承接的剩余反向功率，计算新增联络的最小有效容量，并筛选具备受端容量条件的相邻馈线。模型目标按工程优先级依次为：最大化送端反向功率削减量、优先利用既有联络减少新增工程、对剩余需求最小化新增联络有效容量。'
+
+          old2 = '式（5-4）给出了由剩余有功转移需求反推新增联络容量的统一换算关系；当前案例取cosφtr≈1.0，因此所得MVA值可近似作为相应MW有功转移需求在80%控制条件下的有效容量下限。式（5-5）按高光伏反向功率功率因数近似1.0进行规划级容量换算，因此所得MVA值可作为相应有功转移需求的有效容量下限。该结果用于确定新增联络的容量等级和候选受端馈线，不直接等同于具体线路型号、线路长度或工程投资。由于当前缺少候选接入点GIS坐标和线路廊道，本研究不虚构新建线路的最短路径和工程长度；若后续进入工程选线阶段，应进一步结合接入点—站端全过程径、电压偏差、短路电流、保护配置和建设条件开展专项设计。'
+          new2 = '式（5-4）给出了由剩余有功转移需求反推新增联络容量的统一换算关系。当前案例取cosφtr≈1.0，因此所得MVA值可近似作为相应MW有功转移需求在80%控制条件下的有效容量下限。上述容量下限用于确定新增联络的容量等级和候选受端馈线，不直接等同于具体线路型号、线路长度或工程投资。由于当前缺少候选接入点GIS坐标和线路廊道，本研究不虚构新建线路的最短路径和工程长度；若后续进入工程选线阶段，应进一步结合接入点—站端全过程径、电压偏差、短路电流、保护配置和建设条件开展专项设计。'
+
+          old3 = '为验证10 kV层面的跨站反向功率转移方法，选取墩集变墩南线PZXL-00092与河湾变河炮线PZXL-00161之间的TIE-002作为典型案例。墩南侧源端至联络点的规划路径约2.25 km，导线基准热限为8.6603 MVA；考虑馈线485 A运行允许值后，规划有效容量取较严的8.4004 MVA。河炮侧联络点至站端路径约2.75 km，导线基准热限为9.5263 MVA，低于馈线运行允许上限10.3057 MVA，因此受端路径规划有效容量取9.5263 MVA。河炮线现有光伏汇总为0 kVA；同时，由于缺少与墩南线光伏峰值严格同步的受端负荷断面，容量筛查不利用河炮线本地负荷抵消转移功率，而按跨站转移功率单独占用受端通道处理，属于偏保守口径。高光伏反向转移按功率因数近似1.0进行规划级容量换算，因此本案例中MVA通道限值可近似映射为MW有功转移上限。河炮线现有光伏汇总为0 kVA；同时，由于缺少与墩南线光伏峰值严格同步的受端负荷断面，容量筛查不利用河炮线本地负荷抵消转移功率，而按跨站转移功率单独占用受端通道处理，属于偏保守口径。高光伏反向转移按功率因数近似1.0进行规划级容量换算，因此本案例中MVA通道限值可近似映射为MW有功转移上限。'
+          new3 = '为验证10 kV层面的跨站反向功率转移方法，选取墩集变墩南线PZXL-00092与河湾变河炮线PZXL-00161之间的TIE-002作为典型案例。墩南侧源端至联络点的规划路径约2.25 km，导线基准热限为8.6603 MVA；考虑馈线485 A运行允许值后，规划有效容量取较严的8.4004 MVA。河炮侧联络点至站端路径约2.75 km，导线基准热限为9.5263 MVA，低于馈线运行允许上限10.3057 MVA，受端路径规划有效容量据此取9.5263 MVA。河炮线现有光伏汇总为0 kVA。由于缺少与墩南线光伏峰值严格同步的受端负荷断面，容量筛查不利用河炮线本地负荷抵消转移功率，而将跨站转移功率按全额占用受端通道处理，属于偏保守口径。高光伏反向转移按功率因数近似1.0进行规划级容量换算，因此本案例中MVA通道限值可近似映射为MW有功转移上限。'
+
+          for old, new in [(old1, new1), (old2, new2), (old3, new3)]:
+              if old not in text:
+                  raise SystemExit('expected duplicated paragraph not found; source changed unexpectedly')
+              text = text.replace(old, new, 1)
+
+          banned = [
+              '在约束满足的前提下，模型采用分层目标：首先最大化送端反向功率削减量，其次优先利用既有联络以减少新增工程，最后对仍需转移的剩余功率最小化新增联络有效容量。在约束满足的前提下',
+              '式（5-5）按高光伏反向功率功率因数近似1.0进行规划级容量换算',
+              '高光伏反向转移按功率因数近似1.0进行规划级容量换算，因此本案例中MVA通道限值可近似映射为MW有功转移上限。河炮线现有光伏汇总为0 kVA',
+          ]
+          for item in banned:
+              if item in text:
+                  raise SystemExit(f'duplicate residue remains: {item}')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+          git diff --check
+
+      - name: Commit report prose cleanup
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md'
+          git commit -m '清理10kV章节重复表述并校正公式引用'
+          git fetch origin model-v3.2-autonomous-review
+          git rebase --autostash origin/model-v3.2-autonomous-review
+          git push origin HEAD:model-v3.2-autonomous-review
