@@ -109,7 +109,7 @@ def concept_figure(out: Path) -> None:
 
 
 def indicator_figure(indicators: pd.DataFrame, out: Path) -> None:
-    d = indicators.sort_values("region_id")
+    d = indicators[indicators["region_id"].isin(["QX-00001", "QX-00005"])].sort_values("region_id")
     labels = d["region_id"].tolist()
     specs = [
         ("source_load_scale_ratio", "现状源荷规模比", "—"),
@@ -136,7 +136,7 @@ def indicator_figure(indicators: pd.DataFrame, out: Path) -> None:
         ax.set_title(title)
         ax.grid(axis="x", color="#E4E7EB", lw=0.8)
         ax.set_xlabel(unit)
-    fig.suptitle("典型片区核心指标实际值", fontweight="bold")
+    fig.suptitle("形成数值型Rcap建议片区核心指标实际值", fontweight="bold")
     save(fig, out)
 
 
