@@ -26,8 +26,7 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add \
             '研究报告/终稿/国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-研究报告终稿.md' \
-            tools/build_report_docx.py \
-            .github/workflows/report-final-build.yml
+            tools/build_report_docx.py
           if git diff --cached --quiet; then
             echo 'No patch required.'
             exit 0
