@@ -1,5 +1,6 @@
 name: export final report once
 
+# Formula-rendering-fixed final export, 2026-09-17.
 on:
   push:
     branches: [model-v3.2-autonomous-review]
@@ -20,7 +21,7 @@ jobs:
       - name: Upload final report package
         uses: actions/upload-artifact@v4
         with:
-          name: final-report-package
+          name: final-report-package-formula-fixed
           if-no-files-found: error
           retention-days: 7
           path: |
