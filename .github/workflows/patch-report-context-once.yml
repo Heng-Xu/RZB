@@ -1,0 +1,47 @@
+name: patch report context once
+
+on:
+  push:
+    branches: [model-v3.2-autonomous-review]
+    paths:
+      - '.github/workflows/patch-report-context-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Expand PDF diagnostic page context
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('.github/workflows/report-final-build.yml')
+          text = p.read_text(encoding='utf-8')
+          old = 'for p in 24 25 26; do'
+          new = 'for p in 24 25 26 33 34 35; do'
+          if old not in text:
+              if new not in text:
+                  raise SystemExit('target page-context loop not found')
+          else:
+              text = text.replace(old, new, 1)
+          p.write_text(text, encoding='utf-8')
+          Path('.github/workflows/patch-report-context-once.yml').unlink()
+          PY
+          git diff --check
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m '扩展终稿PDF关键页诊断范围'
+          git fetch origin model-v3.2-autonomous-review
+          git rebase --autostash origin/model-v3.2-autonomous-review
+          git push origin HEAD:model-v3.2-autonomous-review
