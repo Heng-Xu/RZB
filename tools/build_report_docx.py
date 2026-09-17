@@ -711,6 +711,9 @@ def _add_image(doc: Document, md_path: Path, alt_text: str, image_ref: str) -> N
     paragraph = doc.add_paragraph(style="图片" if "图片" in [s.name for s in doc.styles] else "Normal")
     paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     _set_no_indent(paragraph)
+    # 图件与图题作为一个版面单元，避免分页时出现只有图片、图题落到下一页的视觉空白误判。
+    paragraph.paragraph_format.keep_with_next = True
+    paragraph.paragraph_format.keep_together = True
     run = paragraph.add_run()
     run.add_picture(str(image_path), width=Cm(13.8))
     caption = add_paragraph(
