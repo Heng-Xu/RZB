@@ -92,7 +92,7 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
     if snake:
         issues.append(f"正文含程序式字段：{snake}")
 
-    # 2. 二次科学审查形成的核心口径。
+    # 2. 科学审查形成的核心口径。
     required_semantics = [
         "2022—2025年规划期累计在役等年成本",
         "存量容量豁免",
@@ -122,7 +122,7 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
 
     # 3. 图、表、公式与引用。
     figure_refs = re.findall(r"!\[(图\s*\d+-\d+[^\]]*)\]\(([^)]+)\)", source)
-    expected_figure_numbers = ["1-1", "2-1", "3-1", "4-1", "4-2", "5-1"]
+    expected_figure_numbers = ["1-1", "2-1", "3-1", "4-1", "4-2", "5-1", "6-1"]
     actual_figure_numbers = [re.search(r"\d+-\d+", caption).group(0) for caption, _ in figure_refs]
     if actual_figure_numbers != expected_figure_numbers:
         issues.append(f"图编号异常：{actual_figure_numbers}")
@@ -134,7 +134,7 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
             issues.append(f"图{number}未被正文明确引用")
 
     captions = re.findall(r"^\*\*表\s*(\d+-\d+)", source, re.M)
-    expected_tables = ["3-1", "3-2", "4-1", "4-2", "5-1", "5-2", "6-1", "6-2"]
+    expected_tables = ["3-1", "3-2", "4-1", "4-2", "5-1", "5-2", "6-1", "6-2", "6-3"]
     if captions != expected_tables:
         issues.append(f"表编号异常：{captions}")
     for number in expected_tables:
@@ -229,10 +229,10 @@ def run_check(root: Path, markdown: Path, docx: Path, pdf: Path, output_dir: Pat
     math_count = len(xml_root.findall(".//{http://schemas.openxmlformats.org/officeDocument/2006/math}oMath"))
     if math_count != 13:
         issues.append(f"Word原生公式数量应为13，实际为{math_count}")
-    if document_xml.count("<w:drawing") != 6:
-        issues.append("Word嵌入图件数量不是6")
-    if len(word.tables) != 8:
-        issues.append(f"Word表格数量应为8，实际为{len(word.tables)}")
+    if document_xml.count("<w:drawing") != 7:
+        issues.append("Word嵌入图件数量不是7")
+    if len(word.tables) != 9:
+        issues.append(f"Word表格数量应为9，实际为{len(word.tables)}")
     if "\\frac" in document_xml or "\\Delta" in document_xml or "$S_" in document_xml:
         issues.append("Word存在未转换公式源码")
     for number in expected_equations:
