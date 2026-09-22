@@ -8,6 +8,7 @@
 python -m rebuild_2026.official_annual
 python -m rebuild_2026.asset_2025
 python -m rebuild_2026.feeder_2025
+python -m rebuild_2026.cost_references
 python -m rebuild_2026.hourly_source_profile
 python -m rebuild_2026.pizhou_mapping_candidates
 python -m rebuild_2026.pizhou_scenarios
