@@ -13,6 +13,7 @@ from .official_annual import LAYERS, STUDY_DIR
 
 
 SOURCE = STUDY_DIR / "data/tuomin/电网建模数据_Agent整合版_V1.2/110（35）kv设备明细.xlsx"
+STATS_SOURCE = STUDY_DIR / "data/tuomin/电网建模数据_Agent整合版_V1.2/2025设备负载统计表.xlsx"
 OUTPUT_DIR = Path(__file__).resolve().parent / "source_audit"
 SHEETS = {
     110: ("110千伏变电站1", 14, 15, 17),
@@ -90,6 +91,43 @@ def reconcile_capacity(assets: list[dict], annual_csv: Path = ANNUAL_CSV) -> lis
     return results
 
 
+def reconcile_station_stats(assets: list[dict], stats_source: Path = STATS_SOURCE) -> list[dict]:
+    """逐站比较两份 2025 原表，避免总量差额掩盖站码或容量错位。"""
+    asset_stations = defaultdict(float)
+    for row in assets:
+        asset_stations[(row["region_id"], row["voltage_kv"], row["station_id"])] += row["capacity_mva"]
+    workbook = load_workbook(stats_source, read_only=True, data_only=True)
+    stats_stations = {}
+    try:
+        for source_row, cells in enumerate(
+            workbook["变电站1"].iter_rows(min_row=2, max_row=550, values_only=True), 2
+        ):
+            key = (cells[2], cells[1], cells[3])
+            if key[:2] in LAYERS and cells[3]:
+                stats_stations[key] = (float(cells[4]), source_row)
+    finally:
+        workbook.close()
+    rows = []
+    for key in sorted(set(asset_stations) | set(stats_stations)):
+        asset_capacity = asset_stations.get(key)
+        stats_entry = stats_stations.get(key)
+        stats_capacity = stats_entry[0] if stats_entry else None
+        rows.append(
+            {
+                "region_id": key[0],
+                "voltage_kv": key[1],
+                "station_id": key[2],
+                "asset_capacity_mva": asset_capacity if asset_capacity is not None else "",
+                "load_stats_capacity_mva": stats_capacity if stats_capacity is not None else "",
+                "asset_minus_load_stats_mva": round(asset_capacity - stats_capacity, 9)
+                if asset_capacity is not None and stats_capacity is not None else "",
+                "station_status": "match" if asset_capacity == stats_capacity else "source_difference",
+                "load_stats_source_row": stats_entry[1] if stats_entry else "",
+            }
+        )
+    return rows
+
+
 def write_csv(rows: list[dict], target: Path) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
     with target.open("w", encoding="utf-8-sig", newline="") as handle:
@@ -106,9 +144,11 @@ def main() -> None:
     args = parser.parse_args()
     assets = read_assets(args.source)
     checks = reconcile_capacity(assets, args.annual)
+    station_checks = reconcile_station_stats(assets)
     write_csv(assets, args.output_dir / "asset_transformers_2025.csv")
     write_csv(checks, args.output_dir / "asset_capacity_reconciliation_2025.csv")
-    print(f"已写入 {len(assets)} 条设备行、{len(checks)} 条容量核对记录")
+    write_csv(station_checks, args.output_dir / "asset_station_source_bridge_2025.csv")
+    print(f"已写入 {len(assets)} 条设备行、{len(checks)} 条分层容量核对、{len(station_checks)} 条站级核对")
 
 
 if __name__ == "__main__":

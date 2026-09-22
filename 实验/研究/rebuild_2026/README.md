@@ -11,8 +11,10 @@ python -m rebuild_2026.feeder_2025
 python -m rebuild_2026.cost_references
 python -m rebuild_2026.hourly_source_profile
 python -m rebuild_2026.pizhou_mapping_candidates
+python -m rebuild_2026.pizhou_mapping_evidence
+python -m rebuild_2026.city_mapping_audit
 python -m rebuild_2026.pizhou_scenarios
 python -m pytest -q rebuild_2026/tests
 ```
 
-输入核对与未闭合问题见 [`source_audit/2025-hourly-findings.md`](source_audit/2025-hourly-findings.md)。当前不得将邳州候选列映射、市区实名站映射或设备/年度容量差额当作已经核准；因此成本优化、正式容载比推荐和报告重写尚未开始。
+输入核对与未闭合问题见 [`source_audit/2025-hourly-findings.md`](source_audit/2025-hourly-findings.md)。邳州 56 个有效逐时列已完成站/主变跨源复核，年底新站 2 列无可用于主变编号判别的负荷；市区只匹配 24/30 座在役 110 kV 站，另有 632 MVA 资产缺可核定时序。市区年度容量还有 13 MVA 未解释差额。因此两地统一成本优化、正式容载比推荐和报告重写尚未开始。

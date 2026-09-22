@@ -67,14 +67,29 @@ def build_provisional_scenarios(
     mapping_hash = sha256(Path(mapping_source).read_bytes()).hexdigest()
     rows = []
     for voltage, observed in series.items():
+        by_time = dict(observed)
+        missing = sorted(
+            datetime(2025, 1, 1) + timedelta(hours=hour)
+            for hour in range(8760)
+            if datetime(2025, 1, 1) + timedelta(hours=hour) not in by_time
+        )
+        gap_time = missing[0]
+        gap_previous = by_time[gap_time - timedelta(hours=1)]
+        gap_next = by_time[gap_time + timedelta(hours=1)]
+        gap_estimate = round((gap_previous + gap_next) / 2, 6)
+        filled = observed + [(gap_time, gap_estimate)]
         forward = max(observed, key=lambda item: item[1])
         reverse = min(observed, key=lambda item: item[1])
+        filled_forward = max(filled, key=lambda item: item[1])
+        filled_reverse = min(filled, key=lambda item: item[1])
         forward_h95_times = [
             time for time, power in observed if power >= 0.95 * forward[1]
         ]
         reverse_h95_times = [
             time for time, power in observed if power <= 0.95 * reverse[1]
         ]
+        filled_forward_h95 = sum(power >= 0.95 * filled_forward[1] for _, power in filled)
+        filled_reverse_h95 = sum(power <= 0.95 * filled_reverse[1] for _, power in filled)
         rows.append(
             {
                 "region_id": "QX-00005",
@@ -83,6 +98,14 @@ def build_provisional_scenarios(
                 "scenario_status": "provisional",
                 "valid_hours": len(observed),
                 "missing_aggregate_hours": 8760 - len(observed),
+                "missing_hour": gap_time.isoformat(sep=" "),
+                "missing_hour_previous_mw": gap_previous,
+                "missing_hour_next_mw": gap_next,
+                "missing_hour_linear_estimate_mw": gap_estimate,
+                "forward_h95_linear_fill": filled_forward_h95,
+                "reverse_h95_linear_fill": filled_reverse_h95,
+                "linear_fill_changes_peak": filled_forward[1] != forward[1] or filled_reverse[1] != reverse[1],
+                "linear_fill_changes_h95": filled_forward_h95 != len(forward_h95_times) or filled_reverse_h95 != len(reverse_h95_times),
                 "excluded_sparse_station": "BDZ-00056" if voltage == 110 else "",
                 "forward_peak_time": forward[0].isoformat(sep=" "),
                 "forward_peak_mw": forward[1],

@@ -22,11 +22,19 @@ EXPECTED_2025 = {datetime(2025, 1, 1) + timedelta(hours=i) for i in range(8760)}
 def _metrics(times: list[datetime], values: list[float | None]) -> dict:
     unique_times = set(times)
     missing_times = EXPECTED_2025 - unique_times
+    ordered_missing = sorted(missing_times)
     longest_missing_run = 0
     current_run = 0
+    current_start = longest_start = longest_end = None
     for hour in sorted(EXPECTED_2025):
-        current_run = current_run + 1 if hour in missing_times else 0
-        longest_missing_run = max(longest_missing_run, current_run)
+        if hour in missing_times:
+            current_start = hour if current_run == 0 else current_start
+            current_run += 1
+            if current_run > longest_missing_run:
+                longest_missing_run = current_run
+                longest_start, longest_end = current_start, hour
+        else:
+            current_run = 0
     numeric = [value for value in values if value is not None]
     forward_peak = max((value for value in numeric if value > 0), default=0.0)
     reverse_peak = max((-value for value in numeric if value < 0), default=0.0)
@@ -35,7 +43,10 @@ def _metrics(times: list[datetime], values: list[float | None]) -> dict:
         "source_rows": len(times),
         "unique_hours": len(unique_times),
         "missing_hours": len(missing_times),
+        "missing_mask_sha256": sha256("\n".join(time.isoformat() for time in ordered_missing).encode()).hexdigest(),
         "longest_missing_run_hours": longest_missing_run,
+        "longest_missing_start": longest_start.isoformat(sep=" ") if longest_start else "",
+        "longest_missing_end": longest_end.isoformat(sep=" ") if longest_end else "",
         "duplicate_hours": len(times) - len(unique_times),
         "missing_values": len(values) - len(numeric),
         "first_missing_value_time": next(
@@ -47,6 +58,7 @@ def _metrics(times: list[datetime], values: list[float | None]) -> dict:
         "zero_hours": sum(value == 0 for value in numeric),
         "forward_peak_mw": round(forward_peak, 9),
         "reverse_peak_mw": round(reverse_peak, 9),
+        "observed_min_mw": round(min(numeric), 9) if numeric else "",
         "forward_h95_observed": sum(
             value is not None and value >= 0.95 * forward_peak
             for value in values

@@ -33,5 +33,10 @@ def test_city_archive_profiles_all_members_without_trusting_excel_dimension():
     assert {r["voltage_assignment"] for r in rows} == {"unverified"}
     assert {r["unique_hours"] for r in rows} == {8339, 8531}
     assert max(r["longest_missing_run_hours"] for r in rows) == 120
+    common = [r for r in rows if r["missing_hours"] == 421]
+    assert len(common) == 32
+    assert len({r["missing_mask_sha256"] for r in common}) == 1
+    assert {r["longest_missing_start"] for r in common} == {"2025-11-17 00:00:00"}
+    assert {r["longest_missing_end"] for r in common} == {"2025-11-21 23:00:00"}
     assert sum(bool(r["duplicate_of"]) for r in rows) == 1
     assert any(r["all_zero"] for r in rows)

@@ -28,4 +28,9 @@ def test_synchronized_2025_scenarios_keep_voltage_layers_separate():
     assert by_voltage[110]["reverse_h95_observed"] == 8
     assert by_voltage[35]["reverse_h95_observed"] == 10
     assert by_voltage[110]["excluded_sparse_station"] == "BDZ-00056"
+    assert by_voltage[110]["missing_hour"] == "2025-03-09 02:00:00"
+    assert by_voltage[110]["missing_hour_linear_estimate_mw"] == pytest.approx(304.08)
+    assert by_voltage[35]["missing_hour_linear_estimate_mw"] == pytest.approx(46.82)
+    assert all(not row["linear_fill_changes_peak"] for row in rows)
+    assert all(not row["linear_fill_changes_h95"] for row in rows)
     assert {r["scenario_status"] for r in rows} == {"provisional"}
