@@ -1,0 +1,126 @@
+"""用候选映射试算邳州 2025 年同步场景；结果不得直接用于正式推荐。"""
+
+import argparse
+import csv
+from datetime import datetime, timedelta
+from hashlib import sha256
+from pathlib import Path
+
+from openpyxl import load_workbook
+
+
+STUDY_DIR = Path(__file__).resolve().parents[1]
+SOURCE = STUDY_DIR / "data/tuomin/电网建模数据_Agent整合版_V1.2/邳州主变负载率.xlsx"
+AUDIT_DIR = Path(__file__).resolve().parent / "source_audit"
+
+
+def _longest_run(times: list[datetime]) -> int:
+    longest = current = 0
+    previous = None
+    for time in times:
+        current = current + 1 if previous is not None and time - previous == timedelta(hours=1) else 1
+        longest = max(longest, current)
+        previous = time
+    return longest
+
+
+def build_provisional_scenarios(
+    hourly_source: Path,
+    mapping_source: Path,
+    annual_source: Path,
+) -> list[dict]:
+    with Path(mapping_source).open(encoding="utf-8-sig", newline="") as handle:
+        mapping = list(csv.DictReader(handle))
+    columns = {
+        voltage: [
+            int(row["source_column"]) - 1
+            for row in mapping
+            if int(row["candidate_voltage_kv"]) == voltage
+            and row["candidate_station_id"] != "BDZ-00056"
+        ]
+        for voltage in (110, 35)
+    }
+    with Path(annual_source).open(encoding="utf-8-sig", newline="") as handle:
+        official = {
+            int(row["voltage_kv"]): float(row["reported_downward_load_mw"])
+            for row in csv.DictReader(handle)
+            if row["region_id"] == "QX-00005" and int(row["year"]) == 2025
+        }
+    workbook = load_workbook(hourly_source, read_only=True, data_only=True)
+    series: dict[int, list[tuple[datetime, float]]] = {110: [], 35: []}
+    try:
+        for cells in workbook["Sheet3"].iter_rows(min_row=3, values_only=True):
+            raw_time = str(cells[0] or "")
+            if not raw_time.startswith("2025-"):
+                continue
+            time = datetime.fromisoformat(raw_time)
+            for voltage in (110, 35):
+                values = [cells[index] for index in columns[voltage]]
+                if all(value not in (None, "") for value in values):
+                    series[voltage].append(
+                        (time, round(sum(float(value) for value in values), 6))
+                    )
+    finally:
+        workbook.close()
+
+    source_hash = sha256(Path(hourly_source).read_bytes()).hexdigest()
+    mapping_hash = sha256(Path(mapping_source).read_bytes()).hexdigest()
+    rows = []
+    for voltage, observed in series.items():
+        forward = max(observed, key=lambda item: item[1])
+        reverse = min(observed, key=lambda item: item[1])
+        forward_h95_times = [
+            time for time, power in observed if power >= 0.95 * forward[1]
+        ]
+        reverse_h95_times = [
+            time for time, power in observed if power <= 0.95 * reverse[1]
+        ]
+        rows.append(
+            {
+                "region_id": "QX-00005",
+                "voltage_kv": voltage,
+                "year": 2025,
+                "scenario_status": "provisional",
+                "valid_hours": len(observed),
+                "missing_aggregate_hours": 8760 - len(observed),
+                "excluded_sparse_station": "BDZ-00056" if voltage == 110 else "",
+                "forward_peak_time": forward[0].isoformat(sep=" "),
+                "forward_peak_mw": forward[1],
+                "reverse_peak_time": reverse[0].isoformat(sep=" "),
+                "reverse_peak_mw": -reverse[1],
+                "forward_h95_observed": len(forward_h95_times),
+                "reverse_h95_observed": len(reverse_h95_times),
+                "forward_d95_max_run_hours": _longest_run(forward_h95_times),
+                "reverse_d95_max_run_hours": _longest_run(reverse_h95_times),
+                "official_2025_downward_peak_mw": official[voltage],
+                "hourly_minus_official_peak_mw": round(forward[1] - official[voltage], 6),
+                "hourly_source_sha256": source_hash,
+                "mapping_source_sha256": mapping_hash,
+            }
+        )
+    return rows
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="试算邳州 2025 年同步静态场景")
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=AUDIT_DIR / "pizhou_2025_scenarios_provisional.csv",
+    )
+    args = parser.parse_args()
+    rows = build_provisional_scenarios(
+        SOURCE,
+        AUDIT_DIR / "pizhou_2025_mapping_candidates.csv",
+        AUDIT_DIR / "official_annual.csv",
+    )
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    with args.output.open("w", encoding="utf-8-sig", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+    print(f"已写入 {len(rows)} 条试算场景：{args.output}")
+
+
+if __name__ == "__main__":
+    main()
