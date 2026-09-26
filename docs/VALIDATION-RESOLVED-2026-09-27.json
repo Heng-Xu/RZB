@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "date": "2026-09-27",
+  "original_plan_full_reproduction": "6 paths; all costs and 12 annual matrices match",
+  "annual_recommendation_independent_audit": "12 rows PASS",
+  "cost_sensitivity_independent_audit": {
+    "paths": 8,
+    "checks": 2731,
+    "status": "PASS"
+  },
+  "tests": {
+    "passed": 72,
+    "failed": 0,
+    "warnings": 4,
+    "elapsed_seconds": 174.93,
+    "environment": "xuzhou110kv_clr"
+  },
+  "xlsx_sheet_data_rows": {
+    "年度参数及推荐": 12,
+    "价格敏感性年度推荐": 16,
+    "价格敏感性成本": 8,
+    "价格敏感性刚弹明细": 32,
+    "指标相关性": 60,
+    "案例参数范围": 18,
+    "指标口径及来源": 6
+  },
+  "solver_correction": "使用项目专用环境，新增可选highspy热启动和阶段记录；物理约束及成本目标不变",
+  "stale_tests_corrected": [
+    "反向代理2025考虑甲方年度峰校准项",
+    "线路经济性测试移除过期成本快照，保留价格上涨后选择和成本约束",
+    "邳州净峰测试按甲方年度表对账，不再使用旧样本峰"
+  ],
+  "cleared_blocker": "默认环境SciPy1.13.1次级排序超时；项目环境SciPy1.18.0完整重算通过",
+  "limitations": [
+    "源荷比是非同时站级模板出力/毛负荷代理比",
+    "2022—2024 D95沿用2025模板",
+    "反向极值不是同步区域反向峰",
+    "12行案例范围不代表任意组合的通用可行域"
+  ],
+  "cleanup_files_archived": 86
+}

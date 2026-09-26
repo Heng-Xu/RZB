@@ -2,6 +2,8 @@
 
 更新时间：2026-08-27
 
+> 历史归档：本文记录 v3.2 阶段的文件关系和执行规则。2026-09-22 起的新一轮并行重构请从项目根目录 `README.md` 及 `实验/研究/docs/superpowers/specs/2026-09-22-clean-rebuild-source-audit-design.md` 接手；本文提到的项目内 Skills 和 `AGENTS.md` 不再作为新模型前置规则。
+
 本文件说明项目根目录为什么作为 Git 仓库根、`实验/研究/` 如何连接到研究报告，以及后续 Agent 的接手顺序。它不替代 `AGENTS.md`、`model_contract.yaml` 或真实数据模型规格。
 
 ## 1. 权威层次

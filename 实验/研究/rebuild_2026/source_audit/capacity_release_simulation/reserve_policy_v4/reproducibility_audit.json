@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "date": "2026-09-27",
+  "method": "independent_full_six_path_rebuild_in_project_environment_without_modifying_model_or_costs",
+  "environment": {
+    "executable": "/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python",
+    "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:36:31) [GCC 14.3.0]",
+    "numpy": "2.1.3",
+    "scipy": "1.18.0",
+    "highspy": "1.15.1",
+    "pandas": "2.2.3",
+    "openpyxl": "3.1.5",
+    "pytest": "8.3.4"
+  },
+  "path_count": 6,
+  "annual_matrix_rows": 12,
+  "costs_annual_capacity_clr_storage_transfers_and_annual_costs": "byte_identical_to_frozen_v4",
+  "nonunique_station_layout_files": [
+    "rigid_QX-00005_110_stations.csv",
+    "rigid_QX-00005_35_stations.csv"
+  ],
+  "interpretation": "站级容量分配有等价解；报告继续采用原v4逐站明细。不要求逐站字节一致。",
+  "prior_timeout_cause_evidence": "默认环境SciPy1.13.1的120/600秒尝试超时；项目环境SciPy1.18.0以原120秒限时完整成功。"
+}

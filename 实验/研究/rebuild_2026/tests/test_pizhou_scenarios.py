@@ -34,3 +34,14 @@ def test_synchronized_2025_scenarios_keep_voltage_layers_separate():
     assert all(not row["linear_fill_changes_peak"] for row in rows)
     assert all(not row["linear_fill_changes_h95"] for row in rows)
     assert {r["scenario_status"] for r in rows} == {"provisional"}
+
+
+def test_verified_column_mapping_reproduces_pizhou_scenes():
+    rows = build_provisional_scenarios(
+        STUDY_DIR / "data/tuomin/电网建模数据_Agent整合版_V1.2/邳州主变负载率.xlsx",
+        AUDIT_DIR / "pizhou_2025_mapping_evidence.csv",
+        AUDIT_DIR / "official_annual.csv",
+    )
+    assert {row["scenario_status"] for row in rows} == {"mapping_supported_gap_sensitivity"}
+    assert {row["voltage_kv"]: row["forward_peak_mw"] for row in rows} == {110: 951.66, 35: 147.57}
+    assert all(not row["linear_fill_changes_peak"] and not row["linear_fill_changes_h95"] for row in rows)

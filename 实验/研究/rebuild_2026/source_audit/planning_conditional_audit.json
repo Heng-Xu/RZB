@@ -1,0 +1,31 @@
+{
+  "scenario_count": 13,
+  "research_unit_count": 3,
+  "annual_recommendation_count": 156,
+  "solved_annual_scheme_rows": 300,
+  "infeasible_scheme_paths": [
+    {
+      "scenario_id": "forward_growth_minus10pct",
+      "study_region_id": "QX-00005",
+      "voltage_kv": "35",
+      "scheme": "rigid"
+    },
+    {
+      "scenario_id": "forward_growth_minus10pct",
+      "study_region_id": "QX-00005",
+      "voltage_kv": "110",
+      "scheme": "rigid"
+    },
+    {
+      "scenario_id": "forward_growth_minus10pct",
+      "study_region_id": "QX-00007",
+      "voltage_kv": "110",
+      "scheme": "rigid"
+    }
+  ],
+  "base_path_reconciliation": "pass",
+  "recommended_ratio_has_matching_feasible_equipment_path": "pass",
+  "conditional_matrix_internal_status": "ready_for_project_review",
+  "empirical_generalization_status": "not_claimed_two_regions_three_units",
+  "final_report_status": "awaiting_project_matrix_review"
+}

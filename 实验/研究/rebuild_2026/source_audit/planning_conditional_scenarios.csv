@@ -1,0 +1,14 @@
+﻿scenario_id,family,net_forward_2025_change_fraction,transformer_cost_scale,storage_cost_scale,tie_transfer_limit_scale,forward_d95_duration_scale,reverse_peak_scale,source_load_ratio_proxy_scale,status
+base,reference,0.0,1.0,1.0,1.0,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+forward_growth_minus10pct,net_forward_growth_stress,-0.1,1.0,1.0,1.0,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+forward_growth_plus10pct,net_forward_growth_stress,0.1,1.0,1.0,1.0,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+transformer_price_70pct,price_stress,0.0,0.7,1.0,1.0,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+transformer_price_150pct,price_stress,0.0,1.5,1.0,1.0,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+storage_price_70pct,price_stress,0.0,1.0,0.7,1.0,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+storage_price_150pct,price_stress,0.0,1.0,1.5,1.0,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+tie_capacity_40pct,tie_capacity_stress,0.0,1.0,1.0,0.4,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+tie_capacity_70pct,tie_capacity_stress,0.0,1.0,1.0,0.7,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+tie_capacity_90pct,tie_capacity_stress,0.0,1.0,1.0,0.9,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+tie_capacity_95pct,tie_capacity_stress,0.0,1.0,1.0,0.95,1.0,1.0,1.0,counterfactual_simulation_not_new_observation
+forward_duration_double,duration_stress,0.0,1.0,1.0,1.0,2.0,1.0,1.0,counterfactual_simulation_not_new_observation
+pv_source_pressure_plus25pct,joint_pv_reverse_stress,0.0,1.0,1.0,1.0,1.0,1.25,1.25,counterfactual_simulation_not_new_observation

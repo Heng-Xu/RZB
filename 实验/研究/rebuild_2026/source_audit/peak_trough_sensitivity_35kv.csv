@@ -1,0 +1,7 @@
+﻿scenario,study_region_id,voltage_kv,official_2023_peak_mw,scenario_2023_peak_mw,reverse_proxy_unchanged,scan_cap,objective_npv_10k_cny,max_actual_clr,actual_clr_2023,interpretation
+original_official_peak,QX-00005,35,86.7,86.7,True,2.0,2390.20749023,1.983852364,1.983852364,official_source_anchor
+original_official_peak,QX-00005,35,86.7,86.7,True,2.4,2390.20749023,1.983852364,1.983852364,official_source_anchor
+original_official_peak,QX-00005,35,86.7,86.7,True,4.0,2390.20749023,1.983852364,1.983852364,official_source_anchor
+neighbor_year_mean_forward_only,QX-00005,35,86.7,126.539603,True,2.0,2399.79226752,1.659375516,1.35925825,counterfactual_peak_sensitivity_not_correction_of_official_source
+neighbor_year_mean_forward_only,QX-00005,35,86.7,126.539603,True,2.4,2399.79226752,1.659375516,1.35925825,counterfactual_peak_sensitivity_not_correction_of_official_source
+neighbor_year_mean_forward_only,QX-00005,35,86.7,126.539603,True,4.0,2399.79226752,1.659375516,1.35925825,counterfactual_peak_sensitivity_not_correction_of_official_source

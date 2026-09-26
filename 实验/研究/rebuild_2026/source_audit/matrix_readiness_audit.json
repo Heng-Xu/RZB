@@ -1,0 +1,53 @@
+{
+  "row_count": 12,
+  "independent_region_voltage_groups": 3,
+  "within_group_variation": [
+    {
+      "study_region_id": "QX-00005",
+      "voltage_kv": 35,
+      "year_count": 4,
+      "feature_unique_values": {
+        "source_to_gross_load_ratio_2025_regional_proxy": 1,
+        "forward_h95_hours_2025_template": 1,
+        "reverse_h95_hours_2025_template": 1,
+        "storage_to_transformer_unit_capex_ratio": 1,
+        "elastic_cost_to_rigid_cost": 1
+      },
+      "elastic_actual_clr_unique_values": 4
+    },
+    {
+      "study_region_id": "QX-00005",
+      "voltage_kv": 110,
+      "year_count": 4,
+      "feature_unique_values": {
+        "source_to_gross_load_ratio_2025_regional_proxy": 1,
+        "forward_h95_hours_2025_template": 1,
+        "reverse_h95_hours_2025_template": 1,
+        "storage_to_transformer_unit_capex_ratio": 1,
+        "elastic_cost_to_rigid_cost": 1
+      },
+      "elastic_actual_clr_unique_values": 4
+    },
+    {
+      "study_region_id": "QX-00007",
+      "voltage_kv": 110,
+      "year_count": 4,
+      "feature_unique_values": {
+        "source_to_gross_load_ratio_2025_regional_proxy": 1,
+        "forward_h95_hours_2025_template": 1,
+        "reverse_h95_hours_2025_template": 1,
+        "storage_to_transformer_unit_capex_ratio": 1,
+        "elastic_cost_to_rigid_cost": 1
+      },
+      "elastic_actual_clr_unique_values": 4
+    }
+  ],
+  "requested_predictors_not_present": [
+    "annual_or_layer_specific_source_load_ratio",
+    "synchronous_annual_reverse_net_extreme_for_2022_to_2024",
+    "exogenous_transformer_tie_storage_cost_ratio_scenario_variation",
+    "annual_observed_h95_for_2022_to_2024"
+  ],
+  "outcome_leakage": "elastic_cost_to_rigid_cost is computed after both paths are optimized; it cannot serve as an input predictor of the recommended CLR",
+  "assessment": "conditional_case_table_only_not_transferable_recommendation_matrix"
+}

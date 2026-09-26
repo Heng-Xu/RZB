@@ -1,0 +1,17 @@
+﻿year,scenario,model_station_id,simulated_capacity_mva,modeled_net_peak_mw,screen_power_factor_or_reverse_factor,station_screen_limit_mw,pre_tie_station_deficit_mw,planned_outgoing_tie_mw,planned_incoming_tie_mw,post_tie_station_margin_mw,trigger_status,evidence_gate,formula_origin
+2022,forward,BDZ-00027,60.0,51.338449,0.95,57.0,0,0,0,5.661551,no_station_deficit,not_applicable,electrical_station_forward_balance_research_rule
+2022,reverse,BDZ-00027,60.0,0.0,0.76,45.6,0,0,0,45.6,no_station_deficit,not_applicable,DLT2041_2025_section_6_3_derived_reverse_screen_only
+2023,forward,BDZ-00027,60.0,47.370014,0.95,57.0,0,0,0,9.629986,no_station_deficit,not_applicable,electrical_station_forward_balance_research_rule
+2023,reverse,BDZ-00027,60.0,0.0,0.76,45.6,0,0,0,45.6,no_station_deficit,not_applicable,DLT2041_2025_section_6_3_derived_reverse_screen_only
+2024,forward,BDZ-00027,60.0,53.681794,0.95,57.0,0,0,0,3.318206,no_station_deficit,not_applicable,electrical_station_forward_balance_research_rule
+2024,reverse,BDZ-00027,60.0,14.618257,0.76,45.6,0,0,0,30.981743,no_station_deficit,not_applicable,DLT2041_2025_section_6_3_derived_reverse_screen_only
+2025,forward,BDZ-00027,60.0,59.22,0.95,57.0,2.22,4.496512,0,2.276512,conditional_tie_needed,section_load_allocated_at_feeder_stress_not_synchronous_station_peak_downstream_flow_unverified,electrical_station_forward_balance_research_rule
+2025,reverse,BDZ-00027,60.0,35.27,0.76,45.6,0,0,0,10.33,no_station_deficit,not_applicable,DLT2041_2025_section_6_3_derived_reverse_screen_only
+2022,forward,BDZ-00048,100.0,63.059081,0.95,95.0,0,0,0,31.940919,no_station_deficit,not_applicable,electrical_station_forward_balance_research_rule
+2022,reverse,BDZ-00048,100.0,0.0,0.76,76.0,0,0,0,76.0,no_station_deficit,not_applicable,DLT2041_2025_section_6_3_derived_reverse_screen_only
+2023,forward,BDZ-00048,100.0,58.184647,0.95,95.0,0,0,0,36.815353,no_station_deficit,not_applicable,electrical_station_forward_balance_research_rule
+2023,reverse,BDZ-00048,100.0,0.0,0.76,76.0,0,0,0,76.0,no_station_deficit,not_applicable,DLT2041_2025_section_6_3_derived_reverse_screen_only
+2024,forward,BDZ-00048,100.0,65.937415,0.95,95.0,0,0,0,29.062585,no_station_deficit,not_applicable,electrical_station_forward_balance_research_rule
+2024,reverse,BDZ-00048,100.0,0.0,0.76,76.0,0,0,0,76.0,no_station_deficit,not_applicable,DLT2041_2025_section_6_3_derived_reverse_screen_only
+2025,forward,BDZ-00048,100.0,72.74,0.95,95.0,0,0,4.496512,17.763488,no_station_deficit,not_applicable,electrical_station_forward_balance_research_rule
+2025,reverse,BDZ-00048,100.0,4.56,0.76,76.0,0,0,0,71.44,no_station_deficit,not_applicable,DLT2041_2025_section_6_3_derived_reverse_screen_only

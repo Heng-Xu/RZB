@@ -1,4 +1,4 @@
-﻿region_id,voltage_kv,year,asset_station_count,asset_transformer_count,zero_capacity_placeholder_rows,asset_capacity_mva,official_capacity_mva,asset_minus_official_mva,capacity_status,official_source_row
-QX-00005,35,2025,8,16,0,275.0,275.0,0.0,match,21
-QX-00005,110,2025,21,42,0,2239.5,2139.5,100.0,unresolved_difference,19
-QX-00007,110,2025,30,61,2,3714.0,3701.0,13.0,unresolved_difference,9
+﻿region_id,voltage_kv,year,asset_station_count,asset_transformer_count,zero_capacity_placeholder_rows,asset_capacity_mva,official_capacity_mva,selected_annual_capacity_mva,selected_capacity_source,asset_minus_official_mva,capacity_status,official_source_row
+QX-00005,35,2025,8,16,0,275.0,275.0,275.0,official_annual,0.0,match,21
+QX-00005,110,2025,21,42,0,2239.5,2139.5,2139.5,official_annual,100.0,unresolved_difference,19
+QX-00007,110,2025,30,61,2,3714.0,3701.0,3701.0,official_annual,13.0,unresolved_difference,9

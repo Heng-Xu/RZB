@@ -12,6 +12,8 @@ def test_equipment_capacity_is_not_silently_substituted_for_annual_statistics():
     assert checks["QX-00007", 110]["asset_station_count"] == 30
     assert checks["QX-00007", 110]["zero_capacity_placeholder_rows"] == 2
     assert checks["QX-00007", 110]["asset_minus_official_mva"] == 13
+    assert checks["QX-00007", 110]["selected_annual_capacity_mva"] == 3701
+    assert checks["QX-00007", 110]["selected_capacity_source"] == "official_annual"
     assert all(r["voltage_kv"] == 110 for r in assets if r["region_id"] == "QX-00007")
 
 

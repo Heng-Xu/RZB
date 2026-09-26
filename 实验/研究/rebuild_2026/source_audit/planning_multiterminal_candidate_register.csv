@@ -1,0 +1,5 @@
+﻿candidate_id,from_feeder_id,to_feeder_id,connection,normal_state,shared_feeder_group,baseline_status,reason,source
+T01/TIE-002,PZXL-00092,PZXL-00161,墩南线—河炮线,OPEN,PZXL-00161,enabled_switch28_whole_section_planning_simulation,原PDF有墩南线28开关；逐段拓扑切出136节点，节点负荷种子4.49651196MW；旧路径包络4.75MW；下游潮流待核,10kv_case/source/10kv.7z::邳州_10kVdnan线.pdf; 10kv_case/data/physical_edges.csv; node_load_seed_pf095.csv
+T02/TIE-001,PZXL-00099,PZXL-00154,墩振线—河东线,OPEN,"PZXL-00099,PZXL-00154",excluded_endpoint_unresolved,送侧R005等图纸断点，端点未闭合；不得定量叠加,10kv_case/data/tie_master.csv; 10kv_case_reanalysis.md
+T03/TIE-003,PZXL-00097,PZXL-00161,墩西线—河炮线,OPEN,PZXL-00161,excluded_device_chain_unresolved,与T01共用河炮线余量；河炮侧R020设备链未闭合,10kv_case/data/tie_master.csv; 10kv_case_reanalysis.md
+NEWTIE-BDZ00027-BDZ00048-01,PZXL-00099,PZXL-00154,墩振线—河东线新建候选，约2.5km,NOT_BUILT,"PZXL-00099,PZXL-00154",excluded_route_and_cost_unverified,旧候选走廊已恢复到代码；路径、开关和工程费用未闭合,10kv_case/new_tie_candidates.csv; 10kv_case_reanalysis.md

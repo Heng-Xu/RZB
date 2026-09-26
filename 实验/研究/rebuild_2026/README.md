@@ -1,20 +1,19 @@
-# 2026 年独立重构管线
+# reserve_policy_v4 建模流程
 
-模型口径以 [`../docs/REBUILD-2026-MODEL-SPEC.md`](../docs/REBUILD-2026-MODEL-SPEC.md) 为准。本目录只读取交付原始文件，不以旧版加工表或结果填补缺口。所有当前输出仍是输入核对或候选试算，不是正式推荐值。
+[现行方案](../docs/FINAL-POLICY-RECOMMENDATION-2026-09-24.md)；[冻结说明](../../../docs/FROZEN-RESERVE-POLICY-V4-2026-09-27.md)。
 
-在 `实验/研究/` 下依次运行：
+在 `实验/研究/` 运行：
 
 ```bash
-python -m rebuild_2026.official_annual
-python -m rebuild_2026.asset_2025
-python -m rebuild_2026.feeder_2025
-python -m rebuild_2026.cost_references
-python -m rebuild_2026.hourly_source_profile
-python -m rebuild_2026.pizhou_mapping_candidates
-python -m rebuild_2026.pizhou_mapping_evidence
-python -m rebuild_2026.city_mapping_audit
-python -m rebuild_2026.pizhou_scenarios
-python -m pytest -q rebuild_2026/tests
+export XUZHOU_MILP_TIME_LIMIT_SECONDS=600
+python -m rebuild_2026.baseline_historical_proxy
+python -m rebuild_2026.simulation_reserve_policy
+python -m rebuild_2026.simulation_reserve_policy_audit
+python -m rebuild_2026.simulation_reserve_sensitivity
 ```
 
-输入核对与未闭合问题见 [`source_audit/2025-hourly-findings.md`](source_audit/2025-hourly-findings.md)。邳州 56 个有效逐时列已完成站/主变跨源复核，年底新站 2 列无可用于主变编号判别的负荷；市区只匹配 24/30 座在役 110 kV 站，另有 632 MVA 资产缺可核定时序。市区年度容量还有 13 MVA 未解释差额。因此两地统一成本优化、正式容载比推荐和报告重写尚未开始。
+依次完成历史区域容量分配、六条刚弹路径求解、独立约束与成本审计、参数敏感性。原始数据及已加工输入随项目保留；输入来源与哈希见冻结清单。默认每次 MILP 求解时限仍为 120 秒，完整复现可设为 600 秒；只有取得最优性证明才接受求解结果。
+
+`joint_lifecycle_optimizer.py` 为共享优化内核；`annual_no_tie_investment_submodel.py` 提供 MILP 和储能参数；`incremental_cost.py` 提供全寿命现金流；`baseline_historical_proxy.py` 提供共同起点。其他来源处理脚本保留用于数据追溯，不代表另一个现行推荐方案。
+
+已归档的增长模型与 v2/v3 结果见根目录 `历史归档/模型诊断-2026-09-26.zip`。旧文档中的运行命令仅代表历史过程。

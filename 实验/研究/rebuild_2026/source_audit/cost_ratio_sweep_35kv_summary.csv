@@ -1,0 +1,16 @@
+﻿case,study_region_id,voltage_kv,scan_cap,transformer_cost_scale,storage_cost_scale,storage_to_transformer_unit_capex_ratio,ratio_scope,scenario_scope,objective_npv_10k_cny,max_actual_clr,station_count
+base,QX-00005,35,2.0,1.0,1.0,12.915597,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,2390.20749023,1.983852364,8
+base,QX-00005,35,2.4,1.0,1.0,12.915597,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,2390.20749023,1.983852364,8
+base,QX-00005,35,4.0,1.0,1.0,12.915597,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,2390.20749023,1.983852364,8
+transformer_half,QX-00005,35,2.0,0.5,1.0,25.831195,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,1292.99833535,1.983852364,8
+transformer_half,QX-00005,35,2.4,0.5,1.0,25.831195,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,1266.07775767,2.041522491,8
+transformer_half,QX-00005,35,4.0,0.5,1.0,25.831195,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,1266.07775767,2.041522491,8
+transformer_double,QX-00005,35,2.0,2.0,1.0,6.457799,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,4343.067437,1.983852364,8
+transformer_double,QX-00005,35,2.4,2.0,1.0,6.457799,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,4343.067437,1.983852364,8
+transformer_double,QX-00005,35,4.0,2.0,1.0,6.457799,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,4343.067437,1.983852364,8
+storage_half,QX-00005,35,2.0,1.0,0.5,6.457799,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,2171.5337185,1.983852364,8
+storage_half,QX-00005,35,2.4,1.0,0.5,6.457799,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,2171.5337185,1.983852364,8
+storage_half,QX-00005,35,4.0,1.0,0.5,6.457799,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,2171.5337185,1.983852364,8
+storage_double,QX-00005,35,2.0,1.0,2.0,25.831195,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,2585.9966707,1.983852364,8
+storage_double,QX-00005,35,2.4,1.0,2.0,25.831195,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,2532.15551534,2.041522491,8
+storage_double,QX-00005,35,4.0,1.0,2.0,25.831195,10_cabinet_1MW_storage_vs_1MW_active_transformer_purchased_capex_only,research_price_sensitivity_not_market_quote,2532.15551534,2.041522491,8

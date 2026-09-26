@@ -83,6 +83,8 @@ def reconcile_capacity(assets: list[dict], annual_csv: Path = ANNUAL_CSV) -> lis
                 "zero_capacity_placeholder_rows": len(rows) - len(live),
                 "asset_capacity_mva": asset_capacity,
                 "official_capacity_mva": reported_capacity,
+                "selected_annual_capacity_mva": reported_capacity,
+                "selected_capacity_source": "official_annual",
                 "asset_minus_official_mva": round(asset_capacity - reported_capacity, 9),
                 "capacity_status": "match" if abs(asset_capacity - reported_capacity) < 1e-6 else "unresolved_difference",
                 "official_source_row": annual[key]["source_row"],

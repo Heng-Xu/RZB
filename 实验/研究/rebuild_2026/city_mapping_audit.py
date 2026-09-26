@@ -1,4 +1,4 @@
-"""用新增实名—匿名对应表核对市区时序的电压和 110 kV 资产覆盖。"""
+"""以市区逐时文件为样本起点，核对站名、电压和设备表边界。"""
 
 import argparse
 import csv
@@ -16,6 +16,7 @@ from .official_annual import STUDY_DIR
 
 
 MAPPING_SOURCE = STUDY_DIR / "data/tuomin/变电站对应.md"
+SUPPLEMENT_SOURCE = Path(__file__).resolve().parent / "city_2025_mapping_supplement.csv"
 PROFILE_SOURCE = OUTPUT_DIR / "city_2025_series_profile.csv"
 STATS_SOURCE = STUDY_DIR / "data/tuomin/电网建模数据_Agent整合版_V1.2/2025设备负载统计表.xlsx"
 ALIASES = {"西郊变新": "西郊变", "矿大变": "矿大"}
@@ -31,6 +32,11 @@ def read_name_mapping(source: Path = MAPPING_SOURCE) -> dict[str, list[dict]]:
             voltage = next((value for value in (110, 220, 35) if full_name.startswith(f"{value}千伏")), None)
             by_name[name].append({"station_id": station_id, "voltage_kv": voltage})
     return dict(by_name)
+
+
+def read_city_supplement(source: Path = SUPPLEMENT_SOURCE) -> dict[str, dict]:
+    with Path(source).open(encoding="utf-8-sig", newline="") as handle:
+        return {row["archive_member"]: row for row in csv.DictReader(handle)}
 
 
 def read_city_station_extrema(source: Path = STATS_SOURCE) -> dict[str, tuple[float, float]]:
@@ -49,8 +55,10 @@ def audit_city_mapping(
     mapping_source: Path = MAPPING_SOURCE,
     city_source: Path = CITY_SOURCE,
     profile_source: Path = PROFILE_SOURCE,
+    supplement_source: Path = SUPPLEMENT_SOURCE,
 ) -> tuple[list[dict], list[dict]]:
     names = read_name_mapping(mapping_source)
+    supplements = read_city_supplement(supplement_source)
     with Path(profile_source).open(encoding="utf-8-sig", newline="") as handle:
         profiles = list(csv.DictReader(handle))
     assets = read_assets()
@@ -62,6 +70,7 @@ def audit_city_mapping(
     city_assets = {station: value for station, value in capacity.items() if value > 0}
     extrema = read_city_station_extrema()
     mapping_hash = sha256(Path(mapping_source).read_bytes()).hexdigest()
+    supplement_hash = sha256(Path(supplement_source).read_bytes()).hexdigest()
     rows = []
     with ZipFile(city_source) as archive:
         for profile in profiles:
@@ -71,21 +80,42 @@ def audit_city_mapping(
                 raw_name = workbook.active.title.strip()
             finally:
                 workbook.close()
-            normalized = ALIASES.get(raw_name, raw_name)
+            supplement = supplements.get(member)
+            normalized = supplement["station_name"] if supplement else ALIASES.get(raw_name, raw_name)
             candidates = names.get(normalized, [])
             eligible = [item for item in candidates if item["station_id"] in city_assets and item["voltage_kv"] == 110]
             match = eligible[0] if len(eligible) == 1 else None
+            other_110 = [item for item in candidates if item["station_id"] not in city_assets and item["voltage_kv"] == 110]
+            if supplement and supplement["station_id"] and not any(
+                item["station_id"] == supplement["station_id"] and item["voltage_kv"] == 110
+                for item in candidates
+            ):
+                raise ValueError(f"补充映射的站码与原对应表不一致：{member}")
             if profile["duplicate_of"]:
                 status = "duplicate_series"
             elif match:
                 status = "matched_city_110"
             elif candidates and all(item["voltage_kv"] == 220 for item in candidates):
                 status = "known_220_out_of_scope"
+            elif supplement and len(other_110) == 1:
+                status = "confirmed_city_110_source_region_conflict"
+            elif supplement and not candidates:
+                status = "confirmed_city_110_no_station_id"
             elif candidates:
                 status = "known_but_not_city_110"
             else:
                 status = "name_absent_from_mapping"
-            station_id = match["station_id"] if match else ""
+            station_id = match["station_id"] if match else other_110[0]["station_id"] if status == "confirmed_city_110_source_region_conflict" else ""
+            in_cohort = status in {"matched_city_110", "confirmed_city_110_source_region_conflict", "confirmed_city_110_no_station_id"}
+            simulation_station_id = supplement["simulation_station_id"] if supplement else ""
+            model_station_id = station_id or simulation_station_id
+            if in_cohort and not model_station_id:
+                raise ValueError(f"市区样本站缺少 BDZ 或仿真站标识：{member}")
+            voltage_kv = 110 if in_cohort or (status == "duplicate_series" and match) else 220 if status == "known_220_out_of_scope" else ""
+            voltage_evidence = (
+                "mapping" if match or status in {"confirmed_city_110_source_region_conflict", "known_220_out_of_scope"}
+                else "user_confirmation" if status == "confirmed_city_110_no_station_id" else ""
+            )
             annual_max, annual_min = extrema.get(station_id, (None, None))
             hourly_max = float(profile["forward_peak_mw"])
             hourly_min = float(profile["observed_min_mw"])
@@ -93,11 +123,19 @@ def audit_city_mapping(
                 {
                     "archive_member": member,
                     "matching_status": status,
+                    "in_study_cohort": in_cohort,
+                    "study_region_id": supplement["study_region_id"] if supplement else "QX-00007" if match else "",
+                    "source_asset_region_id": supplement["source_asset_region_id"] if supplement else "QX-00007" if match else "",
                     "station_id": station_id,
-                    "voltage_kv": 110 if match else "",
+                    "simulation_station_id": simulation_station_id,
+                    "model_station_id": model_station_id,
+                    "station_identity_basis": "source_bdz" if station_id else "simulation" if simulation_station_id else "",
+                    "voltage_kv": voltage_kv,
+                    "voltage_evidence": voltage_evidence,
                     "known_candidate_ids": ";".join(item["station_id"] for item in candidates),
                     "known_candidate_voltages": ";".join(str(item["voltage_kv"] or "") for item in candidates),
-                    "name_alias_used": raw_name in ALIASES,
+                    "name_alias_used": raw_name != normalized,
+                    "user_scope_confirmation": bool(supplement),
                     "duplicate_of": profile["duplicate_of"],
                     "hourly_max_mw": hourly_max,
                     "hourly_min_mw": hourly_min,
@@ -107,6 +145,7 @@ def audit_city_mapping(
                         hourly_max <= annual_max + 0.1 and hourly_min >= annual_min - 0.1
                     ) if match else "",
                     "mapping_source_sha256": mapping_hash,
+                    "mapping_supplement_sha256": supplement_hash,
                     "city_source_sha256": profile["archive_sha256"],
                 }
             )
@@ -121,7 +160,7 @@ def audit_city_mapping(
             "voltage_kv": 110,
             "asset_capacity_mva": city_assets[station],
             "archive_member": matched.get(station, ""),
-            "coverage_status": "matched_series" if station in matched else "no_verified_series",
+            "coverage_status": "in_hourly_cohort" if station in matched else "outside_hourly_cohort",
             "name_present_in_mapping": station in by_id,
             "mapping_source_sha256": mapping_hash,
         }
@@ -139,13 +178,13 @@ def write_csv(rows: list[dict], target: Path) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="核对市区实名时序与 110 kV 匿名资产覆盖")
+    parser = argparse.ArgumentParser(description="以市区时序为样本起点核对 110 kV 站名与设备边界")
     parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
     args = parser.parse_args()
     rows, coverage = audit_city_mapping()
     write_csv(rows, args.output_dir / "city_2025_mapping_audit.csv")
     write_csv(coverage, args.output_dir / "city_2025_asset_coverage.csv")
-    print(f"已核对 {len(rows)} 个时序文件、{len(coverage)} 座市区 110 kV 资产站")
+    print(f"已核对 {len(rows)} 个时序文件、{sum(row['in_study_cohort'] for row in rows)} 个市区 110 kV 样本站序列；设备表参考站 {len(coverage)} 座")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""用候选映射试算邳州 2025 年同步场景；结果不得直接用于正式推荐。"""
+"""试算邳州 2025 年同步场景；支持候选映射和已复核逐列映射。"""
 
 import argparse
 import csv
@@ -31,12 +31,13 @@ def build_provisional_scenarios(
 ) -> list[dict]:
     with Path(mapping_source).open(encoding="utf-8-sig", newline="") as handle:
         mapping = list(csv.DictReader(handle))
+    verified_mapping = "resolved_voltage_kv" in mapping[0]
     columns = {
         voltage: [
             int(row["source_column"]) - 1
             for row in mapping
-            if int(row["candidate_voltage_kv"]) == voltage
-            and row["candidate_station_id"] != "BDZ-00056"
+            if (int(row["resolved_voltage_kv"]) if verified_mapping else int(row["candidate_voltage_kv"])) == voltage
+            and (row["station_status"] == "supported_for_station_aggregation" if verified_mapping else row["candidate_station_id"] != "BDZ-00056")
         ]
         for voltage in (110, 35)
     }
@@ -95,7 +96,7 @@ def build_provisional_scenarios(
                 "region_id": "QX-00005",
                 "voltage_kv": voltage,
                 "year": 2025,
-                "scenario_status": "provisional",
+                "scenario_status": "mapping_supported_gap_sensitivity" if verified_mapping else "provisional",
                 "valid_hours": len(observed),
                 "missing_aggregate_hours": 8760 - len(observed),
                 "missing_hour": gap_time.isoformat(sep=" "),
@@ -129,12 +130,12 @@ def main() -> None:
     parser.add_argument(
         "--output",
         type=Path,
-        default=AUDIT_DIR / "pizhou_2025_scenarios_provisional.csv",
+        default=AUDIT_DIR / "pizhou_2025_scenarios_evidence.csv",
     )
     args = parser.parse_args()
     rows = build_provisional_scenarios(
         SOURCE,
-        AUDIT_DIR / "pizhou_2025_mapping_candidates.csv",
+        AUDIT_DIR / "pizhou_2025_mapping_evidence.csv",
         AUDIT_DIR / "official_annual.csv",
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -142,7 +143,7 @@ def main() -> None:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
-    print(f"已写入 {len(rows)} 条试算场景：{args.output}")
+    print(f"已写入 {len(rows)} 条已复核映射场景试算：{args.output}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,152 @@
+﻿check_id,scope,status,observed,expected,note
+study_scope,2025_inputs,pass,"Counter({('QX-00007', 110): 29, ('QX-00005', 110): 20, ('QX-00005', 35): 8})","{('QX-00005', 35): 8, ('QX-00005', 110): 20, ('QX-00007', 110): 29}",
+baseline_station_set,2021,pass,57,57,
+baseline_station_capacity,"('QX-00005', 35)",pass,8,8,双主变和、2021 正向峰值初筛；不是完整技术可行性
+baseline_station_capacity,"('QX-00005', 110)",pass,20,20,双主变和、2021 正向峰值初筛；不是完整技术可行性
+baseline_station_capacity,"('QX-00007', 110)",pass,29,29,双主变和、2021 正向峰值初筛；不是完整技术可行性
+baseline_layer_ratio,"('QX-00005', 35)",pass,1.981178801,1.981178801,同片区同电压容量/同步正向峰值
+baseline_layer_ratio,"('QX-00005', 110)",pass,1.999945338,1.999945338,同片区同电压容量/同步正向峰值
+baseline_layer_ratio,"('QX-00007', 110)",pass,1.969801849,1.969801849,同片区同电压容量/同步正向峰值
+forward_layer_rows,2021_2025,pass,15,15,
+synchronous_forward_sum,"('QX-00005', 35, 2021)",pass,80.759999,80.76,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00005', 35, 2022)",pass,124.717665,124.717665,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00005', 35, 2023)",pass,86.699999,86.7,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00005', 35, 2024)",pass,128.361543,128.361542,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00005', 35, 2025)",pass,147.57,147.57,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00005', 110, 2021)",pass,731.769999,731.77,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00005', 110, 2022)",pass,825.004194,825.004193,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00005', 110, 2023)",pass,761.231802,761.231803,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00005', 110, 2024)",pass,862.661539,862.661537,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00005', 110, 2025)",pass,951.66,951.66,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00007', 110, 2021)",pass,1239.718605,1239.718605,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00007', 110, 2022)",pass,1224.839602,1224.839602,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00007', 110, 2023)",pass,1318.771113,1318.771113,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00007', 110, 2024)",pass,1239.403554,1239.403553,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+synchronous_forward_sum,"('QX-00007', 110, 2025)",pass,1307.315366,1307.315366,同一模板时刻逐站净负荷求和，不是各站独立峰值相加
+reverse_proxy_rows,2021_2025,pass,1140,1140,
+reverse_proxy_station_set,"('QX-00005', 35, 2021, 'night_low')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2021, 'night_central')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2021, 'night_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2021, 'early_pv_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2022, 'night_low')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2022, 'night_central')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2022, 'night_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2022, 'early_pv_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2023, 'night_low')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2023, 'night_central')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2023, 'night_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2023, 'early_pv_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2024, 'night_low')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2024, 'night_central')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2024, 'night_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2024, 'early_pv_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2025, 'night_low')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2025, 'night_central')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2025, 'night_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 35, 2025, 'early_pv_high')",pass,8,8,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2021, 'night_low')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2021, 'night_central')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2021, 'night_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2021, 'early_pv_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2022, 'night_low')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2022, 'night_central')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2022, 'night_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2022, 'early_pv_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2023, 'night_low')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2023, 'night_central')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2023, 'night_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2023, 'early_pv_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2024, 'night_low')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2024, 'night_central')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2024, 'night_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2024, 'early_pv_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2025, 'night_low')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2025, 'night_central')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2025, 'night_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00005', 110, 2025, 'early_pv_high')",pass,20,20,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2021, 'night_low')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2021, 'night_central')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2021, 'night_high')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2021, 'early_pv_high')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2022, 'night_low')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2022, 'night_central')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2022, 'night_high')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2022, 'early_pv_high')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2023, 'night_low')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2023, 'night_central')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2023, 'night_high')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2023, 'early_pv_high')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2024, 'night_low')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2024, 'night_central')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2024, 'night_high')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2024, 'early_pv_high')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2025, 'night_low')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2025, 'night_central')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2025, 'night_high')",pass,29,29,历史反向值是代理，不是当年实测
+reverse_proxy_station_set,"('QX-00007', 110, 2025, 'early_pv_high')",pass,29,29,历史反向值是代理，不是当年实测
+transformer_path_rows,2021_2025,pass,"(570, 30)","(570, 30)",
+transformer_path_screen,"('QX-00005', 35, 2021, 'night_central')",pass,"(True, True, 1.981179)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 35, 2021, 'early_pv_high')",pass,"(True, True, 1.981179)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 35, 2022, 'night_central')",pass,"(True, True, 1.347043)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 35, 2022, 'early_pv_high')",pass,"(True, True, 1.347043)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 35, 2023, 'night_central')",pass,"(True, True, 1.937716)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 35, 2023, 'early_pv_high')",pass,"(True, True, 1.937716)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 35, 2024, 'night_central')",pass,"(True, True, 1.449032)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 35, 2024, 'early_pv_high')",pass,"(True, True, 1.449032)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 35, 2025, 'night_central')",pass,"(True, True, 1.585688)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 35, 2025, 'early_pv_high')",pass,"(True, True, 1.585688)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2021, 'night_central')",pass,"(True, True, 1.999945)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2021, 'early_pv_high')",pass,"(True, True, 1.999945)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2022, 'night_central')",pass,"(True, True, 1.796355)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2022, 'early_pv_high')",pass,"(True, True, 1.796355)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2023, 'night_central')",pass,"(True, True, 1.946845)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2023, 'early_pv_high')",pass,"(True, True, 1.946845)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2024, 'night_central')",pass,"(True, True, 1.729531)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2024, 'early_pv_high')",pass,"(True, True, 1.729531)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2025, 'night_central')",pass,"(True, True, 1.614547)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00005', 110, 2025, 'early_pv_high')",pass,"(True, True, 1.614547)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2021, 'night_central')",pass,"(True, True, 1.969802)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2021, 'early_pv_high')",pass,"(True, True, 1.969802)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2022, 'night_central')",pass,"(True, True, 1.99373)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2022, 'early_pv_high')",pass,"(True, True, 1.99373)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2023, 'night_central')",pass,"(True, True, 1.876747)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2023, 'early_pv_high')",pass,"(True, True, 1.876747)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2024, 'night_central')",pass,"(True, True, 1.996928)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2024, 'early_pv_high')",pass,"(True, True, 1.996928)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2025, 'night_central')",pass,"(True, True, 1.893193)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_path_screen,"('QX-00007', 110, 2025, 'early_pv_high')",pass,"(True, True, 1.893193)",逐台不降档、站级峰值屏查、片区R≤2,站级反向 β=0.8 聚合式仅是风险屏查，不是导则认证
+transformer_cost_reconciliation,"('QX-00005', 35, 2022, 'night_central')",pass,247.68,247.68,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 35, 2022, 'early_pv_high')",pass,247.68,247.68,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 35, 2023, 'night_central')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 35, 2023, 'early_pv_high')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 35, 2024, 'night_central')",pass,804.96,804.96,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 35, 2024, 'early_pv_high')",pass,804.96,804.96,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 35, 2025, 'night_central')",pass,2662.56,2662.56,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 35, 2025, 'early_pv_high')",pass,2662.56,2662.56,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 110, 2022, 'night_central')",pass,1491.6,1491.6,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 110, 2022, 'early_pv_high')",pass,1491.6,1491.6,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 110, 2023, 'night_central')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 110, 2023, 'early_pv_high')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 110, 2024, 'night_central')",pass,828.666667,828.666667,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 110, 2024, 'early_pv_high')",pass,828.666667,828.666667,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 110, 2025, 'night_central')",pass,2394.846667,2394.846667,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00005', 110, 2025, 'early_pv_high')",pass,2394.846667,2394.846667,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00007', 110, 2022, 'night_central')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00007', 110, 2022, 'early_pv_high')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00007', 110, 2023, 'night_central')",pass,2701.453334,2701.453334,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00007', 110, 2023, 'early_pv_high')",pass,2701.453334,2701.453334,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00007', 110, 2024, 'night_central')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00007', 110, 2024, 'early_pv_high')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00007', 110, 2025, 'night_central')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+transformer_cost_reconciliation,"('QX-00007', 110, 2025, 'early_pv_high')",pass,0,0,仅本地替换工程折算的购置投资，不是全寿命成本
+storage_screen_rows,2025,pass,171,171,
+storage_proxy_consistency,hold_2021_simulation_capacity,pass,57,57,H95 总小时与 D95 连续时段分列；柜数是静态代理，不是 SOC/站址证明
+storage_proxy_consistency,hold_2024_transformer_path_capacity,pass,57,57,H95 总小时与 D95 连续时段分列；柜数是静态代理，不是 SOC/站址证明
+storage_proxy_consistency,transformer_only_2025_capacity,pass,57,57,H95 总小时与 D95 连续时段分列；柜数是静态代理，不是 SOC/站址证明
+marginal_cost_reconciliation,"('QX-00005', 35)",pass,3345.85353,3345.85353,仅同起点 2025 年单措施投资对照，非最优成本
+marginal_cost_reconciliation,"('QX-00005', 110)",pass,2839.512655,2839.512655,仅同起点 2025 年单措施投资对照，非最优成本
+marginal_cost_reconciliation,"('QX-00007', 110)",pass,0.0,0.0,仅同起点 2025 年单措施投资对照，非最优成本
+submodel_2025_station_set,2025_no_tie,pass,"(57, 3)","(57, 3)",受限 2025 年投资子模型，不是正式刚性解
+submodel_2025_layer_reconciliation,"('QX-00005', 35)",pass,"(1.592465, 2282.973)","('R≤2', '不高于仅主变候选投资')",仅可验证受限静态子模型，未纳入既有联络或全寿命成本
+submodel_2025_layer_reconciliation,"('QX-00005', 110)",pass,"(1.614547, 2394.847)","('R≤2', '不高于仅主变候选投资')",仅可验证受限静态子模型，未纳入既有联络或全寿命成本
+submodel_2025_layer_reconciliation,"('QX-00007', 110)",pass,"(1.893193, 0.0)","('R≤2', '不高于仅主变候选投资')",仅可验证受限静态子模型，未纳入既有联络或全寿命成本

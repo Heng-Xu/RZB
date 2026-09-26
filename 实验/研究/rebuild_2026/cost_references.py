@@ -15,8 +15,12 @@ TARGET = Path(__file__).resolve().parent / "source_audit/transformer_project_cos
 CASES = {
     14: (110, "third_transformer_expansion", 50, 0),
     16: (110, "third_transformer_expansion", 50, 0),
+    21: (110, "transformer_replacement", 50, 20),
+    36: (110, "transformer_replacement", 100, 63),
     43: (35, "transformer_replacement", 20, 10),
     45: (35, "transformer_replacement", 20, 10),
+    48: (35, "transformer_replacement", 40, 10),
+    54: (35, "transformer_replacement", 20, 8),
 }
 
 

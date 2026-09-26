@@ -1,0 +1,27 @@
+﻿parameter,value,unit,status,source,note
+existing_tie_incremental_capex,0,万元,owner_confirmed,docs/REBUILD-2026-MODEL-SPEC.md,仅既有六条馈线、两站之间正常双向转供；开放容量另作硬约束
+new_tie_line_base_unit_cost,44.543,万元/km,planning_assumption_confirmed,docs/REBUILD-2026-MODEL-SPEC.md,90% 架空、10% 电缆折算；线路长度待候选路径确定，不计开关费
+new_tie_line_high_unit_cost,60.0,万元/km,sensitivity_only,docs/REBUILD-2026-MODEL-SPEC.md,高造价敏感性，不是本地实测单价
+storage_module_power,0.1,MW/柜,owner_confirmed,docs/REBUILD-2026-MODEL-SPEC.md,本轮全部为新增储能
+storage_module_energy,0.215,MWh/柜,owner_confirmed,docs/REBUILD-2026-MODEL-SPEC.md,静态场景持续时长仍需约束
+storage_one_module_cost,27.2,万元/柜,tender_ceiling_not_award,参考政策/储能成本依据/sources.csv:SZ_TENDER,苏州储能子项最高限价，不是实际成交价
+storage_ten_module_cost,210.456262,万元/10柜,award_different_region_and_year,参考政策/储能成本依据/sources.csv:LY_AWARD,浏阳 1 MW/2.15 MWh 实际中标；与单柜案例的范围/时间差需敏感性
+storage_modules_interpolation_max,10,柜/站,evidence_boundary_not_site_limit,参考政策/储能成本依据/来源与适用说明.md,1—10 柜仅为价格插值有效区间，不代表已证明站址可容纳 10 柜
+storage_above_10_package_rule,10柜整包重复+余数插值,仿真计价规则,simulation_only_unverified_large_site,docs/REBUILD-2026-MODEL-SPEC.md,仅供超出案例规模时的静态成本筛查；不是大规模报价、站址或全寿命成本认证
+discount_rate,0.06,1/年,research_base_case_with_4_8pct_sensitivity,参考政策/储能成本依据/来源与适用说明.md,来源说明原为示例假设；现由本轮模型显式采用，不是甲方核定融资利率
+storage_life_years,10,年,research_base_case_with_8_12yr_sensitivity,参考政策/储能成本依据/来源与适用说明.md,寿命届满且仍需服务时更新，同实价现金流计入
+storage_fixed_om_rate,0.03,1/年,research_base_case,参考政策/储能成本依据/来源与适用说明.md,按本轮新增储能原价计固定运维
+transformer_life_years,20,年,planning_assumption,docs/REBUILD-2026-MODEL-SPEC.md,研究计算寿命；不是徐州设备实测寿命或当地强制标准
+line_life_years,20,年,planning_assumption,docs/REBUILD-2026-MODEL-SPEC.md,与主变统一计算口径；本轮基准解未选新线
+network_fixed_om_rate,0.01,1/年,research_base_case_with_0_2pct_sensitivity,docs/REBUILD-2026-MODEL-SPEC.md,主变和新线按新增投资原价计固定运维
+planned_new_tie_route_length,2.52,km,drawing_based_simulation_estimate,data/tuomin/补充数据/pizhou.pdf,约 42 个 60 m 等效档距；不是测绘里程
+transformer_replacement_35kv_per_purchased_mva,15.48,万元/新购MVA,simulation_case_scaled_coefficient,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:43;45;48;54,同电压替换工程静态总投资 1548 万元 / 新购主变 100 MVA；35kV_cases_without_new_10kV_feeders；不是本地逐站报价
+transformer_replacement_110kv_per_purchased_mva,16.573333333,万元/新购MVA,simulation_case_scaled_coefficient,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:21;36,同电压替换工程静态总投资 2486 万元 / 新购主变 150 MVA；110kV_cases_include_1_or_9_new_10kV_feeders_scope_mismatch；不是本地逐站报价
+project_case_sheet1_row_14,1206,万元/工程,source_case_not_generic_price,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:14,third_transformer_expansion；购置 50 MVA，净增 50 MVA；含配套工程
+project_case_sheet1_row_16,1240,万元/工程,source_case_not_generic_price,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:16,third_transformer_expansion；购置 50 MVA，净增 50 MVA；含配套工程
+project_case_sheet1_row_21,1151,万元/工程,source_case_not_generic_price,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:21,transformer_replacement；购置 50 MVA，净增 30 MVA；含配套工程
+project_case_sheet1_row_36,1335,万元/工程,source_case_not_generic_price,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:36,transformer_replacement；购置 100 MVA，净增 37 MVA；含配套工程
+project_case_sheet1_row_43,322,万元/工程,source_case_not_generic_price,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:43,transformer_replacement；购置 20 MVA，净增 10 MVA；含配套工程
+project_case_sheet1_row_45,313,万元/工程,source_case_not_generic_price,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:45,transformer_replacement；购置 20 MVA，净增 10 MVA；含配套工程
+project_case_sheet1_row_48,549,万元/工程,source_case_not_generic_price,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:48,transformer_replacement；购置 40 MVA，净增 30 MVA；含配套工程
+project_case_sheet1_row_54,364,万元/工程,source_case_not_generic_price,data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx:Sheet1:54,transformer_replacement；购置 20 MVA，净增 12 MVA；含配套工程

@@ -1,0 +1,9 @@
+﻿study_region_id,voltage_kv,scheme,gross_budget_fraction,contingency_fraction,transformer_price_scale,storage_price_scale,case_id,status,cost_npv_10k_cny,max_clr,capacity_2025_mva,clr_2025,storage_2025_modules,new_line_built_2025,transfer_2025_mw,solver_detail
+QX-00005,110,rigid,0.03,0.6,1.0,1.0,pizhou_110_rigid_budget_3pct,optimal,5245.66122813,1.999989835,1533.5,1.603324795,69,1,11.987573,
+QX-00005,110,rigid,0.04,0.6,1.0,1.0,pizhou_110_rigid_budget_4pct,optimal,4410.44057556,1.999989835,1532.5,1.602279262,35,1,11.987573,
+QX-00005,110,rigid,0.03,0.6,0.7,1.0,pizhou_110_rigid_transformer_70pct,optimal,4355.65308837,1.999989835,1533.5,1.603324795,69,1,11.987573,
+QX-00005,110,elastic,,0.6,0.7,1.0,pizhou_110_elastic_transformer_70pct,optimal,3260.98208682,2.738324899,2113.0,2.209211145,3,1,11.987573,
+QX-00005,110,rigid,0.03,0.6,1.0,1.5,pizhou_110_rigid_storage_150pct,optimal,6326.87322302,1.999989835,1533.5,1.603324795,69,1,11.987573,
+QX-00005,110,elastic,,0.6,1.0,1.5,pizhou_110_elastic_storage_150pct,optimal,4615.75265182,2.738324899,2113.0,2.209211145,3,1,11.987573,
+QX-00007,110,rigid,0.01,0.4,1.0,1.0,city_110_rigid_recovery_40pct,optimal,1686.35590325,1.999445475,2459.0,1.880953949,0,0,0,
+QX-00007,110,rigid,0.01,0.5,1.0,1.0,city_110_rigid_recovery_50pct,no_proven_optimum,,,,,,,,逐年无联络子模型未取得已证明最优解：The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is At lower/fixed bound)
