@@ -1,20 +1,8 @@
 {
-  "version": "reserve_policy_v4_with_annual_indicator_matrix",
-  "date": "2026-09-27",
-  "status": "VALIDATED",
-  "python_major_minor": [
-    3,
-    13
-  ],
-  "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:36:31) [GCC 14.3.0]",
-  "dependencies": {
-    "numpy": "2.1.3",
-    "scipy": "1.18.0",
-    "highspy": "1.15.1",
-    "pandas": "2.2.3",
-    "openpyxl": "3.1.5",
-    "pytest": "8.3.4"
-  },
+  "version": "stage0_local_v4_county_indicator_matrix_2026-09-27",
+  "status": "FROZEN_WITH_DECLARED_LIMITATIONS",
+  "baseline_commit": "6846d4652257e910597f1502178b1fc041cf0c27",
+  "original_result_unchanged": true,
   "files": [
     {
       "path": ".gitignore",
@@ -35,6 +23,11 @@
       "path": "docs/CURRENT-WORKFLOW.md",
       "bytes": 1085,
       "sha256": "e9db5d79d9aa914a851501194b4b8b58f2921b38a686407d371ccf5036b2bfda"
+    },
+    {
+      "path": "docs/FREEZE-MANIFEST-2026-09-27.json",
+      "bytes": 87784,
+      "sha256": "c5a6eb34e5a400b0381d0b68599a0ac8866e965e79c1a9d12177e64fe558f4ee"
     },
     {
       "path": "docs/FROZEN-RESERVE-POLICY-V4-2026-09-27.md",
@@ -62,9 +55,274 @@
       "sha256": "e3bc13b11c0a9aaeb0a51db2bcda57f5040957f15b2af0caa28d7e4211de87e5"
     },
     {
+      "path": "历史归档/区县统计调整前-2026-09-27.zip",
+      "bytes": 248755,
+      "sha256": "0e729a0428f835cc87785954ca02733e0a39ba8a3d602cb88354ac7766549386"
+    },
+    {
+      "path": "历史归档/推荐矩阵替换前-2026-09-27.zip",
+      "bytes": 133452,
+      "sha256": "97ed69d396b6eb08d2a36a44ce0519ce068fb479fbba4016148513b2035a9cba"
+    },
+    {
       "path": "历史归档/模型诊断-2026-09-26.zip",
       "bytes": 111143,
       "sha256": "a1372387af89de764f1710662c3f38b97b8da9c256d3ab9d36ae6b8e416efefb"
+    },
+    {
+      "path": "历史归档/阶段0废弃结果-2026-09-27.zip",
+      "bytes": 19143186,
+      "sha256": "e7d0bdd3b0cd4b20e2dfb12bda4e4f502d64e9a5348894722bcaaed59d168afd"
+    },
+    {
+      "path": "参考政策/GB_T 45418-2025配电网通用技术导则.pdf",
+      "bytes": 4247175,
+      "sha256": "ae909a467848f20f6a2f9a4c2324f72187a48bb744a7455b6b097608631fbfd4"
+    },
+    {
+      "path": "参考政策/储能成本依据/SHA256SUMS",
+      "bytes": 5001,
+      "sha256": "adcc80a9ac53a0217999c6dc90510881dc7dd8824fb382f682319d52e6c5e443"
+    },
+    {
+      "path": "参考政策/储能成本依据/sources.csv",
+      "bytes": 4377,
+      "sha256": "8d2f2227b59c87b4f031fe029147e4811cfabcdcd0b616e71019855eb34191ec"
+    },
+    {
+      "path": "参考政策/储能成本依据/中电联定额366号通知图片/366-1.jpg",
+      "bytes": 159781,
+      "sha256": "d06e7fe55b32a4a85fe036122427bd7a49772818a617f1735159a56cbed23be7"
+    },
+    {
+      "path": "参考政策/储能成本依据/中电联定额366号通知图片/366-2.jpg",
+      "bytes": 83561,
+      "sha256": "1ceab40c209b8afa4b2127f6d2d8d2643c4b350675bf3fff76bdef0a7bf258d6"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-1.jpg",
+      "bytes": 176855,
+      "sha256": "9f191b47ba28dab744b37a92bdc305608edfa7c5d349c87b367ff1f62c5f2918"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-10.jpg",
+      "bytes": 97449,
+      "sha256": "4d432951de914f099c6aea005930f09bc6fce1d0f0f5da3d6adcf65533316605"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-11.jpg",
+      "bytes": 195630,
+      "sha256": "0c0c05459b627b4fd4ba3ad0736863108b0963538ebe71f9e164e6514a17d797"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-12.jpg",
+      "bytes": 205097,
+      "sha256": "c334ab010f31d4efe3a53be1c9cb3537c08f0de8a34feb2c12eabb7627a0ba85"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-13.jpg",
+      "bytes": 201730,
+      "sha256": "db9b480f2db3cde5f4f3b8abce7aa5480907783874e4a913e84707d515b01309"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-14.jpg",
+      "bytes": 215685,
+      "sha256": "01601067feba2fb5055f9f485351ddecc9cc33666450483f3b0aae2d91b4f24e"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-15.jpg",
+      "bytes": 198042,
+      "sha256": "e684918873fe26d4ffdbd04c64c200447e3dc648f98313eee783c0c2da5d4a11"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-16.jpg",
+      "bytes": 206375,
+      "sha256": "d364e239355fd1fdbdd9c83ef9f9f430848a7f1fc093e70a0e8ed9337a2de27b"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-17.jpg",
+      "bytes": 212272,
+      "sha256": "3da85db96dddea0cf7a8ecfd311d950b5ccf7a7a64a623afc9844fafdb907b20"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-18.jpg",
+      "bytes": 216159,
+      "sha256": "2d4a3715e855fe5c1c851b41c0b31c062eb94be9ed9d0537f5defb1e51c15622"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-19.jpg",
+      "bytes": 201796,
+      "sha256": "555e5cff06c67ca19f310f419c6512cf59b852d0c53f6c066536c42b9559ab95"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-2.jpg",
+      "bytes": 78636,
+      "sha256": "69b7ddc6c6ea4a436bbf40a0ceab7be4402dff32528245c30b77c74c6195c3c3"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-20.jpg",
+      "bytes": 93010,
+      "sha256": "03483d5fe812e0d1b6b10b8449dde48e693b338737cb42eeae4c2aa3f422214b"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-21.jpg",
+      "bytes": 159781,
+      "sha256": "d06e7fe55b32a4a85fe036122427bd7a49772818a617f1735159a56cbed23be7"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-22.jpg",
+      "bytes": 83561,
+      "sha256": "1ceab40c209b8afa4b2127f6d2d8d2643c4b350675bf3fff76bdef0a7bf258d6"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-3.jpg",
+      "bytes": 229623,
+      "sha256": "e5a747427315f508036b4ed3b34dd64831e36cbedd9ff7d697545fcb21cb5a57"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-4.jpg",
+      "bytes": 227550,
+      "sha256": "ba8bfc514e40107adf02c27011b0eabdd0241c1aff38a829fb86ffa012c23697"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-5.jpg",
+      "bytes": 200697,
+      "sha256": "c5127cbb04966eea7de229a3bf9474d005ddca79e391f92934efcbfb955d8525"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-6.jpg",
+      "bytes": 216747,
+      "sha256": "ec54eb797b79773e6299615652a036d182c3b6ab32cc8b75ef22272874976da4"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-7.jpg",
+      "bytes": 775569,
+      "sha256": "a2854e1e5be8ba303488e2f34ca96df44dd8d4026c9910d261d09deef2cf5dcd"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-8.jpg",
+      "bytes": 102295,
+      "sha256": "250f510f1a6fcb7b8ddd5d14241a296a4ce89cbe5a1b2e6b4d785ee8f64118cf"
+    },
+    {
+      "path": "参考政策/储能成本依据/价格水平调整办法图片/2024-12-9.jpg",
+      "bytes": 65616,
+      "sha256": "0419765a12153b807c6e5ae0be6b735b642834f9febc745e5851494b735c4eda"
+    },
+    {
+      "path": "参考政策/储能成本依据/定额依据_中电联定额2023_366号发布说明_参编单位.html",
+      "bytes": 23768,
+      "sha256": "65afa446b42ab59a96473aaa3d6af32070fbc5e96a83f6838dc7b633b399ea3b"
+    },
+    {
+      "path": "参考政策/储能成本依据/定额依据_中电联定额2023_366号通知_本地图片合并版.html",
+      "bytes": 906,
+      "sha256": "03793e930b1b324d8265f5d535602a545143f00a41959b3c07479f49a5da6461"
+    },
+    {
+      "path": "参考政策/储能成本依据/定额依据_中电联定额2023_366号通知_本地图片合并版.pdf",
+      "bytes": 371268,
+      "sha256": "ae47ff7eb3a5a8290690fc4eef1f32599a78fab999c57ccfb3122f0b6224d63b"
+    },
+    {
+      "path": "参考政策/储能成本依据/定额依据_中电联定额2023_366号通知_网页存档.html",
+      "bytes": 81562,
+      "sha256": "9b122589aa63c13d8cb665c3b2282b2521f14afccb92cf909009328ab7889160"
+    },
+    {
+      "path": "参考政策/储能成本依据/定额依据_价格水平调整办法_定额2024_12号_本地图片合并版.html",
+      "bytes": 2884,
+      "sha256": "63223bd9ec1b1e68f18591935d7ad6f4f56c1791a2810f351e0fa094e03a4ade"
+    },
+    {
+      "path": "参考政策/储能成本依据/定额依据_价格水平调整办法_定额2024_12号_本地图片合并版.pdf",
+      "bytes": 4552088,
+      "sha256": "02001a074eeddc81d77bf2511ed4d1500a73c6c59a87032fcac100ae422ce90d"
+    },
+    {
+      "path": "参考政策/储能成本依据/定额依据_价格水平调整办法通知_定额2024_12号.html",
+      "bytes": 88643,
+      "sha256": "556fc0ec01980d5143ad4ebdfd4483b9b2400f105854c5354928503bf12d1619"
+    },
+    {
+      "path": "参考政策/储能成本依据/定额依据_正版出版书目信息_ISBN9787519886943.html",
+      "bytes": 1437,
+      "sha256": "63d98b7ca76063fb0b7c52d582357bf421441953f9815a86162f3e34075a77df"
+    },
+    {
+      "path": "参考政策/储能成本依据/来源与适用说明.md",
+      "bytes": 12690,
+      "sha256": "eaff5cc8d2b6d9d65dc0057b52197897e6b1506293b22127a0c12a50617d597f"
+    },
+    {
+      "path": "参考政策/储能成本依据/案例1_苏州100kW_215kWh储能户外柜招标公告.html",
+      "bytes": 31935,
+      "sha256": "4ac76ac84133d274990dc07f69cff7c2ef182e595108aa9881ac8be37ef5e2ef"
+    },
+    {
+      "path": "参考政策/储能成本依据/案例1_苏州100kW_215kWh储能户外柜招标公告.pdf",
+      "bytes": 926048,
+      "sha256": "40ac24d2fae4e60881c5420613e21ce2a5ca89db4325002734b00995857ba56c"
+    },
+    {
+      "path": "参考政策/储能成本依据/案例1_苏州光伏及储能项目中标公告.html",
+      "bytes": 14359,
+      "sha256": "2ff4434e52416eeb28dc2c91568bea581fd4162b91c319315c76495291c15d5c"
+    },
+    {
+      "path": "参考政策/储能成本依据/案例1_苏州光伏及储能项目中标公告.pdf",
+      "bytes": 646309,
+      "sha256": "aaa70a7d47e7583d1077bd663fa17ecce418e1abea1719ca0b33847066c77cf1"
+    },
+    {
+      "path": "参考政策/储能成本依据/案例2_浏阳1MW_2.2MWh用户侧储能中标公告.html",
+      "bytes": 27827,
+      "sha256": "deaaef0c04b748e786c51ab3beeaa78f5a1bdf7c97255c272274f369487a128d"
+    },
+    {
+      "path": "参考政策/储能成本依据/案例2_浏阳1MW_2.2MWh用户侧储能中标公告.pdf",
+      "bytes": 540558,
+      "sha256": "6e7f72e6a453603b40ea22ed9393ea5607e9b9bfc6f819987e964298fad8d17a"
+    },
+    {
+      "path": "参考政策/储能成本依据/案例2_浏阳1MW_2.2MWh用户侧储能招标公告.html",
+      "bytes": 34194,
+      "sha256": "5adafa34b5fecfd5e557c1fe9c8bab721d38a91487d3026c2f56b09a751acfe8"
+    },
+    {
+      "path": "参考政策/储能成本依据/案例2_浏阳1MW_2.2MWh用户侧储能招标公告.pdf",
+      "bytes": 888545,
+      "sha256": "9a06d65279c5870ad9ab9f8b266c964348adaae9a86a8439039cc2565a09c5f4"
+    },
+    {
+      "path": "参考政策/分布式电源接入电力系统承载力评估导则（DLT 2041-2025).pdf",
+      "bytes": 8152426,
+      "sha256": "b6173403df3f3aa88406e9feb1078d9bd025409affa7d9b780d0e575745539d5"
+    },
+    {
+      "path": "参考政策/容载比弹性扫描依据/CSEE_2026_active_distribution_capacity_ratio.pdf",
+      "bytes": 1766312,
+      "sha256": "b4be0423dfa7a31abc14bd06c90378069c321fd29edaf3f33e6fcfa6bbdf58c5"
+    },
+    {
+      "path": "参考政策/容载比弹性扫描依据/徐州地铁分布式光伏_2022_招标公告.html",
+      "bytes": 188056,
+      "sha256": "d77ae4fe12e448ec99e7195cd7fb225995fea22f13ac6a4e7b2aa8757a36c68e"
+    },
+    {
+      "path": "参考政策/容载比弹性扫描依据/来源与适用说明.md",
+      "bytes": 12822,
+      "sha256": "9e5e60e4a8e55ff3e7dd3c50ab351ea491d42acff7e2b1c33ef929b2f9c109e3"
+    },
+    {
+      "path": "参考政策/容载比弹性扫描依据/江苏省光伏发电推进意见_2009_江苏省政府.html",
+      "bytes": 23137,
+      "sha256": "41efb262e700b4e3ba4931c29f32382c9ac4e56e66c701039e80bc25c33b8f25"
+    },
+    {
+      "path": "参考政策/容载比弹性扫描依据/江苏省分布式光伏发展实施方案_2026-2030_江苏省发改委.html",
+      "bytes": 22893,
+      "sha256": "c48a952139624dfb0319c0fca63031b74b8648b5c2224aab26b0c64248318207"
     },
     {
       "path": "实验/研究/README.md",
@@ -1214,20 +1472,17 @@
     {
       "path": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比矩阵.xlsx",
       "bytes": 21478,
-      "sha256": "51512313d72e03fc2592ac654945ce24370f4bd052fb53d401afa411cccca4b4",
-      "previous_sha256": "1425ceab4cdb86dc8f3266c5bdb9be07129ae6b0c1a5d7ab4a93f519722f1e80"
+      "sha256": "51512313d72e03fc2592ac654945ce24370f4bd052fb53d401afa411cccca4b4"
     },
     {
       "path": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比说明.md",
       "bytes": 5067,
-      "sha256": "03ae09c1ee7f801ba4090fd49b576e52b64a9755fbe83e22ef862748ac6c3772",
-      "previous_sha256": "c398affaa1342d832bd0f8b2e11bd10994c1336c80388a2e83caeec41be9bc1a"
+      "sha256": "03ae09c1ee7f801ba4090fd49b576e52b64a9755fbe83e22ef862748ac6c3772"
     },
     {
       "path": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/推荐矩阵成果说明.md",
       "bytes": 963,
-      "sha256": "2fecec399f7daffc4a29e20c23b0d7bfaf594d1b3dbb9305677e2540398881f3",
-      "previous_sha256": "76d9722596f88f92a336ffee890a1eeb0f3b80495823eb2505575ad8a9e8f83b"
+      "sha256": "2fecec399f7daffc4a29e20c23b0d7bfaf594d1b3dbb9305677e2540398881f3"
     },
     {
       "path": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/reproducibility_audit.json",
@@ -2063,22 +2318,757 @@
       "path": "实验/研究/rebuild_2026/verify_frozen_v4.py",
       "bytes": 1164,
       "sha256": "1bff606cd3c3bd6de04bd5cc8934848461c912518bdd3fb98dc0979b2f3b565e"
+    },
+    {
+      "path": "研究报告/00审查/data_source.json",
+      "bytes": 20787510,
+      "sha256": "030588541b5ab70aaa91f2c53987a9918aa04909ec05e2d0acc1b26a7e31b5d4"
+    },
+    {
+      "path": "研究报告/00审查/公式与术语审查.md",
+      "bytes": 17100,
+      "sha256": "b4f8b70cff5ee4aa84eb5b81e867a50a4587dad7eb902e14e2488b2142a187a8"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/使用说明.md",
+      "bytes": 3503,
+      "sha256": "2f052284531c60bd638fdbfcd9704043e73200b5c60fb392e551378f58dc8ee7"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/封存资料.py",
+      "bytes": 6255,
+      "sha256": "540b319e870956ef9be562424dbe496dea908bd2d43053a2227c05050fe919ac"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/核对隔离结果.py",
+      "bytes": 2463,
+      "sha256": "197e8680b039007dc10ac9130851586abef1690fe84b68a0603487ba2753fd11"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/核验交付.py",
+      "bytes": 6540,
+      "sha256": "696dec3a2fec83f28cfe5473e31373a49d62d773d5fbd30904171c0861d44662"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/核验冻结.py",
+      "bytes": 968,
+      "sha256": "3218c5b793dda737f9f41daa6b4f71c9dba165e0d86904811e7aed249262e6c8"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/清理废弃结果.py",
+      "bytes": 4160,
+      "sha256": "6d3ede867889f9e64799543bd0ff8ed3d64a2263ef82e61769278f4ca488b92e"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/独立核查.py",
+      "bytes": 11820,
+      "sha256": "eba1516cede62de30fcb887967d232c6e2cdba155af641ba7828e03d4d8dff02"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/生成冻结资料.py",
+      "bytes": 61518,
+      "sha256": "57e40b5960ef060c95b17f26e3a24f4c97c3c6539895c9fdc026e42584c5217a"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/阶段0只读核查.ipynb",
+      "bytes": 3943,
+      "sha256": "9d2cf6905b9cb12841e199585c0117c179f1253f2d724203d2c72f525e352458"
+    },
+    {
+      "path": "研究报告/00审查/审计工具/隔离复现.py",
+      "bytes": 2939,
+      "sha256": "6b766650b9e98153a83a75f11d6c106ceae2f8d90f3e681094b43844e149a669"
+    },
+    {
+      "path": "研究报告/00审查/废弃结果清理清单.md",
+      "bytes": 1512,
+      "sha256": "c5ada446449ba0dce94128a9773838cd5a6d5cc3f3fcaa46bf222144fae78193"
+    },
+    {
+      "path": "研究报告/00审查/成本模型说明.md",
+      "bytes": 9552,
+      "sha256": "edaf10ef7d0e8dad7cb4b95b050a7d154d8eb2fedef07c683ba72ddd8ba33a4c"
+    },
+    {
+      "path": "研究报告/00审查/推荐矩阵更新记录.md",
+      "bytes": 1881,
+      "sha256": "03c71f6843a8f6db9d04d712d2c35fe1b403b8befa3097be822290cc95767d12"
+    },
+    {
+      "path": "研究报告/00审查/数据来源审查.pdf",
+      "bytes": 5383749,
+      "sha256": "2b6bc660e36b717751197b548d2daa5b4ed40cabfae1228782f13d23a82a1ee2"
+    },
+    {
+      "path": "研究报告/00审查/最终数据字典.xlsx",
+      "bytes": 1353106,
+      "sha256": "f67f42e7c893361f6b4ef4558bca94283e27ae4d76d76b2f39bcaadb2402d6b3"
+    },
+    {
+      "path": "研究报告/00审查/最终模型说明.md",
+      "bytes": 10754,
+      "sha256": "4909bd46a76c5157808ba9f2035b53ce730a1a5ac0fb93c4df77f3cfe164d0a5"
+    },
+    {
+      "path": "研究报告/00审查/结果冻结报告.md",
+      "bytes": 4978,
+      "sha256": "005a7929547ecce15b9e7459b4f7a3c27e740e650c944a829e1ca24ff636f6df"
+    },
+    {
+      "path": "研究报告/00审查/证据/PDF打印.log",
+      "bytes": 122,
+      "sha256": "431fb7b5a3f895d611077909fc64e120152c4c5f3b7f47c0d3f335abb18e5599"
+    },
+    {
+      "path": "研究报告/00审查/证据/PDF排版复核.md",
+      "bytes": 881,
+      "sha256": "f693f0eeb25db648cc2592517d0dd85db565f1ff29eb69dbc01dee6658ca77b2"
+    },
+    {
+      "path": "研究报告/00审查/证据/PDF最终打印记录.json",
+      "bytes": 479,
+      "sha256": "5f34ab77b12fab2099f94198c20c940ba9069a0e9362b3b0636a5b9d804ea15a"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/对账.json",
+      "bytes": 1119,
+      "sha256": "068affef5def1ddcb2afb44b505d95135f76477c8714460aefc64c33dc0a4b78"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/旧清单遗漏依赖的失败日志/冻结哈希.log",
+      "bytes": 57,
+      "sha256": "911b804252d93bb2b16531999630d0d93ce69da13d1069285f8f90699d8714da"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/旧清单遗漏依赖的失败日志/执行检查.json",
+      "bytes": 439,
+      "sha256": "bb60cfb2aea230abf851b13c554f73e86eec87526e045d2e191a854515ad4c58"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/旧清单遗漏依赖的失败日志/模型测试.log",
+      "bytes": 33134,
+      "sha256": "f2526b3fa1e2b14da4446d70d73091377c27313e9167cdd22ef042e021c2f5fe"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/通过日志/价格敏感性核查.log",
+      "bytes": 120,
+      "sha256": "d6a1870ae55c3528286308622d3d7eed83323c2b8834e70a7974926c518d063b"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/通过日志/六路径核查.log",
+      "bytes": 84,
+      "sha256": "ba5aca18609767602172dc664e9dcb8a92ceddcfe0854dbb508a3f55df25d76c"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/通过日志/六路径重求.log",
+      "bytes": 292,
+      "sha256": "2d85bdcbf060715feb02d7ef41e218e59d3baf723c4d6ec444e9059a2d9ad7a8"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/通过日志/冻结哈希.log",
+      "bytes": 57,
+      "sha256": "911b804252d93bb2b16531999630d0d93ce69da13d1069285f8f90699d8714da"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/通过日志/年度指标核查.log",
+      "bytes": 55,
+      "sha256": "4faecafcff9d9921de7c9d4e0cf1832512a23f86f1266adc3426baae28e2bd89"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/通过日志/执行检查.json",
+      "bytes": 1373,
+      "sha256": "8a10bc4a2adb1496d8013a531b7b9a1711276d68af6c61ad687e9c03a938fed2"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/通过日志/模型测试.log",
+      "bytes": 1001,
+      "sha256": "7c571d52faa2766d27ad5897a59dc2cd75d108412ada70c42f9be591d2972265"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/annual_matrix.csv",
+      "bytes": 3148,
+      "sha256": "fe71ed6a5f747d4306fb59a8d689521c1ec7f88806c80159c0eef8a75c19c5de"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/baseline_layers.csv",
+      "bytes": 517,
+      "sha256": "c79d0c210033f1a147626aace634c2915ba6761da6294d153ee5d783e103e5a1"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/baseline_stations.csv",
+      "bytes": 19245,
+      "sha256": "b6926102da773e995527c193c863ec0bff811c2e17abaa977a52dc291a9068d1"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/elastic_QX-00005_110_stations.csv",
+      "bytes": 18387,
+      "sha256": "f02dae2339a5d17978977a2289c7d91e67af8a054cf3a13288f997e308b22452"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/elastic_QX-00005_110_ties.csv",
+      "bytes": 1094,
+      "sha256": "a8bc8ed564f33ebe041e60043868ee9338f2ddf460703e2784da3e205e8cd9fe"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/elastic_QX-00005_110_years.csv",
+      "bytes": 1200,
+      "sha256": "0b4768ae31a5a8afff3677931a0e2f93ce261421a04aa47e311eb70765528c47"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/elastic_QX-00005_35_stations.csv",
+      "bytes": 7336,
+      "sha256": "61711c26fde875d8fc0876cee82b309004db18997f0e96e564cfa31c0f02f4e9"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/elastic_QX-00005_35_years.csv",
+      "bytes": 1139,
+      "sha256": "6680fe814d3598f8e1b30adff1558047d8a7b4a7ba2f2538692d8ea254074d4c"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/elastic_QX-00007_110_stations.csv",
+      "bytes": 25245,
+      "sha256": "bd5cb9eea7c588add2b39fbf445534f7c09b97d93cfa92db4a5263d69da047ff"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/elastic_QX-00007_110_years.csv",
+      "bytes": 1178,
+      "sha256": "be3ad71bc81491aa8923eae3ad43a735aa6ff5c9c2855308f1fa78ec52de1c20"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/rigid_QX-00005_110_stations.csv",
+      "bytes": 18287,
+      "sha256": "3d3e10b35916ed957c4f45b5b7c7dfaf44ed243a3f86e532908b387a18563675"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/rigid_QX-00005_110_ties.csv",
+      "bytes": 1094,
+      "sha256": "a8bc8ed564f33ebe041e60043868ee9338f2ddf460703e2784da3e205e8cd9fe"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/rigid_QX-00005_110_years.csv",
+      "bytes": 1192,
+      "sha256": "97acd7e35225507c5ac8f251f754a17ffe1cab491a7c80aec47ca148a2e6ae3f"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/rigid_QX-00005_35_stations.csv",
+      "bytes": 7339,
+      "sha256": "adae50051c8552da98b1212b4336bd7fcf669ce6f0457251a0d03b067bd7ccd6"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/rigid_QX-00005_35_years.csv",
+      "bytes": 1140,
+      "sha256": "9de93c566023c04897c1a5f38895c68cb1a2e8fb1a1efec512bb7bc6cc1b5266"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/rigid_QX-00007_110_stations.csv",
+      "bytes": 25017,
+      "sha256": "6803ea5a4fb44f62ac885964cd51b608c9df5e938d5c20e576c540e97c800f09"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/rigid_QX-00007_110_years.csv",
+      "bytes": 1173,
+      "sha256": "23c7702f33e69f8dc05e52e763d21d4f3d0f1e30ce832d123df098c98d88cf34"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/重求结果/summary.csv",
+      "bytes": 5949,
+      "sha256": "1a98645eb69486b9299818694974d479ed52ee17f9155ce779fbcae1b5ce72cb"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付工具隔离复验/首次字段集合检查.json",
+      "bytes": 1181,
+      "sha256": "6c909bef790b8f873843714e47a23e35013368c673edca3dc870c83d8ae91dda"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付核验.json",
+      "bytes": 405,
+      "sha256": "c998fbb9a74cad545ee0a753a7ad712e6d06fd73da693706fba2289d0669e34e"
+    },
+    {
+      "path": "研究报告/00审查/证据/交付统计.json",
+      "bytes": 278,
+      "sha256": "1e9f7403f7f7e7bf2d2e24c1c0d16bb7a7416a234c778801f7686cc4d2d7ab39"
+    },
+    {
+      "path": "研究报告/00审查/证据/价格敏感性独立审计.log",
+      "bytes": 120,
+      "sha256": "d6a1870ae55c3528286308622d3d7eed83323c2b8834e70a7974926c518d063b"
+    },
+    {
+      "path": "研究报告/00审查/证据/六路径完整重求.log",
+      "bytes": 292,
+      "sha256": "2d85bdcbf060715feb02d7ef41e218e59d3baf723c4d6ec444e9059a2d9ad7a8"
+    },
+    {
+      "path": "研究报告/00审查/证据/历史材料审查索引.json",
+      "bytes": 29825,
+      "sha256": "d61acc15e02257e1d929ad040b3f154a93f4892c4fbd3bae7da8c56f7e916d42"
+    },
+    {
+      "path": "研究报告/00审查/证据/原冻结哈希.log",
+      "bytes": 756,
+      "sha256": "81c6bcba3c77db67c529b7694ef02a75d3e2cb95d16d513d710d75c41f04a840"
+    },
+    {
+      "path": "研究报告/00审查/证据/原冻结哈希_补齐副本复核.log",
+      "bytes": 57,
+      "sha256": "911b804252d93bb2b16531999630d0d93ce69da13d1069285f8f90699d8714da"
+    },
+    {
+      "path": "研究报告/00审查/证据/基础六路径独立审计.log",
+      "bytes": 84,
+      "sha256": "ba5aca18609767602172dc664e9dcb8a92ceddcfe0854dbb508a3f55df25d76c"
+    },
+    {
+      "path": "研究报告/00审查/证据/工作区变动说明.json",
+      "bytes": 45397,
+      "sha256": "dc06383cb7fc804c9dc1c6cb092d5e0350215640496321d98a955d6c442aa9a7"
+    },
+    {
+      "path": "研究报告/00审查/证据/年度指标独立审计.log",
+      "bytes": 55,
+      "sha256": "4faecafcff9d9921de7c9d4e0cf1832512a23f86f1266adc3426baae28e2bd89"
+    },
+    {
+      "path": "研究报告/00审查/证据/废弃结果清理.json",
+      "bytes": 104474,
+      "sha256": "138e6bd8473871deea9c84b750f335875d1d8c25dbe47902febc90460471897e"
+    },
+    {
+      "path": "研究报告/00审查/证据/当前模型测试.log",
+      "bytes": 1001,
+      "sha256": "b2fe398eb437cd5c3acf3f5ca25c65f7df078d7f8afb28ca2851e63c82e77a62"
+    },
+    {
+      "path": "研究报告/00审查/证据/执行检查.json",
+      "bytes": 2236,
+      "sha256": "c45c1620b90d2c7075debfa97cc0e1d368bef90d445f63fff41d9588f0af917a"
+    },
+    {
+      "path": "研究报告/00审查/证据/数据来源图.json",
+      "bytes": 270755,
+      "sha256": "94a1d98ac40f0887f80a7aecd1a4d4e52ce5f2b7c05dca89018a4fd7fd903613"
+    },
+    {
+      "path": "研究报告/00审查/证据/数据来源审查_带页码.pdf",
+      "bytes": 5383749,
+      "sha256": "2b6bc660e36b717751197b548d2daa5b4ed40cabfae1228782f13d23a82a1ee2"
+    },
+    {
+      "path": "研究报告/00审查/证据/数据来源审查_浏览器打印.pdf",
+      "bytes": 5675514,
+      "sha256": "a9798bb958951e71c048da51b5cdcf27b94120bd3fd506946411fa44650525c9"
+    },
+    {
+      "path": "研究报告/00审查/证据/数据来源审查打印.html",
+      "bytes": 684659,
+      "sha256": "3016197f2c97d9cbd503d854f283d5017a55ac92f27dc38c09c7516d95deb0a0"
+    },
+    {
+      "path": "研究报告/00审查/证据/文字审查记录.md",
+      "bytes": 1839,
+      "sha256": "6755147c3c2b65ca81b204351b3aa815554639206bdeb5945ec8fa7dfa8a32e9"
+    },
+    {
+      "path": "研究报告/00审查/证据/本阶段完整重求对账.json",
+      "bytes": 884,
+      "sha256": "6109ea91e3a64a1b6fcd826a54ae90821a845d65e58e821218357da51ec92276"
+    },
+    {
+      "path": "研究报告/00审查/证据/本阶段独立核查.json",
+      "bytes": 322866,
+      "sha256": "990b44c46190984e4e19492fbcedd0a2f3fad2ceb68e941b0bef10874ec05b6f"
+    },
+    {
+      "path": "研究报告/00审查/证据/版本核验.json",
+      "bytes": 91015,
+      "sha256": "4174de1c88fcf67c4872688da410a28051c43007c8d93b303d5d855048c5a398"
+    },
+    {
+      "path": "研究报告/00审查/证据/笔记本执行记录.json",
+      "bytes": 214,
+      "sha256": "4f571d476b4ce8f1180b72e011bc3900f2a4be2f3f160ab4b8fd6b0e88d23e3c"
+    },
+    {
+      "path": "研究报告/00审查/证据/输入与原结果快照.json",
+      "bytes": 98927,
+      "sha256": "6a980e452a07dae9a26b4ed3a24eb722f6d567de9603bbef26b926c8fd28fc0c"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/annual_matrix.csv",
+      "bytes": 3148,
+      "sha256": "fe71ed6a5f747d4306fb59a8d689521c1ec7f88806c80159c0eef8a75c19c5de"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/baseline_layers.csv",
+      "bytes": 517,
+      "sha256": "c79d0c210033f1a147626aace634c2915ba6761da6294d153ee5d783e103e5a1"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/baseline_stations.csv",
+      "bytes": 19245,
+      "sha256": "b6926102da773e995527c193c863ec0bff811c2e17abaa977a52dc291a9068d1"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/elastic_QX-00005_110_stations.csv",
+      "bytes": 18387,
+      "sha256": "f02dae2339a5d17978977a2289c7d91e67af8a054cf3a13288f997e308b22452"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/elastic_QX-00005_110_ties.csv",
+      "bytes": 1094,
+      "sha256": "a8bc8ed564f33ebe041e60043868ee9338f2ddf460703e2784da3e205e8cd9fe"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/elastic_QX-00005_110_years.csv",
+      "bytes": 1200,
+      "sha256": "0b4768ae31a5a8afff3677931a0e2f93ce261421a04aa47e311eb70765528c47"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/elastic_QX-00005_35_stations.csv",
+      "bytes": 7336,
+      "sha256": "61711c26fde875d8fc0876cee82b309004db18997f0e96e564cfa31c0f02f4e9"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/elastic_QX-00005_35_years.csv",
+      "bytes": 1139,
+      "sha256": "6680fe814d3598f8e1b30adff1558047d8a7b4a7ba2f2538692d8ea254074d4c"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/elastic_QX-00007_110_stations.csv",
+      "bytes": 25245,
+      "sha256": "bd5cb9eea7c588add2b39fbf445534f7c09b97d93cfa92db4a5263d69da047ff"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/elastic_QX-00007_110_years.csv",
+      "bytes": 1178,
+      "sha256": "be3ad71bc81491aa8923eae3ad43a735aa6ff5c9c2855308f1fa78ec52de1c20"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/rigid_QX-00005_110_stations.csv",
+      "bytes": 18287,
+      "sha256": "3d3e10b35916ed957c4f45b5b7c7dfaf44ed243a3f86e532908b387a18563675"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/rigid_QX-00005_110_ties.csv",
+      "bytes": 1094,
+      "sha256": "a8bc8ed564f33ebe041e60043868ee9338f2ddf460703e2784da3e205e8cd9fe"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/rigid_QX-00005_110_years.csv",
+      "bytes": 1192,
+      "sha256": "97acd7e35225507c5ac8f251f754a17ffe1cab491a7c80aec47ca148a2e6ae3f"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/rigid_QX-00005_35_stations.csv",
+      "bytes": 7339,
+      "sha256": "adae50051c8552da98b1212b4336bd7fcf669ce6f0457251a0d03b067bd7ccd6"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/rigid_QX-00005_35_years.csv",
+      "bytes": 1140,
+      "sha256": "9de93c566023c04897c1a5f38895c68cb1a2e8fb1a1efec512bb7bc6cc1b5266"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/rigid_QX-00007_110_stations.csv",
+      "bytes": 25017,
+      "sha256": "6803ea5a4fb44f62ac885964cd51b608c9df5e938d5c20e576c540e97c800f09"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/rigid_QX-00007_110_years.csv",
+      "bytes": 1173,
+      "sha256": "23c7702f33e69f8dc05e52e763d21d4f3d0f1e30ce832d123df098c98d88cf34"
+    },
+    {
+      "path": "研究报告/00审查/证据/隔离重求结果/summary.csv",
+      "bytes": 5948,
+      "sha256": "455ab9d6cb63d9a9c954ad9f59b276614685135f855f4f5ca31be0799ca30f91"
+    },
+    {
+      "path": "研究报告/00审查/阶段0完成报告.md",
+      "bytes": 6028,
+      "sha256": "f7951b05b97e3d3472aa60c1996b590b1718b7fd25dd4ef3f93fd6485127d81a"
+    },
+    {
+      "path": "研究报告/01研究推荐/分析工具/发布区县口径更新.py",
+      "bytes": 14371,
+      "sha256": "e2b8da6b1f96091e176ddf022873d4b7846d04b42ce5d4d92451783891e2de48"
+    },
+    {
+      "path": "研究报告/01研究推荐/分析工具/替换原版与更新封存.py",
+      "bytes": 14948,
+      "sha256": "9a07ec21af5c4a91061b3499fb1b40edab768c470fe7a028e456fcfd256dd1a6"
+    },
+    {
+      "path": "研究报告/01研究推荐/分析工具/生成区县口径矩阵.py",
+      "bytes": 20983,
+      "sha256": "9e5bcf932168f539c831656351cb811cc94eb45bef24f190f9b096ce9935ab10"
+    },
+    {
+      "path": "研究报告/01研究推荐/分析工具/生成研究矩阵.py",
+      "bytes": 35524,
+      "sha256": "11762c85440070570737a1df18c3cfcf7afc3c66821a0938adffdde3cac896fb"
+    },
+    {
+      "path": "研究报告/01研究推荐/区县口径更新与校验.json",
+      "bytes": 1859,
+      "sha256": "86f086f1f942c1a36a46c0f85b051de1c986c7f616bab151367924baafe31f1b"
+    },
+    {
+      "path": "研究报告/01研究推荐/区县口径更新说明.md",
+      "bytes": 1293,
+      "sha256": "339a11e142754fb556b41a1c2b3115af17f3366accf9da6f3b2c52ebea6f6f25"
+    },
+    {
+      "path": "研究报告/01研究推荐/原模型与数据复核.json",
+      "bytes": 322866,
+      "sha256": "990b44c46190984e4e19492fbcedd0a2f3fad2ceb68e941b0bef10874ec05b6f"
+    },
+    {
+      "path": "研究报告/01研究推荐/原版替换与校验记录.json",
+      "bytes": 3434,
+      "sha256": "3b79f3cb45803eb09088dc9a0d6507c4a39c771773e52fefd79e46b2132f2f43"
+    },
+    {
+      "path": "研究报告/01研究推荐/年度装机单位与比率校核.md",
+      "bytes": 3463,
+      "sha256": "6dec0eff08aa318852897c22d4111dfbbcaaca01dc9afbb985de7e55b63b73e2"
+    },
+    {
+      "path": "研究报告/01研究推荐/指标定义与口径补充审查.md",
+      "bytes": 11207,
+      "sha256": "4cdba90f430a7d6d3f7b4796a50328f27065b710798df9f6dcda8a8cfb52e8c7"
+    },
+    {
+      "path": "研究报告/01研究推荐/研究型推荐方案.md",
+      "bytes": 5067,
+      "sha256": "03ae09c1ee7f801ba4090fd49b576e52b64a9755fbe83e22ef862748ac6c3772"
+    },
+    {
+      "path": "研究报告/01研究推荐/研究型推荐矩阵.xlsx",
+      "bytes": 21478,
+      "sha256": "51512313d72e03fc2592ac654945ce24370f4bd052fb53d401afa411cccca4b4"
+    },
+    {
+      "path": "研究报告/01研究推荐/研究推荐数据.json",
+      "bytes": 194383,
+      "sha256": "768e4ee20785e2d2ad18a3c09fcbcbef63b055777ef901386af5ca9bea745a3c"
+    },
+    {
+      "path": "研究报告/01研究推荐/研究矩阵复算核验.json",
+      "bytes": 346,
+      "sha256": "b43052977c8338948c1fe74cd77f488506d586b8415b3060f2a1d3e164df8c83"
+    },
+    {
+      "path": "研究报告/01研究推荐/补充分析核验.json",
+      "bytes": 534,
+      "sha256": "75e84936129ebf700c572c8374b2fe310dc42d4e9ee9ee516fe4877ce575d915"
+    },
+    {
+      "path": "研究报告/01研究推荐/阶段0兼容性核验.json",
+      "bytes": 405,
+      "sha256": "c998fbb9a74cad545ee0a753a7ad712e6d06fd73da693706fba2289d0669e34e"
+    },
+    {
+      "path": "研究报告/AGENTS.md",
+      "bytes": 4559,
+      "sha256": "bbdaf1b60002e6e9c64f9585b192580844c5622ddc82fa5602787a06326c58ae"
+    },
+    {
+      "path": "研究报告/_manifest.json",
+      "bytes": 453,
+      "sha256": "b77d761c96ae5e8c0018ad937acb37720db762540ecd0effa5bd44c877644f40"
+    },
+    {
+      "path": "研究报告/中期研究报告初稿/03+XX项目-研究报告.docx",
+      "bytes": 34728,
+      "sha256": "2dc66b7e231fd1742260d16a30503d02b34a601759607057661c585154baa987"
+    },
+    {
+      "path": "研究报告/中期研究报告初稿/03+XX项目-研究报告.md",
+      "bytes": 249,
+      "sha256": "caf5dce98abd800f632af15879fb54249be4b9dd9633790fe82f53e3bb202e08"
+    },
+    {
+      "path": "研究报告/中期研究报告初稿/_manifest.json",
+      "bytes": 1058,
+      "sha256": "fbd17e12408c18835e87ea3f0ce74308eda069c0d0c3ed1406df64e15989ed81"
+    },
+    {
+      "path": "研究报告/中期研究报告初稿/睢宁县魏集镇独立储能电站容量规划报告.md",
+      "bytes": 46746,
+      "sha256": "b472a3f605e5b48669adb7647ca6eddc6c0455009616ca40beb9303ddf4e4c7a"
+    },
+    {
+      "path": "研究报告/中期研究报告初稿/睢宁县魏集镇独立储能电站容量规划报告.pdf",
+      "bytes": 4027384,
+      "sha256": "26264542d3e64b9675590bc034f2e4fb90ce89264e99ce151d49ad7f83cd0efb"
+    },
+    {
+      "path": "研究报告/开题报告/0707 国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-开题报告0707.docx",
+      "bytes": 47122,
+      "sha256": "3c8f2e1669d92f7f76dd8dfc499bd110ed06f5b2a3ca04ebb7a2c56b1e8a33e4"
+    },
+    {
+      "path": "研究报告/开题报告/0707 国网徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究-开题报告0707.md",
+      "bytes": 56094,
+      "sha256": "c811581717099e018cb85f0d8c396b33fc39ecad734fe77cf67627722e5e3ef3"
+    },
+    {
+      "path": "研究报告/开题报告/Task1_背景总结与进度报告.md",
+      "bytes": 13359,
+      "sha256": "35d0c72796a5709773e9431ddd4cfe8ecbf786cc9584ede51518854b2032d29d"
+    },
+    {
+      "path": "研究报告/开题报告/_manifest.json",
+      "bytes": 804,
+      "sha256": "4f0c57dbec40834dc0cdccaa675d706d003df22591c527a102ef2dc87b3648c6"
+    },
+    {
+      "path": "研究报告/开题报告/build_kt_ppt.py",
+      "bytes": 4137,
+      "sha256": "0b684bdedd6d2dc8861c2c598afda79d96abc21e832fd1e5efe7fc32fb73f8dc"
+    },
+    {
+      "path": "研究报告/开题报告/build_kt_ppt_marked.py",
+      "bytes": 3465,
+      "sha256": "00ccfff2b1b1c73b3a9ece45aaa3d0720b766fa28594f630697684d1fe03afa6"
+    },
+    {
+      "path": "研究报告/开题报告/build_kt_report.py",
+      "bytes": 9208,
+      "sha256": "5487e8e7add7a23b799f633429ff19a4fb0360627cae01e8f2b54931e2ee680a"
+    },
+    {
+      "path": "研究报告/开题报告/build_kt_report_red.py",
+      "bytes": 4285,
+      "sha256": "fa54def3e5a7ee666f452110ce344f714bc4d8a8ba5470236d61b4979e7fd1fe"
+    },
+    {
+      "path": "研究报告/开题报告/参考范本/国网徐州公司2026年面向分布式光伏等要素对电力市场影响的电力经济统计分析咨询服务-开题报告.doc",
+      "bytes": 126464,
+      "sha256": "792a4c3fffb04a06b82e5392b43315d0f4996bcd14035b27b397bb70d760b652"
+    },
+    {
+      "path": "研究报告/开题报告/参考范本/国网徐州公司2026年面向分布式光伏等要素对电力市场影响的电力经济统计分析咨询服务-开题报告.pptx",
+      "bytes": 4789872,
+      "sha256": "862b061378f0ac8b38b7960e72103c307e946054227ed8f8f11d30652d0d26ae"
+    },
+    {
+      "path": "研究报告/开题报告/徐州公司徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究(定稿-红色标记).pptx",
+      "bytes": 6741980,
+      "sha256": "48746dc91b93ea29af6abd400b9d50fcf2a185caaaf6147be181db42bdcdaf12"
+    },
+    {
+      "path": "研究报告/数据来源/[86]新华社_江苏分布式光伏新增装机超1650万千瓦_2025-12-04.md",
+      "bytes": 1949,
+      "sha256": "a28861e55b803580f9d201aed91e4bd91164c7575c57f12057e8ea1e721ffad0"
+    },
+    {
+      "path": "研究报告/数据来源/[87]江苏分布式光伏装机规模居全国第一_2025-12-07.md",
+      "bytes": 2976,
+      "sha256": "2af9b448b1bafad15044cab23f5423b9b4f6f45cf62a7b7d225ec0b35b67141b"
+    },
+    {
+      "path": "研究报告/数据来源/[88]国网江苏源网荷储协同_含徐州新沂双井村_2026-04-15.md",
+      "bytes": 2583,
+      "sha256": "fa7da285881e838b3f69361256a7af5e0bd9fdbdcec3d876f01945a75a944819"
+    },
+    {
+      "path": "研究报告/数据来源/data_source.json",
+      "bytes": 20787510,
+      "sha256": "030588541b5ab70aaa91f2c53987a9918aa04909ec05e2d0acc1b26a7e31b5d4"
+    },
+    {
+      "path": "研究报告/数据来源/数据来源审查.pdf",
+      "bytes": 5383749,
+      "sha256": "2b6bc660e36b717751197b548d2daa5b4ed40cabfae1228782f13d23a82a1ee2"
+    },
+    {
+      "path": "研究报告/服务报告-初稿.docx",
+      "bytes": 33281,
+      "sha256": "75e27826deb0987cd7e1e5602fa5109bbd087142e290cc0ffa235ac2932a45af"
+    },
+    {
+      "path": "研究报告/服务报告-初稿.md",
+      "bytes": 22420,
+      "sha256": "68fab0c1794827acbba8f70e595a737ec17b74dc82c17e79807d23ac905dfa57"
+    },
+    {
+      "path": "研究报告/服务报告-国内外研究现状分析.docx",
+      "bytes": 62667,
+      "sha256": "699cb13f6944e293b735e1ce5f8014a106b1336b2575981d3eb2510786e9d47e"
+    },
+    {
+      "path": "研究报告/服务报告-国内外研究现状分析.md",
+      "bytes": 55369,
+      "sha256": "44f458f03c78df21ba9337b4bb1e8ea6fa05b973e70dedeca180f33126dfefaf"
+    },
+    {
+      "path": "研究报告/甲方反馈/997ad7ebeee65bc880e1b652d255ee7f.png",
+      "bytes": 27416,
+      "sha256": "cb138c64f1683df9d08cca7257a52a9e2c994571c8cf0894128868ebe7fb736b"
+    },
+    {
+      "path": "研究报告/甲方反馈/f5f8900b3f0e91bad164a65cce465a49.png",
+      "bytes": 12473,
+      "sha256": "28a810e9176ed2b85a794a9b0e4e88ea53bf6d4949ededbcb08ff4dfbad59ca9"
+    },
+    {
+      "path": "研究报告/研究思路与目标校核分析.md",
+      "bytes": 16267,
+      "sha256": "cbe08e9d23c30575d845a9970b92669f1f6dabeddca404b5c3bf2e1ef23270e5"
+    },
+    {
+      "path": "研究报告/终稿/report-print.css",
+      "bytes": 2647,
+      "sha256": "83c6cebe7f6c63af47ffa44e35c7048e601125c89a7e0e8ff77c233806f38ecb"
+    },
+    {
+      "path": "研究报告/终稿/专题支撑/10kV分段联络建模与案例仿真说明.md",
+      "bytes": 28430,
+      "sha256": "f2dcb47948978f13aa3ddaa1cfee23a4e4467d0be1eb2add93603e986c897a53"
+    },
+    {
+      "path": "研究报告/终稿/专题支撑/10kV联络案例甲方汇报提纲.md",
+      "bytes": 7114,
+      "sha256": "d85f37ea23ae8cb92e53b23aa677c5cd10335629a061b953ad420cf73af0ec24"
+    },
+    {
+      "path": "研究报告/终稿/写作与科学表达硬约束.md",
+      "bytes": 3481,
+      "sha256": "d17d00671a0cc0d1ff547f757f3fca455af358cf44737c80b4a2dee300fb2325"
     }
   ],
-  "presentation_update": {
-    "date": "2026-09-27",
-    "authorization": "用户：可以直接替换原版；年度容量按万千瓦统计和计算",
-    "model_numeric_outputs_unchanged": true,
-    "replacement_paths": [
-      "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比矩阵.xlsx",
-      "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比说明.md",
-      "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/推荐矩阵成果说明.md"
-    ],
-    "previous_version_archive": "历史归档/推荐矩阵替换前-2026-09-27.zip"
-  },
-  "county_scope_update": {
-    "authorization": "用户确认统计范围为区县",
-    "model_numeric_results_unchanged": true,
-    "denominator": "区县110kV降压峰研究近似"
-  }
+  "removed_directories": [
+    "实验/无EA/results",
+    "实验/无EA/results_v4_apparent_backup",
+    "实验/有EA/results",
+    "实验/研究/results/runs",
+    "实验/研究/results/annual_2021_2025",
+    "实验/研究/results/real_2025_visuals",
+    "实验/研究/results/10kv_section_tie_case"
+  ],
+  "original_snapshot_files": 491,
+  "records": 18395,
+  "chapter_references": "拟引用位置；正式正文形成后另建引用定位版本",
+  "exclusions": [
+    "本清单自身",
+    "阶段0冻结说明.md：包含清单哈希，避免循环校验",
+    "__pycache__缓存"
+  ],
+  "unresolved_items": [
+    "非完整DL/T2041系统及设备承载力评估",
+    "市区三站设备容量缺口和421小时共同缺测",
+    "固定参考净峰未计规划储能动作",
+    "储能无逐时SOC及损耗",
+    "网损、退出拆改、残值及新线配套费用未评估",
+    "背景统计及文献阈值需另行核验",
+    "GitHub main尚未同步本地v4",
+    "区县源荷比以110kV降压峰近似用户最大用电负荷，若获得实测用户峰值可进一步完善"
+  ],
+  "presentation_update_record": "研究报告/01研究推荐/区县口径更新与校验.json",
+  "source_unit_confirmation": "分县月度分布式光伏容量：万千瓦；用户2026-09-27确认",
+  "complete_five_indicator_recommendation": "已形成区县统计口径五类指标研究矩阵，分母为降压峰近似；不是用户峰值实测标准评估",
+  "county_scope_update": "用户确认区县统计范围；装机按万千瓦；2023至2025采用降压峰研究近似"
 }

@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "authorization": "用户确认按区县统计范围",
+  "archive": "历史归档/区县统计调整前-2026-09-27.zip",
+  "archive_sha256": "0e729a0428f835cc87785954ca02733e0a39ba8a3d602cb88354ac7766549386",
+  "changed_registered_paths": [
+    "docs/FREEZE-MANIFEST-2026-09-27.json",
+    "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比矩阵.xlsx",
+    "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比说明.md",
+    "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/推荐矩阵成果说明.md",
+    "研究报告/00审查/公式与术语审查.md",
+    "研究报告/00审查/推荐矩阵更新记录.md",
+    "研究报告/00审查/最终模型说明.md",
+    "研究报告/00审查/结果冻结报告.md",
+    "研究报告/00审查/证据/输入与原结果快照.json",
+    "研究报告/00审查/阶段0完成报告.md",
+    "研究报告/01研究推荐/年度装机单位与比率校核.md",
+    "研究报告/01研究推荐/指标定义与口径补充审查.md",
+    "研究报告/01研究推荐/研究型推荐方案.md",
+    "研究报告/01研究推荐/研究型推荐矩阵.xlsx",
+    "研究报告/01研究推荐/研究推荐数据.json",
+    "研究报告/01研究推荐/补充分析核验.json"
+  ],
+  "protected_old_files": 575,
+  "original_model_results_unchanged": true,
+  "independent_checks": 6766,
+  "denominator_assumption": "区县110kV降压峰近似，不叠加35kV",
+  "full_indicator_cases": 9,
+  "county_year_records": 24,
+  "matrix_types": 5,
+  "humanizer_review": "审查用语已核对，区分标准定义、分母近似、区县背景与优化样本范围"
+}

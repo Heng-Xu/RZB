@@ -1,0 +1,24 @@
+[
+  {
+    "name": "冻结哈希",
+    "returncode": 0,
+    "command": [
+      "/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python",
+      "-m",
+      "rebuild_2026.verify_frozen_v4"
+    ]
+  },
+  {
+    "name": "模型测试",
+    "returncode": 1,
+    "command": [
+      "/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "rebuild_2026/tests",
+      "-p",
+      "no:cacheprovider"
+    ]
+  }
+]

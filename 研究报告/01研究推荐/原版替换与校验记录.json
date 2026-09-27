@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "authorization": "可以直接替换原版；可以按照万千瓦单位做统计和计算",
+  "archive": "历史归档/推荐矩阵替换前-2026-09-27.zip",
+  "archive_sha256": "97ed69d396b6eb08d2a36a44ce0519ce068fb479fbba4016148513b2035a9cba",
+  "archived_files": [
+    {
+      "path": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比矩阵.xlsx",
+      "old_sha256": "1425ceab4cdb86dc8f3266c5bdb9be07129ae6b0c1a5d7ab4a93f519722f1e80"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比说明.md",
+      "old_sha256": "c398affaa1342d832bd0f8b2e11bd10994c1336c80388a2e83caeec41be9bc1a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/推荐矩阵成果说明.md",
+      "old_sha256": "76d9722596f88f92a336ffee890a1eeb0f3b80495823eb2505575ad8a9e8f83b"
+    },
+    {
+      "path": "研究报告/00审查/最终模型说明.md",
+      "old_sha256": "f0a75aab86dc7d8bee311d17e85a1700c961eb40bf237ca20614169de411eb30"
+    },
+    {
+      "path": "研究报告/00审查/公式与术语审查.md",
+      "old_sha256": "34ee92d764f92a7592262684a9c7a9ef7f2d5ef9d0ec52a5cc293a2ac8d18516"
+    },
+    {
+      "path": "研究报告/00审查/结果冻结报告.md",
+      "old_sha256": "ec11ed2368950ab6a08364b03270c37704140c0e095b9fb85bbb7f5308ef9159"
+    },
+    {
+      "path": "研究报告/00审查/阶段0完成报告.md",
+      "old_sha256": "508c322ab336524436a5874e3258a652f6e1444dc7c7789d7e5ee77a4c107a55"
+    },
+    {
+      "path": "docs/FREEZE-MANIFEST-2026-09-27.json",
+      "old_sha256": "15506b598969dc7a5305a57a9607c69200a3051c96d2158ee193d8636062087f"
+    },
+    {
+      "path": "研究报告/00审查/证据/输入与原结果快照.json",
+      "old_sha256": "bb7dc3308164fbfefc5924b763842abbca5c778967ac85c4029fca8719e40646"
+    }
+  ],
+  "changed_old_registered_paths": [
+    "docs/FREEZE-MANIFEST-2026-09-27.json",
+    "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比矩阵.xlsx",
+    "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/年度指标与推荐容载比说明.md",
+    "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/推荐矩阵成果说明.md",
+    "研究报告/00审查/公式与术语审查.md",
+    "研究报告/00审查/最终模型说明.md",
+    "研究报告/00审查/结果冻结报告.md",
+    "研究报告/00审查/证据/输入与原结果快照.json",
+    "研究报告/00审查/阶段0完成报告.md"
+  ],
+  "protected_old_file_count": 579,
+  "model_code_raw_inputs_and_csv_results_unchanged": true,
+  "original_data_records_unchanged": 18395,
+  "model_checks": {
+    "frozen_v4": {
+      "status": "PASS",
+      "checked_files": 409,
+      "problems": []
+    },
+    "independent_checks": 6766
+  },
+  "complete_five_indicator_recommendation_status": "待同供电范围年度装机及用户最大用电负荷，不放行",
+  "humanizer_review": "已逐篇核对：删除模板化判断，区分标准条款、研究定义及代理量；结论与样本支持对应"
+}

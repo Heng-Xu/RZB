@@ -1,0 +1,2319 @@
+{
+  "status": "PASS",
+  "archive": "历史归档/阶段0废弃结果-2026-09-27.zip",
+  "archive_sha256": "e7d0bdd3b0cd4b20e2dfb12bda4e4f502d64e9a5348894722bcaaed59d168afd",
+  "removed_directories": [
+    "实验/无EA/results",
+    "实验/无EA/results_v4_apparent_backup",
+    "实验/有EA/results",
+    "实验/研究/results/runs",
+    "实验/研究/results/annual_2021_2025",
+    "实验/研究/results/real_2025_visuals",
+    "实验/研究/results/10kv_section_tie_case"
+  ],
+  "archived_files": 460,
+  "original_bytes": 37702578,
+  "entries": [
+    {
+      "path": "实验/无EA/results/ahp_judgment_matrix.csv",
+      "bytes": 341,
+      "sha256": "f0bb4b3eac011ba4f8fc6b957e4d9f25f27f2ff1b9c567d6d47fcff0717fd293"
+    },
+    {
+      "path": "实验/无EA/results/ahp_robustness_results.csv",
+      "bytes": 7204,
+      "sha256": "05ebd24fe94dd6ea6bab33abb22dc61fbfceb15f3d62cc84abdf4b756983e178"
+    },
+    {
+      "path": "实验/无EA/results/decision_matrix_raw.csv",
+      "bytes": 4846,
+      "sha256": "08825848998ec55c50532d9cd5f0f6a9c61fe8202428db927b2160fd6d808f0e"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig10_reverse_capacity.png",
+      "bytes": 217109,
+      "sha256": "8431684008870ea0ad029351485521fcb57564dac7e2b4c372942c0ac7ab33c7"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig1_dilemma.png",
+      "bytes": 103126,
+      "sha256": "1b5dedbad9dae233f35a6f551ce04547638e5667f4334de0bb2c0bdc20f72560"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig2_framework.png",
+      "bytes": 193404,
+      "sha256": "7d402daaece2d84cf8f7e30c51c9719f38d6f8d53933d69a8723b18f99627a05"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig3_decision_matrix.png",
+      "bytes": 131876,
+      "sha256": "e3b6c5bf4ec1603dfb40f53fa1bdc3bfd0db234a5c0112b3d53db6c740c4b1f1"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig4_topology.png",
+      "bytes": 125083,
+      "sha256": "3f229beede5723f1024f7017931f29b016d5793c4aa1c84094e2285115b0c3bb"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig5_lcc_comparison.png",
+      "bytes": 238126,
+      "sha256": "699958f71e989f6a564b7f7606f2bbe8cfb1896a5c304319f022c89864425b4d"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig6_sensitivity.png",
+      "bytes": 427953,
+      "sha256": "b2bd36cc1232b91219aa7c446337af50cdbf1f2331eb03ce8ab13002385df8b2"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig7_sensitivity_econ.png",
+      "bytes": 285473,
+      "sha256": "28ea43c3055d138ebaa8df112763f025e805edc6dd4bb1d85a8c35ce35be0ea8"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig8_regional.png",
+      "bytes": 245177,
+      "sha256": "ad8a4197a32ae5fa5e26bc54bb13c4bcdadf136baa2efa20969d5df0a27cc837"
+    },
+    {
+      "path": "实验/无EA/results/figures/fig9_growth_sensitivity.png",
+      "bytes": 216784,
+      "sha256": "f18fb1f23bb4d5f28896e06441ad64dca5c2c28b4c74ce3175da4679a92f874f"
+    },
+    {
+      "path": "实验/无EA/results/regional_cases.csv",
+      "bytes": 359,
+      "sha256": "7e2f5264ce3bcc962ee1db5669b769d25c1e34b58df631d873fd78f184de397c"
+    },
+    {
+      "path": "实验/无EA/results/regional_trev_sweep.csv",
+      "bytes": 657,
+      "sha256": "0b6da8cfbf0a3e1adf135cbbbd5cfa5bf9d5ef41506ac557499428c7f073a2d7"
+    },
+    {
+      "path": "实验/无EA/results/reverse_capacity_check.csv",
+      "bytes": 1957,
+      "sha256": "a660f74adcb68b6a51d08dab635286100654738e8e9431591d3c74877cae61df"
+    },
+    {
+      "path": "实验/无EA/results/sensitivity_econ.csv",
+      "bytes": 2319,
+      "sha256": "0e2c7ad69514f061055f04f41c29f05fd6b968579ef6ff8ae8ace0534097e6a9"
+    },
+    {
+      "path": "实验/无EA/results/sensitivity_growth.csv",
+      "bytes": 639,
+      "sha256": "66eda495b691be0b34fcf04310239899ad0a858d5158d918ab764cf3f833e1ab"
+    },
+    {
+      "path": "实验/无EA/results/sweep_penetration.csv",
+      "bytes": 1613,
+      "sha256": "9fb5b6ac6549c53b2e78f4b4090d32607989a0c2f8e13df10d30ff87189dd0e6"
+    },
+    {
+      "path": "实验/无EA/results/sweep_pv_tx.csv",
+      "bytes": 2563,
+      "sha256": "9566b4b7e6c2f8b7423d64d5696e2f1a7d94f371f6204d6e262bfb535b125434"
+    },
+    {
+      "path": "实验/无EA/results/tables/tab1_ahp_matrix.csv",
+      "bytes": 341,
+      "sha256": "f0bb4b3eac011ba4f8fc6b957e4d9f25f27f2ff1b9c567d6d47fcff0717fd293"
+    },
+    {
+      "path": "实验/无EA/results/tables/tab2_cases_params.csv",
+      "bytes": 1029,
+      "sha256": "65962fdf3a0d2849e2fc5a16ae6af747d7cef9aeb307e5baee5cdc83ffcc0df9"
+    },
+    {
+      "path": "实验/无EA/results/tables/tab3_recommendation.csv",
+      "bytes": 3390,
+      "sha256": "3da74ebfee52cd6722275b728a513dc1bffdfaac5878d7151698857235e73695"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/ahp_judgment_matrix.csv",
+      "bytes": 341,
+      "sha256": "f0bb4b3eac011ba4f8fc6b957e4d9f25f27f2ff1b9c567d6d47fcff0717fd293"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/ahp_robustness_results.csv",
+      "bytes": 5822,
+      "sha256": "42af0c0dcfbe569ce2c589906e60064a91e02d1ecef86c75bf81aadfbf5c652e"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/decision_matrix_raw.csv",
+      "bytes": 3464,
+      "sha256": "b5c26fe33b6c74ee56fc1835988e16356e54840882c85cafe1185303a121beb9"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/figures/fig1_dilemma.png",
+      "bytes": 103126,
+      "sha256": "1b5dedbad9dae233f35a6f551ce04547638e5667f4334de0bb2c0bdc20f72560"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/figures/fig2_framework.png",
+      "bytes": 121753,
+      "sha256": "ebba3f7f131bee1a6613b6a72ac8a2fe52fe287192c979babc9f42de01967368"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/figures/fig3_decision_matrix.png",
+      "bytes": 135220,
+      "sha256": "82407fffff6f924760163dd8254cade9664a7c5a039909bbd862fd7a357786a6"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/figures/fig4_topology.png",
+      "bytes": 122254,
+      "sha256": "fa8db69003d1c2ff3241f1e0a93002caee2b57998f5014fe8ef593dd94dcee14"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/figures/fig5_lcc_comparison.png",
+      "bytes": 245475,
+      "sha256": "bb2ab80fe353b577c5e55ae41334d1e1eb8a1c3787f4e2036ebb54511666f495"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/figures/fig6_sensitivity.png",
+      "bytes": 427953,
+      "sha256": "b2bd36cc1232b91219aa7c446337af50cdbf1f2331eb03ce8ab13002385df8b2"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/figures/fig7_sensitivity_econ.png",
+      "bytes": 261102,
+      "sha256": "af9e3cc6ad4a8886d4ef3ad5e63418784445b09856d31bf8bc8b503b090bfdec"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/figures/fig8_regional.png",
+      "bytes": 219620,
+      "sha256": "376196115ca15cec4556a03975b5bd88b04e74b46ed5357f398c3cdbce70cf01"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/figures/fig9_growth_sensitivity.png",
+      "bytes": 211146,
+      "sha256": "6f35473b5eb4bab51a480c3566a161bc0a23813237f0ddbd77e56bd6449510c7"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/regional_cases.csv",
+      "bytes": 441,
+      "sha256": "86e19bd1502f8541c0b45161df70bdfc9f8dddd6ced85575035bb5b0f8b8c686"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/sensitivity_econ.csv",
+      "bytes": 2372,
+      "sha256": "a17a7c663b9307af47c07467ebc99174ba9a6cbb7c74c50ed2cd7627d9eb88ca"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/sensitivity_growth.csv",
+      "bytes": 639,
+      "sha256": "bdc36ce65bd245dee55f9bda369b68b89248d4ae14840f9290219f50ca40bbfc"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/sweep_penetration.csv",
+      "bytes": 1327,
+      "sha256": "816a4b195205da1b62a1aa63e1ce79f866b0ce206115ce490ed7f6cbafbaf08b"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/sweep_pv_tx.csv",
+      "bytes": 2278,
+      "sha256": "07136ca1b8833ac703b706111ccbb108d12303128a1968976996f698180f8c09"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/tables/tab1_ahp_matrix.csv",
+      "bytes": 341,
+      "sha256": "f0bb4b3eac011ba4f8fc6b957e4d9f25f27f2ff1b9c567d6d47fcff0717fd293"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/tables/tab2_cases_params.csv",
+      "bytes": 1025,
+      "sha256": "df9d001ae83825e3303ee4f05822d88200c5a4a10eed931d5eb800383cd51305"
+    },
+    {
+      "path": "实验/无EA/results_v4_apparent_backup/tables/tab3_recommendation.csv",
+      "bytes": 2541,
+      "sha256": "0f0b237e48771035db732f0d325644c9851334c3185472171427affedd3c3f0b"
+    },
+    {
+      "path": "实验/有EA/results/ea_band_effect.csv",
+      "bytes": 151,
+      "sha256": "ec45743e6ce0327ad612f4b6b6f678446b32207961412972e9427d6584909c50"
+    },
+    {
+      "path": "实验/有EA/results/ea_baseline.csv",
+      "bytes": 115,
+      "sha256": "6423bef0c68cb882d5992d11bf50bb0aa32fc0b71044aa5cad11e36be06625c5"
+    },
+    {
+      "path": "实验/有EA/results/ea_converge.csv",
+      "bytes": 922864,
+      "sha256": "51cbd07fe6ca25b22be1c02b31a46e467f557ffee6a4b6205c9b0dc693cac976"
+    },
+    {
+      "path": "实验/有EA/results/ea_converge_termgen.csv",
+      "bytes": 1089,
+      "sha256": "998566ae90de8366f64e57265e9683ec26d8bf4098fb836ddfad58a827dc22d0"
+    },
+    {
+      "path": "实验/有EA/results/ea_county_pareto.csv",
+      "bytes": 2274,
+      "sha256": "83f5452572e6c838d93716e72f4f1493514efcb565f6b5ff453f3d38e6d0f5a4"
+    },
+    {
+      "path": "实验/有EA/results/ea_county_strategy_cdslr.csv",
+      "bytes": 1065,
+      "sha256": "73625b8203d4694cc75533c9c3e7d173798776dcccb0ef8fea95c39f278e2e72"
+    },
+    {
+      "path": "实验/有EA/results/ea_county_strategy_knee.csv",
+      "bytes": 975,
+      "sha256": "946c068c2c9e530c549a4dedcf550b2a9a976168ff5414a4ca40d15a03d5d4f0"
+    },
+    {
+      "path": "实验/有EA/results/ea_county_strategy_knee_repro.csv",
+      "bytes": 906,
+      "sha256": "d007955cff509ef959a7bbaa4686da9b171369245a645c833b9b963b26daf76f"
+    },
+    {
+      "path": "实验/有EA/results/ea_county_strategy_over2.csv",
+      "bytes": 1065,
+      "sha256": "73625b8203d4694cc75533c9c3e7d173798776dcccb0ef8fea95c39f278e2e72"
+    },
+    {
+      "path": "实验/有EA/results/ea_county_strategy_over2_LOCKED.csv",
+      "bytes": 916,
+      "sha256": "770c2b9fc586552849ea81cf30fc496ecaac37f81f52f0fd32aeaeb9f6a6fa1a"
+    },
+    {
+      "path": "实验/有EA/results/ea_county_strategy_uniformCD.csv",
+      "bytes": 885,
+      "sha256": "ed3cde4fd734db8eddce536a99f91810ebaa3e5917fd2f7b9f565679ba0d8aaa"
+    },
+    {
+      "path": "实验/有EA/results/ea_county_strategy_weaktie.csv",
+      "bytes": 1077,
+      "sha256": "1b60cf1c2c628f73323457999b9ce1fae43cc64b1ad2b5d2ea8ef615d3eaa722"
+    },
+    {
+      "path": "实验/有EA/results/ea_county_strategy_weaktie_uniformCD.csv",
+      "bytes": 1077,
+      "sha256": "1b60cf1c2c628f73323457999b9ce1fae43cc64b1ad2b5d2ea8ef615d3eaa722"
+    },
+    {
+      "path": "实验/有EA/results/ea_robustness.csv",
+      "bytes": 65,
+      "sha256": "7f0eed61070fb7dc9895e2d8c048adeb4057bc7485dec5f5e0f9a1879a2e0312"
+    },
+    {
+      "path": "实验/有EA/results/ea_scaling.csv",
+      "bytes": 232,
+      "sha256": "78b62866948ea97eccadeaac807f84fb9364cfd44018a655a7911790a3c0b38b"
+    },
+    {
+      "path": "实验/有EA/results/ea_system_constraint.csv",
+      "bytes": 206,
+      "sha256": "b1f68bf20830b2c5a0c7119e5a646a21b88fbc6e53f07624add45863b4e46490"
+    },
+    {
+      "path": "实验/有EA/results/ea_system_fronts.csv",
+      "bytes": 5706,
+      "sha256": "dc3749b5144e40b27e94930d5f08964c62f67b2fc545e26f3cc5dd3e1c69e20f"
+    },
+    {
+      "path": "实验/有EA/results/ea_validation.csv",
+      "bytes": 174,
+      "sha256": "4afa9d12b5065def8832fdd6e90ada1a8343b8ff8cb03f8f15fc53eaf664e9d1"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_application.pdf",
+      "bytes": 46247,
+      "sha256": "6a0703d14d7a72e4c901ce07c1b8fc9e156221fd0eabbea22e37365bd40b6f9c"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_application.png",
+      "bytes": 429225,
+      "sha256": "4729e3015d326bc5ab3ba66149eb5bd01f5db700786648e25f87dd6436b8e5be"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_matrix.pdf",
+      "bytes": 43891,
+      "sha256": "75c94b4193efd8f7f0c2649557bf6bf2a99853bade2abd39e133481d5dab6d7c"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_matrix.png",
+      "bytes": 257199,
+      "sha256": "1eafe409f7220642adda9bcc1fde9ffbb181e132cd39a1d663d16016b433a505"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_matrix.svg",
+      "bytes": 79710,
+      "sha256": "7e9e1ca4046ef4c3134d31fc1f8c376f08650a0c8d1c0f776c1b85b655b3708d"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_matrix_over2.pdf",
+      "bytes": 41693,
+      "sha256": "7f399a307f97fdad2efd550afa7005385b27ac8c7e3e13314db4d6bafe4de2c5"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_matrix_over2.png",
+      "bytes": 307972,
+      "sha256": "1316af61804ca39e43afbe58f28275c7d4459e09b651582832d9e54bda33045b"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_matrix_over2.svg",
+      "bytes": 94125,
+      "sha256": "efc1e71ff3ac380b52c3f845074a70d74f1770005a33b8e1a245b9a853a7916d"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_over2.pdf",
+      "bytes": 20726,
+      "sha256": "4657e881486fcb6f3edfced536bb0f329c7d87762d4c4b35f89a95939a29eea7"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_over2.png",
+      "bytes": 212346,
+      "sha256": "73e75e804f59d53e45460ddd79d12438a5ac4c7843e4de1d67dc4e782a809b9b"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_over2.svg",
+      "bytes": 64897,
+      "sha256": "799590c5345fede1a759e33ab218213b1603f156eef7f7b661fa3e7120dc0105"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_weaktie_cdslr.pdf",
+      "bytes": 41693,
+      "sha256": "7f399a307f97fdad2efd550afa7005385b27ac8c7e3e13314db4d6bafe4de2c5"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_weaktie_cdslr.png",
+      "bytes": 307972,
+      "sha256": "1316af61804ca39e43afbe58f28275c7d4459e09b651582832d9e54bda33045b"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_weaktie_cdslr.svg",
+      "bytes": 94125,
+      "sha256": "efc1e71ff3ac380b52c3f845074a70d74f1770005a33b8e1a245b9a853a7916d"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_weaktie_cdslr_caption.md",
+      "bytes": 3362,
+      "sha256": "49b66e571dc130a375cef25e78e99a1e8a391f4fa5b3ff2e9b6a45060ab7e750"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig1_weaktie_uniformCD.png",
+      "bytes": 305262,
+      "sha256": "bf2b20fe91c9df40ed636aa25b0148cfdfd57e81e9c6c389577d12dc65500f7d"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_band_effect.pdf",
+      "bytes": 17171,
+      "sha256": "85a226c83dcc919e1f189fa1c062e858b62b6893de1f24bcb47a28dbba789f8b"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_band_effect.png",
+      "bytes": 251917,
+      "sha256": "45a0769559a5218fd89bd2b17cc87021f30f54d060b5f12651eb25883b30967e"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_county_pareto.pdf",
+      "bytes": 22621,
+      "sha256": "36e46cac45cb5508ec8719a230515b0a887ca3248297ddf1daf101ab682fe13a"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_county_pareto.png",
+      "bytes": 185153,
+      "sha256": "211c31d145876a8830902c9a10cda9c92e2cb1d6fc74cb1135788cb71e712d3d"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_enhanced_convergence.pdf",
+      "bytes": 207078,
+      "sha256": "b033f67dd6dd2ed4133a4ac18366e6cb51732b1e163795bd723be5baa9bae133"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_enhanced_convergence.png",
+      "bytes": 509112,
+      "sha256": "cd73321775cf015edc2cb79c47f440ebec7a573c94578d34b47928490290eaf5"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_framework.pdf",
+      "bytes": 41644,
+      "sha256": "9f351104057a2e37a7d9c7c62f14825097e08cca654e005ce7bda36f887ccaa9"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_framework.png",
+      "bytes": 519764,
+      "sha256": "ce9fc3933372bf0a987730e9c436ae29891817fae945621a2592607eb757fa2a"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_scaling.pdf",
+      "bytes": 18266,
+      "sha256": "bc2988bc4037e76ec86c38596802816033a86f91ddaff157ef87c8f581d9a11c"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_scaling.png",
+      "bytes": 212183,
+      "sha256": "e8f73188971d99e621b870bdfd1fe9de0bb9906d81e16d8579c2f61f3c360ef4"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_scaling_gap.pdf",
+      "bytes": 20228,
+      "sha256": "6c8a0ea9190bf1f45c7e55b2aed69dd450936d444a19cea98794559df7e4c4bc"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_scaling_gap.png",
+      "bytes": 205252,
+      "sha256": "8d66d86f5323e502d866abacea23dec04781f0400a02b00973fb8703fa9a1338"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_strategy.pdf",
+      "bytes": 17911,
+      "sha256": "88d3ee7c017171fa6d90884c4c39c4eb07d7c1f0a1a6a965c505ef9450da67d4"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_strategy.png",
+      "bytes": 188512,
+      "sha256": "7d5ab6a85c5bc2133c4cfe35750366ecbad1df3de1a483e0c263ed03a387609e"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_system_constraint.pdf",
+      "bytes": 21162,
+      "sha256": "b4caa4e256fc4df4c2f63dc8850a8b57a0f0d8724a9d95a7ad43aecc50bd7d28"
+    },
+    {
+      "path": "实验/有EA/results/figures/fig_system_constraint.png",
+      "bytes": 212077,
+      "sha256": "c8e46607feabb5cf9a80df08b1dd833f9e6476256a118e2b1563c31643004baa"
+    },
+    {
+      "path": "实验/有EA/results/tables/elastic_vs_rigid_comparison.csv",
+      "bytes": 346,
+      "sha256": "657055f1e744cb7153fed02794c46938bf50f21910b898dbae70895ef16625ff"
+    },
+    {
+      "path": "实验/有EA/results/tables/elastic_vs_rigid_comparison.md",
+      "bytes": 2224,
+      "sha256": "52077adaff78d62f7ed1d4b00fb3df6318933c3500f09988e5509f4e7604ebb8"
+    },
+    {
+      "path": "实验/有EA/results/tables/gen_elastic_scheme.py",
+      "bytes": 4481,
+      "sha256": "62db0b54cdd2982cd91d0fb1aba9face10f52bba48a653aa5045e1c197fdff8b"
+    },
+    {
+      "path": "实验/有EA/results/tables/gen_rigid_scheme.py",
+      "bytes": 3579,
+      "sha256": "540b53e078b78098765147a87e86062b48149b5644fc4ca07ce337da2159e8d3"
+    },
+    {
+      "path": "实验/有EA/results/tables/scheme_elastic_cdslr_perstation.csv",
+      "bytes": 1065,
+      "sha256": "73625b8203d4694cc75533c9c3e7d173798776dcccb0ef8fea95c39f278e2e72"
+    },
+    {
+      "path": "实验/有EA/results/tables/scheme_rigid_Rle2_perstation.csv",
+      "bytes": 730,
+      "sha256": "401c5ec3e08f4e6ca0cf5d210d3bd83b3e4bd6439ac7d61efd89cfc5c80ec3c3"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/annual_baseline.csv",
+      "bytes": 10254,
+      "sha256": "5ba06a0463f9a3fa652e7dd4902253c63c1a74f87c09927282c508902691aa72"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/annual_quality_issues.csv",
+      "bytes": 5765,
+      "sha256": "dbfd39e5fa0869ca316128d5e73c01479b5345353241d4205275d8829543d718"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/annual_solution_modes.csv",
+      "bytes": 84064,
+      "sha256": "8ef03bc4545fba9d0ef15095c11c6d3c77c2e616dcd4d17df072bf5988337bb4"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/manifest.json",
+      "bytes": 660,
+      "sha256": "e44adad3d8d02595f02e9c1e6de3f93d7212e92c244242c5b51e14b50121b12f"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/solver/real_plan_actions.csv",
+      "bytes": 292932,
+      "sha256": "825e6503722973baf18bb5b93112f848d08a7abac9f2a0a92b9647f06e3be6a5"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/solver/real_plan_county_solutions.csv",
+      "bytes": 31180,
+      "sha256": "8ec9a7bbd93dbf4d75e7ce5c4e2d9f44a315f8ae719a6a36a36397167e437d53"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/solver/real_plan_dispatch_playback.csv.gz",
+      "bytes": 267712,
+      "sha256": "2c1818c145735c0d29d16f8dc9c4e996f91a853418705bfc5d90da3f30ddc2d5"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/solver/real_plan_station_options.csv",
+      "bytes": 159504,
+      "sha256": "81b67517e2c8fdd3c28bd519539fae343a1141641b9c5dca348ef6bc0b8495a2"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/solver/real_planner_manifest.json",
+      "bytes": 1168,
+      "sha256": "149d291ebfbd409b6d7c1817f75aebf1cd4ed2a8705ff78518d6a135b1aee66c"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/working/county_baseline.csv",
+      "bytes": 10254,
+      "sha256": "5ba06a0463f9a3fa652e7dd4902253c63c1a74f87c09927282c508902691aa72"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/working/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "8d6ce49477351f8afcc738a2a3719d00c2fac5f197466137dc425b6c099ae69e"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/working/empirical_station_scenarios.csv.gz",
+      "bytes": 216568,
+      "sha256": "246c8a5ea1cb5c62b81809da667cf2a8aa2deb828c3cafe446d9dacde4ca434b"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2021/working/expansion_cost_library.csv",
+      "bytes": 58372,
+      "sha256": "8e84923f9500bb316818551dfd295db1b8784eb87175d334cd7bbf10d29c9b1f"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/annual_baseline.csv",
+      "bytes": 10479,
+      "sha256": "7c5957ffe99631073b71395950bb2a0e06a056eeaa77cf8d96cb1345100ea0e4"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/annual_quality_issues.csv",
+      "bytes": 5877,
+      "sha256": "8048a1ec02cc1b91ce16dff80795cb7643a2ff9a9c547c8eb0a2a77b78ccef52"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/annual_solution_modes.csv",
+      "bytes": 87465,
+      "sha256": "7804d6bf5a36b7a60c8ae491e271ab29d18867df8f2b6ac2eceeb87669508133"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/manifest.json",
+      "bytes": 667,
+      "sha256": "1386e7b55d71f511ff81a6fd07c88a3e433c9ce2cb2083b18e3f9d31105aaa79"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/solver/real_plan_actions.csv",
+      "bytes": 292986,
+      "sha256": "c6b995f3f64a2d81bea7f35be978706f1f6d1f709280557f7eccbecde20dea62"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/solver/real_plan_county_solutions.csv",
+      "bytes": 31550,
+      "sha256": "ee73e2aeb8170bd69b3f217215a06ff8696228916d924aafc61d1ecea45b9f2e"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/solver/real_plan_dispatch_playback.csv.gz",
+      "bytes": 267240,
+      "sha256": "9239d2a21f0764bcc9c92dd162c5cf5829b5c5c694ec5fdb88f3299968d6cc37"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/solver/real_plan_station_options.csv",
+      "bytes": 159749,
+      "sha256": "179c1b39238a1e7fe1974d413510499b5f680fcaaf149a54545486c06e318bdc"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/solver/real_planner_manifest.json",
+      "bytes": 1168,
+      "sha256": "8a53e56ce6d5385a40c8940fcb56f8327357f3e54ff9c66004bc21d48580b318"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/working/county_baseline.csv",
+      "bytes": 10479,
+      "sha256": "7c5957ffe99631073b71395950bb2a0e06a056eeaa77cf8d96cb1345100ea0e4"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/working/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "8d6ce49477351f8afcc738a2a3719d00c2fac5f197466137dc425b6c099ae69e"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/working/empirical_station_scenarios.csv.gz",
+      "bytes": 217438,
+      "sha256": "95aeb3ecb13b6773beddecf4fb1a491a1c8f4c709375936fe959a5b07398e604"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2022/working/expansion_cost_library.csv",
+      "bytes": 58372,
+      "sha256": "8e84923f9500bb316818551dfd295db1b8784eb87175d334cd7bbf10d29c9b1f"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/annual_baseline.csv",
+      "bytes": 10494,
+      "sha256": "3aa917e6302375e6273e7218f350c2fda8e67e9e5d11929566c2b709f8a08b6d"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/annual_quality_issues.csv",
+      "bytes": 5877,
+      "sha256": "ad29369ec817792390b988466528a38e4d3b7df96cf19bee9a7002c681a169f1"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/annual_solution_modes.csv",
+      "bytes": 86959,
+      "sha256": "eed2e6e248e10d815d18e4adc0b70cdffcdabffe72a66f0dd052f939230026d1"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/manifest.json",
+      "bytes": 667,
+      "sha256": "89f197fd3843d6b1c0108beae1636ad284b933f1314c6988682301f3b870a53c"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/solver/real_plan_actions.csv",
+      "bytes": 293120,
+      "sha256": "ae1a423651fd1780cbf519cf3f4f80eca1fb2ecbb2ee7f28cbd4f5235ab9dbf1"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/solver/real_plan_county_solutions.csv",
+      "bytes": 30901,
+      "sha256": "e4f6fc1580cddc289b3e5a85262229e0dc230dd9def9f9e17e68d496333616dc"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/solver/real_plan_dispatch_playback.csv.gz",
+      "bytes": 243668,
+      "sha256": "d91dbc206e403d75bc3aacd19f083a17e6e17a56bafd6c7216dc71cad2042d41"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/solver/real_plan_station_options.csv",
+      "bytes": 158992,
+      "sha256": "87f60a83c8ba2f70e82da9300be2e4db5770e729d83e8d40fcef46d6e1ed85ec"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/solver/real_planner_manifest.json",
+      "bytes": 1168,
+      "sha256": "ad4e7db49619ff1f29b3ad07e96b7d9aa736cf0acf9a251423fd74f3dd1419e5"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/working/county_baseline.csv",
+      "bytes": 10494,
+      "sha256": "3aa917e6302375e6273e7218f350c2fda8e67e9e5d11929566c2b709f8a08b6d"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/working/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "8d6ce49477351f8afcc738a2a3719d00c2fac5f197466137dc425b6c099ae69e"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/working/empirical_station_scenarios.csv.gz",
+      "bytes": 216960,
+      "sha256": "b08309f09018abdacbef2af1906d42e641c77a2adc404097af6ca4a0b955f7c0"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2023/working/expansion_cost_library.csv",
+      "bytes": 58372,
+      "sha256": "8e84923f9500bb316818551dfd295db1b8784eb87175d334cd7bbf10d29c9b1f"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/annual_baseline.csv",
+      "bytes": 10379,
+      "sha256": "b68e2a6e5cd31eebbcc25e455d7d8296b689d176a67ade5922cd6d0eb1598593"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/annual_quality_issues.csv",
+      "bytes": 5829,
+      "sha256": "2a9c58f86e767decd229861cd4bffaac7727c01d90ec303d0f42d9c268a7ea30"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/annual_solution_modes.csv",
+      "bytes": 87096,
+      "sha256": "b7792a28e7f874f8dd373429caf8dadc2cdbece406c5891f138acfe4c233b3f5"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/manifest.json",
+      "bytes": 667,
+      "sha256": "7d0dfad3a96b7b9de521a574d07f970c017285541c9df4d36a199c752183dd36"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/solver/real_plan_actions.csv",
+      "bytes": 293128,
+      "sha256": "337f837dd57d04e58459c6c167d27bf7d51813fae51b06982fd6234be4ee69a6"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/solver/real_plan_county_solutions.csv",
+      "bytes": 31814,
+      "sha256": "07632cc6f3b203fccf01fe308ccd112e987e87e7092abe4891dfb77ccc50025f"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/solver/real_plan_dispatch_playback.csv.gz",
+      "bytes": 245567,
+      "sha256": "68e926fc6ced551174f97c82d896bd319c3715fb0117c442942ac6c0c2b7b53d"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/solver/real_plan_station_options.csv",
+      "bytes": 159792,
+      "sha256": "06813456b6ea714362153c4d7fa744ac02b3c5a0af3c7f32e52ea504dad60a49"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/solver/real_planner_manifest.json",
+      "bytes": 1168,
+      "sha256": "44da287021c7d3cf9ea6896ac654e10c31ef7260aa10cde84f461528d805f46e"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/working/county_baseline.csv",
+      "bytes": 10379,
+      "sha256": "b68e2a6e5cd31eebbcc25e455d7d8296b689d176a67ade5922cd6d0eb1598593"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/working/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "8d6ce49477351f8afcc738a2a3719d00c2fac5f197466137dc425b6c099ae69e"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/working/empirical_station_scenarios.csv.gz",
+      "bytes": 217255,
+      "sha256": "5938ecbe2f41a04f0b923b8288deb77b32391ef34b4d7a8ddf32281fec2a32c9"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2024/working/expansion_cost_library.csv",
+      "bytes": 58372,
+      "sha256": "8e84923f9500bb316818551dfd295db1b8784eb87175d334cd7bbf10d29c9b1f"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/annual_baseline.csv",
+      "bytes": 10329,
+      "sha256": "6fe423e9fc32b0c064501764c42bffddc559b9e00c19fb57e6419df51d8d0c26"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/annual_quality_issues.csv",
+      "bytes": 5829,
+      "sha256": "3d399f484c9be54dd762c583a10307786a993caf91b969d0b0953404d9ea5349"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/annual_solution_modes.csv",
+      "bytes": 83420,
+      "sha256": "28c0efccd1271f8940853f6a77f34906ddff0ea6377ce3f20f5f591a1100368b"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/manifest.json",
+      "bytes": 696,
+      "sha256": "d51dce7d11e945a78f752882126e48c6687ea8dd3b792800a5cb5d7864d9c841"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/solver/real_plan_actions.csv",
+      "bytes": 293136,
+      "sha256": "e64880d2e398e81fe5b9e6672f14f7f783f5007d5cf533ce6729ac54c856680a"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/solver/real_plan_county_solutions.csv",
+      "bytes": 31012,
+      "sha256": "e369c3b2f3ce1f222057e981a4ded5b5a34a28c1f13bd888374902926cfc585b"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/solver/real_plan_dispatch_playback.csv.gz",
+      "bytes": 242765,
+      "sha256": "804b485dcf69028adf5dba13f957bdfbe4da2a1e98f9a1fd939e40707bbc90bc"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/solver/real_plan_station_options.csv",
+      "bytes": 160190,
+      "sha256": "8770b0d9364fd6f087d66a25d82e8c6efbf127ed5b34d7963519290e26eea962"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/solver/real_planner_manifest.json",
+      "bytes": 1168,
+      "sha256": "f8564c43e6149e4fa95980c6e433c940f2cab4dd7611a3e251ca051d30672545"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/working/county_baseline.csv",
+      "bytes": 10329,
+      "sha256": "6fe423e9fc32b0c064501764c42bffddc559b9e00c19fb57e6419df51d8d0c26"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/working/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "8d6ce49477351f8afcc738a2a3719d00c2fac5f197466137dc425b6c099ae69e"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/working/empirical_station_scenarios.csv.gz",
+      "bytes": 170629,
+      "sha256": "52e14fd5938c38e54c80c9f22ad7201200de3cd2b9667e011319b862272adb71"
+    },
+    {
+      "path": "实验/研究/results/runs/annual_2021_2025/annual_2025/working/expansion_cost_library.csv",
+      "bytes": 58372,
+      "sha256": "8e84923f9500bb316818551dfd295db1b8784eb87175d334cd7bbf10d29c9b1f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/cost_library/cost_assumptions.csv",
+      "bytes": 1892,
+      "sha256": "99faee2d247ac859156835f5c4cf4dabe08e12ea98540ed3c9422f47252f4cef"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "31c669378f24778a8de7b1a5e22cb61e3184b90fc4b6265cc370124da2afe9e8"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/cost_library/expansion_cost_library.csv",
+      "bytes": 58832,
+      "sha256": "35595148cef4718f01c0e926c0749538428e98e7f8ea0c58d4af9745002fe024"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2199,
+      "sha256": "91ed9e981197421df5ef1139e7834f54fff3bdda71895e26ea6e67de15c25a3d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/county_110_recommendation_matrix.csv",
+      "bytes": 6804,
+      "sha256": "191abbd63eb4236e38af08fd53320d37438cd75ed13701f23c641aaa976cfbc9"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/county_110_recommendation_matrix.docx",
+      "bytes": 5495,
+      "sha256": "293cca8bcbb49074506642d58d89d06d14bc7e5ec0adf23c93d37fd39a7e67ef"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/county_35_recommendation_matrix.csv",
+      "bytes": 5965,
+      "sha256": "3b05fe0925985b035eb1af0b98e15440219e736fc8489d467fea466cc5f5d17e"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/county_35_recommendation_matrix.docx",
+      "bytes": 5310,
+      "sha256": "f15a1efd7a22a2ed1b970f883ec5a001174afd858f7f67cefb52d715b2442cc8"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/elasticity_frontier.csv",
+      "bytes": 11139,
+      "sha256": "1bd79850af0de6dc07e00f4e20d770d051cd9a4eb0591ea9a2e16c25226e1257"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/manifest.json",
+      "bytes": 6781,
+      "sha256": "bf8ead680e97c42357c2be6c8c890c48859033d5256a69c241028364f1467df7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/path_action_results.csv",
+      "bytes": 18001,
+      "sha256": "7764a8ccfaa1ae799160aae873f2602a795142cb9e0c5130d2479f82f98205b4"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/path_cost_breakdown.csv",
+      "bytes": 3351,
+      "sha256": "1496f7461ad542faaf3855ef48c76d4256e3e5765dcae1ad8d77ab7d9a8e676c"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/path_physics_state_audit.csv",
+      "bytes": 7918,
+      "sha256": "64679c38853743d51de2fd07947edcdea56e269e3e6bbe0af6893fffac702379"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/path_storage_dispatch_playback.csv.gz",
+      "bytes": 5192737,
+      "sha256": "e9231474cad643b9c3cb4db35d99ef99082da38548d2dad499455e0d4acb7807"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/path_year_results.csv",
+      "bytes": 38866,
+      "sha256": "83a2047afc923e07b87454b86464edafee526675b57c489136c1aaeb6ae26b6e"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/qx00005_path_validation.csv",
+      "bytes": 5171,
+      "sha256": "af30adcdd21977a8d7d370cca4f812e04c81fdf0e0517f22e409fd8e4de7f2b9"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "01dbe68d1a730c3e9b3cb7314c4bc8e4b6873d230148b5452d38953b34c25fdc"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/内部容量网络压力检查.csv",
+      "bytes": 59445,
+      "sha256": "4e7fe06c36bb079dc0484f1e906737ecb3d9a9b0860e659435b71e04d1056f4b"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-contract-v3/real_2021_2025-v3/问题台账.md",
+      "bytes": 2574,
+      "sha256": "c4cadac5deba16b40f34752c74cab725be29bafeeac76a1c4dd20e520919e401"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_action_eac.csv",
+      "bytes": 44718,
+      "sha256": "33445411db52a408b5a120a08785e8e4c7415f6a85fa9f6ac43a5eba7fc0fe18"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_classification.csv",
+      "bytes": 2668,
+      "sha256": "d03a28b6f58280cc8e2cca0ac1ba94dffad201c65473081745dfbebdda71ef81"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_core_summary.csv",
+      "bytes": 6183,
+      "sha256": "fd8818740e0704aad657e00124511eb6486cbf3e36639320c152fca9f4af678a"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_robust_summary.csv",
+      "bytes": 2181,
+      "sha256": "03e55eb11d310b4275c0830de85424c8a77d7619d2f357dfaea2f9c219d78acb"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/cost_library/cost_assumptions.csv",
+      "bytes": 1893,
+      "sha256": "3665eaf8b280a6ffec85982ef4227ce1ba5ec277fca1da95c701e172b512e6de"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "8f988868703475afae60f72e16e5a27b732839f2fd4aad4e2e11b8d8eb36c846"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/cost_library/expansion_cost_library.csv",
+      "bytes": 58832,
+      "sha256": "f4ef84f154e76687df0e49e5d6644a7e58303f920ba75d35febe953dc48f2d23"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2195,
+      "sha256": "57d40d6f394511bd29ca782c5bec44580911a931296532a4ed07fb5b7491f8c0"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/parameter_action_results.csv",
+      "bytes": 15221,
+      "sha256": "5be0fcc8dfbb09776861c4b90f1d66bdf2f2c4cec72cc0c4372797f961cf1720"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/parameter_cost_breakdown.csv",
+      "bytes": 4616,
+      "sha256": "845a241f78472db0365ea91560e31f4c291cb6345467e10adbd8900d55032302"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/parameter_frontier.csv",
+      "bytes": 12641,
+      "sha256": "1239123e276b564dfe468ba697628c3bcb306a37d0b284764a20def39e303dfc"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/scenario_contract.yaml",
+      "bytes": 23458,
+      "sha256": "dc370f387e6cd2e6acdb422783f7707ee8807e090db19ef5409e761cdee6cee9"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/scenario_manifest.json",
+      "bytes": 1433,
+      "sha256": "fe0571bdbc8288514969e8a3ba59e0f7f6a945f1725b101e57035bd46e9000af"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "7776d58d031afb290c767fe8cb8c6b3310073bb6acb5a87ed3f18a3f99c51913"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_favorable/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/cost_library/cost_assumptions.csv",
+      "bytes": 1892,
+      "sha256": "12847375cac25ff097c56f7c1c5adff1fcba43e031e63b1009e6017060fd2d20"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "30147758bff31dd878bc80d89b4527c2a0a39b23bd5cb08aebb3a4933eb5f02f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/cost_library/expansion_cost_library.csv",
+      "bytes": 58758,
+      "sha256": "8b112d05239c9ab32fc2428c8b03b9c6429c77e66e732525799bc431d61550ba"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2199,
+      "sha256": "c443bed1d031defed9806e3b7979bbd3302417eee27c3d79ae0605d443ea1e27"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/parameter_action_results.csv",
+      "bytes": 15341,
+      "sha256": "bd310cbcb5e5c7b94c40da26660ff555d27ed9c393c74830f23624d425013e01"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/parameter_cost_breakdown.csv",
+      "bytes": 4710,
+      "sha256": "b424ee826fe4916f50a5aae636d8fdbf893d98e1053b4ef66eaf0b740d0c1d76"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/parameter_frontier.csv",
+      "bytes": 12735,
+      "sha256": "da71dec333a03e34e0649e8c2933490fda0002a459f7e8a4cc098162633f26ba"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/scenario_contract.yaml",
+      "bytes": 23457,
+      "sha256": "23125a871c37cba1eda9f714b31b39fbb3c5c99bb6177ddafa66054f1d8bc062"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/scenario_manifest.json",
+      "bytes": 1435,
+      "sha256": "0980103ade482b2b59a0d56e149f83197b24d2ca17b6301be33adb60ea3d7ee0"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "2dbef4e3380f95b62546127194c0a576d9191f38b776123c94f27563bcdce37a"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_storage_unfavorable/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/annualization_thresholds.csv",
+      "bytes": 5004,
+      "sha256": "4023f0374ba729ce323e24b9e5aa084e088e143b4efa89ea0dbe7693a71fb471"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/cost_library/cost_assumptions.csv",
+      "bytes": 1892,
+      "sha256": "e103f9e08cbdf2cd3a7d8661c78e04cfb94a4f89c26b97a33603bb056bc6f6e9"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "d8e576bad3fec39e667232b264cfe318d0f6427e69bdd25e93662df29a373cf0"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/cost_library/expansion_cost_library.csv",
+      "bytes": 58758,
+      "sha256": "8b112d05239c9ab32fc2428c8b03b9c6429c77e66e732525799bc431d61550ba"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2199,
+      "sha256": "f95c987345a9ce8169c7e8243b546a63e38343ad0691442aab3de484439b52a5"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/parameter_action_results.csv",
+      "bytes": 14285,
+      "sha256": "d37abf5e6700f9b803fc499a4079241ad61820e0ed1ec69033dcf5a92b42265e"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/parameter_cost_breakdown.csv",
+      "bytes": 4044,
+      "sha256": "11d98cc2d77d158a911f1c571c280f47923ec8403448386604aa995af4709c8a"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/parameter_frontier.csv",
+      "bytes": 12069,
+      "sha256": "a9de480c782caef01307f1e969cdcfd249df33efec41e4121d19f6b5f1625097"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/scenario_contract.yaml",
+      "bytes": 23457,
+      "sha256": "cbbc788cb819c7c9b44e94541daa4fb6b95c5ea00e3685d80ba43df8d6329d30"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/scenario_manifest.json",
+      "bytes": 1405,
+      "sha256": "9b7a9f730d6da43a642a31f0b869f625ccd82cefafdb1adb77847e6eef7a467d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "5f2fb3b0c1998251d8b9846cb77b61dece1701a4f6a82a9f52649d9ff525449d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_high/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/cost_library/cost_assumptions.csv",
+      "bytes": 1892,
+      "sha256": "b58cc3a1fd98261eee70d4f40ccc75021d3439bb53ebf2c3467e90b9fd0dc5b2"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "680e84f0295fc86d1266fd4d1b522072b252fe4aba0a62325fd342ebd7a61b61"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/cost_library/expansion_cost_library.csv",
+      "bytes": 58832,
+      "sha256": "f4ef84f154e76687df0e49e5d6644a7e58303f920ba75d35febe953dc48f2d23"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2199,
+      "sha256": "44e8a8f07143b1688e12ed0998bee4fde0d44524121b99d92757d70e483fbbde"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/parameter_action_results.csv",
+      "bytes": 14245,
+      "sha256": "9f070a2203e4622076836428acb1d8894398fa8189b3b32cd2ef8e9785ba5ee7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/parameter_cost_breakdown.csv",
+      "bytes": 3984,
+      "sha256": "bcb27a1a9c73e641552cb8a250a77e8aa92d23ce5d4da1e8ec956e3b6176c043"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/parameter_frontier.csv",
+      "bytes": 12009,
+      "sha256": "67f202c77c7ab14600cb45e831034023a79a8aac6458dc2b03d533ca7109e5d7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/scenario_contract.yaml",
+      "bytes": 23457,
+      "sha256": "96b3665feb3da3a45a4fc13e0e44b4bb495a933748937c7f8a441e7a55a8d5c2"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/scenario_manifest.json",
+      "bytes": 1403,
+      "sha256": "5f733b843f239909fcde1c7215585e40de13d8f353cb5f2a4d95d83dc5cb107f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "87faba9f0393e24493ce05dbf6f2cea36bf230008609b76eb8d400f37c0bd0dd"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/discount_rate_low/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/manifest.json",
+      "bytes": 9264,
+      "sha256": "67a2b5d91a3ac0ef17f148591a91f00fab6444086d9a582738ada76215a71c3d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/cost_library/cost_assumptions.csv",
+      "bytes": 1892,
+      "sha256": "c3a80bb3effde60e67717e1d13e7938946fe93f4ecc5d615be3c7dac11c3bb1f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "307013e77ba2d32e3987db7af0543bbaf2a0126ed33f80500521839bf3f03d4d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/cost_library/expansion_cost_library.csv",
+      "bytes": 58740,
+      "sha256": "4ad4b327f7dc65229cae648915784920ee157d4b382747358dcbd9fecea21929"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2198,
+      "sha256": "8f3171acb5a0d50166e3529b6d9758e54b513263c52fd2f0e9f323341cae8cbb"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/parameter_action_results.csv",
+      "bytes": 15437,
+      "sha256": "856151563bfe464aa85509fe863c520fa4f0cb040beab8f1439b217712f4a6d8"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/parameter_cost_breakdown.csv",
+      "bytes": 4754,
+      "sha256": "5d27eb14698c02d3509bd1f9269988274954e36f3c3872a29208e514a1f64387"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/parameter_frontier.csv",
+      "bytes": 12779,
+      "sha256": "2eb6777289ef9f7cf4b6945a75648417a4e6cd2b872aabe9cfab8b13f24f60e0"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/scenario_contract.yaml",
+      "bytes": 23457,
+      "sha256": "5be675e13b1ca15dd705921b7524c698dcfc9b99e20ce23f7b87eda4f455b48e"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/scenario_manifest.json",
+      "bytes": 1437,
+      "sha256": "8071ab539b07acf0624782277e20a6b5e4ee6acbe4bf8a824305b5d2e959130d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "d88b6c516eee70618b300586f9986ff8ac8f1b97ba3bde1809a535a1e73d9f49"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_high_om_transformer_low_om/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/cost_library/cost_assumptions.csv",
+      "bytes": 1892,
+      "sha256": "82e5c8c12cd20521d1f40908dd8f81965deaab5adf72ac86b19e288a502b81c3"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "b11197e817161d767d90eda1455a4e7d6d265dd64081f57aa1c6279732f73a3f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/cost_library/expansion_cost_library.csv",
+      "bytes": 58832,
+      "sha256": "35595148cef4718f01c0e926c0749538428e98e7f8ea0c58d4af9745002fe024"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2199,
+      "sha256": "4b72e9865df6ea2e2140fc7aa500a59bc5b4fa3a8e3ffb8300bcce59a520f807"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/parameter_action_results.csv",
+      "bytes": 14247,
+      "sha256": "1bcc8d966dfb5e6f784b5e716e31323518aaa2b172781cbedf70d47b934d1afa"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/parameter_cost_breakdown.csv",
+      "bytes": 4006,
+      "sha256": "531153962ab7adcb0f5fed693bf498c0eb948549ac878b4a66443831d799e86d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/parameter_frontier.csv",
+      "bytes": 12031,
+      "sha256": "d25a7d55da0701ac37bef606c6dc79604de83a3d6792ab70645b2362276ec6a6"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/scenario_contract.yaml",
+      "bytes": 23457,
+      "sha256": "04ebd162379d88ce44e043434d1b057e039dc1c05f001a6093aebe6fca2e6c43"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/scenario_manifest.json",
+      "bytes": 1403,
+      "sha256": "6e3861d4d2eaf0de8cfe5eff30f8768c8e52bacb1f263a2042bee0abe99d65d4"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "289e2fe43644b72bab998b37e22bfbef40f06e5fc07c9a7531ab7a6fae393d9c"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_long/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/cost_library/cost_assumptions.csv",
+      "bytes": 1891,
+      "sha256": "eca1c82b178a8b871fba23c0907c4d5085b623509baa5279f82438f550809bfd"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "1f81092dc0206babe1a8f34993dd08a8bfc8d164db421faa8f9fc576386ee012"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/cost_library/expansion_cost_library.csv",
+      "bytes": 58832,
+      "sha256": "35595148cef4718f01c0e926c0749538428e98e7f8ea0c58d4af9745002fe024"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2197,
+      "sha256": "56e0195b8d472d071867edf3ae52f6e256b8dda2aa2dfed0e91f770ebdbc86fa"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/parameter_action_results.csv",
+      "bytes": 14317,
+      "sha256": "c7e691ccc654e9cc4bc164067da9f4e9611d8ee4271e5ddf5ecf1f2624c51acc"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/parameter_cost_breakdown.csv",
+      "bytes": 4050,
+      "sha256": "68e40b27fe888d2323f0f6ad616f60e422de7b0e187de87e8a8802c9f530fcce"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/parameter_frontier.csv",
+      "bytes": 12075,
+      "sha256": "5f3c17256f226ab6364a8a1683b2d4e4cfdbc7eac1d82625578c7a8b496bf441"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/scenario_contract.yaml",
+      "bytes": 23456,
+      "sha256": "f9036e2f61901cae0e413b2027985b46f427f6c9e68e516a41f92eb5a461f589"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/scenario_manifest.json",
+      "bytes": 1403,
+      "sha256": "9203331c5821088f236aa62dc74a9b9d430cdbd7d338348deed6511235182c90"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "48dd27cdfc48a9c377235182e5d342a7459fc78b8971dd168a816595e7a77cf1"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_life_short/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/cost_library/cost_assumptions.csv",
+      "bytes": 1893,
+      "sha256": "0a6e5ae519a721c4d390d87c61aa41da9a089b29357b3ece4a81104b828d852d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "00e262654589cae0732da7035c7b92f0084796030206856ce470d376c3ff15bc"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/cost_library/expansion_cost_library.csv",
+      "bytes": 58832,
+      "sha256": "4198a15544c52d08c0a6b523531bf34b92f470a6f1b47fb6a3d042e282ae8165"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2199,
+      "sha256": "fca371d627321138bfd2d11c177033056835f5e82039745b6aec67c919673b41"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/parameter_action_results.csv",
+      "bytes": 15443,
+      "sha256": "bbbe3b7c68caf0803ab3c18322c7edd140a33e9e3d25df34f49fb2da3552e69e"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/parameter_cost_breakdown.csv",
+      "bytes": 4760,
+      "sha256": "d3d9caf0a847d799b0e47a1d528ee4479fa614168f954e64e9e674b5ea0aa323"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/parameter_frontier.csv",
+      "bytes": 12785,
+      "sha256": "f187263d7468538e3ab7ada44fa26e6c3bc5bf604fec6b4aae4e924876aad30f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/scenario_contract.yaml",
+      "bytes": 23458,
+      "sha256": "67e8c3b8463bbe6b96f1ca871b50bddd4d5cff9f4af39f5aa69fb7e8a4043049"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/scenario_manifest.json",
+      "bytes": 1439,
+      "sha256": "fe56a530f47205371b670883629980c379560240e241a9be7115ff7aa71387d1"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "ac34e22cc2be177742c045ad28504c3801d062a6708cb1e58102f295432bc034"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/storage_low_om_transformer_high_om/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/cost_library/cost_assumptions.csv",
+      "bytes": 1892,
+      "sha256": "a5f92556bb3dc257e1fec94c58503a026608c7f19071fb69189aa39bcb0ed0dc"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "e1a00822d051404a87bc74aa8904f3c80a6836796a3b50a8d7d45a0bb0416527"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/cost_library/expansion_cost_library.csv",
+      "bytes": 58832,
+      "sha256": "4f63a5b98b3f502aba4fb569ac30214e8d62a013cb11de35862f7fc2aebfe7f1"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2199,
+      "sha256": "ff95a4854d262c554264152b8b5b9b62dbe9a8c87707354c426ab797cf2264eb"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/parameter_action_results.csv",
+      "bytes": 14539,
+      "sha256": "392bbb1fcef69b3cbfaa79715241355ac0db1c49c81eb13ab3ac2a56e5c74c7c"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/parameter_cost_breakdown.csv",
+      "bytes": 4194,
+      "sha256": "9f16432bacd8639ce8915dd3de4fd396cb1eea7bacec8dc5c99f76cf2bd6b22b"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/parameter_frontier.csv",
+      "bytes": 12219,
+      "sha256": "c753176a90c29fec3df40c8dba16ad8d7ac995f4346c541143f46c48a9de39f4"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/scenario_contract.yaml",
+      "bytes": 23457,
+      "sha256": "bdcb14aa61d0192ccc55d162b0401d3388105e68b3582621ac590a2157fe8d21"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/scenario_manifest.json",
+      "bytes": 1411,
+      "sha256": "e862b1b72cd80b10e7df5b273942c1c6d181ca1f161ed78f605c4969db8e2085"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "a1be5f9b9aa8fdd42dd5ddf5a70285b5e7edfc06f1a51036e3996b354651853f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_long/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/cost_library/cost_assumptions.csv",
+      "bytes": 1892,
+      "sha256": "98f7b66e53e2dac82e50588d068cddf250c06c5f4e17f4868da002f2197ea4bd"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "ed8d7aaf7b27af3fb579729bad0dd9ffdc643c8e0f1269d6072b02b32a55d782"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/cost_library/expansion_cost_library.csv",
+      "bytes": 58832,
+      "sha256": "a37a4c3c9e447b4f8f66c9875559628b4394493e9888e19d3ea007b6b7a7e9f6"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2199,
+      "sha256": "98b557e406c4c7a6623fc25ebb3dd2ed5ccc1b6a00e0d3081deaa6fe1bd05365"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/parameter_action_results.csv",
+      "bytes": 14609,
+      "sha256": "98ef868ae821736616bbd219d6872fbb08bec5620d4f03d4c7956c7de2d84c9d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/parameter_cost_breakdown.csv",
+      "bytes": 4238,
+      "sha256": "019bf186833d36090bfee6ef904ccd1e0af32346a74ac9004e2bbccff3cb027b"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/parameter_frontier.csv",
+      "bytes": 12263,
+      "sha256": "54f7ad071b5620f8892e125eb1f72ffee7453f77a3588651895ea516975ff774"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/scenario_contract.yaml",
+      "bytes": 23457,
+      "sha256": "f620a7a9c678d2a140fbe0164cb00ec758436cc5dcf6f7b00ce3ac387869ed9e"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/scenario_manifest.json",
+      "bytes": 1413,
+      "sha256": "d22c69dadf3627ca4ac8cd13fac101c672c532c23b9a81318b39f06368404a4d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "ff78d80bbd7c534ed1ae55e3dfdb81533da47ace1e3b2f739337d6802f340251"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-annualization-sensitivity/transformer_life_short/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/actual_path_action_results.csv",
+      "bytes": 14463,
+      "sha256": "1c9ec069e3713ada9998901d7537d2baf73d6f6619905d1da0ce1dc2aae2ec2e"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/actual_path_cost_breakdown.csv",
+      "bytes": 1535,
+      "sha256": "5831999e7649d7ee3877edbcaa383a788c739beebd820b6277bc07987064f78b"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/actual_path_year_results.csv",
+      "bytes": 17478,
+      "sha256": "40f810c9080caefaa2949c79adf83f28a99979efe3a656828b901bc87906b330"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/cost_library/cost_assumptions.csv",
+      "bytes": 1892,
+      "sha256": "61cca35a73246c6f43f075d3137835ff350b938e4f04000c2ec12562d0320805"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/cost_library/cost_manifest.json",
+      "bytes": 984,
+      "sha256": "e5abab29e7403209d3ee6ea9385adac4b156703a4e31c7a7ce2c6a662b6ba23d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/cost_library/expansion_cost_library.csv",
+      "bytes": 58832,
+      "sha256": "35595148cef4718f01c0e926c0749538428e98e7f8ea0c58d4af9745002fe024"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/cost_library/storage_module_cost_boundaries.csv",
+      "bytes": 2199,
+      "sha256": "8b434c5dd0905633bad5298c6807cc103f85743197a2e8a60783be6af561ad44"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/initial_physical_diagnostics.csv",
+      "bytes": 2883,
+      "sha256": "06d7510221a7144b87b623dc1959c251ccbec33aefb06188536a29e1d7484a3c"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/manifest.json",
+      "bytes": 2996,
+      "sha256": "6a8749b38d494faf05f22ada9a9dddab0e5e7df861a14b6a4e4c59cec6f3b273"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/policy_2025_summary.csv",
+      "bytes": 3172,
+      "sha256": "892f3f90c7ff69f165de8084ccd138ebbe92cd528343a3fd51a3bfab8f725c38"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/policy_cost_comparison.csv",
+      "bytes": 2120,
+      "sha256": "cc0d5b28347cd0ea2ce160b1decb68452204675f6fa8dabff9da68793fcbaaeb"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/policy_path_action_results.csv",
+      "bytes": 2631,
+      "sha256": "de1920854be9fa78aae4f2551cf9ba938c91acb0f9f903f9d8d5342ef0e7e98b"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/policy_path_cost_breakdown.csv",
+      "bytes": 1832,
+      "sha256": "d7bb5f0cf8b4a27defada0759795e8a05aaf353c708ff650b99b749219854969"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/policy_path_year_results.csv",
+      "bytes": 29241,
+      "sha256": "325a582ad110f684af320d5e0d19b39579c9fc1194adecc74d84e946feda4d65"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/qx00005_chronology_comparison.csv",
+      "bytes": 4023,
+      "sha256": "8d60a9c924caa05d50a5d99fe7e2f327d2ba378dc847612e61bbc1ae294fb6b6"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/qx00005_soc/qx00005_continuous_soc_8760.csv.gz",
+      "bytes": 985228,
+      "sha256": "703cb93e1bc1a4b5c8727b20492a8d232e72e0d2d508ec234dfe88f1fe813216"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/qx00005_soc/qx00005_continuous_soc_summary.csv",
+      "bytes": 10621,
+      "sha256": "5a72dc892c37b89add5ee769e44f2b76817aec6b95de8db945f6d29b347a3b83"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/region_gap_summary.csv",
+      "bytes": 2513,
+      "sha256": "f657fa547e902764599f8bd8421091e24585a85144a18cf082892c4a2c4f073f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/station_gap_diagnostics.csv",
+      "bytes": 26104,
+      "sha256": "74db29a96bba12a9d48c3473f7d4404aaba94d4f09185e2e604e382e9df8c5c9"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/time_physics/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "5e27f427e1e2a6a7f1c59a9094cd9115403c09a014bb8a70abfb23d8aa04c33d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/time_physics/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "4e6ba7fb97ab1503a317e5161c80b21b7902fe78faed751c27b2be23a31a7322"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/time_physics/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "ed904f9875ab4e04808a362f5f602d00032adaffa38880c00d6c44c6aa03b0c7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/baseline/time_physics/empirical_station_scenarios.csv.gz",
+      "bytes": 162016,
+      "sha256": "94927d2ebe484c41721726ed172891a738b6215af15a387decddca670b26a511"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/data_quality_review.csv",
+      "bytes": 1618,
+      "sha256": "d6deca06e08941c961d05a64b2efedb8f674cfabeab1ef71e69583910d9dfed1"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/elasticity_frontier_v32_actual_coarse.csv",
+      "bytes": 25218,
+      "sha256": "ec828ad063a24195daff4c830e5784e03476ba0593e6d148c4814caec41155e5"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/elasticity_frontier_v32_actual_refined.csv",
+      "bytes": 19800,
+      "sha256": "66ba441d5d6ba5492a39a8f77e509e6a16dc0b086c8ed3f2ca580934e83d375d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/figures/10kv_local_case_boundary.png",
+      "bytes": 159906,
+      "sha256": "34a2ce57c41bea5fb5b213f343764b87bf4c308b0e1735dff2521019337dd4b1"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/figures/constraint_gap_summary.png",
+      "bytes": 62623,
+      "sha256": "98c008629d9071094eb61f173ac8a5070aefcac23c54e6a707b60cd501e25b4b"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/figures/manifest.json",
+      "bytes": 933,
+      "sha256": "e86bb9a1a07bc64ea5362c21fa65406e429362a78cce92e08d3aa80c7141cc4f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/figures/qx00005_soc_8760.png",
+      "bytes": 260855,
+      "sha256": "e4903120b6d07502cf745064ae137238c8972d6be54ecbf9baacba06d71a3147"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/figures/rcap_capacity_storage.png",
+      "bytes": 92612,
+      "sha256": "2d0b536764ddf9b5e3338f5189dd6dad91515e8b11705aeaa4610a88304367dd"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/figures/rcap_cost_frontier.png",
+      "bytes": 101134,
+      "sha256": "e0e18bc63112e9a87de5f5c119136b93fabbd26f7c037bf70e097a4f056e30d3"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/formal_matrix_110kv.csv",
+      "bytes": 11834,
+      "sha256": "d4b73db262499d7ade0d639de0451081af6ece9dedb66a0d632eaa89a0eb2f63"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/formal_matrix_110kv.docx",
+      "bytes": 5400,
+      "sha256": "b9c79345840ce2721981a18811fe12e32bc45afdfc97b7ab9a6962176e330d91"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/formal_matrix_110kv.md",
+      "bytes": 4141,
+      "sha256": "5e8749629aa90663986d46829ed1e9a81a8387d2cb678470634b60f5d7ea76e1"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/formal_matrix_35kv.csv",
+      "bytes": 11480,
+      "sha256": "64a7cec0b1e7785cbabf1de2798ffaf602ecf51437c1a6c019aa9889838056c5"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/formal_matrix_35kv.docx",
+      "bytes": 5103,
+      "sha256": "83477395e2a7391c8ed6957042650bc6b1649934f5860a2180343930eda1b185"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/formal_matrix_35kv.md",
+      "bytes": 3887,
+      "sha256": "29932a0cc8f0d5e35c1b3f052652976926de755f970e6d12132e727cca61a574"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/formal_result_notes.md",
+      "bytes": 361,
+      "sha256": "ff18f0a06ed8647132263ba113bc9a850b25432a7b8d1a30ec79b4b76ad3099a"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/freeze_verification_receipt.json",
+      "bytes": 794,
+      "sha256": "1422516ee29293a7ef4327133c7b489e5aa190d12906c6e726e89fbceda9412c"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/manifest.json",
+      "bytes": 27903,
+      "sha256": "b23efc98f93c7e8c01bd5b642cad78b3219baa790151679a5c1c7c11459f78f9"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/model_science_review.md",
+      "bytes": 4680,
+      "sha256": "cf1699df986b8e107ce98dc19ffdde0df10c4dc131e07cb79a797c0657de21e6"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/rcap_robust_near_optimal_summary.csv",
+      "bytes": 9185,
+      "sha256": "60df6084ce5791b2f9242c0b8fcce96777b313a1276cb27a6b0c92f55a0e0db1"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/rcap_sensitivity_frontiers_coarse.csv",
+      "bytes": 487916,
+      "sha256": "a8b01981e9391b7b371a439efb3b4e9655c559f8c510ea46b5b803e8d9feae3c"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/rcap_sensitivity_thresholds_coarse.csv",
+      "bytes": 27493,
+      "sha256": "2a9e84733205b3a685e237a3af35b8b1f5979815191b215648b0aec84edc0752"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/rcap_thresholds_v32_actual_coarse.csv",
+      "bytes": 1730,
+      "sha256": "2939dceb36d40c3b4ec94b11dfe6b53ccc73fc4190ceba70a4f33dddf264da7a"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/rcap_thresholds_v32_actual_refined.csv",
+      "bytes": 669,
+      "sha256": "8445820f7e89187bd000e5eca962620d3cf00c7285794cd502d200746d990111"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/report_support/10kv_case_conclusions.md",
+      "bytes": 9210,
+      "sha256": "57687487c97bebce1f6624f14bd6dc97aacf992191c2eaf218babf47c989f0af"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/report_support/10kv_case_reanalysis.md",
+      "bytes": 10725,
+      "sha256": "8ebe6dbb6ab4f02d10a1852be79097eab3b0b73506818ee49aad21f06ba38375"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/report_support/modeling_method_summary.md",
+      "bytes": 12607,
+      "sha256": "690ece4865f981365772539488ae562553713bbc19a75b57278c66c7122b5b80"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-frozen/report_support/v32_final_review_and_freeze.md",
+      "bytes": 9092,
+      "sha256": "17cc5711bfa626a6e8f574969a920191262ad7dc2ad85846f768bf8698284946"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-secondary-standardized-benchmark/manifest.json",
+      "bytes": 817,
+      "sha256": "64c62c1362603d6604c1229978d32f4c9d2d41c7cb4ad9c3c9b49c7e6803fa26"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2021-2025-v32-secondary-standardized-benchmark/standardized_baseline.csv",
+      "bytes": 3158,
+      "sha256": "13654e49252a81564c8314f044201419fdc22c2751670b60bec699e25a337cfe"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/STATUS-2026-08-13.md",
+      "bytes": 686,
+      "sha256": "83379e8081e9e42e9a742dd55635aaef9e2ec3ca671548052d8511f90c2c34c2"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/actions_A.csv",
+      "bytes": 98957,
+      "sha256": "0539fef2b8bbe98a5727cebd582a2d82de5119fd9d086ed57a26c02d5c8f81c8"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/actions_B.csv",
+      "bytes": 99068,
+      "sha256": "42ef3e0afe52d701691588c35f3962f19f0aeb4463c4a99a02d4bbaeaf179770"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/actions_C0.csv",
+      "bytes": 95521,
+      "sha256": "3991272a5df44b599a602e45cdbe6a23b952be431a8a3930f0bdbea5b3dbffc7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/baseline_manifest.json",
+      "bytes": 772,
+      "sha256": "9cce9238f600471df5196b7081a095dc46de5f45929ecbb8ebec7444bd57415d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/cost_assumptions.csv",
+      "bytes": 1867,
+      "sha256": "9c1ec13f013797c60751b64d73ec20292ed535fb7954b18c9ff1c92d975eb77a"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/cost_breakdown.csv",
+      "bytes": 56413,
+      "sha256": "0a3725cb66d0783d55ca350ea18d9bd8b9313a643b6d8a9f7da760550432163d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/cost_manifest.json",
+      "bytes": 849,
+      "sha256": "9f379942a60925e15c26dd7ce42ea90f49c2048093193c523dbf85d240f5efe7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/county_110_matrix.csv",
+      "bytes": 8649,
+      "sha256": "f2ebda9cffd63b212fbce743d88445abc2b2e1360817d58abcef33e59dee6701"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/county_35_matrix.csv",
+      "bytes": 10893,
+      "sha256": "31c1329855b3849c51af47e7784cd05ec194f0efd8dd9b790777c50229bc7e74"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/county_baseline.csv",
+      "bytes": 11606,
+      "sha256": "e34950992652f9a5502ecee4723965b591f531131bf247f23c872e03e746b7be"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/data_quality_issues.csv",
+      "bytes": 2116,
+      "sha256": "b330d5e4d3db8eb98c62c544e60874fd069b0ca4b13deb249d60b064fea0213d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/empirical_duration_manifest.json",
+      "bytes": 1030,
+      "sha256": "e86982bbaf4d392889a3175dc7c5431ed202b2cf2dbd001a216e5e00b8c7ad3b"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/empirical_scenario_index.csv",
+      "bytes": 421835,
+      "sha256": "8d6ce49477351f8afcc738a2a3719d00c2fac5f197466137dc425b6c099ae69e"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/empirical_scenario_issues.csv",
+      "bytes": 2596,
+      "sha256": "86ac9e33f04c4fdec5e1b08294f9df52692475ff3be510d3d698d2084a1f0313"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/empirical_station_scenarios.csv.gz",
+      "bytes": 162078,
+      "sha256": "c8f63b4f3c1e7e51bd8b1b3b9d0ba1a1bf94b11e844ae9be1b8ba49b3d98a65f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/expansion_cost_library.csv",
+      "bytes": 58372,
+      "sha256": "8e84923f9500bb316818551dfd295db1b8784eb87175d334cd7bbf10d29c9b1f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/internal_capacity_network_manifest.json",
+      "bytes": 1031,
+      "sha256": "aac3dab109a971c4fa8ff5d6119d230fc1ead0fb7fb0c666f9922afbc479c5cd"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/internal_capacity_network_summary.csv",
+      "bytes": 12537,
+      "sha256": "54f345d860a74952f82353d85d9b095b1ef5ea9bd06a54272ff606c0c19b9e5a"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/internal_line_capacity_contingency.csv",
+      "bytes": 230045,
+      "sha256": "e632d948a6a77a22a3d40b2dc8b2e501ea5e34991fcd2a88e45694359cf3317e"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/internal_network_node_mapping.csv",
+      "bytes": 101611,
+      "sha256": "5862159902a2ee8f7f628837a2d6f837f38b489ad8c0d5c936270cb1a972eb32"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/internal_transformer_contingency.csv",
+      "bytes": 478919,
+      "sha256": "ad598af1a2ce69ff5ce5e7c83182764d8dd0b844977e7a60ba1023d89ab0d4df"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/manifest.json",
+      "bytes": 8085,
+      "sha256": "ace952bb51c5cc4f328f619874c4732ea02256794141bc877137241303a24079"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/matrix_110kv.csv",
+      "bytes": 8649,
+      "sha256": "f2ebda9cffd63b212fbce743d88445abc2b2e1360817d58abcef33e59dee6701"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/matrix_110kv.md",
+      "bytes": 15882,
+      "sha256": "de6f5e9f452ff45f284049a863c1c4d0286f6cdf3338bedae6804e58836fb7b7"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/matrix_35kv.csv",
+      "bytes": 10893,
+      "sha256": "31c1329855b3849c51af47e7784cd05ec194f0efd8dd9b790777c50229bc7e74"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/matrix_35kv.md",
+      "bytes": 18102,
+      "sha256": "a1e43720811c40059ce818710bcb2e3705035ed1cb0a8301977a0d1cf2ef0e90"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/matrix_manifest.json",
+      "bytes": 1342,
+      "sha256": "3974a9ebd0470c646e525dcc34c9bff97d038bd75406e99ebe31fd0d9f56c6dd"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/parent_supply_mapping_35kv.csv",
+      "bytes": 26745,
+      "sha256": "da880f9174d8997fa36c15027d00249ad59cc60d1e0c59e384f6c84bd8bdcccf"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/pipeline_log.json",
+      "bytes": 1267,
+      "sha256": "5ba48ebe602cc51c70efaf4cfe77c542b3532240890cb88dba28d00399caf907"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/quality_flags.csv",
+      "bytes": 29328,
+      "sha256": "fa365f5cf40c2cf0695de6caa84887d8c7ca8fa01d6dfeabb6b526bd23434803"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/real_plan_actions.csv",
+      "bytes": 293136,
+      "sha256": "9de5b2f63c7345f9671eaedc54839d8e3319a35f82311506d85dbd9da6267e99"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/real_plan_county_solutions.csv",
+      "bytes": 30580,
+      "sha256": "1e7395dea188b279e8638bd8452928914212d36271a573d690979eeceabbda0d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/real_plan_dispatch_playback.csv.gz",
+      "bytes": 242518,
+      "sha256": "748704a3ed0f2a52cc53ccb44f467d6ff464eca61969021aec92da5fd05c512f"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/real_plan_station_options.csv",
+      "bytes": 160190,
+      "sha256": "63c3eccda048108a5f5b17a693a5391edc8ab69e5d7447515e404168b669d68a"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/real_planner_manifest.json",
+      "bytes": 1168,
+      "sha256": "559ee850d6ad6aeddf194ff6dd46c1885c6b1863cb67eff52965957209c95372"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/sensitivity_results.csv",
+      "bytes": 2641,
+      "sha256": "a7307af093d72e22723caf6e316af596e0cdcf78d5f0c76a98cbd35155d0540d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/solver_log.txt",
+      "bytes": 21861,
+      "sha256": "450b6d3a6709ebcc171a740753582ae7bbf6312407cb30a8ac110822793139e6"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/station_baseline.csv",
+      "bytes": 91246,
+      "sha256": "860bd4eec30e21733dc5bbab7259cf446e149546e81317fc0291991f5c3f2508"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/storage_module_cost_boundaries.csv",
+      "bytes": 2174,
+      "sha256": "3c696ee9291c01baaaf0248e0065f14e5f2b474779fd62d50316e1dfda66a202"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/transformer_reverse_capacity.csv",
+      "bytes": 161436,
+      "sha256": "32c324c34ae9c4fdb3ecb432e439e6c334635cf02291e45e2fd553fc1b585b1d"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/validation_report.json",
+      "bytes": 971,
+      "sha256": "0baad074b30ec4969e7ffdfe6a07c4f76b1030a7344871dfc9d2d6b40446d213"
+    },
+    {
+      "path": "实验/研究/results/runs/real-2025-contract-v2/问题与修正台账.md",
+      "bytes": 9943,
+      "sha256": "f8b46350f9a4c8591246fa9984cd87c10392fc912fa056335e274f2aeb98c203"
+    },
+    {
+      "path": "实验/研究/results/runs/synthetic-m1/manifest.json",
+      "bytes": 1893,
+      "sha256": "8f460287a70bc658bebbe17bcc60380ea1f5ccd149cd4411d0f2641185592477"
+    },
+    {
+      "path": "实验/研究/results/runs/synthetic-m1/solution_A.json",
+      "bytes": 1441,
+      "sha256": "320ca4ee5d53ed3cbd15de863da32297dcb015cf393d83d8ed0daa2f76a4928c"
+    },
+    {
+      "path": "实验/研究/results/runs/synthetic-m1/solution_B.json",
+      "bytes": 1435,
+      "sha256": "0c24ac4d246dab43d671c2a1aa41b108983b01d5d0f77e3a97a6293e87d0a2cf"
+    },
+    {
+      "path": "实验/研究/results/runs/synthetic-m1/verify_dlt2041.csv",
+      "bytes": 984,
+      "sha256": "aabf2281c0c5e2d5f5e2e94ac81c9877bafcbfa5dc299dddd26e4cfeac2c8792"
+    },
+    {
+      "path": "实验/研究/results/runs/synthetic-m1/verify_flow.csv",
+      "bytes": 2817,
+      "sha256": "9b363c0d5e7aec2da24ea3510edcbf93c3ba2021ffd1aa4654d878b587cebf21"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/STATUS-2026-08-13.md",
+      "bytes": 789,
+      "sha256": "2c080d8faf7ced1b2f5b155d13c87b3b143cf9bd92dd14e775e2c9aff426ce21"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2021_110kv.csv",
+      "bytes": 10864,
+      "sha256": "beaea1abd6d1eeb91de5d2fa37065dadfbfd1de04c83b7bdf0945b2e0dee75a6"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2021_110kv.md",
+      "bytes": 1774,
+      "sha256": "e2a40a994498fdc7fa3b15132d6fdeeb43f9a4fbcd7375fd6a0101a69e453716"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2021_35kv.csv",
+      "bytes": 10338,
+      "sha256": "b91af6b19cec67d97276ff4cd50dddd22b5e1cd6d9734b6715e6bd22b0e5b818"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2021_35kv.md",
+      "bytes": 1772,
+      "sha256": "827c173185677b30636f23f3aa367921db989a3239bb8907008db06109f77485"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2022_110kv.csv",
+      "bytes": 11614,
+      "sha256": "c93ca5441809537642016549664897a6896abadca94dbe04ab8ae7cf1c60d9ad"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2022_110kv.md",
+      "bytes": 1865,
+      "sha256": "7c1aaef583a55cef89a18e6ecb2064a442b7432f1284e20aeab1f73982692824"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2022_35kv.csv",
+      "bytes": 11641,
+      "sha256": "07da20771e904ab4d5d6ed5ee3e21d08e3c9640add4b4db9042b831e45d4e928"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2022_35kv.md",
+      "bytes": 1863,
+      "sha256": "e2ce76a2a7a424cd46877e21b5e7d1603df6a5339d7ceab15a24e10231e4aa1d"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2023_110kv.csv",
+      "bytes": 11674,
+      "sha256": "43669d2fdbc4f108c3e9e1a675efd78e62af8327f06f4c87f6504f7882eee50d"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2023_110kv.md",
+      "bytes": 1868,
+      "sha256": "f69d71ceb7db7e81b4360f2b4e66edc3e449a2ae53e90d15454132ff52caba03"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2023_35kv.csv",
+      "bytes": 10909,
+      "sha256": "4da1deca1650f38c907553242e82904f9d54e5c849dee337fb6002f408c490f0"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2023_35kv.md",
+      "bytes": 1855,
+      "sha256": "6c21f46383123d1064473166231ceb36d04651bed06400a5dec616c83856b4ea"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2024_110kv.csv",
+      "bytes": 11783,
+      "sha256": "c72ced4346bb8c36b3aa8b2ff4dbf213ed8a4011292432eed9eef7f39c0ad77a"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2024_110kv.md",
+      "bytes": 1861,
+      "sha256": "37a65b46eece32562f7feb05cd63acaa2f3abff6cc841fb16033078d098f3cd0"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2024_35kv.csv",
+      "bytes": 11440,
+      "sha256": "808dbe721204657c7a208e661d97ccfb553311f49c36ffa79744f31348168b46"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2024_35kv.md",
+      "bytes": 1852,
+      "sha256": "563e61b5f3c774f3f886bf0037142d4b0aa27c96f8f1b218495c2ef8bfe93b43"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2025_110kv.csv",
+      "bytes": 11701,
+      "sha256": "455e5b8940a5f4c176f1796d28a738e385b305c8346443746aa3ee4fb052fa8f"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2025_110kv.md",
+      "bytes": 1702,
+      "sha256": "3c38f40e406d2dda3fc74acd6c476bbf7a83670c72c02a743c3ada67763a2f5a"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2025_35kv.csv",
+      "bytes": 11304,
+      "sha256": "30c02f63c459a01e3a68bb1c0d806ef704c6875464c574e696684901c7b35352"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_matrix_2025_35kv.md",
+      "bytes": 1692,
+      "sha256": "a40dc2546465f300847fcdf1e04b4456714d5bab39bbbc90c85ae9d7e3ad384d"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/annual_solution_modes_2021_2025.csv",
+      "bytes": 427116,
+      "sha256": "a74c666e72a4b76670cc50ffe3c902c142297103d7119bc718323f17dd794000"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/final_recommendation_interval_110kv.csv",
+      "bytes": 5539,
+      "sha256": "dc658d531672692cbdf34ea49a7cc0f6b7f3f8b75882c4f4d2e3499039d356f5"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/final_recommendation_interval_110kv.md",
+      "bytes": 2097,
+      "sha256": "9ba21e5fc9f38458a90b9c210ecde0216d74a2d5cacdb34b8493c7105db498cc"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/final_recommendation_interval_35kv.csv",
+      "bytes": 5513,
+      "sha256": "69aa3f0477392d2d331f24aa6aac59a9abeffb2e6c7d67ba583d4f1a86d677a6"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/final_recommendation_interval_35kv.md",
+      "bytes": 2108,
+      "sha256": "0ba6a6b9c34321df1d85c8a6771e504501b7d8c8873b154bc89965b888b5a63f"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/manifest.json",
+      "bytes": 5202,
+      "sha256": "8bbdd819283a104f23936058917cab684a6cb749f7a68a42475f2096c2c2cb80"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/五年年度容载比推荐矩阵与最终区间.docx",
+      "bytes": 22879,
+      "sha256": "5483eea94bc0cf1355e08e1ed48bcbcc83b4deb661b50820ad87d7ad562c66df"
+    },
+    {
+      "path": "实验/研究/results/annual_2021_2025/五年年度容载比推荐矩阵与最终区间.md",
+      "bytes": 56568,
+      "sha256": "4c28626b6a545218257ee92699273753b0fc153a397ed0236ecdd631e2297756"
+    },
+    {
+      "path": "实验/研究/results/real_2025_visuals/README.md",
+      "bytes": 239,
+      "sha256": "ba41b2ed01c5ffe7a8b036f95f62cb1f7de8d2d89a39cd16e6426b2047da3361"
+    },
+    {
+      "path": "实验/研究/results/10kv_section_tie_case/case_summary.csv",
+      "bytes": 1208,
+      "sha256": "af03ec234d0bca1d57a642efa587228c8c47c1086e2236dc726d755ec496ff14"
+    },
+    {
+      "path": "实验/研究/results/10kv_section_tie_case/pv_reverse_envelope.csv",
+      "bytes": 656,
+      "sha256": "5288e47d27902b5adf9c1246c72c73774bde2de7d4c13c6cc7bcfc9ac2d05001"
+    },
+    {
+      "path": "实验/研究/results/10kv_section_tie_case/run_manifest.json",
+      "bytes": 2488,
+      "sha256": "1ae3b7fd9a4ca07787638490b91a41b4e326bc78e8c919125b0ea4a4d3468174"
+    },
+    {
+      "path": "实验/研究/results/10kv_section_tie_case/section_identification_demo.csv",
+      "bytes": 355,
+      "sha256": "6b64ed8ed04afd9e1b0ca86dea9ff795ac6b2a16b6e2fa2316be668268022f56"
+    },
+    {
+      "path": "实验/研究/results/10kv_section_tie_case/section_transfer_demo.csv",
+      "bytes": 550,
+      "sha256": "bdb893fc851a63306a53d397b8aab406fe04bb63d9b1a4bbaa8e97a9d360b450"
+    },
+    {
+      "path": "实验/研究/results/10kv_section_tie_case/switching_sequence.csv",
+      "bytes": 1609,
+      "sha256": "cba3d0b45b26c8abb6c43fbdffc8ddab909bca01e2dc943df0564dc1f3295957"
+    },
+    {
+      "path": "实验/研究/results/10kv_section_tie_case/topology_state_trace.csv",
+      "bytes": 1609,
+      "sha256": "cba3d0b45b26c8abb6c43fbdffc8ddab909bca01e2dc943df0564dc1f3295957"
+    }
+  ],
+  "retained": "原冻结409文件、原输入、当前v4结果、real_data_audit、implementation_log及既有archive保持不变"
+}

@@ -1,0 +1,32 @@
+{
+  "status": "FAIL",
+  "checks": 1869,
+  "errors": [
+    "字段集合：summary.csv",
+    "字段集合：summary.csv",
+    "字段集合：summary.csv",
+    "字段集合：summary.csv",
+    "字段集合：summary.csv",
+    "字段集合：summary.csv"
+  ],
+  "reproduced_directory": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/00审查/证据/交付工具隔离复验/重求结果",
+  "compared_files": [
+    "summary.csv",
+    "annual_matrix.csv",
+    "baseline_layers.csv",
+    "baseline_stations.csv",
+    "elastic_QX-00005_110_years.csv",
+    "elastic_QX-00005_35_years.csv",
+    "elastic_QX-00007_110_years.csv",
+    "rigid_QX-00005_110_years.csv",
+    "rigid_QX-00005_35_years.csv",
+    "rigid_QX-00007_110_years.csv",
+    "elastic_QX-00005_110_ties.csv",
+    "rigid_QX-00005_110_ties.csv"
+  ],
+  "station_layout_differences": [
+    "rigid_QX-00005_110_stations.csv",
+    "rigid_QX-00005_35_stations.csv"
+  ],
+  "rule": "共同起点、区域年度指标及费用按1e-5绝对容差、1e-8相对容差对账；不以不同逐站分配覆盖原版"
+}

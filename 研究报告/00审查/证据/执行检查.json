@@ -1,0 +1,72 @@
+[
+  {
+    "name": "原冻结哈希",
+    "returncode": 1,
+    "command": [
+      "/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python",
+      "-m",
+      "rebuild_2026.verify_frozen_v4"
+    ],
+    "isolated_workdir": "/tmp/rzb-stage0-review/root/实验/研究",
+    "log": "研究报告/00审查/证据/原冻结哈希.log"
+  },
+  {
+    "name": "当前模型测试",
+    "returncode": 0,
+    "command": [
+      "/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "rebuild_2026/tests",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "isolated_workdir": "/tmp/rzb-stage0-review/root/实验/研究",
+    "log": "研究报告/00审查/证据/当前模型测试.log"
+  },
+  {
+    "name": "基础六路径独立审计",
+    "returncode": 0,
+    "command": [
+      "/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python",
+      "-m",
+      "rebuild_2026.simulation_reserve_policy_audit"
+    ],
+    "isolated_workdir": "/tmp/rzb-stage0-review/root/实验/研究",
+    "log": "研究报告/00审查/证据/基础六路径独立审计.log"
+  },
+  {
+    "name": "年度指标独立审计",
+    "returncode": 0,
+    "command": [
+      "/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python",
+      "-m",
+      "rebuild_2026.annual_recommendation_audit"
+    ],
+    "isolated_workdir": "/tmp/rzb-stage0-review/root/实验/研究",
+    "log": "研究报告/00审查/证据/年度指标独立审计.log"
+  },
+  {
+    "name": "价格敏感性独立审计",
+    "returncode": 0,
+    "command": [
+      "/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python",
+      "-m",
+      "rebuild_2026.annual_cost_sensitivity_audit"
+    ],
+    "isolated_workdir": "/tmp/rzb-stage0-review/root/实验/研究",
+    "log": "研究报告/00审查/证据/价格敏感性独立审计.log"
+  },
+  {
+    "name": "六路径完整重求",
+    "returncode": 0,
+    "command": [
+      "/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python",
+      "-c",
+      "from pathlib import Path; from rebuild_2026.simulation_reserve_policy import run; run(Path('/tmp/rzb-stage0-review/reproduced'))"
+    ],
+    "isolated_workdir": "/tmp/rzb-stage0-review/root/实验/研究",
+    "log": "研究报告/00审查/证据/六路径完整重求.log"
+  }
+]
