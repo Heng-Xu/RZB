@@ -1,6 +1,6 @@
 # 图表说明文件
 
-本文件为写作配套资料，保留完整来源与工程口径；不属于研究报告正文。图表已按开题章节编号，正式图内以数据与结果为主。
+本文件为写作配套资料，保留完整来源与工程口径；不属于研究报告正文。正式图统一存放于final_figures，按现行七章报告编号。各条说明保留阶段1来源身份；新旧题号及展示修订见source_data/正式图件登记.json。图名、图注和资料来源放在正文，图内仅保留内容及必要标识。
 
 ## 图1-1 研究技术路线
 
@@ -120,7 +120,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图3-1.svg；final_figures/图3-1.png；final_figures/图3-1.pdf |
+| 正式文件 | final_figures/图3-2.svg；final_figures/图3-2.png；final_figures/图3-2.pdf |
 
 ## 图3-2 研究单元年度正向参考净峰（2021至2025年）
 
@@ -144,7 +144,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图3-2.svg；final_figures/图3-2.png；final_figures/图3-2.pdf |
+| 正式文件 | final_figures/图3-3.svg；final_figures/图3-3.png；final_figures/图3-3.pdf |
 
 ## 图3-3 区县源荷背景与年度推荐比值
 
@@ -168,7 +168,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图3-3.svg；final_figures/图3-3.png；final_figures/图3-3.pdf |
+| 正式文件 | final_figures/图3-6.svg；final_figures/图3-6.png；final_figures/图3-6.pdf |
 
 ## 图3-4 各区县年末分布式光伏装机（2023至2025年）
 
@@ -192,7 +192,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图3-4.svg；final_figures/图3-4.png；final_figures/图3-4.pdf |
+| 正式文件 | final_figures/图3-1.svg；final_figures/图3-1.png；final_figures/图3-1.pdf |
 
 ## 图3-5 研究单元正向参考净峰与最大站反向峰（2025年）
 
@@ -216,7 +216,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图3-5.svg；final_figures/图3-5.png；final_figures/图3-5.pdf |
+| 正式文件 | final_figures/图3-4.svg；final_figures/图3-4.png；final_figures/图3-4.pdf |
 
 ## 表3-3 研究单元运行特征指标（2025年）
 
@@ -336,7 +336,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图4-2.svg；final_figures/图4-2.png；final_figures/图4-2.pdf |
+| 正式文件 | final_figures/图5-1.svg；final_figures/图5-1.png；final_figures/图5-1.pdf |
 
 ## 图4-3 两方案增量费用现值分项
 
@@ -360,7 +360,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图4-3.svg；final_figures/图4-3.png；final_figures/图4-3.pdf |
+| 正式文件 | final_figures/图5-2.svg；final_figures/图5-2.png；final_figures/图5-2.pdf |
 
 ## 图4-4 两方案2025年容量与储能配置
 
@@ -384,7 +384,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图4-4.svg；final_figures/图4-4.png；final_figures/图4-4.pdf |
+| 正式文件 | final_figures/图5-3.svg；final_figures/图5-3.png；final_figures/图5-3.pdf |
 
 ## 图4-5 邳州110 kV价格情景的费用现值
 
@@ -408,7 +408,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图4-5.svg；final_figures/图4-5.png；final_figures/图4-5.pdf |
+| 正式文件 | final_figures/图5-5.svg；final_figures/图5-5.png；final_figures/图5-5.pdf |
 
 ## 图4-6 邳州110 kV价格情景下的2025年配置
 
@@ -432,7 +432,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图4-6.svg；final_figures/图4-6.png；final_figures/图4-6.pdf |
+| 正式文件 | final_figures/图5-6.svg；final_figures/图5-6.png；final_figures/图5-6.pdf |
 
 ## 表4-3 邳州110 kV价格情景与关键结果
 
@@ -504,7 +504,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图5-1.svg；final_figures/图5-1.png；final_figures/图5-1.pdf |
+| 正式文件 | final_figures/图3-5.svg；final_figures/图3-5.png；final_figures/图3-5.pdf |
 
 ## 图5-2 刚性与弹性方案年度规划参考容载比
 
@@ -528,7 +528,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图5-2.svg；final_figures/图5-2.png；final_figures/图5-2.pdf |
+| 正式文件 | final_figures/图5-4.svg；final_figures/图5-4.png；final_figures/图5-4.pdf |
 
 ## 表5-1 各研究单元年度推荐结果
 
@@ -648,7 +648,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图6-1.svg；final_figures/图6-1.png；final_figures/图6-1.pdf |
+| 正式文件 | final_figures/图6-2.svg；final_figures/图6-2.png；final_figures/图6-2.pdf |
 
 ## 图6-2 邳州110 kV候选互济关系
 
@@ -672,7 +672,7 @@
 | 字体统一检查 | 已完成：实际Microsoft YaHei与Times New Roman；英文数字优先Times New Roman，中文回退至微软雅黑；可编辑表格按文字段设置字体 |
 | humanizer检查 | 已逐项进行工程语境审查；文字清单见逐图JSON；不将词表扫描等同于人工语境检查 |
 | 格式审查 | 已完成画布边界检查；最终版式检查记录见图表审查清单 |
-| 正式文件 | final_figures/图6-2.svg；final_figures/图6-2.png；final_figures/图6-2.pdf |
+| 正式文件 | final_figures/图6-1.svg；final_figures/图6-1.png；final_figures/图6-1.pdf |
 
 ## 图6-3 市区29站年度容量与储能配置
 

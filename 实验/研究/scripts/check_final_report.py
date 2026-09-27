@@ -6,7 +6,7 @@ from pathlib import Path
 from zipfile import ZipFile
 from xml.etree import ElementTree as ET
 
-EXPECTED_CHAPTER_TITLES=['第一章 研究背景与意义','第二章 国内外研究现状','第三章 研究对象与数据基础','第四章 弹性容载比优化模型','第五章 优化结果分析','第六章 典型区域案例分析','第七章 工程应用建议与总结']
+EXPECTED_CHAPTER_TITLES=['第一章 研究背景与意义','第二章 国内外研究现状','第三章 研究对象与数据基础','第四章 弹性容载比优化模型','第五章 优化结果分析','第六章 典型区域案例分析','第七章 结论与展望']
 
 def run_check(root: Path, markdown: Path, docx: Path | None, pdf: Path | None, output_dir: Path) -> dict:
     files=sorted(markdown.glob('[0-9][0-9] *.md')) if markdown.is_dir() else [markdown]
@@ -16,7 +16,7 @@ def run_check(root: Path, markdown: Path, docx: Path | None, pdf: Path | None, o
     if titles!=EXPECTED_CHAPTER_TITLES:issues.append('章节结构与当前七章底稿不符')
     spec=importlib.util.spec_from_file_location('writing_quality',Path(__file__).with_name('check_report_writing_quality.py'))
     mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
-    writing=mod.run_check(markdown,root/'研究报告/终稿/写作与科学表达硬约束.md',None)
+    writing=mod.run_check(markdown,root/'研究报告/AGENTS.md',None)
     issues.extend(writing['issues'])
     if markdown.resolve()==(root/'研究报告/03_MD').resolve():
         proc=subprocess.run(['python',str(root/'研究报告/03_MD/检查证据/核验阶段2.py')],cwd=root,capture_output=True,text=True)

@@ -32,3 +32,8 @@ memory/codex-export/
 # 操作系统临时文件
 .DS_Store
 Thumbs.db
+
+# 报告排版的本地备份与Office临时锁文件
+/研究报告/05_review/**/*修订前备份*/
+**/.~*
+**/~$*

@@ -1,0 +1,4150 @@
+{
+  "passed": true,
+  "checks": 812,
+  "failed": [],
+  "report_pages": 65,
+  "source_note_pages": 4,
+  "source_audit_pages": 95,
+  "native_math_count": 221,
+  "inline_math_count": 192,
+  "report_formulas": 29,
+  "formal_figures": 17,
+  "formal_tables": 15,
+  "source_records": 640,
+  "county_rows_recalculated": 24,
+  "scope": "成品哈希、原生公式、目录、字体、文字边界、图件、人工审查文件与机读记录一致性；人工复核记录另存",
+  "checks_detail": [
+    {
+      "check": "docx与来源索引同版",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pdf与来源索引同版",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Word公式数与全部LaTeX表达式一致",
+      "passed": true,
+      "detail": {
+        "expected": 221,
+        "native": 221
+      }
+    },
+    {
+      "check": "无未渲染LaTeX",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "目录缓存已更新",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "目录链接均有正文书签",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "正文仿宋字体已嵌入",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Times New Roman已嵌入",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "正文29组公式",
+      "passed": true,
+      "detail": 29
+    },
+    {
+      "check": "正文字符说明有独立行内公式",
+      "passed": true,
+      "detail": 192
+    },
+    {
+      "check": "整篇PDF无微小字号",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "整篇PDF文字无页面越界",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "整篇PDF无乱码替换符",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "PDF式（4-1）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-2）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-3）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-4）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-5）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-6）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-7）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-8）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-9）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-10）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-11）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-12）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-13）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-14）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-15）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-16）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-17）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-18）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-19）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-20）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-21）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-22）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-23）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-24）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-25）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-26）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-27）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-28）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PDF式（4-29）可检索",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "成品参考文献连续编号1至68",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "check": "目录第七章为结论与展望",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "目录无公式和来源附录",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "参考文献无原始出处标签",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立数据来源说明含六节",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明未列缺项及后续补充要求",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明文字无页面越界",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "独立说明收录图表 图1-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表2-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表3-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表3-2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图3-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图3-2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图3-3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图3-4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表3-3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图3-5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图3-6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表4-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图4-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表4-2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图5-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图5-2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表5-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图5-3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图5-4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表5-2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图5-5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表5-3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图5-6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表5-4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表5-5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表6-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图6-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图6-2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表6-2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 图6-3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表6-3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "独立说明收录图表 表7-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "正式图件数",
+      "passed": true,
+      "detail": 17
+    },
+    {
+      "check": "图1-1数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图1-1无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图1-1使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图1-1当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图1-1SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-1数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-1无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-1使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-1当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-1SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-2数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-2无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-2使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-2当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-2SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-3数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-3无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-3使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-3当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-3SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-4数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-4无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-4使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-4当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-4SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-5数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-5无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-5使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-5当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-5SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-6数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-6无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-6使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-6当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图3-6SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图4-1数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图4-1无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图4-1使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图4-1当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图4-1SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-1数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-1无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-1使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-1当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-1SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-2数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-2无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-2使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-2当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-2SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-3数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-3无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-3使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-3当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-3SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-4数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-4无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-4使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-4当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-4SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-5数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-5无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-5使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-5当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-5SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-6数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-6无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-6使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-6当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图5-6SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-1数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-1无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-1使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-1当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-1SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-2数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-2无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-2使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-2当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-2SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-3数据保持不变",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-3无内部地区编码",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-3使用实际仿宋字体",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-3当前PNG哈希",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "图6-3SVG字体与PDF字体一致",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读来源PDF文字无页面越界",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "人读来源PDF无微小字号",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "人读来源PDF无乱码替换符",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000348",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000352",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000354",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000355",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000357",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000358",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000364",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000365",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000369",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000370",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000371",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000377",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000381",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000383",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000384",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000386",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000387",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000393",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000394",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000398",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000399",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000400",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000406",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000410",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000412",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000413",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000415",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000416",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000422",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000423",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000427",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000428",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000429",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000435",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000439",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000441",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000442",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000444",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000445",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000451",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000452",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000456",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000457",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000458",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000464",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000468",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000470",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000471",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000473",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000474",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000480",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000481",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000485",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000486",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000487",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000493",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000497",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000499",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000500",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000502",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000503",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000509",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000510",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000514",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000515",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000516",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000522",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000526",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000528",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000529",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000531",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000532",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000538",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000539",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000543",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000544",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000545",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000551",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000555",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000557",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000558",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000560",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000561",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000567",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000568",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000572",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000573",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000574",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000580",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000584",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000586",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000587",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000589",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000590",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000596",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000597",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000601",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000602",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000603",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000609",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000613",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000615",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000616",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000618",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000619",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000625",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000626",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000630",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000631",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000632",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000638",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000642",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000644",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000645",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000647",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000648",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000654",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000655",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000659",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000660",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000661",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000667",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000671",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000673",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000674",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000676",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000677",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000683",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000684",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000688",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000689",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000690",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016792",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016793",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016794",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016822",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016823",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016824",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016852",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016853",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016854",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016882",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016883",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016884",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016912",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016913",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016914",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016942",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016943",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016944",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016972",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016973",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016974",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017002",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017003",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017004",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000001",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000002",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000003",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000004",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000005",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000006",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000007",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000008",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000009",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000010",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000011",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000013",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000014",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000016",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000017",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000019",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000020",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000021",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000022",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000023",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000024",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000025",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000026",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000027",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000028",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000029",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000031",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000032",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000034",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000035",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000037",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000038",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000039",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000040",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000041",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000042",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000043",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000044",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000045",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000046",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000047",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000049",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000050",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000052",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000053",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000055",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000056",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000057",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000058",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000059",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000060",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000061",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000062",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000063",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000064",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000065",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000067",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000068",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000070",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000071",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000073",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000074",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000075",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000076",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000077",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000078",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000079",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000080",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000081",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000082",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000083",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000085",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000086",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000088",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000089",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000091",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000092",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000093",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000094",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000095",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000096",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000097",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000098",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000099",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000100",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000101",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000103",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000104",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000106",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000107",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000109",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000110",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000111",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000112",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000113",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000114",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000115",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000116",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000117",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000118",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000119",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000121",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000122",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000124",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000125",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000127",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000128",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000129",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000130",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000131",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000132",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000133",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000134",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000135",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000136",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000137",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000139",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000140",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000142",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000143",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000145",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000146",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000147",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000148",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000149",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000150",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000151",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000152",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000153",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000154",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000155",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000157",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000158",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000160",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000161",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000163",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000164",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000165",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000166",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000167",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000168",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000169",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000170",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000171",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000172",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000173",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000175",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000176",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000178",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000179",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000181",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000182",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000183",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000184",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000185",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000186",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000187",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000188",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000189",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000190",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000191",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000193",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000194",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000196",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000197",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000199",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000200",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000201",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000202",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000203",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000204",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000205",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000206",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000207",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000208",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000209",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000211",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000212",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000214",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000215",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000338",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000343",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016781",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016784",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016787",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D016790",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017020",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017021",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017023",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017024",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017025",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017026",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017027",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017031",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017032",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017036",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017037",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017038",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017039",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017040",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017041",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017042",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017043",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017044",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017045",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017046",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017047",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017048",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017049",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017050",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017051",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017052",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017053",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017054",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017055",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017056",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017057",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017058",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017059",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017060",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017061",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017062",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017063",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000696",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000697",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000698",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000699",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000700",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000701",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000702",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000703",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000704",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000705",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000706",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000707",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000708",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000709",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000710",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000711",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000712",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000713",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000714",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000715",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000716",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000717",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000718",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000719",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000720",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000721",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000722",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000723",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000724",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000725",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000726",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000727",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000728",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000729",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000730",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000733",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000734",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000735",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000738",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000739",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000740",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000741",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000744",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000745",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000746",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000749",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000750",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000751",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000752",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000755",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000756",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000757",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000760",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000761",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000762",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000763",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000766",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000767",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000768",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000771",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000772",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000773",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000774",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000777",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000778",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000779",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000782",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000783",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000784",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000785",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000788",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000789",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000790",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000793",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000794",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000795",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000796",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000799",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000800",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000801",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000804",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000805",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000806",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000807",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000810",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000811",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000812",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000815",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000816",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000817",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000818",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000821",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000822",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000823",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000826",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000827",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000828",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000829",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000832",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000833",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000834",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000837",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000838",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000839",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000840",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000843",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000844",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000845",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000848",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000849",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000850",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000851",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000854",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000855",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000856",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000859",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000860",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000861",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000862",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000865",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000866",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000867",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000870",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000871",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000872",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000873",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000876",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000877",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000878",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000881",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000882",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000883",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000884",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000887",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000888",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000889",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000892",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000893",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000894",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000895",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000898",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000899",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000900",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000903",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000904",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000905",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000906",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000909",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000910",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000911",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000914",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000915",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000916",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000917",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000920",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000921",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000922",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000925",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000926",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000927",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000928",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000931",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000932",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000933",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000936",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000937",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000938",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000939",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000942",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000943",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000944",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000947",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000948",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000949",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000950",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000953",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000954",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000955",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000958",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000959",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000960",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000961",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000964",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000965",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000966",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000969",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000970",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000971",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000972",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000975",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000976",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000977",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000980",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000981",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000982",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000983",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000986",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000987",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000988",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000991",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000992",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000993",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000994",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000997",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000998",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000999",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001002",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001003",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001004",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001005",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001008",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001009",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001010",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001013",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001014",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001015",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001016",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001019",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001020",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001021",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001024",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001025",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001026",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001027",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001030",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001031",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001032",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001035",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001036",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001037",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001038",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001041",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001042",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001043",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001046",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001047",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001048",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001049",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001052",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001053",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001054",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001057",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001058",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001059",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001060",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001063",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001064",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001065",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001068",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001069",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001070",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001071",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001074",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001075",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001076",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D001079",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017029",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D017030",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 X001",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 X002",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF包含来源记录 D000346",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF绑定同版Word",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "人读PDF绑定同版报告PDF",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

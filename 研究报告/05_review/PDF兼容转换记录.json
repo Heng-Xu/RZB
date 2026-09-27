@@ -1,0 +1,146 @@
+{
+  "scope": "仅PDF渲染副本，交付DOCX未经过LibreOffice公式回写",
+  "objects": 221,
+  "quoted_isolated_signs": [
+    {
+      "object": "Object30",
+      "before": "matrix {{P} rsub {y} rsup {+} = \"max\"  left (0 , \"max\" csub {t} sum from {i} {{p} rsub {i y}} ( t ) right ) , ## {S} rsub {i y} = {s} rsub {i 1 y} + {s} rsub {i 2 y} , ## {S} rsub {y} = sum from {i} {{S} rsub {i y}} , ## {R} rsub {y} = {{S} rsub {y}} over {{widehat {P}} rsub {y} rsup {+}} .}",
+      "after": "matrix {{P} rsub {y} rsup {\"+\"} = \"max\"  left (0 , \"max\" csub {t} sum from {i} {{p} rsub {i y}} ( t ) right ) , ## {S} rsub {i y} = {s} rsub {i 1 y} + {s} rsub {i 2 y} , ## {S} rsub {y} = sum from {i} {{S} rsub {i y}} , ## {R} rsub {y} = {{S} rsub {y}} over {{widehat {P}} rsub {y} rsup {\"+\"}} .}"
+    },
+    {
+      "object": "Object35",
+      "before": "{P} rsub {y} rsup {+}",
+      "after": "{P} rsub {y} rsup {\"+\"}"
+    },
+    {
+      "object": "Object40",
+      "before": "{widehat {P}} rsub {y} rsup {+}",
+      "after": "{widehat {P}} rsub {y} rsup {\"+\"}"
+    },
+    {
+      "object": "Object42",
+      "before": "{P} rsub {i y} rsup {−} = \"max\" csub {t ∈ {T} rsub {y}} \"max\" \\{ − {p} rsub {i y} ( t ) , 0 \\} ,  {P} rsub {s t a t i o n , y} rsup {−} = \"max\" csub {i} {P} rsub {i y} rsup {−} .",
+      "after": "{P} rsub {i y} rsup {\"−\"} = \"max\" csub {t ∈ {T} rsub {y}} \"max\" \\{ − {p} rsub {i y} ( t ) , 0 \\} ,  {P} rsub {s t a t i o n , y} rsup {\"−\"} = \"max\" csub {i} {P} rsub {i y} rsup {\"−\"} ."
+    },
+    {
+      "object": "Object44",
+      "before": "{P} rsub {i y} rsup {−}",
+      "after": "{P} rsub {i y} rsup {\"−\"}"
+    },
+    {
+      "object": "Object45",
+      "before": "{P} rsub {s t a t i o n , y} rsup {−}",
+      "after": "{P} rsub {s t a t i o n , y} rsup {\"−\"}"
+    },
+    {
+      "object": "Object55",
+      "before": "matrix {{g} rsub {y} = {left ({{widehat {P}} rsub {y} rsup {+}} over {{widehat {P}} rsub {2021} rsup {+}} right )} ^ {1 / ( y − 2021 )} − 1 , ## {g} rsub {y} rsup {y o y} = {{widehat {P}} rsub {y} rsup {+}} over {{widehat {P}} rsub {y − 1} rsup {+}} − 1 .}",
+      "after": "matrix {{g} rsub {y} = {left ({{widehat {P}} rsub {y} rsup {\"+\"}} over {{widehat {P}} rsub {2021} rsup {\"+\"}} right )} ^ {1 / ( y − 2021 )} − 1 , ## {g} rsub {y} rsup {y o y} = {{widehat {P}} rsub {y} rsup {\"+\"}} over {{widehat {P}} rsub {y − 1} rsup {\"+\"}} − 1 .}"
+    },
+    {
+      "object": "Object56",
+      "before": "{widehat {P}} rsub {y} rsup {+}",
+      "after": "{widehat {P}} rsub {y} rsup {\"+\"}"
+    },
+    {
+      "object": "Object57",
+      "before": "{widehat {P}} rsub {2021} rsup {+}",
+      "after": "{widehat {P}} rsub {2021} rsup {\"+\"}"
+    },
+    {
+      "object": "Object58",
+      "before": "{widehat {P}} rsub {y − 1} rsup {+}",
+      "after": "{widehat {P}} rsub {y − 1} rsup {\"+\"}"
+    },
+    {
+      "object": "Object62",
+      "before": "matrix {{A} rsub {i} rsup {±} = \\{ A : A \"为连续时段，且\" {p} rsub {i} rsup {±} ( t ) ≥ 0.95 {p} rsub {i , \"max\"} rsup {±} ,  ∀ t ∈ A \\} , ## {D} rsub {95 , i} rsup {±} = \"max\" csub {A ∈ {A} rsub {i} rsup {±}} | A | Δ t , ## {D} rsub {95} rsup {±} = \"max\" csub {i} {D} rsub {95 , i} rsup {±} .}",
+      "after": "matrix {{A} rsub {i} rsup {±} = \\{ A : A \"为连续时段，且\" {p} rsub {i} rsup {±} ( t ) ≥ 0.95 {p} rsub {i , \"max\"} rsup {±} ,  ∀ t ∈ A \\} , ## {D} rsub {95 , i} rsup {±} = \"max\" csub {A ∈ {A} rsub {i} rsup {±}} abs A Δ t , ## {D} rsub {95} rsup {±} = \"max\" csub {i} {D} rsub {95 , i} rsup {±} .}"
+    },
+    {
+      "object": "Object63",
+      "before": "{p} rsub {i} rsup {+} ( t ) = \"max\" ( {p} rsub {i} ( t ) , 0 )",
+      "after": "{p} rsub {i} rsup {\"+\"} ( t ) = \"max\" ( {p} rsub {i} ( t ) , 0 )"
+    },
+    {
+      "object": "Object64",
+      "before": "{p} rsub {i} rsup {−} ( t ) = \"max\" ( − {p} rsub {i} ( t ) , 0 )",
+      "after": "{p} rsub {i} rsup {\"−\"} ( t ) = \"max\" ( − {p} rsub {i} ( t ) , 0 )"
+    },
+    {
+      "object": "Object68",
+      "before": "| A |",
+      "after": "abs A"
+    },
+    {
+      "object": "Object104",
+      "before": "0.95 {S} rsub {i y} + {E} rsub {i y} rsup {+} + {X} rsub {i y} rsup {+} ≥ {L} rsub {i y} rsup {+} ,  0.95 × 0.8 {S} rsub {i y} + {E} rsub {i y} rsup {−} + {X} rsub {i y} rsup {−} ≥ {L} rsub {i y} rsup {−} .",
+      "after": "0.95 {S} rsub {i y} + {E} rsub {i y} rsup {\"+\"} + {X} rsub {i y} rsup {\"+\"} ≥ {L} rsub {i y} rsup {\"+\"} ,  0.95 × 0.8 {S} rsub {i y} + {E} rsub {i y} rsup {\"−\"} + {X} rsub {i y} rsup {\"−\"} ≥ {L} rsub {i y} rsup {\"−\"} ."
+    },
+    {
+      "object": "Object109",
+      "before": "0.95 \"min\" ( {s} rsub {i 1 y} , {s} rsub {i 2 y} ) + {E} rsub {i y} rsup {+} + f {X} rsub {i y} rsup {+} ≥ f {L} rsub {i y} rsup {+} .",
+      "after": "0.95 \"min\" ( {s} rsub {i 1 y} , {s} rsub {i 2 y} ) + {E} rsub {i y} rsup {\"+\"} + f {X} rsub {i y} rsup {\"+\"} ≥ f {L} rsub {i y} rsup {\"+\"} ."
+    },
+    {
+      "object": "Object111",
+      "before": "{E} rsub {i y} rsup {+} , {X} rsub {i y} rsup {+} , {L} rsub {i y} rsup {+}",
+      "after": "{E} rsub {i y} rsup {\"+\"} , {X} rsub {i y} rsup {\"+\"} , {L} rsub {i y} rsup {\"+\"}"
+    },
+    {
+      "object": "Object114",
+      "before": "matrix {{S} rsub {y} ≤ overline {R} {widehat {P}} rsub {y} rsup {+} , ## sum from {i} {sum from {y = 2022} to {2025} {sum from {j = 1} to {2} {\"max\"}}} ( 0 , {s} rsub {i j y} − {s} rsub {i j , y − 1} ) ≤ γ {S} rsub {2021} .}",
+      "after": "matrix {{S} rsub {y} ≤ overline {R} {widehat {P}} rsub {y} rsup {\"+\"} , ## sum from {i} {sum from {y = 2022} to {2025} {sum from {j = 1} to {2} {\"max\"}}} ( 0 , {s} rsub {i j y} − {s} rsub {i j , y − 1} ) ≤ γ {S} rsub {2021} .}"
+    },
+    {
+      "object": "Object116",
+      "before": "{widehat {P}} rsub {y} rsup {+}",
+      "after": "{widehat {P}} rsub {y} rsup {\"+\"}"
+    },
+    {
+      "object": "Object119",
+      "before": "matrix {{x} rsub {e y} rsup {σ} = {z} rsub {e y} rsup {σ} {q} rsub {e , 2025} {{L} rsub {d ( e ) , y} rsup {+}} over {{L} rsub {d ( e ) , 2025} rsup {+}} , ## 0 ≤ {x} rsub {e y} rsup {σ} ≤ \"min\" ( {P} rsub {e , s e n d} , {H} rsub {e , r e c e i v e} , {T} rsub {e} ) , ## {z} rsub {e y} rsup {σ} ∈ \\{ 0 , 1 \\} .}",
+      "after": "matrix {{x} rsub {e y} rsup {σ} = {z} rsub {e y} rsup {σ} {q} rsub {e , 2025} {{L} rsub {d ( e ) , y} rsup {\"+\"}} over {{L} rsub {d ( e ) , 2025} rsup {\"+\"}} , ## 0 ≤ {x} rsub {e y} rsup {σ} ≤ \"min\" ( {P} rsub {e , s e n d} , {H} rsub {e , r e c e i v e} , {T} rsub {e} ) , ## {z} rsub {e y} rsup {σ} ∈ \\{ 0 , 1 \\} .}"
+    },
+    {
+      "object": "Object125",
+      "before": "{L} rsub {d ( e ) , y} rsup {+}",
+      "after": "{L} rsub {d ( e ) , y} rsup {\"+\"}"
+    },
+    {
+      "object": "Object191",
+      "before": "matrix {{C} rsub {i n i t i a l} = sum from {m , y} {{{K} rsub {m , y}} over {( 1 + r {)} ^ {y − 2021}}} , ## {C} rsub {r e n e w a l} = sum from {m , y} {sum from {k ≥ 1 :  y + k {L} rsub {m} < 2041} {{{K} rsub {m , y}} over {( 1 + r {)} ^ {y + k {L} rsub {m} − 2021}}}} , ## {C} rsub {o m} = sum from {m , y} {sum from {t = y + 1} to {2041} {{{μ} rsub {m} {K} rsub {m , y}} over {( 1 + r {)} ^ {t − 2021}}}} , ## \"min\" {C} rsub {m o d e l} = sum from {m , y} {sum from {t = 2022} to {2041} {{{A} rsub {m , y} ( t )} over {( 1 + r {)} ^ {t − 2021}}}} .}",
+      "after": "matrix {{C} rsub {i n i t i a l} = sum from {m , y} {{{K} rsub {m , y}} over {{( 1 + r )} ^ {y − 2021}}} , ## {C} rsub {r e n e w a l} = sum from {m , y} {sum from {k ≥ 1 :  y + k {L} rsub {m} < 2041} {{{K} rsub {m , y}} over {{( 1 + r )} ^ {y + k {L} rsub {m} − 2021}}}} , ## {C} rsub {o m} = sum from {m , y} {sum from {t = y + 1} to {2041} {{{μ} rsub {m} {K} rsub {m , y}} over {{( 1 + r )} ^ {t − 2021}}}} , ## \"min\" {C} rsub {m o d e l} = sum from {m , y} {sum from {t = 2022} to {2041} {{{A} rsub {m , y} ( t )} over {{( 1 + r )} ^ {t − 2021}}}} .}"
+    },
+    {
+      "object": "Object196",
+      "before": "{C} rsub {l o s s} = sum from {t = 2022} to {2041} {{{π} rsub {t}  Δ {W} rsub {t}} over {( 1 + r {)} ^ {t − 2021}}} .",
+      "after": "{C} rsub {l o s s} = sum from {t = 2022} to {2041} {{{π} rsub {t}  Δ {W} rsub {t}} over {{( 1 + r )} ^ {t − 2021}}} ."
+    },
+    {
+      "object": "Object201",
+      "before": "{C} rsub {o t h e r} = sum from {t = 2022} to {2041} {{{K} rsub {a u x , t} + {K} rsub {e x i t , t} + {K} rsub {r i s k , t} − {V} rsub {t}} over {( 1 + r {)} ^ {t − 2021}}} .",
+      "after": "{C} rsub {o t h e r} = sum from {t = 2022} to {2041} {{{K} rsub {a u x , t} + {K} rsub {e x i t , t} + {K} rsub {r i s k , t} − {V} rsub {t}} over {{( 1 + r )} ^ {t − 2021}}} ."
+    },
+    {
+      "object": "Object208",
+      "before": "\"max\" B = sum from {y = 2022} to {2025} {{R} rsub {y}} ,  {C} rsub {m o d e l} ≤ {C} ^ {*} + {ε} rsub {C} .",
+      "after": "\"max\" B = sum from {y = 2022} to {2025} {{R} rsub {y}} ,  {C} rsub {m o d e l} ≤ {C} ^ {\"*\"} + {ε} rsub {C} ."
+    },
+    {
+      "object": "Object211",
+      "before": "{C} ^ {*}",
+      "after": "{C} ^ {\"*\"}"
+    },
+    {
+      "object": "Object214",
+      "before": "matrix {\"min\" Q = sum from {y , e , σ} {{x} rsub {e y} rsup {σ}} , ## B ≥ {B} ^ {*} − {ε} rsub {B} , ## {C} rsub {m o d e l} ≤ {C} ^ {( 2 )} + {ε} rsub {T} .}",
+      "after": "matrix {\"min\" Q = sum from {y , e , σ} {{x} rsub {e y} rsup {σ}} , ## B ≥ {B} ^ {\"*\"} − {ε} rsub {B} , ## {C} rsub {m o d e l} ≤ {C} ^ {( 2 )} + {ε} rsub {T} .}"
+    },
+    {
+      "object": "Object217",
+      "before": "{B} ^ {*}",
+      "after": "{B} ^ {\"*\"}"
+    }
+  ]
+}

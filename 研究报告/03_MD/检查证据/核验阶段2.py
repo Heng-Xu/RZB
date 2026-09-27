@@ -12,7 +12,7 @@ index=json.loads((SRC/'交付索引.json').read_text())
 mapping=json.loads((OUT/'检查证据/图表改号对应.json').read_text())
 chapters=sorted(OUT.glob('[0-9][0-9] *.md'))
 check('七章文件数量',len(chapters)==7,len(chapters))
-for name in ['公式符号说明.md','数据来源说明.md']:
+for name in ['参考文献.md','数据来源说明.md']:
  check('配套文件 '+name,(OUT/name).is_file())
 alltext='\n'.join(p.read_text() for p in chapters)
 references=[]
@@ -37,7 +37,7 @@ for item in index:
     check(n+' 逐单元格显示值一致',actual==expected)
  check(n+' 恰有一处正式展示',len(owners)==1,owners)
  references.append({'number':n,'chapter':owners})
-for p in chapters+[OUT/'公式符号说明.md',OUT/'数据来源说明.md']:
+for p in chapters+[OUT/'参考文献.md',OUT/'数据来源说明.md']:
  s=p.read_text()
  for target in re.findall(r'\]\(([^)]+)\)',s):
   if not target.startswith(('http','app:')):
@@ -58,17 +58,23 @@ for p in chapters+[OUT/'公式符号说明.md',OUT/'数据来源说明.md']:
 ch4=(OUT/'04 第四章 弹性容载比优化模型.md').read_text()
 labels=re.findall(r'\\tag\{([^}]+)\}',ch4)
 check('29组公式编号连续',labels==[f'4-{x}' for x in range(1,30)],labels)
-appendix=(OUT/'公式符号说明.md').read_text()
-check('公式附录与正文LaTeX完全一致',re.findall(r'\\\[(.*?)\\\]',ch4,re.S)==re.findall(r'\\\[(.*?)\\\]',appendix,re.S))
+appendix=(OUT/'检查证据/历史依据/公式符号说明_修订前.md').read_text()
+check('正文公式与修订前29组LaTeX完全一致',re.findall(r'\\\[(.*?)\\\]',ch4,re.S)==re.findall(r'\\\[(.*?)\\\]',appendix,re.S))
 rule_delta=json.loads((OUT/'检查证据/旧规则替换登记.json').read_text())
 allowed={'研究报告/AGENTS.md','研究报告/终稿/写作与科学表达硬约束.md'}
 deltas={x['path']:x for x in rule_delta['files'] if x['path'] in allowed}
+relocations={x['path']:x for x in json.loads((ROOT/'研究报告/05_review/闭环核验/历史文件定位.json').read_text())}
 for path in ['docs/FREEZE-MANIFEST-2026-09-27.json','研究报告/00审查/证据/阶段0冻结清单.json']:
  manifest=json.loads((ROOT/path).read_text())
  for x in manifest['files']:
   p=ROOT/x['path']; digest=hashlib.sha256(p.read_bytes()).hexdigest() if p.is_file() else None
-  if x['path'] in deltas:
+  if x['path'] in relocations:
+   a=relocations[x['path']]; archived=ROOT/a['archive']
+   check('历史文件归档核验 '+x['path'],not p.exists() and archived.is_file() and hashlib.sha256(archived.read_bytes()).hexdigest()==x['sha256'],a)
+  elif x['path'] in deltas:
    d=deltas[x['path']]
+   if not p.exists() and x['path']=='研究报告/终稿/写作与科学表达硬约束.md':
+    digest=hashlib.sha256((ROOT/'研究报告/AGENTS.md').read_bytes()).hexdigest()
    check('已授权规则替换 '+x['path'],x['sha256']==d['original_sha256'] and digest==d['current_sha256'] and hashlib.sha256((ROOT/d['archive']).read_bytes()).hexdigest()==x['sha256'])
   else:
    check('冻结科学文件不变 '+x['path'],digest==x['sha256'])
@@ -84,14 +90,25 @@ for it in index:
   check(it['number']+' 原来源哈希 '+r['id'],p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==r['source_sha256'])
 ch2=json.loads((OUT/'检查证据/第二章文献核定.json').read_text())
 chapter2=(OUT/'02 第二章 国内外研究现状.md').read_text()
-body,refs=chapter2.split('## 参考文献',1)
-cited=set(map(int,re.findall(r'\[(\d+)\]',body)))
+body=alltext
+refs=(OUT/'参考文献.md').read_text()
+sequence=list(map(int,re.findall(r'\[(\d+)\]',body)))
+first=list(dict.fromkeys(sequence))
+cited=set(sequence)
 listed=set(map(int,re.findall(r'^\[(\d+)\]',refs,re.M)))
-verified={r['original_number'] for r in ch2['references']}
-check('第二章引用与核定书目完全对应',cited==listed==verified,{'cited':sorted(cited),'listed':sorted(listed)})
+verified={r['number'] for r in ch2['references']}
+check('全文引用与核定书目完全对应',cited==listed==verified,{'cited':sorted(cited),'listed':sorted(listed)})
+check('全文引文按首次出现顺序连续编号',first==list(range(1,len(first)+1)),first)
+check('文后书目按引文编号顺序排列',list(map(int,re.findall(r'^\[(\d+)\]',refs,re.M)))==first)
 check('原综述未修改',hashlib.sha256((ROOT/ch2['original_source']).read_bytes()).hexdigest()==ch2['original_sha256'])
 for r in ch2['references']:
- check('核定书目与正文一致 '+str(r['original_number']),r['bibliography'] in refs and (r['source_url'] is None or r['source_url'] in refs))
+ check('核定书目与正文一致 '+str(r['number']),r['bibliography'] in refs)
+ if 'local_text' in r:
+  p=ROOT/r['local_text']
+  check('文献全文哈希 '+str(r['number']),hashlib.sha256(p.read_bytes()).hexdigest()==r['local_text_sha256'])
+check('七章正文无额外配套附录',all(not re.search(r'^# (公式符号说明|数据来源说明)',p.read_text(),re.M) for p in chapters))
+check('数据来源说明独立且无缺项章节','## 7.' not in (OUT/'数据来源说明.md').read_text())
+check('第七章为结论与展望',(OUT/'07 第七章 结论与展望.md').read_text().startswith('# 第七章 结论与展望'))
 for p in chapters:
  number=int(p.name[:2]);s=p.read_text()
  for kind in ['图','表']:
@@ -136,8 +153,16 @@ for r in admitted.values():
  addnum(r.get('value'))
  for token in re.findall(r'(?<![a-zA-Z0-9_.])-?\d+\.\d+(?![a-zA-Z0-9_.])',str(r.get('value'))):
   pool.setdefault(token,[]).append(r['id'])
+# Derived cost reductions have their own semantic evidence rather than
+# requiring the same printed token to occur in a source table.
+primary=ROOT/'实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/annual_matrix.csv'
+with primary.open(encoding='utf-8-sig',newline='') as f:
+ for row in csv.DictReader(f):
+  rigid=Decimal(row['rigid_cost_npv_10k_cny']);elastic=Decimal(row['elastic_cost_npv_10k_cny'])
+  token=f'{(rigid-elastic)/rigid*100:.2f}'
+  pool.setdefault(token,[]).append('费用降幅复算:'+row['study_region_id']+'/'+row['voltage_kv'])
 ledger=[]
-for p in [OUT/'03 第三章 研究对象与数据基础.md',OUT/'05 第五章 优化结果分析.md',OUT/'06 第六章 典型区域案例分析.md',OUT/'07 第七章 工程应用建议与总结.md']:
+for p in [OUT/'03 第三章 研究对象与数据基础.md',OUT/'05 第五章 优化结果分析.md',OUT/'06 第六章 典型区域案例分析.md',OUT/'07 第七章 结论与展望.md']:
  s='\n'.join(l for l in p.read_text().splitlines() if not l.startswith(('#','|')))
  s=re.sub(r'!\[[^\]]*\]\([^)]*\)','',s)
  for m in re.finditer(r'(?<![a-zA-Z0-9_.])-?\d+\.\d+(?![a-zA-Z0-9_.])',s):
@@ -161,8 +186,8 @@ for a in annual:
  expected=[f"{Decimal(a['reference_peak_mw']):.3f}",f"{Decimal(a['elastic_capacity_mva']):.1f}",f"{Decimal(a['elastic_clr']):.3f}",str(int(float(a['elastic_storage_modules'])))]
  check('推荐年度表对原路径 '+row[0]+a['year'],row[2:]==expected,{'table':row[2:],'primary':expected})
 check('费用目标使用现值',all('2022至2041' in p.read_text() for p in [OUT/'04 第四章 弹性容载比优化模型.md',OUT/'05 第五章 优化结果分析.md']))
-check('缺项未当真实零费用','损耗和其他项尚未评估，不将其真实费用填为零' in ch4)
-check('完整标准公式与求解范围区分','不作为本报告已求得的承载力结果' in ch4)
+check('费用科目与实际目标区分','实际优化目标' in ch4 and '损耗及其他净费用作为扩展科目保留' in ch4)
+check('标准公式与求解约束区分','标准承载力及可开放容量的计算关系' in ch4 and '容量配置模型采用式（4-11）至式（4-17）' in ch4)
 summary={'passed':all(r['passed'] for r in results),'checks':len(results),'failed':[r for r in results if not r['passed']], 'formal_materials':len(index),'figures':sum(x['number'].startswith('图') for x in index),'tables':sum(x['number'].startswith('表') for x in index),'formulas':len(labels),'unique_admitted_records':len(record_ids),'narrative_decimal_occurrences_checked':len(ledger),'checks_detail':results,'limits':['核定文献限于本版实际引用内容；不宣称逐条核实原88条书目','科学模型及数据不变，只有两项已授权写作规则作为哈希变更例外','Markdown核验不替代Word分页或工程建设校核']}
 (OUT/'检查证据/阶段2自动核验.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
 (OUT/'检查证据/正文数值定位.json').write_text(json.dumps(ledger,ensure_ascii=False,indent=2)+'\n')
