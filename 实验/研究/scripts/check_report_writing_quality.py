@@ -20,12 +20,12 @@ REQUIRED_CONTRACT_PHRASES = [
 ]
 
 REQUIRED_REPORT_TERMS = [
-    "实际物理容载比",
-    "2022—2025年规划期累计在役等年成本",
-    "110 kV线路统计负载余度",
-    "弹性容载比样本支持参考矩阵",
+    "规划参考容载比",
+    "2022至2041年增量费用现值",
+    "单台主变停运承载代理",
     "样本内一致性检查",
 ]
+
 
 FORBIDDEN_INTERNAL_PHRASES = [
     "GitHub Actions",
@@ -57,6 +57,9 @@ FORBIDDEN_OVERCLAIMS = [
 
 FORBIDDEN_TERM_DRIFT = [
     "网络容量支撑裕度",
+    "2022—2025年规划期累计在役等年成本",
+    "存量容量豁免",
+    "Rcap只约束规划期新增",
     "年化规划成本/万元·年⁻¹",
     "独立查询规则进行反向验证",
     "独立查询结果与正式优化结果一致",
@@ -65,7 +68,7 @@ FORBIDDEN_TERM_DRIFT = [
 
 # 这些字段/文件名如果出现在对外正文，通常意味着内部实现信息泄漏。
 PROGRAM_TOKEN_PATTERNS = [
-    r"\b[a-z]+_[a-z][a-z0-9_]*\b",
+    r"(?<![a-zA-Z0-9_])[a-z]+_[a-z][a-z0-9_]*(?![a-zA-Z0-9_])",
     r"(?:^|[\s`'\"])(?:[^\s`'\"]+\.py|[^\s`'\"]+\.csv)(?=$|[\s`'\"，。；：])",
     r"results/runs",
 ]
@@ -74,7 +77,8 @@ PROGRAM_TOKEN_PATTERNS = [
 def remove_non_prose(text: str) -> str:
     """移除公式、代码块、表格和图片标记，保留正文用于语言检查。"""
     text = re.sub(r"```.*?```", "", text, flags=re.S)
-    text = re.sub(r"\$\$.*?\$\$", "", text, flags=re.S)
+    text = re.sub(r"\$\$.*?\$\$|\\\[.*?\\\]|\\\(.*?\\\)", "", text, flags=re.S)
+    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)
     text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)
     lines = []
     for line in text.splitlines():
@@ -90,7 +94,8 @@ def remove_non_prose(text: str) -> str:
 
 
 def body_without_references(text: str) -> str:
-    return text.split("# 参考文献", 1)[0]
+    # Remove each bibliography section without dropping later report chapters.
+    return re.sub(r"^#{1,6} 参考文献[^\n]*\n.*?(?=^#{1,2} (?!参考文献)|\Z)", "", text, flags=re.M | re.S)
 
 
 def prose_paragraphs(text: str) -> list[str]:
@@ -110,7 +115,8 @@ def sentence_candidates(paragraph: str) -> list[str]:
 
 
 def run_check(markdown: Path, contract: Path, output: Path | None) -> dict:
-    source = markdown.read_text(encoding="utf-8-sig")
+    files = sorted(markdown.glob("[0-9][0-9] *.md")) if markdown.is_dir() else [markdown]
+    source = "\n\n".join(p.read_text(encoding="utf-8-sig") for p in files)
     contract_text = contract.read_text(encoding="utf-8-sig") if contract.exists() else ""
     body = body_without_references(source)
     prose = remove_non_prose(body)

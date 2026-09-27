@@ -1,0 +1,20 @@
+{
+  "Chinese": {
+    "family": "Microsoft YaHei",
+    "path": "/home/xh/.local/share/fonts/stage1/msyh.ttf",
+    "sha256": "1547ada4f8a1d8f12f154d221009b90e9389ea77f3911c8fab6494e533cf0ef2",
+    "source": "https://github.com/qbob/MSFonts/blob/master/fonts/msyh.ttf"
+  },
+  "English": {
+    "family": "Times New Roman",
+    "path": "/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman.ttf",
+    "sha256": "4e98adeff8ccc8ef4e3ece8d4547e288ff85fdc9c7ca711a4599c234874bbe86"
+  },
+  "fallback_policy": "Times New Roman优先处理英文数字，中文由实际Microsoft YaHei绘制",
+  "template_difference": "Word母版中文为仿宋_GB2312；本阶段按任务指定微软雅黑，阶段2正文应同步统一",
+  "renderer_versions": {
+    "python": "3.13.14",
+    "matplotlib": "3.10.0",
+    "pandas": "2.2.3"
+  }
+}

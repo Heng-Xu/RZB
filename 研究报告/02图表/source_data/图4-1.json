@@ -1,0 +1,64 @@
+{
+  "number": "图4-1",
+  "title": "工程措施与全寿命周期费用构成",
+  "chapter": "基于实际工程的电网建设成本模型",
+  "section": "4.2 成本驱动因子识别与参数化模型建立",
+  "data": {
+    "steps": [
+      "主变新购容量、储能柜数、候选新线长度",
+      "首次投资：按工程系数与采购包价计算",
+      "更新投资：按计算寿命和投运年度安排",
+      "固定运维：按新增投资及年费率计算",
+      "2022至2041年各批措施现金流",
+      "按6%折现至2021年，汇总增量费用现值"
+    ]
+  },
+  "records": [
+    {
+      "id": "D017020",
+      "name": "年折现率",
+      "variable": "r",
+      "value": 0.06,
+      "unit": "比例",
+      "source": "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+      "source_location": "L49: def cost_factors(rate: float = 0.06, transformer_life: int = 20,",
+      "source_sha256": "b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01",
+      "formula": "首次投资、更新投资及固定运维按(1.06)^(现金流年-2021)折现后加总，评价期2022至2041",
+      "formula_ref": "F15e",
+      "chapter": "拟第四章：经济参数",
+      "status": "研究假设；原函数默认值",
+      "scope": "",
+      "raw_value": 0.06,
+      "lineage_node": "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+      "limitation": ""
+    }
+  ],
+  "supplemental_sources": [],
+  "document_sources": "研究报告/00审查/成本模型说明.md",
+  "processing": "明确2022至2025投运、2022至2041评价、2021折现基年",
+  "calculation": "依据成本模型F15a至F15e定性整理",
+  "note": "规划投运期2022至2025年；费用评价期2022至2041年",
+  "display_text": [
+    "主变新购容量、储能柜数、候选新线长度",
+    "首次投资：按工程系数与采购包价计算",
+    "更新投资：按计算寿命和投运年度安排",
+    "固定运维：按新增投资及年费率计算",
+    "2022至2041年各批措施现金流",
+    "按6%折现至2021年，汇总增量费用现值",
+    "图4-1 工程措施与全寿命周期费用构成",
+    "规划投运期2022至2025年；费用评价期2022至2041年",
+    "资料来源：项目统计及规划计算。"
+  ],
+  "files": [
+    "final_figures/图4-1.svg",
+    "final_figures/图4-1.png",
+    "final_figures/图4-1.pdf"
+  ],
+  "width_cm": 14.4,
+  "height_cm": 11.5,
+  "scripts": [
+    "scripts/prepare_sources.py",
+    "scripts/revise_plan.py",
+    "scripts/generate_stage1.py"
+  ]
+}

@@ -1,0 +1,14 @@
+﻿编号,数据名称,数值,单位,来源文件,来源位置,计算方式,SHA256
+D017020,年折现率,0.06,比例,实验/研究/rebuild_2026/joint_lifecycle_optimizer.py,"L49: def cost_factors(rate: float = 0.06, transformer_life: int = 20,",首次投资、更新投资及固定运维按(1.06)^(现金流年-2021)折现后加总，评价期2022至2041,b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01
+D017021,主变计算寿命,20,年,实验/研究/rebuild_2026/joint_lifecycle_optimizer.py,"L49: def cost_factors(rate: float = 0.06, transformer_life: int = 20,",投运年首次投资，次年起固定运维，寿命届满且更新年<2041时按原投资更新,b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01
+D017023,储能计算寿命,10,年,实验/研究/rebuild_2026/joint_lifecycle_optimizer.py,"L50: line_life: int = 20, storage_life: int = 10,",投运年首次投资，次年起固定运维，寿命届满且更新年<2041时按原投资更新,b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01
+D017024,主变及新线固定运维费率,0.01,1/年,实验/研究/rebuild_2026/joint_lifecycle_optimizer.py,"L51: network_om: float = 0.01, storage_om: float = 0.03) -> dict:",投运年首次投资，次年起固定运维，寿命届满且更新年<2041时按原投资更新,b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01
+D017025,储能固定运维费率,0.03,1/年,实验/研究/rebuild_2026/joint_lifecycle_optimizer.py,"L51: network_om: float = 0.01, storage_om: float = 0.03) -> dict:",投运年首次投资，次年起固定运维，寿命届满且更新年<2041时按原投资更新,b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01
+D017026,候选新线长度,3.0,km,实验/研究/rebuild_2026/joint_lifecycle_optimizer.py,L34: DESIGNED_NEW_LINE_KM = 3.0  # 无测绘路线，长度只作为待敏感性检验的仿真基准。,无测绘规划假设,b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01
+D017027,新线单位投资,44.543,万元/km,实验/研究/rebuild_2026/incremental_cost.py,L16: LINE_BASE_10K_PER_KM = 44.543,项目90%架空和10%电缆折算假设，非报价,6abd980eeea7103c0d1d84242dee99dd51226dbb03f7e6cdca06b2f7ed7621c8
+D017031,单柜额定功率,0.1,MW/柜,实验/研究/rebuild_2026/incremental_cost.py,L18: MODULE_POWER_MW = 0.1,冻结设备规格,6abd980eeea7103c0d1d84242dee99dd51226dbb03f7e6cdca06b2f7ed7621c8
+D017032,单柜额定能量,0.215,MWh/柜,实验/研究/rebuild_2026/incremental_cost.py,L19: MODULE_ENERGY_MWH = 0.215,冻结设备规格,6abd980eeea7103c0d1d84242dee99dd51226dbb03f7e6cdca06b2f7ed7621c8
+D017036,苏州单柜招标最高限价,27.2,万元,参考政策/储能成本依据/sources.csv,CSV物理行2；amount_yuan,原始公告金额元除以10000,8d2f2227b59c87b4f031fe029147e4811cfabcdcd0b616e71019855eb34191ec
+D017037,浏阳十柜等效实际中标价,210.456262,万元,参考政策/储能成本依据/sources.csv,CSV物理行5；amount_yuan,原始公告金额元除以10000,8d2f2227b59c87b4f031fe029147e4811cfabcdcd0b616e71019855eb34191ec
+D017038,35kV主变新购容量折算系数,15.48,万元/MVA,实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx,"Sheet1!P43,P45,P48,P54；C列工程规模",F15a；案例总投资之和/新购容量之和，保留九位小数,110081ca62981f08a97f5b353bde277cb8ea774c1433e76552ece75994b1537e
+D017039,110kV主变新购容量折算系数,16.573333333,万元/MVA,实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx,"Sheet1!P21,P36；C列工程规模",F15a；案例总投资之和/新购容量之和，保留九位小数,110081ca62981f08a97f5b353bde277cb8ea774c1433e76552ece75994b1537e

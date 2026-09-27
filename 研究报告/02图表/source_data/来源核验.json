@@ -1,0 +1,177 @@
+{
+  "status": "PASS",
+  "dictionary_records": 1971,
+  "json_records": 1971,
+  "source_checks": [
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/annual_matrix.csv",
+      "sha256": "fe71ed6a5f747d4306fb59a8d689521c1ec7f88806c80159c0eef8a75c19c5de",
+      "admitted_records": 216,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/summary.csv",
+      "sha256": "dfd435ba38eeda12ca398de597efa661ed1c1599ac861b2b54d38655bacacdf2",
+      "admitted_records": 117,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/baseline_layers.csv",
+      "sha256": "c79d0c210033f1a147626aace634c2915ba6761da6294d153ee5d783e103e5a1",
+      "admitted_records": 14,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/annual_indicator_recommendation.csv",
+      "sha256": "23c28c71252d89beb1e376b9d94826fcec0ed7baee42afa4718b70f16b42b120",
+      "admitted_records": 348,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/cost_sensitivity/summary.csv",
+      "sha256": "90ed68f3e4ed8b236519e269c693e486a5ff8734d92c61b28b6724cfae5c6ef9",
+      "admitted_records": 32,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/cost_sensitivity/annual_schemes.csv",
+      "sha256": "fa0ebf28e78f05946db9a8523119945c91f5bd03cd3a766fd968875833094ca8",
+      "admitted_records": 352,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/cost_sensitivity/annual_recommendations.csv",
+      "sha256": "e57a67e55ec380df8dec6092a77e3f956b7d8c8608edf959b9e8e17b63f2119e",
+      "admitted_records": 128,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/indicator_correlations.csv",
+      "sha256": "cf29dab3a8f5b45413939e1b37a60eaec41cee9e78d501c9eb36b3e6ee14a009",
+      "admitted_records": 180,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/recommendation_matrix/indicator_applicability_ranges.csv",
+      "sha256": "d887c64173375707965852a746ef6470cce529f77a3c77d96018deb7e4afa5ad",
+      "admitted_records": 36,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/elastic_QX-00005_110_years.csv",
+      "sha256": "0b4768ae31a5a8afff3677931a0e2f93ce261421a04aa47e311eb70765528c47",
+      "admitted_records": 44,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/elastic_QX-00005_35_years.csv",
+      "sha256": "6680fe814d3598f8e1b30adff1558047d8a7b4a7ba2f2538692d8ea254074d4c",
+      "admitted_records": 44,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/elastic_QX-00007_110_years.csv",
+      "sha256": "be3ad71bc81491aa8923eae3ad43a735aa6ff5c9c2855308f1fa78ec52de1c20",
+      "admitted_records": 44,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/rigid_QX-00005_110_years.csv",
+      "sha256": "97acd7e35225507c5ac8f251f754a17ffe1cab491a7c80aec47ca148a2e6ae3f",
+      "admitted_records": 44,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/rigid_QX-00005_35_years.csv",
+      "sha256": "9de93c566023c04897c1a5f38895c68cb1a2e8fb1a1efec512bb7bc6cc1b5266",
+      "admitted_records": 44,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/rigid_QX-00007_110_years.csv",
+      "sha256": "23c7702f33e69f8dc05e52e763d21d4f3d0f1e30ce832d123df098c98d88cf34",
+      "admitted_records": 44,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/近5年容载比.xlsx",
+      "sha256": "f64be1be4955a268e97edc2678b2a39c3e89f651b7f40cc96e2e700395fe45a1",
+      "admitted_records": 240,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+      "sha256": "b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01",
+      "admitted_records": 11,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/incremental_cost.py",
+      "sha256": "6abd980eeea7103c0d1d84242dee99dd51226dbb03f7e6cdca06b2f7ed7621c8",
+      "admitted_records": 3,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/baseline_2021.py",
+      "sha256": "741cdd18fbde78dfdc3607e8b6132134029d1243ad783ddf5e07252822157f7b",
+      "admitted_records": 1,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/rebuild_2026/simulation_reserve_policy.py",
+      "sha256": "f03d490bd96de30edb9299ea70a24c0a711bb01fd09829ba733d2b0e39595fe4",
+      "admitted_records": 1,
+      "passed": true
+    },
+    {
+      "source": "参考政策/储能成本依据/sources.csv",
+      "sha256": "8d2f2227b59c87b4f031fe029147e4811cfabcdcd0b616e71019855eb34191ec",
+      "admitted_records": 2,
+      "passed": true
+    },
+    {
+      "source": "实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/江苏徐州邢楼110千伏变电站主变扩建等工程建设规模及投资汇总表(1).xlsx",
+      "sha256": "110081ca62981f08a97f5b353bde277cb8ea774c1433e76552ece75994b1537e",
+      "admitted_records": 2,
+      "passed": true
+    },
+    {
+      "source": "研究报告/00审查/证据/本阶段独立核查.json",
+      "sha256": "990b44c46190984e4e19492fbcedd0a2f3fad2ceb68e941b0bef10874ec05b6f",
+      "admitted_records": 24,
+      "passed": true
+    },
+    {
+      "source": "研究报告/01研究推荐/研究推荐数据.json",
+      "sha256": "768e4ee20785e2d2ad18a3c09fcbcbef63b055777ef901386af5ca9bea745a3c",
+      "passed": true
+    },
+    {
+      "source": "研究报告/01研究推荐/区县口径更新说明.md",
+      "sha256": "339a11e142754fb556b41a1c2b3115af17f3366accf9da6f3b2c52ebea6f6f25",
+      "passed": true
+    },
+    {
+      "source": "研究报告/00审查/最终模型说明.md",
+      "sha256": "4909bd46a76c5157808ba9f2035b53ce730a1a5ac0fb93c4df77f3cfe164d0a5",
+      "passed": true
+    },
+    {
+      "source": "研究报告/00审查/成本模型说明.md",
+      "sha256": "edaf10ef7d0e8dad7cb4b95b050a7d154d8eb2fedef07c683ba72ddd8ba33a4c",
+      "passed": true
+    },
+    {
+      "source": "研究报告/00审查/公式与术语审查.md",
+      "sha256": "b4f8b70cff5ee4aa84eb5b81e867a50a4587dad7eb902e14e2488b2142a187a8",
+      "passed": true
+    },
+    {
+      "source": "研究报告/00审查/结果冻结报告.md",
+      "sha256": "005a7929547ecce15b9e7459b4f7a3c27e740e650c944a829e1ca24ff636f6df",
+      "passed": true
+    }
+  ],
+  "numeric_policy": "绘图所用数值必须对应准入编号或阶段0已登记的区县口径更新；不调用优化模型",
+  "model_or_results_modified": false
+}

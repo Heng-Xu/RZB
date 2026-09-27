@@ -1,0 +1,88 @@
+{
+  "number": "图6-1",
+  "title": "邳州110 kV候选互济关系",
+  "chapter": "第六章 典型区域案例分析",
+  "section": "6.2.1 局部互济条件与优化过程",
+  "data": {
+    "boxes": [
+      "墩南线\n下游区段",
+      "河炮线\n受入侧",
+      "墩振线\n下游区段",
+      "河湾变\n拟建新出线"
+    ],
+    "existing_path_envelope_mw": 4.75,
+    "new_line_envelope_mw": 9.05
+  },
+  "records": [
+    {
+      "id": "D017029",
+      "name": "候选新线静态通道上界",
+      "variable": "T新线",
+      "value": 9.05,
+      "unit": "MW",
+      "source": "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+      "source_location": "L35: DESIGNED_NEW_LINE_LIMIT_MW = 9.05  # 9.53 MVA 同型导线×0.95 的线端上界。",
+      "source_sha256": "b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01",
+      "formula": "同型导线容量折算研究上界",
+      "formula_ref": null,
+      "chapter": "拟第四、五、六章：措施参数",
+      "status": "研究假设或规格；已冻结",
+      "scope": "",
+      "raw_value": 9.05,
+      "lineage_node": "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+      "limitation": ""
+    },
+    {
+      "id": "D017030",
+      "name": "既有联络保守通道包络",
+      "variable": "T既有",
+      "value": 4.75,
+      "unit": "MW",
+      "source": "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+      "source_location": "L38: EXISTING_PATH_CAP_MW = 4.75  # 旧案例完整馈线最弱热限的保守容量包络。",
+      "source_sha256": "b631970df09fcb7ff83af0d11b7ccff1947306e06c37d8f87ab80ae619c63a01",
+      "formula": "已登记旧局部案例最弱热限包络",
+      "formula_ref": null,
+      "chapter": "拟第四、五、六章：措施参数",
+      "status": "研究假设或规格；已冻结",
+      "scope": "",
+      "raw_value": 4.75,
+      "lineage_node": "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+      "limitation": ""
+    }
+  ],
+  "supplemental_sources": [],
+  "document_sources": "研究报告/00审查/最终模型说明.md；研究报告/00审查/公式与术语审查.md；研究报告/00审查/公式与术语审查.md",
+  "processing": "只画已闭合候选；标明非地理、非潮流图",
+  "calculation": "通道包络不是实际转供结果；转供还受区段、供端及受端条件共同限制",
+  "note": "工程关系示意；箭头表示候选受入方向",
+  "display_text": [
+    "墩南线\n下游区段",
+    "河炮线\n受入侧",
+    "墩振线\n下游区段",
+    "河湾变\n拟建新出线",
+    "既有联络候选",
+    "静态通道包络 4.75 MW",
+    "拟建互济候选",
+    "静态通道包络 9.05 MW",
+    "图6-1 邳州110 kV候选互济关系",
+    "工程关系示意；箭头表示候选受入方向",
+    "资料来源：项目统计及规划计算。"
+  ],
+  "files": [
+    "final_figures/图6-1.png",
+    "final_figures/图6-1.svg",
+    "final_figures/图6-1.pdf"
+  ],
+  "width_cm": 14.4,
+  "height_cm": 9.8,
+  "scripts": [
+    "研究报告/02图表/scripts/generate_stage1.py",
+    "研究报告/03_MD/检查证据/重绘编号图.py"
+  ],
+  "source_number": "图6-2",
+  "source_file": "研究报告/02图表/source_data/图6-2.json",
+  "source_sha256": "a24d0507b0cd02d916dfa64790af868069d917ddfb89f8154d78819ea54c78fa",
+  "source_chapter": "典型案例验证",
+  "source_section": "6.2 弹性容载比方案设计与对比"
+}
