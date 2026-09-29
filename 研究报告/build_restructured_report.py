@@ -96,6 +96,12 @@ def main():
     for p in doc.paragraphs:
         if re.match(r'^(?:BDZ-\d+|SIM-CITY-)', p.text):
             p.paragraph_format.page_break_before = True
+    for node in doc._element.body.xpath('.//w:sdtContent//w:t'):
+        if node.text == 'Table of Contents':
+            node.text = '目录'
+    update_fields = OxmlElement('w:updateFields')
+    update_fields.set(qn('w:val'), 'true')
+    doc.settings.element.append(update_fields)
     # Footer page field, independent of any page numbers cached by WPS.
     footer = sec.footer.paragraphs[0] if sec.footer.paragraphs else sec.footer.add_paragraph()
     footer.alignment = 1
