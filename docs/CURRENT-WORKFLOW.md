@@ -1,18 +1,14 @@
 # 当前项目文件导航
 
-更新：2026-09-27。后续研究报告采用 reserve_policy_v4。
+更新：2026-09-29。本轮 110 kV 区县研究以市区和邳州的[可比方案说明](2026-09-29-两区县可比方案与导则分档修订.md)为现行入口。
 
 | 内容 | 位置 |
 | --- | --- |
-| 冻结、复现、验证 | `docs/FROZEN-RESERVE-POLICY-V4-2026-09-27.md` |
-| 当前方案与推荐矩阵 | `实验/研究/docs/FINAL-POLICY-RECOMMENDATION-2026-09-24.md` |
-| 导则核验 | `实验/研究/docs/容载比负荷容量关系-导则核验-2026-09-23.md` |
-| 原始交付数据 | `实验/研究/data/tuomin/` |
-| 当前模型与输入证据 | `实验/研究/rebuild_2026/` |
-| 当前机器结果 | `实验/研究/rebuild_2026/source_audit/capacity_release_simulation/reserve_policy_v4/` |
-| 历史增长诊断、v2/v3 | `历史归档/模型诊断-2026-09-26.zip` |
-| 清理清单 | `docs/CLEANUP-2026-09-26.json` |
+| 建模入口、复现命令 | `实验/研究/rebuild_2026/README.md` |
+| 两区县逐年刚性、弹性结果 | `实验/研究/rebuild_2026/outputs/ordered_guide_pizhou_n1/`、`ordered_guide_city_n1/` |
+| 两区县跨方案与敏感性审计 | `实验/研究/rebuild_2026/outputs/ordered_guide_result_audit.json` |
+| 原表单元格和价格出处 | `研究报告/数据来源/2026-09-28_10kV线路与成本依据/` |
+| 原始交付数据、加工输入 | `实验/研究/data/tuomin/`、`实验/研究/rebuild_2026/source_audit/` |
+| 历史试算和冻结版 | `历史归档/区域静态建模试算输出-2026-09-29.tar.gz`、`docs/FROZEN-RESERVE-POLICY-V4-2026-09-27.md` |
 
-其余 planning、早期 joint_lifecycle 和历史文档仅用于追溯。部分名称含 planning 的文件仍是当前历史容量分配输入，不能按文件名前缀整批删除。
-
-年度参数和价格敏感性入口：`reserve_policy_v4/recommendation_matrix/推荐矩阵成果说明.md`；中文Excel在同目录。
+历史脚本保留供复算和依赖调用；当前推荐值仅取 `ordered_guide_*`。旧输出在归档包中，历史说明中的原输出链接需要解包后复查。报告正文仍待按本轮模型与来源重写，现存七章不能直接当作本轮终稿。

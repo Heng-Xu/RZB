@@ -1,0 +1,44 @@
+{
+  "guide_classification": [
+    {
+      "region_id": "QX-00007",
+      "voltage_kv": 110,
+      "weighted_four_year_growth": 0.01800026160094369,
+      "guide_table": "DL/T 5729-2023 Table 6.3.4",
+      "guide_lower": 1.5,
+      "guide_upper": 1.7,
+      "load_source_cells": "Sheet1!D9,G9,J9,M9,P9",
+      "annual_growth_rates": "-0.012001919614835432|0.07668882604623306|-0.06018296848363436|0.05479394724567732",
+      "interpretation": "four_year_weighted_research_classification_not_historical_forecast"
+    },
+    {
+      "region_id": "QX-00005",
+      "voltage_kv": 110,
+      "weighted_four_year_growth": 0.08074223859122495,
+      "guide_table": "DL/T 5729-2023 Table 6.3.4",
+      "guide_lower": 1.8,
+      "guide_upper": 2.0,
+      "load_source_cells": "Sheet1!D19,G19,J19,M19,P19",
+      "annual_growth_rates": "0.1274091490495648|-0.0772994737979471|0.1332442149687747|0.10871988488806372",
+      "interpretation": "four_year_weighted_research_classification_not_historical_forecast"
+    }
+  ],
+  "city_ordering_margin": 0.001,
+  "city_annual_clr_ceiling": {
+    "2022": 1.843839108593476,
+    "2023": 1.9983909792021657,
+    "2024": 1.821267404510467,
+    "2025": 1.7994077578545664
+  },
+  "elastic_over_rigid_annual_clr_margin": 0.001,
+  "city_rigid_cap": 1.8,
+  "city_rigid_cap_basis": "guide_slow_growth_upper_1.7_infeasible_under_static_N1;_1.8_feasible_research_control",
+  "decision_sets_identical": true,
+  "n1_background_and_new_lines_available_in_both_schemes": true,
+  "cost_order_scope": "each_district_and_total",
+  "total_npv_10k": {
+    "rigid": 17598.494600515987,
+    "elastic": 15543.154946126113
+  },
+  "city_per_scheme_cost_status": "strictly_lower_elastic_in_this_run_not_a_model_theorem"
+}

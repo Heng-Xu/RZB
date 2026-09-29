@@ -4,7 +4,7 @@ import argparse
 import csv
 import json
 from collections import defaultdict
-from itertools import combinations_with_replacement
+from itertools import combinations, combinations_with_replacement
 from pathlib import Path
 
 import numpy as np
@@ -126,6 +126,7 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
                 tie_transfer_limit_scale: float = 1.0,
                 capacity_first: bool = False,
                 preserve_baseline_forward_margin: bool = False,
+                baseline_margin_fraction: float = 1.0,
                 policy_peak_basis: str = "annual",
                 max_storage_modules: int = 10,
                 require_existing_tie_operation: bool = True,
@@ -138,7 +139,9 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
                 capacity_growth_budget_fraction: float | None = None,
                 minimum_clr_by_year: dict[int, float] | None = None,
                 prefer_reserve_at_equal_cost: bool = False,
-                contingency_service_fraction: float | None = None) -> tuple[list[dict], list[dict], list[dict], dict]:
+                contingency_service_fraction: float | None = None,
+                regional_transfer: dict | None = None,
+                station_choice_cap_slack_mva: float | None = None) -> tuple[list[dict], list[dict], list[dict], dict]:
     if cap < CAP or (rigid and cap != CAP):
         raise ValueError("刚性上限必须为 2.0，弹性扫描不得低于 2.0")
     if transformer_cost_scale <= 0 or storage_cost_scale <= 0:
@@ -149,6 +152,8 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
         raise ValueError("联络可转供比例须在 0—1 之间")
     if policy_peak_basis not in ("annual", "rolling_max"):
         raise ValueError("容载比控制分母只支持 annual 或 rolling_max")
+    if not 0 <= baseline_margin_fraction <= 1:
+        raise ValueError("基期正向裕度保留比例须在0—1之间")
     if not 1 <= max_storage_modules <= MAX_PLANNING_STORAGE_MODULES or max_storage_modules % 10:
         raise ValueError("单站储能模块上限须为 10、20、30、40 或 50")
     if line_extra_capex_10k_cny < 0:
@@ -159,13 +164,55 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
         raise ValueError("10 kV 区段年度口径未知")
     if capacity_growth_budget_fraction is not None and capacity_growth_budget_fraction < 0:
         raise ValueError("容量增长预算不能为负")
+    if station_choice_cap_slack_mva is not None and station_choice_cap_slack_mva < 0:
+        raise ValueError("站级候选容量余量不能为负")
     minimum_clr_by_year = minimum_clr_by_year or {}
     if any(year not in YEARS or value < 0 or value > cap
            for year, value in minimum_clr_by_year.items()):
         raise ValueError("年度容载比下限必须位于规划期且不超过方案上限")
     if contingency_service_fraction is not None and not 0 < contingency_service_fraction <= 1:
         raise ValueError("主变停运后的恢复负荷比例须在 (0,1] 内")
+    if regional_transfer is not None:
+        initial_fraction = float(regional_transfer["initial_fraction"])
+        maximum_fraction = float(regional_transfer["maximum_fraction"])
+        line_capacity = float(regional_transfer["line_capacity_mw"])
+        line_capacity_by_year = regional_transfer.get("line_capacity_mw_by_year") or {}
+        if any(float(value) < 0 for value in line_capacity_by_year.values()):
+            raise ValueError("逐年新线可转移功率不能为负")
+        max_lines = int(regional_transfer["max_lines"])
+        existing_capacity_mw = regional_transfer.get("existing_capacity_mw")
+        existing_capacity_by_year = regional_transfer.get("existing_capacity_mw_by_year") or {}
+        if any(float(value) < 0 for value in existing_capacity_by_year.values()):
+            raise ValueError("逐年既有转供功率上限不能为负")
+        if existing_capacity_mw is not None:
+            existing_capacity_mw = float(existing_capacity_mw)
+            if existing_capacity_mw < 0:
+                raise ValueError("既有线路可转移功率上限不能为负")
+        new_line_station_pair = regional_transfer.get("new_line_station_pair")
+        existing_station_pair = regional_transfer.get("existing_station_pair")
+        if existing_station_pair is not None and (len(existing_station_pair) != 2
+                or existing_station_pair[0] == existing_station_pair[1]):
+            raise ValueError("既有联络端点必须为两个不同站点")
+        if new_line_station_pair is not None and (len(new_line_station_pair) != 2
+                or new_line_station_pair[0] == new_line_station_pair[1]
+                or max_lines > 1):
+            raise ValueError("已指定站间新线仅支持一条、两个不同的候选端点")
+        if not 0 <= initial_fraction <= maximum_fraction <= 1:
+            raise ValueError("区域可转移比例须满足 0≤初始值≤上限≤1")
+        if line_capacity <= 0 or max_lines < 0:
+            raise ValueError("区域新增线路容量及数量无效")
+    pairwise_regional_transfer = bool(regional_transfer and regional_transfer.get("pairwise"))
+    if pairwise_regional_transfer and regional_transfer.get("existing_station_pair") is None:
+        raise ValueError("站对联络模型须指定有原始记录的既有联络站对")
     stations = sorted(s for s in baseline if s[:2] == layer)
+    if regional_transfer is not None and new_line_station_pair is not None:
+        station_ids = {s[2] for s in stations}
+        if not set(new_line_station_pair) <= station_ids:
+            raise ValueError("候选新线端点不在本区域站点清单")
+    if regional_transfer is not None and existing_station_pair is not None:
+        station_ids = {s[2] for s in stations}
+        if not set(existing_station_pair) <= station_ids:
+            raise ValueError("既有联络端点不在本区域站点清单")
     model = LinearModel()
     fixed, slope = storage_affine_cost_parts()
     fixed *= storage_cost_scale
@@ -176,6 +223,22 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
         for y in YEARS:
             pairs = [p for p in combinations_with_replacement(catalog[layer], 2)
                      if allow_capacity_release or all(v >= old for old, v in zip(initial, p))]
+            if station_choice_cap_slack_mva is not None and not allow_capacity_release:
+                base_peak = float(baseline[s]["estimated_forward_peak_mw_2021"])
+                base_margin = max(0.0, .95 * sum(initial) - base_peak)
+                required_capacity = max(
+                    max((float(scene[s, yy]["estimated_station_forward_peak_mw"])
+                         + (baseline_margin_fraction * base_margin
+                            if preserve_baseline_forward_margin else 0.0)) / .95
+                        for yy in YEARS),
+                    max(float(scene[s, yy]["reverse_screen_mw"]) / (.8 * .95)
+                        for yy in YEARS),
+                    sum(initial),
+                )
+                sufficient = [sum(p) for p in pairs if sum(p) + 1e-8 >= required_capacity]
+                if sufficient:
+                    cutoff = min(sufficient) + station_choice_cap_slack_mva
+                    pairs = [p for p in pairs if sum(p) <= cutoff + 1e-8]
             if not pairs:
                 raise ValueError(f"{s} 无主变候选")
             choices[s, y] = pairs
@@ -220,9 +283,111 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
 
     use_tie = rigid if tie_allowed is None else tie_allowed
     edges, feeders = (tie_edges(include_new_line, new_line_variant, existing_tie_allowed)
-                      if use_tie and layer == PIZHOU_110 else ([], {}))
-    measure_scope = "transformer_storage_and_pizhou_ties" if edges else "transformer_storage_no_ties"
+                      if use_tie and layer == PIZHOU_110 and regional_transfer is None else ([], {}))
+    measure_scope = ("transformer_storage_and_regional_10kv_transfer" if regional_transfer is not None
+                     else "transformer_storage_and_pizhou_ties" if edges else "transformer_storage_no_ties")
     transfer, direction, built, line_addition, section_active = {}, {}, {}, {}, {}
+    if pairwise_regional_transfer:
+        station_ids = sorted(s[2] for s in stations)
+        for station_id in station_ids:
+            feeders[station_id] = {"station_id": station_id}
+        candidate_pairs = [tuple(pair) for pair in regional_transfer.get("new_line_candidate_pairs")
+                           or combinations(station_ids, 2)]
+        if any(len(pair) != 2 or pair[0] == pair[1] or not set(pair) <= set(station_ids)
+               for pair in candidate_pairs):
+            raise ValueError("新建联络候选站对不在区域站点清单")
+        candidate_pairs = sorted({tuple(sorted(pair)) for pair in candidate_pairs})
+        pair_built, pair_addition = {}, {}
+        for y in YEARS:
+            built[y] = model.variable(0, upper=max_lines, integer=1)
+            line_addition[y] = model.variable(
+                (line_capex_10k_cny(line_km, line_unit_cost) + line_extra_capex_10k_cny)
+                * factors["line"][y], upper=max_lines, integer=1)
+            count_built, count_added = {built[y]: -1}, {line_addition[y]: -1}
+            for pair in candidate_pairs:
+                pair_built[y, pair] = model.variable(0)
+                pair_addition[y, pair] = model.variable(0)
+                count_built[pair_built[y, pair]] = 1
+                count_added[pair_addition[y, pair]] = 1
+                previous = {pair_built[y, pair]: 1, pair_addition[y, pair]: -1}
+                if y > YEARS[0]:
+                    previous[pair_built[y - 1, pair]] = -1
+                model.constraint(previous, lower=0, upper=0)
+            model.constraint(count_built, lower=0, upper=0)
+            model.constraint(count_added, lower=0, upper=0)
+            for scenario in ("forward", "reverse"):
+                field = ("estimated_station_forward_peak_mw" if scenario == "forward"
+                         else "reverse_screen_mw")
+                demand = {s[2]: max(0.0, float(scene[s, y][field])) for s in stations}
+                donor_existing, donor_new = defaultdict(dict), defaultdict(dict)
+                existing_pair = tuple(regional_transfer["existing_station_pair"])
+                existing_limit = float(existing_capacity_by_year.get(y,
+                                          existing_capacity_mw if existing_capacity_mw is not None else 0.0))
+                existing_terms = {}
+                for donor, receiver in (existing_pair, existing_pair[::-1]):
+                    flow = model.variable(0, upper=min(demand[donor], existing_limit), integer=0)
+                    transfer[y, scenario, "REGIONAL-existing", donor, receiver] = flow
+                    donor_existing[donor][flow] = 1
+                    existing_terms[flow] = 1
+                model.constraint(existing_terms, upper=existing_limit)
+                line_limit = float(line_capacity_by_year.get(y, line_capacity))
+                for pair in candidate_pairs:
+                    pair_terms = {pair_built[y, pair]: -line_limit}
+                    for donor, receiver in (pair, pair[::-1]):
+                        flow = model.variable(0, upper=min(demand[donor], line_limit), integer=0)
+                        transfer[y, scenario, "REGIONAL-new", donor, receiver] = flow
+                        donor_new[donor][flow] = 1
+                        pair_terms[flow] = 1
+                    model.constraint(pair_terms, upper=0)
+                for station_id in station_ids:
+                    model.constraint({**donor_existing[station_id], **donor_new[station_id]},
+                                     upper=demand[station_id])
+    elif regional_transfer is not None:
+        for s in stations:
+            feeders[s[2]] = {"station_id": s[2]}
+        feeders["REGIONAL-EXISTING-HUB"] = {"station_id": "REGIONAL-HUB"}
+        feeders["REGIONAL-NEW-HUB"] = {"station_id": "REGIONAL-HUB"}
+        for y in YEARS:
+            built[y] = model.variable(0, upper=max_lines, integer=1)
+            line_addition[y] = model.variable(
+                (line_capex_10k_cny(line_km, line_unit_cost) + line_extra_capex_10k_cny)
+                * factors["line"][y], upper=max_lines, integer=1)
+            cumulative = {built[y]: 1, line_addition[y]: -1}
+            if y > YEARS[0]:
+                cumulative[built[y - 1]] = -1
+            model.constraint(cumulative, lower=0, upper=0)
+            for scenario in ("forward", "reverse"):
+                for kind, hub in (("existing", "REGIONAL-EXISTING-HUB"),
+                                  ("new", "REGIONAL-NEW-HUB")):
+                    balance = {}
+                    new_out = {}
+                    existing_out = {}
+                    for s in stations:
+                        station_id = s[2]
+                        demand_field = ("estimated_station_forward_peak_mw" if scenario == "forward"
+                                        else "reverse_screen_mw")
+                        station_demand = max(0.0, float(scene[s, y][demand_field]))
+                        fraction = (initial_fraction if kind == "existing" else
+                                    maximum_fraction - initial_fraction)
+                        pair = existing_station_pair if kind == "existing" else new_line_station_pair
+                        eligible = pair is None or station_id in pair
+                        outgoing = model.variable(0, upper=fraction * station_demand if eligible else 0, integer=0)
+                        incoming = model.variable(0, upper=(sum(max(0.0, float(scene[z, y][demand_field]))
+                                                               for z in stations) if eligible else 0), integer=0)
+                        transfer[y, scenario, f"REGIONAL-{kind}", station_id, hub] = outgoing
+                        transfer[y, scenario, f"REGIONAL-{kind}", hub, station_id] = incoming
+                        balance[outgoing] = 1
+                        balance[incoming] = -1
+                        if kind == "new":
+                            new_out[outgoing] = 1
+                        else:
+                            existing_out[outgoing] = 1
+                    model.constraint(balance, lower=0, upper=0)
+                    if kind == "new":
+                        new_out[built[y]] = -float(line_capacity_by_year.get(y, line_capacity))
+                        model.constraint(new_out, upper=0)
+                    elif existing_capacity_mw is not None:
+                        model.constraint(existing_out, upper=float(existing_capacity_by_year.get(y, existing_capacity_mw)))
     if edges:
         for y in YEARS:
             direction[y] = model.variable(0)
@@ -306,7 +471,7 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
                 demand = float(row["estimated_station_forward_peak_mw"] if scenario == "forward" else row["reverse_screen_mw"])
                 terms = {x[s, y, p]: factor * sum(p) for p in choices[s, y]}
                 terms[n[s, y]] = effect
-                if edges:
+                if edges or regional_transfer is not None:
                     for edge in edges:
                         for a, b_feeder in ((edge["a"], edge["b"]), (edge["b"], edge["a"])):
                             key = (y, scenario, edge["tie_id"], a, b_feeder)
@@ -317,6 +482,21 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
                                 terms[var] = terms.get(var, 0) + 1
                             if feeders[b_feeder]["station_id"] == s[2]:
                                 terms[var] = terms.get(var, 0) - 1
+                    if pairwise_regional_transfer:
+                        for (yy, ss, _kind, donor, receiver), var in transfer.items():
+                            if yy != y or ss != scenario:
+                                continue
+                            if donor == s[2]:
+                                terms[var] = terms.get(var, 0) + 1
+                            if receiver == s[2]:
+                                terms[var] = terms.get(var, 0) - 1
+                    elif regional_transfer is not None:
+                        for kind, hub in (("existing", "REGIONAL-EXISTING-HUB"),
+                                          ("new", "REGIONAL-NEW-HUB")):
+                            outgoing = transfer[y, scenario, f"REGIONAL-{kind}", s[2], hub]
+                            incoming = transfer[y, scenario, f"REGIONAL-{kind}", hub, s[2]]
+                            terms[outgoing] = terms.get(outgoing, 0) + 1
+                            terms[incoming] = terms.get(incoming, 0) - 1
                 required = demand
                 if scenario == "forward" and preserve_baseline_forward_margin:
                     # 研究性规划约束：逐年保留共同起点的绝对正向备用能力。
@@ -324,13 +504,13 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
                     initial_capacity = float(baseline[s]["simulation_unit_1_mva"]) + float(
                         baseline[s]["simulation_unit_2_mva"])
                     initial_peak = float(baseline[s]["estimated_forward_peak_mw_2021"])
-                    required += max(0.0, .95 * initial_capacity - initial_peak)
+                    required += baseline_margin_fraction * max(0.0, .95 * initial_capacity - initial_peak)
                 model.constraint(terms, lower=required)
                 if scenario == "forward" and contingency_service_fraction is not None:
                     fraction = contingency_service_fraction
                     contingency = {x[s, y, p]: .95 * min(p) for p in choices[s, y]}
                     contingency[n[s, y]] = effect
-                    if edges:
+                    if edges or regional_transfer is not None:
                         for edge in edges:
                             for a, b_feeder in ((edge["a"], edge["b"]), (edge["b"], edge["a"])):
                                 key = (y, scenario, edge["tie_id"], a, b_feeder)
@@ -353,7 +533,7 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
                     for p in choices[s, prior]:
                         delta_terms[x[s, prior, p]] = -.95 * sum(p)
                     delta_terms[n[s, prior]] = -effect
-                if edges:
+                if edges or regional_transfer is not None:
                     for yy, sign in ((y, 1), (prior, -1)):
                         if yy not in YEARS:
                             continue
@@ -466,13 +646,27 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
                           "receiver_feeder_id": b_feeder, "donor_station_id": feeders[a]["station_id"],
                           "receiver_station_id": feeders[b_feeder]["station_id"],
                           "transfer_mw": round(float(solution[var]), 8),
-                          "operation_basis": (("original_pdf_switch28_whole_downstream_section_2025_load_seed"
-                                               if y == 2025 else "original_pdf_switch28_section_scaled_by_donor_station_forward_peak")
-                                              if edge_id == EXISTING_OPERATIONAL_TIE else
-                                              ("designed_switch23_24_section_2025_feeder_stress_seed"
-                                               if y == 2025 else "designed_switch23_24_section_scaled_by_donor_station_forward_peak")),
+                          "operation_basis": ("pairwise_station_transfer_absolute_mw_scenario"
+                                              if pairwise_regional_transfer else
+                                              "regional_transfer_fraction_scenario" if regional_transfer is not None
+                                              else (("original_pdf_switch28_whole_downstream_section_2025_load_seed"
+                                                     if y == 2025 else "original_pdf_switch28_section_scaled_by_donor_station_forward_peak")
+                                                    if edge_id == EXISTING_OPERATIONAL_TIE else
+                                                    ("designed_switch23_24_section_2025_feeder_stress_seed"
+                                                     if y == 2025 else "designed_switch23_24_section_scaled_by_donor_station_forward_peak"))),
                           "technical_scope": TECHNICAL_SCOPE})
         tie_rows.extend(flows)
+        if pairwise_regional_transfer:
+            for pair in candidate_pairs:
+                if solution[pair_built[y, pair]] > 0.5:
+                    tie_rows.append({"study_region_id": layer[0], "voltage_kv": layer[1],
+                                     "year": y, "scenario": "infrastructure",
+                                     "tie_id": "REGIONAL-new-build",
+                                     "donor_feeder_id": pair[0], "receiver_feeder_id": pair[1],
+                                     "donor_station_id": pair[0], "receiver_station_id": pair[1],
+                                     "transfer_mw": 0.0,
+                                     "operation_basis": "pairwise_new_line_in_service",
+                                     "technical_scope": TECHNICAL_SCOPE})
         line_capex = (float(solution[line_addition[y]])
                       * (line_capex_10k_cny(line_km, line_unit_cost) + line_extra_capex_10k_cny)
                       if y in line_addition else 0.0)
@@ -505,15 +699,22 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
                "solver_stages": json.dumps(model.solve_history, ensure_ascii=False),
                "max_actual_clr": max(r["actual_clr"] for r in year_rows),
                "new_line_built_2025": year_rows[-1]["line_built"],
-               "solver_status": ("proven_optimal_given_required_planning_operation_and_static_proxy"
-                                 if rigid and edges and require_existing_tie_operation
-                                 else "proven_optimal_under_stated_static_proxy"),
+               "solver_status": (
+                   "time_limit_feasible_with_reported_gap_and_screened_candidates"
+                   if any(stage.get("status") == "time_limit_feasible_incumbent"
+                          for stage in model.solve_history)
+                   else "within_requested_mip_gap_for_screened_station_choices"
+                   if station_choice_cap_slack_mva is not None
+                   else "within_requested_mip_gap_under_stated_static_proxy"
+                   if any(stage.get("mip_gap", 0) > 1e-7 for stage in model.solve_history)
+                   else "proven_optimal_under_stated_static_proxy"),
                "transformer_cost_scale": transformer_cost_scale,
                "storage_cost_scale": storage_cost_scale,
                "replaced_unit_credit_fraction": replaced_unit_credit_fraction,
                "tie_transfer_limit_scale": tie_transfer_limit_scale,
                "capacity_first": capacity_first,
                "preserve_baseline_forward_margin": preserve_baseline_forward_margin,
+               "baseline_margin_fraction": baseline_margin_fraction,
                "policy_peak_basis": policy_peak_basis,
                "max_storage_modules_per_station": max_storage_modules,
                "require_existing_tie_operation": require_existing_tie_operation,
@@ -527,6 +728,7 @@ def solve_layer(layer: tuple[str, int], baseline: dict, scene: dict, durations: 
                "minimum_clr_by_year": minimum_clr_by_year,
                "prefer_reserve_at_equal_cost": prefer_reserve_at_equal_cost,
                "contingency_service_fraction": contingency_service_fraction,
+               "regional_transfer": regional_transfer,
                "minimum_cumulative_capacity_mva_years": minimum_cumulative_capacity,
                "technical_scope": TECHNICAL_SCOPE, **{k: v for k, v in factors.items() if not isinstance(v, dict)}}
     return station_rows, year_rows, tie_rows, summary

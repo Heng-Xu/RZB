@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "annual_years_checked": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "scheme_count": 4,
+  "sensitivity_case_count": 5,
+  "rigid_cost_10k": 17598.494600515987,
+  "elastic_cost_10k": 15543.154946126113,
+  "checks": [
+    "same district elastic cost below rigid",
+    "same district elastic annual CLR above rigid",
+    "city annual CLR below Pizhou by scheme",
+    "post-2021 capacity nondecreasing",
+    "annual CLR arithmetic",
+    "five sensitivity scenarios preserve the three comparisons"
+  ],
+  "elastic_saving_10k": 2055.3396543898743
+}

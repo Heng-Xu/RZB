@@ -13,7 +13,7 @@ from .transformer_only_path_2021_2025 import build_transformer_only_path
 
 PROJECT_DIR = STUDY_DIR.parents[1]
 STORAGE_SOURCES = PROJECT_DIR / "参考政策/储能成本依据/sources.csv"
-LINE_BASE_10K_PER_KM = 44.543
+LINE_BASE_10K_PER_KM = 44.543  # 历史模型情景值；缺工程原始单价定位，不可作为已标定基准。
 LINE_HIGH_10K_PER_KM = 60.0
 MODULE_POWER_MW = 0.1
 MODULE_ENERGY_MWH = 0.215
@@ -203,7 +203,7 @@ def cost_parameter_inventory() -> list[dict]:
     single, ten = storage_anchors()
     rows = [
         item("existing_tie_incremental_capex", 0, "万元", "owner_confirmed", spec, "仅既有六条馈线、两站之间正常双向转供；开放容量另作硬约束"),
-        item("new_tie_line_base_unit_cost", LINE_BASE_10K_PER_KM, "万元/km", "planning_assumption_confirmed", spec, "90% 架空、10% 电缆折算；线路长度待候选路径确定，不计开关费"),
+        item("new_tie_line_base_unit_cost", LINE_BASE_10K_PER_KM, "万元/km", "unverified_legacy_scenario", "研究报告/数据来源/2026-09-28_10kV线路与成本依据/本轮核心参数来源与计算登记.md", "缺少可定位的架空、电缆原始工程单价；不计开关和其他配套；不得作为徐州基准报价"),
         item("new_tie_line_high_unit_cost", LINE_HIGH_10K_PER_KM, "万元/km", "sensitivity_only", spec, "高造价敏感性，不是本地实测单价"),
         item("storage_module_power", MODULE_POWER_MW, "MW/柜", "owner_confirmed", spec, "本轮全部为新增储能"),
         item("storage_module_energy", MODULE_ENERGY_MWH, "MWh/柜", "owner_confirmed", spec, "静态场景持续时长仍需约束"),

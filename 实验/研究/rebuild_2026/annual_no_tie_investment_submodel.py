@@ -76,18 +76,25 @@ class LinearModel:
             return self._solve_highspy(matrix, stage, started)
         if backend != "scipy":
             raise ValueError(f"未知 MILP 后端: {backend}")
+        mip_gap_target = float(os.environ.get("XUZHOU_MILP_REL_GAP", "1e-7"))
         result = milp(
             c=np.array(self.costs),
             integrality=np.array(self.integrality),
             bounds=Bounds(self.lower_bounds, self.upper_bounds),
             constraints=LinearConstraint(matrix, self.constraint_lower, self.constraint_upper),
-            options={"mip_rel_gap": 1e-7,
+            options={"mip_rel_gap": mip_gap_target,
                      "time_limit": float(os.environ.get("XUZHOU_MILP_TIME_LIMIT_SECONDS", "120"))},
         )
-        if result.status != 0 or result.x is None:
-            raise ValueError(f"逐年无联络子模型未取得已证明最优解：{result.message}")
+        accepted_time_limit_gap = float(os.environ.get("XUZHOU_MILP_ACCEPT_FEASIBLE_GAP", "0"))
+        accepted_incumbent = (result.status == 1 and result.x is not None
+                              and getattr(result, "mip_gap", None) is not None
+                              and float(result.mip_gap) <= accepted_time_limit_gap)
+        if (result.status != 0 and not accepted_incumbent) or result.x is None:
+            gap = getattr(result, "mip_gap", None)
+            raise ValueError(f"逐年无联络子模型未取得目标精度的最优解：{result.message}; mip_gap={gap}")
         self.last_solution = result.x.copy()
         self.solve_history.append({"stage": stage, "backend": backend,
+                                   "status": "time_limit_feasible_incumbent" if accepted_incumbent else "mip_gap_met",
                                    "elapsed_seconds": time.monotonic() - started,
                                    "objective": float(result.fun),
                                    "mip_gap": float(result.mip_gap)})
@@ -98,7 +105,7 @@ class LinearModel:
         import highspy
         solver = highspy.Highs()
         solver.setOptionValue("output_flag", False)
-        solver.setOptionValue("mip_rel_gap", 1e-7)
+        solver.setOptionValue("mip_rel_gap", float(os.environ.get("XUZHOU_MILP_REL_GAP", "1e-7")))
         solver.setOptionValue("time_limit", float(os.environ.get("XUZHOU_MILP_TIME_LIMIT_SECONDS", "120")))
         lp = highspy.HighsLp()
         lp.num_col_, lp.num_row_ = matrix.shape[1], matrix.shape[0]
