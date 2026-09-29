@@ -1,0 +1,25 @@
+{
+  "method": "same static MILP as two district cases; both schemes share actions",
+  "status": "conditional research extrapolation, not a standard table or grid approval",
+  "archetypes": [
+    "PZ-20-站结构模板",
+    "CITY-29-站结构模板"
+  ],
+  "source_load_ratio_range": [
+    0.3,
+    1.0,
+    1.8
+  ],
+  "annual_growth_rate_range": [
+    0.0,
+    0.04,
+    0.08
+  ],
+  "baseline_source_load_ratio": 1.630652935,
+  "rigid_cap": 2.0,
+  "elastic_cap": 2.6,
+  "elastic_clr_margin_over_rigid": 0.001,
+  "solved": 18,
+  "unsolved": 0,
+  "limitation": "station structure and line pair abstraction remain fixed; source load ratio only rescales reverse peak proxy; PV and energy penetration are not equivalent"
+}
