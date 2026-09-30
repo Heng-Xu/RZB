@@ -1,0 +1,1315 @@
+{
+  "date": "2026-10-01",
+  "authorization": "用户允许直接删除无关历史信息和数据",
+  "rollback_model_commit": "eb417e0164a4646422a47aefbb429c1e777b0502",
+  "deleted_roots": [
+    "历史会话",
+    "历史归档/区域首轮错误起点输出-2026-09-29.json",
+    "历史归档/区域首轮错误起点输出-2026-09-29.tar.gz",
+    "docs/2026-09-30实际发展路线与刚性规划对照",
+    "docs/2026-09-30无联络弹性方案与逻辑复核",
+    "实验/研究/rebuild_2026/actual_route_comparison.py",
+    "实验/研究/rebuild_2026/actual_route_cost_audit.py",
+    "实验/研究/rebuild_2026/actual_route_incremental_cost.py",
+    "实验/研究/rebuild_2026/no_tie_elastic_exploration.py",
+    "实验/研究/rebuild_2026/no_tie_core_sensitivity.py",
+    "实验/研究/rebuild_2026/no_tie_state_matrix.py",
+    "实验/研究/rebuild_2026/build_no_tie_review.py",
+    "实验/研究/rebuild_2026/outputs/actual_route_comparison",
+    "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration"
+  ],
+  "file_count": 258,
+  "total_bytes": 78187585,
+  "files": [
+    {
+      "path": "历史会话/rollout-2026-09-21T16-44-24-01a0c323-4646-7cb1-a004-3f7705125344.jsonl",
+      "bytes": 75711438,
+      "sha256": "c5363cc6c653a5f99a17edf88b8b7d311445b7d04e8a04da83e324efa52cd022"
+    },
+    {
+      "path": "历史归档/区域首轮错误起点输出-2026-09-29.json",
+      "bytes": 823,
+      "sha256": "4141798f5c798d953d9bfe1352dfbb4e31514dcb84078ebdafa99468b8af6115"
+    },
+    {
+      "path": "历史归档/区域首轮错误起点输出-2026-09-29.tar.gz",
+      "bytes": 17460,
+      "sha256": "b70c04be3807d783213533f6083dd9d6f07fe47989f6930824579cfa6688d629"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/交付核验.json",
+      "bytes": 8189,
+      "sha256": "136d4826ac86b7f1b70f39a87d5243f9f251f038802d7e6708ed7572254d5ba7"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/增量成本来源与范围.md",
+      "bytes": 2640,
+      "sha256": "2b9c68b7d0f3c725386c41daa32c6609ef71318eca67303a661340e4bc8a899d"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/增量成本比较说明.md",
+      "bytes": 4270,
+      "sha256": "a2320caa36f157ea49170ffbce3d3b46713b3ddb1ec35e03aea0c0dec60fc434"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/增量成本汇总.csv",
+      "bytes": 1429,
+      "sha256": "fc7f8dfeacfed35345a4bb44dcb30fbed32406563569532f89f52812589a2956"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/增量成本逐年对照.csv",
+      "bytes": 2266,
+      "sha256": "27175b9bd693f12e6e5aa8a1b3e386ac3d839b6190bfe7defed733a41dc52ca2"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/增量费用独立核验.json",
+      "bytes": 1943,
+      "sha256": "fa8b44076c2632f96e26d59fa52b904d90ab4f00af2febb85295ef0a4545f4a2"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/实际与刚性逐年对照.csv",
+      "bytes": 2492,
+      "sha256": "699c342d9fa725b799358c9f1c746f5f79bb905bc58a4383ee6af05e6e9789c3"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/实际发展路线与刚性仿真对照.xlsx",
+      "bytes": 23575,
+      "sha256": "8cecee61cacac1241a83a425c4be9b2db1c5f7cc77fd5236f4a2a2f9e8511e5a"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/实际路线对照说明.md",
+      "bytes": 7408,
+      "sha256": "f9906af9533fb1d9485a4daef41eae1983f01034f233f851a97044f76b014324"
+    },
+    {
+      "path": "docs/2026-09-30实际发展路线与刚性规划对照/实际逐年路线.csv",
+      "bytes": 2375,
+      "sha256": "4dfc4167a9963aff46a73ffec685a5cb227ec7f9c3b6156dea9d9989711817bf"
+    },
+    {
+      "path": "docs/2026-09-30无联络弹性方案与逻辑复核/交付核验.json",
+      "bytes": 12911,
+      "sha256": "a69cc2e2e1736019683e507d8e186c556d465c0f7411c890fa90282f9c0b561f"
+    },
+    {
+      "path": "docs/2026-09-30无联络弹性方案与逻辑复核/全部探索条件.csv",
+      "bytes": 7665,
+      "sha256": "958b800d104f1c0b864e269aaf849695c82bc3b45f9b55a264ff31170b443327"
+    },
+    {
+      "path": "docs/2026-09-30无联络弹性方案与逻辑复核/复算结果与核心逻辑审查.md",
+      "bytes": 10102,
+      "sha256": "ec10b2134267916ed1b172c869a659f38cfd9f30d603b569f8f2dc224f6f0ca9"
+    },
+    {
+      "path": "docs/2026-09-30无联络弹性方案与逻辑复核/无年限参数区间探索矩阵.csv",
+      "bytes": 2145,
+      "sha256": "8af87076438c265ec0fc81a9a1e68219ed04bb68a5eeeda56332f04f3f83e7e7"
+    },
+    {
+      "path": "docs/2026-09-30无联络弹性方案与逻辑复核/无年限参数区间探索矩阵.xlsx",
+      "bytes": 8473,
+      "sha256": "e620352a3a1fa1ae8ec619b969cc2d20445e0f675fb30dcfb1374f923d1a77ae"
+    },
+    {
+      "path": "docs/2026-09-30无联络弹性方案与逻辑复核/逐年方案与措施.csv",
+      "bytes": 2260,
+      "sha256": "38afd559645bf8530baa58a8d60475451f974c740e6dbec400155d4d3b4dec31"
+    },
+    {
+      "path": "docs/2026-09-30无联络弹性方案与逻辑复核/逐年方案与核心逻辑复核.xlsx",
+      "bytes": 64910,
+      "sha256": "60bedb28007fd76d18fbe41992aae93edf8c19ab93f11c0fa4616b7a41fdd423"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/actual_route_comparison.py",
+      "bytes": 24645,
+      "sha256": "1f7b9704b8bf0af223958d539a595306f1b0ac22dafb008bd68635b935dde2b9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/actual_route_cost_audit.py",
+      "bytes": 8599,
+      "sha256": "f5408e3b51f88931a0c5b63e1f6b642aad7a27ed7b736cccc39b8050611f4e48"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/actual_route_incremental_cost.py",
+      "bytes": 12031,
+      "sha256": "cced22b8a22d1244d891db2b0b8d89796f0a588f0b5525da18c9414f7522661e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/no_tie_elastic_exploration.py",
+      "bytes": 5664,
+      "sha256": "ad76b30cabc6172ccd8a3336189bc97986b4eabbc4d8088f65bf519e8174e72e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/no_tie_core_sensitivity.py",
+      "bytes": 4165,
+      "sha256": "1c1fc9ae63b278b54130f0c3add6b49648d76cfc90851249e10a29b858172456"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/no_tie_state_matrix.py",
+      "bytes": 8804,
+      "sha256": "1e45389a9f90410f4af78ba65873369900aa89d18cfd3b715a6af4215848c35b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/build_no_tie_review.py",
+      "bytes": 26399,
+      "sha256": "4c813840dab3eccfc102357683b26e35e6a3753ed21a091bcd4244c2cf199aa0"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/actual_route_comparison/incremental_cost.json",
+      "bytes": 31421,
+      "sha256": "3335ff8a2cd188c4ae5db4327777f3f9041c571f2a1baaf06572cd3ce72821f9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/actual_route_comparison/summary.json",
+      "bytes": 6760,
+      "sha256": "cdc3b0c6112f5e830516e3657a609763667ccc25014d8bcfc83d8e0b205d7ff7"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_below_updated_pizhou/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_common_near_2_baseline/audit.json",
+      "bytes": 160,
+      "sha256": "865176f20a6df589167e963611bc01393604321a372ff49df8ed0185b14a62c7"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_common_near_2_baseline/city_2021_district_calibration.csv",
+      "bytes": 5229,
+      "sha256": "f94f48da87b60e097a354cb51f5cb66629abd38a94bc07dac9bd55b2386cc3c9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_common_near_2_baseline/elastic_stations.csv",
+      "bytes": 13816,
+      "sha256": "c036f5c7e7616c85ff06b69c86ebdbc8949c5518f2db599313064c1a8e819226"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_common_near_2_baseline/elastic_years.csv",
+      "bytes": 966,
+      "sha256": "24db7ef43bda3ed50cdb8c6b10b3ee491f6f64923c5a9df396b28807bcafe300"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_common_near_2_baseline/summary.json",
+      "bytes": 2029,
+      "sha256": "8b0b98a4de4a4cfe44b0b660ced726bd84478e5fec6ef19cdcaa462960a8bd93"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_economic/audit.json",
+      "bytes": 159,
+      "sha256": "13574a8eaeac90f7943134a29e30e9bd352656ff7250ef5031d46e9f634e7f68"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_economic/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_economic/elastic_stations.csv",
+      "bytes": 13768,
+      "sha256": "2381cab418cb1dae3734a8f8ad44bf3f133a8fadcefede8f8de6b1b0a3384e88"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_economic/elastic_years.csv",
+      "bytes": 895,
+      "sha256": "ddcea94b7fcc9b58c5c005eeb7b2b4247da2b835e58c00d39db09a9435be3739"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_economic/summary.json",
+      "bytes": 2032,
+      "sha256": "99317ea11343c1899ec0214b4ae38e22128270ce0eb77522bbf8290ee2affc6e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_elastic_ties_available/audit.json",
+      "bytes": 159,
+      "sha256": "8ed23d8fcbec7ae9043afc8163cd8636bad016b912192e9a795eb5cdabfb6848"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_elastic_ties_available/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_elastic_ties_available/elastic_new_lines.csv",
+      "bytes": 327,
+      "sha256": "0d726340523f7626d66e1a0a4af3ddb18d33aea4152c2ada9fb374d702e78eff"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_elastic_ties_available/elastic_outage_flows.csv",
+      "bytes": 6365,
+      "sha256": "418edecb78d6c53499cf816d081a68e7dcd05ada4d7d328bfb09c8d8d8f903fb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_elastic_ties_available/elastic_stations.csv",
+      "bytes": 13681,
+      "sha256": "9f8150b17515ff87e7bb4042a01731542851c53bcaac736f83fea3d052372c43"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_elastic_ties_available/elastic_years.csv",
+      "bytes": 921,
+      "sha256": "ba162268194efb9318437ece1ccb2922276b8c3ea42f40437fe900bd33cdfb8e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_elastic_ties_available/summary.json",
+      "bytes": 2036,
+      "sha256": "f33bc51b5b5cffd010b463ca87bbd4f1e3003a77154fe315e3ac1ccff7be6e49"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_original_ordering/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_reserved_third_slots_only/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_rigid_exact_2/audit.json",
+      "bytes": 157,
+      "sha256": "ca93af0664b02aa8f7a55c6293cd5653927275879e9e42d1224d0204a6c6d862"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_rigid_exact_2/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_rigid_exact_2/rigid_new_lines.csv",
+      "bytes": 327,
+      "sha256": "0d726340523f7626d66e1a0a4af3ddb18d33aea4152c2ada9fb374d702e78eff"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_rigid_exact_2/rigid_outage_flows.csv",
+      "bytes": 6365,
+      "sha256": "418edecb78d6c53499cf816d081a68e7dcd05ada4d7d328bfb09c8d8d8f903fb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_rigid_exact_2/rigid_stations.csv",
+      "bytes": 13681,
+      "sha256": "9f8150b17515ff87e7bb4042a01731542851c53bcaac736f83fea3d052372c43"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_rigid_exact_2/rigid_years.csv",
+      "bytes": 913,
+      "sha256": "748f8759db0823796bf5abe5301d61c83e1c9eba3d03a5e02f851a24aa9f8364"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_rigid_exact_2/summary.json",
+      "bytes": 2035,
+      "sha256": "e9375ca1a8c49fcb8ca5960cdcdf85653e4a1480cb797cabea1f7c2c821cadbf"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_static_loading_only/audit.json",
+      "bytes": 159,
+      "sha256": "ada551b96651d155a62ca8b5d388aa75fae2a32ffcd12687399e713ba270f5c6"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_static_loading_only/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_static_loading_only/elastic_stations.csv",
+      "bytes": 13681,
+      "sha256": "9f8150b17515ff87e7bb4042a01731542851c53bcaac736f83fea3d052372c43"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_static_loading_only/elastic_years.csv",
+      "bytes": 906,
+      "sha256": "12a535e2a909d6c4c7fc3c1cb93cbc38c5f02911c3dfd41ea4df233b5ace2b10"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_static_loading_only/summary.json",
+      "bytes": 2033,
+      "sha256": "d0093e87086ad3036e24281e741c670f7850bed8620faa3744f6d7df406e13b5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_0p7/audit.json",
+      "bytes": 159,
+      "sha256": "13574a8eaeac90f7943134a29e30e9bd352656ff7250ef5031d46e9f634e7f68"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_0p7/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_0p7/elastic_stations.csv",
+      "bytes": 13768,
+      "sha256": "2381cab418cb1dae3734a8f8ad44bf3f133a8fadcefede8f8de6b1b0a3384e88"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_0p7/elastic_years.csv",
+      "bytes": 895,
+      "sha256": "ddcea94b7fcc9b58c5c005eeb7b2b4247da2b835e58c00d39db09a9435be3739"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_0p7/summary.json",
+      "bytes": 2032,
+      "sha256": "908930c9784f6be762fbf2067f4c0a12e1dea7fdcbbf4df9fdf018586862a5d4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_1p3/audit.json",
+      "bytes": 159,
+      "sha256": "13574a8eaeac90f7943134a29e30e9bd352656ff7250ef5031d46e9f634e7f68"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_1p3/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_1p3/elastic_stations.csv",
+      "bytes": 13768,
+      "sha256": "2381cab418cb1dae3734a8f8ad44bf3f133a8fadcefede8f8de6b1b0a3384e88"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_1p3/elastic_years.csv",
+      "bytes": 895,
+      "sha256": "ddcea94b7fcc9b58c5c005eeb7b2b4247da2b835e58c00d39db09a9435be3739"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_storage_1p3/summary.json",
+      "bytes": 2032,
+      "sha256": "5d5ce918c406db48c7793754f79bdb8fc2e3704645245df23dd6815d40044a30"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_weighted_growth/audit.json",
+      "bytes": 158,
+      "sha256": "e3f87971127746d50d13486841b7e6ec7b1abb45687e96d7a1f625c0ca9249d9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_weighted_growth/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_weighted_growth/elastic_stations.csv",
+      "bytes": 13867,
+      "sha256": "76ecbb4354bbf3a9fa25867514028edbd67226bd283a60efdc405d7ac6ef1034"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_weighted_growth/elastic_years.csv",
+      "bytes": 969,
+      "sha256": "f7ebb99cb98199d01c14056f32a16e6e6e5ac4081b0bcf2bf341df8fef4cd146"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/city_weighted_growth/summary.json",
+      "bytes": 2046,
+      "sha256": "8838aa2c1ab519beb20afe021065b7e63ad51634e7e95f1b44246698e223c302"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.0_elastic/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.1_elastic/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.2_elastic/audit.json",
+      "bytes": 160,
+      "sha256": "f55bd77a83a694d967473491b04145e01ae6ea5da36681671a3c6d8214220db1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.2_elastic/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.2_elastic/elastic_stations.csv",
+      "bytes": 13866,
+      "sha256": "98edaac4122d8300f4236c4a1ecbd2f351c0f824ef14cb11fa0f307b3907fc3f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.2_elastic/elastic_years.csv",
+      "bytes": 947,
+      "sha256": "ada659842eb775da824bc46b43c377eb3871ee43da959a78bf167a7c2d0288c3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.2_elastic/summary.json",
+      "bytes": 2033,
+      "sha256": "a6eaaceb0c7f5928dc40d5c6deb7b51abed4c08e9b6a4e68eff2131b7a9a371d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.3_elastic/audit.json",
+      "bytes": 159,
+      "sha256": "13574a8eaeac90f7943134a29e30e9bd352656ff7250ef5031d46e9f634e7f68"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.3_elastic/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.3_elastic/elastic_stations.csv",
+      "bytes": 13768,
+      "sha256": "2381cab418cb1dae3734a8f8ad44bf3f133a8fadcefede8f8de6b1b0a3384e88"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.3_elastic/elastic_years.csv",
+      "bytes": 895,
+      "sha256": "ddcea94b7fcc9b58c5c005eeb7b2b4247da2b835e58c00d39db09a9435be3739"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.3_elastic/summary.json",
+      "bytes": 2032,
+      "sha256": "139864eef3358a96176575259dcab4d22f4ba4c51180b551db36974bf9e8ac84"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.4_elastic/audit.json",
+      "bytes": 159,
+      "sha256": "13574a8eaeac90f7943134a29e30e9bd352656ff7250ef5031d46e9f634e7f68"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.4_elastic/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.4_elastic/elastic_stations.csv",
+      "bytes": 13768,
+      "sha256": "2381cab418cb1dae3734a8f8ad44bf3f133a8fadcefede8f8de6b1b0a3384e88"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.4_elastic/elastic_years.csv",
+      "bytes": 895,
+      "sha256": "ddcea94b7fcc9b58c5c005eeb7b2b4247da2b835e58c00d39db09a9435be3739"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.4_elastic/summary.json",
+      "bytes": 2032,
+      "sha256": "146d9d8273f0569ac0626f09df0665a150ffec55ed7b9d7eded7e4c4f6fe2d1f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.5_elastic/audit.json",
+      "bytes": 159,
+      "sha256": "13574a8eaeac90f7943134a29e30e9bd352656ff7250ef5031d46e9f634e7f68"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.5_elastic/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.5_elastic/elastic_stations.csv",
+      "bytes": 13768,
+      "sha256": "2381cab418cb1dae3734a8f8ad44bf3f133a8fadcefede8f8de6b1b0a3384e88"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.5_elastic/elastic_years.csv",
+      "bytes": 895,
+      "sha256": "ddcea94b7fcc9b58c5c005eeb7b2b4247da2b835e58c00d39db09a9435be3739"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.5_elastic/summary.json",
+      "bytes": 2032,
+      "sha256": "1c1953347b2ef6f302e0d15e7738fe54f4d0ba17b4392fc6b8dfaa0afa0655df"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.6_elastic/audit.json",
+      "bytes": 159,
+      "sha256": "13574a8eaeac90f7943134a29e30e9bd352656ff7250ef5031d46e9f634e7f68"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.6_elastic/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.6_elastic/elastic_stations.csv",
+      "bytes": 13768,
+      "sha256": "2381cab418cb1dae3734a8f8ad44bf3f133a8fadcefede8f8de6b1b0a3384e88"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.6_elastic/elastic_years.csv",
+      "bytes": 895,
+      "sha256": "ddcea94b7fcc9b58c5c005eeb7b2b4247da2b835e58c00d39db09a9435be3739"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_cap_2.6_elastic/summary.json",
+      "bytes": 2032,
+      "sha256": "99317ea11343c1899ec0214b4ae38e22128270ce0eb77522bbf8290ee2affc6e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_common_near_2_elastic/audit.json",
+      "bytes": 160,
+      "sha256": "865176f20a6df589167e963611bc01393604321a372ff49df8ed0185b14a62c7"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_common_near_2_elastic/city_2021_district_calibration.csv",
+      "bytes": 5229,
+      "sha256": "f94f48da87b60e097a354cb51f5cb66629abd38a94bc07dac9bd55b2386cc3c9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_common_near_2_elastic/elastic_stations.csv",
+      "bytes": 13816,
+      "sha256": "c036f5c7e7616c85ff06b69c86ebdbc8949c5518f2db599313064c1a8e819226"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_common_near_2_elastic/elastic_years.csv",
+      "bytes": 966,
+      "sha256": "24db7ef43bda3ed50cdb8c6b10b3ee491f6f64923c5a9df396b28807bcafe300"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_common_near_2_elastic/summary.json",
+      "bytes": 2029,
+      "sha256": "8b0b98a4de4a4cfe44b0b660ced726bd84478e5fec6ef19cdcaa462960a8bd93"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_common_near_2_rigid/city_2021_district_calibration.csv",
+      "bytes": 5229,
+      "sha256": "f94f48da87b60e097a354cb51f5cb66629abd38a94bc07dac9bd55b2386cc3c9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_0p7_rigid/audit.json",
+      "bytes": 157,
+      "sha256": "d4273f1f0123aad28789aa7b72e68ec9c0051799fcb19e09cdfe3bf12dc3c116"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_0p7_rigid/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_0p7_rigid/rigid_new_lines.csv",
+      "bytes": 314,
+      "sha256": "3c2edd396e5b2acae9d4cbb5537828a88a08d130483ebdd1b7e2740338e276fe"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_0p7_rigid/rigid_outage_flows.csv",
+      "bytes": 6278,
+      "sha256": "1decfe72b0231599443d55d86bc419dada1b3bcf73a1db3fdf9041c918574303"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_0p7_rigid/rigid_stations.csv",
+      "bytes": 13681,
+      "sha256": "9f8150b17515ff87e7bb4042a01731542851c53bcaac736f83fea3d052372c43"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_0p7_rigid/rigid_years.csv",
+      "bytes": 900,
+      "sha256": "6f27c269e5e4dd1318873756ac3802855b7dbcec96d6f499da009935a18b0de4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_0p7_rigid/summary.json",
+      "bytes": 2052,
+      "sha256": "554d67aefbf799fe92283538666ad9e36f3a8f5bc72931d985552817d625e8a9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_1p3_rigid/audit.json",
+      "bytes": 157,
+      "sha256": "b014aee90692bf819feb7d17e7a686e3cfd9fdf62f0ec8d4f2678ead843dccbc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_1p3_rigid/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_1p3_rigid/rigid_new_lines.csv",
+      "bytes": 329,
+      "sha256": "62dc07fffb4438a07c814b5fb42773ac36773f10af550158740ac05ba23ee69a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_1p3_rigid/rigid_outage_flows.csv",
+      "bytes": 6188,
+      "sha256": "09b671445996ed7ff4198b61bf15368f248626cfeff909d06281d2fd84bfd32d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_1p3_rigid/rigid_stations.csv",
+      "bytes": 13681,
+      "sha256": "9f8150b17515ff87e7bb4042a01731542851c53bcaac736f83fea3d052372c43"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_1p3_rigid/rigid_years.csv",
+      "bytes": 913,
+      "sha256": "72325b68be85382f97ebc8115137534ba758b39b172c312abcd31274f359ac03"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_line_1p3_rigid/summary.json",
+      "bytes": 2053,
+      "sha256": "ad81c4134b299c9f75a1da0da8947006963f36f5a60996d694a0a260c00233f1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_0p7_rigid/audit.json",
+      "bytes": 157,
+      "sha256": "53935a1e50dcc3614b14a6d007039d99eaada55250f8d004aae8d8fecff16de2"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_0p7_rigid/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_0p7_rigid/rigid_new_lines.csv",
+      "bytes": 327,
+      "sha256": "f78a8e1ca428d61b758b2e12c777f3857e24357dbc753ab2f118884a1de82468"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_0p7_rigid/rigid_outage_flows.csv",
+      "bytes": 6193,
+      "sha256": "333455232ba46c11a65dcc30e252900ce5d26d55ae03f23acc27c1786d7b1476"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_0p7_rigid/rigid_stations.csv",
+      "bytes": 13690,
+      "sha256": "73859c85651d95c8e16ba6856751fee169ed797d64b78cc9faa289cd94571b88"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_0p7_rigid/rigid_years.csv",
+      "bytes": 927,
+      "sha256": "9505b32037db36c2cad2eb4db3a31828547db5b8c6d6b17f113791d058e85407"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_0p7_rigid/summary.json",
+      "bytes": 2035,
+      "sha256": "2c984e7970d9b2fda91df2e2da4ef8a968e1e8ddfa7a71b7d5daf0fb3d0a0ab2"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_1p3_rigid/audit.json",
+      "bytes": 157,
+      "sha256": "ca93af0664b02aa8f7a55c6293cd5653927275879e9e42d1224d0204a6c6d862"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_1p3_rigid/city_2021_district_calibration.csv",
+      "bytes": 5217,
+      "sha256": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_1p3_rigid/rigid_new_lines.csv",
+      "bytes": 327,
+      "sha256": "be7f78ec579482b8c50ef48d5a0e51950f2f0c9ab07b9133410222d8752d5213"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_1p3_rigid/rigid_outage_flows.csv",
+      "bytes": 6192,
+      "sha256": "5c68211de4ed038d7e9e4fcaa0a56efeeb1a9b8c110ff748f5a342b49c510719"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_1p3_rigid/rigid_stations.csv",
+      "bytes": 13681,
+      "sha256": "9f8150b17515ff87e7bb4042a01731542851c53bcaac736f83fea3d052372c43"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_1p3_rigid/rigid_years.csv",
+      "bytes": 913,
+      "sha256": "748f8759db0823796bf5abe5301d61c83e1c9eba3d03a5e02f851a24aa9f8364"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/city_storage_1p3_rigid/summary.json",
+      "bytes": 2035,
+      "sha256": "e056fdf4a42795bece5a241490a35f61072b8851b4df94266ebadd3af687f421"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.2_elastic/audit.json",
+      "bytes": 160,
+      "sha256": "45cfaedb61d79e6978e0c5234e312147595ab98a390afdbdfeb16e97a0f11992"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.2_elastic/elastic_stations.csv",
+      "bytes": 9224,
+      "sha256": "0a5047c3174dc01f7f590d25e57620d043caa3bc86a79a37349ded8b3700e053"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.2_elastic/elastic_years.csv",
+      "bytes": 964,
+      "sha256": "d6b232346d45c69727fd052d4be5d689dab25e2a036a75b804569cb990b1c71a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.2_elastic/summary.json",
+      "bytes": 2065,
+      "sha256": "7fcee3fc676879b9a6a1960961ced035467ac85052be6ca56971a64d9f32e859"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.3_elastic/audit.json",
+      "bytes": 159,
+      "sha256": "8af40564c580e0e26b94d64e24b82ee591b1e29fceea7aea8fa3cbd878d76d51"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.3_elastic/elastic_stations.csv",
+      "bytes": 9025,
+      "sha256": "1f072219c2538f5b798c3c06c1302da2042ba6ae5212c6391d58b87693ea41aa"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.3_elastic/elastic_years.csv",
+      "bytes": 934,
+      "sha256": "29387a89f3ca5c2f813af52ae9af9dfadedc37f632e7f65e7f749b003b2e4551"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.3_elastic/summary.json",
+      "bytes": 2064,
+      "sha256": "60aacd50d18df584ad6fbc27c9e5402f1fd3421b10a6685cd9bb6d6f8a77d3e9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.4_elastic/audit.json",
+      "bytes": 160,
+      "sha256": "37f35b58769fb95789cd6c6ca30dc793a913bd290049bfb7f780824f8a501965"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.4_elastic/elastic_stations.csv",
+      "bytes": 8999,
+      "sha256": "50601640da112b0fa29deba2e6ddc8520b401a02d9674e5ad1007a91b88016cc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.4_elastic/elastic_years.csv",
+      "bytes": 925,
+      "sha256": "35e8c6666f413b1c4283a90d5eb78efd5ab470953c55091048e5d2a6b99b2beb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.4_elastic/summary.json",
+      "bytes": 2065,
+      "sha256": "9d7555c4782f3454c6d1d4d3d4cebf359e0257788cc2a316c583634c000874d2"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.5_elastic/audit.json",
+      "bytes": 160,
+      "sha256": "0955c59c1489b4c46f988ff516f09a8472796e9589bba4129c50ca029e4f68ce"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.5_elastic/elastic_stations.csv",
+      "bytes": 8980,
+      "sha256": "cb7b184d8a5249a7443c75ddb58c386c3fde0b4a1f7b8d63d6d43136e456fccd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.5_elastic/elastic_years.csv",
+      "bytes": 904,
+      "sha256": "0976066c4d0786b933fb18928ef6ce7f4ba861e226fdda71394a0d1bb4fe5cbb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.5_elastic/summary.json",
+      "bytes": 2065,
+      "sha256": "1312ca9594ddb5d871dbe9edf172c1967d611a826729321f2c37012bda6715ec"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.6_elastic/audit.json",
+      "bytes": 160,
+      "sha256": "0955c59c1489b4c46f988ff516f09a8472796e9589bba4129c50ca029e4f68ce"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.6_elastic/elastic_stations.csv",
+      "bytes": 8980,
+      "sha256": "cb7b184d8a5249a7443c75ddb58c386c3fde0b4a1f7b8d63d6d43136e456fccd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.6_elastic/elastic_years.csv",
+      "bytes": 904,
+      "sha256": "0976066c4d0786b933fb18928ef6ce7f4ba861e226fdda71394a0d1bb4fe5cbb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_cap_2.6_elastic/summary.json",
+      "bytes": 2065,
+      "sha256": "d483bee2f8a239bcc9a84beb7aeff5bf83f67009827599fc24abb17e0f5b9cbe"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_0p7_rigid/audit.json",
+      "bytes": 158,
+      "sha256": "9d2869aeedb1e49c20aabcdd8eff12c8039f2722b1aa7e7b6773c14f821a2371"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_0p7_rigid/rigid_new_lines.csv",
+      "bytes": 1565,
+      "sha256": "57197cf5eb18ec171b3efd1f7ceafba4d1a83177c079b21fa09fc4b954b4c6ae"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_0p7_rigid/rigid_outage_flows.csv",
+      "bytes": 5716,
+      "sha256": "67b42e6bb54df8ba2c53992572dccc09350fb3dca05ae906e8a9d4de0cff3cf7"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_0p7_rigid/rigid_stations.csv",
+      "bytes": 8877,
+      "sha256": "0e37618d96d7d3207109338f75e6fdd7f1e88073c7d68d4b7f64a2d7c9d5887e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_0p7_rigid/rigid_years.csv",
+      "bytes": 909,
+      "sha256": "97f91a0524fa2178d1c8c00ebf9d66318e8b61a455caf6ca50965f705386929d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_0p7_rigid/summary.json",
+      "bytes": 2094,
+      "sha256": "97bb064434144bf8fb5f0f0273c362cfb7438fa894842963f46aa7a3cfa7dbda"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_1p3_rigid/audit.json",
+      "bytes": 158,
+      "sha256": "15d110766125746f4dbfcdaa50152436831d0b14235a8e8e9cfdb8fdf26e1dc1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_1p3_rigid/rigid_new_lines.csv",
+      "bytes": 1695,
+      "sha256": "03a0bae44bf375d60ea9ef7462c4415b6920ccda2c1106150f86d9640a44951b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_1p3_rigid/rigid_outage_flows.csv",
+      "bytes": 5478,
+      "sha256": "2750c18ecbfeaf4d1d6f61c0fd3a4a79573b38fd0264abf2575410052e0a9ad9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_1p3_rigid/rigid_stations.csv",
+      "bytes": 8877,
+      "sha256": "0e37618d96d7d3207109338f75e6fdd7f1e88073c7d68d4b7f64a2d7c9d5887e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_1p3_rigid/rigid_years.csv",
+      "bytes": 898,
+      "sha256": "433d90dd0cee90372178a64304c3d302c792bbdaff7653353bc39c2118e5a0ad"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_line_1p3_rigid/summary.json",
+      "bytes": 2094,
+      "sha256": "0c8e0be897e797e9879920c4b24e4b381c3c3d9eeebbaf50414fd5eb92279e62"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_elastic/audit.json",
+      "bytes": 160,
+      "sha256": "aca3d25cdcdf6ed52a146aede8f05284a560dca7ad676d57b3b9d22123be984d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_elastic/elastic_stations.csv",
+      "bytes": 9485,
+      "sha256": "de048682b1e68bc978fc2c975972a1c780157f44bd352f22192271e7522d0904"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_elastic/elastic_years.csv",
+      "bytes": 914,
+      "sha256": "d754343829b6b137d3774cc6cb7f3db8dc5d7c28387c3e206168ccd4942a9776"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_elastic/summary.json",
+      "bytes": 2124,
+      "sha256": "64fa321ea11747a3aadca23034fddc9c32b30706fed72a699c844c158ff19228"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_rigid/audit.json",
+      "bytes": 158,
+      "sha256": "45cea333f566fa03de36c5b35469f8aceb8b45000ed2d5bc250682e712306b27"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_rigid/rigid_new_lines.csv",
+      "bytes": 1847,
+      "sha256": "fc890da968504804c914713a548cdd74708f2fc78bc2b7f88e95e5bff1bee4aa"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_rigid/rigid_outage_flows.csv",
+      "bytes": 6227,
+      "sha256": "dda246d21d9bcaaee6e7b4068110d3cecdfe7b3543985a4cdf9800b865d955b9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_rigid/rigid_stations.csv",
+      "bytes": 9359,
+      "sha256": "08a882264b9cf417f67f91c026287ffce8b29a12a30404b15601198983f7e93c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_rigid/rigid_years.csv",
+      "bytes": 913,
+      "sha256": "1d8b1ac3df73ccbd241862088a3a47c4cff027084193172d071092e862abb92f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.0_rigid/summary.json",
+      "bytes": 2153,
+      "sha256": "bbeefb0c7022d179a56322ac1f65e2376286372ae78b1f68d8204e46dbcfd1fd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_elastic/audit.json",
+      "bytes": 159,
+      "sha256": "68e70133348a5c7acdb7f7dff3277ad01a04039f1c640b6e9bd94503c5d3c0e8"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_elastic/elastic_stations.csv",
+      "bytes": 9475,
+      "sha256": "cae82f2994c90d586952741be836e5e5cdd4ecc0c569c7476c3aef084e120ed8"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_elastic/elastic_years.csv",
+      "bytes": 915,
+      "sha256": "3e4f8061cd41defc06ec454357b1e4954adb157b16f59f0f588723f3cc239058"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_elastic/summary.json",
+      "bytes": 2123,
+      "sha256": "127350c3900ef7b50ff42d4f6fcefc918f81fa58897720e90f60da64a0d5147a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_rigid/audit.json",
+      "bytes": 158,
+      "sha256": "5eaa6147c4ef242ceb697cc8e7c9012eac7a2e5de7e0dd736b5060b67a088124"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_rigid/rigid_new_lines.csv",
+      "bytes": 1847,
+      "sha256": "dbecf6899183a358c1be3edbac7d81d8e152281d001cc17feca4244009013f86"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_rigid/rigid_outage_flows.csv",
+      "bytes": 5613,
+      "sha256": "9843dc6b014cd7d5807997ecbd2dcdb3f917b46e625be9f5c5a9b6c4bca3100a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_rigid/rigid_stations.csv",
+      "bytes": 9357,
+      "sha256": "c5515cf918f5f7b347e3788270cf8cc8c16fc3c89574cc93805348442a416e6f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_rigid/rigid_years.csv",
+      "bytes": 915,
+      "sha256": "522158c49f47c4847b5790d52f252dfda877d4212901c2dc43beb48dac927e38"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_2.5_rigid/summary.json",
+      "bytes": 2153,
+      "sha256": "7a71d05c619783933ad4bef6f4f9da79576b3b414ee9a5c0e6154fea5e9146d9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_elastic/audit.json",
+      "bytes": 160,
+      "sha256": "3e28d3e3e5606bb93f26c3a584856067e3a4234360720c8e8bc722418476d940"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_elastic/elastic_stations.csv",
+      "bytes": 9481,
+      "sha256": "54f248f07c286e85fa00e4f18391aa97183e697d58de727bd0a7bbdf0a461181"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_elastic/elastic_years.csv",
+      "bytes": 918,
+      "sha256": "9a6c277763e7636f5a38f18053f3c629ce4e15115e18ebbf40af057c8939b749"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_elastic/summary.json",
+      "bytes": 2124,
+      "sha256": "385528fb2854caa600c1f275b5e207760e5cec0ef37c6b53c37ed40295beb30e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_rigid/audit.json",
+      "bytes": 158,
+      "sha256": "0aece18db1a956cf8e597186619edef3db5cdcd65dcea8eaecf3f4a61a03c837"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_rigid/rigid_new_lines.csv",
+      "bytes": 1847,
+      "sha256": "298331a2c2dcbbf2d721c5e5211ca8ee9da2c7e5c8305ac58974a49c9e45474b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_rigid/rigid_outage_flows.csv",
+      "bytes": 5747,
+      "sha256": "b899ce7421fc1eb2b58f8416c32c2a71fb80ad57ce7588e83dee839194f1f3e9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_rigid/rigid_stations.csv",
+      "bytes": 9384,
+      "sha256": "1921169cfdee894de5593814056668628ed66e4f03ccc44426ef868c6fd0bcab"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_rigid/rigid_years.csv",
+      "bytes": 924,
+      "sha256": "b69a5676ed4428c1a9b16530a4a1d5d095fd9282504847a50d2957003a7a8e63"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_source_3.0_rigid/summary.json",
+      "bytes": 2153,
+      "sha256": "9d6cd0918a51920aa59cd9dc6f00f0e6d0f9c3027f026e8a4278c19edf786f56"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_0p7_rigid/audit.json",
+      "bytes": 158,
+      "sha256": "e6b5d145567bff74a591d9ec3294766a8ae7c5bfe90f855d62f843c460defbe1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_0p7_rigid/rigid_new_lines.csv",
+      "bytes": 1695,
+      "sha256": "8de6575fe7ea77f5b5ab3ce2d6c2824e92ed92882ac8489b29d9601ec584e0d3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_0p7_rigid/rigid_outage_flows.csv",
+      "bytes": 5696,
+      "sha256": "4a2d3ed81e559e0c4621d8c96c2e57bcedea945e2b409b72e8536ff7652abf9f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_0p7_rigid/rigid_stations.csv",
+      "bytes": 8877,
+      "sha256": "0e37618d96d7d3207109338f75e6fdd7f1e88073c7d68d4b7f64a2d7c9d5887e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_0p7_rigid/rigid_years.csv",
+      "bytes": 898,
+      "sha256": "1fa24a4d169c9c1401e73d6a0a2f748c468eba44e3856f1bcf76e180e964a026"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_0p7_rigid/summary.json",
+      "bytes": 2094,
+      "sha256": "e243f867c58545628d7b3df2fba0351f083a3a74f18b48a36427e8c2973f623e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_1p3_rigid/audit.json",
+      "bytes": 158,
+      "sha256": "e6b5d145567bff74a591d9ec3294766a8ae7c5bfe90f855d62f843c460defbe1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_1p3_rigid/rigid_new_lines.csv",
+      "bytes": 1695,
+      "sha256": "cb812ead570704b09415585298515554ecfb8b9b56a3b835e8ea85ef18e281f4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_1p3_rigid/rigid_outage_flows.csv",
+      "bytes": 5566,
+      "sha256": "18a0e270a0d3a9f51ed4a705ce87bf7f0587d990354190f3b44250e3a4a6679b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_1p3_rigid/rigid_stations.csv",
+      "bytes": 8877,
+      "sha256": "0e37618d96d7d3207109338f75e6fdd7f1e88073c7d68d4b7f64a2d7c9d5887e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_1p3_rigid/rigid_years.csv",
+      "bytes": 898,
+      "sha256": "1fa24a4d169c9c1401e73d6a0a2f748c468eba44e3856f1bcf76e180e964a026"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/pizhou_storage_1p3_rigid/summary.json",
+      "bytes": 2094,
+      "sha256": "3a81ab0f43cb7f311f57a7af73a5839754b98ba9f77b3259d0d82dc18c8090fd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/core_sensitivity/scenarios.json",
+      "bytes": 169248,
+      "sha256": "57975b9f2eb180b9dcf421c3ba9af72614301cffa30207f417b0bdbbb525e3e1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/exploration.json",
+      "bytes": 117941,
+      "sha256": "ca3dceff942e9c472a1d6b7e12e1ffaa1ea6c83ab22781059a5ee391e2e5f702"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_common_near_2_baseline/audit.json",
+      "bytes": 160,
+      "sha256": "0955c59c1489b4c46f988ff516f09a8472796e9589bba4129c50ca029e4f68ce"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_common_near_2_baseline/elastic_stations.csv",
+      "bytes": 8980,
+      "sha256": "cb7b184d8a5249a7443c75ddb58c386c3fde0b4a1f7b8d63d6d43136e456fccd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_common_near_2_baseline/elastic_years.csv",
+      "bytes": 904,
+      "sha256": "0976066c4d0786b933fb18928ef6ce7f4ba861e226fdda71394a0d1bb4fe5cbb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_common_near_2_baseline/summary.json",
+      "bytes": 2065,
+      "sha256": "d483bee2f8a239bcc9a84beb7aeff5bf83f67009827599fc24abb17e0f5b9cbe"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_economic/audit.json",
+      "bytes": 160,
+      "sha256": "0955c59c1489b4c46f988ff516f09a8472796e9589bba4129c50ca029e4f68ce"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_economic/elastic_stations.csv",
+      "bytes": 8980,
+      "sha256": "cb7b184d8a5249a7443c75ddb58c386c3fde0b4a1f7b8d63d6d43136e456fccd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_economic/elastic_years.csv",
+      "bytes": 904,
+      "sha256": "0976066c4d0786b933fb18928ef6ce7f4ba861e226fdda71394a0d1bb4fe5cbb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_economic/summary.json",
+      "bytes": 2065,
+      "sha256": "d483bee2f8a239bcc9a84beb7aeff5bf83f67009827599fc24abb17e0f5b9cbe"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_elastic_ties_available/audit.json",
+      "bytes": 160,
+      "sha256": "70400f09f09ac274168c6584fdbbabca9b62d362036219ea1cdabd244d7a2bc0"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_elastic_ties_available/elastic_new_lines.csv",
+      "bytes": 1695,
+      "sha256": "787b8d903c7d1833a710fc533f270d94bd1ff18f15876e7f341003b3321893b7"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_elastic_ties_available/elastic_outage_flows.csv",
+      "bytes": 5245,
+      "sha256": "d623da8a2d0d0867a982b656ad76b6ffe5adf7dcfafe8f942ab4231de45441e1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_elastic_ties_available/elastic_stations.csv",
+      "bytes": 8887,
+      "sha256": "fc871dd675f751c220c4db47ce2ddcf431b85741704dfd0c60510fd8b70c6fc8"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_elastic_ties_available/elastic_years.csv",
+      "bytes": 902,
+      "sha256": "433a153c30fde0aa5542bfb5565d1b05950e6522455c56db9de8bf304d164dee"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_elastic_ties_available/summary.json",
+      "bytes": 2095,
+      "sha256": "33f86c8d373b7792340572d1a66824591ed43788fb1ef0502c3bf7a82fc02cf4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_original_ordering/audit.json",
+      "bytes": 160,
+      "sha256": "0955c59c1489b4c46f988ff516f09a8472796e9589bba4129c50ca029e4f68ce"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_original_ordering/elastic_stations.csv",
+      "bytes": 8980,
+      "sha256": "cb7b184d8a5249a7443c75ddb58c386c3fde0b4a1f7b8d63d6d43136e456fccd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_original_ordering/elastic_years.csv",
+      "bytes": 904,
+      "sha256": "0976066c4d0786b933fb18928ef6ce7f4ba861e226fdda71394a0d1bb4fe5cbb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_original_ordering/summary.json",
+      "bytes": 2205,
+      "sha256": "78cdd33016a8b5327bdc64fde09c99c37ac0f99e46d2b3d19ece03e19596650d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_rigid_exact_2/audit.json",
+      "bytes": 158,
+      "sha256": "e6b5d145567bff74a591d9ec3294766a8ae7c5bfe90f855d62f843c460defbe1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_rigid_exact_2/rigid_new_lines.csv",
+      "bytes": 1695,
+      "sha256": "cb812ead570704b09415585298515554ecfb8b9b56a3b835e8ea85ef18e281f4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_rigid_exact_2/rigid_outage_flows.csv",
+      "bytes": 5457,
+      "sha256": "23877fd8d79a252c09b6a5fa11f0782f67a306def1621bdd6503b1995b66a230"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_rigid_exact_2/rigid_stations.csv",
+      "bytes": 8877,
+      "sha256": "0e37618d96d7d3207109338f75e6fdd7f1e88073c7d68d4b7f64a2d7c9d5887e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_rigid_exact_2/rigid_years.csv",
+      "bytes": 898,
+      "sha256": "1fa24a4d169c9c1401e73d6a0a2f748c468eba44e3856f1bcf76e180e964a026"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_rigid_exact_2/summary.json",
+      "bytes": 2094,
+      "sha256": "44dfa636d73f1cbb00677a64c450dd714fa5252cad8b82ec6f38a5aeca37da14"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_static_loading_only/audit.json",
+      "bytes": 159,
+      "sha256": "6372e8edabed08111cd6ebe4cd2b57af4b80b8742b11810aac874156e160276f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_static_loading_only/elastic_stations.csv",
+      "bytes": 8886,
+      "sha256": "34353d26b7c6cafcd7ffbe22263cc974d8216c9771091e26ab35a2263f108da5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_static_loading_only/elastic_years.csv",
+      "bytes": 894,
+      "sha256": "1297216bcdef61bf702dc10b53510e4f7c9f9d6d0babd453537faa76f92ea92c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_static_loading_only/summary.json",
+      "bytes": 2083,
+      "sha256": "412073e854d29e6622b3d2111a936749f13275481e472f046374329a3388281f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_storage_0p7/audit.json",
+      "bytes": 160,
+      "sha256": "7d5ee3ecdc3cf3f4b88791bedc346e49a8f7145e3c6a3108e24fe0669542bd77"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_storage_0p7/elastic_stations.csv",
+      "bytes": 8996,
+      "sha256": "bb8a0c9d014c06467d4394ca5633f2415270aa81dedd6e0e1333ae63894ff6d1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_storage_0p7/elastic_years.csv",
+      "bytes": 919,
+      "sha256": "4169daaa1a7c786e7fdd49316913b31c171dbd3136cf62ebb514762ee704dc2e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_storage_0p7/summary.json",
+      "bytes": 2065,
+      "sha256": "627f5c372d850788d101a629896bd6edcf1a9c6f24beea8b80572df8f1ba4e5c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_storage_1p3/audit.json",
+      "bytes": 160,
+      "sha256": "0955c59c1489b4c46f988ff516f09a8472796e9589bba4129c50ca029e4f68ce"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_storage_1p3/elastic_stations.csv",
+      "bytes": 8980,
+      "sha256": "cb7b184d8a5249a7443c75ddb58c386c3fde0b4a1f7b8d63d6d43136e456fccd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_storage_1p3/elastic_years.csv",
+      "bytes": 904,
+      "sha256": "0976066c4d0786b933fb18928ef6ce7f4ba861e226fdda71394a0d1bb4fe5cbb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_storage_1p3/summary.json",
+      "bytes": 2065,
+      "sha256": "f92314e89d0691922fe8039cfc0d2a3830d9237850f014a23bca7a2f9f1379a6"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_weighted_growth/audit.json",
+      "bytes": 160,
+      "sha256": "7e0a69aa0a4c6d5dca1d571c33950f93c43063ebc75a1aced08a4bab9d08fa14"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_weighted_growth/elastic_stations.csv",
+      "bytes": 9786,
+      "sha256": "98b278018d44ca5bf13262e9bfa8803a679fd2c8a07e6657e2ddc863443cea66"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_weighted_growth/elastic_years.csv",
+      "bytes": 1018,
+      "sha256": "79f5ea830bca2f42a473c7f095d472b5b079fde19e925a218d3d0808011c8fa0"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/pizhou_weighted_growth/summary.json",
+      "bytes": 2080,
+      "sha256": "d337a7021f219b444c0463ea8072fea51d110d1e33b1cb48a632cab1d92d8bd6"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/source_audit.json",
+      "bytes": 1382,
+      "sha256": "4b99f021311c522dde9e0b5c22a572982c1f62e9e303876463863070cc435530"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/state_matrix/annual_parameter_atoms.csv",
+      "bytes": 273289,
+      "sha256": "7ffca9d2b3f47624b7429455d08ac146e5b8ef8d9bb7df1a1b3a77191abd4379"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/state_matrix/audit.json",
+      "bytes": 533,
+      "sha256": "7319aae68b0f8dba2fc036fc0c235a34410c4b93c7b25763c53ac7a4ed8f86c3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/state_matrix/matrix.csv",
+      "bytes": 2175,
+      "sha256": "9da22cfae9310c1f6be04a086594e44e8d0584aef5ec9da5485267302275a4dd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/outputs/no_tie_elastic_exploration/state_matrix/plans.json",
+      "bytes": 770379,
+      "sha256": "5324cbf5068e9291a4dbd0fb168cfbd322127a9a5ec912a3fd1b965e6845ea6c"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
-# 110 kV 区县静态规划模型
+# 110 kV区县年度规划模型
 
-本轮现行研究案例为**市区与邳州 2021 年共同反事实起点、2022—2025 年逐年优化**。结果及适用边界见[方案说明](../../../docs/2026-09-29-两区县可比方案与导则分档修订.md)。`reserve_policy_v4`、`two_districts_*`、`regional_revision_*` 等脚本及输出记录历史试算，不作为本轮推荐方案入口；其中部分旧模块仍提供数据读取、成本函数和 MILP 基础类，不能按文件名批量删除。
+2026-10-01恢复9月29日 `eb417e0` 的同措施集成本优化。[回滚记录](../../../docs/ROLLBACK-2026-10-01.md)列出旧版限制和新轮目标。刚性、弹性都允许主变增容、储能、10 kV联络（既有转供及新建）。新轮优化在回滚状态提交推送后启动，输出另存。
 
-在 `实验/研究/` 下复现：
+在 `实验/研究/` 下复现9月29日基线：
 
 ```bash
 python -m rebuild_2026.two_district_ordered_guide_run
@@ -10,6 +10,6 @@ python -m rebuild_2026.two_district_ordered_cost_sensitivity
 python -m rebuild_2026.two_district_ordered_result_audit
 ```
 
-当前主入口调用 `regional_static_milp_v2.py`，输入为 `source_audit/` 已加工文件和 `data/tuomin/` 原表；独立约束成本核对见 `regional_static_milp_v2_audit.py`，原表单元格核对见 `two_district_source_audit.py`。结果只取 `outputs/ordered_guide_*`、`outputs/two_district_guide_growth_classification.csv`。新线、储能与主变造价来源见 `研究报告/数据来源/2026-09-28_10kV线路与成本依据/`。
+基线结果为 `outputs/ordered_guide_*`。核心求解器是 `regional_static_milp_v2.py`，逐站约束与费用核验为 `regional_static_milp_v2_audit.py`，原表核验为 `two_district_source_audit.py`。数据读取、成本函数和MILP基础类有历史模块依赖，继续保留。
 
-`outputs/` 中旧试算已打包至 `历史归档/区域静态建模试算输出-2026-09-29.tar.gz`；早期区域来源诊断与未跟踪的诊断脚本分别存入同目录的 `区域静态建模来源诊断-2026-09-29.tar.gz`、`区域静态建模历史脚本-2026-09-29.zip`。各归档的同名 JSON 保存清单与 SHA-256。早期 v2/v3 输出另见 `历史归档/模型诊断-2026-09-26.zip`。历史文档中的原输出路径需要解包后才能复查。源数据、已加工输入和被现行模型调用的脚本保留在原路径。
+原始数据在 `../data/tuomin/`，加工输入在 `source_audit/`。成本依据见 `研究报告/数据来源/2026-09-28_10kV线路与成本依据/`。基线市区刚性1.8和额外排序条件不是本轮已定结果。删除了9月30日无联络弹性和实际路线旁支，清单见 `docs/CLEANUP-2026-10-01.json`。独立假定区域矩阵仅作为待复核辅助材料。
