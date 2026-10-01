@@ -26,3 +26,21 @@ def test_highspy_does_not_accept_infeasible_model(monkeypatch):
     model=LinearModel();x=model.variable(1)
     model.constraint({x:1},lower=2)
     with pytest.raises(ValueError,match='Infeasible'):model.solve(stage='infeasible_case')
+
+
+def test_fixed_device_layout_reoptimizes_continuous_dispatch_with_zero_gap(monkeypatch):
+    monkeypatch.setenv("XUZHOU_MILP_BACKEND", "highspy")
+    model = LinearModel()
+    device = model.variable(2)
+    transfer = model.variable(0, upper=3, integer=0)
+    model.constraint({device: 3, transfer: 1}, lower=4)
+    selected, cost = model.solve(stage="equipment")
+    assert cost == pytest.approx(2)
+    model.lower_bounds[device] = model.upper_bounds[device] = round(float(selected[device]))
+    model.integrality[device] = 0
+    model.costs = [0, 1]
+    result, dispatch = model.solve(stage="dispatch_at_selected_layout")
+    assert result[device] == pytest.approx(1)
+    assert dispatch == pytest.approx(1)
+    assert model.solve_history[-1]["mip_gap"] == 0
+    assert model.solve_history[-1]["status"] == "optimal"

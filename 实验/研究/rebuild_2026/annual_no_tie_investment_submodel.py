@@ -105,7 +105,10 @@ class LinearModel:
         import highspy
         solver = highspy.Highs()
         solver.setOptionValue("output_flag", False)
+        solver.setOptionValue("threads", int(os.environ.get("XUZHOU_MILP_THREADS", "1")))
+        solver.setOptionValue("random_seed", int(os.environ.get("XUZHOU_MILP_SEED", "0")))
         solver.setOptionValue("mip_rel_gap", float(os.environ.get("XUZHOU_MILP_REL_GAP", "1e-7")))
+        solver.setOptionValue("mip_abs_gap", float(os.environ.get("XUZHOU_MILP_ABS_GAP", "1e-7")))
         solver.setOptionValue("time_limit", float(os.environ.get("XUZHOU_MILP_TIME_LIMIT_SECONDS", "120")))
         lp = highspy.HighsLp()
         lp.num_col_, lp.num_row_ = matrix.shape[1], matrix.shape[0]
@@ -125,11 +128,15 @@ class LinearModel:
         solution = np.array(solver.getSolution().col_value)
         info = solver.getInfo()
         self.last_solution = solution.copy()
+        gap = float(info.mip_gap) if any(self.integrality) else 0.0
         self.solve_history.append({"stage": stage, "backend": "highspy", "solver_version": solver.version(),
+                                   "status": "optimal",
+                                   "threads": int(os.environ.get("XUZHOU_MILP_THREADS", "1")),
+                                   "random_seed": int(os.environ.get("XUZHOU_MILP_SEED", "0")),
                                    "elapsed_seconds": time.monotonic() - started,
-                                   "objective": info.objective_function_value, "mip_gap": info.mip_gap})
+                                   "objective": info.objective_function_value, "mip_gap": gap})
         if os.environ.get("XUZHOU_SOLVER_TRACE") == "1":
-            print(f"MILP optimal: {stage}, objective={info.objective_function_value:.9f}, gap={info.mip_gap}", flush=True)
+            print(f"MILP optimal: {stage}, objective={info.objective_function_value:.9f}, gap={gap}", flush=True)
         return solution, float(info.objective_function_value)
 
 

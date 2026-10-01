@@ -1,0 +1,36 @@
+{
+  "case": "transfer_10pct",
+  "max_transfer_fraction": 0.1,
+  "same_measure_set": true,
+  "same_start_per_district": true,
+  "cost_order": {
+    "pizhou": true,
+    "city": true
+  },
+  "city_below_pizhou_all_years": false,
+  "elastic_at_least_rigid_all_years": false,
+  "elastic_break_2_years": {
+    "pizhou": [
+      2022,
+      2023
+    ],
+    "city": [
+      2022,
+      2024
+    ]
+  },
+  "all_requested_relations": false,
+  "cost_npv_10k": {
+    "pizhou": {
+      "rigid": 25177.89587707051,
+      "elastic": 11860.620978350602
+    },
+    "city": {
+      "rigid": 54396.18806747073,
+      "elastic": 53806.636670144544
+    }
+  },
+  "ordering_constraints_imposed": false,
+  "transfer_limit_basis": "research_operational_scenario_same_in_both_schemes",
+  "storage_upper_basis": "station_full_peak_task_times_duration_rounded_to_modules"
+}

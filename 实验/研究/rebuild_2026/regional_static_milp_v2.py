@@ -5,6 +5,7 @@
 
 import argparse
 import json
+import math
 from collections import defaultdict
 from itertools import combinations
 from pathlib import Path
@@ -51,7 +52,7 @@ def input_data(load_scenario: str, region=REGION, city_baseline_cap_mva=None):
     return baseline, scenes, duration, peaks, catalog[region], coefficient
 
 
-def optimize(scheme: str, load_scenario: str = "observed_annual", elastic_cap: float = 2.4,
+def optimization_problem(scheme: str, load_scenario: str = "observed_annual", elastic_cap: float = 2.4,
              rigid_cap: float = 2.0,
              transformer_scale: float = 1.0, line_scale: float = 1.0,
              storage_scale: float = 1.0, use_new_lines: bool = True,
@@ -76,11 +77,22 @@ def optimize(scheme: str, load_scenario: str = "observed_annual", elastic_cap: f
              elastic_use_existing_outage_transfer: bool = False,
              elastic_allow_line_decisions: bool = False,
              annual_clr_floor: dict[int, float] | None = None,
-             annual_clr_ceiling: dict[int, float] | None = None):
+             annual_clr_ceiling: dict[int, float] | None = None,
+             max_transfer_fraction: float | None = None,
+             storage_max_mwh_per_station: float | None = STORAGE_MAX_MWH_PER_STATION,
+             prefer_larger_clr: bool = False,
+             minimize_transfer_tiebreak: bool = False,
+             cost_tiebreak_tolerance_10k: float = 0.001):
     if scheme not in ("rigid", "elastic"):
         raise ValueError("scheme 应为 rigid 或 elastic")
     if any(v <= 0 for v in (transformer_scale, line_scale, storage_scale)):
         raise ValueError("成本比例系数须为正")
+    if max_transfer_fraction is not None and not 0 <= max_transfer_fraction <= 1:
+        raise ValueError("实际转供使用比例须在0～1")
+    if storage_max_mwh_per_station is not None and storage_max_mwh_per_station <= 0:
+        raise ValueError("储能站级上界须为正或按供电任务推导")
+    if not 0 <= cost_tiebreak_tolerance_10k <= .01:
+        raise ValueError("成本同等解容差须在0～0.01万元")
     if elastic_cap < rigid_cap or not 0 < rigid_cap <= 2 or not 0 <= min_clr <= rigid_cap:
         raise ValueError("容载比扫描边界无效")
     if not 0 <= baseline_margin_fraction <= 1 or not 0 < reverse_capacity_fraction <= 1:
@@ -157,7 +169,20 @@ def optimize(scheme: str, load_scenario: str = "observed_annual", elastic_cap: f
     model = LinearModel()
     x, replace, energy, third, third_added = {}, {}, {}, {}, {}
     built, added, flow, existing_flow, outage_flow = {}, {}, {}, {}, {}
+    storage_upper_by_station = {}
     for station in stations:
+        if storage_max_mwh_per_station is None:
+            needed_energy = max(
+                float(scenes[station, year][field]) * max(STORAGE_MWH_PER_MW,
+                                                         int(durations[station][duration_key]))
+                for year in YEARS
+                for field, duration_key in (
+                    ("estimated_station_forward_peak_mw", "forward_d95_max_run_hours"),
+                    ("reverse_screen_mw", "reverse_d95_max_run_hours")))
+            storage_upper_by_station[station[2]] = math.ceil(
+                needed_energy / STORAGE_MODULE_MWH) * STORAGE_MODULE_MWH
+        else:
+            storage_upper_by_station[station[2]] = storage_max_mwh_per_station
         initial = tuple(float(baseline[station][f"simulation_unit_{slot}_mva"]) for slot in (1, 2))
         for year in YEARS:
             if (allow_third_transformer and
@@ -174,7 +199,7 @@ def optimize(scheme: str, load_scenario: str = "observed_annual", elastic_cap: f
             energy[station, year] = model.variable(
                 STORAGE_MODULE_MWH * storage_price * storage_scale *
                 (factors["storage"][year] - factors["storage"].get(year + 1, 0)),
-                upper=round(STORAGE_MAX_MWH_PER_STATION / STORAGE_MODULE_MWH))
+                upper=round(storage_upper_by_station[station[2]] / STORAGE_MODULE_MWH))
             if year != YEARS[0]:
                 model.constraint({energy[station, year]: 1, energy[station, year - 1]: -1}, lower=0)
             for slot in (0, 1):
@@ -252,7 +277,9 @@ def optimize(scheme: str, load_scenario: str = "observed_annual", elastic_cap: f
                 outbound.update({v: 1 for (yy, a, _), v in existing_flow.items()
                                  if yy == year and a == station_id})
                 if outbound:
-                    model.constraint(outbound, upper=float(scenes[station, year]["estimated_station_forward_peak_mw"]))
+                    model.constraint(outbound, upper=(
+                        1.0 if max_transfer_fraction is None else max_transfer_fraction) *
+                        float(scenes[station, year]["estimated_station_forward_peak_mw"]))
     else:
         existing_limit_2025 = 0.0
 
@@ -309,7 +336,8 @@ def optimize(scheme: str, load_scenario: str = "observed_annual", elastic_cap: f
                 if outage_recovery_fraction:
                     model.constraint(recover, lower=required_recovery)
                 model.constraint(recover,
-                                 upper=float(scenes[failed, year]["estimated_station_forward_peak_mw"]))
+                                 upper=(1.0 if max_transfer_fraction is None else max_transfer_fraction) *
+                                 float(scenes[failed, year]["estimated_station_forward_peak_mw"]))
                 if require_transformer_n1:
                     hours = int(durations[failed]["forward_d95_max_run_hours"])
                     full_demand = float(scenes[failed, year]["estimated_station_forward_peak_mw"])
@@ -399,7 +427,49 @@ def optimize(scheme: str, load_scenario: str = "observed_annual", elastic_cap: f
                 model.constraint(terms, lower=demand)
         model.constraint(ratio_terms, lower=max(min_clr, (annual_clr_floor or {}).get(year, 0)) * annual_peak[year],
                          upper=min(cap, (annual_clr_ceiling or {}).get(year, cap)) * annual_peak[year])
-    solution, _ = model.solve(stage=f"{scheme}_{load_scenario}")
+    primary_costs = list(model.costs)
+    clr_terms = {year: {} for year in YEARS}
+    for (station, slot, year, rating), variable in x.items():
+        clr_terms[year][variable] = rating / annual_peak[year]
+    for (station, year), variable in third.items():
+        clr_terms[year][variable] = THIRD_UNIT_MVA / annual_peak[year]
+    override = yield model, {
+        "clr_terms": clr_terms,
+        "transfer_variables": sorted(set(flow.values()) | set(existing_flow.values()) |
+                                     set(outage_flow.values())),
+        "line_variables": sorted(set(built.values()) | set(added.values())),
+        "line_dispatch_substitutable": (
+            max_transfer_fraction is not None and max_transfer_fraction <= existing_transfer_fraction
+            and all(max_transfer_fraction * sum(float(scenes[station, year][
+                "estimated_station_forward_peak_mw"]) for station in stations) <=
+                existing_transfer_fraction * annual_peak[year] + 1e-7 for year in YEARS)),
+        "region": region, "scheme": scheme,
+    }
+    if override is None:
+        solution, minimum_objective = model.solve(stage=f"{scheme}_{load_scenario}_minimum_cost")
+        max_clr_objective = {i: -value for terms in clr_terms.values() for i, value in terms.items()}
+        if prefer_larger_clr or minimize_transfer_tiebreak:
+            model.constraint({i: value for i, value in enumerate(primary_costs) if value},
+                             upper=minimum_objective + cost_tiebreak_tolerance_10k)
+        if prefer_larger_clr:
+            model.costs = [max_clr_objective.get(i, 0.0) for i in range(len(model.costs))]
+            solution, clr_objective = model.solve(stage=f"{scheme}_maximum_clr_at_minimum_cost")
+            model.constraint(max_clr_objective, upper=clr_objective + 1e-8)
+        if minimize_transfer_tiebreak:
+            for i, integer in enumerate(model.integrality):
+                if integer:
+                    model.lower_bounds[i] = model.upper_bounds[i] = round(float(solution[i]))
+                    model.integrality[i] = 0
+            model.costs = [0.0] * len(model.costs)
+            for variable in sorted(set(flow.values()) | set(existing_flow.values()) |
+                                   set(outage_flow.values())):
+                model.costs[variable] = 1.0
+            solution, _ = model.solve(stage=f"{scheme}_minimum_transfer_at_selected_layout")
+    else:
+        solution, joint_minimum, selected_joint, history = override
+        minimum_objective = sum(value * float(solution[i])
+                                for i, value in enumerate(primary_costs))
+        model.solve_history = history
     stations_out, years_out, transfers_out, lines_out, outage_out = [], [], [], [], []
     prior_capacity = {station: tuple(float(baseline[station][f"simulation_unit_{slot}_mva"])
                                      for slot in (1, 2)) for station in stations}
@@ -513,6 +583,16 @@ def optimize(scheme: str, load_scenario: str = "observed_annual", elastic_cap: f
                                          for r in baseline.values()) / peaks[region + (2021,)]),
                "station_count": len(stations),
                "min_clr": min_clr, "objective_npv_10k": actual_npv,
+               "minimum_primary_objective_10k": minimum_objective,
+               "selected_primary_objective_10k": sum(
+                   value * float(solution[i]) for i, value in enumerate(primary_costs)),
+               "prefer_larger_clr": prefer_larger_clr,
+               "minimize_transfer_tiebreak": minimize_transfer_tiebreak,
+               "cost_tiebreak_tolerance_10k": cost_tiebreak_tolerance_10k,
+               "max_transfer_fraction": max_transfer_fraction,
+               "storage_max_mwh_per_station": storage_max_mwh_per_station,
+               "storage_upper_by_station_mwh": storage_upper_by_station,
+               "solve_history": model.solve_history,
                "annual_clr_floor": annual_clr_floor or {},
                "annual_clr_ceiling": annual_clr_ceiling or {},
                "mip_gap": model.solve_history[-1]["mip_gap"],
@@ -555,7 +635,22 @@ def optimize(scheme: str, load_scenario: str = "observed_annual", elastic_cap: f
                                 if region[0] == "QX-00007" else
                                 "2021_counterfactual_baseline;_official_district_downward_load_proxy;"
                                 "_pizhou_sample_tie_ratio_extrapolated_to_county")}
+    if override is not None:
+        summary["optimization_scope"] = "four_paths_joint_with_explicit_planning_order"
+        summary["joint_minimum_primary_objective_10k"] = joint_minimum
+        summary["selected_joint_primary_objective_10k"] = selected_joint
+        summary["minimum_primary_objective_scope"] = "component_of_selected_joint_solution_not_independent_optimum"
     return summary, years_out, stations_out, transfers_out, lines_out, outage_out
+
+
+def optimize(*args, **kwargs):
+    problem = optimization_problem(*args, **kwargs)
+    next(problem)
+    try:
+        problem.send(None)
+    except StopIteration as result:
+        return result.value
+    raise RuntimeError("优化问题未结束")
 
 
 def run(output_dir: Path = OUTPUT, load_scenario: str = "observed_annual",

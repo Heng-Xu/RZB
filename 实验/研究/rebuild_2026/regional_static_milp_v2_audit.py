@@ -160,6 +160,8 @@ def audit(directory: Path = OUTPUT) -> dict:
                             + (new_third / 50) * float(summary["third_50mva_project_price_10k"]))
                            * float(summary.get("transformer_scale", 1))) < 1e-4
                 energy = float(item["storage_energy_mwh"])
+                if "storage_upper_by_station_mwh" in summary:
+                    assert energy <= float(summary["storage_upper_by_station_mwh"][station_id]) + 1e-6
                 assert energy + 1e-6 >= previous_energy[station_id]
                 assert abs(energy - int(item["storage_modules"]) * STORAGE_MODULE_MWH) < 1e-6
                 assert abs(float(item["new_storage_energy_mwh"]) -
@@ -170,6 +172,10 @@ def audit(directory: Path = OUTPUT) -> dict:
                            float(summary.get("storage_scale", 1))) < 1e-4
                 assert abs(energy - STORAGE_MWH_PER_MW * float(item["storage_power_mw"])) < 1e-5
                 outgoing = by_station_out[station_id]
+                transfer_fraction = summary.get("max_transfer_fraction")
+                if transfer_fraction is not None:
+                    assert outgoing <= float(transfer_fraction) * float(
+                        scenes[station, year]["estimated_station_forward_peak_mw"]) + 1e-5
                 incoming = sum(float(t["mw"]) for t in local_transfer
                                if t["receiver"] == station_id)
                 forward = float(scenes[station, year]["estimated_station_forward_peak_mw"])
@@ -190,6 +196,8 @@ def audit(directory: Path = OUTPUT) -> dict:
                 if summary.get("require_transformer_n1_static_proxy"):
                     recovered = sum(float(r["recoverable_mw"]) for r in outages
                                     if int(r["year"]) == year and r["failed_station"] == station_id)
+                    if transfer_fraction is not None:
+                        assert recovered <= float(transfer_fraction) * forward + 1e-5
                     demand = (forward if summary.get("n1_load_requirement", "full") == "full" or
                               physical[station_id]["area_class"] == "A" else
                               max(0, min(forward - 12, forward * 2 / 3)))
@@ -243,6 +251,10 @@ def audit(directory: Path = OUTPUT) -> dict:
                                 + 1e-4 >= amount)
                     checked += 1
         assert abs(total_cost - float(summary["objective_npv_10k"])) < 1e-3
+        if "selected_primary_objective_10k" in summary:
+            assert float(summary["selected_primary_objective_10k"]) <= (
+                float(summary["minimum_primary_objective_10k"]) +
+                float(summary["cost_tiebreak_tolerance_10k"]) + 1e-5)
         results.append({"scheme": scheme, "status": "PASS", "station_scenario_checks": checked,
                         "line_pairs": len(lines), "lifecycle_npv_10k": total_cost})
     (directory / "audit.json").write_text(json.dumps(results, ensure_ascii=False, indent=2) + "\n",
