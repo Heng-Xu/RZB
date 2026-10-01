@@ -1,25 +1,15 @@
-# RZB v3.2 新会话接续提示词
+# 新会话接续：150页研究报告细节修订
 
-更新时间：2026-09-01
+更新：2026-10-01
 
-```text
-继续接管本地 RZB 电科院咨询项目，全程在 model-v3.2-autonomous-review 分支工作。不要重新设计模型，也不要重新询问是否确认既有 v3.2 方案。
+继续在`reserve-policy-v4-matrix-20260927`分支接管徐州电科院咨询研究报告。用户已认可150页重构稿的总体成果，本轮已授权Git提交推送；后续按用户新提供的细节问题继续通篇修改。
 
-开始时按以下顺序建立事实基线：
-1. git fetch、git status、当前分支、git log 和远端最新 HEAD；
-2. GitHub Actions 最新状态及 head_sha；
-3. AGENTS.md；
-4. 实验/研究/model_contract.yaml；
-5. 实验/研究/model_contract_v3_2_overlay.yaml；
-6. src/v32_contract.py 解析的 resolved contract；
-7. data/processed/real_2021_2025/manifest.json 与 timeseries_mapping_approval.csv；
-8. results/runs/real-2021-2025-v32-frozen/ 的 baseline、frontier、sensitivity、formal matrices 和 manifest；
-9. 当前报告及生成/审查脚本；
-10. 最后读取 memory/current.md。claude_session_1.txt、memory/archive 和旧 session 只作 HISTORICAL / SUPERSEDED 历史追溯。
+先核对Git状态及最新提交，再读`memory/current.md`、`docs/2026-10-01研究报告交接.md`、`研究报告/AGENTS.md`与`研究报告/交付说明.md`。
 
-当前 contract=3.2.0 frozen。正式方案代码只有 PATH_ACTUAL_2021_2025、PATH_OPT_CLR_UNBOUNDED 和 PATH_OPT_CLR_LE_2。主模型固定为“2021实际在役资产共同起点 + 存量容量豁免 + Rcap只约束110 kV规划期新增容量”。两方案均可行时可以直接比较累计年化成本；弹性方案可行域包含刚性方案可行域。物理 CLR 与 Rcap 分离，物理 CLR 可以因既有存量而高于 Rcap。逐时证据按年度资产白名单审批；2×P2021 只作二级标准化敏感性基准；主模型不为满足 Rcap 生成退役候选。
+当前Word入口为`研究报告/04_word/研究报告终稿.docx`，正文源在`研究报告/03_MD/2026-10-01重构/`；核心底稿和语料在`研究报告/范文与语料/`。报告主体为邳州和市区，六章及参考文献，无正文附录；详细收资出处另列独立来源说明。关键成本系数、案例依据与计算过程保留在正文。
 
-正式结果目录：实验/研究/results/runs/real-2021-2025-v32-frozen/。
+报告和18组条件矩阵采用冻结的`transfer_10pct_all_years_load_reallocation`结果（目录首次提交`df16331`）。仓库当前还包含`20bddbb`市区统一A类、全负荷及站级转供率新版计算，其数值尚未同步进150页稿件。勿混接两个版本或未经新任务自动重跑矩阵；需要模型升级时统一核对并重建全文及矩阵。
 
-接手时以 `memory/current.md` 的最新状态和实时 Git/Actions 为准，按项目约束完成必要的复跑、冻结比对、报告一致性审查和验证闭环。历史版本口径、不同规划起点、不可比成本、无证据的 EENS/弃光数值均不得回到正式成果。
-```
+成稿按指定lieflat-less-ai-tone规则审核；未命中内容、结构、数值、公式、引文保持。WPS云端未实测；光伏单位采用假定已注明。修改后须重建Word、实际导出PDF、核查分页及公式图表、更新目录缓存和交付哈希。
+
+用户尚未说明具体细节，不猜测新的修改任务。旧v3.2、七章结构和9月暂停提示均为历史，不作为本轮规则。

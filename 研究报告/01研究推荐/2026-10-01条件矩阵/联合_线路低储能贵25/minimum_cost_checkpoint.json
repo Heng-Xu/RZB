@@ -1,0 +1,22 @@
+{
+  "case": "transfer_10pct",
+  "breakthrough": "all_years",
+  "transfer_mode": "load_reallocation",
+  "n1_load_requirement": "bc_min_service_static",
+  "city_area_class": null,
+  "history": [
+    {
+      "stage": "joint_four_paths_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 322.23481248505414,
+      "objective": 233153.19478002543,
+      "mip_gap": 0.0,
+      "objective_lower_bound": 233153.19478002543,
+      "mip_relative_gap_target": 1e-07
+    }
+  ]
+}

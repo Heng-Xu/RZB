@@ -1,5 +1,7 @@
 # 项目记忆索引
 
+> 2026-10-01最新接续：150页研究报告已交付，用户认可总体并授权Git同步。以[当前状态](current.md)、[交接记录](../docs/2026-10-01研究报告交接.md)和实时Git为准；下列2026年7月论文主线及更早模型条目只作对应历史任务参考。
+
 > ⚠️ **自动生成硬约束（2026-07-22）**：后续 `实验/研究/` 的实验、建模、测试、出图、出表和数据接入默认且必须使用 Conda 环境 `xuzhou110kv_clr`（路径：`/home/xh/anaconda3/envs/xuzhou110kv_clr`）。未激活环境时使用 `conda run -n xuzhou110kv_clr ...`。
 
 > ⚠️ **当前主线（2026-07-03）= MIND 2026 EA 轨**：论文改投 MIND 2026（EI/IEEE），走纯进化算法 **FG-NSGA-II**（见 [[fg-nsga2-convergence]]）。下列 project-state / experiment-model-design / paper-writing-plan 记录的是**无EA/山东电力旧轨**（物理决策矩阵，仍作主报告 B 轨有效）。

@@ -1,0 +1,275 @@
+[
+  {
+    "number": "3-1",
+    "tex": "g_y=P_y/P_{y-1}-1,\\qquad \\bar g=\\frac{g_{2022}+2g_{2023}+3g_{2024}+4g_{2025}}{10}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-1.svg",
+    "width_in": 4.25775,
+    "height_in": 0.34349999999999997
+  },
+  {
+    "number": "3-2",
+    "tex": "\\widehat C_{y,m}=C_{2023,m}\\left(\\frac{C_{2023,m}}{C_{2024,m}}\\right)^{2023-y},\\quad y=2021,2022.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-2.svg",
+    "width_in": 3.6085666666666674,
+    "height_in": 0.4372166666666668
+  },
+  {
+    "number": "3-3",
+    "tex": "B_{i,y}=\\max\\left(0,a_{i,y}G_{i,2025}-b_yU_{i,2025}\\right),\\quad a_{i,y}=\\frac{C_{y,m_i}}{C_{2025,m_i}}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-3.svg",
+    "width_in": 3.9489,
+    "height_in": 0.4055166666666666
+  },
+  {
+    "number": "3-4",
+    "tex": "\\widehat E_{\\rm PV}=\\sum_{m=1}^{12}\\sum_{t\\in m}\\phi_t\\frac{C_m+C_{m-1}}{2}\\Delta t.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-4.svg",
+    "width_in": 2.3797333333333333,
+    "height_in": 0.4944666666666667
+  },
+  {
+    "number": "3-5",
+    "tex": "\\eta_C=\\frac{C_{\\rm DG}}{P_{\\rm user,max}}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-5.svg",
+    "width_in": 1.1115666666666666,
+    "height_in": 0.39236666666666664
+  },
+  {
+    "number": "3-6",
+    "tex": "\\widehat E_{\\rm user}=a\\sum_tP_{{\\rm net},t}\\Delta t+\\widehat E_{\\rm PV},\\qquad\n\\eta_E=\\frac{\\widehat E_{\\rm PV}}{\\widehat E_{\\rm user}}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-6.svg",
+    "width_in": 3.305416666666667,
+    "height_in": 0.4916333333333334
+  },
+  {
+    "number": "3-7",
+    "tex": "\\widehat E_{{\\rm user},F}=P_{{\\rm user,max},F}\\,8760\\,\\widehat f_F.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-7.svg",
+    "width_in": 2.01415,
+    "height_in": 0.2317
+  },
+  {
+    "number": "3-8",
+    "tex": "P^+=\\max_t(P_t,0),\\quad P^-=\\max_t(-P_t,0),\\quad P^{\\rm abs}=\\max(P^+,P^-).",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-8.svg",
+    "width_in": 4.6384333333333325,
+    "height_in": 0.2720333333333333
+  },
+  {
+    "number": "3-9",
+    "tex": "\\begin{aligned}\nH_{95}^{+}&=\\max\\{\\text{连续时段长度}:P_t\\geq0.95P^+\\},\\\\\nH_{95}^{-}&=\\max\\{\\text{连续时段长度}:-P_t\\geq0.95P^-\\}.\n\\end{aligned}",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-9.svg",
+    "width_in": 3.2061,
+    "height_in": 0.42890000000000006
+  },
+  {
+    "number": "3-10",
+    "tex": "r_{XY}=\\frac{\\sum_{m=1}^{12}(X_m-\\bar X)(Y_m-\\bar Y)}{\\sqrt{\\sum_{m=1}^{12}(X_m-\\bar X)^2\\sum_{m=1}^{12}(Y_m-\\bar Y)^2}}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/3-10.svg",
+    "width_in": 3.257816666666667,
+    "height_in": 0.5952166666666667
+  },
+  {
+    "number": "4-1",
+    "tex": "c_T=\\frac{1151+1335}{50+100}=16.573333\\quad{\\rm 万元/MVA}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-1.svg",
+    "width_in": 3.3027333333333337,
+    "height_in": 0.3516666666666667
+  },
+  {
+    "number": "4-2",
+    "tex": "I_{T,iky}=c_T S^{\\rm new}_{iky}\\,z_{iky},\\qquad\n\\Delta S_{iky}=\\left(S^{\\rm new}_{iky}-S^{\\rm old}_{ik,y-1}\\right)z_{iky}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-2.svg",
+    "width_in": 3.8560499999999993,
+    "height_in": 0.21903333333333333
+  },
+  {
+    "number": "4-3",
+    "tex": "I_{T,3}=\\frac{1206+1240}{2}=1223\\quad{\\rm 万元/项}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-3.svg",
+    "width_in": 2.77975,
+    "height_in": 0.3398333333333333
+  },
+  {
+    "number": "4-4",
+    "tex": "I_L=3\\left(0.9\\times24+0.1\\times120\\right)+2\\times3=106.8\\quad{\\rm 万元/条}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-4.svg",
+    "width_in": 4.05675,
+    "height_in": 0.16666666666666666
+  },
+  {
+    "number": "4-5",
+    "tex": "c_B=\\frac{210.456262}{10}=21.0456262\\quad{\\rm 万元/柜},\\qquad\nI_{B,iy}=c_B\\Delta n_{iy}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-5.svg",
+    "width_in": 4.546316666666667,
+    "height_in": 0.34349999999999997
+  },
+  {
+    "number": "4-6",
+    "tex": "B(n,d)=\\frac{0.215n}{\\max(2.15,d)},\\qquad d\\geq0.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-6.svg",
+    "width_in": 2.5555166666666667,
+    "height_in": 0.3836666666666667
+  },
+  {
+    "number": "4-7",
+    "tex": "k_{TL}=\\frac{c_T/0.95}{I_L/F_L}\n=\\frac{16.573333/0.95}{106.8/7.491}=1.22364.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-7.svg",
+    "width_in": 3.3112999999999997,
+    "height_in": 0.4033333333333333
+  },
+  {
+    "number": "4-8",
+    "tex": "k_{TB}(d)=\\frac{c_T/0.95}{210.456262/B(10,d)}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-8.svg",
+    "width_in": 2.2946166666666667,
+    "height_in": 0.4033333333333333
+  },
+  {
+    "number": "4-9",
+    "tex": "k_{TB}^{\\rm life}(y,d)=k_{TB}(d)\\frac{A_T(y)}{A_B(y)},\\qquad\nk_{TL}^{\\rm life}(y)=k_{TL}\\frac{A_T(y)}{A_L(y)}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-9.svg",
+    "width_in": 3.7914333333333334,
+    "height_in": 0.4033333333333334
+  },
+  {
+    "number": "4-10",
+    "tex": "\\begin{aligned}\nC(I,y,L,q)={}&\\frac{I}{(1+r)^{y-2021}}\n+\\sum_{k\\geq1,\\ y+kL<T}\\frac{I}{(1+r)^{y+kL-2021}}\\\\\n&+\\sum_{t=y+1}^{T}\\frac{qI}{(1+r)^{t-2021}}.\n\\end{aligned}",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-10.svg",
+    "width_in": 4.190033333333334,
+    "height_in": 1.012216666666667
+  },
+  {
+    "number": "4-11",
+    "tex": "C_{\\rm plan}=\\sum_{e\\in\\mathcal E_T}C_e+\\sum_{e\\in\\mathcal E_B}C_e+\\sum_{e\\in\\mathcal E_L}C_e.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-11.svg",
+    "width_in": 2.474166666666667,
+    "height_in": 0.37860000000000005
+  },
+  {
+    "number": "4-12",
+    "tex": "n\\geq\\left\\lceil\\frac{Q\\max(2.15,d)}{0.215}\\right\\rceil.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/4-12.svg",
+    "width_in": 1.6928166666666666,
+    "height_in": 0.40158333333333335
+  },
+  {
+    "number": "5-1",
+    "tex": "\\sum_{a\\in\\mathcal A_{ik}}x_{c,s,i,k,y,a}=1,\\qquad\nS_{c,s,i,k,y}=\\sum_{a\\in\\mathcal A_{ik}}a\\,x_{c,s,i,k,y,a}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-1.svg",
+    "width_in": 3.5031,
+    "height_in": 0.3822166666666667
+  },
+  {
+    "number": "5-2",
+    "tex": "S_{c,s,i,y}=S_{c,s,i,1,y}+S_{c,s,i,2,y}+50u_{c,s,i,y}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-2.svg",
+    "width_in": 2.695266666666667,
+    "height_in": 0.16666666666666669
+  },
+  {
+    "number": "5-3",
+    "tex": "\\min C_{\\rm joint}=\\sum_c\\sum_s\\sum_y\\left[\nA_T(y)I_{T,c,s,y}+A_B(y)I_{B,c,s,y}+A_L(y)I_{L,c,s,y}\\right].",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-3.svg",
+    "width_in": 4.856166666666667,
+    "height_in": 0.3741666666666667
+  },
+  {
+    "number": "5-4",
+    "tex": "\\begin{aligned}\nI_{T,c,s,y}&=c_T\\sum_{i,k}S^{\\rm purchased}_{c,s,i,k,y}\n+1223\\sum_i\\Delta u_{c,s,i,y},\\\\\nI_{B,c,s,y}&=c_B\\sum_i\\Delta n_{c,s,i,y}.\n\\end{aligned}",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-4.svg",
+    "width_in": 3.2052666666666667,
+    "height_in": 0.7947666666666667
+  },
+  {
+    "number": "5-5",
+    "tex": "R_{c,s,y}=\\frac{\\sum_iS_{c,s,i,y}}{P^{\\rm proxy}_{c,y}}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-5.svg",
+    "width_in": 1.3891,
+    "height_in": 0.42724999999999996
+  },
+  {
+    "number": "5-6",
+    "tex": "R_{c,\\rm rigid,y}\\leq2.0,\\qquad\n2.001\\leq R_{c,\\rm elastic,y}\\leq2.6.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-6.svg",
+    "width_in": 3.122,
+    "height_in": 0.16311666666666666
+  },
+  {
+    "number": "5-7",
+    "tex": "R_{{\\rm city},s,y}+0.001\\leq R_{{\\rm Pizhou},s,y},\\qquad\nR_{c,\\rm rigid,y}+0.001\\leq R_{c,\\rm elastic,y}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-7.svg",
+    "width_in": 4.447133333333333,
+    "height_in": 0.16311666666666666
+  },
+  {
+    "number": "5-8",
+    "tex": "L'_{i,y}=L^+_{i,y}-\\sum_jF_{ij,y}+\\sum_jF_{ji,y},\\qquad\n\\sum_iL'_{i,y}=\\sum_iL^+_{i,y}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-8.svg",
+    "width_in": 4.015,
+    "height_in": 0.37976666666666664
+  },
+  {
+    "number": "5-9",
+    "tex": "0.95S_{i,y}+B(n_{i,y},H_{95,i}^{+})\\geq L'_{i,y}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-9.svg",
+    "width_in": 2.1932166666666664,
+    "height_in": 0.20971666666666666
+  },
+  {
+    "number": "5-10",
+    "tex": "0.95S_{i,y}+B(n_{i,y},H_{95,i}^{-})\\geq\nL^-_{i,y}+\\sum_jF_{ij,y}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-10.svg",
+    "width_in": 2.966133333333333,
+    "height_in": 0.37976666666666664
+  },
+  {
+    "number": "5-11",
+    "tex": "0.95\\left(S_{i,y}-S_{i,k,y}\\right)+B(n_{i,y},H_{95,i}^{+})\n\\geq D_i(L'_{i,y}).",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-11.svg",
+    "width_in": 3.2179,
+    "height_in": 0.20971666666666666
+  },
+  {
+    "number": "5-12",
+    "tex": "D_i(L')=\\max\\left(0,\\min\\left(L'-12,\\frac{2L'}{3}\\right)\\right)\\quad\\text{（B、C类静态服务量）}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-12.svg",
+    "width_in": 4.8678333333333335,
+    "height_in": 0.3998333333333334
+  },
+  {
+    "number": "5-13",
+    "tex": "C_{\\rm joint}\\leq C^*+0.001,\\qquad\n\\max\\sum_c\\sum_yR_{c,\\rm elastic,y}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-13.svg",
+    "width_in": 3.3550333333333335,
+    "height_in": 0.37416666666666665
+  },
+  {
+    "number": "5-14",
+    "tex": "\\min\\sum_c\\sum_s\\sum_y\\sum_{i,j}F_{c,s,i,j,y}.",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-14.svg",
+    "width_in": 1.9310333333333334,
+    "height_in": 0.3797666666666666
+  },
+  {
+    "number": "5-15",
+    "tex": "R_y-R_{y-1}=\\frac{S_y-S_{y-1}}{P_y}\n+S_{y-1}\\left(\\frac1{P_y}-\\frac1{P_{y-1}}\\right).",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-15.svg",
+    "width_in": 3.4536833333333328,
+    "height_in": 0.40681666666666666
+  },
+  {
+    "number": "5-16",
+    "tex": "\\begin{aligned}\nG_i&=B_i+\\left(C-\\sum_jB_j\\right)\\frac{L_i^+}{\\sum_jL_j^+},\\\\\nU_i&=G_i-B_i,\\qquad B_i(f)=\\max(0,fG_i-U_i).\n\\end{aligned}",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-16.svg",
+    "width_in": 3.3028333333333335,
+    "height_in": 0.7296833333333334
+  },
+  {
+    "number": "5-17",
+    "tex": "D(L')=\\begin{cases}0,&0\\leq L'\\leq12,\\\\L'-12,&12<L'\\leq36,\\\\2L'/3,&L'>36.\\end{cases}",
+    "svg": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/研究报告/02图表/2026-10-01重构/公式/5-17.svg",
+    "width_in": 2.5249166666666665,
+    "height_in": 0.5711499999999999
+  }
+]
