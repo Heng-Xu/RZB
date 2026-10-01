@@ -42,6 +42,7 @@ def audit(directory, repeat_directory=None):
             "station_fraction_ceiling", "existing_county_budget_enforced",
             "station_transfer_representation", "new_line_endpoint_representation",
             "new_increment_shared_use_rule",
+            "area_class_override", "planning_area_class_status",
         ):
             assert summaries["rigid"].get(field) == summaries["elastic"].get(field), (label, field)
         for scheme in ("rigid", "elastic"):
@@ -70,6 +71,10 @@ def audit(directory, repeat_directory=None):
         assert (directory / label / "audit.json").exists()
         assert all(r["status"] == "PASS" for r in json.loads(
             (directory / label / "audit.json").read_text()))
+        if label == "city" and review.get("city_area_class"):
+            for scheme in ("rigid", "elastic"):
+                assert all(r["area_class"] == review["city_area_class"]
+                           for r in read_csv(directory / label / f"{scheme}_stations.csv"))
     for year in YEARS:
         for scheme in ("rigid", "elastic"):
             assert float(by_key["city", scheme, year]["clr"]) + margin <= (

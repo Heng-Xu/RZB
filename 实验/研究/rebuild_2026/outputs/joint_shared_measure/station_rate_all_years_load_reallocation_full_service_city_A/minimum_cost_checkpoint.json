@@ -1,0 +1,22 @@
+{
+  "case": "station_rate",
+  "breakthrough": "all_years",
+  "transfer_mode": "load_reallocation",
+  "n1_load_requirement": "full",
+  "city_area_class": "A",
+  "history": [
+    {
+      "stage": "joint_four_paths_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 352.0118865040131,
+      "objective": 315471.6582076445,
+      "mip_gap": 0.0027361716404253186,
+      "objective_lower_bound": 314608.47360309877,
+      "mip_relative_gap_target": 0.005
+    }
+  ]
+}

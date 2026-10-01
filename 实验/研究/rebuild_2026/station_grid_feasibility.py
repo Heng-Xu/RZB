@@ -16,6 +16,21 @@ AREA_RATINGS = {"A": (50.0, 63.0), "B": (40.0, 50.0, 63.0),
                 "C": (31.5, 40.0, 50.0)}
 
 
+def apply_area_class_override(metadata, area_class=None):
+    """保留样本类别与设备事实，规划供电区域类别可由用户另行确定。"""
+    if area_class is not None and area_class not in AREA_RATINGS:
+        raise ValueError("未支持的规划供电区域类别")
+    result = {}
+    for sid, row in metadata.items():
+        updated = dict(row)
+        updated["source_area_class"] = row["area_class"]
+        if area_class is not None:
+            updated["area_class"] = area_class
+            updated["area_class_status"] = "user_confirmed_district_planning_class_override"
+        result[sid] = updated
+    return result
+
+
 def station_metadata(station_ids: set[str]) -> dict[str, dict]:
     sheet = load_workbook(ASSETS, read_only=True, data_only=True)["110千伏变电站1"]
     result = {}

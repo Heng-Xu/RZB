@@ -43,14 +43,18 @@
   "current_initial_and_target_rate_status": "preserved_previous_model_scenarios_not_verified_existing_station_capability",
   "station_reference_source": {
     "pizhou": {
-      "station_file": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/实验/研究/rebuild_2026/outputs/joint_shared_measure/station_rate_all_years_load_reallocation/pizhou/rigid_stations.csv",
-      "station_sha256": "9b06f10838ecfaa698115be01981f24da78a6c5f462d5e98238230551072e78d",
-      "summary_sha256": "3282c84a5b18d749f06e094d8d2a7c0c4d7e1298eb8f2403b9ce100012edde99"
+      "station_file": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/实验/研究/rebuild_2026/outputs/joint_shared_measure/station_rate_all_years_load_reallocation_full_service_city_A/pizhou/rigid_stations.csv",
+      "station_sha256": "35459e6a98895d32afe2642cb80067a637273aa5ef74f40ef280bad2ff611def",
+      "summary_sha256": "346a37e7c6d0547139f93474e1f08b3d69a2f6319e8c7a52249fcad3ef8330b5",
+      "area_class_override": null,
+      "n1_load_requirement": "full"
     },
     "city": {
-      "station_file": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/实验/研究/rebuild_2026/outputs/joint_shared_measure/station_rate_all_years_load_reallocation/city/rigid_stations.csv",
-      "station_sha256": "f53ce2228911f9d845557726565ce194393c5d44da05b58e826ff89ddaf2d313",
-      "summary_sha256": "814a582a42cff652dbe5d7e809196693fe2e02fe68691d66dd9b354877e00fa4"
+      "station_file": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/实验/研究/rebuild_2026/outputs/joint_shared_measure/station_rate_all_years_load_reallocation_full_service_city_A/city/rigid_stations.csv",
+      "station_sha256": "a30074b6ad15fa05c19aa09cd3122389fd857a32e4417827e612fcbc89f59a8b",
+      "summary_sha256": "253c5988f1cd61fbb3c0de124cebe7558a5beb46d5511a58ce2980c7c75488b8",
+      "area_class_override": "A",
+      "n1_load_requirement": "full"
     }
   },
   "station_year_count": 196,

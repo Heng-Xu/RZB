@@ -44,6 +44,21 @@ def deterministic_solver(monkeypatch):
     monkeypatch.setenv("XUZHOU_MILP_THREADS", "1")
 
 
+def test_capacity_seed_rejects_budget_layout_and_integer_violations():
+    import pytest
+    from rebuild_2026.annual_no_tie_investment_submodel import LinearModel
+    from rebuild_2026.joint_shared_measure import validate_stage_seed
+    model = LinearModel()
+    fixed = model.variable(0, upper=2, integer=False)
+    model.lower_bounds[fixed] = 2
+    device = model.variable(0, upper=4, integer=True)
+    model.constraint({fixed: 10, device: 5}, upper=30)
+    assert list(validate_stage_seed(model, [2, 2])) == [2, 2]
+    for candidate in ([2, 3], [1, 2], [2, 1.5], [2, float("nan")]):
+        with pytest.raises(ValueError):
+            validate_stage_seed(model, candidate)
+
+
 def test_fixed_new_unit_increases_mw_equally_at_different_station_bases():
     small = capacity_from_station_rate(60, .3, 1, 7.49106117, .5)
     large = capacity_from_station_rate(90, .3, 1, 7.49106117, .5)
@@ -78,7 +93,7 @@ def test_optimizer_builds_to_fill_target_and_keeps_unit_capacity_fixed(monkeypat
     monkeypatch.setattr(regional, "input_data", lambda *args: (
         baseline, scenes, duration, peaks, [40.0], 1))
     monkeypatch.setattr(regional, "station_metadata", lambda *args: {
-        s[2]: {"area_class": "A", "available_third_slots": 0,
+        s[2]: {"area_class": "C", "available_third_slots": 0,
                "available_third_mva": 0, "spare_10kv_bays": 1}
         for s in baseline})
     result = regional.optimize(
@@ -87,9 +102,13 @@ def test_optimizer_builds_to_fill_target_and_keeps_unit_capacity_fixed(monkeypat
         min_clr=0, require_transformer_n1=True,
         storage_max_mwh_per_station=None, transfer_mode="load_reallocation",
         transfer_capacity_model="station_rate_equivalent",
+        area_class_override="A",
         minimize_transfer_tiebreak=True)
     summary, years, stations, transfers, lines, outages = result
     assert summary["installed_transfer_target_enforced"]
+    assert summary["area_class_override"] == "A"
+    assert all(r["area_class"] == "A" and r["source_area_class"] == "C" for r in stations)
+    assert all(r["transfer_fraction_ceiling"] == .7 for r in stations)
     assert not summary["existing_county_budget_enforced"]
     assert summary["max_transfer_fraction"] is None
     assert summary["candidate_pairs"] == 0

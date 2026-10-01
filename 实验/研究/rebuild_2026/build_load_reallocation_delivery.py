@@ -12,16 +12,17 @@ from .baseline_2021 import read_csv
 from .joint_shared_measure_audit import audit
 from .regional_static_milp_v2_audit import audit as station_audit
 from .station_grid_feasibility import grid_candidate_rows
+from .joint_lifecycle_optimizer import cost_factors
 
 
 MODEL = Path(__file__).resolve().parent
-SOURCE = MODEL / "outputs/joint_shared_measure/station_rate_all_years_load_reallocation"
-DELIVERY = MODEL.parents[2] / "docs/2026-10-01站级转供率三措施优化"
+SOURCE = MODEL / "outputs/joint_shared_measure/station_rate_all_years_load_reallocation_full_service_city_A"
+DELIVERY = MODEL.parents[2] / "docs/2026-10-01市区A类全负荷优化"
 LABEL = {"pizhou": "邳州", "city": "市区", "rigid": "刚性", "elastic": "弹性"}
 
 
-def service(load, area):
-    return load if area == "A" else max(0, min(load - 12, 2 * load / 3))
+def service(load, area, full_service=False):
+    return load if full_service or area == "A" else max(0, min(load - 12, 2 * load / 3))
 
 
 def transformer_action(r):
@@ -59,6 +60,10 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
                        "取消储能后退出余量MW", "不增主变后退出余量MW"])
     cost_sheet = book.create_sheet("费用与研究条件")
     cost_sheet.append(["区县", "刚性全寿命现值万元", "弹性全寿命现值万元", "节省万元", "节省比例"])
+    components_sheet = book.create_sheet("分项费用现值")
+    components_sheet.append(["区县", "方案", "主变现值万元", "储能现值万元", "联络现值万元", "合计现值万元"])
+    class_sheet = book.create_sheet("站点类别与来源")
+    class_sheet.append(["区县", "方案", "年份", "站号", "规划供电区域类别", "样本原类别", "规划类别来源"])
     rate_sheet = book.create_sheet("站级转供率与能力")
     rate_sheet.append(["区县", "方案", "年份", "站号", "负荷基数MW", "既有率", "目标率", "规划率上限",
                        "在役新增关联单元数", "既有能力MW", "新增有效能力MW", "有效转供率",
@@ -67,9 +72,11 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
     line_sheet = book.create_sheet("新建联络项目")
     line_sheet.append(["区县", "方案", "投运年", "站点A", "站点B", "固定单元能力MW", "新增投资万元",
                        "规划长度km", "单元及线路口径"])
-    reports, annual_details, constraints = {}, {}, []
+    reports, annual_details, constraints, district_summaries = {}, {}, [], {}
+    factors = cost_factors()
     for district in ("pizhou", "city"):
         summaries = {r["scheme"]: r for r in json.loads((source / district / "summary.json").read_text())}
+        district_summaries[district] = summaries
         grid_pairs = {tuple(sorted((r["station_a"], r["station_b"]))) for r in grid_candidate_rows(
             {r["station"] for r in read_csv(source / district / "rigid_stations.csv")})} if district == "pizhou" else set()
         costs = review["cost_npv_10k"][district]
@@ -77,6 +84,12 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
                            costs["rigid"] - costs["elastic"], 1 - costs["elastic"] / costs["rigid"]])
         for scheme in ("rigid", "elastic"):
             summary = summaries[scheme]
+            full_service = summary["n1_load_requirement"] == "full"
+            cost_rows = read_csv(source / district / f"{scheme}_years.csv")
+            components = [sum(float(r[c + "_capex_10k"]) * factors[c][int(r["year"])]
+                              for r in cost_rows) for c in ("transformer", "storage", "line")]
+            assert abs(sum(components) - costs[scheme]) < 1e-3
+            components_sheet.append([LABEL[district], LABEL[scheme], *components, sum(components)])
             rows = read_csv(source / district / f"{scheme}_stations.csv")
             path = source / district / f"{scheme}_transfers.csv"
             transfers = read_csv(path) if path.exists() else []
@@ -107,15 +120,18 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
                 cap, energy = sum(units), float(r["storage_energy_mwh"])
                 support = min(float(r["storage_power_mw"]), energy / max(2.15, int(r["forward_duration_h"])))
                 reverse_support = min(float(r["storage_power_mw"]), energy / max(2.15, int(r["reverse_duration_h"])))
-                task = service(post, r["area_class"])
+                task = service(post, r["area_class"], full_service)
                 survivor = .95 * (cap - max(units))
                 normal_margin = .95 * cap + support - post
                 reverse_margin = .95 * float(summary["reverse_capacity_fraction"]) * cap + reverse_support - float(r["reverse_mw"]) - out
                 n1_margin = survivor + support - task
-                no_transfer = survivor + support - service(old_load, r["area_class"])
+                no_transfer = survivor + support - service(old_load, r["area_class"], full_service)
                 no_storage = survivor - task
                 storage_stress = survivor + .8 * support - task
                 original_units = initial[station]
+                class_sheet.append([LABEL[district], LABEL[scheme], year, station, r["area_class"],
+                                    r.get("source_area_class", r["area_class"]),
+                                    r.get("area_class_status", "source_asset_row")])
                 no_expansion = .95 * (sum(original_units) - max(original_units)) + support - task
                 assert min(normal_margin, reverse_margin, n1_margin) >= -1e-4
                 if equivalent:
@@ -147,7 +163,8 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
                               float(r["new_storage_power_mw"]), float(r["new_storage_energy_mwh"]),
                               float(r["storage_power_mw"]), energy, out, incoming, old_load, post, cap,
                               int(r["source_available_third_slots"]), int(r["source_spare_10kv_bays"]),
-                              "仿真点，类别按C类假定" if station.startswith("SIM-") else "原表站号对应仿真点"])
+                              f'仿真点，规划类别{r["area_class"]}，样本类别{r.get("source_area_class", r["area_class"])}'
+                              if station.startswith("SIM-") else "原表站号对应仿真点"])
             for m in transfers:
                 pair = tuple(sorted((m["donor"], m["receiver"])))
                 moves_sheet.append([LABEL[district], LABEL[scheme], int(m["year"]), m["donor"], m["receiver"],
@@ -272,6 +289,10 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
     if review.get("capacity_preference_scope") == "selected_rigid_layout":
         acceptance += ["费用阶段四路径三措施共同求解；容载比偏好阶段固定其选出的刚性整数布局，仅优化两区县弹性R。偏好上界与间隙限于该固定基准，不是所有刚性布局的全局结论。最后转接量优化也固定全部所选整数状态，包括供电任务的线性化分支。", ""]
     text[2:2] = acceptance
+    if review.get("n1_load_requirement") == "full":
+        text[2:2] = ["两方案共同采用完整供电任务：主变退出后保障全部转接后负荷，所有区县和年份相同。"
+                     "市区由用户确认为统一A类，既有及目标转供率50%，规划率上限70%；样本原类别另列。"
+                     "B/C类全负荷退出校核属于较严格的静态研究情景，未将导则首阶段最低供电量误写为全负荷强制要求。", ""]
     for district, scheme, year, a, detail, _, _ in constraints:
         text.append(f'| {LABEL[district]} | {LABEL[scheme]} | {year} | {detail["net_added_mva"]:g} | {float(a["new_transformer_purchase_mva"]):g} | {float(a["new_storage_power_mw"]):.1f}/{float(a["new_storage_energy_mwh"]):.3f} | {detail["normal_transfer_mw"]:.3f} | {a["new_lines_commissioned"]} | {float(a["clr"]):.4f} |')
     text += ["", "## 同价格费用对照", "",
@@ -281,10 +302,23 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
         text.append(f'| {LABEL[district]} | {cost["rigid"]:.2f} | {cost["elastic"]:.2f} | {1-cost["elastic"]/cost["rigid"]:.2%} |')
     text.append(f'| 合计 | {rigid_total:.2f} | {elastic_total:.2f} | {1-elastic_total/rigid_total:.2%} |')
     if equivalent:
-        text += ["", "## 容量增长与费用差异", "",
-                 "邳州弹性2021起点1463.5 MVA，四年增加至1946.5 MVA，净增483 MVA；刚性净增258.5 MVA。弹性用更多主变容量降低储能配置，储能0.1 MW/0.215 MWh，刚性31.7 MW/68.155 MWh，因此共同价格下弹性现值较低。2024、2025主变容量继续增加，负荷增长仍使R从2.1912降到2.1405、2.0351；容量不减不等于R逐年上升。",
-                 "市区弹性主变由2462增加至3095 MVA，净增633 MVA；刚性仅净增100 MVA，且两方案储能均为零。每年R≥2.001要求2022容量至少2866.1723 MVA、2023至少3085.9757 MVA；所选2872、3095 MVA接近这些门槛。刚性在较小容量和更多联络单元下已通过相同静态承载校核，因此市区弹性增加的容量主要受到R目标驱动，不能直接解释为负荷增长使全部增容必不可少，也没有形成经济优势。",
-                 "市区50%初始能力已满足50%目标，仍新建刚性3项、弹性2项，服务于A类站超出既有预算的正常转接需求；A类研究上限70%，B/C类仍为50%。新增等效预算的年度实际使用量、使用率和站级上限已列入工作簿。该使用率是全区县共享预算使用率，不是逐线路利用率。", ""]
+        text += ["", "## 容量增长与费用差异", ""]
+        for district in ("pizhou", "city"):
+            summaries = district_summaries[district]
+            last = {scheme: next(r for r in annual if r["district"] == district and
+                                  r["scheme"] == scheme and int(r["year"]) == 2025)
+                    for scheme in ("rigid", "elastic")}
+            base = float(summaries["rigid"]["baseline_2021_capacity_mva"])
+            text += [f'{LABEL[district]}共同起点{base:g} MVA，2025刚性主变{float(last["rigid"]["capacity_mva"]):g} MVA、'
+                     f'弹性{float(last["elastic"]["capacity_mva"]):g} MVA，净增分别'
+                     f'{float(last["rigid"]["capacity_mva"])-base:g}、{float(last["elastic"]["capacity_mva"])-base:g} MVA。'
+                     f'刚性在役储能{float(last["rigid"]["installed_storage_power_mw"]):g} MW/'
+                     f'{float(last["rigid"]["installed_storage_energy_mwh"]):g} MWh，弹性'
+                     f'{float(last["elastic"]["installed_storage_power_mw"]):g} MW/'
+                     f'{float(last["elastic"]["installed_storage_energy_mwh"]):g} MWh。分项现值见工作簿；'
+                     '设备增加作用按下表逐项撤销复算，不能将容载比下限要求的全部容量都解释为负荷增长必需。', ""]
+        text += ["主变容量逐年不减，容载比仍随年度分母变化；新增联络只增加转供能力，不能改变区县总负荷或主变总容量。"
+                 "新增等效预算的实际使用率为全区县共享预算使用率，不是逐线路利用率。", ""]
     text += ["", "## 静态措施是否有效", "",
              "以同一设备布局为基准，逐项取消正常负荷转接、储能或主变增容，复算供电安全容量缺口。该检查说明措施对所选方案的作用，不等于重新寻优后的全局收益。", "",
              "| 区县 | 方案 | 转接量撤销后不足的站年数 | 储能撤销后不足的站年数 | 不增主变后不足的站年数 | 最小静态退出余量MW |",
@@ -303,11 +337,14 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
               "补足能力目标的建设即使某年没有实际使用，也不能把额定能力全部当成正常转接量或主变减容量。"
               if equivalent else
               "2. 旧10%场景下新线可被既有通道替代，因此零建设不代表新的能力框架下无需建设。"),
-             "3. 主变新增第三台按原表预留位作为仿真可选条件。市区29站外推，SIM-CITY点类别按C类假定。2021容量是共同反事实起点，2022—2025为回算规划年份。",
+             ("3. 主变新增第三台按原表预留位作为仿真可选条件。市区29站外推，统一按用户确认的A类规划；"
+              "原样本类别与设备事实保留在来源表。2021容量是共同反事实起点，2022—2025为回算规划年份。"
+              if review.get("city_area_class") == "A" else
+              "3. 主变新增第三台按原表预留位作为仿真可选条件。市区29站外推，未统一覆盖规划类别的历史情景使用样本类别。2021为共同反事实起点。"),
              "4. 储能为0.1 MW/0.215 MWh整数柜，按D95峰段持续时间折算可持续功率；当前属于静态容量仿真，SOC与充放电时序未显式求解。80%支撑压力测试单列，不改变主方案的确定性结果。",
              "5. 电源保持原站归属，反向压力用原反送峰值+转出峰值作保守上界，未抵扣受端消纳收益；避免负荷转出后反送压力被漏算。",
              "6. 站级负荷为独立峰值任务，转接前后任务总量守恒；容载比分母保持原表区县降压负荷代理。站间转接优化负荷空间分配，不能直接改变区县总负荷或把联络容量计入主变容量分子。", "",
-             "## 每年逐站动作和转接方向", ""]
+             ""]
     if equivalent:
         text += ["## 新建联络与实际使用", "",
                  "新增能力是否用于正常配置按站级预算判断；逐线路利用率无法由本模型识别。四年新增预算使用量为各年度峰值转接MW之和，不是累计能量。", "",
@@ -317,6 +354,7 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
             district, scheme = key.split("_")
             text.append(f'| {LABEL[district]} | {LABEL[scheme]} | {report["new_line_projects"]} | {report["annual_increment_budget_use_sum_mw"]:.3f} | {report["target_shortfall_station_years_without_new_lines"]} | {report["normal_outgoing_above_existing_budget_station_years"]} |')
         text.append("")
+    text += ["## 每年逐站动作和转接方向", ""]
     for district, scheme, year, _, _, local, transfers in constraints:
         text += [f"### {LABEL[district]}{LABEL[scheme]} {year}年", ""]
         selected = [r for r in local if float(r["purchased_unit_mva"]) > 1e-5 or float(r["new_storage_energy_mwh"]) > 1e-5]
@@ -337,8 +375,13 @@ def main(source=SOURCE, delivery=DELIVERY, repeat_directory=None):
                 text.append(f'- 负荷转接：{m["donor"]}转出至{m["receiver"]}，{float(m["mw"]):.3f} MW；{kind}。')
         text.append("")
     if numerical["repeat_csv_exact_match"]:
+        initialization = ("采用相同的外部初始可行解" if review.get("initial_feasible_seed_sha256")
+                          else "均从无外部初始解开始")
+        if review.get("capacity_feasible_seed_sha256"):
+            initialization = ("费用阶段均从无外部初始解开始，容载比阶段使用相同可行种子；"
+                              "种子通过当前费用预算、固定刚性布局及全部约束校核后，重新认证")
         text += ["## 确定性验证", "",
-                 f'同输入及相同初始可行解重新计算三个阶段，{len(numerical["output_sha256"])}份CSV逐字节一致。两次费用和容载比偏好阶段均达到记录的最优性间隙精度，转接量阶段精确求解LP；392个站年数值与负荷守恒复算通过。初始解只用于加速，没有沿用旧阶段最优性结论。', ""]
+                 f'同输入重新计算三个阶段，两次{initialization}，{len(numerical["output_sha256"])}份CSV逐字节一致。两次费用和容载比偏好阶段均达到记录的最优性间隙精度，转接量阶段精确求解LP；392个站年数值与负荷守恒复算通过。没有沿用旧阶段最优性结论。', ""]
     (delivery / "逐年具体措施与有效性审查.md").write_text("\n".join(text).rstrip() + "\n")
     print(json.dumps({"delivery": str(delivery), "measures": {
         k: {f: v for f, v in r.items() if f != "station_year_checks"} for k, r in reports.items()}}, ensure_ascii=False))

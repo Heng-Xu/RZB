@@ -16,7 +16,7 @@ from .new_line_section_audit import DATA, designed_new_line_section
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_SOURCE = Path(__file__).resolve().parent / (
-    "outputs/joint_shared_measure/station_rate_all_years_load_reallocation")
+    "outputs/joint_shared_measure/station_rate_all_years_load_reallocation_full_service_city_A")
 DEFAULT_DEST = ROOT / "docs/2026-10-01局部联络仿真依据"
 
 
@@ -160,6 +160,8 @@ def build_reference(source_dir=DEFAULT_SOURCE):
             "station_file": str(station_path),
             "station_sha256": hashlib.sha256(station_path.read_bytes()).hexdigest(),
             "summary_sha256": hashlib.sha256(summary_path.read_bytes()).hexdigest(),
+            "area_class_override": summary.get("area_class_override"),
+            "n1_load_requirement": summary.get("n1_load_requirement"),
         }
         with station_path.open(encoding="utf-8-sig", newline="") as handle:
             stations = list(csv.DictReader(handle))
@@ -171,6 +173,8 @@ def build_reference(source_dir=DEFAULT_SOURCE):
             rows.append({
                 "district": district, "station": row["station"],
                 "year": int(row["year"]), "area_class": area,
+                "source_area_class": row.get("source_area_class", area),
+                "area_class_status": row.get("area_class_status", "source_asset_row"),
                 "station_load_base_mw": base,
                 "base_status": reference["base_proxy_status"],
                 "initial_fraction_scenario": initial,

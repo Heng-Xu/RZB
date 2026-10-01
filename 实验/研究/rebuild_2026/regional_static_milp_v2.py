@@ -20,7 +20,9 @@ from .incremental_cost import replacement_cost_coefficients, storage_anchors
 from .joint_lifecycle_optimizer import cost_factors, load_inputs
 from .planning_load_profile import apply_pizhou_weighted_growth
 from .pizhou_transfer_fraction import pizhou_sample_fraction
-from .station_grid_feasibility import AREA_RATINGS, grid_candidate_rows, station_metadata
+from .station_grid_feasibility import (
+    AREA_RATINGS, apply_area_class_override, grid_candidate_rows, station_metadata,
+)
 from .load_reallocation import add_post_transfer_n1
 from .station_transfer_equivalent import (
     allocate_station_transfers, capacity_from_station_rate, new_line_increment_reference,
@@ -90,7 +92,8 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
              cost_tiebreak_tolerance_10k: float = 0.001,
              transfer_mode: str = "legacy_outage_proxy",
              transfer_capacity_model: str = "legacy_regional_proxy",
-             enforce_station_transfer_target: bool = True):
+             enforce_station_transfer_target: bool = True,
+             area_class_override: str | None = None):
     if scheme not in ("rigid", "elastic"):
         raise ValueError("scheme 应为 rigid 或 elastic")
     if transfer_mode not in ("legacy_outage_proxy", "load_reallocation"):
@@ -162,7 +165,7 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
                 scenes[station, year] = row
     stations = sorted(baseline)
     ids = [key[2] for key in stations]
-    physical = station_metadata(set(ids))
+    physical = apply_area_class_override(station_metadata(set(ids)), area_class_override)
     station_fraction_ceiling = {
         sid: station_rate_ceiling(physical[sid]["area_class"]) for sid in ids}
     if station_equivalent and any(
@@ -711,6 +714,8 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
             incoming = sum(float(solution[i]) for i, v in shift.items() if v < 0)
             stations_out.append({"year": year, "station": station[2],
                                  "area_class": physical[station[2]]["area_class"],
+                                 "source_area_class": physical[station[2]]["source_area_class"],
+                                 "area_class_status": physical[station[2]].get("area_class_status", "source_asset_row"),
                                  "source_available_third_slots": physical[station[2]]["available_third_slots"],
                                  "source_spare_10kv_bays": physical[station[2]]["spare_10kv_bays"],
                                  "new_third_without_reserved_slot": int(
@@ -827,6 +832,9 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
     summary = {"scheme": scheme, "load_scenario": load_scenario,
                "transfer_mode": transfer_mode,
                "transfer_capacity_model": transfer_capacity_model,
+               "area_class_override": area_class_override,
+               "planning_area_class_status": "user_confirmed_district_class"
+               if area_class_override else "sample_source_or_declared_simulation_assumption",
                "capacity_aggregation_quantum_mva": quantum_mva,
                "installed_transfer_target_enforced": installed_target_enforced,
                "new_line_increment_mw": line_increment,

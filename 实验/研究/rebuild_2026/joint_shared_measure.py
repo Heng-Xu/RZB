@@ -28,7 +28,8 @@ TOLERANCE_10K = .001
 CASES = {**LEGACY_CASES, "station_rate": None}
 
 
-def build_joint(case="station_rate", breakthrough="all_years", transfer_mode="load_reallocation"):
+def build_joint(case="station_rate", breakthrough="all_years", transfer_mode="load_reallocation",
+                n1_load_requirement="full", city_area_class="A"):
     observed = {}
     for row in read_csv(OUTPUT_DIR / "official_annual.csv"):
         region = row["region_id"], int(row["voltage_kv"])
@@ -43,7 +44,7 @@ def build_joint(case="station_rate", breakthrough="all_years", transfer_mode="lo
         for scheme in ("rigid", "elastic"):
             kwargs = dict(
                 region=region, rigid_cap=2.0, elastic_cap=2.6, min_clr=minimum,
-                require_transformer_n1=True, n1_load_requirement="bc_min_service_static",
+                require_transformer_n1=True, n1_load_requirement=n1_load_requirement,
                 elastic_allow_line_decisions=True, enforce_expansion_slot=True,
                 max_transfer_fraction=CASES[case], storage_max_mwh_per_station=None,
                 prefer_larger_clr=True, minimize_transfer_tiebreak=True,
@@ -53,6 +54,7 @@ def build_joint(case="station_rate", breakthrough="all_years", transfer_mode="lo
             if label == "city":
                 city_start = upper * observed[region][2021]
                 kwargs["city_baseline_cap_mva"] = city_start
+                kwargs["area_class_override"] = city_area_class
             generator = optimization_problem(scheme, **kwargs)
             model, metadata = next(generator)
             offset, row_offset = len(joint.costs), len(joint.constraint_lower)
@@ -132,10 +134,31 @@ def expand_capacity_seed(candidate, blocks, expected_count):
     return expanded
 
 
+def validate_stage_seed(model, candidate):
+    """校核当前阶段的完整约束，包括费用预算和已固定的刚性布局。"""
+    from scipy.sparse import coo_matrix
+    candidate = np.asarray(candidate, dtype=float)
+    if candidate.shape != (len(model.costs),) or not np.all(np.isfinite(candidate)):
+        raise ValueError("阶段初始解的变量数或有限性不符合当前模型")
+    rr, cc, vv = zip(*model.entries)
+    matrix = coo_matrix((vv, (rr, cc)), shape=(
+        len(model.constraint_lower), len(model.costs))).tocsr()
+    activity = matrix @ candidate
+    integers = np.flatnonzero(model.integrality)
+    if not (np.all(activity >= np.array(model.constraint_lower) - 1e-4) and
+            np.all(activity <= np.array(model.constraint_upper) + 1e-4) and
+            np.all(candidate >= np.array(model.lower_bounds) - 1e-5) and
+            np.all(candidate <= np.array(model.upper_bounds) + 1e-5) and
+            np.all(np.abs(candidate[integers] - np.round(candidate[integers])) <= 1e-5)):
+        raise ValueError("阶段初始解未通过当前约束、边界或整数性校核")
+    return candidate.copy()
+
+
 def solve(case="station_rate", breakthrough="all_years", output=None, resume=False,
           stage_seconds=900, transfer_mode="load_reallocation", warm_start=None,
           primary_relative_gap=None, capacity_relative_gap=None,
-          capacity_preference_scope=None):
+          capacity_preference_scope=None, n1_load_requirement="full",
+          city_area_class="A", capacity_warm_start=None):
     if primary_relative_gap is None:
         primary_relative_gap = .005 if case == "station_rate" else 1e-9
     if not 0 <= primary_relative_gap <= .01:
@@ -152,10 +175,15 @@ def solve(case="station_rate", breakthrough="all_years", output=None, resume=Fal
     import os
     os.environ["XUZHOU_MILP_TIME_LIMIT_SECONDS"] = str(stage_seconds)
     suffix = "_load_reallocation" if transfer_mode == "load_reallocation" else ""
+    if n1_load_requirement == "full":
+        suffix += "_full_service"
+    if city_area_class:
+        suffix += f"_city_{city_area_class}"
     directory = Path(output) if output else OUTPUT / f"{case}_{breakthrough}{suffix}"
     directory.mkdir(parents=True, exist_ok=True)
     os.environ["XUZHOU_MILP_LOG_DIR"] = str(directory / "solver_logs")
-    joint, problems, blocks, city_start = build_joint(case, breakthrough, transfer_mode)
+    joint, problems, blocks, city_start = build_joint(
+        case, breakthrough, transfer_mode, n1_load_requirement, city_area_class)
     presolved_unused_lines = 0
     if transfer_mode == "load_reallocation":
         # 没有强制建设目标，且既有代理网络可等价承接任意新线转接：
@@ -193,6 +221,9 @@ def solve(case="station_rate", breakthrough="all_years", output=None, resume=Fal
             raise ValueError("断点的情景与本次要求不一致")
         if saved.get("transfer_mode", "legacy_outage_proxy") != transfer_mode:
             raise ValueError("断点的转供用途与本次要求不一致")
+        if (saved.get("n1_load_requirement", "bc_min_service_static") != n1_load_requirement or
+                saved.get("city_area_class") != city_area_class):
+            raise ValueError("断点的供电任务或市区类别与本次要求不一致")
         primary_solution = expand_capacity_seed(checkpoint["solution"], blocks, len(joint.costs))
         minimum = float(checkpoint["minimum"])
         if saved["history"][0]["mip_gap"] > primary_relative_gap + 1e-12:
@@ -221,6 +252,7 @@ def solve(case="station_rate", breakthrough="all_years", output=None, resume=Fal
                         solution=primary_solution, minimum=minimum)
     (directory / "minimum_cost_checkpoint.json").write_text(json.dumps(
         {"case": case, "breakthrough": breakthrough, "transfer_mode": transfer_mode,
+         "n1_load_requirement": n1_load_requirement, "city_area_class": city_area_class,
          "history": joint.solve_history},
         ensure_ascii=False, indent=2) + "\n")
     fixed_dispatch_equivalent_lines = 0
@@ -243,6 +275,10 @@ def solve(case="station_rate", breakthrough="all_years", output=None, resume=Fal
     capacity_objective = {i: -v for key, block in blocks.items() if key[1] == "elastic"
                           for terms in block["clr_terms"].values() for i, v in terms.items()}
     joint.costs = [capacity_objective.get(i, 0.0) for i in range(len(joint.costs))]
+    if capacity_warm_start is not None:
+        candidate = expand_capacity_seed(np.load(capacity_warm_start)["solution"], blocks, len(joint.costs))
+        joint.last_solution = validate_stage_seed(joint, candidate)
+        print(f"Validated capacity preference seed: R_sum={-np.dot(joint.costs, candidate):.9f}", flush=True)
     os.environ["XUZHOU_MILP_REL_GAP"] = str(capacity_relative_gap)
     try:
         capacity_solution, reserve = joint.solve(stage="joint_maximum_elastic_clr_at_minimum_cost")
@@ -289,6 +325,11 @@ def solve(case="station_rate", breakthrough="all_years", output=None, resume=Fal
             _, scenes, _, peaks, catalogs, _ = load_inputs()
             _, _, _, trace = calibrate_city(source_baseline, scenes, peaks, catalogs[DISTRICTS[label]],
                                            city_start)
+            if city_area_class:
+                for row in trace:
+                    row["source_area_class"] = row["area_class"]
+                    row["area_class"] = city_area_class
+                    row["area_class_status"] = "user_confirmed_district_planning_class_override"
             write_csv(trace, local / "city_2021_district_calibration.csv")
         portfolios[label] = {r["scheme"]: r for r in summaries}
         print(audit(local), flush=True)
@@ -306,6 +347,7 @@ def solve(case="station_rate", breakthrough="all_years", output=None, resume=Fal
         "max_transfer_fraction": CASES[case],
         "transfer_capacity_model": "station_rate_equivalent" if case == "station_rate"
         else "legacy_regional_proxy",
+        "n1_load_requirement": n1_load_requirement, "city_area_class": city_area_class,
         "same_measure_set": True, "same_start_per_district": True,
         "optimization_scope": "simultaneous_four_path_minimum_total_lifecycle_cost",
         "ordering_constraints_imposed": True, "ordering_margin": MARGIN,
@@ -330,6 +372,8 @@ def solve(case="station_rate", breakthrough="all_years", output=None, resume=Fal
         "primary_cost_lower_bound_10k": joint.solve_history[0].get("objective_lower_bound"),
         "initial_feasible_seed_sha256": hashlib.sha256(Path(warm_start).read_bytes()).hexdigest()
         if warm_start else None,
+        "capacity_feasible_seed_sha256": hashlib.sha256(Path(capacity_warm_start).read_bytes()).hexdigest()
+        if capacity_warm_start else None,
         "selected_joint_primary_objective_10k": selected_primary,
         "cost_tiebreak_tolerance_10k": TOLERANCE_10K,
         "sum_elastic_annual_clr": -reserve,
@@ -382,9 +426,17 @@ if __name__ == "__main__":
     parser.add_argument("--capacity-relative-gap", type=float,
                         help="容载比偏好阶段：station_rate默认0.5%，旧情景默认1e-9")
     parser.add_argument("--capacity-preference-scope", choices=("selected_rigid_layout", "global_joint"))
+    parser.add_argument("--capacity-warm-start", type=Path,
+                        help="仅作为容载比偏好阶段初始解，重新校核费用预算、固定布局及全部约束")
+    parser.add_argument("--n1-load-requirement", choices=("full", "bc_min_service_static"),
+                        default="full")
+    parser.add_argument("--city-area-class", choices=("A", "B", "C", "source"), default="A",
+                        help="市区统一规划供电类别；样本类别和既有设备另行保留")
     parser.add_argument("--transfer-mode", choices=("load_reallocation", "legacy_outage_proxy"),
                         default="load_reallocation")
     args = parser.parse_args()
     solve(args.case, args.breakthrough, args.output, args.resume, args.stage_seconds,
           args.transfer_mode, args.warm_start, args.primary_relative_gap,
-          args.capacity_relative_gap, args.capacity_preference_scope)
+          args.capacity_relative_gap, args.capacity_preference_scope,
+          args.n1_load_requirement, None if args.city_area_class == "source" else args.city_area_class,
+          args.capacity_warm_start)

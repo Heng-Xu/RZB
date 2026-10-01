@@ -9,7 +9,9 @@ from .joint_lifecycle_optimizer import cost_factors
 from .regional_static_milp_v2 import (
     LINE_MW_2025, OUTPUT, STORAGE_MWH_PER_MW, STORAGE_MODULE_MWH, input_data,
 )
-from .station_grid_feasibility import AREA_RATINGS, grid_candidate_rows, station_metadata
+from .station_grid_feasibility import (
+    AREA_RATINGS, apply_area_class_override, grid_candidate_rows, station_metadata,
+)
 from .station_transfer_equivalent import capacity_from_station_rate, new_line_increment_reference
 
 
@@ -37,7 +39,8 @@ def audit(directory: Path = OUTPUT) -> dict:
                 assert summary["installed_transfer_target_enforced"] is False
         baseline, scenes, durations, peaks, _, _ = input_data(
             summary["load_scenario"], region, summary.get("city_baseline_cap_mva"))
-        physical = station_metadata({station[2] for station in baseline})
+        physical = apply_area_class_override(
+            station_metadata({station[2] for station in baseline}), summary.get("area_class_override"))
         grid_pairs = {(row["station_a"], row["station_b"]): row for row in
                       grid_candidate_rows(set(physical))}
         if summary.get("annual_growth_rate_scenario") is not None:
@@ -172,6 +175,9 @@ def audit(directory: Path = OUTPUT) -> dict:
             for station in baseline:
                 station_id = station[2]
                 item = by_station[str(year), station_id]
+                assert item["area_class"] == physical[station_id]["area_class"]
+                if "source_area_class" in item:
+                    assert item["source_area_class"] == physical[station_id]["source_area_class"]
                 units = (float(item["unit_1_mva"]), float(item["unit_2_mva"]))
                 third = float(item["unit_3_mva"])
                 prior = previous_capacity[station_id]
