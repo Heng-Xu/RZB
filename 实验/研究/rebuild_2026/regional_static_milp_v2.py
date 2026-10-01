@@ -21,6 +21,7 @@ from .joint_lifecycle_optimizer import cost_factors, load_inputs
 from .planning_load_profile import apply_pizhou_weighted_growth
 from .pizhou_transfer_fraction import pizhou_sample_fraction
 from .station_grid_feasibility import AREA_RATINGS, grid_candidate_rows, station_metadata
+from .load_reallocation import add_post_transfer_n1
 
 
 REGION = ("QX-00005", 110)
@@ -82,9 +83,15 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
              storage_max_mwh_per_station: float | None = STORAGE_MAX_MWH_PER_STATION,
              prefer_larger_clr: bool = False,
              minimize_transfer_tiebreak: bool = False,
-             cost_tiebreak_tolerance_10k: float = 0.001):
+             cost_tiebreak_tolerance_10k: float = 0.001,
+             transfer_mode: str = "legacy_outage_proxy"):
     if scheme not in ("rigid", "elastic"):
         raise ValueError("scheme 应为 rigid 或 elastic")
+    if transfer_mode not in ("legacy_outage_proxy", "load_reallocation"):
+        raise ValueError("未知站间转供用途")
+    load_reallocation = transfer_mode == "load_reallocation"
+    if load_reallocation and outage_recovery_fraction:
+        raise ValueError("正常负荷转接模式不混入事故恢复量")
     if any(v <= 0 for v in (transformer_scale, line_scale, storage_scale)):
         raise ValueError("成本比例系数须为正")
     if max_transfer_fraction is not None and not 0 <= max_transfer_fraction <= 1:
@@ -269,10 +276,11 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
             model.constraint({built[year, pair]: 1 for pair in pairs}, upper=max_new_lines)
             for station in stations:
                 station_id = station[2]
-                model.constraint({built[year, pair]: LINE_MW_2025 * ratio for pair in pairs
-                                  if station_id in pair},
-                                 lower=max(0, target_transfer_fraction - existing_transfer_fraction) *
-                                 float(scenes[station, year]["estimated_station_forward_peak_mw"]))
+                if not load_reallocation:
+                    model.constraint({built[year, pair]: LINE_MW_2025 * ratio for pair in pairs
+                                      if station_id in pair},
+                                     lower=max(0, target_transfer_fraction - existing_transfer_fraction) *
+                                     float(scenes[station, year]["estimated_station_forward_peak_mw"]))
                 outbound = {v: 1 for (yy, _, a, _), v in flow.items() if yy == year and a == station_id}
                 outbound.update({v: 1 for (yy, a, _), v in existing_flow.items()
                                  if yy == year and a == station_id})
@@ -283,7 +291,7 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
     else:
         existing_limit_2025 = 0.0
 
-    if (tie_decisions or (scheme == "elastic" and elastic_use_existing_outage_transfer)) and (
+    if not load_reallocation and (tie_decisions or (scheme == "elastic" and elastic_use_existing_outage_transfer)) and (
             outage_recovery_fraction or require_transformer_n1):
         # 单座站全停时，经其它站的正常负荷与可用裕度做一跳恢复筛查。
         # 与正常场景的负荷迁移变量分开，且不把它冒称完整 N-1 校核。
@@ -360,7 +368,7 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
                             available[third[failed, year]] = .95 * THIRD_UNIT_MVA
                         model.constraint(available, lower=demand)
 
-    if scheme == "elastic" and require_transformer_n1 and not (
+    if not load_reallocation and scheme == "elastic" and require_transformer_n1 and not (
             elastic_use_existing_outage_transfer or elastic_allow_line_decisions):
         for year in YEARS:
             for station in stations:
@@ -382,6 +390,46 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
                             continue
                         available[third[station, year]] = .95 * THIRD_UNIT_MVA
                     model.constraint(available, lower=demand)
+
+    normal_shift = {}
+    for year in YEARS:
+        for station in stations:
+            sid = station[2]
+            terms = {}
+            for (yy, _, a, b), variable in flow.items():
+                if yy == year and sid in (a, b):
+                    terms[variable] = 1 if a == sid else -1
+            for (yy, a, b), variable in existing_flow.items():
+                if yy == year and sid in (a, b):
+                    terms[variable] = 1 if a == sid else -1
+            normal_shift[station, year] = terms
+    if load_reallocation and require_transformer_n1:
+        for year in YEARS:
+            district_load = sum(float(scenes[s, year]["estimated_station_forward_peak_mw"])
+                                for s in stations)
+            for station in stations:
+                supplies = []
+                for failed_slot in (0, 1, 2) if (station, year) in third else (0, 1):
+                    available = {x[station, slot, year, rating]: .95 * rating
+                                 for slot in (0, 1) if slot != failed_slot
+                                 for rating in catalog if (station, slot, year, rating) in x}
+                    available[energy[station, year]] = STORAGE_MODULE_MWH / max(
+                        STORAGE_MWH_PER_MW, int(durations[station]["forward_d95_max_run_hours"]))
+                    allowance = 0
+                    if (station, year) in third:
+                        if failed_slot == 2:
+                            # 未装第三台时放松该退出场景，已装时恢复普通约束。
+                            allowance = district_load
+                            available[third[station, year]] = -allowance
+                        else:
+                            available[third[station, year]] = .95 * THIRD_UNIT_MVA
+                    supplies.append((available, allowance))
+                add_post_transfer_n1(
+                    model, supplies, float(scenes[station, year]["estimated_station_forward_peak_mw"]),
+                    normal_shift[station, year],
+                    n1_load_requirement == "full" or physical[station[2]]["area_class"] == "A",
+                    district_load, float(scenes[station, year]["estimated_station_forward_peak_mw"]) *
+                    (1 - (max_transfer_fraction if max_transfer_fraction is not None else 1)))
 
     for year in YEARS:
         ratio_terms = {}
@@ -407,18 +455,14 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
                 terms[energy[station, year]] = (
                     STORAGE_MODULE_MWH / max(STORAGE_MWH_PER_MW, hours))
                 if scenario == "forward" and tie_decisions:
-                    for (yy, _, a, b), variable in flow.items():
-                        if yy == year:
-                            if a == station_id:
-                                terms[variable] = terms.get(variable, 0) + 1
-                            if b == station_id:
-                                terms[variable] = terms.get(variable, 0) - 1
-                    for (yy, a, b), variable in existing_flow.items():
-                        if yy == year:
-                            if a == station_id:
-                                terms[variable] = terms.get(variable, 0) + 1
-                            if b == station_id:
-                                terms[variable] = terms.get(variable, 0) - 1
+                    for variable, coefficient in normal_shift[station, year].items():
+                        terms[variable] = terms.get(variable, 0) + coefficient
+                if scenario == "reverse" and load_reallocation:
+                    # 固定转接用电负荷，电源仍归原站。缺转接块同步曲线时，
+                    # 转出按峰值负荷上界增加反送压力，不抵扣受端消纳收益。
+                    for variable, coefficient in normal_shift[station, year].items():
+                        if coefficient > 0:
+                            terms[variable] = -coefficient
                 if scenario == "forward":
                     initial_capacity = sum(float(baseline[station][f"simulation_unit_{slot}_mva"])
                                            for slot in (1, 2))
@@ -490,6 +534,9 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
             new_third = third_unit - prior_third[station]
             replaced = sum(new for old, new in zip(prior_capacity[station], chosen) if new > old + 1e-6)
             purchased = replaced + new_third
+            shift = normal_shift[station, year]
+            outgoing = sum(float(solution[i]) for i, v in shift.items() if v > 0)
+            incoming = sum(float(solution[i]) for i, v in shift.items() if v < 0)
             stations_out.append({"year": year, "station": station[2],
                                  "area_class": physical[station[2]]["area_class"],
                                  "source_available_third_slots": physical[station[2]]["available_third_slots"],
@@ -516,6 +563,15 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
                                  "reverse_mw": scenes[station, year]["reverse_screen_mw"],
                                  "forward_duration_h": durations[station]["forward_d95_max_run_hours"],
                                  "reverse_duration_h": durations[station]["reverse_d95_max_run_hours"]})
+            if load_reallocation:
+                stations_out[-1].update({
+                    "normal_load_transferred_out_mw": outgoing,
+                    "normal_load_transferred_in_mw": incoming,
+                    "post_transfer_forward_mw": float(scenes[station, year][
+                        "estimated_station_forward_peak_mw"]) - outgoing + incoming,
+                    "post_transfer_reverse_upper_mw": float(scenes[station, year][
+                        "reverse_screen_mw"]) + outgoing,
+                    "transfer_purpose": "normal_district_internal_load_reallocation"})
             prior_capacity[station] = chosen
             prior_third[station] = third_unit
             prior_energy[station] = total_energy
@@ -574,6 +630,12 @@ def optimization_problem(scheme: str, load_scenario: str = "observed_annual", el
                       + r["storage_capex_10k"] * factors["storage"][r["year"]]
                       + r["line_capex_10k"] * factors["line"][r["year"]]) for r in years_out)
     summary = {"scheme": scheme, "load_scenario": load_scenario,
+               "transfer_mode": transfer_mode,
+               "installed_transfer_target_enforced": not load_reallocation,
+               "n1_demand_basis": "post_normal_transfer_load_without_additional_fault_transfer"
+               if load_reallocation else "original_load_with_fault_recovery",
+               "reverse_load_reallocation_basis": "outgoing_peak_upper_bound_no_receiver_credit"
+               if load_reallocation else "unchanged_reverse_screen",
                "region_id": region[0], "voltage_kv": region[1], "cap": cap,
                "city_baseline_cap_mva": city_baseline_cap_mva,
                "baseline_2021_capacity_mva": sum(float(r["simulation_capacity_mva_2021"])

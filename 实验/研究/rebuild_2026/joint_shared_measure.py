@@ -27,7 +27,7 @@ MARGIN = .001
 TOLERANCE_10K = .001
 
 
-def build_joint(case="transfer_10pct", breakthrough="all_years"):
+def build_joint(case="transfer_10pct", breakthrough="all_years", transfer_mode="load_reallocation"):
     observed = {}
     for row in read_csv(OUTPUT_DIR / "official_annual.csv"):
         region = row["region_id"], int(row["voltage_kv"])
@@ -45,7 +45,8 @@ def build_joint(case="transfer_10pct", breakthrough="all_years"):
                 require_transformer_n1=True, n1_load_requirement="bc_min_service_static",
                 elastic_allow_line_decisions=True, enforce_expansion_slot=True,
                 max_transfer_fraction=CASES[case], storage_max_mwh_per_station=None,
-                prefer_larger_clr=True, minimize_transfer_tiebreak=True)
+                prefer_larger_clr=True, minimize_transfer_tiebreak=True,
+                transfer_mode=transfer_mode)
             if label == "city":
                 city_start = upper * observed[region][2021]
                 kwargs["city_baseline_cap_mva"] = city_start
@@ -103,13 +104,25 @@ def finish(generator, override):
     raise RuntimeError("模型结果未结束")
 
 
-def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=False, stage_seconds=480):
+def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=False,
+          stage_seconds=480, transfer_mode="load_reallocation"):
     settings()
     import os
     os.environ["XUZHOU_MILP_TIME_LIMIT_SECONDS"] = str(stage_seconds)
-    directory = Path(output) if output else OUTPUT / f"{case}_{breakthrough}"
+    suffix = "_load_reallocation" if transfer_mode == "load_reallocation" else ""
+    directory = Path(output) if output else OUTPUT / f"{case}_{breakthrough}{suffix}"
     directory.mkdir(parents=True, exist_ok=True)
-    joint, problems, blocks, city_start = build_joint(case, breakthrough)
+    joint, problems, blocks, city_start = build_joint(case, breakthrough, transfer_mode)
+    presolved_unused_lines = 0
+    if transfer_mode == "load_reallocation":
+        # 没有强制建设目标，且既有代理网络可等价承接任意新线转接：
+        # 正投资新线严格劣于既有通道，零建设是可证明的费用最优选择。
+        for block in blocks.values():
+            if block["line_dispatch_substitutable"]:
+                for i in block["line_variables"]:
+                    joint.lower_bounds[i] = joint.upper_bounds[i] = 0
+                    joint.integrality[i] = 0
+                    presolved_unused_lines += 1
     primary_costs = list(joint.costs)
     if resume:
         from scipy.sparse import coo_matrix
@@ -117,6 +130,8 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
         saved = json.loads((directory / "minimum_cost_checkpoint.json").read_text())
         if (saved["case"], saved["breakthrough"]) != (case, breakthrough):
             raise ValueError("断点的情景与本次要求不一致")
+        if saved.get("transfer_mode", "legacy_outage_proxy") != transfer_mode:
+            raise ValueError("断点的转供用途与本次要求不一致")
         primary_solution, minimum = checkpoint["solution"], float(checkpoint["minimum"])
         if len(primary_solution) != len(joint.costs):
             raise ValueError("断点变量数量与当前模型不一致")
@@ -137,7 +152,8 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
     np.savez_compressed(directory / "minimum_cost_checkpoint.npz",
                         solution=primary_solution, minimum=minimum)
     (directory / "minimum_cost_checkpoint.json").write_text(json.dumps(
-        {"case": case, "breakthrough": breakthrough, "history": joint.solve_history},
+        {"case": case, "breakthrough": breakthrough, "transfer_mode": transfer_mode,
+         "history": joint.solve_history},
         ensure_ascii=False, indent=2) + "\n")
     fixed_dispatch_equivalent_lines = 0
     for block in blocks.values():
@@ -204,6 +220,9 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
                   portfolios[label]["rigid"]["objective_npv_10k"] - .01 for label in DISTRICTS}
     result = {
         "case": case, "breakthrough_requirement": breakthrough,
+        "transfer_mode": transfer_mode,
+        "transfer_purpose": "normal_district_internal_load_reallocation"
+        if transfer_mode == "load_reallocation" else "legacy_normal_and_fault_proxy",
         "max_transfer_fraction": CASES[case],
         "same_measure_set": True, "same_start_per_district": True,
         "optimization_scope": "simultaneous_four_path_minimum_total_lifecycle_cost",
@@ -229,6 +248,7 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
         "transfer_objective_mw_sum": transfer,
         "transfer_tiebreak_scope": "minimum_continuous_transfer_for_selected_optimal_layout",
         "fixed_dispatch_equivalent_line_variables": fixed_dispatch_equivalent_lines,
+        "presolved_unused_line_variables": presolved_unused_lines,
         "line_fixing_basis": "transfer_use_bound_below_existing_pair_donor_and_county_bounds",
         "solve_history": joint.solve_history,
         "solver_configuration": {
@@ -260,5 +280,7 @@ if __name__ == "__main__":
     parser.add_argument("--output")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--stage-seconds", type=int, default=480)
+    parser.add_argument("--transfer-mode", choices=("load_reallocation", "legacy_outage_proxy"),
+                        default="load_reallocation")
     args = parser.parse_args()
-    solve(args.case, args.breakthrough, args.output, args.resume, args.stage_seconds)
+    solve(args.case, args.breakthrough, args.output, args.resume, args.stage_seconds, args.transfer_mode)

@@ -18,7 +18,7 @@ from .hourly_source_profile import OUTPUT_DIR
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "outputs/shared_measure_deterministic"
 DISTRICTS = {"pizhou": ("QX-00005", 110), "city": ("QX-00007", 110)}
-CASES = {"reference": None, "transfer_20pct": .2, "transfer_10pct": .1}
+CASES = {"reference": None, "transfer_20pct": .2, "transfer_10pct": .1, "transfer_0pct": 0.0}
 YEARS = (2022, 2023, 2024, 2025)
 
 

@@ -37,8 +37,9 @@ def audit(directory, repeat_directory=None):
             "target_transfer_fraction", "max_transfer_fraction",
             "n1_load_requirement", "enforce_expansion_slot",
             "storage_upper_by_station_mwh",
+            "transfer_mode", "installed_transfer_target_enforced", "n1_demand_basis",
         ):
-            assert summaries["rigid"][field] == summaries["elastic"][field], (label, field)
+            assert summaries["rigid"].get(field) == summaries["elastic"].get(field), (label, field)
         for scheme in ("rigid", "elastic"):
             summary = summaries[scheme]
             rows = read_csv(directory / label / f"{scheme}_years.csv")

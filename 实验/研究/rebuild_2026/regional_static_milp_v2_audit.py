@@ -18,6 +18,7 @@ def audit(directory: Path = OUTPUT) -> dict:
     factors = cost_factors()
     results = []
     for summary in summaries:
+        load_reallocation = summary.get("transfer_mode") == "load_reallocation"
         scheme = summary["scheme"]
         region = (summary["region_id"], int(summary["voltage_kv"]))
         years = read_csv(directory / f"{scheme}_years.csv")
@@ -28,6 +29,9 @@ def audit(directory: Path = OUTPUT) -> dict:
         lines = read_csv(line_file) if line_file.exists() else []
         outage_file = directory / f"{scheme}_outage_flows.csv"
         outages = read_csv(outage_file) if outage_file.exists() else []
+        if load_reallocation:
+            assert not outages, "正常负荷转接结果不得含事故恢复量"
+            assert summary["installed_transfer_target_enforced"] is False
         baseline, scenes, durations, peaks, _, _ = input_data(
             summary["load_scenario"], region, summary.get("city_baseline_cap_mva"))
         physical = station_metadata({station[2] for station in baseline})
@@ -96,6 +100,9 @@ def audit(directory: Path = OUTPUT) -> dict:
                        sum(float(r["transformer_capex_10k"]) for r in local)) < 1e-4
             assert abs(float(year_row["storage_capex_10k"]) -
                        sum(float(r["storage_capex_10k"]) for r in local)) < 1e-4
+            if load_reallocation:
+                assert abs(sum(float(r["post_transfer_forward_mw"]) for r in local) -
+                           sum(float(r["forward_mw"]) for r in local)) < 1e-5
             total_cost += (float(year_row["transformer_capex_10k"]) * factors["transformer"][year]
                            + float(year_row["storage_capex_10k"]) * factors["storage"][year]
                            + float(year_row["line_capex_10k"]) * factors["line"][year])
@@ -124,7 +131,7 @@ def audit(directory: Path = OUTPUT) -> dict:
                 existing_out = sum(float(t["mw"]) for t in local_transfer
                                    if t["kind"] == "existing" and t["donor"] == sid)
                 assert existing_out <= float(summary["existing_transfer_fraction"]) * forward + 1e-5
-                if scheme == "rigid" or summary.get("elastic_allow_line_decisions"):
+                if not load_reallocation and (scheme == "rigid" or summary.get("elastic_allow_line_decisions")):
                     incident_capacity = sum(LINE_MW_2025 * scale for pair in built_now if sid in pair)
                     assert (incident_capacity + 1e-5 >=
                             max(0, float(summary["target_transfer_fraction"]) -
@@ -180,6 +187,14 @@ def audit(directory: Path = OUTPUT) -> dict:
                                if t["receiver"] == station_id)
                 forward = float(scenes[station, year]["estimated_station_forward_peak_mw"])
                 reverse = float(scenes[station, year]["reverse_screen_mw"])
+                post_forward = forward - outgoing + incoming
+                if load_reallocation:
+                    assert post_forward >= -1e-5
+                    assert abs(float(item["normal_load_transferred_out_mw"]) - outgoing) < 1e-5
+                    assert abs(float(item["normal_load_transferred_in_mw"]) - incoming) < 1e-5
+                    assert abs(float(item["post_transfer_forward_mw"]) - post_forward) < 1e-5
+                    assert abs(float(item["post_transfer_reverse_upper_mw"]) - reverse - outgoing) < 1e-5
+                    reverse += outgoing
                 assert outgoing <= max(0.0, forward) + 1e-5
                 baseline_capacity = sum(float(baseline[station][f"simulation_unit_{slot}_mva"])
                                         for slot in (1, 2))
@@ -198,9 +213,10 @@ def audit(directory: Path = OUTPUT) -> dict:
                                     if int(r["year"]) == year and r["failed_station"] == station_id)
                     if transfer_fraction is not None:
                         assert recovered <= float(transfer_fraction) * forward + 1e-5
-                    demand = (forward if summary.get("n1_load_requirement", "full") == "full" or
+                    assigned = post_forward if load_reallocation else forward
+                    demand = (assigned if summary.get("n1_load_requirement", "full") == "full" or
                               physical[station_id]["area_class"] == "A" else
-                              max(0, min(forward - 12, forward * 2 / 3)))
+                              max(0, min(assigned - 12, assigned * 2 / 3)))
                     for failed_index in range(2 + int(third > 0)):
                         available = (sum(units) + third) - (units[failed_index] if failed_index < 2 else third)
                         assert .95 * available + forward_effect + recovered + 1e-4 >= demand
@@ -209,7 +225,7 @@ def audit(directory: Path = OUTPUT) -> dict:
                 previous_third[station_id] = third
                 previous_energy[station_id] = energy
                 checked += 2
-            if float(summary.get("outage_recovery_fraction", 0)) or summary.get("require_transformer_n1_static_proxy"):
+            if not load_reallocation and (float(summary.get("outage_recovery_fraction", 0)) or summary.get("require_transformer_n1_static_proxy")):
                 for failed in baseline:
                     failed_id = failed[2]
                     recovery_rows = [r for r in outages if int(r["year"]) == year

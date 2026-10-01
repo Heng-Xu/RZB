@@ -1,4 +1,4 @@
-"""将已核验联合规划输出整理为逐年对照表和可读计算说明。"""
+"""现行负荷转接交付入口；旧事故代理交付函数仅供历史追溯。"""
 
 import json
 from pathlib import Path
@@ -14,11 +14,11 @@ from .joint_shared_measure_audit import audit
 ROOT = Path(__file__).resolve().parents[3]
 MODEL = Path(__file__).resolve().parent
 SOURCE = MODEL / "outputs/joint_shared_measure/transfer_10pct_all_years"
-DELIVERY = ROOT / "docs/2026-10-01三措施联合优化"
+DELIVERY = ROOT / "docs/2026-10-01三措施联合优化/历史事故代理"
 LABELS = {"pizhou": "邳州", "city": "市区", "rigid": "刚性", "elastic": "弹性"}
 
 
-def main():
+def build_legacy_delivery():
     check = audit(SOURCE)
     review = json.loads((SOURCE / "review.json").read_text())
     rows = read_csv(SOURCE / "annual_comparison.csv")
@@ -98,6 +98,11 @@ def main():
              "复现：在实验/研究下运行 python -m rebuild_2026.joint_shared_measure --case transfer_10pct --breakthrough all_years；保留最优断点后可加 --resume。数值审查为 python -m rebuild_2026.joint_shared_measure_audit <输出目录>。"]
     (DELIVERY / "计算结果与约束说明.md").write_text("\n".join(text) + "\n")
     print(json.dumps({"delivery": str(DELIVERY), "rigid_10k": rigid, "elastic_10k": elastic}, ensure_ascii=False))
+
+
+def main():
+    from .build_load_reallocation_delivery import main as current_delivery
+    return current_delivery()
 
 
 if __name__ == "__main__":

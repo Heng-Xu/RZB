@@ -1,0 +1,18 @@
+{
+  "case": "transfer_10pct",
+  "breakthrough": "all_years",
+  "transfer_mode": "load_reallocation",
+  "history": [
+    {
+      "stage": "joint_four_paths_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 187.10421852581203,
+      "objective": 201113.78771516655,
+      "mip_gap": 0.0
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "numerical_and_planning_checks": "PASS",
+  "annual_records": 16,
+  "same_prices_load_start_and_measure_limits": "PASS",
+  "rigid_npv_10k": 121636.50020866047,
+  "elastic_npv_10k": 79477.28750653038,
+  "elastic_cost_below_rigid": {
+    "pizhou": true,
+    "city": true
+  },
+  "repeat_csv_exact_match": true,
+  "output_sha256": {
+    "annual_comparison.csv": "e654784d66c39b869c30e6043637b47ce74899ed494ad81a60549a4ad3302a97",
+    "city/city_2021_district_calibration.csv": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587",
+    "city/elastic_stations.csv": "bd1720dbcfc022d34dda6cf6b2ac120191a1fa692cd8f29b34582886dd40d5f8",
+    "city/elastic_transfers.csv": "72402028221c33f30005db89dbebd40ea5001ec19a1061d8d6057cc6781906dc",
+    "city/elastic_years.csv": "615d629cffb466b73ee6c5a711fc0b5cb705954f2b1d5f3fd0b20b5d91e7b7c1",
+    "city/rigid_stations.csv": "b4e4a3ffd007f1e9c9c897601d389d6176920c5913456512cf8847c4b899121b",
+    "city/rigid_transfers.csv": "df1f0ac4324fb69e3a431c5a171bef51fe7ff4eac542fcd893db9fc32ce8787f",
+    "city/rigid_years.csv": "ea73379535b476287d12ed7ba836aab0287ddac8c488798d55868d52748e23de",
+    "pizhou/elastic_stations.csv": "7f0d1fe0fa8198decc8d377e96db09ab787f338423564789d1485496143277ab",
+    "pizhou/elastic_transfers.csv": "eb2fe29c18b57821a565de7a16977ef8737072e506fbe04d6dc235bb9d82c6fe",
+    "pizhou/elastic_years.csv": "162d650592cd82694a648572322416e1c5ae6811d33dbe3d134f8e5c973de1c5",
+    "pizhou/rigid_stations.csv": "699d0888fa9c0f26d2747a44a9c519cea5aa87b9d974aef71bd124ec56337a19",
+    "pizhou/rigid_transfers.csv": "07acfa8a675f39a19a52b9bcedcfb565e5f68c36a0bce3afd67f730b60709781",
+    "pizhou/rigid_years.csv": "eba539b525c58b0d680e960db19593feb90e00d97e31aa77ea0a76ec2dfed75e"
+  }
+}
