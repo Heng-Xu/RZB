@@ -1,0 +1,53 @@
+{
+  "unit_id": "LOCAL_FEEDER_PLANNING_LOAD_BASE_V1",
+  "status": "historical_local_feeder_basis_not_current_station_rate_denominator",
+  "unit_definition": "sending_side_supply_area_of_one_standard_multi_section_multi_tie_10kv_feeder",
+  "reference_relation": "V2:T01 = TIE-002 = dnan_to_hpao",
+  "component_current_limits_a": {
+    "donor_feeder_source_allowed_current_a": 485.0,
+    "receiver_feeder_source_allowed_current_a": 595.0,
+    "dnan_path_simulation_base_current_a": 500.0,
+    "hpao_path_simulation_base_current_a": 550.0
+  },
+  "simulation_limiting_current_a": 485.0,
+  "nominal_line_voltage_kv": 10.0,
+  "assumed_power_factor": 0.95,
+  "channel_apparent_load_ceiling_mva": 8.400446416709054,
+  "channel_active_load_ceiling_mw": 7.980424095873601,
+  "normal_planning_loading_limit": 0.7,
+  "local_load_base_upper_mw": 5.58629686711152,
+  "load_base_calculation": "normal_planning_loading_limit * sqrt(3) * nominal_line_voltage_kv * limiting_current_a * power_factor / 1000",
+  "loading_limit_reference": {
+    "standard": "DB11/T 2077-2023",
+    "position": "6.1.4 Table 3,overhead_multi_section_moderate_tie",
+    "url": "https://bzh.scjgj.beijing.gov.cn/bzh/apifile/file/2023/20230505/0064b6d2-bccf-4406-9aed-da02e86dea64.pdf",
+    "scope": "reference_for_simulation_not_mandatory_Xuzhou_requirement"
+  },
+  "calculation": "sqrt(3) * nominal_line_voltage_kv * limiting_current_a * power_factor / 1000",
+  "transfer_fraction_upper": null,
+  "fraction_status": "provided_by_upper_model_policy_configuration_not_reestimated_in_this_review",
+  "transfer_fraction_definition": "DL/T5729-2023_2.0.15_transferable_load_divided_by_total_load_of_the_same_defined_supply_area",
+  "local_fraction_interface": "Q_local_upper = specified_transfer_fraction * local_load_base_upper_mw",
+  "do_not_change_existing_fraction_values_here": true,
+  "shared_feeder_rule": "one_feeder_has_one_local_load_base_and_one_outgoing_budget_shared_by_all_its_ties",
+  "thermal_flow_constraint": "q_A_to_B + q_B_to_A <= channel_active_load_ceiling_mw",
+  "tighter_bound_requires": [
+    "switchable_section_design_capacity",
+    "shared_feeder_and_path_capacity",
+    "chosen_design_operating_scenario"
+  ],
+  "upper_model_checks": [
+    "post_transfer_transformer_capacity",
+    "post_transfer_supply_security_capacity"
+  ],
+  "normal_transfer_scope": "normal_load_reallocation_not_fault_restoration",
+  "fixed_year_comparison_policy": "reuse_design_specification_without_county_load_scaling",
+  "copy_rule": "using_the_reference_spec_for_other_channels_is_an_explicit_simulation_assumption",
+  "equipment_assumption": "additional_equivalent_channel_elements_do_not_have_lower_current_limits",
+  "source_hashes": {
+    "实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/邳州10kV线路基础数据表.xlsx": "120d7d9cfa59a3b7b8abdd424773b18b1b5420bc2160249d0bf30d76615619d7",
+    "实验/研究/data/tuomin/10kv_case/data/key_tie_path_parameter_impact.csv": "5eab7d07ec94df48662f2bdfc147f875b8387ff2d2b0390c8015441f51ee5ffe",
+    "参考政策/DL-T+5729-2023+配电网规划设计技术导则.pdf": "c0256583876451a159abeac4d7673459c9ae4f6b2594ed241e6e40db81571bdf"
+  },
+  "current_scheme": "站级转供率与10kV联络方案.md"
+}

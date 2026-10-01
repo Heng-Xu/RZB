@@ -1,0 +1,112 @@
+{
+  "case": "station_rate",
+  "breakthrough_requirement": "all_years",
+  "transfer_mode": "load_reallocation",
+  "transfer_purpose": "normal_district_internal_load_reallocation",
+  "max_transfer_fraction": null,
+  "transfer_capacity_model": "station_rate_equivalent",
+  "same_measure_set": true,
+  "same_start_per_district": true,
+  "optimization_scope": "simultaneous_four_path_minimum_total_lifecycle_cost",
+  "ordering_constraints_imposed": true,
+  "ordering_margin": 0.001,
+  "cost_order_imposed": false,
+  "cost_order": {
+    "pizhou": true,
+    "city": false
+  },
+  "city_below_pizhou_all_years": true,
+  "elastic_above_rigid_all_years": true,
+  "elastic_break_2_years": {
+    "pizhou": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "city": [
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "cost_npv_10k": {
+    "pizhou": {
+      "rigid": 19558.165559153258,
+      "elastic": 13855.334911375421
+    },
+    "city": {
+      "rigid": 2818.170899522393,
+      "elastic": 17201.596738642984
+    }
+  },
+  "joint_minimum_primary_objective_10k": 53433.26810868435,
+  "primary_cost_solution_quality": "certified_near_optimal",
+  "primary_cost_relative_gap": 0.004999049186338034,
+  "primary_cost_lower_bound_10k": 53166.15257322225,
+  "initial_feasible_seed_sha256": "5612fc14bcd6a2901382b634e006037ed1230e65a807384153b58bdaa1be6a50",
+  "selected_joint_primary_objective_10k": 53433.26810869406,
+  "cost_tiebreak_tolerance_10k": 0.001,
+  "sum_elastic_annual_clr": 16.560313130271915,
+  "capacity_preference_scope": "selected_rigid_layout",
+  "capacity_preference_relative_gap": 0.004999891195390141,
+  "sum_elastic_annual_clr_upper_bound": 16.643112894084865,
+  "transfer_objective_mw_sum": 8461.325928560256,
+  "transfer_tiebreak_scope": "minimum_continuous_transfer_for_selected_optimal_layout",
+  "fixed_dispatch_equivalent_line_variables": 0,
+  "presolved_unused_line_variables": 0,
+  "line_fixing_basis": "none_new_lines_increase_station_capacity_fraction",
+  "solve_history": [
+    {
+      "stage": "joint_four_paths_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 92.65945037198253,
+      "objective": 53433.26810868435,
+      "mip_gap": 0.004999049186338034,
+      "objective_lower_bound": 53166.15257322225,
+      "mip_relative_gap_target": 0.005
+    },
+    {
+      "stage": "joint_maximum_elastic_clr_at_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 428.3906540418975,
+      "objective": -16.560313130271915,
+      "mip_gap": 0.004999891195390141,
+      "objective_lower_bound": -16.643112894084865,
+      "mip_relative_gap_target": 0.005
+    },
+    {
+      "stage": "joint_minimum_transfer_at_selected_layout",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 0.01758737303316593,
+      "objective": 8461.325928560256,
+      "mip_gap": 0.0,
+      "objective_lower_bound": 8461.325928560256,
+      "mip_relative_gap_target": 1e-09
+    }
+  ],
+  "solver_configuration": {
+    "backend": "highspy",
+    "threads": 1,
+    "random_seed": 0,
+    "primary_mip_rel_gap": 0.005,
+    "capacity_preference_mip_rel_gap": 0.005,
+    "continuous_transfer_mip_rel_gap": 1e-09,
+    "mip_abs_gap": 1e-07,
+    "time_limit_per_stage_seconds": 900
+  },
+  "all_requested_relations": false
+}

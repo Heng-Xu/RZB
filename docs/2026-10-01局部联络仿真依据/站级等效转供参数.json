@@ -1,0 +1,58 @@
+{
+  "model": "station_rate_equivalent_capacity",
+  "scope": "normal_station_load_reallocation_planning_simulation",
+  "capacity_formula": "Q_cap = rho_effective * B_station",
+  "base_definition": "station_supply_area_pre_transfer_planning_load",
+  "current_base_proxy": "estimated_station_forward_peak_mw",
+  "base_proxy_status": "annual_station_positive_net_flow_peak_proxy_not_measured_gross_area_load",
+  "new_line_increment_mw": 7.49106117,
+  "new_line_increment_basis": "one_new_dedicated_receiving_feeder_serving_one_isolated_local_load_section",
+  "new_line_increment_status": "local_case_calibrated_independent_unit_assumption_not_standard_line_rating",
+  "fraction_increment_formula": "delta_rho = new_line_increment_mw / B_station",
+  "fraction_update_formula": "rho_effective = min(rho_ceiling, rho_initial + n * delta_rho)",
+  "rate_ceiling_status": "research_policy_selected_from_guide_recommended_range",
+  "preserve_initial_fraction_configuration": true,
+  "year_rule": "unit_increment_fixed; station_base_follows_declared_annual_load_scenario",
+  "sharing_rule": "add_increment_once_per_independent_unit; no_duplicate_shared_load_or_path",
+  "topology_scope": "county_level_equivalent_allocation_not_observed_all_station_pair_ties",
+  "normal_flow_rule": "total_station_outgoing <= capacity_mw; receiver_post_load_capacity_checked",
+  "planning_target_rule": "if_target_enabled_capacity_mw >= target_fraction * same_station_base",
+  "source_section": {
+    "candidate_id": "SIM-NEW-DZHEN-RIVER-BUS",
+    "donor_feeder_id": "PZXL-00099",
+    "new_isolation_switch_span": "dzhen线23杆—dzhen线24杆",
+    "upstream_node_id": "PZXL-00099-N0023",
+    "new_line_connection_node_id": "PZXL-00099-N0024",
+    "receiver_station_id": "BDZ-00048",
+    "receiver_connection": "河湾变新10kV出线间隔（仿真）",
+    "isolated_section_nodes": 25,
+    "2025_feeder_stress_section_load_seed_mw": 7.49106117,
+    "2025_feeder_total_load_seed_mw": 8.2344,
+    "source_pdf": "data/tuomin/10kv_case/source/10kv.7z::10kv/邳州_10kV墩振线.pdf",
+    "source_span_xlsx": "data/tuomin/10kv_case/source/10kv.7z::10kv/邳州_10kV墩振线明细.xlsx",
+    "topology_source": "data/tuomin/10kv_case/data/base_debug_edges.csv",
+    "status": "designed_candidate_new_switch_and_new_station_feeder_not_existing_asset"
+  },
+  "source_csv_sha256": {
+    "node_master.csv": "70975a8f19891e11e73ec428931b6355b17ad1a710b8c4a7832523dcb4d8162d",
+    "feeder_master.csv": "ca2e87eb992154fe1a4da51aa2858b18a43454330267168c0984952139bdac8d",
+    "base_debug_edges.csv": "b9d02a087d4b24ab31bdc4e588627c4e30ff06f00524d0d864c995c431df93b3",
+    "node_load_seed_pf095.csv": "45e70a63ebf6674cd81656ed81d7770acfe04cf06224fe369ebf9629b84932ee"
+  },
+  "optimization_status": "station_equivalent_constraints_integrated_in_annual_solver",
+  "current_initial_and_target_rate_status": "preserved_previous_model_scenarios_not_verified_existing_station_capability",
+  "station_reference_source": {
+    "pizhou": {
+      "station_file": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/实验/研究/rebuild_2026/outputs/joint_shared_measure/station_rate_all_years_load_reallocation/pizhou/rigid_stations.csv",
+      "station_sha256": "9b06f10838ecfaa698115be01981f24da78a6c5f462d5e98238230551072e78d",
+      "summary_sha256": "3282c84a5b18d749f06e094d8d2a7c0c4d7e1298eb8f2403b9ce100012edde99"
+    },
+    "city": {
+      "station_file": "/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/实验/研究/rebuild_2026/outputs/joint_shared_measure/station_rate_all_years_load_reallocation/city/rigid_stations.csv",
+      "station_sha256": "f53ce2228911f9d845557726565ce194393c5d44da05b58e826ff89ddaf2d313",
+      "summary_sha256": "814a582a42cff652dbe5d7e809196693fe2e02fe68691d66dd9b354877e00fa4"
+    }
+  },
+  "station_year_count": 196,
+  "reference_table_status": "before_build_and_one_unit_what_if_not_new_optimized_annual_results"
+}

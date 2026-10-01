@@ -13,7 +13,7 @@ from .hourly_source_profile import OUTPUT_DIR
 from .planning_load_profile import weighted_annual_growth
 from .regional_static_milp_v2 import optimization_problem
 from .regional_static_milp_v2_audit import audit
-from .shared_measure_deterministic import CASES, DISTRICTS, settings
+from .shared_measure_deterministic import CASES as LEGACY_CASES, DISTRICTS, settings
 from .two_district_ordered_guide_run import guide_range
 from .two_district_source_audit import audit as source_audit
 from .city_district_calibration import calibrate_city
@@ -25,9 +25,10 @@ ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "outputs/joint_shared_measure"
 MARGIN = .001
 TOLERANCE_10K = .001
+CASES = {**LEGACY_CASES, "station_rate": None}
 
 
-def build_joint(case="transfer_10pct", breakthrough="all_years", transfer_mode="load_reallocation"):
+def build_joint(case="station_rate", breakthrough="all_years", transfer_mode="load_reallocation"):
     observed = {}
     for row in read_csv(OUTPUT_DIR / "official_annual.csv"):
         region = row["region_id"], int(row["voltage_kv"])
@@ -46,7 +47,9 @@ def build_joint(case="transfer_10pct", breakthrough="all_years", transfer_mode="
                 elastic_allow_line_decisions=True, enforce_expansion_slot=True,
                 max_transfer_fraction=CASES[case], storage_max_mwh_per_station=None,
                 prefer_larger_clr=True, minimize_transfer_tiebreak=True,
-                transfer_mode=transfer_mode)
+                transfer_mode=transfer_mode,
+                transfer_capacity_model=("station_rate_equivalent" if case == "station_rate"
+                                         else "legacy_regional_proxy"))
             if label == "city":
                 city_start = upper * observed[region][2021]
                 kwargs["city_baseline_cap_mva"] = city_start
@@ -67,6 +70,11 @@ def build_joint(case="transfer_10pct", breakthrough="all_years", transfer_mode="
                 "transfer_variables": [i + offset for i in metadata["transfer_variables"]]}
             blocks[key]["line_variables"] = [i + offset for i in metadata["line_variables"]]
             blocks[key]["line_dispatch_substitutable"] = metadata["line_dispatch_substitutable"]
+            blocks[key]["capacity_variables"] = {year: i + offset
+                                                  for year, i in metadata["capacity_variables"].items()}
+            blocks[key]["capacity_seed_terms"] = {
+                year: {i + offset: value for i, value in terms.items()}
+                for year, terms in metadata["capacity_seed_terms"].items()}
     for year in YEARS:
         for scheme in ("rigid", "elastic"):
             terms = dict(blocks["city", scheme]["clr_terms"][year])
@@ -104,14 +112,49 @@ def finish(generator, override):
     raise RuntimeError("模型结果未结束")
 
 
-def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=False,
-          stage_seconds=480, transfer_mode="load_reallocation"):
+def expand_capacity_seed(candidate, blocks, expected_count):
+    """兼容容量汇总前的初始解；设备变量不改，补出容量/规格公约步长。"""
+    candidate = np.asarray(candidate, dtype=float)
+    if candidate.shape == (expected_count,):
+        return candidate
+    extra = sum(len(block["capacity_variables"]) for block in blocks.values())
+    if not extra or candidate.shape != (expected_count - extra,):
+        raise ValueError("初始解变量数量与当前或兼容容量汇总模型不一致")
+    expanded, original_offset = np.zeros(expected_count), 0
+    for block in blocks.values():
+        prefix_count = block["count"] - len(block["capacity_variables"])
+        offset = block["offset"]
+        expanded[offset:offset + prefix_count] = candidate[original_offset:original_offset + prefix_count]
+        original_offset += prefix_count
+    for block in blocks.values():
+        for year, index in block["capacity_variables"].items():
+            expanded[index] = sum(expanded[i] * v for i, v in block["capacity_seed_terms"][year].items())
+    return expanded
+
+
+def solve(case="station_rate", breakthrough="all_years", output=None, resume=False,
+          stage_seconds=900, transfer_mode="load_reallocation", warm_start=None,
+          primary_relative_gap=None, capacity_relative_gap=None,
+          capacity_preference_scope=None):
+    if primary_relative_gap is None:
+        primary_relative_gap = .005 if case == "station_rate" else 1e-9
+    if not 0 <= primary_relative_gap <= .01:
+        raise ValueError("费用阶段相对最优性间隙须在0至1%范围")
+    if capacity_relative_gap is None:
+        capacity_relative_gap = .005 if case == "station_rate" else 1e-9
+    if not 0 <= capacity_relative_gap <= .01:
+        raise ValueError("容载比偏好阶段相对最优性间隙须在0至1%范围")
+    if capacity_preference_scope is None:
+        capacity_preference_scope = "selected_rigid_layout" if case == "station_rate" else "global_joint"
+    if capacity_preference_scope not in ("selected_rigid_layout", "global_joint"):
+        raise ValueError("未知容载比偏好优化范围")
     settings()
     import os
     os.environ["XUZHOU_MILP_TIME_LIMIT_SECONDS"] = str(stage_seconds)
     suffix = "_load_reallocation" if transfer_mode == "load_reallocation" else ""
     directory = Path(output) if output else OUTPUT / f"{case}_{breakthrough}{suffix}"
     directory.mkdir(parents=True, exist_ok=True)
+    os.environ["XUZHOU_MILP_LOG_DIR"] = str(directory / "solver_logs")
     joint, problems, blocks, city_start = build_joint(case, breakthrough, transfer_mode)
     presolved_unused_lines = 0
     if transfer_mode == "load_reallocation":
@@ -124,6 +167,24 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
                     joint.integrality[i] = 0
                     presolved_unused_lines += 1
     primary_costs = list(joint.costs)
+    if warm_start is not None:
+        from scipy.sparse import coo_matrix
+        candidate = expand_capacity_seed(np.load(warm_start)["solution"], blocks, len(joint.costs))
+        rr, cc, vv = zip(*joint.entries)
+        matrix = coo_matrix((vv, (rr, cc)), shape=(
+            len(joint.constraint_lower), len(joint.costs))).tocsr()
+        if candidate.shape != (len(joint.costs),) or not np.all(np.isfinite(candidate)):
+            raise ValueError("初始可行解的变量数或有限性不符合当前模型")
+        activity = matrix @ candidate
+        integers = np.flatnonzero(joint.integrality)
+        if not (np.all(activity >= np.array(joint.constraint_lower) - 1e-4) and
+                np.all(activity <= np.array(joint.constraint_upper) + 1e-4) and
+                np.all(candidate >= np.array(joint.lower_bounds) - 1e-5) and
+                np.all(candidate <= np.array(joint.upper_bounds) + 1e-5) and
+                np.all(np.abs(candidate[integers] - np.round(candidate[integers])) <= 1e-5)):
+            raise ValueError("初始解未通过当前约束、边界及整数性校核")
+        joint.last_solution = candidate.copy()
+        print(f"Validated feasible warm start: objective={np.dot(primary_costs, candidate):.9f}", flush=True)
     if resume:
         from scipy.sparse import coo_matrix
         checkpoint = np.load(directory / "minimum_cost_checkpoint.npz")
@@ -132,7 +193,10 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
             raise ValueError("断点的情景与本次要求不一致")
         if saved.get("transfer_mode", "legacy_outage_proxy") != transfer_mode:
             raise ValueError("断点的转供用途与本次要求不一致")
-        primary_solution, minimum = checkpoint["solution"], float(checkpoint["minimum"])
+        primary_solution = expand_capacity_seed(checkpoint["solution"], blocks, len(joint.costs))
+        minimum = float(checkpoint["minimum"])
+        if saved["history"][0]["mip_gap"] > primary_relative_gap + 1e-12:
+            raise ValueError("断点的费用最优性间隙超过本次精度要求")
         if len(primary_solution) != len(joint.costs):
             raise ValueError("断点变量数量与当前模型不一致")
         rr, cc, vv = zip(*joint.entries)
@@ -148,7 +212,11 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
         joint.last_solution = primary_solution.copy()
         joint.solve_history = saved["history"]
     else:
-        primary_solution, minimum = joint.solve(stage="joint_four_paths_minimum_cost")
+        os.environ["XUZHOU_MILP_REL_GAP"] = str(primary_relative_gap)
+        try:
+            primary_solution, minimum = joint.solve(stage="joint_four_paths_minimum_cost")
+        finally:
+            os.environ["XUZHOU_MILP_REL_GAP"] = "1e-9"
     np.savez_compressed(directory / "minimum_cost_checkpoint.npz",
                         solution=primary_solution, minimum=minimum)
     (directory / "minimum_cost_checkpoint.json").write_text(json.dumps(
@@ -164,10 +232,22 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
                 fixed_dispatch_equivalent_lines += 1
     joint.constraint({i: v for i, v in enumerate(primary_costs) if v},
                      upper=minimum + TOLERANCE_10K)
+    if capacity_preference_scope == "selected_rigid_layout":
+        # 共同费用优化已选定刚性基准；弹性偏好不再改变其整数布局。
+        for key, block in blocks.items():
+            if key[1] == "rigid":
+                for i in range(block["offset"], block["offset"] + block["count"]):
+                    if joint.integrality[i]:
+                        joint.lower_bounds[i] = joint.upper_bounds[i] = round(float(primary_solution[i]))
+                        joint.integrality[i] = 0
     capacity_objective = {i: -v for key, block in blocks.items() if key[1] == "elastic"
                           for terms in block["clr_terms"].values() for i, v in terms.items()}
     joint.costs = [capacity_objective.get(i, 0.0) for i in range(len(joint.costs))]
-    capacity_solution, reserve = joint.solve(stage="joint_maximum_elastic_clr_at_minimum_cost")
+    os.environ["XUZHOU_MILP_REL_GAP"] = str(capacity_relative_gap)
+    try:
+        capacity_solution, reserve = joint.solve(stage="joint_maximum_elastic_clr_at_minimum_cost")
+    finally:
+        os.environ["XUZHOU_MILP_REL_GAP"] = "1e-9"
     joint.constraint(capacity_objective, upper=reserve + 1e-8)
     # 设备与投运布局已由前两阶段选定；最后仅优化该布局的连续转供量。
     # 固定整数变量后成为LP，不重复搜索与前两阶段同价同R的其它设备布局。
@@ -224,6 +304,8 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
         "transfer_purpose": "normal_district_internal_load_reallocation"
         if transfer_mode == "load_reallocation" else "legacy_normal_and_fault_proxy",
         "max_transfer_fraction": CASES[case],
+        "transfer_capacity_model": "station_rate_equivalent" if case == "station_rate"
+        else "legacy_regional_proxy",
         "same_measure_set": True, "same_start_per_district": True,
         "optimization_scope": "simultaneous_four_path_minimum_total_lifecycle_cost",
         "ordering_constraints_imposed": True, "ordering_margin": MARGIN,
@@ -242,18 +324,31 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
         "cost_npv_10k": {label: {scheme: s["objective_npv_10k"] for scheme, s in summaries.items()}
                          for label, summaries in portfolios.items()},
         "joint_minimum_primary_objective_10k": minimum,
+        "primary_cost_solution_quality": "certified_near_optimal" if
+        joint.solve_history[0]["mip_gap"] > 1e-9 else "optimal_within_tight_tolerance",
+        "primary_cost_relative_gap": joint.solve_history[0]["mip_gap"],
+        "primary_cost_lower_bound_10k": joint.solve_history[0].get("objective_lower_bound"),
+        "initial_feasible_seed_sha256": hashlib.sha256(Path(warm_start).read_bytes()).hexdigest()
+        if warm_start else None,
         "selected_joint_primary_objective_10k": selected_primary,
         "cost_tiebreak_tolerance_10k": TOLERANCE_10K,
         "sum_elastic_annual_clr": -reserve,
+        "capacity_preference_scope": capacity_preference_scope,
+        "capacity_preference_relative_gap": joint.solve_history[1]["mip_gap"],
+        "sum_elastic_annual_clr_upper_bound": -joint.solve_history[1]["objective_lower_bound"],
         "transfer_objective_mw_sum": transfer,
         "transfer_tiebreak_scope": "minimum_continuous_transfer_for_selected_optimal_layout",
         "fixed_dispatch_equivalent_line_variables": fixed_dispatch_equivalent_lines,
         "presolved_unused_line_variables": presolved_unused_lines,
-        "line_fixing_basis": "transfer_use_bound_below_existing_pair_donor_and_county_bounds",
+        "line_fixing_basis": "none_new_lines_increase_station_capacity_fraction"
+        if case == "station_rate" else "transfer_use_bound_below_existing_pair_donor_and_county_bounds",
         "solve_history": joint.solve_history,
         "solver_configuration": {
             "backend": "highspy", "threads": 1, "random_seed": 0,
-            "mip_rel_gap": 1e-9, "mip_abs_gap": 1e-7, "time_limit_per_stage_seconds": stage_seconds},
+            "primary_mip_rel_gap": primary_relative_gap,
+            "capacity_preference_mip_rel_gap": capacity_relative_gap,
+            "continuous_transfer_mip_rel_gap": 1e-9, "mip_abs_gap": 1e-7,
+            "time_limit_per_stage_seconds": stage_seconds},
     }
     breakthrough_pass = (
         all(len(values) == len(YEARS) for values in result["elastic_break_2_years"].values())
@@ -275,12 +370,21 @@ def solve(case="transfer_10pct", breakthrough="all_years", output=None, resume=F
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--case", choices=CASES, default="transfer_10pct")
+    parser.add_argument("--case", choices=CASES, default="station_rate")
     parser.add_argument("--breakthrough", choices=("any", "both", "all_years"), default="all_years")
     parser.add_argument("--output")
     parser.add_argument("--resume", action="store_true")
-    parser.add_argument("--stage-seconds", type=int, default=480)
+    parser.add_argument("--warm-start", type=Path,
+                        help="仅作初始解，须通过当前模型校核并重新证明最优")
+    parser.add_argument("--stage-seconds", type=int, default=900)
+    parser.add_argument("--primary-relative-gap", type=float,
+                        help="费用阶段：station_rate默认0.5%，旧情景默认1e-9")
+    parser.add_argument("--capacity-relative-gap", type=float,
+                        help="容载比偏好阶段：station_rate默认0.5%，旧情景默认1e-9")
+    parser.add_argument("--capacity-preference-scope", choices=("selected_rigid_layout", "global_joint"))
     parser.add_argument("--transfer-mode", choices=("load_reallocation", "legacy_outage_proxy"),
                         default="load_reallocation")
     args = parser.parse_args()
-    solve(args.case, args.breakthrough, args.output, args.resume, args.stage_seconds, args.transfer_mode)
+    solve(args.case, args.breakthrough, args.output, args.resume, args.stage_seconds,
+          args.transfer_mode, args.warm_start, args.primary_relative_gap,
+          args.capacity_relative_gap, args.capacity_preference_scope)

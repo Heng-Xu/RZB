@@ -10,6 +10,7 @@ from .regional_static_milp_v2 import (
     LINE_MW_2025, OUTPUT, STORAGE_MWH_PER_MW, STORAGE_MODULE_MWH, input_data,
 )
 from .station_grid_feasibility import AREA_RATINGS, grid_candidate_rows, station_metadata
+from .station_transfer_equivalent import capacity_from_station_rate, new_line_increment_reference
 
 
 def audit(directory: Path = OUTPUT) -> dict:
@@ -19,6 +20,7 @@ def audit(directory: Path = OUTPUT) -> dict:
     results = []
     for summary in summaries:
         load_reallocation = summary.get("transfer_mode") == "load_reallocation"
+        station_equivalent = summary.get("transfer_capacity_model") == "station_rate_equivalent"
         scheme = summary["scheme"]
         region = (summary["region_id"], int(summary["voltage_kv"]))
         years = read_csv(directory / f"{scheme}_years.csv")
@@ -31,7 +33,8 @@ def audit(directory: Path = OUTPUT) -> dict:
         outages = read_csv(outage_file) if outage_file.exists() else []
         if load_reallocation:
             assert not outages, "正常负荷转接结果不得含事故恢复量"
-            assert summary["installed_transfer_target_enforced"] is False
+            if not station_equivalent:
+                assert summary["installed_transfer_target_enforced"] is False
         baseline, scenes, durations, peaks, _, _ = input_data(
             summary["load_scenario"], region, summary.get("city_baseline_cap_mva"))
         physical = station_metadata({station[2] for station in baseline})
@@ -61,7 +64,20 @@ def audit(directory: Path = OUTPUT) -> dict:
         assert len(by_station) == len(stations)
         lines_by_pair = {tuple(sorted((r["station_a"], r["station_b"]))): int(r["commissioning_year"])
                          for r in lines}
-        assert len(lines_by_pair) == len(lines)
+        if station_equivalent:
+            assert len({r["project_id"] for r in lines}) == len(lines)
+            assert all(r["station_a"] != r["station_b"] for r in lines)
+            assert all(r["route_status"] == "endpoint_pairing_for_unit_accounting_not_optimized_route"
+                       for r in lines)
+            reference_increment = new_line_increment_reference()["new_line_increment_mw"]
+            assert abs(float(summary["new_line_increment_mw"]) - reference_increment) < 1e-8
+            assert all(abs(float(r["screen_capacity_mw_2025"]) - reference_increment) < 1e-8
+                       for r in lines)
+            assert all(abs(float(r["construction_capex_10k"]) -
+                           float(summary["line_price_10k_per_planned_pair"]) *
+                           float(summary.get("line_scale", 1))) < 1e-6 for r in lines)
+        else:
+            assert len(lines_by_pair) == len(lines)
         if summary.get("use_shared_grid_candidates"):
             assert all(pair in grid_pairs for pair in lines_by_pair)
         if summary.get("require_both_spare_bays"):
@@ -78,8 +94,12 @@ def audit(directory: Path = OUTPUT) -> dict:
             year = int(year_row["year"])
             local = [r for r in stations if int(r["year"]) == year]
             local_transfer = [r for r in transfers if int(r["year"]) == year]
-            built_now = {pair for pair, first in lines_by_pair.items() if first <= year}
-            newly_built = {pair for pair, first in lines_by_pair.items() if first == year}
+            built_records = [r for r in lines if int(r["commissioning_year"]) <= year]
+            built_now = ({r["project_id"] for r in built_records} if station_equivalent else
+                         {pair for pair, first in lines_by_pair.items() if first <= year})
+            newly_built = ({r["project_id"] for r in lines if int(r["commissioning_year"]) == year}
+                          if station_equivalent else
+                          {pair for pair, first in lines_by_pair.items() if first == year})
             assert len(built_now) == int(year_row["new_lines_in_service"])
             assert len(newly_built) == int(year_row["new_lines_commissioned"])
             assert abs(float(year_row["line_capex_10k"]) -
@@ -108,6 +128,7 @@ def audit(directory: Path = OUTPUT) -> dict:
                            + float(year_row["line_capex_10k"]) * factors["line"][year])
             by_pair = defaultdict(float)
             by_station_out = defaultdict(float)
+            by_station_increment = defaultdict(float)
             for transfer in local_transfer:
                 amount = float(transfer["mw"])
                 assert amount > 0
@@ -115,24 +136,36 @@ def audit(directory: Path = OUTPUT) -> dict:
                 assert donor != receiver
                 by_station_out[donor] += amount
                 pair = tuple(sorted((donor, receiver)))
-                if transfer["kind"] == "new":
+                if station_equivalent and transfer["kind"] == "rate_increment":
+                    by_station_increment[donor] += amount
+                    assert transfer["allocation_basis"] == "post_solve_station_balance_allocation_not_line_route"
+                elif transfer["kind"] == "new":
                     assert pair in built_now
                     by_pair[pair] += amount
                 else:
                     assert transfer["kind"] == "existing"
                     by_pair["existing"] += amount
             scale = float(year_row["net_peak_proxy_mw"]) / peaks[region + (2025,)]
-            assert all(amount <= LINE_MW_2025 * scale + 1e-5
-                       for pair, amount in by_pair.items() if pair != "existing")
-            assert by_pair["existing"] <= float(summary["existing_transfer_limit_2025_mw"]) * scale + 1e-5
+            line_limit = float(summary.get("new_line_increment_mw", LINE_MW_2025)) * (
+                1 if station_equivalent else scale)
+            if not station_equivalent:
+                assert all(amount <= line_limit + 1e-5
+                           for pair, amount in by_pair.items() if pair != "existing")
+                assert by_pair["existing"] <= float(summary["existing_transfer_limit_2025_mw"]) * scale + 1e-5
+            else:
+                assert sum(by_station_increment.values()) <= len(built_now) * line_limit + 1e-5
             for station in baseline:
                 sid = station[2]
                 forward = float(scenes[station, year]["estimated_station_forward_peak_mw"])
                 existing_out = sum(float(t["mw"]) for t in local_transfer
                                    if t["kind"] == "existing" and t["donor"] == sid)
                 assert existing_out <= float(summary["existing_transfer_fraction"]) * forward + 1e-5
-                if not load_reallocation and (scheme == "rigid" or summary.get("elastic_allow_line_decisions")):
-                    incident_capacity = sum(LINE_MW_2025 * scale for pair in built_now if sid in pair)
+                if summary["installed_transfer_target_enforced"] and (
+                        scheme == "rigid" or summary.get("elastic_allow_line_decisions")):
+                    incident_capacity = (sum(line_limit for r in built_records
+                                             if sid in (r["station_a"], r["station_b"]))
+                                         if station_equivalent else
+                                         sum(line_limit for pair in built_now if sid in pair))
                     assert (incident_capacity + 1e-5 >=
                             max(0, float(summary["target_transfer_fraction"]) -
                                 float(summary["existing_transfer_fraction"])) * forward)
@@ -179,6 +212,24 @@ def audit(directory: Path = OUTPUT) -> dict:
                            float(summary.get("storage_scale", 1))) < 1e-4
                 assert abs(energy - STORAGE_MWH_PER_MW * float(item["storage_power_mw"])) < 1e-5
                 outgoing = by_station_out[station_id]
+                if station_equivalent:
+                    forward_base = float(scenes[station, year]["estimated_station_forward_peak_mw"])
+                    units_in_service = sum(station_id in (r["station_a"], r["station_b"])
+                                           for r in built_records)
+                    capability = capacity_from_station_rate(
+                        forward_base, float(summary["existing_transfer_fraction"]), units_in_service,
+                        line_limit, float(summary["station_fraction_ceiling"][station_id]))
+                    assert outgoing <= capability["capacity_mw"] + 1e-5
+                    assert by_station_increment[station_id] <= capability["credited_new_capacity_mw"] + 1e-5
+                    assert abs(by_station_increment[station_id] -
+                               max(0, outgoing - capability["initial_capacity_mw"])) < 1e-5
+                    assert abs(float(item["transfer_base_load_mw"]) - forward_base) < 1e-6
+                    assert int(item["incident_new_line_units"]) == units_in_service
+                    assert abs(float(item["effective_transfer_fraction"]) - capability["capacity_fraction"]) < 1e-8
+                    assert abs(float(item["effective_transfer_capacity_mw"]) - capability["capacity_mw"]) < 1e-5
+                    assert abs(float(item["credited_new_transfer_capacity_mw"]) - capability["credited_new_capacity_mw"]) < 1e-5
+                    if summary["installed_transfer_target_enforced"]:
+                        assert capability["capacity_fraction"] + 1e-7 >= float(summary["target_transfer_fraction"])
                 transfer_fraction = summary.get("max_transfer_fraction")
                 if transfer_fraction is not None:
                     assert outgoing <= float(transfer_fraction) * float(

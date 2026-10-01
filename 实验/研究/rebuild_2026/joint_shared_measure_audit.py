@@ -38,6 +38,10 @@ def audit(directory, repeat_directory=None):
             "n1_load_requirement", "enforce_expansion_slot",
             "storage_upper_by_station_mwh",
             "transfer_mode", "installed_transfer_target_enforced", "n1_demand_basis",
+            "transfer_capacity_model", "new_line_increment_mw", "new_line_capacity_year_rule",
+            "station_fraction_ceiling", "existing_county_budget_enforced",
+            "station_transfer_representation", "new_line_endpoint_representation",
+            "new_increment_shared_use_rule",
         ):
             assert summaries["rigid"].get(field) == summaries["elastic"].get(field), (label, field)
         for scheme in ("rigid", "elastic"):
@@ -76,8 +80,21 @@ def audit(directory, repeat_directory=None):
     assert total_npv <= float(review["joint_minimum_primary_objective_10k"]) + float(
         review["cost_tiebreak_tolerance_10k"]) + 1e-3
     assert all(stage.get("status") == "optimal" for stage in review["solve_history"])
+    for stage in review["solve_history"]:
+        assert float(stage["mip_gap"]) <= float(stage.get("mip_relative_gap_target", 1e-9)) + 1e-9
+    primary = review["solve_history"][0]
+    if primary.get("objective_lower_bound") is not None:
+        assert float(primary["objective_lower_bound"]) <= float(primary["objective"]) + 1e-4
+        gap = max(0, (float(primary["objective"]) - float(primary["objective_lower_bound"])) /
+                  max(1e-9, abs(float(primary["objective"]))))
+        assert abs(gap - float(primary["mip_gap"])) < 1e-8
     assert all(r["status"].startswith("PASS") for r in json.loads(
         (directory / "source_audit.json").read_text()))
+    if repeat_directory is not None:
+        original_files = {str(p.relative_to(directory)) for p in directory.rglob("*.csv")}
+        repeat_files = {str(p.relative_to(Path(repeat_directory)))
+                        for p in Path(repeat_directory).rglob("*.csv")}
+        assert original_files == repeat_files, "重复求解的CSV文件集合不一致"
     for path in sorted(directory.rglob("*.csv")):
         relative = path.relative_to(directory)
         digests[str(relative)] = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -85,6 +102,9 @@ def audit(directory, repeat_directory=None):
             assert path.read_bytes() == (Path(repeat_directory) / relative).read_bytes(), str(relative)
     result = {
         "numerical_and_planning_checks": "PASS", "annual_records": 16,
+        "primary_cost_solution_quality": review.get("primary_cost_solution_quality", "optimal_within_tight_tolerance"),
+        "primary_cost_relative_gap": float(primary["mip_gap"]),
+        "primary_cost_lower_bound_10k": primary.get("objective_lower_bound"),
         "same_prices_load_start_and_measure_limits": "PASS",
         "rigid_npv_10k": sum(computed_costs[label, "rigid"] for label in ("pizhou", "city")),
         "elastic_npv_10k": sum(computed_costs[label, "elastic"] for label in ("pizhou", "city")),

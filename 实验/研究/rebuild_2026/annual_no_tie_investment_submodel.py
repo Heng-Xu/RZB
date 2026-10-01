@@ -104,7 +104,14 @@ class LinearModel:
         """相同矩阵与容差；给次级目标传入上一阶段可行解。"""
         import highspy
         solver = highspy.Highs()
-        solver.setOptionValue("output_flag", False)
+        log_dir = os.environ.get("XUZHOU_MILP_LOG_DIR")
+        solver.setOptionValue("output_flag", bool(log_dir))
+        if log_dir:
+            Path(log_dir).mkdir(parents=True, exist_ok=True)
+            solver.setOptionValue("log_to_console", False)
+            log_path = Path(log_dir) / f"{stage}.log"
+            log_path.write_text("", encoding="utf-8")
+            solver.setOptionValue("log_file", str(log_path))
         solver.setOptionValue("threads", int(os.environ.get("XUZHOU_MILP_THREADS", "1")))
         solver.setOptionValue("random_seed", int(os.environ.get("XUZHOU_MILP_SEED", "0")))
         solver.setOptionValue("mip_rel_gap", float(os.environ.get("XUZHOU_MILP_REL_GAP", "1e-7")))
@@ -124,6 +131,9 @@ class LinearModel:
         solver.run()
         status = solver.getModelStatus()
         if status != highspy.HighsModelStatus.kOptimal:
+            if log_dir:
+                np.savez_compressed(Path(log_dir) / f"{stage}_unproven_candidate.npz",
+                                    solution=np.array(solver.getSolution().col_value))
             raise ValueError(f"MILP {stage} 未取得已证明最优解：{solver.modelStatusToString(status)}")
         solution = np.array(solver.getSolution().col_value)
         info = solver.getInfo()
@@ -134,7 +144,10 @@ class LinearModel:
                                    "threads": int(os.environ.get("XUZHOU_MILP_THREADS", "1")),
                                    "random_seed": int(os.environ.get("XUZHOU_MILP_SEED", "0")),
                                    "elapsed_seconds": time.monotonic() - started,
-                                   "objective": info.objective_function_value, "mip_gap": gap})
+                                   "objective": info.objective_function_value, "mip_gap": gap,
+                                   "objective_lower_bound": float(info.mip_dual_bound)
+                                   if any(self.integrality) else float(info.objective_function_value),
+                                   "mip_relative_gap_target": float(os.environ.get("XUZHOU_MILP_REL_GAP", "1e-7"))})
         if os.environ.get("XUZHOU_SOLVER_TRACE") == "1":
             print(f"MILP optimal: {stage}, objective={info.objective_function_value:.9f}, gap={gap}", flush=True)
         return solution, float(info.objective_function_value)

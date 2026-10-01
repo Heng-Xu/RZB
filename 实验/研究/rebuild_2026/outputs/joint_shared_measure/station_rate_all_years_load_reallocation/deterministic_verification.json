@@ -1,0 +1,138 @@
+{
+  "status": "PASS",
+  "case": "station_rate_all_years_load_reallocation",
+  "solver_configuration": {
+    "backend": "highspy",
+    "threads": 1,
+    "random_seed": 0,
+    "primary_mip_rel_gap": 0.005,
+    "capacity_preference_mip_rel_gap": 0.005,
+    "continuous_transfer_mip_rel_gap": 1e-09,
+    "mip_abs_gap": 1e-07,
+    "time_limit_per_stage_seconds": 900
+  },
+  "verification_scope": "two_full_solves_with_identical_initial_feasible_seed_and_station_equivalent_constraints",
+  "initial_feasible_seed_sha256": "5612fc14bcd6a2901382b634e006037ed1230e65a807384153b58bdaa1be6a50",
+  "first_solve_certificates": [
+    {
+      "stage": "joint_four_paths_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 92.65945037198253,
+      "objective": 53433.26810868435,
+      "mip_gap": 0.004999049186338034,
+      "objective_lower_bound": 53166.15257322225,
+      "mip_relative_gap_target": 0.005
+    },
+    {
+      "stage": "joint_maximum_elastic_clr_at_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 428.3906540418975,
+      "objective": -16.560313130271915,
+      "mip_gap": 0.004999891195390141,
+      "objective_lower_bound": -16.643112894084865,
+      "mip_relative_gap_target": 0.005
+    },
+    {
+      "stage": "joint_minimum_transfer_at_selected_layout",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 0.01758737303316593,
+      "objective": 8461.325928560256,
+      "mip_gap": 0.0,
+      "objective_lower_bound": 8461.325928560256,
+      "mip_relative_gap_target": 1e-09
+    }
+  ],
+  "repeat_solve_certificates": [
+    {
+      "stage": "joint_four_paths_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 92.71932336082682,
+      "objective": 53433.26810868435,
+      "mip_gap": 0.004999049186338034,
+      "objective_lower_bound": 53166.15257322225,
+      "mip_relative_gap_target": 0.005
+    },
+    {
+      "stage": "joint_maximum_elastic_clr_at_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 428.53549240203574,
+      "objective": -16.560313130271915,
+      "mip_gap": 0.004999891195390141,
+      "objective_lower_bound": -16.643112894084865,
+      "mip_relative_gap_target": 0.005
+    },
+    {
+      "stage": "joint_minimum_transfer_at_selected_layout",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 0.01721806707791984,
+      "objective": 8461.325928560256,
+      "mip_gap": 0.0,
+      "objective_lower_bound": 8461.325928560256,
+      "mip_relative_gap_target": 1e-09
+    }
+  ],
+  "capacity_preference_scope": "selected_rigid_layout",
+  "csv_file_count": 18,
+  "repeat_csv_exact_match": true,
+  "csv_sha256": {
+    "annual_comparison.csv": "f2dc33560a53398b21ea9c58f193baf906f37a00bbb3f106282928fab163f8a8",
+    "city/city_2021_district_calibration.csv": "6332881f6c94489d90e0922609ebaf0ef8209ebbba016fbda830787ac7efb587",
+    "city/elastic_new_lines.csv": "d65552442032159cd3ea06347ce67b3d7334a70fbc95e9a283d0a7ef62c777c7",
+    "city/elastic_stations.csv": "61e1f7a696f5d29051a8919244aade319e33517afd98b4afa6c74e3a2f138388",
+    "city/elastic_transfers.csv": "2dbd9267e234475a8b955c6568fdd9f47351b9368df57248d806da3dc368ff77",
+    "city/elastic_years.csv": "386bae7c4a1b72f48dca7a7f0a63f21c9912a04f4dbc2560b00743927a4de1f3",
+    "city/rigid_new_lines.csv": "cd4d1f05666f4ae13c373ac19c009a47eebbfdffe71e0325ba7462f7d788e209",
+    "city/rigid_stations.csv": "f53ce2228911f9d845557726565ce194393c5d44da05b58e826ff89ddaf2d313",
+    "city/rigid_transfers.csv": "d7ba72e1163b2c08371ffa0f50d080b196374221edae932703ece21d134ffb93",
+    "city/rigid_years.csv": "ff7d83a5dbd14a2964c7645b54fe0d14c9c02842a89b88321226623720c87a13",
+    "pizhou/elastic_new_lines.csv": "cdf8e8c6ba21eb77a78bde07f82d075cda11e4d8df9501b74393465486c5c452",
+    "pizhou/elastic_stations.csv": "a4b8545550163abb823a9b2b8e6b82968cb7dd06e92300768751937377bb3c6a",
+    "pizhou/elastic_transfers.csv": "dbebf5aa8ca31680a199432ad47812bef15f9ece4671604fa342d59c3487dd09",
+    "pizhou/elastic_years.csv": "5914d7954c8d071bcd526678032d8be5755b185f06fba8f0b51f4e0ddc34961d",
+    "pizhou/rigid_new_lines.csv": "4e6daf5e57e6658218b0f700137dd9193268a595314f7f15608baeb851b88dd0",
+    "pizhou/rigid_stations.csv": "9b06f10838ecfaa698115be01981f24da78a6c5f462d5e98238230551072e78d",
+    "pizhou/rigid_transfers.csv": "c23f88282ad3e3333ee116558f90baf79cb02b35630d3b89fa9125658f67be36",
+    "pizhou/rigid_years.csv": "b4fe712fdf374ae2b2db87ca11fbd3ed7e87e568b5df2d3de92195ce6a8881d4"
+  },
+  "model_kernel_sha256": {
+    "annual_no_tie_investment_submodel.py": "33603477cedd2471d0934a37faf91b2857eae9865e0447ff69e39fc49935139b",
+    "joint_shared_measure.py": "76c154a5fda04e6f250f010a0ec5b3f7b27940b2288340fb16f6a86f3326de15",
+    "regional_static_milp_v2.py": "1c0f8d224920606dcd23e07b842f6ea98eb9cd0a1ca845d410d59a4754a26e04",
+    "station_transfer_equivalent.py": "2a6e63b40570b4fb6f0688db8429f541b19573da1f5c71233fc1a1562365d535"
+  },
+  "delivery_builder_sha256": "2e1ebb5893447e5353007870af3bdf301db2e2c03372c7a1993d2f79769d09ca",
+  "annual_records": 16,
+  "station_year_records": 392,
+  "new_equivalent_project_records": 27,
+  "workbook_budget_and_capacity_checks": "PASS",
+  "all_requested_relations": false,
+  "elastic_cost_below_rigid": {
+    "pizhou": true,
+    "city": false
+  },
+  "interpretation": "0.5% certified near-optimal; repeatability does not establish exact global optimality or physical feeder routing"
+}

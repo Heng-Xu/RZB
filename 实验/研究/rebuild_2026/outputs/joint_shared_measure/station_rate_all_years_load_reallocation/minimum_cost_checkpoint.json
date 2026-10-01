@@ -1,0 +1,20 @@
+{
+  "case": "station_rate",
+  "breakthrough": "all_years",
+  "transfer_mode": "load_reallocation",
+  "history": [
+    {
+      "stage": "joint_four_paths_minimum_cost",
+      "backend": "highspy",
+      "solver_version": "1.15.1",
+      "status": "optimal",
+      "threads": 1,
+      "random_seed": 0,
+      "elapsed_seconds": 92.65945037198253,
+      "objective": 53433.26810868435,
+      "mip_gap": 0.004999049186338034,
+      "objective_lower_bound": 53166.15257322225,
+      "mip_relative_gap_target": 0.005
+    }
+  ]
+}

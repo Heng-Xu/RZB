@@ -1,0 +1,88 @@
+{
+  "unit_id": "PZ_LOCAL_THREE_TIE_SHARED_V1",
+  "status": "observed_load_condition_example_not_selected_design_upper_basis",
+  "reference_year": 2025,
+  "local_load_base_mw": 29.270222,
+  "base_definition": "sum_of_unique_five_participating_feeder_loads",
+  "fixed_year_comparison_policy": "reuse_reference_parameters_without_county_load_scaling",
+  "positive_net_transfer": "A_to_B",
+  "net_transfer_lower_mw": -3.524714,
+  "net_transfer_upper_mw": 8.625769,
+  "direction_fractions": {
+    "A_to_B": 0.294694348406377,
+    "B_to_A": 0.12041979046144576
+  },
+  "feeders": [
+    {
+      "feeder_id": "PZXL-00092",
+      "station_role": "A",
+      "load_mw": 6.458714,
+      "receiving_headroom_mw": 1.521711
+    },
+    {
+      "feeder_id": "PZXL-00097",
+      "station_role": "A",
+      "load_mw": 3.431747,
+      "receiving_headroom_mw": 4.548677
+    },
+    {
+      "feeder_id": "PZXL-00099",
+      "station_role": "A",
+      "load_mw": 8.342423,
+      "receiving_headroom_mw": 1.447994
+    },
+    {
+      "feeder_id": "PZXL-00154",
+      "station_role": "B",
+      "load_mw": 8.960618,
+      "receiving_headroom_mw": 0.912072
+    },
+    {
+      "feeder_id": "PZXL-00161",
+      "station_role": "B",
+      "load_mw": 2.07672,
+      "receiving_headroom_mw": 7.713697
+    }
+  ],
+  "ties": [
+    {
+      "tie_id": "T01",
+      "from_feeder_id": "PZXL-00092",
+      "to_feeder_id": "PZXL-00161"
+    },
+    {
+      "tie_id": "T02",
+      "from_feeder_id": "PZXL-00099",
+      "to_feeder_id": "PZXL-00154"
+    },
+    {
+      "tie_id": "T03",
+      "from_feeder_id": "PZXL-00097",
+      "to_feeder_id": "PZXL-00161"
+    }
+  ],
+  "resource_rule": "all_outflows_share_donor_load_and_all_inflows_share_receiving_headroom",
+  "upper_model_load_update": [
+    "L_A_after = L_A_before - net_transfer",
+    "L_B_after = L_B_before + net_transfer"
+  ],
+  "require_upper_model_checks": [
+    "post_transfer_transformer_capacity",
+    "post_transfer_supply_security_capacity"
+  ],
+  "normal_transfer_scope": "normal_load_reallocation_not_fault_restoration",
+  "new_tie_rule": "add_specific_feeder_edge_and_recompute_shared_group_capacity",
+  "cost_unit_rule": "one_tie_edge_cost_is_distinct_from_three_tie_group_cost",
+  "coverage_rule": "declare_station_pairs_and_unit_count_and_do_not_duplicate_feeder_resources",
+  "simplifications": [
+    "simultaneous_measured_peaks",
+    "actual_switching_blocks",
+    "path_thermal_and_voltage",
+    "actual_county_network_coverage"
+  ],
+  "source_hashes": {
+    "实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/邳州10kV线路基础数据表.xlsx": "120d7d9cfa59a3b7b8abdd424773b18b1b5420bc2160249d0bf30d76615619d7",
+    "实验/研究/data/tuomin/10kv_case/source/10kV案例建模前期准备_V2_新结构化表格与图纸.xlsx": "cb09a66b193435d223b5ce4275587dbf71619e8c51472fc54dc4afe53b271d7d",
+    "参考政策/DL-T+5729-2023+配电网规划设计技术导则.pdf": "c0256583876451a159abeac4d7673459c9ae4f6b2594ed241e6e40db81571bdf"
+  }
+}
