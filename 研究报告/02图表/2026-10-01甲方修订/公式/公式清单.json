@@ -1,0 +1,154 @@
+[
+  {
+    "number": "3-1",
+    "tex": "g_y=P_y/P_{y-1}-1,\\qquad \\bar g=\\frac{g_{2022}+2g_{2023}+3g_{2024}+4g_{2025}}{10}."
+  },
+  {
+    "number": "3-2",
+    "tex": "\\begin{aligned}\n\\widehat C_{y,m}&=C_{2023,m}\\left(\\frac{C_{2023,m}}{C_{2024,m}}\\right)^{2023-y}\\\\\ny&=2021,2022.\n\\end{aligned}"
+  },
+  {
+    "number": "3-3",
+    "tex": "\\widehat E_\\mathrm{PV}=\\sum_{m=1}^{12}\\sum_{t\\in m}\\phi_t\\frac{C_m+C_{m-1}}{2}\\Delta t."
+  },
+  {
+    "number": "3-4",
+    "tex": "\\eta_C=\\frac{C_\\mathrm{DG}}{P_\\mathrm{user,max}}."
+  },
+  {
+    "number": "3-5",
+    "tex": "\\begin{aligned}\n\\widehat E_\\mathrm{user}&=a\\sum_tP_{\\mathrm{net},t}\\Delta t+\\widehat E_\\mathrm{PV}\\\\\n\\eta_E&=\\frac{\\widehat E_\\mathrm{PV}}{\\widehat E_\\mathrm{user}}.\n\\end{aligned}"
+  },
+  {
+    "number": "3-6",
+    "tex": "P^+=\\max_t(P_t,0),\\quad P^-=\\max_t(-P_t,0),\\quad P^\\mathrm{abs}=\\max(P^+,P^-)."
+  },
+  {
+    "number": "3-7",
+    "tex": "\\begin{aligned}\nH_{95}^{+}&=\\max\\{\\text{连续时段长度}:P_t\\geq0.95P^+\\},\\\\\nH_{95}^{-}&=\\max\\{\\text{连续时段长度}:-P_t\\geq0.95P^-\\}.\n\\end{aligned}"
+  },
+  {
+    "number": "3-8",
+    "tex": "r_{XY}=\\frac{\\sum_{m=1}^{12}(X_m-\\bar X)(Y_m-\\bar Y)}{\\sqrt{\\sum_{m=1}^{12}(X_m-\\bar X)^2\\sum_{m=1}^{12}(Y_m-\\bar Y)^2}}."
+  },
+  {
+    "number": "4-1",
+    "tex": "c_T=\\frac{1151+1335}{50+100}=16.573333\\quad\\text{万元/MVA}."
+  },
+  {
+    "number": "4-2",
+    "tex": "\\begin{aligned}\nI_{T,iky}&=c_T S^\\mathrm{new}_{iky}\\,z_{iky}\\\\\n\\Delta S_{iky}&=\\left(S^\\mathrm{new}_{iky}-S^\\mathrm{old}_{ik,y-1}\\right)z_{iky}.\n\\end{aligned}"
+  },
+  {
+    "number": "4-3",
+    "tex": "I_{T,3}=\\frac{1206+1240}{2}=1223\\quad\\text{万元/项}."
+  },
+  {
+    "number": "4-4",
+    "tex": "I_L=3\\left(0.9\\times24+0.1\\times120\\right)+2\\times3=106.8\\quad\\text{万元/条}."
+  },
+  {
+    "number": "4-5",
+    "tex": "\\begin{aligned}\nc_B&=\\frac{210.456262}{10}=21.0456262\\quad\\text{万元/柜}\\\\\nI_{B,iy}&=c_B\\Delta n_{iy}.\n\\end{aligned}"
+  },
+  {
+    "number": "4-6",
+    "tex": "B(n,d)=\\frac{0.215n}{\\max(2.15,d)},\\qquad d\\geq0."
+  },
+  {
+    "number": "4-7",
+    "tex": "k_{TL}=\\frac{c_T/0.95}{I_L/F_L}\n=\\frac{16.573333/0.95}{106.8/7.491}=1.22364."
+  },
+  {
+    "number": "4-8",
+    "tex": "k_{TB}(d)=\\frac{c_T/0.95}{210.456262/B(10,d)}."
+  },
+  {
+    "number": "4-9",
+    "tex": "\\begin{aligned}\nk_{TB}^\\mathrm{life}(y,d)&=k_{TB}(d)\\frac{A_T(y)}{A_B(y)}\\\\\nk_{TL}^\\mathrm{life}(y)&=k_{TL}\\frac{A_T(y)}{A_L(y)}.\n\\end{aligned}"
+  },
+  {
+    "number": "4-10",
+    "tex": "\\begin{aligned}\nC(I,y,L,q)={}&\\frac{I}{(1+r)^{y-2021}}\n+\\sum_{k\\geq1,\\ y+kL<T}\\frac{I}{(1+r)^{y+kL-2021}}\\\\\n&+\\sum_{t=y+1}^{T}\\frac{qI}{(1+r)^{t-2021}}.\n\\end{aligned}"
+  },
+  {
+    "number": "4-11",
+    "tex": "C_\\mathrm{plan}=\\sum_{e\\in\\mathcal E_T}C_e+\\sum_{e\\in\\mathcal E_B}C_e+\\sum_{e\\in\\mathcal E_L}C_e."
+  },
+  {
+    "number": "5-1",
+    "tex": "P_{c,0}=\\frac{S_{c,0}}{2},\\qquad\nP_{c,y}=P_{c,0}(1+\\bar g_c)^y,\\quad y=1,2,3,4."
+  },
+  {
+    "number": "5-2",
+    "tex": "\\begin{aligned}\nR_{c,s,y}&=\\frac{S_{c,s,y}}{P_{c,y}}\\\\\n&R_{c,\\mathrm{rigid},y}\\leq2.0\\\\\n&2.001\\leq R_{c,\\mathrm{elastic},y}\\leq2.6.\n\\end{aligned}"
+  },
+  {
+    "number": "5-3",
+    "tex": "\\begin{aligned}\n\\sum_{a\\in\\mathcal A_{ik}}x_{i,k,y,a}&=1\\\\\nS_{i,k,y}&=\\sum_{a\\in\\mathcal A_{ik}}a\\,x_{i,k,y,a}\\\\\nS_{i,y}&=S_{i,1,y}+S_{i,2,y}+50u_{i,y}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-4",
+    "tex": "P_{B,i,y}^{\\pm}=\n\\min\\left(0.1n_{i,y},\\frac{0.215n_{i,y}}{H_{95,i}^{\\pm}}\\right)\n=\\frac{0.215n_{i,y}}{\\max(2.15,H_{95,i}^{\\pm})}."
+  },
+  {
+    "number": "5-5",
+    "tex": "\\begin{aligned}\nP_f&=\\frac{\\sqrt3 U I_f\\cos\\varphi}{1000}\\\\\nH_f&=\\frac{\\sqrt3 U\\max(I_f^{\\mathrm{allow}}-I_f,0)\\cos\\varphi}{1000}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-6",
+    "tex": "\\begin{aligned}\nQ_{\\mathrm{sample}}&=\n\\max\\sum_{(f,h)\\in\\mathcal E}q_{fh}\\\\\n&\\sum_hq_{fh}\\leq P_f\\\\\n&\\sum_fq_{fh}\\leq H_h\\\\\n&q_{fh}\\geq0.\n\\end{aligned}"
+  },
+  {
+    "number": "5-7",
+    "tex": "\\rho_{\\mathrm{Pizhou},0}\n=\\frac{Q_{\\mathrm{sample}}}{\\sum_fP_f}\n=\\frac{9.983428}{35.292234}\n=28.2879\\%."
+  },
+  {
+    "number": "5-8",
+    "tex": "Q_{i,y}^{\\mathrm{cap}}=\n\\min\\left(\\rho_{c}^{\\max}L_{i,y}^{+},\n\\rho_{c,0}L_{i,y}^{+}+m_{i,y}\\Delta Q\\right)."
+  },
+  {
+    "number": "5-9",
+    "tex": "\\begin{aligned}\n\\sum_i m_{i,y}&=2M_{c,y}\\\\\n&0\\leq m_{i,y}\\leq M_{c,y}\\\\\n&\\sum_i e_{i,y}\\leq M_{c,y}\\Delta Q.\n\\end{aligned}"
+  },
+  {
+    "number": "5-10",
+    "tex": "\\begin{aligned}\n&Q_{i,y}^{\\mathrm{out}}\\leq\n\\rho_{c,0}L_{i,y}^{+}+e_{i,y}\\\\\n&Q_{i,y}^{\\mathrm{out}}\\leq Q_{i,y}^{\\mathrm{cap}}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-11",
+    "tex": "\\begin{aligned}\nL'_{i,y}&=L_{i,y}^{+}-Q_{i,y}^{\\mathrm{out}}\n+Q_{i,y}^{\\mathrm{in}}\\\\\n\\sum_iQ_{i,y}^{\\mathrm{out}}&=\\sum_iQ_{i,y}^{\\mathrm{in}}\\\\\n\\sum_iL'_{i,y}&=\\sum_iL_{i,y}^{+}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-12",
+    "tex": "L_{i,y}^{-,\\mathrm{check}}\n=L_{i,y}^{-}+Q_{i,y}^{\\mathrm{out}}."
+  },
+  {
+    "number": "5-13",
+    "tex": "\\begin{aligned}\n0.95S_{i,y}+P_{B,i,y}^{+}&\\geq L'_{i,y},\\\\\n0.95S_{i,y}+P_{B,i,y}^{-}&\\geq L_{i,y}^{-,\\mathrm{check}},\\\\\n0.95(S_{i,y}-S_{i,k,y})+P_{B,i,y}^{+}&\\geq L'_{i,y},\n\\quad k\\in\\mathcal K_{i,y}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-14",
+    "tex": "\\min C=\n\\sum_c\\sum_s\\sum_y\n\\left[A_T(y)I_{T,c,s,y}\n+A_B(y)I_{B,c,s,y}\n+A_L(y)I_{L,c,s,y}\\right]."
+  },
+  {
+    "number": "5-15",
+    "tex": "C\\leq C^*+0.001,\\qquad\n\\max\\sum_c\\sum_yR_{c,\\mathrm{elastic},y}."
+  },
+  {
+    "number": "5-16",
+    "tex": "\\min\\sum_c\\sum_s\\sum_y\\sum_i Q_{c,s,i,y}^{\\mathrm{out}}."
+  },
+  {
+    "number": "5-17",
+    "tex": "R_y-R_{y-1}=\n\\frac{S_y-S_{y-1}}{P_y}\n+S_{y-1}\\left(\\frac1{P_y}-\\frac1{P_{y-1}}\\right)."
+  },
+  {
+    "number": "5-18",
+    "tex": "\\begin{aligned}\nC_{\\mathrm{DG}}&=\\eta_C P_{\\mathrm{user,max}}\\\\\nL_i^-&=\\max(0,0.75C_{\\mathrm{DG}}w_i^{G}-0.30L_i^+).\n\\end{aligned}"
+  },
+  {
+    "number": "5-19",
+    "tex": "\\eta_E=\n\\frac{C_{\\mathrm{DG}}T_G}\n{P_{\\mathrm{user,max}}\\,8760\\,f_{\\mathrm{user}}}\n=\\eta_C\\frac{1200}{8760\\times0.5}."
+  }
+]
