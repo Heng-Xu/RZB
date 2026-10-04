@@ -15,9 +15,8 @@ from .new_line_section_audit import DATA, designed_new_line_section
 
 
 ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_SOURCE = Path(__file__).resolve().parent / (
-    "outputs/joint_shared_measure/station_rate_all_years_load_reallocation_full_service_city_A")
-DEFAULT_DEST = ROOT / "docs/2026-10-01局部联络仿真依据"
+DEFAULT_SOURCE = ROOT / "研究报告/01研究推荐/当前版/统一起点基准"
+DEFAULT_DEST = ROOT / "研究报告/数据来源/当前版/联络测算依据"
 
 
 def station_rate_ceiling(area_class):

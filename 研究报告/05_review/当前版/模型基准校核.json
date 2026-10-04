@@ -1,0 +1,44 @@
+{
+  "状态": "通过",
+  "模型": {
+    "pizhou": {
+      "status": "PASS",
+      "schemes": [
+        {
+          "scheme": "rigid",
+          "status": "PASS",
+          "station_scenario_checks": 332,
+          "line_pairs": 13,
+          "lifecycle_npv_10k": 109582.71003029315
+        },
+        {
+          "scheme": "elastic",
+          "status": "PASS",
+          "station_scenario_checks": 355,
+          "line_pairs": 12,
+          "lifecycle_npv_10k": 23079.087274730788
+        }
+      ]
+    },
+    "city": {
+      "status": "PASS",
+      "schemes": [
+        {
+          "scheme": "rigid",
+          "status": "PASS",
+          "station_scenario_checks": 466,
+          "line_pairs": 1,
+          "lifecycle_npv_10k": 98983.57699825468
+        },
+        {
+          "scheme": "elastic",
+          "status": "PASS",
+          "station_scenario_checks": 498,
+          "line_pairs": 4,
+          "lifecycle_npv_10k": 12604.540604626289
+        }
+      ]
+    }
+  },
+  "原始文件校验数量": 9
+}

@@ -1,0 +1,11 @@
+# Preserve exported CSV line endings while allowing normal whitespace checks.
+*.csv whitespace=cr-at-eol
+
+# Office documents and images are binary artifacts.
+*.docx binary
+*.xlsx binary
+*.pdf binary
+*.zip binary
+*.png binary
+*.jpg binary
+*.jpeg binary

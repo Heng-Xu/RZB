@@ -8,8 +8,6 @@ from rebuild_2026.annual_no_tie_investment_submodel import (
 from rebuild_2026.joint_lifecycle_optimizer import (
     cost_factors, load_inputs, run_model, solve_layer, tie_edges,
 )
-from rebuild_2026.joint_lifecycle_cashflow import build_cashflows
-from rebuild_2026.joint_lifecycle_result_matrix import build_matrices
 
 
 def test_lifecycle_model_reduces_to_investment_only_when_om_and_renewals_absent() -> None:
@@ -67,16 +65,6 @@ def test_rigid_solution_respects_station_and_shared_feeder_static_bounds() -> No
         assert row["actual_clr"] <= row["clr_cap"] + 1e-8
     assert len({(r["study_region_id"], r["voltage_kv"]) for r in summaries}) == 3
 
-
-def test_delivered_cashflows_and_voltage_matrices_reconcile() -> None:
-    events, annual = build_cashflows()
-    matrices = build_matrices()
-    assert len(events) == 690
-    assert len(annual) == 160
-    assert len(matrices[35]) == 4
-    assert len(matrices[110]) == 8
-    assert {row["study_region_id"] for row in matrices[35]} == {"QX-00005"}
-    assert all(int(row["voltage_kv"]) == 110 for row in matrices[110])
 
 
 def test_common_measure_price_scale_preserves_optimal_cost_homogeneity() -> None:

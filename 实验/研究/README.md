@@ -1,9 +1,7 @@
-# 现行研究模型
+# 当前报告计算模型
 
-现行方案为 `reserve_policy_v4`，用于后续研究报告撰写。
+现行模型位于 `rebuild_2026`，保留29个直接或间接依赖模块及八份相关测试。原始收资和10 kV案例保留在 `data/tuomin`，模型必要输入位于 `rebuild_2026/source_audit`。
 
-- [方案、成本和指标矩阵](docs/FINAL-POLICY-RECOMMENDATION-2026-09-24.md)
-- [冻结与复现说明](../../docs/FROZEN-RESERVE-POLICY-V4-2026-09-27.md)
-- [原始证据和模型入口](rebuild_2026/README.md)
+当前结果位于 `../../研究报告/01研究推荐/当前版`，正文和外推脚本位于相应 `当前版` 目录。使用 Conda 环境 `xuzhou110kv_clr`，依赖见 `../../tools/requirements-current.txt`。
 
-`data/tuomin/` 为原始来源；`rebuild_2026/source_audit/` 保留当前模型输入及证据；现行结果只读取 `capacity_release_simulation/reserve_policy_v4/`。早期模型与结果不参与现行推荐。
+正常文字修订只需运行 `../../tools/build_current_report.py --check-only`，无需重新寻优。完整流程及模型范围见 `../../docs/CURRENT-WORKFLOW.md`。旧仿真框架、派生数据与历史输出从工作目录清理，Git历史保持。
