@@ -11,14 +11,16 @@ def export_pdf(root):
  requested=os.environ.get('XUZHOU_LIBREOFFICE')
  program=Path(requested or shutil.which('libreoffice') or shutil.which('soffice') or '/tmp/xuzhou_lo/root/usr/lib/libreoffice/program/soffice')
  if not program.is_file():raise RuntimeError('请安装 LibreOffice，或设置 XUZHOU_LIBREOFFICE 为 soffice 路径。')
- env=os.environ.copy();env['SAL_USE_VCLPLUGIN']='svp'
+ env=os.environ.copy();env['SAL_USE_VCLPLUGIN']='svp';env['GSETTINGS_BACKEND']='memory'
  if str(program).startswith('/tmp/xuzhou_lo/'):
   env['LD_LIBRARY_PATH']=str(program.parent)+':/tmp/xuzhou_lo/root/usr/lib/x86_64-linux-gnu'+(':'+env['LD_LIBRARY_PATH'] if env.get('LD_LIBRARY_PATH') else '')
   env['FONTCONFIG_FILE']='/tmp/xuzhou_lo/fonts.conf'
   env['LIBLANGTAG_DATA_DIR']='/tmp/xuzhou_lo/root/usr/share/liblangtag'
  out=root/'研究报告/04_word'
  with tempfile.TemporaryDirectory(prefix='xuzhou-lo-') as profile:
-  subprocess.run([str(program),'-env:UserInstallation='+Path(profile).as_uri(),'--headless','--norestore','--convert-to','pdf','--outdir',str(out),str(out/'PDF排版副本.docx')],env=env,cwd=root,check=True,timeout=180)
+  result=subprocess.run([str(program),'-env:UserInstallation='+Path(profile).as_uri(),'--headless','--norestore','--convert-to','pdf','--outdir',str(out),str(out/'PDF排版副本.docx')],env=env,cwd=root,capture_output=True,text=True,timeout=180)
+  (root/'研究报告/05_review/当前版/PDF导出日志.txt').write_text(result.stdout+result.stderr)
+  result.check_returncode()
  pdf=out/'PDF排版副本.pdf'
  if not pdf.is_file():raise RuntimeError('LibreOffice 未生成 PDF。')
  shutil.copy2(pdf,out/'研究报告终稿.pdf')

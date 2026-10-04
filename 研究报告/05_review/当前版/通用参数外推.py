@@ -9,13 +9,15 @@ from scipy.optimize import milp,Bounds,LinearConstraint
 from scipy.sparse import coo_matrix
 from openpyxl import Workbook
 ROOT=Path(__file__).resolve().parents[3];sys.path.insert(0,str(ROOT))
+from 实验.研究.rebuild_2026.current_economic_assumptions import cost_factors,line_capex,LINE_TYPES
 OUT=ROOT/'研究报告/01研究推荐/当前版';OUT.mkdir(parents=True,exist_ok=True)
 BASE_T=16.57333333333333;BASE_B=21.0456262;INC=7.49106117
 DETAILS=[]
 def factor(life,om):
     return 1/1.06**4+sum(om/1.06**t for t in range(5,21))+sum(1/1.06**t for t in range(4+life,20,life))
-FT,FB=factor(20,.01),factor(10,.03)
-def solve(eta,g,h,area,ls,bs,shape='偏集中'):
+CURRENT_FACTORS=cost_factors()
+FT,FL,FB=(CURRENT_FACTORS[k][2025] for k in ('transformer','line','storage'))
+def solve(eta,g,h,area,ls,bs,shape='偏集中',line_type='架空为主',upper=2.6,relative_gap=.005):
     base=50 if area=='A' else 40
     p0=5*base;p=p0*(1+g)**4
     weights=np.array([.10,.15,.20,.25,.30]) if shape=='偏集中' else np.array([.16,.18,.20,.22,.24])
@@ -35,7 +37,8 @@ def solve(eta,g,h,area,ls,bs,shape='偏集中'):
     def constraint(d,l=-np.inf,u=np.inf):
         r=len(lb);lb.append(l);ub.append(u);entries.extend((r,k,v) for k,v in d.items())
     x={};n={};qo={};qi={};ends={};ex={}
-    project=var(106.8*ls*FT,30,1)
+    line_price=line_capex(LINE_TYPES[line_type])
+    project=var(line_price*ls*FL,30,1)
     for i in range(5):
         for j,o in enumerate(options):x[i,j]=var(o[4]*FT,1,1)
         n[i]=var(BASE_B*bs*FB,20000,1)
@@ -57,33 +60,41 @@ def solve(eta,g,h,area,ls,bs,shape='偏集中'):
     constraint({**{ex[i]:1 for i in range(5)},project:-INC},u=0)
     floor=1.5 if g<=.02 else 1.6 if g<=.04 else 1.7 if g<=.07 else 1.8
     capacity={x[i,j]:o[0] for i in range(5) for j,o in enumerate(options)}
-    constraint(capacity,l=max(2.001,floor)*p,u=2.6*p)
+    constraint(capacity,l=max(2.001,floor)*p,u=upper*p)
     rr,cc,vv=zip(*entries);a=coo_matrix((vv,(rr,cc)),shape=(len(lb),len(costs))).tocsc()
-    result=milp(np.array(costs),integrality=np.array(integ),bounds=Bounds(lo,hi),constraints=LinearConstraint(a,lb,ub),options={'time_limit':20,'mip_rel_gap':.005})
+    result=milp(np.array(costs),integrality=np.array(integ),bounds=Bounds(lo,hi),constraints=LinearConstraint(a,lb,ub),options={'time_limit':60,'mip_rel_gap':relative_gap})
     if result.status!=0:raise ValueError((eta,g,h,area,ls,bs,shape,result.message))
     z=result.x;activity=a@z
     assert min(activity-np.array(lb))>=-1e-4 and min(np.array(ub)-activity)>=-1e-4
     assert max(abs(z[np.array(integ)==1]-np.round(z[np.array(integ)==1])))<1e-5
     s=sum(c*z[k] for k,c in capacity.items());qout=sum(z[qo[i]] for i in range(5));qin=sum(z[qi[i]] for i in range(5))
     assert abs(qout-qin)<1e-4
-    DETAILS.append({'参数':[eta,g,h,area,ls,bs,shape], '目标负荷MW':p,'项目数':round(z[project]),'站级':[{'原单台MVA':base,'规格MVA':list(options[max(range(len(options)),key=lambda j:z[x[i,j]])][:4]),'负荷MW':float(load[i]),'反向MW':float(reverse[i]),'储能柜':round(z[n[i]]),'转出MW':float(z[qo[i]]),'转入MW':float(z[qi[i]]),'项目端数':round(z[ends[i]]),'新增使用MW':float(z[ex[i]])} for i in range(5)]})
-    return {'装机渗透率':eta,'电量渗透率估计':eta*1200/(8760*.5),'年负荷平均增长率':g,'95%峰值持续时间h':h,'供电区域':area,'初始转供率':rho,'负荷分布':shape,'线路价格倍数':ls,'储能价格倍数':bs,'主变线路成本比':1.22364/ls,'主变储能成本比_3h':.05941/bs,'基期容载比':2.,'推荐容载比':s/p,'总容量MVA':s,'储能柜数':round(sum(z[n[i]] for i in range(5))),'联络项目数':round(z[project]),'转接负荷MW':qout,'全寿命费用万元':result.fun,'最优性间隙':result.mip_gap,'最小约束余量':min(float(np.min(activity-np.array(lb))),float(np.min(np.array(ub)-activity))),'状态':'通过'}
+    DETAILS.append({'参数':[eta,g,h,area,ls,bs,shape,line_type], '线路基价万元':line_price,'目标负荷MW':p,'项目数':round(z[project]),'站级':[{'原单台MVA':base,'规格MVA':list(options[max(range(len(options)),key=lambda j:z[x[i,j]])][:4]),'负荷MW':float(load[i]),'反向MW':float(reverse[i]),'储能柜':round(z[n[i]]),'转出MW':float(z[qo[i]]),'转入MW':float(z[qi[i]]),'项目端数':round(z[ends[i]]),'新增使用MW':float(z[ex[i]])} for i in range(5)]})
+    return {'装机渗透率':eta,'电量渗透率估计':eta*1200/(8760*.5),'年负荷平均增长率':g,'95%峰值持续时间h':h,'供电区域':area,'初始转供率':rho,'负荷分布':shape,'线路类型':line_type,'电缆长度占比':LINE_TYPES[line_type],'线路价格倍数':ls,'储能价格倍数':bs,'主变线路成本比':(BASE_T/.95)/(line_price*ls/INC),'主变储能成本比_3h':(BASE_T/.95)/(BASE_B*bs/.215*3),'基期容载比':2.,'推荐容载比':s/p,'总容量MVA':s,'储能柜数':round(sum(z[n[i]] for i in range(5))),'联络项目数':round(z[project]),'转接负荷MW':qout,'全寿命费用万元':result.fun,'最优性间隙':result.mip_gap,'最小约束余量':min(float(np.min(activity-np.array(lb))),float(np.min(np.array(ub)-activity))),'状态':'通过'}
+
+def solve_case(case):
+    eta,g,h,area,(ls,bs),shape,line_type=case
+    DETAILS.clear()
+    row=solve(eta,g,h,area,ls,bs,shape,line_type)
+    return row,DETAILS[-1]
 def main():
     import argparse
     parser=argparse.ArgumentParser(description='计算七维完整参数组合；可指定独立输出目录。')
     parser.add_argument('--output',type=Path,default=OUT)
     args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=True)
-    rows=[];start=time.time()
+    rows=[];details=[];start=time.time()
     prices=list(itertools.product([.75,1,1.25],[.5,1,1.25]))
-    cases=list(itertools.product([0,.3,.8,1,1.3,1.8,2,2.3,2.8,3],[0,.01,.02,.04,.07,.08,.1],[1,2,3,4,6],['A','BC'],prices,['偏集中','较均匀']))
-    for k,(eta,g,h,area,(ls,bs),shape) in enumerate(cases):
-        rows.append(solve(eta,g,h,area,ls,bs,shape))
-        if k%500==0:print(json.dumps({'完成':k+1,'总数':len(cases)},ensure_ascii=False),flush=True)
+    cases=list(itertools.product([0,.3,.8,1,1.3,1.8,2,2.3,2.8,3],[0,.01,.02,.04,.07,.08,.1],[1,2,3,4,6],['A','BC'],prices,['偏集中','较均匀'],LINE_TYPES))
+    from concurrent.futures import ProcessPoolExecutor
+    with ProcessPoolExecutor(max_workers=4) as executor:
+        for k,(row,detail) in enumerate(executor.map(solve_case,cases,chunksize=20)):
+            rows.append(row);details.append(detail)
+            if k%1000==0:print(json.dumps({'完成':k+1,'总数':len(cases)},ensure_ascii=False),flush=True)
     (args.output/'外推逐点结果.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2))
-    (args.output/'外推站级方案.jsonl').write_text('\n'.join(json.dumps(d,ensure_ascii=False) for d in DETAILS)+'\n')
+    (args.output/'外推站级方案.jsonl').write_text('\n'.join(json.dumps(d,ensure_ascii=False) for d in details)+'\n')
     with (args.output/'外推逐点结果.csv').open('w',encoding='utf-8-sig',newline='') as stream:
         writer=csv.DictWriter(stream,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
-    summary={'总组合':len(rows),'价格组合':[list(x) for x in prices],'最大最优性间隙':max(x['最优性间隙'] for x in rows),'全部约束核对':'通过','耗时秒':time.time()-start}
+    summary={'总组合':len(rows),'线路类型':LINE_TYPES,'价格组合':[list(x) for x in prices],'经济参数':CURRENT_FACTORS,'最大最优性间隙':max(x['最优性间隙'] for x in rows),'全部约束核对':'通过','耗时秒':time.time()-start}
     (args.output/'外推核验.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2))
     print(json.dumps(summary,ensure_ascii=False))
 if __name__=='__main__':main()

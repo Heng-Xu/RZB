@@ -1,4 +1,4 @@
-import os,sys,re,json,subprocess,copy,math
+import os,sys,re,json,subprocess,copy,math,hashlib
 from pathlib import Path
 from docx import Document
 from docx.shared import Cm,Pt,Inches
@@ -39,6 +39,8 @@ def refdoc():
    s=doc.styles[nm];style(s,12);s.paragraph_format.line_spacing=1.25;s.paragraph_format.first_line_indent=Pt(24);s.paragraph_format.space_before=Pt(0);s.paragraph_format.space_after=Pt(0)
  doc.save(REVIEW/'排版参照.docx')
 def assemble():
+ sources=sorted(TEXT.glob('0[1-6] *.md'))+[ASSET/'计算表.json',ASSET/'生成段落.json']
+ (REVIEW/'装配源文件登记.json').write_text(json.dumps({str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},ensure_ascii=False,indent=2))
  txt='\n\n'.join(p.read_text().strip() for p in sorted(TEXT.glob('0[1-6] *.md')))
  txt=re.sub(r'\[\[SECTION:([^\]]+)\]\]',lambda m:SECTIONS[m[1]],txt)
  txt=re.sub(r'\[\[TABLE:([^\]]+)\]\]',lambda m:TABLES[m[1]],txt)

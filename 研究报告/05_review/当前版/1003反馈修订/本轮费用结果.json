@@ -1,0 +1,141 @@
+{
+  "原费用用于核对": {
+    "rigid": 208566.29,
+    "elastic": 35683.63,
+    "reduction": 82.89
+  },
+  "本轮费用": {
+    "rigid": 159191.33924414433,
+    "elastic": 47659.60966722225
+  },
+  "费用降低百分数": 70.06143054420258,
+  "现值因子": {
+    "transformer": {
+      "2022": 1.3855102760854008,
+      "2023": 1.2947306392039484,
+      "2024": 1.2090894723346537,
+      "2025": 1.1282959186843755
+    },
+    "line": {
+      "2022": 1.1749797762423977,
+      "2023": 1.10200006816123,
+      "2024": 1.0331512869525814,
+      "2025": 0.9681996065670635
+    },
+    "storage": {
+      "2022": 1.2591919761795989,
+      "2023": 1.1790922965783173,
+      "2024": 1.1035265611054104,
+      "2025": 1.0322381314139883
+    },
+    "discount_rate": 0.06,
+    "transformer_life_years": 40,
+    "line_life_years": 40,
+    "storage_life_years": 25,
+    "transformer_fixed_om_rate": 0.042,
+    "line_fixed_om_rate": 0.022,
+    "storage_fixed_om_rate": 0.03
+  },
+  "目标年结果": {
+    "pizhou": {
+      "rigid": {
+        "year": "2025",
+        "scheme": "rigid",
+        "load_scenario": "observed_annual",
+        "net_peak_proxy_mw": "998.2773841481086",
+        "capacity_mva": "1962.5",
+        "clr": "1.9658864671914027",
+        "new_transformer_purchase_mva": "140.0",
+        "new_third_transformers": "2",
+        "new_third_without_reserved_slot": "0",
+        "new_storage_power_mw": "0.09999999999999994",
+        "new_storage_energy_mwh": "0.21499999999999986",
+        "new_storage_modules": "1",
+        "installed_storage_power_mw": "253.10000000000002",
+        "installed_storage_energy_mwh": "544.165",
+        "installed_storage_modules": "2531",
+        "existing_transfer_mw": "154.9164520942472",
+        "new_line_transfer_mw": "42.69282257339974",
+        "new_lines_in_service": "13",
+        "new_lines_commissioned": "0",
+        "transformer_capex_10k": "3108.93333332",
+        "storage_capex_10k": "21.045626199999987",
+        "line_capex_10k": "0.0"
+      },
+      "elastic": {
+        "year": "2025",
+        "scheme": "elastic",
+        "load_scenario": "observed_annual",
+        "net_peak_proxy_mw": "998.2773841481086",
+        "capacity_mva": "2198.0",
+        "clr": "2.201792843254371",
+        "new_transformer_purchase_mva": "140.0",
+        "new_third_transformers": "2",
+        "new_third_without_reserved_slot": "0",
+        "new_storage_power_mw": "3.1",
+        "new_storage_energy_mwh": "6.665",
+        "new_storage_modules": "31",
+        "installed_storage_power_mw": "3.3",
+        "installed_storage_energy_mwh": "7.095",
+        "installed_storage_modules": "33",
+        "existing_transfer_mw": "135.3077797837131",
+        "new_line_transfer_mw": "48.80410199791194",
+        "new_lines_in_service": "13",
+        "new_lines_commissioned": "1",
+        "transformer_capex_10k": "3108.93333332",
+        "storage_capex_10k": "652.4144122",
+        "line_capex_10k": "124.80000000000001"
+      }
+    },
+    "city": {
+      "rigid": {
+        "year": "2025",
+        "scheme": "rigid",
+        "load_scenario": "observed_annual",
+        "net_peak_proxy_mw": "1322.0552689352387",
+        "capacity_mva": "2581.0",
+        "clr": "1.9522633135290133",
+        "new_transformer_purchase_mva": "0.0",
+        "new_third_transformers": "0",
+        "new_third_without_reserved_slot": "0",
+        "new_storage_power_mw": "0.0",
+        "new_storage_energy_mwh": "0",
+        "new_storage_modules": "0",
+        "installed_storage_power_mw": "250.00000000000003",
+        "installed_storage_energy_mwh": "537.5",
+        "installed_storage_modules": "2500",
+        "existing_transfer_mw": "401.90577216534246",
+        "new_line_transfer_mw": "0",
+        "new_lines_in_service": "0",
+        "new_lines_commissioned": "0",
+        "transformer_capex_10k": "0.0",
+        "storage_capex_10k": "0.0",
+        "line_capex_10k": "0.0"
+      },
+      "elastic": {
+        "year": "2025",
+        "scheme": "elastic",
+        "load_scenario": "observed_annual",
+        "net_peak_proxy_mw": "1322.0552689352387",
+        "capacity_mva": "2908.0",
+        "clr": "2.199605469098168",
+        "new_transformer_purchase_mva": "63.0",
+        "new_third_transformers": "0",
+        "new_third_without_reserved_slot": "0",
+        "new_storage_power_mw": "2.7",
+        "new_storage_energy_mwh": "5.805",
+        "new_storage_modules": "27",
+        "installed_storage_power_mw": "2.9000000000000004",
+        "installed_storage_energy_mwh": "6.234999999999999",
+        "installed_storage_modules": "29",
+        "existing_transfer_mw": "372.29240976598084",
+        "new_line_transfer_mw": "17.22197968111317",
+        "new_lines_in_service": "3",
+        "new_lines_commissioned": "0",
+        "transformer_capex_10k": "1044.119999979",
+        "storage_capex_10k": "568.2319074000001",
+        "line_capex_10k": "0.0"
+      }
+    }
+  }
+}

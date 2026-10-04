@@ -26,6 +26,7 @@ def sequential(items,kind):
 
 def main():
  source=(TEXT/'研究报告装配稿.md').read_text()
+ for file,expected in read(HERE/'装配源文件登记.json').items():assert digest(R.parent/file)==expected,('装配后源文件发生变化',file)
  assert len(re.findall(r'^# 第[一二三四五六]章 ',source,re.M))==6
  assert not re.search(r'^#{1,4} 4\.7(?:\s|\.)',source,re.M)
  assert source.index('## 5.2 三类方案')<source.index('## 5.4 寻优结果')<source.index('## 5.6 参数拓展')<source.index('## 5.7 规划建议')
@@ -33,7 +34,7 @@ def main():
   assert term not in source,term
  refs=re.findall(r'^\[(\d+)\]\s+',source,re.M)
  assert list(map(int,refs))==list(range(1,len(refs)+1)),refs
- assert len(refs)==88
+ assert len(refs)==89
  body=source.split('# 参考文献')[0]
  cited=[int(n) for m in re.finditer(r'\[([0-9]+(?:,[0-9]+)*)\]',body) for n in m[1].split(',')]
  assert list(dict.fromkeys(cited))==list(range(1,len(refs)+1))
@@ -45,11 +46,17 @@ def main():
  mathsource=list(re.finditer(r'\$\$([\s\S]*?)\$\$|\$([^$\n]+)\$',source))
  displays=sum(m[1] is not None for m in mathsource)
  doc=Document(OUT/'研究报告终稿.docx')
+ assert [p.text for p in doc.paragraphs if p.style.name in ('Heading 1','Heading 2')]==re.findall(r'^#{1,2} (.*)$',source,re.M),'Word目录层级标题与Markdown源不一致'
+ assert [p.text for p in doc.paragraphs if p.style.name.startswith('Heading ')]==re.findall(r'^#{1,4} (.*)$',source,re.M),'Word各级标题与Markdown源不一致'
  objects=doc._element.xpath('.//m:oMath')
- assert len(objects)==len(mathsource)==236
+ assert not doc._element.xpath('.//w:ins | .//w:del | .//w:commentReference')
+ table_review=read(HERE/'1003反馈修订/Word表格内容复核.json')
+ assert table_review['状态']=='通过' and table_review['表格']==tables
+ assert table_review['WordSHA256']==digest(OUT/'研究报告终稿.docx') and table_review['装配稿SHA256']==digest(TEXT/'研究报告装配稿.md')
+ assert len(objects)==len(mathsource)
  assert len(doc._element.xpath('.//m:oMathPara'))==displays==35
- assert len(doc.inline_shapes)==figures==13
- assert len(doc.tables)==tables+displays==118
+ assert len(doc.inline_shapes)==figures==14
+ assert len(doc.tables)==tables+displays
  for tab in doc.tables:
   for row in tab.rows:
    for cell in row.cells:
@@ -68,7 +75,7 @@ def main():
   assert para._p.xpath('.//m:jc')[0].get(qn('m:val'))=='center'
   assert re.fullmatch(r'（\d+-\d+）',tab.cell(0,2).text)
  docx_paths=re.findall(r'!\[\]\(([^)]+\.png)\)',source)
- assert len(docx_paths)==13 and all((R.parent/Path(p)).is_file() for p in docx_paths)
+ assert len(docx_paths)==14 and all((R.parent/Path(p)).is_file() for p in docx_paths)
  font=read(HERE/'图件字体说明.json')
  assert font['中文字体']=='方正仿宋_GBK'
  assert doc.styles['Normal'].element.xpath('.//w:rFonts')[0].get(qn('w:eastAsia'))==font['中文字体']
@@ -103,7 +110,7 @@ def main():
  external=read(HERE/'外推独立复核.json')
  stats=read(DATA/'外推核验.json')
  assert sum(x['站年'] for x in base)==392 and all(x['状态']=='通过' for x in base)
- assert external['状态']=='通过' and external['计算组合']==12600 and external['站级复核']==63000
+ assert external['状态']=='通过' and external['计算组合']==25200 and external['站级复核']==126000
  assert stats['全部约束核对']=='通过' and stats['最大最优性间隙']<=.005
  assert review['primary_cost_relative_gap']<=.01 and review['capacity_preference_relative_gap']<=.005
  assert review['cost_order_imposed'] is False
@@ -111,29 +118,39 @@ def main():
  costs=review['cost_npv_10k']
  rigid=sum(x['rigid'] for x in costs.values());elastic=sum(x['elastic'] for x in costs.values())
  assert all(x['elastic']<x['rigid'] for x in costs.values())
- assert '82.89%' in source and abs((1-elastic/rigid)*100-82.89)<.005
+ reduction=(1-elastic/rigid)*100
+ assert f'{reduction:.2f}%' in source
+ for value in (rigid,elastic):assert f'{value:.2f}' in source
  assert '推荐采用弹性方案' in source
  matrix=read(DATA/'通用推荐矩阵.json')
- assert len(matrix)==162
- allowed={'分布式电源装机渗透率','年负荷平均增长率','95%峰值持续时间','主变与线路成本比','主变与储能成本比_3h','推荐容载比区间','计算点数'}
+ assert len(matrix)==108
+ allowed={'线路类型','分布式电源装机渗透率','年负荷平均增长率','95%峰值持续时间','主变与线路成本比','主变与储能成本比_3h','主选参考档位','主选档占比','计算容载比范围','容载比最小值','容载比最大值','档位计数','计算点数'}
  assert all(set(x)==allowed for x in matrix)
- assert len(set(x['主变与线路成本比'] for x in matrix))==3
+ assert set(x['线路类型'] for x in matrix)=={'架空为主','电缆为主'}
+ assert len(set(x['主变与线路成本比'] for x in matrix))==2
  assert len(set(x['主变与储能成本比_3h'] for x in matrix))==3
- assert sum(x['计算点数'] for x in matrix)>=12600  # 相邻源荷档共享边界点
+ assert sum(x['计算点数'] for x in matrix)>=25200  # 相邻源荷、持续时间档共享边界点
  for row in matrix:
-  low,high=map(float,row['推荐容载比区间'].split('～'))
+  low,high=map(float,row['计算容载比范围'].split('～'))
   assert 2<=low<=high<=2.6
+  assert low<=row['容载比最小值']<=row['容载比最大值']<=high+1e-10
+  counts=row['档位计数'];assert sum(counts.values())==row['计算点数']
+  chosen=min(counts,key=lambda t:(-counts[t],float(t)))
+  assert row['主选参考档位']==chosen and abs(row['主选档占比']-counts[chosen]/row['计算点数'])<1e-10
+  assert float(chosen) in (2.,2.2,2.4,2.6)
  cases=read(HERE/'案例与矩阵衔接核对.json')
  for case in cases:
-  lower,upper=map(float,matrix[case['矩阵行']-1]['推荐容载比区间'].split('～'))
-  assert lower<=case['容载比']<=upper
+  row=matrix[case['矩阵行']-1]
+  assert case['落入模板计算范围']==(row['容载比最小值']<=case['容载比']<=row['容载比最大值'])
+  import math
+  assert abs(float(case['案例上限参考档'])-math.ceil(case['容载比']/.20-1e-10)*.20)<1e-10
  workbook=load_workbook(DATA/'通用容载比推荐矩阵.xlsx',read_only=True)
- ws=workbook['弹性推荐矩阵'];assert ws.max_row==163 and ws.max_column==7
+ ws=workbook['弹性推荐矩阵'];assert ws.max_row==109 and ws.max_column==10
  headers=[c.value for c in ws[1]]
  assert not any(any(t in h for t in ['刚性','柜数','措施','项目数']) for h in headers)
  for row,expected in zip(ws.iter_rows(min_row=2,values_only=True),matrix):
-  assert row[5]==expected['推荐容载比区间']
- assert workbook['参数与计算点'].max_row==12601
+  assert row[6]==expected['主选参考档位'] and row[8]==expected['计算容载比范围']
+ assert workbook['参数与计算点'].max_row==25201
  profiles=read(HERE/'逐站分析对应记录.json')
  assert len(profiles)==49
  assert len(re.findall(r'^#### [A-Za-z0-9-]+站规划分析',source,re.M))==49
@@ -159,14 +176,14 @@ def main():
  assert sum(workbook[x].max_row-1 for x in ['邳州刚性逐站','邳州弹性逐站','市区刚性逐站','市区弹性逐站'])==392
  # 源文件说明、摘要及结论与模型保持相同范围。
  notes=(R/'数据来源'/ITER/'数据来源与参数说明.md').read_text()
- assert '原值乘10' in notes and '12600' in notes and '1.15' in notes
+ assert '原值乘10' in notes and '25200' in notes and '1.15' in notes
  style=read(HERE/'语体与术语审查.json');assert style['状态']=='通过'
  result={'状态':'通过','章节':6,'参考文献':len(refs),'PDF页数':len(pdf),'真实数据表':tables,'图件':figures,'独立居中公式':displays,'行内原生公式':len(objects)-displays,'原生数学对象':len(objects),'目录页码核对':fields,
- '基准独立复核站年':392,'一般站群外推组合':12600,'外推独立复核站级记录':63000,'通用矩阵行数':162,'案例校核点':cases,
+ '基准独立复核站年':392,'一般站群外推组合':25200,'外推独立复核站级记录':126000,'通用矩阵行数':108,'案例校核点':cases,
  '刚性费用现值万元':rigid,'弹性费用现值万元':elastic,'弹性费用降低比例':1-elastic/rigid,'费用排序作为约束':False,
  '费用阶段最优性间隙':review['primary_cost_relative_gap'],'容量偏好阶段最优性间隙':review['capacity_preference_relative_gap'],'外推最大最优性间隙':stats['最大最优性间隙'],
  '公式处理':'交付Word全部为原生OMML，行内可编辑；独立公式在等宽侧栏间居中，编号单独右置。PDF由同一LaTeX源生成数学图形后在本地排版导出；排版副本不替代原生Word。',
- '版面复核':'核对实际分页、目录缓存及图形边界；既有代表页审查记录随基线保留。',
+ '版面复核':'核对实际分页、目录缓存、各级标题和图形边界；本轮抽查14页，记录见1003反馈修订/版面抽查记录.json。',
  '审查范围':'数据和模型复算、文档结构与本地版面核对；交付供电科院审核。',
  '字体':font,'语体审核':style['技能'],'文件SHA256':{p.name:digest(p) for p in [OUT/'研究报告终稿.docx',OUT/'研究报告终稿.pdf',DATA/'通用容载比推荐矩阵.xlsx',DATA/'统一起点逐年方案与复核.xlsx']}}
  (HERE/'最终核验.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))

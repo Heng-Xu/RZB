@@ -13,54 +13,10 @@ def readcsv(p):
  with p.open(encoding='utf-8-sig') as f:return list(csv.DictReader(f))
 def f(r,k):return float(r[k])
 def main():
- rows=json.loads((D/'外推逐点结果.json').read_text());matrix=[]
- l_bins=[(.90,1.10),(1.10,1.40),(1.40,1.70)];b_bins=[(.04,.05),(.05,.08),(.08,.12)]
- case_points=[{'地区':'邳州','eta':1.63065,'g':.080742,'h':4,'R':2.2118},{'地区':'市区','eta':.31788,'g':.018,'h':5,'R':2.2102}]
- checks=[]
- for kl,(llo,lhi) in enumerate(l_bins):
-  for elo,ehi in [(0,1),(1,2),(2,3)]:
-   for glo,ghi in [(0,.02),(.02,.07),(.07,.1)]:
-    for hlo,hhi in [(1,3),(3,6)]:
-     for kb,(blo,bhi) in enumerate(b_bins):
-      selected=[r for r in rows if elo<=r['装机渗透率']<=ehi and (glo<r['年负荷平均增长率']<=ghi or glo==0 and r['年负荷平均增长率']==0) and hlo<=r['95%峰值持续时间h']<=hhi and (llo<r['主变线路成本比']<=lhi or kl==0 and r['主变线路成本比']==llo) and (blo<r['主变储能成本比_3h']<=bhi or kb==0 and r['主变储能成本比_3h']==blo)]
-      assert selected
-      values=[r['推荐容载比'] for r in selected]
-      matched=[]
-      for c in case_points:
-       if elo<=c['eta']<=ehi and glo<c['g']<=ghi and hlo<=c['h']<=hhi and llo<1.22364<=lhi and blo<.05941<=bhi:
-        values.append(c['R']);matched.append(c['地区']);checks.append({'地区':c['地区'],'矩阵行':len(matrix)+1,'容载比':c['R']})
-      low=math.floor((min(values)+1e-10)/.05)*.05;high=math.ceil((max(values)-1e-10)/.05)*.05
-      matrix.append({'分布式电源装机渗透率':f'{elo:.2f}～{ehi:.2f}','年负荷平均增长率':('＞' if glo else '')+f'{100*glo:.2f}%～{100*ghi:.2f}%','95%峰值持续时间':f'{hlo}～{hhi} h','主变与线路成本比':('＞' if kl else '')+f'{llo:.2f}～{lhi:.2f}','主变与储能成本比_3h':('＞' if kb else '')+f'{blo:.2f}～{bhi:.2f}','推荐容载比区间':f'{low:.2f}～{min(2.6,high):.2f}','计算点数':len(selected)})
- assert len(matrix)==162 and {x['地区'] for x in checks}=={'邳州','市区'}
- (D/'通用推荐矩阵.json').write_text(json.dumps(matrix,ensure_ascii=False,indent=2))
- (HERE/'案例与矩阵衔接核对.json').write_text(json.dumps(checks,ensure_ascii=False,indent=2))
- headers=['分布式电源装机渗透率','年负荷平均增长率','95%峰值持续时间','主变与线路成本比','主变与储能成本比','推荐弹性容载比']
- keys=list(matrix[0])[:-1]
- blocks=[]
- for k in range(3):
-  sub=matrix[k*54:(k+1)*54]
-  key='cost_matrix_'+str(k)
-  tables[key]=table('表5-0 主变与线路成本比'+sub[0]['主变与线路成本比']+'的弹性容载比推荐区间',headers,[[r[x] for x in keys] for r in sub])
-  blocks.append('[[TABLE:'+key+']]')
- sections['cost_banded_matrix']='\n\n'.join(blocks)
- tables.pop('general_matrix',None)
- tables['general_assumptions']=tables['general_assumptions'].replace('(0.75,0.50)/(1,1)/(1.25,1.25)/(0.75,1.25)/(1.25,0.50)','线路0.75/1.00/1.25；储能0.50/1.00/1.25').replace('四角及中心','九组交叉价格').replace('1.057和1.113','1.06和1.11')
- wb=Workbook();ws=wb.active;ws.title='弹性推荐矩阵';ws.append(headers+['计算点数'])
- for r in matrix:ws.append([r[x] for x in keys]+[r['计算点数']])
- ws=wb.create_sheet('参数与计算点');ws.append(list(rows[0]));[ws.append(list(r.values())) for r in rows]
- ws=wb.create_sheet('案例对应');ws.append(['地区','装机渗透率','年负荷平均增长率','95%峰值持续时间/h','弹性容载比','推荐区间'])
- for c in case_points:
-  check=next(x for x in checks if x['地区']==c['地区']);ws.append([c['地区'],c['eta'],c['g'],c['h'],c['R'],matrix[check['矩阵行']-1]['推荐容载比区间']])
- ws=wb.create_sheet('使用说明');ws.append(['项目','内容'])
- for row in [['矩阵参数','装机渗透率、增长率、持续时间和两个成本比'],['成本比分档','两个成本比各3档，9组价格组合'],['储能成本比尺度','3 h参考峰段，按有效MW初始投资比较'],['区间形成','同档计算点与案例点的包络，0.05向外取整'],['规划建议','按片区参数选择范围，再用实际设备和线路条件比选'],['计算精度','原始数值用于计算，工作簿显示两位小数']]:ws.append(row)
- for sh in wb:
-  sh.freeze_panes='A2';sh.auto_filter.ref=sh.dimensions
-  for cell in sh[1]:cell.font=Font(name='宋体',bold=True,color='FFFFFF');cell.fill=PatternFill('solid',fgColor='29465B');cell.alignment=Alignment(wrap_text=True)
-  for row in sh.iter_rows(min_row=2):
-   for cell in row:
-    if isinstance(cell.value,float):cell.number_format='0.00% ' if ('增长率' in str(sh.cell(1,cell.column).value) or '电量渗透率估计'==sh.cell(1,cell.column).value) else '0.00'
-  for col in sh.columns:sh.column_dimensions[col[0].column_letter].width=22
- wb.save(D/'通用容载比推荐矩阵.xlsx')
+ from 规划档位矩阵 import main as rebuild_matrix
+ rebuild_matrix()
+ global tables,sections
+ tables=json.loads((A/"计算表.json").read_text());sections=json.loads((A/"生成段落.json").read_text())
  # 逐站段落使用当前已复核年度状态，既有历史版只提供分析组织思路。
  profile_meta=[]
  for region,name in [('pizhou','邳州'),('city','市区')]:
@@ -115,5 +71,5 @@ def main():
     if isinstance(cell.value,float):cell.number_format='0.00'
     if isinstance(cell.value,str):cell.value=cell.value.replace('第三台','扩建主变')
  wb.save(path)
- print('推荐矩阵',len(matrix),'行；逐站分析',len(profile_meta),'站')
+ print('推荐矩阵',len(json.loads((D/'通用推荐矩阵.json').read_text())),'行；逐站分析',len(profile_meta),'站')
 if __name__=='__main__':main()

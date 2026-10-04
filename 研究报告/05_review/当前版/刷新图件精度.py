@@ -65,7 +65,7 @@ def main():
  for (c,s),(years,_) in portfolio.items():
   parts=np.zeros((3,3))
   for y in years:
-   for j,(kind,life,om) in enumerate([('transformer',20,.01),('storage',10,.03),('line',20,.01)]):parts[j]+=float(y[kind+'_capex_10k'])*cash(int(y['year']),life,om)
+   for j,(kind,life,om) in enumerate([('transformer',40,.042),('storage',25,.03),('line',40,.022)]):parts[j]+=float(y[kind+'_capex_10k'])*cash(int(y['year']),life,om)
   components.append(parts.sum(axis=1));purchases.append(sum(float(y['new_transformer_purchase_mva']) for y in years));energies.append(float(years[-1]['installed_storage_energy_mwh']));labels.append(REG[c]+SC[s])
  plt.figure(figsize=(6.7,3.8));bottom=np.zeros(4)
  for j,lab in enumerate(['主变','储能','线路']):

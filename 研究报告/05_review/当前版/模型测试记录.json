@@ -1,6 +1,14 @@
 {
   "状态": "通过",
-  "测试数": 33,
-  "测试入口": "python -m pytest -q 实验/研究/rebuild_2026/tests",
-  "测试范围": "成本系数、全寿命费用、负荷转接、10 kV可切换区段、站级等效能力与两种求解后端；已退役交付快照的断言清理。"
+  "测试数": 15,
+  "测试入口": "python -m pytest -q 实验/研究/rebuild_2026/tests/test_current_economic_assumptions.py 实验/研究/rebuild_2026/tests/test_load_reallocation.py 实验/研究/rebuild_2026/tests/test_cost_references.py 实验/研究/rebuild_2026/tests/test_solver_backend.py",
+  "测试结果": "15 passed",
+  "本轮范围": "40/40/25年寿命、分别计取的维护费与现金流、含土建的两类线路费用、转接及成本与求解后端回归",
+  "模型结果校核": "联合费用与方案关系、392站年独立复算、25200组外推及126000站级记录复算均通过",
+  "上轮历史测试": {
+    "状态": "通过",
+    "测试数": 33,
+    "测试入口": "python -m pytest -q 实验/研究/rebuild_2026/tests",
+    "测试范围": "成本系数、全寿命费用、负荷转接、10 kV可切换区段、站级等效能力与两种求解后端；已退役交付快照的断言清理。"
+  }
 }

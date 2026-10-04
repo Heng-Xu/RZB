@@ -1,13 +1,16 @@
 from pathlib import Path
-import json,math
+import json,math,sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
+from 实验.研究.rebuild_2026.current_economic_assumptions import LINE_TYPES,line_capex
 R=Path(__file__).resolve().parents[2];D=R/'01研究推荐/当前版';OUT=Path(__file__).parent
 rows=json.loads((D/'外推逐点结果.json').read_text());details=[json.loads(l) for l in (D/'外推站级方案.jsonl').read_text().splitlines()]
-assert len(rows)==len(details)==12600
+assert len(rows)==len(details)==25200
 minimum=1e9;worstcost=0
 def factor(life,q):
  return 1/1.06**4+sum(q/1.06**(y-2021) for y in range(2026,2042))+sum(1/1.06**(y-2021) for y in range(2025+life,2041,life))
 for r,d in zip(rows,details):
- eta,g,h,area,ls,bs,shape=d['参数'];a=d['站级'];p=d['目标负荷MW'];M=d['项目数'];rho=.5 if area=='A' else .28287889;limit=.7 if area=='A' else .5;target=.5 if area=='A' else .3
+ eta,g,h,area,ls,bs,shape,line_type=d['参数'];a=d['站级'];p=d['目标负荷MW'];M=d['项目数'];rho=.5 if area=='A' else .28287889;limit=.7 if area=='A' else .5;target=.5 if area=='A' else .3
+ assert d['线路基价万元']==line_capex(LINE_TYPES[line_type])
  assert abs(sum(t['转出MW'] for t in a)-sum(t['转入MW'] for t in a))<1e-4
  assert sum(t['项目端数'] for t in a)==2*M
  assert max(t['项目端数'] for t in a)<=M
@@ -23,9 +26,9 @@ for r,d in zip(rows,details):
   assert qo<=min(limit*l,rho*l+t['项目端数']*7.49106117)+1e-4
   assert qo<=rho*l+t['新增使用MW']+1e-4
   assert rho*l+t['项目端数']*7.49106117>=target*l-1e-4
-  cost+=(purchased*16.57333333333333+(1223 if third else 0))*factor(20,.01)+n*21.0456262*bs*factor(10,.03)
+  cost+=(purchased*16.57333333333333+(1223 if third else 0))*factor(40,.042)+n*21.0456262*bs*factor(25,.03)
   capacity+=S
- cost+=M*106.8*ls*factor(20,.01)
+ cost+=M*line_capex(LINE_TYPES[line_type])*ls*factor(40,.022)
  assert abs(capacity/p-r['推荐容载比'])<1e-7
  assert 2.001-1e-6<=capacity/p<=2.6+1e-6
  deviation=abs(cost-r['全寿命费用万元']);worstcost=max(worstcost,deviation);assert deviation<1e-3
