@@ -17,7 +17,7 @@ def factor(life,om):
     return 1/1.06**4+sum(om/1.06**t for t in range(5,21))+sum(1/1.06**t for t in range(4+life,20,life))
 CURRENT_FACTORS=cost_factors()
 FT,FL,FB=(CURRENT_FACTORS[k][2025] for k in ('transformer','line','storage'))
-def solve(eta,g,h,area,ls,bs,shape='偏集中',line_type='架空为主',upper=2.6,relative_gap=.005):
+def solve(eta,g,h,area,ls,bs,shape='偏集中',line_type='架空为主',upper=2.6,relative_gap=.005,lower=2.001):
     base=50 if area=='A' else 40
     p0=5*base;p=p0*(1+g)**4
     weights=np.array([.10,.15,.20,.25,.30]) if shape=='偏集中' else np.array([.16,.18,.20,.22,.24])
@@ -60,7 +60,9 @@ def solve(eta,g,h,area,ls,bs,shape='偏集中',line_type='架空为主',upper=2.
     constraint({**{ex[i]:1 for i in range(5)},project:-INC},u=0)
     floor=1.5 if g<=.02 else 1.6 if g<=.04 else 1.7 if g<=.07 else 1.8
     capacity={x[i,j]:o[0] for i in range(5) for j,o in enumerate(options)}
-    constraint(capacity,l=max(2.001,floor)*p,u=upper*p)
+    if not 0 <= lower <= upper:
+        raise ValueError('容载比搜索下限须在0至上限之间')
+    constraint(capacity,l=max(lower,floor)*p,u=upper*p)
     rr,cc,vv=zip(*entries);a=coo_matrix((vv,(rr,cc)),shape=(len(lb),len(costs))).tocsc()
     result=milp(np.array(costs),integrality=np.array(integ),bounds=Bounds(lo,hi),constraints=LinearConstraint(a,lb,ub),options={'time_limit':60,'mip_rel_gap':relative_gap})
     if result.status!=0:raise ValueError((eta,g,h,area,ls,bs,shape,result.message))

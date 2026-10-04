@@ -42,6 +42,7 @@ def main():
   run('PDF数学排版副本.py',root);export_pdf(root)
  run('校核当前基准.py',root)
  run('外推独立复核.py',root)
+ run('Word表格内容复核.py',root)
  run('核验报告.py',root)
 
 if __name__=='__main__':main()

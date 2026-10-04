@@ -22,23 +22,39 @@ def main():
         for e,g,h,(bi,b) in itertools.product(ETA,G,H,enumerate(B)):
             sub=select(rows,lt,e,g,h,b);assert sub
             chosen,share,low,high,counts=summarize(sub)
-            matrix.append({'线路类型':lt,'分布式电源装机渗透率':f'{e[0]:.2f}～{e[1]:.2f}','年负荷平均增长率':('＞' if g[0] else '')+f'{g[0]*100:.2f}%～{g[1]*100:.2f}%','95%峰值持续时间':f'{h[0]}～{h[1]} h','主变与线路成本比':f"{min(r['主变线路成本比'] for r in sub):.2f}～{max(r['主变线路成本比'] for r in sub):.2f}",'主变与储能成本比_3h':('＞' if bi else '')+f'{b[0]:.2f}～{b[1]:.2f}','主选参考档位':f'{chosen:.2f}','主选档占比':share,'计算容载比范围':f'{math.floor((low+1e-10)*100)/100:.2f}～{math.ceil((high-1e-10)*100)/100:.2f}','容载比最小值':low,'容载比最大值':high,'档位计数':counts,'计算点数':len(sub)})
+            matrix.append({'线路类型':lt,'分布式电源装机渗透率':f'{e[0]:.2f}～{e[1]:.2f}','年负荷平均增长率':('＞' if g[0] else '')+f'{g[0]*100:.2f}%～{g[1]*100:.2f}%','95%峰值持续时间':f'{h[0]}～{h[1]} h','主变与线路成本比':f"{min(r['主变线路成本比'] for r in sub):.2f}～{max(r['主变线路成本比'] for r in sub):.2f}",'主变与储能成本比_3h':('＞' if bi else '')+f'{b[0]:.2f}～{b[1]:.2f}','主选参考档位':f'{chosen:.2f}','覆盖参考档位':f'{tier(high):.2f}','涉及参考档位':'/'.join(counts),'主选档占比':share,'计算容载比范围':f'{math.floor((low+1e-10)*100)/100:.2f}～{math.ceil((high-1e-10)*100)/100:.2f}','容载比最小值':low,'容载比最大值':high,'档位计数':counts,'计算点数':len(sub)})
         sub=[m for m in matrix if m['线路类型']==lt]
-        key='cost_matrix_'+str(len(blocks));headers=['装机渗透率','增长率','峰段/h','主变与储能成本比','上限参考档','同档占比','计算范围']
-        tables[key]=table('表5-0 '+lt+'线路条件下的容载比参考档位（主变与线路成本比'+sub[0]['主变与线路成本比']+'）',headers,[[m['分布式电源装机渗透率'],m['年负荷平均增长率'],m['95%峰值持续时间'].replace(' h',''),m['主变与储能成本比_3h'],m['主选参考档位'],f"{m['主选档占比']*100:.2f}%",m['计算容载比范围']] for m in sub])
+        key='cost_matrix_'+str(len(blocks));headers=['装机渗透率','增长率','峰段/h','主变与储能成本比','主选/覆盖档','同档占比','计算范围']
+        tables[key]=table('表5-0 '+lt+'线路条件下的容载比参考档位（主变与线路成本比'+sub[0]['主变与线路成本比']+'）',headers,[[m['分布式电源装机渗透率'],m['年负荷平均增长率'],m['95%峰值持续时间'].replace(' h',''),m['主变与储能成本比_3h'],m['主选参考档位']+'/'+m['覆盖参考档位'],f"{m['主选档占比']*100:.2f}%",m['计算容载比范围']] for m in sub])
         blocks.append('[[TABLE:'+key+']]')
     assert len(matrix)==108
     sections['cost_banded_matrix']='\n\n'.join(blocks);tables.pop('cost_matrix_2',None)
     sections['matrix_results']='线路价格及类型的配对比较未使本次模板的容量取值发生变化，因此矩阵按线路类型分别列示，并合并各类型的三个线路价格条件，共108个参数单元。原始费用及项目数量仍逐点保存。主选档用于前期比选，工程方案按实际设备和线路条件复核。'
     (D/'通用推荐矩阵.json').write_text(json.dumps(matrix,ensure_ascii=False,indent=2))
-    keys=['线路类型','分布式电源装机渗透率','年负荷平均增长率','95%峰值持续时间','主变与线路成本比','主变与储能成本比_3h','主选参考档位','主选档占比','计算容载比范围','计算点数']
+    keys=['线路类型','分布式电源装机渗透率','年负荷平均增长率','95%峰值持续时间','主变与线路成本比','主变与储能成本比_3h','主选参考档位','主选档占比','计算容载比范围','计算点数','覆盖参考档位','涉及参考档位']
     wb=Workbook();ws=wb.active;ws.title='弹性推荐矩阵';ws.append(keys)
     for m in matrix:ws.append([m[k] for k in keys])
     ws=wb.create_sheet('参数与计算点');ws.append(list(rows[0]));[ws.append(list(r.values())) for r in rows]
+    # 正文保留108行筛查矩阵；应用时进一步区分供电类别与负荷分布。
+    structured=[]
+    ws=wb.create_sheet('按供电类别与分布查表');ws.append(['总矩阵行','供电区域','负荷分布']+keys)
+    for i,m in enumerate(matrix,1):
+        for area,shape in itertools.product(('A','BC'),('偏集中','较均匀')):
+            e=tuple(map(float,m['分布式电源装机渗透率'].split('～')))
+            g=tuple(float(v.replace('＞','').replace('%',''))/100 for v in m['年负荷平均增长率'].split('～'))
+            h=tuple(map(float,m['95%峰值持续时间'].replace(' h','').split('～')))
+            b=tuple(float(v.replace('＞','')) for v in m['主变与储能成本比_3h'].split('～'))
+            sub=[r for r in select(rows,m['线路类型'],e,g,h,b) if r['供电区域']==area and r['负荷分布']==shape]
+            chosen,share,low,high,counts=summarize(sub)
+            detail={**m,'主选参考档位':f'{chosen:.2f}','主选档占比':share,'覆盖参考档位':f'{tier(high):.2f}','涉及参考档位':'/'.join(counts),'容载比最小值':low,'容载比最大值':high,'档位计数':counts,'计算点数':len(sub),'计算容载比范围':f'{math.floor((low+1e-10)*100)/100:.2f}～{math.ceil((high-1e-10)*100)/100:.2f}'}
+            structured.append({'总矩阵行':i,'供电区域':area,'负荷分布':shape,**detail})
+            ws.append([i,area,shape]+[detail[k] for k in keys])
+    assert len(structured)==432
+    (D/'按供电类别与分布推荐矩阵.json').write_text(json.dumps(structured,ensure_ascii=False,indent=2))
     ws=wb.create_sheet('档位分布');ws.append(['矩阵行','线路类型','2.00档点数','2.20档点数','2.40档点数','2.60档点数','最小原值','最大原值'])
     for i,m in enumerate(matrix,1):ws.append([i,m['线路类型']]+[m['档位计数'].get(f'{x:.2f}',0) for x in (2,2.2,2.4,2.6)]+[m['容载比最小值'],m['容载比最大值']])
     ws=wb.create_sheet('使用说明');ws.append(['项目','内容'])
-    for row in [['档位方法','按0.20上限档向上归档；同档频次并列优先较低档'],['含义','档位作为允许上限的比选起点，不要求将实际设备容量补齐至档值；2.00上限另作刚性对照'],['主选档占比','等权参数组合频次，非真实概率；不足60%时比较相邻档'],['计算范围','仅记录本单元条件差异形成的全部计算范围，不作为统一推荐区间'],['线路价格','类型与价格分别计算；对容量无变化后合并价格档，费用保留逐点'],['案例与模板','四年案例与目标年静态模板分别求解，不将案例点补入模板范围']]:ws.append(row)
+    for row in [['档位方法','按0.20上限档向上归档；同档频次并列优先较低档'],['含义','档位作为允许上限的比选起点，不要求将实际设备容量补齐至档值；2.00上限另作刚性对照'],['主选档占比','等权参数组合频次，非真实概率；不足60%是本研究的补充比选提示，不能作为覆盖保证'],['覆盖参考档','能容纳该单元全部已算配置的最小上限档，仅覆盖所算模板，不保证真实片区可行或最优'],['查表顺序','先定位总矩阵，再在按供电类别与分布查表中筛选结构，核对涉及档位与覆盖档；未求解的中间参数重新比选'],['计算范围','仅记录本单元条件差异形成的全部计算范围，不作为统一推荐区间'],['线路价格','类型与价格分别计算；对容量无变化后合并价格档，费用保留逐点'],['案例与模板','四年案例与目标年静态模板分别求解，不将案例点补入模板范围']]:ws.append(row)
     for sh in wb:
         sh.freeze_panes='A2';sh.auto_filter.ref=sh.dimensions
         for c in sh[1]:c.font=Font(bold=True,color='FFFFFF');c.fill=PatternFill('solid',fgColor='29465B');c.alignment=Alignment(wrap_text=True)
