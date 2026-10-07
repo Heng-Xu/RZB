@@ -7,6 +7,7 @@ from docx import Document
 from docx.oxml.ns import qn
 from openpyxl import load_workbook
 import pymupdf
+from 展示术语 import display_value, STRUCTURED_SHEET, LOAD_DIVERSITY
 HERE=Path(__file__).resolve().parent
 R=HERE.parents[1]
 ITER='当前版'
@@ -32,12 +33,12 @@ def main():
  for file,expected in read(HERE/'装配源文件登记.json').items():assert digest(R.parent/file)==expected,('装配后源文件发生变化',file)
  assert len(re.findall(r'^# 第[一二三四五六]章 ',source,re.M))==6
  assert not re.search(r'^#{1,4} 4\.7(?:\s|\.)',source,re.M)
- assert source.index('## 5.2 三类方案')<source.index('## 5.4 寻优结果')<source.index('## 5.6 参数拓展')<source.index('## 5.7 规划建议')
- for term in ['丰县','共同反事实','规划分母代理','建模绝对峰','最大站绝对峰','模型站数','正向/反送任务之和','分母代理','四条路径','[[TABLE:','[[SECTION:','[[FIG:','为本项目本研究','第三台','392个站年的','不另创导则指标','不将全年零功率','不能合并解释','价格口径','Sheet1 第','本报告在文字中称','最大最优性间隙']:
+ assert source.index('## 5.2 三类措施')<source.index('## 5.4 寻优结果')<source.index('## 5.6 参数拓展')<source.index('## 5.7 规划建议')
+ for term in ['丰县','共同反事实','规划分母代理','建模绝对峰','最大站绝对峰','模型站数','正向/反送任务之和','分母代理','四条路径','[[TABLE:','[[SECTION:','[[FIG:','为本项目本研究','第三台','392个站年的','不另创导则指标','不将全年零功率','不能合并解释','价格口径','Sheet1 第','本报告在文字中称','最大最优性间隙','是否要求突破','取消必须突破','上限敏感性','扩展搜索上限','按未取整值比较','地区排序条件','跨地区排序','光伏装机潜力','峰段/h','偏集中','较均匀','按供电类别与分布查表','工程事件','服务功率','服务能力','有效支撑功率','委托方给定','甲方反馈参数','单位换算假定','主选档','覆盖档']:
   assert term not in source,term
  refs=re.findall(r'^\[(\d+)\]\s+',source,re.M)
  assert list(map(int,refs))==list(range(1,len(refs)+1)),refs
- assert len(refs)==89
+ assert len(refs)==93  # 1006修订补充屋顶资源、地方工程、政策及概率规划4条出处。
  body=source.split('# 参考文献')[0]
  cited=[int(n) for m in re.finditer(r'\[([0-9]+(?:,[0-9]+)*)\]',body) for n in m[1].split(',')]
  assert list(dict.fromkeys(cited))==list(range(1,len(refs)+1))
@@ -84,7 +85,7 @@ def main():
  assert doc.styles['Normal'].element.xpath('.//w:rFonts')[0].get(qn('w:eastAsia'))==font['中文字体']
  # 目录以实际排版的正文页核定，同时检查Word缓存。
  pdf=pymupdf.open(OUT/'研究报告终稿.pdf')
- layout=read(HERE/'1004二轮审查/版面抽查记录.json')
+ layout=read(HERE/'1007研究报告修订/版面抽查记录.json')
  assert layout['状态']=='通过' and layout['PDFSHA256']==digest(OUT/'研究报告终稿.pdf'),'PDF已更新：需实际渲染抽查并更新版面记录后重新核验'
  assert all(1<=page<=len(pdf) for page in layout['抽查页'])
  pages=[norm(p.get_text()) for p in pdf]
@@ -155,19 +156,34 @@ def main():
   assert abs(float(case['案例上限参考档'])-math.ceil(case['容载比']/.20-1e-10)*.20)<1e-10
  workbook=load_workbook(DATA/'通用容载比推荐矩阵.xlsx',read_only=True)
  ws=workbook['弹性推荐矩阵'];assert ws.max_row==109 and ws.max_column==12
- headers=[c.value for c in ws[1]]
+ display_names=read(HERE/'1007研究报告修订/工作簿显示术语映射.json')
+ headers=[next((key for key in matrix[0] if display_names.get(key,key)==c.value),c.value) for c in ws[1]]
  assert not any(any(t in h for t in ['刚性','柜数','措施','项目数']) for h in headers)
  for row,expected in zip(ws.iter_rows(min_row=2,values_only=True),matrix):
   assert all(same_cell(value,expected[key]) for key,value in zip(headers,row)),('总矩阵工作簿不一致',expected)
  assert workbook['参数与计算点'].max_row==25201
  structured=read(DATA/'按供电类别与分布推荐矩阵.json')
  assert len(structured)==432
- structured_sheet=workbook['按供电类别与分布查表']
+ formal=read(DATA/'分类容载比推荐区间.json')
+ assert len(formal)==432
+ assert workbook['分类推荐区间'].max_row==433
+ assert workbook.active.title=='分类推荐区间'
+ for cells,entry in zip(workbook['分类推荐区间'].iter_rows(min_row=2,values_only=True),formal):
+  assert all(same_cell(actual,expected) for actual,expected in zip(cells,entry.values()))
+ for entry,raw in zip(formal,sorted(structured,key=lambda x:({'架空为主':0,'电缆为主':1}[x['线路类型']],{'A':0,'BC':1}[x['供电区域']],{'较均匀':0,'偏集中':1}[x['负荷分布']],x['总矩阵行']))):
+  assert entry['容载比最小值']==raw['容载比最小值'] and entry['容载比最大值']==raw['容载比最大值']
+  assert entry['容载比推荐区间']==raw['计算容载比范围']
+ structured_sheet=workbook[STRUCTURED_SHEET]
  assert structured_sheet.max_row==433 and structured_sheet.max_column==15
- structured_headers=[c.value for c in structured_sheet[1]]
+ structured_headers=[next((key for key in structured[0] if display_names.get(key,key)==c.value),c.value) for c in structured_sheet[1]]
  assert structured_headers==['总矩阵行','供电区域','负荷分布']+headers
  for row,expected in zip(structured_sheet.iter_rows(min_row=2,values_only=True),structured):
-  assert all(same_cell(value,expected[key]) for key,value in zip(structured_headers,row)),('分列矩阵工作簿不一致',expected)
+  assert all(same_cell(value,display_value(key,expected[key])) for key,value in zip(structured_headers,row)),('分列矩阵工作簿不一致',expected)
+ point_sheet=workbook['参数与计算点']
+ coefficient_column=[cell.value for cell in point_sheet[1]].index('负荷分散系数')+1
+ raw_points=read(DATA/'外推逐点结果.json')
+ for cells,expected in zip(point_sheet.iter_rows(min_row=2,min_col=coefficient_column,max_col=coefficient_column,values_only=True),raw_points):
+  assert same_cell(cells[0],LOAD_DIVERSITY[expected['负荷分布']]),'逐点负荷分散系数映射错误'
  for i,parent in enumerate(matrix,1):
   children=[x for x in structured if x['总矩阵行']==i]
   assert {(x['供电区域'],x['负荷分布']) for x in children}=={(a,s) for a in ('A','BC') for s in ('偏集中','较均匀')}
@@ -197,6 +213,7 @@ def main():
    assert profile['弹性最不利退出余量MW']>=-1e-4
  # 文字、表格中的小数统一到两位，章节编号和文献标识保留。
  precision=re.sub(r'^#{1,4}[^\n]*','',body,flags=re.M)
+ precision=re.sub(r'第\s*\d+(?:\.\d+)+\s*节','',precision)
  precision=re.sub(r'(?<![\d.])\d+\.\d+\.\d+(?:\.\d+)*','',precision)
  bad=[]
  for match in re.finditer(r'(?<![\d.])\d+\.\d+(?![\d.])',precision):
@@ -211,11 +228,11 @@ def main():
  assert all(term in notes for term in ('原值乘10','25200','1.15','432','期末剩余价值','SOC','2.001'))
  style=read(HERE/'语体与术语审查.json');assert style['状态']=='通过'
  result={'状态':'通过','章节':6,'参考文献':len(refs),'PDF页数':len(pdf),'真实数据表':tables,'图件':figures,'独立居中公式':displays,'行内原生公式':len(objects)-displays,'原生数学对象':len(objects),'目录页码核对':fields,
- '基准独立复核站年':392,'一般站群外推组合':25200,'外推独立复核站级记录':126000,'通用矩阵行数':108,'结构分列矩阵行数':432,'下限诊断组合':16,'案例校核点':cases,
+ '基准独立复核站年':392,'一般站群外推组合':25200,'外推独立复核站级记录':126000,'通用矩阵行数':432,'历史合并矩阵行数':108,'结构分列矩阵行数':432,'术语登记项数':101,'下限诊断组合':16,'案例校核点':cases,
  '刚性费用现值万元':rigid,'弹性费用现值万元':elastic,'弹性费用降低比例':1-elastic/rigid,'费用排序作为约束':False,
  '费用阶段最优性间隙':review['primary_cost_relative_gap'],'容量偏好阶段最优性间隙':review['capacity_preference_relative_gap'],'外推最大最优性间隙':stats['最大最优性间隙'],
  '公式处理':'交付Word全部为原生OMML，行内可编辑；独立公式在等宽侧栏间居中，编号单独右置。PDF由同一LaTeX源生成数学图形后在本地排版导出；排版副本不替代原生Word。',
- '版面复核':'自动核对实际分页、目录缓存、各级标题和图形边界；本轮人工抽查另见1004二轮审查/版面抽查记录.json。',
+ '版面复核':'自动核对实际分页、目录缓存、各级标题和图形边界；本轮人工抽查另见1007研究报告修订/版面抽查记录.json。',
  '审查范围':'数据和模型复算、文档结构与本地版面核对；交付供电科院审核。',
  '字体':font,'语体审核':style['技能'],'文件SHA256':{p.name:digest(p) for p in [OUT/'研究报告终稿.docx',OUT/'研究报告终稿.pdf',DATA/'通用容载比推荐矩阵.xlsx',DATA/'统一起点逐年方案与复核.xlsx']}}
  (HERE/'最终核验.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))

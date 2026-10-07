@@ -5,6 +5,7 @@ import numpy as np
 from openpyxl import Workbook
 from openpyxl.styles import Font,PatternFill,Alignment
 from 驱动因子分析 import table
+from 展示术语 import apply_workbook_terms
 HERE=Path(__file__).parent;R=HERE.parents[1];D=R/'01研究推荐/当前版';A=R/'02图表/当前版'
 ETA=[(0,1),(1,2),(2,3)];G=[(0,.02),(.02,.07),(.07,.1)];H=[(1,3),(3,6)];B=[(.04,.05),(.05,.08),(.08,.12)]
 def tier(r):return min(2.6,max(2.,math.ceil(r/.2-1e-10)*.2))
@@ -35,7 +36,7 @@ def main():
     wb=Workbook();ws=wb.active;ws.title='弹性推荐矩阵';ws.append(keys)
     for m in matrix:ws.append([m[k] for k in keys])
     ws=wb.create_sheet('参数与计算点');ws.append(list(rows[0]));[ws.append(list(r.values())) for r in rows]
-    # 正文保留108行筛查矩阵；应用时进一步区分供电类别与负荷分布。
+    # 原计算字段保留兼容；交付按供电类别与负荷分散系数展示。
     structured=[]
     ws=wb.create_sheet('按供电类别与分布查表');ws.append(['总矩阵行','供电区域','负荷分布']+keys)
     for i,m in enumerate(matrix,1):
@@ -63,6 +64,7 @@ def main():
             for cell in row:
                 if isinstance(cell.value,float):cell.number_format='0.00%' if sh.cell(1,cell.column).value=='主选档占比' else '0.00'
     ws.append(['分档节点','装机渗透率1.00、2.00及峰段3 h的计算点在相邻单元共享；实际参数位于这些节点时同时核对两侧单元'])
+    apply_workbook_terms(wb)
     wb.save(D/'通用容载比推荐矩阵.xlsx')
     (A/'计算表.json').write_text(json.dumps(tables,ensure_ascii=False,indent=2));(A/'生成段落.json').write_text(json.dumps(sections,ensure_ascii=False,indent=2))
     plot(rows)
@@ -85,11 +87,11 @@ def plot(rows):
             for gi,g in enumerate(G):
                 for ei,e in enumerate(ETA):
                     sub=select(rows,lt,e,g,h,base=True);z[gi,ei],shares[gi,ei],*_=summarize(sub)
-            im=ax.imshow(z,cmap=cmap,norm=norm,aspect='auto');ax.set_title(f'{lt}；峰段{h[0]}～{h[1]} h')
+            im=ax.imshow(z,cmap=cmap,norm=norm,aspect='auto');ax.set_title(f'{lt}；95%峰值持续时间{h[0]}～{h[1]} h',fontsize=10)
             for gi,ei in itertools.product(range(3),repeat=2):ax.text(ei,gi,f'{z[gi,ei]:.2f}\n{shares[gi,ei]*100:.2f}%',ha='center',va='center',color='white' if z[gi,ei]>2.4 else '#182c37')
             ax.set_xticks(range(3),['0.00～1.00','1.00～2.00','2.00～3.00']);ax.set_yticks(range(3),['0.00%～2.00%','＞2.00%～7.00%','＞7.00%～10.00%'])
-            if i==1:ax.set_xlabel('装机渗透率')
-            if j==0:ax.set_ylabel('年负荷平均增长率')
+            if i==1:ax.set_xlabel('源荷比')
+            if j==0:ax.set_ylabel('年最大净负荷平均增长率')
     fig.tight_layout(rect=(0,0,1,.95));cbar=fig.colorbar(im,ax=axes.ravel().tolist(),location='top',shrink=.65,pad=.08,ticks=[2,2.2,2.4,2.6]);cbar.ax.xaxis.set_major_formatter(FormatStrFormatter('%.2f'));cbar.set_label('主选上限参考档（线路与储能基准价）')
     fig.savefig(A/'planning_tier_heatmap.png',dpi=300,bbox_inches='tight');plt.close(fig)
 if __name__=='__main__':main()

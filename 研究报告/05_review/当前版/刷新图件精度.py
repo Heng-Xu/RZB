@@ -23,7 +23,10 @@ def main():
  d=json.loads((ASSETS/'图件原始数值.json').read_text())
  portfolio={(c,s):(rows(BASE/c/(s+'_years.csv')),rows(BASE/c/(s+'_stations.csv'))) for c in REG for s in SC}
  def save(name):
-  for ax in plt.gcf().axes:ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+  for i,ax in enumerate(plt.gcf().axes):
+   # 站名是分类标签，不能被数值格式化器覆盖成0.00、1.00等坐标值。
+   if name.endswith('_modeled_peaks') and i==0:continue
+   ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
   plt.tight_layout();plt.savefig(out/(name+'.png'),dpi=300,bbox_inches='tight');plt.close()
  plt.figure(figsize=(6.5,3.6))
  for n,col in zip(REG.values(),C):plt.plot(range(2021,2026),[d['年度容量与负荷'][n][str(y)][1] for y in range(2021,2026)],'o-',label=n,color=col)
@@ -35,18 +38,18 @@ def main():
   ax.set_ylabel(n+'装机容量 / MW');ax.legend(fontsize=10);ax.grid(alpha=.2)
  axes[-1].set_xticks([0,12,24,36,48,59],['2021年1月','2022年1月','2023年1月','2024年1月','2025年1月','2025年12月']);save('pv_monthly')
  plt.figure(figsize=(6,3.6));plt.boxplot([d['设备最大负载率'][n] for n in REG.values()],tick_labels=list(REG.values()))
- plt.axhline(80,color=C[1],ls='--',lw=.8);plt.ylabel('逐台最大负载率 / %');save('loading_distribution')
+ plt.axhline(80,color=C[1],ls='--',lw=.8);plt.ylabel('主变年最大负载率 / %');save('loading_distribution')
  plt.figure(figsize=(6.5,3.8))
  for k,(c,n) in enumerate(REG.items()):
   vals=[x for x in portfolio[c,'elastic'][1] if x['year']=='2025']
   plt.scatter([float(x['forward_duration_h']) for x in vals],[float(x['reverse_duration_h']) for x in vals],label=n,alpha=.65,color=C[k])
- plt.xlabel('正向H95 / h');plt.ylabel('反向H95 / h');plt.legend();plt.grid(alpha=.2);save('duration_distribution')
+ plt.xlabel('正向95%峰值持续时间 / h');plt.ylabel('反向95%峰值持续时间 / h');plt.legend();plt.grid(alpha=.2);save('duration_distribution')
  monthly=d['月度指标'];fig,axes=plt.subplots(1,2,figsize=(7,3.3))
- for ax,j,lab in [(axes[0],2,'容载比（月度分析）'),(axes[1],3,'主变负载率估计 / %')]:
-  ax.scatter([x[1]*100 for x in monthly],[x[j] for x in monthly],color=C[0]);ax.set_xlabel('月电量渗透率 / %');ax.set_ylabel(lab)
+ for ax,j,lab in [(axes[0],2,'月度容量负荷比'),(axes[1],3,'站群估计负载率 / %')]:
+  ax.scatter([x[1]*100 for x in monthly],[x[j] for x in monthly],color=C[0]);ax.set_xlabel('月度分布式电源电量渗透率 / %');ax.set_ylabel(lab)
   for x in monthly:ax.annotate(str(x[0]),(x[1]*100,x[j]),fontsize=7,xytext=(3,2),textcoords='offset points')
  save('monthly_correlation')
- plt.figure(figsize=(6.5,3.5));x=np.linspace(1,12,100);plt.plot(x,210.456262/np.minimum(1,2.15/x),color=C[0]);plt.xlabel('持续时间 / h');plt.ylabel('初始投资 / 万元 / 有效MW');plt.grid(alpha=.2);save('storage_effective_cost')
+ plt.figure(figsize=(6.5,3.5));x=np.linspace(1,12,100);plt.plot(x,210.456262/np.minimum(1,2.15/x),color=C[0]);plt.xlabel('95%峰值持续时间 / h');plt.ylabel('单位充放电功率投资 /（万元/MW）');plt.grid(alpha=.2);save('storage_effective_cost')
  pressure={}
  for c,n in REG.items():
   st=portfolio[c,'elastic'][1];pressure[c]=[[sum(float(x[key]) for x in st if int(x['year'])==y) for key in ['forward_mw','reverse_mw']] for y in range(2022,2026)]
@@ -60,7 +63,7 @@ def main():
  save('annual_model_pressure')
  plt.figure(figsize=(6.6,3.8))
  for (c,s),(years,_) in portfolio.items():plt.plot(range(1,5),[float(x['clr']) for x in years],marker='o',ls='-' if s=='elastic' else '--',color=C[list(REG).index(c)],label=REG[c]+SC[s])
- plt.axhline(2,color='gray',lw=.8);plt.xticks(range(1,5));plt.xlabel('仿真年');plt.ylabel('容载比');plt.legend(ncol=2);plt.grid(alpha=.2);save('annual_clr')
+ plt.axhline(2,color='gray',lw=.8);plt.xticks(range(1,5));plt.xlabel('规划年序');plt.ylabel('容载比 /（MVA/MW）');plt.legend(ncol=2);plt.grid(alpha=.2);save('annual_clr')
  components=[];purchases=[];energies=[];labels=[]
  for (c,s),(years,_) in portfolio.items():
   parts=np.zeros((3,3))
@@ -70,7 +73,7 @@ def main():
  plt.figure(figsize=(6.7,3.8));bottom=np.zeros(4)
  for j,lab in enumerate(['主变','储能','线路']):
   vals=[x[j] for x in components];plt.bar(labels,vals,bottom=bottom,label=lab,color=C[j]);bottom+=vals
- plt.ylabel('全寿命费用现值 / 万元');plt.legend();save('lifecycle_components')
+ plt.ylabel('评价期费用现值 / 万元');plt.legend();save('lifecycle_components')
  fig,axes=plt.subplots(1,2,figsize=(7,3.8));axes[0].bar(labels,purchases,color=C[0]);axes[0].set_ylabel('主变采购容量 / MVA')
  axes[1].bar(labels,energies,color=C[1]);axes[1].set_ylabel('第4年储能能量 / MWh')
  for ax in axes:ax.tick_params(axis='x',labelrotation=30)

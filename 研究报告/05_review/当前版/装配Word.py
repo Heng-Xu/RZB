@@ -39,7 +39,7 @@ def refdoc():
    s=doc.styles[nm];style(s,12);s.paragraph_format.line_spacing=1.25;s.paragraph_format.first_line_indent=Pt(24);s.paragraph_format.space_before=Pt(0);s.paragraph_format.space_after=Pt(0)
  doc.save(REVIEW/'排版参照.docx')
 def assemble():
- sources=sorted(TEXT.glob('0[1-6] *.md'))+[ASSET/'计算表.json',ASSET/'生成段落.json']
+ sources=sorted(TEXT.glob('0[1-6] *.md'))+[ASSET/'计算表.json',ASSET/'生成段落.json',REVIEW/'内容提要.json']
  (REVIEW/'装配源文件登记.json').write_text(json.dumps({str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},ensure_ascii=False,indent=2))
  txt='\n\n'.join(p.read_text().strip() for p in sorted(TEXT.glob('0[1-6] *.md')))
  txt=re.sub(r'\[\[SECTION:([^\]]+)\]\]',lambda m:SECTIONS[m[1]],txt)
@@ -142,12 +142,24 @@ def configure_doc(mathlist):
   tab.autofit=False;tab.alignment=1;n=len(tab.rows[0].cells);total=14.6606
   weights=[1]*n
   head=[c.text for c in tab.rows[0].cells]
+  if head[0]=='储能价格倍数' and len(tab.rows)==4:
+   caption=tab._tbl.getprevious()
+   caption_text=''.join(caption.itertext()) if caption is not None else ''
+   if '负荷分散系数1.00的储能投资比比较' in caption_text:
+    heading=caption.getprevious()
+    if heading is not None and heading.tag==qn('w:p'):
+     # 每类首张短表另页起排，两组比较表连贯显示，避免孤立表题。
+     heading.get_or_add_pPr().append(OxmlElement('w:pageBreakBefore'))
   if any('站号' in x for x in head):weights[head.index(next(x for x in head if '站号' in x))]=1.2
   for j,x in enumerate(head):
    if 'MW/MWh' in x:weights[j]=1.45
   if head[0]=='资料':weights=[1.2,1.2,1.2,1.2]
   if head[0]=='参数' and n==3:weights=[1.1,2,2]
   if head[0]=='参数' and n==2:weights=[1,2]
+  if '主变组合/MVA' in head and n==6:weights=[0.65,1.80,1.40,1,1,1.05]
+  if '容载比推荐区间' in head and n==5:weights=[1.0,1.35,1.05,1.4,1.2]
+  if head[0]=='参数' and '计算依据与用途' in head:weights=[1.3,1.4,2.3]
+  if '主变与线路单位功率投资比' in head and n==7:weights=[.75,.85,.7,1.25,1.2,.8,1.15]
   widths=[Cm(total*w/sum(weights)) for w in weights]
   grid=tab._tbl.tblGrid
   for child in list(grid):grid.remove(child)
@@ -171,6 +183,8 @@ def configure_doc(mathlist):
     cp.append(mar)
     for p in cell.paragraphs:
      f=p.paragraph_format;f.first_line_indent=Pt(0);f.alignment=WD_ALIGN_PARAGRAPH.CENTER;f.line_spacing=Pt(13);f.space_before=Pt(1);f.space_after=Pt(1);f.keep_with_next=False
+     if head[0]=='储能价格倍数' and len(tab.rows)==4:
+      f.keep_with_next=idx<len(tab.rows)-1
      for r in p.runs:font(r,9,idx==0,'宋体')
  # 公式采用等宽侧栏，数学对象居中，式号独立在右栏。
  for p in list(doc.paragraphs):
