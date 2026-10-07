@@ -35,7 +35,7 @@ def main():
  for k,(rid,n) in enumerate([('QX-00005','邳州'),('QX-00007','市区')]):
   vals=np.array([d['光伏月末装机'][rid][str(y)] for y in range(2021,2026)]).flatten();x=np.arange(60);ax=axes[k]
   ax.plot(x[:25],vals[:25],ls='--',color=C[k],label='2021—2022年回推');ax.plot(x[24:],vals[24:],color=C[k],label='2023—2025年月末记录')
-  ax.set_ylabel(n+'装机容量 / MW');ax.legend(fontsize=10);ax.grid(alpha=.2)
+  ax.set_ylabel(n+'分布式光伏装机容量 / MW');ax.legend(fontsize=10);ax.grid(alpha=.2)
  axes[-1].set_xticks([0,12,24,36,48,59],['2021年1月','2022年1月','2023年1月','2024年1月','2025年1月','2025年12月']);save('pv_monthly')
  plt.figure(figsize=(6,3.6));plt.boxplot([d['设备最大负载率'][n] for n in REG.values()],tick_labels=list(REG.values()))
  plt.axhline(80,color=C[1],ls='--',lw=.8);plt.ylabel('主变年最大负载率 / %');save('loading_distribution')
@@ -45,11 +45,11 @@ def main():
   plt.scatter([float(x['forward_duration_h']) for x in vals],[float(x['reverse_duration_h']) for x in vals],label=n,alpha=.65,color=C[k])
  plt.xlabel('正向95%峰值持续时间 / h');plt.ylabel('反向95%峰值持续时间 / h');plt.legend();plt.grid(alpha=.2);save('duration_distribution')
  monthly=d['月度指标'];fig,axes=plt.subplots(1,2,figsize=(7,3.3))
- for ax,j,lab in [(axes[0],2,'月度容量负荷比'),(axes[1],3,'站群估计负载率 / %')]:
+ for ax,j,lab in [(axes[0],2,'容载比（月度分析值） /（MVA/MW）'),(axes[1],3,'站群估计负载率 / %')]:
   ax.scatter([x[1]*100 for x in monthly],[x[j] for x in monthly],color=C[0]);ax.set_xlabel('月度分布式电源电量渗透率 / %');ax.set_ylabel(lab)
   for x in monthly:ax.annotate(str(x[0]),(x[1]*100,x[j]),fontsize=7,xytext=(3,2),textcoords='offset points')
  save('monthly_correlation')
- plt.figure(figsize=(6.5,3.5));x=np.linspace(1,12,100);plt.plot(x,210.456262/np.minimum(1,2.15/x),color=C[0]);plt.xlabel('95%峰值持续时间 / h');plt.ylabel('单位充放电功率投资 /（万元/MW）');plt.grid(alpha=.2);save('storage_effective_cost')
+ plt.figure(figsize=(6.5,3.5));x=np.linspace(1,12,100);plt.plot(x,210.456262/np.minimum(1,2.15/x),color=C[0]);plt.xlabel('95%峰值持续时间 / h');plt.ylabel('储能单位充放电功率投资 /（万元/MW）');plt.grid(alpha=.2);save('storage_effective_cost')
  pressure={}
  for c,n in REG.items():
   st=portfolio[c,'elastic'][1];pressure[c]=[[sum(float(x[key]) for x in st if int(x['year'])==y) for key in ['forward_mw','reverse_mw']] for y in range(2022,2026)]
@@ -74,8 +74,8 @@ def main():
  for j,lab in enumerate(['主变','储能','线路']):
   vals=[x[j] for x in components];plt.bar(labels,vals,bottom=bottom,label=lab,color=C[j]);bottom+=vals
  plt.ylabel('评价期费用现值 / 万元');plt.legend();save('lifecycle_components')
- fig,axes=plt.subplots(1,2,figsize=(7,3.8));axes[0].bar(labels,purchases,color=C[0]);axes[0].set_ylabel('主变采购容量 / MVA')
- axes[1].bar(labels,energies,color=C[1]);axes[1].set_ylabel('第4年储能能量 / MWh')
+ fig,axes=plt.subplots(1,2,figsize=(7,3.8));axes[0].bar(labels,purchases,color=C[0]);axes[0].set_ylabel('主变新购容量 / MVA')
+ axes[1].bar(labels,energies,color=C[1]);axes[1].set_ylabel('第4年储能额定能量 / MWh')
  for ax in axes:ax.tick_params(axis='x',labelrotation=30)
  save('measure_comparison');print('当前版12幅数值图件已生成')
 if __name__=='__main__':main()

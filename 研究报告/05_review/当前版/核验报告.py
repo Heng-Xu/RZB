@@ -34,11 +34,11 @@ def main():
  assert len(re.findall(r'^# 第[一二三四五六]章 ',source,re.M))==6
  assert not re.search(r'^#{1,4} 4\.7(?:\s|\.)',source,re.M)
  assert source.index('## 5.2 三类措施')<source.index('## 5.4 寻优结果')<source.index('## 5.6 参数拓展')<source.index('## 5.7 规划建议')
- for term in ['丰县','共同反事实','规划分母代理','建模绝对峰','最大站绝对峰','模型站数','正向/反送任务之和','分母代理','四条路径','[[TABLE:','[[SECTION:','[[FIG:','为本项目本研究','第三台','392个站年的','不另创导则指标','不将全年零功率','不能合并解释','价格口径','Sheet1 第','本报告在文字中称','最大最优性间隙','是否要求突破','取消必须突破','上限敏感性','扩展搜索上限','按未取整值比较','地区排序条件','跨地区排序','光伏装机潜力','峰段/h','偏集中','较均匀','按供电类别与分布查表','工程事件','服务功率','服务能力','有效支撑功率','委托方给定','甲方反馈参数','单位换算假定','主选档','覆盖档']:
+ for term in ['丰县','共同反事实','规划分母代理','建模绝对峰','最大站绝对峰','模型站数','正向/反送任务之和','分母代理','四条路径','[[TABLE:','[[SECTION:','[[FIG:','为本项目本研究','第三台','392个站年的','不另创导则指标','不将全年零功率','不能合并解释','价格口径','Sheet1 第','本报告在文字中称','最大最优性间隙','是否要求突破','取消必须突破','上限敏感性','扩展搜索上限','按未取整值比较','地区排序条件','跨地区排序','光伏装机潜力','峰段/h','偏集中','较均匀','按供电类别与分布查表','工程事件','服务功率','服务能力','有效支撑功率','委托方给定','甲方反馈参数','单位换算假定','主选档','覆盖档','容量负荷比','容量／负荷比','口径','被解释指标','峰段持续时间','弹性费用降幅']:
   assert term not in source,term
  refs=re.findall(r'^\[(\d+)\]\s+',source,re.M)
  assert list(map(int,refs))==list(range(1,len(refs)+1)),refs
- assert len(refs)==93  # 1006修订补充屋顶资源、地方工程、政策及概率规划4条出处。
+ assert len(refs)==95  # 1006修订补充屋顶资源、地方工程、政策及概率规划4条出处。
  body=source.split('# 参考文献')[0]
  cited=[int(n) for m in re.finditer(r'\[([0-9]+(?:,[0-9]+)*)\]',body) for n in m[1].split(',')]
  assert list(dict.fromkeys(cited))==list(range(1,len(refs)+1))
@@ -111,6 +111,23 @@ def main():
   for info in page.get_image_info():
    rect=pymupdf.Rect(info['bbox'])
    assert rect.x0>=-1 and rect.x1<=page.rect.width+1 and rect.y0>=-1 and rect.y1<=page.rect.height+1,('图形越出页面',page.number,rect)
+ # 当前正式版以WPS原生排版为准，检查引擎与最终文件对应关系。
+ wps=read(HERE/'WPS原生导出登记.json')
+ assert wps['WordSHA256']==digest(OUT/'研究报告终稿.docx')
+ assert wps['PDFSHA256']==digest(OUT/'研究报告终稿.pdf')
+ assert 'wps' in str(pdf.metadata).lower() or 'kingsoft' in str(pdf.metadata).lower()
+ assert not doc._element.xpath('.//w:sectPr/w:docGrid')
+ style_ids={s.style_id for s in doc.styles}
+ assert all(x.get(qn('w:val')) in style_ids for x in doc._element.xpath('.//w:pStyle'))
+ assert doc.settings.element.xpath('./w:updateFields')[0].get(qn('w:val'))=='true'
+ # PDF内目录是给读者看到的页码，须与正文位置一致，不只检查DOCX缓存。
+ toc_lines=[norm(line) for page in list(pdf)[:4] for line in page.get_text().splitlines()]
+ for item in cache:
+  title=norm(item['标题'])
+  lines=[line for line in toc_lines if line.startswith(title)]
+  assert len(lines)==1,('PDF目录标题定位失败',item,lines)
+  match=re.fullmatch(r'[.·．…]*(\d+)',lines[0][len(title):])
+  assert match and int(match[1])==item['页码'],('PDF目录印出页码不符',item,lines)
  # 技术、费用及求解精度采用独立复算记录。
  review=read(DATA/'统一起点基准/review.json')
  base=read(HERE/'基准独立复核.json')
@@ -228,7 +245,7 @@ def main():
  assert all(term in notes for term in ('原值乘10','25200','1.15','432','期末剩余价值','SOC','2.001'))
  style=read(HERE/'语体与术语审查.json');assert style['状态']=='通过'
  result={'状态':'通过','章节':6,'参考文献':len(refs),'PDF页数':len(pdf),'真实数据表':tables,'图件':figures,'独立居中公式':displays,'行内原生公式':len(objects)-displays,'原生数学对象':len(objects),'目录页码核对':fields,
- '基准独立复核站年':392,'一般站群外推组合':25200,'外推独立复核站级记录':126000,'通用矩阵行数':432,'历史合并矩阵行数':108,'结构分列矩阵行数':432,'术语登记项数':101,'下限诊断组合':16,'案例校核点':cases,
+ '基准独立复核站年':392,'一般站群外推组合':25200,'外推独立复核站级记录':126000,'通用矩阵行数':432,'历史合并矩阵行数':108,'结构分列矩阵行数':432,'术语登记项数':len(read(HERE/'1007术语及分类推荐专项修订/术语登记.json')),'下限诊断组合':16,'案例校核点':cases,
  '刚性费用现值万元':rigid,'弹性费用现值万元':elastic,'弹性费用降低比例':1-elastic/rigid,'费用排序作为约束':False,
  '费用阶段最优性间隙':review['primary_cost_relative_gap'],'容量偏好阶段最优性间隙':review['capacity_preference_relative_gap'],'外推最大最优性间隙':stats['最大最优性间隙'],
  '公式处理':'交付Word全部为原生OMML，行内可编辑；独立公式在等宽侧栏间居中，编号单独右置。PDF由同一LaTeX源生成数学图形后在本地排版导出；排版副本不替代原生Word。',

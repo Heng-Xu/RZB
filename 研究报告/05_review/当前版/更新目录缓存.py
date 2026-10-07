@@ -22,7 +22,7 @@ def main():
  assert done==len(headings),(done,len(headings))
  settings=doc.settings.element
  for e in settings.findall(qn('w:updateFields')):settings.remove(e)
- u=OxmlElement('w:updateFields');u.set(qn('w:val'),'false');settings.append(u)
+ u=OxmlElement('w:updateFields');u.set(qn('w:val'),'true');settings.append(u)
  doc.save(OUT/'研究报告终稿.docx')
  path=OUT/'研究报告终稿.docx';tmp=path.with_suffix('.tmp.docx')
  with zipfile.ZipFile(path) as inp,zipfile.ZipFile(tmp,'w',zipfile.ZIP_DEFLATED) as out:

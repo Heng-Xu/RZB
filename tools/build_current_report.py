@@ -1,48 +1,48 @@
 """当前六章报告唯一维护入口；默认核验，--rebuild 明确重建。"""
 from pathlib import Path
-import argparse, os, shutil, subprocess, sys, tempfile
+import argparse, shutil, subprocess, sys, hashlib, json
 
 ROOT=Path(__file__).resolve().parents[1]
 
 def run(script,root):
  subprocess.run([sys.executable,str(root/'研究报告/05_review/当前版'/script)],cwd=root,check=True)
 
-def export_pdf(root):
- requested=os.environ.get('XUZHOU_LIBREOFFICE')
- program=Path(requested or shutil.which('libreoffice') or shutil.which('soffice') or '/tmp/xuzhou_lo/root/usr/lib/libreoffice/program/soffice')
- if not program.is_file():raise RuntimeError('请安装 LibreOffice，或设置 XUZHOU_LIBREOFFICE 为 soffice 路径。')
- env=os.environ.copy();env['SAL_USE_VCLPLUGIN']='svp';env['GSETTINGS_BACKEND']='memory'
- if str(program).startswith('/tmp/xuzhou_lo/'):
-  env['LD_LIBRARY_PATH']=str(program.parent)+':/tmp/xuzhou_lo/root/usr/lib/x86_64-linux-gnu'+(':'+env['LD_LIBRARY_PATH'] if env.get('LD_LIBRARY_PATH') else '')
-  env['FONTCONFIG_FILE']='/tmp/xuzhou_lo/fonts.conf'
-  env['LIBLANGTAG_DATA_DIR']='/tmp/xuzhou_lo/root/usr/share/liblangtag'
- out=root/'研究报告/04_word'
- with tempfile.TemporaryDirectory(prefix='xuzhou-lo-') as profile:
-  result=subprocess.run([str(program),'-env:UserInstallation='+Path(profile).as_uri(),'--headless','--norestore','--convert-to','pdf','--outdir',str(out),str(out/'PDF排版副本.docx')],env=env,cwd=root,capture_output=True,text=True,timeout=180)
-  (root/'研究报告/05_review/当前版/PDF导出日志.txt').write_text(result.stdout+result.stderr)
-  result.check_returncode()
- pdf=out/'PDF排版副本.pdf'
- if not pdf.is_file():raise RuntimeError('LibreOffice 未生成 PDF。')
- shutil.copy2(pdf,out/'研究报告终稿.pdf')
-
 def main():
  parser=argparse.ArgumentParser(description=__doc__)
  parser.add_argument('--root',type=Path,default=ROOT,help='完整项目副本的根目录，可用于试构建')
- parser.add_argument('--rebuild',action='store_true',help='修改六章源后重建 Word、目录和 PDF，会覆盖当前成果')
- parser.add_argument('--pdf-only',action='store_true',help='保留原生 Word，仅更新配套 PDF')
+ parser.add_argument('--rebuild',action='store_true',help='修改六章源后装配原生Word，随后须用WPS导出PDF并接收')
+ parser.add_argument('--pdf-only',action='store_true',help='旧选项；现须从WPS原生导出PDF')
  parser.add_argument('--check-only',action='store_true',help='仅核验；不重建 Word 或 PDF')
+ parser.add_argument('--docx-only',action='store_true',help='装配原生DOCX，供WPS打开导出；完成导出后使用--accept-wps-pdf')
+ parser.add_argument('--accept-wps-pdf',type=Path,help='接收由当前原生DOCX在WPS中直接导出的PDF，并同步目录缓存')
  args=parser.parse_args();root=args.root.resolve()
- if args.check_only and (args.rebuild or args.pdf_only):parser.error('--check-only 不能与重建选项同时使用')
- if args.rebuild:
+ if args.docx_only or args.rebuild:
+  if args.pdf_only or args.check_only or args.accept_wps_pdf:parser.error('--docx-only/--rebuild须单独使用')
   run('装配Word.py',root)
- if args.rebuild or args.pdf_only:
-  run('PDF数学排版副本.py',root);export_pdf(root)
- if args.rebuild:
+  print('原生DOCX已装配。请在WPS重新打开并导出PDF，再用--accept-wps-pdf接收。')
+  return
+ if args.pdf_only:
+  parser.error('正式PDF已改为WPS从原生DOCX直接导出；导出后使用--accept-wps-pdf。旧图像公式副本只供历史复查。')
+ if args.accept_wps_pdf:
+  if args.rebuild or args.pdf_only or args.check_only:parser.error('--accept-wps-pdf须单独使用')
+  import pymupdf
+  path=args.accept_wps_pdf.resolve();pdf=pymupdf.open(path)
+  assert 'wps' in str(pdf.metadata).lower() or 'kingsoft' in str(pdf.metadata).lower(),pdf.metadata
+  out=root/'研究报告/04_word';native=out/'研究报告终稿.docx'
+  before=hashlib.sha256(native.read_bytes()).hexdigest()
+  if path!=out/'研究报告终稿.pdf':shutil.copy2(path,out/'研究报告终稿.pdf')
   run('更新目录缓存.py',root)
-  run('PDF数学排版副本.py',root);export_pdf(root)
+  record={'排版引擎':'WPS Office，原生DOCX直接导出','页数':len(pdf),'PDF元数据':pdf.metadata,
+   '导出前WordSHA256':before,'WordSHA256':hashlib.sha256(native.read_bytes()).hexdigest(),
+   'PDFSHA256':hashlib.sha256((out/'研究报告终稿.pdf').read_bytes()).hexdigest(),
+   '说明':'目录缓存更新后须重新打开DOCX导出并接收一次；最终检查同时核对PDF中印出的目录页码。'}
+  (root/'研究报告/05_review/当前版/WPS原生导出登记.json').write_text(json.dumps(record,ensure_ascii=False,indent=2))
+  print('WPS PDF及Word目录缓存已同步。请核对印出的目录并完成版面检查，再运行--check-only。')
+  return
  run('校核当前基准.py',root)
  run('外推独立复核.py',root)
  run('Word表格内容复核.py',root)
+ run('术语专项复核.py',root)
  run('核验报告.py',root)
 
 if __name__=='__main__':main()

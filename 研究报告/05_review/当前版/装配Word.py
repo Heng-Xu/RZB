@@ -5,6 +5,7 @@ from docx.shared import Cm,Pt,Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH,WD_BREAK,WD_LINE_SPACING,WD_TAB_ALIGNMENT,WD_TAB_LEADER
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from docx.enum.style import WD_STYLE_TYPE
 import cairosvg
 ROOT=Path(__file__).resolve().parents[3]
 TEXT=ROOT/'研究报告/03_MD/当前版';REVIEW=Path(__file__).parent
@@ -35,8 +36,9 @@ def refdoc():
  for n,size in [(1,18),(2,16),(3,13),(4,12)]:
   s=doc.styles['Heading '+str(n)];style(s,size,True);s.paragraph_format.line_spacing=1.5;s.paragraph_format.first_line_indent=Pt(0);s.paragraph_format.space_before=Pt(8 if n>1 else 0);s.paragraph_format.space_after=Pt(6);s.paragraph_format.keep_with_next=True
  for nm in ['Body Text','First Paragraph','Compact']:
-  if nm in doc.styles:
-   s=doc.styles[nm];style(s,12);s.paragraph_format.line_spacing=1.25;s.paragraph_format.first_line_indent=Pt(24);s.paragraph_format.space_before=Pt(0);s.paragraph_format.space_after=Pt(0)
+  if nm not in doc.styles:
+   s=doc.styles.add_style(nm,WD_STYLE_TYPE.PARAGRAPH);s.base_style=doc.styles['Normal']
+  s=doc.styles[nm];style(s,12);s.paragraph_format.line_spacing=Pt(17.4);s.paragraph_format.first_line_indent=Pt(24);s.paragraph_format.space_before=Pt(0);s.paragraph_format.space_after=Pt(0)
  doc.save(REVIEW/'排版参照.docx')
 def assemble():
  sources=sorted(TEXT.glob('0[1-6] *.md'))+[ASSET/'计算表.json',ASSET/'生成段落.json',REVIEW/'内容提要.json']
@@ -98,7 +100,7 @@ def configure_doc(mathlist):
  for n in range(1,5):
   s=doc.styles['Heading '+str(n)];ppr=s.element.get_or_add_pPr()
   for node in ppr.findall(qn('w:numPr')):ppr.remove(node)
- normal=doc.styles['Normal'];style(normal,12);normal.paragraph_format.line_spacing=1.25
+ normal=doc.styles['Normal'];style(normal,12);normal.paragraph_format.line_spacing=Pt(17.4)
  numeq=0
  for p in doc.paragraphs:
   pf=p.paragraph_format;t=p.text.strip();level=int(p.style.name.split()[-1]) if p.style.name.startswith('Heading ') else 0
@@ -106,7 +108,7 @@ def configure_doc(mathlist):
    ppr=p._p.get_or_add_pPr()
    for nd in ppr.findall(qn('w:numPr')):ppr.remove(nd)
    np=OxmlElement('w:numPr');ni=OxmlElement('w:numId');ni.set(qn('w:val'),'0');np.append(ni);ppr.append(np)
-   size={1:18,2:16,3:13,4:12}.get(level,12);pf.first_line_indent=Pt(0);pf.line_spacing=1.5;pf.keep_with_next=True;pf.space_before=Pt(8 if level>1 else 0);pf.space_after=Pt(6)
+   size={1:18,2:16,3:13,4:12}.get(level,12);pf.first_line_indent=Pt(0);pf.line_spacing=Pt(size*1.5);pf.keep_with_next=True;pf.space_before=Pt(8 if level>1 else 0);pf.space_after=Pt(6)
    if level==1:pf.page_break_before=True
    for r in p.runs:font(r,size,True)
   elif p._element.xpath('.//m:oMathPara'):
@@ -121,14 +123,15 @@ def configure_doc(mathlist):
   elif p._element.xpath('.//w:drawing'):
    pf.alignment=WD_ALIGN_PARAGRAPH.CENTER;pf.first_line_indent=Pt(0);pf.line_spacing=1;pf.space_before=Pt(6);pf.space_after=Pt(0);pf.keep_with_next=True
   elif t.startswith('表') and re.match(r'表\d+-',t):
-   pf.alignment=WD_ALIGN_PARAGRAPH.CENTER;pf.first_line_indent=Pt(0);pf.line_spacing=1.25;pf.space_before=Pt(6);pf.space_after=Pt(4);pf.keep_with_next=True
+   pf.alignment=WD_ALIGN_PARAGRAPH.CENTER;pf.first_line_indent=Pt(0);pf.line_spacing=Pt(14);pf.space_before=Pt(6);pf.space_after=Pt(4);pf.keep_with_next=True
    for r in p.runs:font(r,10.5,False,'宋体')
   elif t.startswith('图') and re.match(r'图\d+-',t):
-   pf.alignment=WD_ALIGN_PARAGRAPH.CENTER;pf.first_line_indent=Pt(0);pf.line_spacing=1.25;pf.space_before=Pt(3);pf.space_after=Pt(6)
+   pf.alignment=WD_ALIGN_PARAGRAPH.CENTER;pf.first_line_indent=Pt(0);pf.line_spacing=Pt(14);pf.space_before=Pt(3);pf.space_after=Pt(6)
    for r in p.runs:font(r,10.5,False,'宋体')
   else:
-   pf.alignment=WD_ALIGN_PARAGRAPH.JUSTIFY;pf.first_line_indent=Pt(24);pf.line_spacing=1.25;pf.space_before=Pt(0);pf.space_after=Pt(0);pf.widow_control=True
-   if re.match(r'^\[\d+\]',t):pf.first_line_indent=Pt(0);pf.line_spacing=1.15;pf.space_after=Pt(4);pf.alignment=WD_ALIGN_PARAGRAPH.LEFT
+   pf.alignment=WD_ALIGN_PARAGRAPH.JUSTIFY;pf.first_line_indent=Pt(24);pf.line_spacing=Pt(17.4);pf.space_before=Pt(0);pf.space_after=Pt(0);pf.widow_control=True
+   if p._p.xpath('.//m:f | .//m:nary | .//m:m'):pf.line_spacing_rule=WD_LINE_SPACING.AT_LEAST
+   if re.match(r'^\[\d+\]',t):pf.first_line_indent=Pt(0);pf.line_spacing=Pt(16);pf.space_after=Pt(4);pf.alignment=WD_ALIGN_PARAGRAPH.LEFT
    for r in p.runs:font(r,10.5 if re.match(r'^\[\d+\]',t) else 12)
  assert numeq==len(mathlist),(numeq,len(mathlist))
  # 重建为标准Word表格，消除转换器沿用模板时产生的无效表格样式和结构。
@@ -182,8 +185,8 @@ def configure_doc(mathlist):
      e=OxmlElement('w:'+side);e.set(qn('w:w'),'70');e.set(qn('w:type'),'dxa');mar.append(e)
     cp.append(mar)
     for p in cell.paragraphs:
-     f=p.paragraph_format;f.first_line_indent=Pt(0);f.alignment=WD_ALIGN_PARAGRAPH.CENTER;f.line_spacing=Pt(13);f.space_before=Pt(1);f.space_after=Pt(1);f.keep_with_next=False
-     if head[0]=='储能价格倍数' and len(tab.rows)==4:
+     f=p.paragraph_format;f.first_line_indent=Pt(0);f.alignment=WD_ALIGN_PARAGRAPH.CENTER;f.line_spacing=Pt(13);f.space_before=Pt(1);f.space_after=Pt(1);f.keep_with_next=idx==0
+     if len(tab.rows)<=10:
       f.keep_with_next=idx<len(tab.rows)-1
      for r in p.runs:font(r,9,idx==0,'宋体')
  # 公式采用等宽侧栏，数学对象居中，式号独立在右栏。
@@ -219,7 +222,7 @@ def configure_doc(mathlist):
  # 封面、内容提要、目录由同一版面生成；不插空白填充页。
  body=doc._element.body;front=Document();frontsec=front.sections[0]
  def add(text='',size=12,bold=False,align=0):
-  p=front.add_paragraph();p.paragraph_format.first_line_indent=Pt(0);p.paragraph_format.line_spacing=1.25;p.alignment=align
+  p=front.add_paragraph();p.paragraph_format.first_line_indent=Pt(0);p.paragraph_format.line_spacing=Pt(max(17.5,size*1.5));p.alignment=align
   r=p.add_run(text);font(r,size,bold);return p
  p=add(TITLE,22,True,1);p.paragraph_format.space_before=Pt(140);p.paragraph_format.space_after=Pt(50)
  add('研究报告',20,True,1);p=add('2026年10月',14,False,1);p.paragraph_format.space_before=Pt(120)
@@ -242,6 +245,17 @@ def configure_doc(mathlist):
  doc.core_properties.author='研究项目组';doc.core_properties.last_modified_by='研究项目组';doc.core_properties.title=TITLE;doc.core_properties.subject='110 kV容量规划与措施经济比选'
  settings=doc.settings.element
  for node in settings.findall(qn('w:trackRevisions')):settings.remove(node)
+ # 不继承范文网格及Mac数学字体；显式行距减少不同办公软件的字体度量差异。
+ for section in doc.sections:
+  for node in section._sectPr.findall(qn('w:docGrid')):section._sectPr.remove(node)
+ for s in doc.styles:
+  if s.type==WD_STYLE_TYPE.PARAGRAPH:
+   pr=s.element.get_or_add_pPr()
+   for node in pr.findall(qn('w:snapToGrid')):pr.remove(node)
+   node=OxmlElement('w:snapToGrid');node.set(qn('w:val'),'0');pr.append(node)
+ for node in settings.xpath('.//m:mathFont'):node.set(qn('m:val'),'Cambria Math')
+ for node in settings.findall(qn('w:updateFields')):settings.remove(node)
+ node=OxmlElement('w:updateFields');node.set(qn('w:val'),'true');settings.append(node)
  # 表格单元格及独立公式段落的特殊缩进显式置零，覆盖模板继承。
  for p in doc._element.xpath('.//w:tbl//w:p | .//w:p[m:oMathPara]'):
   pr=p.find(qn('w:pPr'))
