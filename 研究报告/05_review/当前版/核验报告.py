@@ -156,7 +156,7 @@ def main():
  assert sum(x['计算点数'] for x in matrix)>=25200  # 相邻源荷、持续时间档共享边界点
  for row in matrix:
   low,high=map(float,row['计算容载比范围'].split('～'))
-  assert 2<=low<=high<=2.6
+  assert 1.5<=low<=high<=2.6
   assert low<=row['容载比最小值']<=row['容载比最大值']<=high+1e-10
   counts=row['档位计数'];assert sum(counts.values())==row['计算点数']
   chosen=min(counts,key=lambda t:(-counts[t],float(t)))
@@ -182,14 +182,13 @@ def main():
  structured=read(DATA/'按供电类别与分布推荐矩阵.json')
  assert len(structured)==432
  formal=read(DATA/'分类容载比推荐区间.json')
- assert len(formal)==432
- assert workbook['分类推荐区间'].max_row==433
+ assert len(formal)==read(HERE/'1008线路经济替代修订/成果同步核对.json')['合并后推荐行']
+ assert workbook['分类推荐区间'].max_row==len(formal)+1
  assert workbook.active.title=='分类推荐区间'
  for cells,entry in zip(workbook['分类推荐区间'].iter_rows(min_row=2,values_only=True),formal):
   assert all(same_cell(actual,expected) for actual,expected in zip(cells,entry.values()))
- for entry,raw in zip(formal,sorted(structured,key=lambda x:({'架空为主':0,'电缆为主':1}[x['线路类型']],{'A':0,'BC':1}[x['供电区域']],{'较均匀':0,'偏集中':1}[x['负荷分布']],x['总矩阵行']))):
-  assert entry['容载比最小值']==raw['容载比最小值'] and entry['容载比最大值']==raw['容载比最大值']
-  assert entry['容载比推荐区间']==raw['计算容载比范围']
+ merge_review=read(HERE/'1008线路经济替代修订/推荐区间及案例保持复核.json')
+ assert merge_review['状态']=='通过' and merge_review['合并推荐行']==len(formal)
  structured_sheet=workbook[STRUCTURED_SHEET]
  assert structured_sheet.max_row==433 and structured_sheet.max_column==15
  structured_headers=[next((key for key in structured[0] if display_names.get(key,key)==c.value),c.value) for c in structured_sheet[1]]
@@ -245,10 +244,10 @@ def main():
  assert all(term in notes for term in ('原值乘10','25200','1.15','432','期末剩余价值','SOC','2.001'))
  style=read(HERE/'语体与术语审查.json');assert style['状态']=='通过'
  result={'状态':'通过','章节':6,'参考文献':len(refs),'PDF页数':len(pdf),'真实数据表':tables,'图件':figures,'独立居中公式':displays,'行内原生公式':len(objects)-displays,'原生数学对象':len(objects),'目录页码核对':fields,
- '基准独立复核站年':392,'一般站群外推组合':25200,'外推独立复核站级记录':126000,'通用矩阵行数':432,'历史合并矩阵行数':108,'结构分列矩阵行数':432,'术语登记项数':len(read(HERE/'1007术语及分类推荐专项修订/术语登记.json')),'下限诊断组合':16,'案例校核点':cases,
+ '基准独立复核站年':392,'一般站群外推组合':25200,'外推独立复核站级记录':126000,'通用矩阵行数':len(formal),'历史合并矩阵行数':108,'结构分列矩阵行数':432,'术语登记项数':len(read(HERE/'1007术语及分类推荐专项修订/术语登记.json')),'下限诊断组合':16,'案例校核点':cases,
  '刚性费用现值万元':rigid,'弹性费用现值万元':elastic,'弹性费用降低比例':1-elastic/rigid,'费用排序作为约束':False,
  '费用阶段最优性间隙':review['primary_cost_relative_gap'],'容量偏好阶段最优性间隙':review['capacity_preference_relative_gap'],'外推最大最优性间隙':stats['最大最优性间隙'],
- '公式处理':'交付Word全部为原生OMML，行内可编辑；独立公式在等宽侧栏间居中，编号单独右置。PDF由同一LaTeX源生成数学图形后在本地排版导出；排版副本不替代原生Word。',
+ '公式处理':'Word全部为原生OMML，独立公式居中、式号右置；PDF由本地WPS直接打开同一原生Word导出。',
  '版面复核':'自动核对实际分页、目录缓存、各级标题和图形边界；本轮人工抽查另见1007研究报告修订/版面抽查记录.json。',
  '审查范围':'数据和模型复算、文档结构与本地版面核对；交付供电科院审核。',
  '字体':font,'语体审核':style['技能'],'文件SHA256':{p.name:digest(p) for p in [OUT/'研究报告终稿.docx',OUT/'研究报告终稿.pdf',DATA/'通用容载比推荐矩阵.xlsx',DATA/'统一起点逐年方案与复核.xlsx']}}

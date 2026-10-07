@@ -34,12 +34,15 @@ def main():
  for actual,registered in zip(equations,index):
   assert actual['number']==registered['编号'] and actual['tex'].strip()==registered['公式']
  prior=read(AUDIT/'计算数据修改前哈希.json')
- assert all(digest(R.parent/file)==expected for file,expected in prior.items())
+ authorized=read(HERE/'1008线路经济替代修订/授权外推更新文件哈希.json')
+ for file,expected in prior.items():
+  assert digest(R.parent/file)==authorized.get(file,expected),file
+ for file,expected in authorized.items():assert digest(R.parent/file)==expected,file
  raw=read(R/'01研究推荐/当前版/外推逐点结果.json')
  x=np.array([r['装机渗透率'] for r in raw]);y=np.array([r['电量渗透率估计'] for r in raw]);factor=y[x>0]/x[x>0]
  assert np.ptp(factor)<1e-12 and np.all(y[x==0]==0)
  result={'状态':'通过','统一术语登记':len(registry),'逐表覆盖':len(coverage),'独立公式索引':len(index),
-  '禁用及混用词检查':forbidden,'原始计算数据文件保持':len(prior),'外推情景':len(raw),
+  '禁用及混用词检查':forbidden,'原始计算数据文件保持':len(prior)-len(set(prior)&set(authorized)),'授权外推更新文件':len(authorized),'外推情景':len(raw),
   '两类渗透率相关系数':float(np.corrcoef(x,y)[0,1]),'固定换算因子':float(factor[0]),
   'WordSHA256':digest(R/'04_word/研究报告终稿.docx'),'装配稿SHA256':digest(R/'03_MD/当前版/研究报告装配稿.md'),
   '来源说明':'容载比等采用导则定义；月度分析值、费用分项和换算关系据本文数据与计算定义，未冒称标准新增指标。'}
