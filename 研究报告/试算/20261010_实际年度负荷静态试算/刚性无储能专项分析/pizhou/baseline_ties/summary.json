@@ -1,0 +1,24 @@
+{
+  "region": "pizhou",
+  "variant": "baseline_ties",
+  "description": "主变固定为仿真起点，仅优化联络",
+  "solver": {
+    "stage": "no_storage",
+    "status": "Infeasible",
+    "solver": "1.15.1",
+    "elapsed_seconds": 0.16522438299944042,
+    "variables": 80108,
+    "constraints": 146373,
+    "relative_gap_target": 0.01,
+    "objective": null,
+    "dual_bound": null,
+    "mip_gap": null,
+    "accepted": false,
+    "proven_infeasible": true
+  },
+  "sources": {
+    "研究报告/试算/20261010_实际年度负荷静态试算/pizhou/inputs.json": "a09f28b7bafe66cc6ffe8a513d6e4643fb27d376e67b1e1ed5bfb0e672293ff2",
+    "研究报告/试算/20261010_实际年度负荷静态试算/pizhou/静态工况.csv": "5d3f8f39163e0193ee150297082ad83d1847a754001517d43a63d5c83cf641ec"
+  },
+  "scope": "原模型完整四年静态约束，储能强制为零；不可行时不报告费用或工程数量"
+}

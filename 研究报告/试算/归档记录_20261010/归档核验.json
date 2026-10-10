@@ -1,0 +1,50 @@
+{
+  "frozen_input_rebuild_identical": true,
+  "solutions_checked": [
+    {
+      "region": "city",
+      "case": "rigid_storage",
+      "matrix_violation": 3.193631458486834e-13,
+      "objective_error_10k": 1.4551915228366852e-11
+    },
+    {
+      "region": "city",
+      "case": "elastic_storage",
+      "matrix_violation": 1.4210854715202004e-13,
+      "objective_error_10k": 2.1827872842550278e-11
+    },
+    {
+      "region": "city",
+      "case": "elastic_no_storage",
+      "matrix_violation": 1.4210854715202004e-13,
+      "objective_error_10k": 2.1827872842550278e-11
+    },
+    {
+      "region": "pizhou",
+      "case": "rigid_storage",
+      "matrix_violation": 5.684341886080802e-14,
+      "objective_error_10k": 0.0
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_storage",
+      "matrix_violation": 7.105427357601002e-15,
+      "objective_error_10k": 0.0
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_no_storage",
+      "matrix_violation": 7.105427357601002e-15,
+      "objective_error_10k": 0.0
+    }
+  ],
+  "no_storage_infeasible_variants_checked": 6,
+  "original_annual_statistics_checked": true,
+  "manifest_checked": true,
+  "tests_passed": 6,
+  "formal_docx_pdf_match_prearchive_head": true,
+  "user_prompt_excluded": true,
+  "historical_cli_disabled": 5,
+  "staged_manifest_entries_checked": 130,
+  "historical_cli_guards_checked": 5
+}

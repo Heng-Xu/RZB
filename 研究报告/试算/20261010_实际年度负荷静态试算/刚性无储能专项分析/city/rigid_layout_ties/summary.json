@@ -1,0 +1,25 @@
+{
+  "region": "city",
+  "variant": "rigid_layout_ties",
+  "description": "主变固定为刚性含储能候选布局，仅优化联络",
+  "solver": {
+    "stage": "no_storage",
+    "status": "Infeasible",
+    "solver": "1.15.1",
+    "elapsed_seconds": 5.207487503001175,
+    "variables": 229848,
+    "constraints": 557031,
+    "relative_gap_target": 0.01,
+    "objective": null,
+    "dual_bound": null,
+    "mip_gap": null,
+    "accepted": false,
+    "proven_infeasible": true
+  },
+  "sources": {
+    "研究报告/试算/20261010_实际年度负荷静态试算/city/inputs.json": "7f8cdf43ee3da8d11900a04f3c11dfdac6f617327fe443de608d00c84fd063b0",
+    "研究报告/试算/20261010_实际年度负荷静态试算/city/静态工况.csv": "0e205720dc37006cb67ad7f078a4b6767cd9068bdc97c6767643eded92535ea2",
+    "研究报告/试算/20261010_实际年度负荷静态试算/city/rigid_storage/stations.csv": "35ef3960afe9f404018582cabad43c088eb4e022ff7c08a75828edd59e452a0d"
+  },
+  "scope": "原模型完整四年静态约束，储能强制为零；不可行时不报告费用或工程数量"
+}

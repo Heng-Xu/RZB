@@ -1,0 +1,869 @@
+{
+  "scope": "约束隔离诊断：新增出线占用源表备用间隔；双端对称等效能力；仍无实际路径和馈线热限，源荷增长未分离",
+  "annual_observed_peak_mw": {
+    "2021": 1449.77,
+    "2022": 1432.369977,
+    "2023": 1542.216749,
+    "2024": 1449.401567,
+    "2025": 1528.82
+  },
+  "growth_rate": 0.01336129306847722,
+  "initial_peak_mw": 1449.77,
+  "initial_capacity_mva": 2900.0,
+  "initial_clr": 2.00031729170834,
+  "initial_transfer_fraction": 0.4,
+  "transfer_ceiling": 1.0,
+  "transfer_ceiling_basis": "仅限制正常转出不超过本站原负荷；不统一指定市区A类，不把导则推荐比例当热容量",
+  "physical_capacity_upper_mva": 5240.0,
+  "stations": {
+    "BDZ-00012": {
+      "station": "BDZ-00012",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 126.0,
+      "base_forward_mw": 30.619075274297657,
+      "base_reverse_mw": 33.88635911099663,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 2,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00012",
+        "area_class": "B",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 14,
+        "spare_10kv_bays": 0,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 18
+      },
+      "initial_units": [
+        40.0,
+        63.0
+      ]
+    },
+    "BDZ-00013": {
+      "station": "BDZ-00013",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 113.0,
+      "base_forward_mw": 66.68020355458744,
+      "base_reverse_mw": 8.246799886814761,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 1,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00013",
+        "area_class": "C",
+        "available_third_slots": 1,
+        "available_third_mva": 63.0,
+        "total_10kv_bays": 28,
+        "spare_10kv_bays": 7,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 16
+      },
+      "initial_units": [
+        40.0,
+        50.0
+      ]
+    },
+    "BDZ-00023": {
+      "station": "BDZ-00023",
+      "old_units": [
+        40.0,
+        63.0
+      ],
+      "asset_capacity_mva": 160.0,
+      "base_forward_mw": 97.60389994930266,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00023",
+        "area_class": "B",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 32,
+        "spare_10kv_bays": 3,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 12
+      },
+      "initial_units": [
+        63.0,
+        63.0
+      ]
+    },
+    "BDZ-00024": {
+      "station": "BDZ-00024",
+      "old_units": [
+        40.0,
+        50.0
+      ],
+      "asset_capacity_mva": 143.0,
+      "base_forward_mw": 90.68140331349856,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00024",
+        "area_class": "B",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 31,
+        "spare_10kv_bays": 0,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 47
+      },
+      "initial_units": [
+        40.0,
+        80.0
+      ]
+    },
+    "BDZ-00042": {
+      "station": "BDZ-00042",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 160.0,
+      "base_forward_mw": 79.74966937364063,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00042",
+        "area_class": "A",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 42,
+        "spare_10kv_bays": 8,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 34
+      },
+      "initial_units": [
+        50.0,
+        80.0
+      ]
+    },
+    "BDZ-00051": {
+      "station": "BDZ-00051",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 100.0,
+      "base_forward_mw": 60.28737853745229,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00051",
+        "area_class": "A",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 24,
+        "spare_10kv_bays": 1,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 22
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "BDZ-00053": {
+      "station": "BDZ-00053",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 126.0,
+      "base_forward_mw": 80.8776920652289,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00053",
+        "area_class": "B",
+        "available_third_slots": 1,
+        "available_third_mva": 63.0,
+        "total_10kv_bays": 38,
+        "spare_10kv_bays": 2,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 24
+      },
+      "initial_units": [
+        40.0,
+        63.0
+      ]
+    },
+    "BDZ-00055": {
+      "station": "BDZ-00055",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 81.5,
+      "base_forward_mw": 43.68089143687155,
+      "base_reverse_mw": 6.455520483800386,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 1,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00055",
+        "area_class": "C",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 13,
+        "spare_10kv_bays": 0,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 179
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "BDZ-00062": {
+      "station": "BDZ-00062",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 126.0,
+      "base_forward_mw": 53.33180584276862,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00062",
+        "area_class": "B",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 28,
+        "spare_10kv_bays": 0,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 6
+      },
+      "initial_units": [
+        40.0,
+        63.0
+      ]
+    },
+    "BDZ-00065": {
+      "station": "BDZ-00065",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 160.0,
+      "base_forward_mw": 79.40513651986707,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00065",
+        "area_class": "B",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 44,
+        "spare_10kv_bays": 14,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 28
+      },
+      "initial_units": [
+        50.0,
+        80.0
+      ]
+    },
+    "BDZ-00074": {
+      "station": "BDZ-00074",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 113.0,
+      "base_forward_mw": 67.53811729729946,
+      "base_reverse_mw": 12.619434687490699,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 2,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00074",
+        "area_class": "B",
+        "available_third_slots": 1,
+        "available_third_mva": 50.0,
+        "total_10kv_bays": 26,
+        "spare_10kv_bays": 1,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 32
+      },
+      "initial_units": [
+        40.0,
+        50.0
+      ]
+    },
+    "BDZ-00076": {
+      "station": "BDZ-00076",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 100.0,
+      "base_forward_mw": 30.184438826882108,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00076",
+        "area_class": "B",
+        "available_third_slots": 1,
+        "available_third_mva": 50.0,
+        "total_10kv_bays": 24,
+        "spare_10kv_bays": 8,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 55
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "BDZ-00092": {
+      "station": "BDZ-00092",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 100.0,
+      "base_forward_mw": 10.618843250236838,
+      "base_reverse_mw": 6.715658707625103,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 2,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00092",
+        "area_class": "B",
+        "available_third_slots": 1,
+        "available_third_mva": 50.0,
+        "total_10kv_bays": 24,
+        "spare_10kv_bays": 13,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 59
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "BDZ-00094": {
+      "station": "BDZ-00094",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 113.0,
+      "base_forward_mw": 61.563857573376055,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00094",
+        "area_class": "B",
+        "available_third_slots": 1,
+        "available_third_mva": 63.0,
+        "total_10kv_bays": 47,
+        "spare_10kv_bays": 6,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 43
+      },
+      "initial_units": [
+        40.0,
+        50.0
+      ]
+    },
+    "BDZ-00103": {
+      "station": "BDZ-00103",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 100.0,
+      "base_forward_mw": 62.36181278073496,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00103",
+        "area_class": "A",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 24,
+        "spare_10kv_bays": 2,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 14
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "BDZ-00106": {
+      "station": "BDZ-00106",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 100.0,
+      "base_forward_mw": 5.501563518553487,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00106",
+        "area_class": "C",
+        "available_third_slots": 1,
+        "available_third_mva": 50.0,
+        "total_10kv_bays": 24,
+        "spare_10kv_bays": 19,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 63
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "BDZ-00110": {
+      "station": "BDZ-00110",
+      "old_units": [
+        40.0,
+        63.0
+      ],
+      "asset_capacity_mva": 200.0,
+      "base_forward_mw": 36.364732477687404,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00110",
+        "area_class": "B",
+        "available_third_slots": 1,
+        "available_third_mva": 100.0,
+        "total_10kv_bays": 32,
+        "spare_10kv_bays": 16,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 49
+      },
+      "initial_units": [
+        80.0,
+        80.0
+      ]
+    },
+    "BDZ-00114": {
+      "station": "BDZ-00114",
+      "old_units": [
+        40.0,
+        63.0
+      ],
+      "asset_capacity_mva": 176.0,
+      "base_forward_mw": 104.32922885183925,
+      "base_reverse_mw": 10.38456170812728,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 1,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00114",
+        "area_class": "B",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 44,
+        "spare_10kv_bays": 2,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 40
+      },
+      "initial_units": [
+        63.0,
+        80.0
+      ]
+    },
+    "BDZ-00115": {
+      "station": "BDZ-00115",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 100.0,
+      "base_forward_mw": 69.67127579532328,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00115",
+        "area_class": "B",
+        "available_third_slots": 1,
+        "available_third_mva": 50.0,
+        "total_10kv_bays": 35,
+        "spare_10kv_bays": 0,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 8
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "BDZ-00139": {
+      "station": "BDZ-00139",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 100.0,
+      "base_forward_mw": 88.13908023811906,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00139",
+        "area_class": "B",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 47,
+        "spare_10kv_bays": 7,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 45
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "BDZ-00148": {
+      "station": "BDZ-00148",
+      "old_units": [
+        40.0,
+        50.0
+      ],
+      "asset_capacity_mva": 160.0,
+      "base_forward_mw": 97.69107919615776,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00148",
+        "area_class": "A",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 42,
+        "spare_10kv_bays": 2,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 30
+      },
+      "initial_units": [
+        50.0,
+        80.0
+      ]
+    },
+    "BDZ-00151": {
+      "station": "BDZ-00151",
+      "old_units": [
+        50.0,
+        63.0
+      ],
+      "asset_capacity_mva": 143.0,
+      "base_forward_mw": 121.63649235472231,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00151",
+        "area_class": "B",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 53,
+        "spare_10kv_bays": 1,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 38
+      },
+      "initial_units": [
+        63.0,
+        63.0
+      ]
+    },
+    "BDZ-00154": {
+      "station": "BDZ-00154",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 113.0,
+      "base_forward_mw": 18.369200614750525,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00154",
+        "area_class": "B",
+        "available_third_slots": 1,
+        "available_third_mva": 63.0,
+        "total_10kv_bays": 32,
+        "spare_10kv_bays": 17,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 53
+      },
+      "initial_units": [
+        40.0,
+        50.0
+      ]
+    },
+    "BDZ-00155": {
+      "station": "BDZ-00155",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 100.0,
+      "base_forward_mw": 50.36572861615091,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "BDZ-00155",
+        "area_class": "B",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 20,
+        "spare_10kv_bays": 2,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 10
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "BDZ-00175": {
+      "station": "BDZ-00175",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 150.0,
+      "base_forward_mw": 42.69822109012829,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00175",
+        "area_class": "B",
+        "available_third_slots": 1,
+        "available_third_mva": 100.0,
+        "total_10kv_bays": 28,
+        "spare_10kv_bays": 3,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 51
+      },
+      "initial_units": [
+        63.0,
+        63.0
+      ]
+    },
+    "BDZ-00183": {
+      "station": "BDZ-00183",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 100.0,
+      "base_forward_mw": 15.614708805350338,
+      "base_reverse_mw": 5.318628271695844,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 2,
+      "allow_third": true,
+      "metadata": {
+        "station": "BDZ-00183",
+        "area_class": "C",
+        "available_third_slots": 1,
+        "available_third_mva": 50.0,
+        "total_10kv_bays": 24,
+        "spare_10kv_bays": 14,
+        "asset_source_sheet": "110千伏变电站1",
+        "asset_source_row": 85
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "SIM-CITY-KL": {
+      "station": "SIM-CITY-KL",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 0.0,
+      "base_forward_mw": 15.260497993894152,
+      "base_reverse_mw": 4.510081317593875,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 1,
+      "allow_third": false,
+      "metadata": {
+        "station": "SIM-CITY-KL",
+        "area_class": "C",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 0,
+        "spare_10kv_bays": 0,
+        "asset_source_sheet": "no_equipment_row_city_load_file_mapping",
+        "asset_source_row": "",
+        "area_class_status": "research_assumption_C_not_source_verified"
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "SIM-CITY-XSZ": {
+      "station": "SIM-CITY-XSZ",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 0.0,
+      "base_forward_mw": 12.91543247813397,
+      "base_reverse_mw": 3.1757940339240225,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 1,
+      "allow_third": false,
+      "metadata": {
+        "station": "SIM-CITY-XSZ",
+        "area_class": "C",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 0,
+        "spare_10kv_bays": 0,
+        "asset_source_sheet": "no_equipment_row_city_load_file_mapping",
+        "asset_source_row": "",
+        "area_class_status": "research_assumption_C_not_source_verified"
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    },
+    "SIM-CITY-YQ": {
+      "station": "SIM-CITY-YQ",
+      "old_units": [
+        40.0,
+        40.0
+      ],
+      "asset_capacity_mva": 0.0,
+      "base_forward_mw": 19.91257259436205,
+      "base_reverse_mw": 0.0,
+      "forward_duration_h": 6,
+      "reverse_duration_h": 0,
+      "allow_third": false,
+      "metadata": {
+        "station": "SIM-CITY-YQ",
+        "area_class": "C",
+        "available_third_slots": 0,
+        "available_third_mva": 0.0,
+        "total_10kv_bays": 0,
+        "spare_10kv_bays": 0,
+        "asset_source_sheet": "no_equipment_row_city_load_file_mapping",
+        "asset_source_row": "",
+        "area_class_status": "research_assumption_C_not_source_verified"
+      },
+      "initial_units": [
+        40.0,
+        40.0
+      ]
+    }
+  },
+  "new_ratings": [
+    31.5,
+    50.0,
+    63.0,
+    80.0
+  ],
+  "cost_factors": {
+    "transformer": {
+      "2022": 1.3855102760854008,
+      "2023": 1.2947306392039484,
+      "2024": 1.2090894723346537,
+      "2025": 1.1282959186843755
+    },
+    "line": {
+      "2022": 1.1749797762423977,
+      "2023": 1.10200006816123,
+      "2024": 1.0331512869525814,
+      "2025": 0.9681996065670635
+    },
+    "storage": {
+      "2022": 1.2591919761795989,
+      "2023": 1.1790922965783173,
+      "2024": 1.1035265611054104,
+      "2025": 1.0322381314139883
+    },
+    "discount_rate": 0.06,
+    "transformer_life_years": 40,
+    "line_life_years": 40,
+    "storage_life_years": 25,
+    "transformer_fixed_om_rate": 0.042,
+    "line_fixed_om_rate": 0.022,
+    "storage_fixed_om_rate": 0.03
+  },
+  "transformer_price_10k_per_purchased_mva": 16.573333333,
+  "third_50mva_capex_10k": 1223.0,
+  "storage_module_mwh": 0.215,
+  "storage_module_mw": 0.1,
+  "storage_module_capex_10k": 21.0456262,
+  "line_capex_10k": 499.20000000000005,
+  "line_cable_fraction": 0.9,
+  "line_cost_coefficient": 6.8500000000000005,
+  "line_increment_mw": 7.49106117,
+  "source_hashes": {
+    "实验/研究/data/tuomin/补充数据/徐州市区脱敏.zip": "e1e33cecd1b0aaf03e4325406b4363b850dc1560a7ceb470697447ce464a967f",
+    "研究报告/试算/20261009_市区40/city_2025_mapping_audit.csv": "13da767c42c1d30cca2316825f4983ec1065cfee8df6aa877bbb1d4cb54c0051",
+    "实验/研究/rebuild_2026/source_audit/official_annual.csv": "86d2b6636901e7e9a8412f5940817ae3c144afe2f236853d77dffebc4fe3605d",
+    "研究报告/试算/20261009_市区40/pilot_inputs.json": "e27e759a963322ef0a14dd4ac8f9a2eb1c3d26ffead8dfab2a08a5da944757da"
+  },
+  "n1_basis": "每个故障场景仅一个站的最大一台主变N-1，其他站按正常容量；转接可随时刻与故障变化，统一使用固定既有与已建新增能力。正反向均校核。",
+  "storage_basis": "给定正反向持续时间的功率能量静态折算；未计算SOC、效率衰减及充电调度",
+  "line_basis": "每新增等效端点按新增出线占用一个备用间隔；不是所有联络方式的通用要求。无设备行的模拟站暂不分配未经证实的新间隔。",
+  "region": "city",
+  "region_name": "市区",
+  "region_id": "QX-00007",
+  "forward_duration_h": 6,
+  "years": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "baseline_treatment": "四组共用原重构资产，不虚构免费基期补强；必要补强在首个规划年计费。另算零增长成本基准，不能当作工程逐项成本拆分。",
+  "diagnostic_only": true
+}

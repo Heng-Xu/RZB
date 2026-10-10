@@ -1,0 +1,19 @@
+{
+  "region": "city",
+  "case": "rigid_no_storage",
+  "solver": {
+    "stage": "static",
+    "status": "Infeasible",
+    "solver": "1.15.1",
+    "elapsed_seconds": 8.736010876000364,
+    "variables": 229848,
+    "constraints": 557031,
+    "relative_gap_target": 0.01,
+    "objective": null,
+    "dual_bound": null,
+    "mip_gap": null,
+    "accepted": false,
+    "proven_infeasible": true
+  },
+  "scope": "原表年度负荷+归档正向峰值及低净负荷静态工况；各站单台主变N-1；无时序仿真"
+}
