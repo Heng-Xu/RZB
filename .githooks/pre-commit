@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+REPORT_PYTHON=${REPORT_PYTHON:-/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python}
+if [ ! -x "$REPORT_PYTHON" ]; then REPORT_PYTHON=python3; fi
+git diff --quiet -- tools/report_policy.json tools/check_report_policy.py 研究报告/03_MD/当前版 研究报告/02图表/当前版 研究报告/04_word 研究报告/数据来源/当前版/区域时序 || {
+  echo '报告文件存在未暂存修改；请将本版源稿、图表与成果一起暂存后再提交。' >&2
+  exit 1
+}
+"$REPORT_PYTHON" tools/check_report_policy.py --stage final

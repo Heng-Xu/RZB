@@ -1,5 +1,5 @@
 # 项目记忆
 
-现行研究报告以 [current.md](current.md) 为准，接续入口见 [INDEX.md](INDEX.md)。当前正式成果只交付Word，各配套文件位于 `研究报告` 下相应 `当前版` 目录。
+当前状态只维护在 [current.md](current.md)，流程见 [维护流程](../docs/CURRENT-WORKFLOW.md)，约束见 [AGENTS.md](../AGENTS.md)。不要在其他记忆文件重复保存会过期的页数和模型条件。
 
-建模、核验、出图和构建使用 Conda 环境 `xuzhou110kv_clr`。原始数据保持计算精度，正文显示两位小数。Git保留历史，归档标签 `report-baseline-20261004`。
+建模、核验、出图和构建使用Conda环境 `xuzhou110kv_clr`。原始计算保留精度，显示格式服从现行项目约束。历史用Git追溯。

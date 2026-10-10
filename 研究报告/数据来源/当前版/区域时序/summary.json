@@ -1,0 +1,87 @@
+{
+  "pizhou": {
+    "region": "邳州",
+    "hours": 8760,
+    "imputed_hours": 1,
+    "peak_mw": 951.6600000000002,
+    "threshold_mw": 904.0770000000001,
+    "peak_direction": "正向",
+    "max_duration_h": 2,
+    "cumulative_h": 7,
+    "longest_start": "2025-07-04 21:00:00",
+    "longest_end_exclusive": "2025-07-04 23:00:00",
+    "events": [
+      {
+        "start": "2025-07-04 21:00:00",
+        "end_exclusive": "2025-07-04 23:00:00",
+        "hours": 2
+      },
+      {
+        "start": "2025-07-05 21:00:00",
+        "end_exclusive": "2025-07-05 23:00:00",
+        "hours": 2
+      },
+      {
+        "start": "2025-07-06 21:00:00",
+        "end_exclusive": "2025-07-06 22:00:00",
+        "hours": 1
+      },
+      {
+        "start": "2025-08-21 20:00:00",
+        "end_exclusive": "2025-08-21 22:00:00",
+        "hours": 2
+      }
+    ],
+    "diversity": 1.056574827144148,
+    "station_peak_sum_mw": 1005.5000000000001,
+    "source_sha256": "38837890ab239005f7ce26b33a3510d948a13abfea1ad8dae387b8ef8a83e911",
+    "mapping_sha256": "68bf32fb70b53050a7c028d12af7ac10756538a7db94eec22b589d278bfdbfd2",
+    "curve_sha256": "091dfc82394100dcd4e14b2384ea4faea290426cc65ebc5d56c10e5f110d87f1",
+    "preserved_observations": true
+  },
+  "city": {
+    "region": "市区",
+    "hours": 8760,
+    "imputed_hours": 421,
+    "peak_mw": 1307.315366,
+    "threshold_mw": 1241.9495977,
+    "peak_direction": "正向",
+    "max_duration_h": 6,
+    "cumulative_h": 11,
+    "longest_start": "2025-08-21 17:00:00",
+    "longest_end_exclusive": "2025-08-21 23:00:00",
+    "events": [
+      {
+        "start": "2025-07-04 21:00:00",
+        "end_exclusive": "2025-07-04 22:00:00",
+        "hours": 1
+      },
+      {
+        "start": "2025-07-05 21:00:00",
+        "end_exclusive": "2025-07-05 22:00:00",
+        "hours": 1
+      },
+      {
+        "start": "2025-08-20 20:00:00",
+        "end_exclusive": "2025-08-20 22:00:00",
+        "hours": 2
+      },
+      {
+        "start": "2025-08-21 17:00:00",
+        "end_exclusive": "2025-08-21 23:00:00",
+        "hours": 6
+      },
+      {
+        "start": "2025-08-22 12:00:00",
+        "end_exclusive": "2025-08-22 13:00:00",
+        "hours": 1
+      }
+    ],
+    "diversity": 1.1130414067205263,
+    "station_peak_sum_mw": 1455.096134,
+    "source_sha256": "e1e33cecd1b0aaf03e4325406b4363b850dc1560a7ceb470697447ce464a967f",
+    "mapping_sha256": "13da767c42c1d30cca2316825f4983ec1065cfee8df6aa877bbb1d4cb54c0051",
+    "curve_sha256": "fba48108ce6a401528336bd8459fd9383444dd9f936c3ee3a22b7f06a3951a4d",
+    "preserved_observations": true
+  }
+}

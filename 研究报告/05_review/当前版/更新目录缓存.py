@@ -11,7 +11,7 @@ def main():
  pdf=pymupdf.open(OUT/'研究报告终稿.pdf');assert len(pdf)>30,len(pdf)
  pages=[norm(p.get_text()) for p in pdf];headings=json.loads((R/'目录标题.json').read_text());indices={};entries=[]
  for title,level,anchor in headings:
-  matches=[i+1 for i,t in enumerate(pages) if i>=4 and norm(title) in t];assert matches,(title,'未找到实际正文页')
+  matches=[i+1 for i,t in enumerate(pages) if i>=3 and norm(title) in t];assert matches,(title,'未找到实际正文页')
   num=matches[0];indices[anchor]=num;entries.append({'标题':title,'页码':num,'锚点':anchor})
  doc=Document(OUT/'研究报告终稿.docx');done=0
  for field in doc._element.xpath('.//w:fldSimple'):
@@ -19,6 +19,21 @@ def main():
   if not m:continue
   assert m[1] in indices
   texts=list(field.iter(qn('w:t')));assert len(texts)==1;texts[0].text=str(indices[m[1]]);done+=1
+ for p in doc._element.xpath('.//w:p[w:r/w:instrText]'):
+  instruction=''.join(p.xpath('./w:r/w:instrText/text()'))
+  m=re.search(r'PAGEREF\s+(\w+)',instruction)
+  if not m:continue
+  assert m[1] in indices
+  within=False;result=[]
+  for r in p.findall(qn('w:r')):
+   marks=r.findall(qn('w:fldChar'))
+   if any(x.get(qn('w:fldCharType'))=='separate' for x in marks):within=True;continue
+   if any(x.get(qn('w:fldCharType'))=='end' for x in marks):within=False
+   if within:result.extend(r.findall(qn('w:t')))
+  assert result,(m[1],'无页码域结果')
+  result[0].text=str(indices[m[1]])
+  for node in result[1:]:node.text=''
+  done+=1
  assert done==len(headings),(done,len(headings))
  settings=doc.settings.element
  for e in settings.findall(qn('w:updateFields')):settings.remove(e)

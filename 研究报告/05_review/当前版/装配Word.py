@@ -41,7 +41,7 @@ def refdoc():
   s=doc.styles[nm];style(s,12);s.paragraph_format.line_spacing=Pt(17.4);s.paragraph_format.first_line_indent=Pt(24);s.paragraph_format.space_before=Pt(0);s.paragraph_format.space_after=Pt(0)
  doc.save(REVIEW/'排版参照.docx')
 def assemble():
- sources=sorted(TEXT.glob('0[1-6] *.md'))+[ASSET/'计算表.json',ASSET/'生成段落.json',REVIEW/'内容提要.json']
+ sources=sorted(TEXT.glob('0[1-6] *.md'))+[ASSET/'计算表.json',ASSET/'生成段落.json']
  (REVIEW/'装配源文件登记.json').write_text(json.dumps({str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},ensure_ascii=False,indent=2))
  txt='\n\n'.join(p.read_text().strip() for p in sorted(TEXT.glob('0[1-6] *.md')))
  txt=re.sub(r'\[\[SECTION:([^\]]+)\]\]',lambda m:SECTIONS[m[1]],txt)
@@ -117,6 +117,7 @@ def configure_doc(mathlist):
    for mp in p._element.xpath('.//m:oMathPara'):
     pr=mp.find(qn('m:oMathParaPr'))
     if pr is None:pr=OxmlElement('m:oMathParaPr');mp.insert(0,pr)
+    for existing in pr.findall(qn('m:jc')):pr.remove(existing)
     jc=OxmlElement('m:jc');jc.set(qn('m:val'),'center');pr.append(jc)
    # 编号单独置于行尾，数学对象独立居中。
    p.add_run('（'+it['number']+'）')
@@ -131,6 +132,8 @@ def configure_doc(mathlist):
   else:
    pf.alignment=WD_ALIGN_PARAGRAPH.JUSTIFY;pf.first_line_indent=Pt(24);pf.line_spacing=Pt(17.4);pf.space_before=Pt(0);pf.space_after=Pt(0);pf.widow_control=True
    if p._p.xpath('.//m:f | .//m:nary | .//m:m'):pf.line_spacing_rule=WD_LINE_SPACING.AT_LEAST
+   if t.startswith('式中'):
+    pf.first_line_indent=Pt(0);pf.left_indent=Pt(0);pf.right_indent=Pt(0)
    if re.match(r'^\[\d+\]',t):pf.first_line_indent=Pt(0);pf.line_spacing=Pt(16);pf.space_after=Pt(4);pf.alignment=WD_ALIGN_PARAGRAPH.LEFT
    for r in p.runs:font(r,10.5 if re.match(r'^\[\d+\]',t) else 12)
  assert numeq==len(mathlist),(numeq,len(mathlist))
@@ -213,30 +216,38 @@ def configure_doc(mathlist):
   p._p.addprevious(tab._tbl);mid._tc.append(p._p)
   for cell in [tab.cell(0,0),tab.cell(0,2)]:
    pp=cell.paragraphs[0];pp.paragraph_format.first_line_indent=Pt(0);pp.paragraph_format.space_before=Pt(0);pp.paragraph_format.space_after=Pt(0)
+  for cell in tab.rows[0].cells:
+   for paragraph in cell.paragraphs:paragraph.paragraph_format.keep_with_next=True
   pp=tab.cell(0,2).paragraphs[0];pp.alignment=WD_ALIGN_PARAGRAPH.RIGHT
   font(pp.add_run(number),9)
  # 页眉页脚采用页码域与目录缓存。
  h=sec.header.add_paragraph('徐州地区110 kV电网容载比弹性指标优化研究');h.alignment=1
  for r in h.runs:font(r,9,False,'宋体')
  f=sec.footer.add_paragraph();f.alignment=1;r=f.add_run();field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');r._r.addnext(field)
- # 封面、内容提要、目录由同一版面生成；不插空白填充页。
+ # 封面、目录由同一版面生成；不插空白填充页。
  body=doc._element.body;front=Document();frontsec=front.sections[0]
  def add(text='',size=12,bold=False,align=0):
   p=front.add_paragraph();p.paragraph_format.first_line_indent=Pt(0);p.paragraph_format.line_spacing=Pt(max(17.5,size*1.5));p.alignment=align
   r=p.add_run(text);font(r,size,bold);return p
  p=add(TITLE,22,True,1);p.paragraph_format.space_before=Pt(140);p.paragraph_format.space_after=Pt(50)
  add('研究报告',20,True,1);p=add('2026年10月',14,False,1);p.paragraph_format.space_before=Pt(120)
- p=add('内容提要',18,True,1);p.paragraph_format.page_break_before=True;p.paragraph_format.space_after=Pt(20)
- for text in json.loads((REVIEW/'内容提要.json').read_text()):
-  p=add(text);p.paragraph_format.first_line_indent=Pt(24);p.alignment=3;p.paragraph_format.space_after=Pt(10)
  p=add('目  录',18,True,1);p.paragraph_format.page_break_before=True;p.paragraph_format.space_after=Pt(15)
  headings=[]
  for i,p in enumerate(doc.paragraphs):
   if p.style.name in ['Heading 1','Heading 2']:
    text=p.text;level=int(p.style.name[-1]);anchor='h'+str(i)
-   bs=OxmlElement('w:bookmarkStart');bs.set(qn('w:id'),str(1000+i));bs.set(qn('w:name'),anchor);be=OxmlElement('w:bookmarkEnd');be.set(qn('w:id'),str(1000+i));p._p.insert(0,bs);p._p.append(be)
-   headings.append((text,level,anchor));t=add(text,12,level==1);t.paragraph_format.left_indent=Pt(12 if level==2 else 0);t.paragraph_format.space_after=Pt(2);t.paragraph_format.tab_stops.add_tab_stop(Cm(14.5),WD_TAB_ALIGNMENT.RIGHT,WD_TAB_LEADER.DOTS)
-   t.add_run('\t');fld=OxmlElement('w:fldSimple');fld.set(qn('w:instr'),'PAGEREF '+anchor+' \\h');rr=OxmlElement('w:r');tt=OxmlElement('w:t');tt.text='0';rr.append(tt);fld.append(rr);t._p.append(fld)
+   bs=OxmlElement('w:bookmarkStart');bs.set(qn('w:id'),str(1000+i));bs.set(qn('w:name'),anchor);be=OxmlElement('w:bookmarkEnd');be.set(qn('w:id'),str(1000+i));p._p.insert(1,bs);p._p.append(be)
+   headings.append((text,level,anchor));t=add('',12,level==1);t.paragraph_format.left_indent=Pt(12 if level==2 else 0);t.paragraph_format.space_after=Pt(2);t.paragraph_format.tab_stops.add_tab_stop(Cm(14.5),WD_TAB_ALIGNMENT.RIGHT,WD_TAB_LEADER.DOTS)
+   link=OxmlElement('w:hyperlink');link.set(qn('w:anchor'),anchor);link.set(qn('w:history'),'1')
+   r=t.add_run(text);font(r,12,level==1);t._p.remove(r._r);link.append(r._r);t._p.append(link)
+   t.add_run('\t')
+   for kind in ['begin','instruction','separate','result','end']:
+    r=t.add_run();font(r,12,level==1)
+    if kind=='instruction':
+     nd=OxmlElement('w:instrText');nd.set(qn('xml:space'),'preserve');nd.text=' PAGEREF '+anchor+' \\h ';r._r.append(nd)
+    elif kind=='result':r.text='待更新'
+    else:
+     nd=OxmlElement('w:fldChar');nd.set(qn('w:fldCharType'),kind);r._r.append(nd)
    for r in t.runs:font(r,12,level==1)
  for el in reversed(list(front._element.body)):
   if el.tag!=qn('w:sectPr'):body.insert(0,copy.deepcopy(el))
@@ -257,14 +268,18 @@ def configure_doc(mathlist):
  for node in settings.findall(qn('w:updateFields')):settings.remove(node)
  node=OxmlElement('w:updateFields');node.set(qn('w:val'),'true');settings.append(node)
  # 表格单元格及独立公式段落的特殊缩进显式置零，覆盖模板继承。
- for p in doc._element.xpath('.//w:tbl//w:p | .//w:p[m:oMathPara]'):
+ for p in doc._element.xpath('.//w:tbl//w:p | .//w:p[m:oMathPara] | .//w:p[starts-with(w:r/w:t,"式中")]'):
   pr=p.find(qn('w:pPr'))
   if pr is None:pr=OxmlElement('w:pPr');p.insert(0,pr)
   ind=pr.find(qn('w:ind'))
   if ind is None:ind=OxmlElement('w:ind');pr.append(ind)
-  for attr in ['firstLine','firstLineChars','hanging','hangingChars']:ind.attrib.pop(qn('w:'+attr),None)
+  for attr in ['firstLine','firstLineChars','hanging','hangingChars','leftChars','rightChars','startChars','endChars']:ind.attrib.pop(qn('w:'+attr),None)
   ind.set(qn('w:firstLine'),'0');ind.set(qn('w:firstLineChars'),'0')
+  ind.set(qn('w:left'),'0');ind.set(qn('w:right'),'0')
  doc.save(OUT/'研究报告终稿.docx')
  print('Word',OUT/'研究报告终稿.docx','表',len(doc.tables),'公式',numeq,'图',len(doc.inline_shapes))
-def main():refdoc();ml=assemble();configure_doc(ml)
+def main():
+ subprocess.run([sys.executable,str(ROOT/'tools/check_report_policy.py'),'--stage','source'],cwd=ROOT,check=True)
+ refdoc();ml=assemble();configure_doc(ml)
+ subprocess.run([sys.executable,str(ROOT/'tools/check_report_policy.py'),'--stage','docx'],cwd=ROOT,check=True)
 if __name__=='__main__':main()

@@ -39,11 +39,8 @@ def main():
   (root/'研究报告/05_review/当前版/WPS原生导出登记.json').write_text(json.dumps(record,ensure_ascii=False,indent=2))
   print('WPS PDF及Word目录缓存已同步。请核对印出的目录并完成版面检查，再运行--check-only。')
   return
- run('校核当前基准.py',root)
- run('外推独立复核.py',root)
- run('推荐区间合并复核.py',root)
+ subprocess.run([sys.executable,str(root/'tools/check_report_policy.py'),'--root',str(root),'--stage','final'],cwd=root,check=True)
  run('Word表格内容复核.py',root)
- run('术语专项复核.py',root)
- run('核验报告.py',root)
+ run('1010统一修订/核验.py',root)
 
 if __name__=='__main__':main()

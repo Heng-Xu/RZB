@@ -1,0 +1,68 @@
+{
+  "状态": "通过",
+  "主网格": 12600,
+  "试点": 96,
+  "专项及边界": 363,
+  "参数区间单元": 648,
+  "案例敏感性组合": 14,
+  "地区案例": [
+    {
+      "地区": "city",
+      "方案": "rigid_storage",
+      "费用": 85750.46721870308,
+      "下界": 81975.20018571847,
+      "间隙": 0.04402619782065952
+    },
+    {
+      "地区": "city",
+      "方案": "elastic_storage",
+      "费用": 58346.08988033193,
+      "下界": 57769.87731775877,
+      "间隙": 0.00987576997456005
+    },
+    {
+      "地区": "pizhou",
+      "方案": "rigid_storage",
+      "费用": 34468.83669937799,
+      "下界": 28001.077353791068,
+      "间隙": 0.18764077830638376
+    },
+    {
+      "地区": "pizhou",
+      "方案": "elastic_storage",
+      "费用": 26103.51885220576,
+      "下界": 23648.677027291717,
+      "间隙": 0.09404256333458312
+    }
+  ],
+  "图件": 15,
+  "原生数学对象": 211,
+  "独立公式": 28,
+  "数据表": 129,
+  "参考文献": 95,
+  "WordSHA256": "1d09b20e61b036e70481b5f8883fc3b65fe22db4f7c1ff14c76d2d22d2e9a55e",
+  "原始记录SHA256": {
+    "pilot": "0981b279ff63d6bb1fb749485a2193ba09e7274e6f3271e015a28339c83803b9",
+    "main": "571aac6c1767a1b6e82a679b0aca20626be66aa90f3287bc82e712a9fd92df98",
+    "sensitivity": "f17fb55559a4fb1d4cfcc207b30793110c5824752b07ae529c4dbda6f2eeff86"
+  },
+  "图件SHA256": {
+    "annual_model_pressure.png": "2e2fe55048819cbbbe4b5b88ba17285d1c62f4ef8e57ff018893831d740f3c73",
+    "annual_clr.png": "c97b26eab92c678b77ef75213f0cba7a3546ea88071b00b4b2558098168f98b0",
+    "monthly_correlation.png": "861577def2f0f3e67f811d1ee82d2d60db802c17e5ed259044a0d425de2199e8",
+    "pizhou_modeled_peaks.png": "3ca51819d3b97d4648a6fb97ffabcbc5446e014e9c3a161499b5ce5e40f58fcf",
+    "technical_route.png": "e612df0cf13640e4d7f30cf83a663f2cc3da576b74bd873826930a714623e47a",
+    "pizhou_regional_peak.png": "9f0bedf082c7c17e458920720aa32f301abcbe8228fee04df434a8320f1f8993",
+    "planning_tier_heatmap.png": "9397e0d049a676cc6c32e01e04a8f503e24af5eee49c6867537065d5aa3287d5",
+    "pv_monthly.png": "d16968a14c23a042ed205ad96e56c9ebab5454105e889a87af62117199c40927",
+    "lifecycle_components.png": "73ef1edfb7dd8f17dc7412fc610154bab22808285dda95718b6a17b1723b775b",
+    "duration_distribution.png": "4199dede136e322c17df59c81cc50e8316b173cd421e9189a9ca7678f25a99ca",
+    "annual_load.png": "a3806b41d35c1d4afefdd9271bd95147c13c778d34e89395756fd2bed8eddbcc",
+    "loading_distribution.png": "979a770e02e5c612fb83d625d0131ea050fe60fa038a50592af7c017533d3dad",
+    "city_regional_peak.png": "3b65a0fc33850ef9e8e9697aa30c8cee7f513cd2aa1f835279da6a70db76f5d0",
+    "measure_comparison.png": "493b3406b777507afd2f38cce4680810b02b8929e665f8f0c98efaf161345347",
+    "case_sensitivity.png": "2bc71bd9cfe900e4023b17ebdd71ed994cdad495db5ab47c6f26ac844ffffa2d",
+    "storage_effective_cost.png": "848b040a221597da19bc9cf59940b44e2e66422063569a0cf2e0a014ea2321cd",
+    "city_modeled_peaks.png": "d5955a0c1ddf93f87cb28c2f74b0a32131f04a43539f3bac17d3c0ada3cd078a"
+  }
+}
