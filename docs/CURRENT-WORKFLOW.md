@@ -2,7 +2,7 @@
 
 当前有效约束为根目录及研究报告目录的 `AGENTS.md`。正式源是六章Markdown、计算表及生成段落JSON；不要从历史正文快照恢复覆盖。环境使用 `/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python`。
 
-1. 修改当前源；若涉及小时数据，运行 `tools/prepare_regional_profiles.py`，核对补值日志和区域峰段。涉及负载率或案例敏感性图时，运行 `tools/refresh_report_comparison_figures.py`。
+1. 修改当前源；若涉及小时数据，运行 `tools/prepare_regional_profiles.py`，核对补值日志和区域峰段。涉及负载率或案例敏感性图时，运行 `tools/refresh_report_comparison_figures.py`。实际年度相关分析运行 `tools/prepare_case_correlations.py`，从原始Excel分别提取两地区年度样本；源稿、Word和最终检查均重新核对样本、系数及展示表。
 2. 执行 `python tools/build_current_report.py --rebuild`。自动先查源稿规则，再装配原生Word，最后核对公式、式中段落和目录结构。
 3. 在WPS打开新Word，更新全部域并导出PDF。执行 `python tools/build_current_report.py --accept-wps-pdf <PDF路径>`，按实际标题页回填目录缓存。
 4. 重新打开更新后的Word，再次导出并接收，直到目录页码、正文页码和链接目标一致。PDF必须由原生Word经WPS输出，不能以公式图片副本替换。

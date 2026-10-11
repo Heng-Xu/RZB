@@ -28,10 +28,6 @@
     "tex": "H_{95}=\\max\\{\\text{连续时段长度}:|P_{\\mathrm{region},t}|\\geq0.95P_{\\mathrm{region}}^{\\mathrm{abs}}\\}."
   },
   {
-    "number": "3-8",
-    "tex": "\\begin{aligned}P'_y&=P_y\\left(\\frac{1+\\bar g+\\Delta g}{1+\\bar g}\\right)^{y-2021},\\\\\\Delta g&\\in\\{-0.02,0,0.02\\}.\\end{aligned}"
-  },
-  {
     "number": "4-1",
     "tex": "c_T=\\frac{1151+1335}{50+100}\\approx16.57\\quad\\text{万元/MVA}."
   },
@@ -109,6 +105,10 @@
   },
   {
     "number": "5-11",
+    "tex": "\\begin{aligned}P'_y&=P_y\\left(\\frac{1+\\bar g+\\Delta g}{1+\\bar g}\\right)^{y-2021},\\\\\\Delta g&\\in\\{-0.02,0,0.02\\}.\\end{aligned}"
+  },
+  {
+    "number": "5-12",
     "tex": "\\begin{aligned}\nP_y&=250(1+g)^4,\\\\\nP_{i,\\mathrm{evening}}&=w_i^L P_y,\\\\\nP_{i,\\mathrm{day}}&=0.30w_i^L P_y-0.75\\eta w_i^G P_y.\n\\end{aligned}"
   }
 ]

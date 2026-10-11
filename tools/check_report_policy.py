@@ -67,6 +67,13 @@ def main():
         errors.append('相同数值不能表述为变化: '+m[0])
     correlation=report/'05_review/当前版/1011局部优化/相关性复算.json'
     evidence=json.loads(correlation.read_text())
+    from prepare_case_correlations import maintain as check_actual_correlations
+    check_actual_correlations(root,check=True)
+    chapter_three=next(p.read_text() for p in sources if p.name.startswith('03 '))
+    actual_section=chapter_three.split('## 3.5 源荷与容量指标的关联分析')[1].split('## 3.6 ')[0]
+    for key in ['actual_corr_pizhou','actual_corr_city','actual_corr_target']:
+        assert '[[TABLE:'+key+']]' in actual_section, '实际案例相关性须在第3.5节完整呈现'
+    assert '[[TABLE:new_correlations]]' not in '\n'.join(p.read_text() for p in sources),'正文相关性采用实际案例，仿真相关表保留于核验资料'
     for path,sha in evidence['原始记录SHA256'].items():
         assert hashlib.sha256((root/path).read_bytes()).hexdigest()==sha,'相关性原始记录已变化，应复算'
     corr_rows=[[c.strip() for c in ln.strip('|').split('|')] for ln in tables['new_correlations'].splitlines() if ln.startswith('|')][2:]
