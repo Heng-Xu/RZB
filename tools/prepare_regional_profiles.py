@@ -94,7 +94,7 @@ def main():
         summary[region] = item
         fig,axes = plt.subplots(2,1,figsize=(8.4,5.8),gridspec_kw={'height_ratios':[1,1]})
         for ax in axes:
-            ax.axhline(.95*peak,color='#ac4b33',ls='--',lw=1.2,label=f'95%门槛 {peak*.95:.2f} MW')
+            ax.axhline(.95*peak,color='#ac4b33',ls='--',lw=1.2,label=f'95%峰值阈值 {peak*.95:.2f} MW')
             ax.spines[['top','right']].set_visible(False); ax.set_ylabel('区域净负荷绝对值/MW'); ax.grid(alpha=.15)
         axes[0].plot(hours,magnitude,color='#315c78',lw=.45,label='全年小时曲线')
         axes[0].scatter(hours[mask],magnitude[mask],s=12,color='#ac4b33',zorder=3)

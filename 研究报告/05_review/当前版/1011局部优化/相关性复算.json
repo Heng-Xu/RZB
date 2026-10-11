@@ -1,0 +1,152 @@
+{
+  "样本数": 12600,
+  "设计": "六参数完整独立全因子组合",
+  "各参数节点数": {
+    "eta": 7,
+    "growth_rate": 8,
+    "line_cost_coefficient": 5,
+    "initial_transfer_fraction": 5,
+    "support_duration_h": 3,
+    "diversity": 3
+  },
+  "原始记录SHA256": {
+    "研究报告/试算/20261010_五参数推广/main.jsonl": "571aac6c1767a1b6e82a679b0aca20626be66aa90f3287bc82e712a9fd92df98",
+    "研究报告/试算/20261010_负荷分散系数扩展/extension.jsonl": "9162e338330775e554240d197f1e34b5bdcbb9445f01a90cc2af205f073ce577"
+  },
+  "输入配对": [
+    {
+      "a": "eta",
+      "b": "growth_rate",
+      "Pearson": 1.633600200588538e-16,
+      "Spearman": 0.0
+    },
+    {
+      "a": "eta",
+      "b": "line_cost_coefficient",
+      "Pearson": 6.641192546896586e-18,
+      "Spearman": 0.0
+    },
+    {
+      "a": "eta",
+      "b": "initial_transfer_fraction",
+      "Pearson": 6.2305256296975235e-19,
+      "Spearman": 0.0
+    },
+    {
+      "a": "eta",
+      "b": "support_duration_h",
+      "Pearson": 0.0,
+      "Spearman": 0.0
+    },
+    {
+      "a": "eta",
+      "b": "diversity",
+      "Pearson": -4.973585414052528e-16,
+      "Spearman": 0.0
+    },
+    {
+      "a": "growth_rate",
+      "b": "line_cost_coefficient",
+      "Pearson": -2.004014955273805e-17,
+      "Spearman": 0.0
+    },
+    {
+      "a": "growth_rate",
+      "b": "initial_transfer_fraction",
+      "Pearson": -3.7601880845828777e-17,
+      "Spearman": 0.0
+    },
+    {
+      "a": "growth_rate",
+      "b": "support_duration_h",
+      "Pearson": -8.683782411350187e-20,
+      "Spearman": 0.0
+    },
+    {
+      "a": "growth_rate",
+      "b": "diversity",
+      "Pearson": 5.480214710095873e-16,
+      "Spearman": 0.0
+    },
+    {
+      "a": "line_cost_coefficient",
+      "b": "initial_transfer_fraction",
+      "Pearson": -1.9409004404044513e-17,
+      "Spearman": 0.0
+    },
+    {
+      "a": "line_cost_coefficient",
+      "b": "support_duration_h",
+      "Pearson": 0.0,
+      "Spearman": 0.0
+    },
+    {
+      "a": "line_cost_coefficient",
+      "b": "diversity",
+      "Pearson": -1.8250322935689372e-18,
+      "Spearman": 0.0
+    },
+    {
+      "a": "initial_transfer_fraction",
+      "b": "support_duration_h",
+      "Pearson": 0.0,
+      "Spearman": 0.0
+    },
+    {
+      "a": "initial_transfer_fraction",
+      "b": "diversity",
+      "Pearson": -5.182866579655981e-18,
+      "Spearman": 0.0
+    },
+    {
+      "a": "support_duration_h",
+      "b": "diversity",
+      "Pearson": 0.0,
+      "Spearman": 0.0
+    }
+  ],
+  "输入与结果": [
+    {
+      "参数": "eta",
+      "clr_pearson": 0.8071682209989584,
+      "clr_spearman": 0.8064274640563306,
+      "cost_pearson": 0.6995981685575755,
+      "cost_spearman": 0.7768780441261193
+    },
+    {
+      "参数": "growth_rate",
+      "clr_pearson": -0.3039453336023499,
+      "clr_spearman": -0.1983532364943866,
+      "cost_pearson": 0.278615035161658,
+      "cost_spearman": 0.4564238464910743
+    },
+    {
+      "参数": "line_cost_coefficient",
+      "clr_pearson": 0.008383154896444167,
+      "clr_spearman": 0.02133777205703651,
+      "cost_pearson": 0.001346510239953501,
+      "cost_spearman": 0.007603147226682518
+    },
+    {
+      "参数": "initial_transfer_fraction",
+      "clr_pearson": -0.05583490414545157,
+      "clr_spearman": -0.13464402937407802,
+      "cost_pearson": -0.010693043014228534,
+      "cost_spearman": -0.07654223223837331
+    },
+    {
+      "参数": "support_duration_h",
+      "clr_pearson": 0.03570246217332407,
+      "clr_spearman": 0.03123870353145347,
+      "cost_pearson": 0.19088431720439378,
+      "cost_spearman": 0.06856901805527596
+    },
+    {
+      "参数": "diversity",
+      "clr_pearson": 0.03775236633972696,
+      "clr_spearman": 0.08716819251717532,
+      "cost_pearson": 0.0080125042585753,
+      "cost_spearman": 0.0455400388535345
+    }
+  ]
+}

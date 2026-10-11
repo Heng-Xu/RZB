@@ -33,6 +33,15 @@ for r in extra:
  assert abs(r['clr']-r['capacity_mva']/r['peak_mw'])<1e-8
  assert abs(r['cost']-sum(r['cost_components'].values()))<1e-4
 allmain=pd.DataFrame(rows['main']+extra);assert allmain[keys+['diversity']].drop_duplicates().shape[0]==12600
+# 相关系数从12600组原始计算记录复算，不能用展示值反推。
+correlation=read(R/'1011局部优化/相关性复算.json')
+for item in correlation['输入配对']:
+ for label,method in [('Pearson','pearson'),('Spearman','spearman')]:
+  assert abs(allmain[item['a']].corr(allmain[item['b']],method=method)-item[label])<1e-12
+for item in correlation['输入与结果']:
+ for out in ['clr','cost']:
+  for method in ['pearson','spearman']:
+   assert abs(allmain[item['参数']].corr(allmain[out],method=method)-item[out+'_'+method])<1e-12
 mat=pd.read_excel(W/'通用容载比推荐矩阵.xlsx',sheet_name='六参数分类矩阵');assert len(mat)==648 and '样本数' not in mat.columns
 allmain['sixbin']=allmain.apply(lambda r:tuple(r['bin'])+(int(r['diversity']>1.1),),axis=1)
 for b,g in allmain.groupby('sixbin'):

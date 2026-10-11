@@ -16,9 +16,26 @@ def main():
     body='\n\n'.join(p.read_text() for p in sources)
     body=re.sub(r'\[\[SECTION:([^\]]+)\]\]',lambda m:sections[m[1]],body)
     body=re.sub(r'\[\[TABLE:([^\]]+)\]\]',lambda m:tables[m[1]],body)
+    brief_source=(report/'供电公司讨论稿/讨论稿.md').read_text()
     errors=[]
     for rule,pattern in policy['forbidden_body_patterns'].items():
-        for m in re.finditer(pattern,body):errors.append(f'{rule}: {m[0]}')
+        for m in re.finditer(pattern,body+'\n'+brief_source):errors.append(f'{rule}: {m[0]}')
+    # 参数切片必须有响应；完整原始结果仍保留在计算资料。
+    for key in re.findall(r'\[\[TABLE:([^\]]+)\]\]', '\n'.join(p.read_text() for p in sources)+'\n'+'\n'.join(sections.values())):
+        if not key.startswith(('restore_storage_price_', 'restore_support_duration_h_', 'restore_line_cost_coefficient_', 'restore_initial_transfer_fraction_', 'restore_eta_', 'restore_growth_rate_')):
+            continue
+        rows=[[c.strip() for c in ln.strip('|').split('|')] for ln in tables[key].splitlines() if ln.startswith('|')][2:]
+        if len(rows)>1 and len({tuple(row[1:]) for row in rows})==1:
+            errors.append('无响应参数切片不得重复展示: '+key)
+    for m in re.finditer(r'由(\d+(?:\.\d+)?)(%| MW| MVA|万元)?变为\1\2(?=[，；。 ])',body):
+        errors.append('相同数值不能表述为变化: '+m[0])
+    correlation=report/'05_review/当前版/1011局部优化/相关性复算.json'
+    evidence=json.loads(correlation.read_text())
+    for path,sha in evidence['原始记录SHA256'].items():
+        assert hashlib.sha256((root/path).read_bytes()).hexdigest()==sha,'相关性原始记录已变化，应复算'
+    corr_rows=[[c.strip() for c in ln.strip('|').split('|')] for ln in tables['new_correlations'].splitlines() if ln.startswith('|')][2:]
+    for row,item in zip(corr_rows,evidence['输入与结果'],strict=True):
+        assert row[1:]==[f"{item[y+'_'+m]:.2f}" for y in ['clr','cost'] for m in ['pearson','spearman']],'相关表与复算结果不一致'
     # 连续式中解释应合并到一段，不能用多个空行分列符号解释。
     if re.search(r'式中[^\n]*\n\s*\n式中',body):errors.append('相邻式中说明应合并')
     for equation in re.findall(r'\$\$([\s\S]*?)\$\$',body):
@@ -80,6 +97,8 @@ def main():
         hashes=json.loads((review/'装配源文件登记.json').read_text())
         assert all(hashlib.sha256((root/k).read_bytes()).hexdigest()==v for k,v in hashes.items()),'源稿变化后未重新装配'
         if args.stage=='final':
+            from build_discussion_brief import check as check_brief
+            check_brief(root,pdf=True)
             import pymupdf
             pdfpath=report/'04_word/研究报告终稿.pdf';pdf=pymupdf.open(pdfpath)
             assert any(s in str(pdf.metadata).lower() for s in ['wps','kingsoft'])
@@ -106,7 +125,7 @@ def main():
             result.update(PDF页数=len(pdf),PDFSHA256=hashlib.sha256(pdfpath.read_bytes()).hexdigest())
             exported=json.loads((review/'WPS原生导出登记.json').read_text())
             assert exported['WordSHA256']==result['WordSHA256'] and exported['PDFSHA256']==result['PDFSHA256'],'Word/PDF导出登记未同步'
-    out=review/'1010表述与Word修正';out.mkdir(exist_ok=True)
+    out=review/'1011局部优化';out.mkdir(exist_ok=True)
     (out/f'{args.stage}约束检查.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     print(json.dumps({k:v for k,v in result.items() if k!='源稿SHA256'},ensure_ascii=False))
 

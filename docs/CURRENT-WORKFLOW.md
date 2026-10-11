@@ -12,3 +12,5 @@
 自动约束由 `tools/report_policy.json` 定义，检查入口为 `tools/check_report_policy.py --stage source|docx|final`。装配器直接调用前两阶段，交付核验调用最后阶段。版本管理前运行全部检查；不能用修改哈希或计数绕过失败。
 
 源稿规则仅处理可客观定位的问题，不代替编辑复核。新增常见问题时，应同时修复正文、生成脚本和检测规则。长期规则只保留一份有效状态，历史条目归档，不继续追加矛盾规则。
+
+讨论稿源文为 `研究报告/供电公司讨论稿/讨论稿.md`，运行 `python tools/build_discussion_brief.py`，结果表自动读取当前地区计算记录。WPS导出同目录PDF后运行 `python tools/build_discussion_brief.py --check --pdf`；该检查也已接入完整报告最终约束和提交钩子。正文无响应切片不再展示，原始结果保留。参数相关性复算记录在 `1011局部优化/相关性复算.json`，原始记录哈希和正文展示值须同步。
