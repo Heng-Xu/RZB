@@ -4,6 +4,25 @@ import argparse, hashlib, json, re
 
 ROOT=Path(__file__).resolve().parents[1]
 
+def body_policy_errors(sources,sections,tables,patterns):
+    """只检查正文实际引用的材料，并保留可编辑源的位置。"""
+    errors=[]
+    def scan(value,location,stack=()):
+        for line_no,line in enumerate(value.splitlines(),1):
+            for rule,pattern in patterns.items():
+                for match in re.finditer(pattern,line):
+                    errors.append(f'{location}:{line_no}: {rule}: {match[0]}')
+            for kind,key in re.findall(r'\[\[(SECTION|TABLE):([^\]]+)\]\]',line):
+                token=(kind,key)
+                if token in stack:
+                    raise ValueError(f'正文引用循环: {location}:{line_no}: {token}')
+                data=sections if kind=='SECTION' else tables
+                name='生成段落.json' if kind=='SECTION' else '计算表.json'
+                scan(data[key],f'{location}:{line_no} → {name}[{key}]',stack+(token,))
+    for location,value in sources:
+        scan(value,location)
+    return errors
+
 def check_figure_paragraphs(doc,policy,expected_count):
     from docx.oxml.ns import qn
     figure_policy=policy['figure_paragraph_format']
@@ -34,9 +53,9 @@ def main():
     body=re.sub(r'\[\[SECTION:([^\]]+)\]\]',lambda m:sections[m[1]],body)
     body=re.sub(r'\[\[TABLE:([^\]]+)\]\]',lambda m:tables[m[1]],body)
     brief_source=(report/'供电公司讨论稿/讨论稿.md').read_text()
-    errors=[]
-    for rule,pattern in policy['forbidden_body_patterns'].items():
-        for m in re.finditer(pattern,body+'\n'+brief_source):errors.append(f'{rule}: {m[0]}')
+    errors=body_policy_errors(
+        [(str(p.relative_to(root)),p.read_text()) for p in sources]+[('研究报告/供电公司讨论稿/讨论稿.md',brief_source)],
+        sections,tables,policy['forbidden_body_patterns'])
     # 参数切片必须有响应；完整原始结果仍保留在计算资料。
     for key in re.findall(r'\[\[TABLE:([^\]]+)\]\]', '\n'.join(p.read_text() for p in sources)+'\n'+'\n'.join(sections.values())):
         if not key.startswith(('restore_storage_price_', 'restore_support_duration_h_', 'restore_line_cost_coefficient_', 'restore_initial_transfer_fraction_', 'restore_eta_', 'restore_growth_rate_')):

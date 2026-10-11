@@ -36,7 +36,7 @@ for key,slug,name in [('growth_delta','growth','年最大净负荷平均增长�
    outrows.append([cn,name,text,y['peak_mw'],y['capacity_mva'],y['clr'],y['storage_nameplate_mw'],y['cumulative_lines'],obj,low,r['solver']['mip_gap']])
   l,b,u=group;yl,yb,yu=[r['summary']['annual'][-1] for r in group]
   if key=='growth_delta':
-   paras.append(f"{cn}在较低、基准及较高年最大净负荷平均增长率下，目标年负荷分别为{yl['peak_mw']:.2f}、{yb['peak_mw']:.2f}、{yu['peak_mw']:.2f} MW，对应主变容量{yl['capacity_mva']:.2f}、{yb['capacity_mva']:.2f}、{yu['capacity_mva']:.2f} MVA，容载比为{yl['clr']:.2f}、{yb['clr']:.2f}、{yu['clr']:.2f}。上述变化说明容量随设备投运调整，不能由负荷增长倍率直接推定同倍率的容载比变化。")
+   paras.append(f"{cn}在较低、基准及较高年最大净负荷平均增长率下，目标年负荷分别为{yl['peak_mw']:.2f}、{yb['peak_mw']:.2f}、{yu['peak_mw']:.2f} MW，对应主变容量{yl['capacity_mva']:.2f}、{yb['capacity_mva']:.2f}、{yu['capacity_mva']:.2f} MVA，容载比为{yl['clr']:.2f}、{yb['clr']:.2f}、{yu['clr']:.2f}。容量按整台设备投运，容载比取决于容量与负荷的相对增幅。")
   elif key=='line_factor':
    paras.append(f"{cn}线路成本系数由基准的75%增至125%时，所取得可行方案的新增联络项目数由{yl['cumulative_lines']}项变为{yu['cumulative_lines']}项，主变容量由{yl['capacity_mva']:.2f} MVA变为{yu['capacity_mva']:.2f} MVA，储能额定功率由{yl['storage_nameplate_mw']:.2f} MW变为{yu['storage_nameplate_mw']:.2f} MW。工程规模与费用共同列示，可区分相同配置的造价变化和候选措施组合变化。")
   else:
@@ -44,7 +44,7 @@ for key,slug,name in [('growth_delta','growth','年最大净负荷平均增长�
  table('case_sensitivity_'+slug,'表3-0 两地区'+name+'敏感性',cols,rs,'设备规模及容载比为目标年可行候选值，费用为2022—2025年新增措施在共同评价期内的费用现值。各情景采用1%的相对求解间隙目标，未收敛结果同时列出有效下界，不将费用差表述为精确最优差。')
  S['case_sensitivity_'+slug]='\n\n'.join(paras)
 b=bases['city'];y=b['summary']['annual'][-1]
-S['case_sensitivity_comparison']=f'''年最大净负荷平均增长率的扰动同时作用于各年功率规模及容载比分母；线路成本系数直接改变联络投资，设备组合可随经济条件调整；储能支撑持续时间改变单位储能可提供的持续功率。三项参数通过不同机制作用于容载比，不能将费用变化或储能规模变化直接当作容载比的同义指标。
+S['case_sensitivity_comparison']=f'''年最大净负荷平均增长率的扰动同时作用于各年功率规模及容载比分母；线路成本系数直接改变联络投资，设备组合可随经济条件调整；储能支撑持续时间改变单位储能可提供的持续功率。
 
 市区零扰动基准取得主变容量{y['capacity_mva']:.2f} MVA、容载比{y['clr']:.2f}、费用{b['solver']['objective']:.2f}万元的可行配置。第五章所列市区规划候选为3324.00 MVA、容载比2.17、费用58346.09万元。相同输入下两组费用接近、容量组合不同，表明细小容载比差可能来自离散配置选择与求解精度；本节以零扰动候选作比较基准，地区既定规划方案另按第五章列示。'''
 (A/'计算表.json').write_text(json.dumps(T,ensure_ascii=False,indent=2));(A/'生成段落.json').write_text(json.dumps(S,ensure_ascii=False,indent=2))

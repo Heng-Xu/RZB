@@ -7,4 +7,5 @@ git diff --quiet -- tools/report_policy.json tools/check_report_policy.py tools/
   echo '报告文件存在未暂存修改；请将本版源稿、图表与成果一起暂存后再提交。' >&2
   exit 1
 }
+"$REPORT_PYTHON" tools/test_report_prose_policy.py
 "$REPORT_PYTHON" tools/check_report_policy.py --stage final

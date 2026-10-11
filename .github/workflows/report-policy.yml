@@ -9,4 +9,5 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install python-docx==1.2.0 PyMuPDF==1.28.2
+      - run: python tools/test_report_prose_policy.py
       - run: python tools/check_report_policy.py --stage final
