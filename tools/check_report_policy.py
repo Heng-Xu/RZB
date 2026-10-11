@@ -4,6 +4,23 @@ import argparse, hashlib, json, re
 
 ROOT=Path(__file__).resolve().parents[1]
 
+def check_figure_paragraphs(doc,policy,expected_count):
+    from docx.oxml.ns import qn
+    figure_policy=policy['figure_paragraph_format']
+    figures=doc._element.xpath('.//w:body//w:p[.//w:drawing or .//w:pict]')
+    captions=[p for p in doc._element.xpath('.//w:body//w:p') if re.match(r'^图\d+-',''.join(p.xpath('.//w:t/text()')).strip())]
+    assert len(figures)==expected_count, '图片段落数与正文源不一致'
+    assert len(captions)==len(figures),'图片与图题数量不一致'
+    if figure_policy['inline_only']:
+        assert not doc._element.xpath('.//w:body//wp:anchor | .//w:body//w:pict'),'图片应使用嵌入型，避免浮动定位覆盖段落居中'
+    for i,p in enumerate(figures+(captions if figure_policy['include_captions'] else []),1):
+        label=f'图片或图题段落{i}'
+        assert p.xpath('./w:pPr/w:jc/@w:val')==[figure_policy['alignment']],label+'必须居中对齐'
+        inds=p.xpath('./w:pPr/w:ind');assert len(inds)==1,label+'必须显式设置无缩进'
+        for attr in figure_policy['zero_indent_attributes']:
+            assert inds[0].get(qn('w:'+attr))=='0',label+'缩进未清零: '+attr
+    return {'图片无缩进居中':len(figures),'图题无缩进居中':len(captions)}
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',type=Path,default=ROOT)
@@ -64,6 +81,7 @@ def main():
             for a in ['firstLine','firstLineChars','left','right']:
                 assert ind.get(qn('w:'+a))=='0',(a,ind.attrib)
             assert all(ind.get(qn('w:'+a),'0')=='0' for a in ['hanging','hangingChars','leftChars','rightChars','startChars','endChars'])
+        result.update(check_figure_paragraphs(doc,policy,len(re.findall(r'\[\[FIG:',body))))
         display=doc._element.xpath('.//w:p[m:oMathPara]')
         expected=len(re.findall(r'\\tag\{',body));assert len(display)==expected
         for p in display:
@@ -102,6 +120,16 @@ def main():
             import pymupdf
             pdfpath=report/'04_word/研究报告终稿.pdf';pdf=pymupdf.open(pdfpath)
             assert any(s in str(pdf.metadata).lower() for s in ['wps','kingsoft'])
+            # 同时验证渲染后的图片位置，防止Word结构正确但导出排版偏移。
+            pdf_images=[(page,im) for page in pdf for im in page.get_image_info()]
+            assert len(pdf_images)==len(doc.inline_shapes),'PDF图件数量与Word不一致'
+            left=doc.sections[0].left_margin.pt;right=doc.sections[0].right_margin.pt
+            offsets=[]
+            for page,im in pdf_images:
+                r=pymupdf.Rect(im['bbox']);offset=abs((r.x0+r.x1)/2-(page.rect.width+left-right)/2)
+                assert offset<=policy['figure_paragraph_format']['pdf_center_tolerance_pt'],('PDF图片未居中',page.number+1,offset)
+                offsets.append(offset)
+            result['PDF图片最大居中偏差_pt']=round(max(offsets,default=0),4)
             toc=json.loads((review/'目录页码核对.json').read_text())
             norm=lambda x:re.sub(r'\s+','',x)
             pages=[norm(p.get_text()) for p in pdf]

@@ -276,6 +276,19 @@ def configure_doc(mathlist):
   for attr in ['firstLine','firstLineChars','hanging','hangingChars','leftChars','rightChars','startChars','endChars']:ind.attrib.pop(qn('w:'+attr),None)
   ind.set(qn('w:firstLine'),'0');ind.set(qn('w:firstLineChars'),'0')
   ind.set(qn('w:left'),'0');ind.set(qn('w:right'),'0')
+ # 图片及图题必须覆盖正文样式中的字符缩进，点值首行置零不足以取消继承。
+ figure_policy=json.loads((ROOT/'tools/report_policy.json').read_text())['figure_paragraph_format']
+ for p in doc._element.xpath('.//w:body//w:p'):
+  drawing=p.xpath('.//w:drawing | .//w:pict')
+  caption=re.match(r'^图\d+-', ''.join(p.xpath('.//w:t/text()')).strip())
+  if not drawing and not caption:continue
+  pr=p.get_or_add_pPr();ind=pr.find(qn('w:ind'))
+  if ind is None:ind=OxmlElement('w:ind');pr.append(ind)
+  ind.attrib.clear()
+  for attr in figure_policy['zero_indent_attributes']:ind.set(qn('w:'+attr),'0')
+  jc=pr.find(qn('w:jc'))
+  if jc is None:jc=OxmlElement('w:jc');pr.append(jc)
+  jc.set(qn('w:val'),figure_policy['alignment'])
  doc.save(OUT/'研究报告终稿.docx')
  print('Word',OUT/'研究报告终稿.docx','表',len(doc.tables),'公式',numeq,'图',len(doc.inline_shapes))
 def main():
