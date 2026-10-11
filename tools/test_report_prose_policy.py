@@ -38,6 +38,16 @@ class ProsePolicyTests(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(self.check(text),[])
 
+    def test_known_input_and_template_misstatements_are_detected(self):
+        for text in [
+            '年网供最大负荷统一标定到容载比2.00。',
+            '将地区名称和规模转换为五站仿真模板结构。',
+            '两类方案本站总容量相同，仍需结合主变组合和邻站转接安排解释储能配置。',
+        ]:
+            with self.subTest(text=text):
+                self.assertTrue(self.check(text))
+        self.assertEqual(self.check('两类方案共用实际年度负荷和初始设备，推广计算采用独立五站模板。'),[])
+
     def test_nested_generated_text_is_located(self):
         errors=self.check('标题\n[[SECTION:analysis]]',{'analysis':'结果\n[[TABLE:comparison]]'},
                           {'comparison':'表题\n不能直接等同于设备新增过多。'})

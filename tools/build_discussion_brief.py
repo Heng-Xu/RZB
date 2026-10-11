@@ -11,6 +11,8 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def material(root):
     folder=root/'研究报告/供电公司讨论稿';source=folder/'讨论稿.md';files=[source,root/'tools/build_discussion_brief.py'];annual_tables={};rows=[['地区／方案','主变容量\nMVA','容载比','储能功率\nMW','累计新增联络\n条','费用现值\n万元']];cost={}
+    files.append(root/'研究报告/服务报告-国内外研究现状分析.md')
+    files.extend(sorted((root/'研究报告/03_MD/当前版').glob('0[1-6] *.md')))
     for region,cn in [('pizhou','邳州'),('city','市区')]:
         for case,name in [('rigid_storage','刚性'),('elastic_storage','弹性')]:
             p=root/f'研究报告/试算/20261010_四小时案例/{region}/{case}/summary.json';files.append(p);x=json.loads(p.read_text());y=x['annual'][-1];cost[(region,case)]=x['cost_npv_10k']
