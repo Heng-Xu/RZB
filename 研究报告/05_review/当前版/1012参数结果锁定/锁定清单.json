@@ -1,0 +1,274 @@
+{
+  "锁定编号": "parameter-matrix-20261012-transfer10to90",
+  "用户确认日期": "2026-10-12",
+  "用途": "后续报告和讨论稿撰写依据；本轮不修改稿件",
+  "结果入口": "研究报告/01研究推荐/当前版/参数联合情景_20261012/README.md",
+  "复现入口": "tools/locked_parameter_results.py",
+  "设计节点数": 34686,
+  "有效节点数": 32112,
+  "不可行节点数": 2574,
+  "矩阵数": 18,
+  "区间单元数": 864,
+  "参数组织": "装机渗透率、年最大净负荷平均增长率、初始转供率、储能支撑持续时间、负荷分散系数为五项主参数，电缆长度占比作为关联的线路费用条件分表",
+  "正文修订要求": "在最新稿件以xh修订模式增改；设备寿命和评价期只改内容表述；正式正文目前仍用原推广结果",
+  "环境": {
+    "Python": "3.13.14",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.18.0",
+    "highspy": "1.15.1",
+    "openpyxl": "3.1.5"
+  },
+  "文件": [
+    {
+      "path": "tools/locked_parameter_results.py",
+      "bytes": 22941,
+      "sha256": "b95573aa07cd22883b2462c32b1cd8695eaf0ab0f0a67d9fd175f3bdb29c59aa"
+    },
+    {
+      "path": "tools/requirements-current.txt",
+      "bytes": 250,
+      "sha256": "04335b0f90b942f3441d64203d2e606a64d723212ab3403514e0463b3427665a"
+    },
+    {
+      "path": "参考政策/DL-T+5729-2023+配电网规划设计技术导则.pdf",
+      "bytes": 19245329,
+      "sha256": "c0256583876451a159abeac4d7673459c9ae4f6b2594ed241e6e40db81571bdf"
+    },
+    {
+      "path": "参考文献/前沿调研/md/D8_政策标准/《配电网规划设计技术导则（修订稿）》.md",
+      "bytes": 113625,
+      "sha256": "30ecf153d01926d3eddcc8800a782724d11555256e549be390f9183d1b955f88"
+    },
+    {
+      "path": "实验/研究/data/tuomin/10kv_case/data/node_load_seed_pf095.csv",
+      "bytes": 7180,
+      "sha256": "45e70a63ebf6674cd81656ed81d7770acfe04cf06224fe369ebf9629b84932ee"
+    },
+    {
+      "path": "实验/研究/data/tuomin/10kv_case/data/node_master.csv",
+      "bytes": 199688,
+      "sha256": "70975a8f19891e11e73ec428931b6355b17ad1a710b8c4a7832523dcb4d8162d"
+    },
+    {
+      "path": "实验/研究/data/tuomin/10kv_case/data/physical_edges.csv",
+      "bytes": 434875,
+      "sha256": "6bae759f6ddb33888a3c1434ddc9f4a83398c6fccf1e22d3d73cc935fed8342e"
+    },
+    {
+      "path": "实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/邳州10kV线路基础数据表.xlsx",
+      "bytes": 66832,
+      "sha256": "120d7d9cfa59a3b7b8abdd424773b18b1b5420bc2160249d0bf30d76615619d7"
+    },
+    {
+      "path": "实验/研究/data/tuomin/补充数据/徐州地区变电站全停全转情况分析汇总20250705.xlsx",
+      "bytes": 101181,
+      "sha256": "e176254aef7f421dd8128332faa4ba5b6064785b2c707b8b9c2df103504ff317"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_forward_scenes.py",
+      "bytes": 4990,
+      "sha256": "3785d2140c5d32ed9b878d2fab0a35ea42f0e001b07105233965a29a221760de"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_no_tie_investment_submodel.py",
+      "bytes": 21260,
+      "sha256": "33603477cedd2471d0934a37faf91b2857eae9865e0447ff69e39fc49935139b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/asset_2025.py",
+      "bytes": 7117,
+      "sha256": "6972af56a2fc82a768c5994f1d62d0d0853a31bec1af281514b615b22d964181"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/baseline_2021.py",
+      "bytes": 8846,
+      "sha256": "741cdd18fbde78dfdc3607e8b6132134029d1243ad783ddf5e07252822157f7b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/city_mapping_audit.py",
+      "bytes": 9822,
+      "sha256": "0bdabe6f304780fa880748aa36979b55217f5ec2537ad5f893ae55c012e8601e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/cost_references.py",
+      "bytes": 3515,
+      "sha256": "83476dc1cb066787827ce88b4ede3982f6d9013f0374d9e6d89c2f5cf8f5ae21"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/current_economic_assumptions.py",
+      "bytes": 1255,
+      "sha256": "ca25b1cebbbe887ac32fef6572fbd6514d0f96003244bbd462c405eff9ffbabc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/feeder_2025.py",
+      "bytes": 5679,
+      "sha256": "f46f2385de37068ec86f2c3b2b09ecae8fd778a41de6abab104318ed21bb59fc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/hourly_source_profile.py",
+      "bytes": 7769,
+      "sha256": "7028e5ecda6fd6b04865cd2b601a7b329884cd80a2ec6f5c61ffda709bfd4156"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/incremental_cost.py",
+      "bytes": 14732,
+      "sha256": "acebec3a239f30016028fe1e816ad76f7846adba52f0b9562bc9c25939f575d5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+      "bytes": 51239,
+      "sha256": "dfd826a383b6735be5d1de1066ad3de40ae0060bba45db19e7cfece882614551"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/matrix_20261012/README.md",
+      "bytes": 1418,
+      "sha256": "a9f7dd6bbb574f0f22ea88fa18c889719db0522c316fab613a3b7d174160cf20"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/matrix_20261012/model.py",
+      "bytes": 22108,
+      "sha256": "cd46c2d2db4f8c94e667015232f5ad8fee473bfe27a9c93bcc8a3785c28b7889"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/new_line_section_audit.py",
+      "bytes": 3127,
+      "sha256": "49001957962dc0a6dbd50b3f938b10f32fe94e42839843eb88f26606b3d0c1a9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/official_annual.py",
+      "bytes": 3377,
+      "sha256": "24f2fcd8ae19282381209e87124cd3cd5290469d2b2902f6984880e14cd26699"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/pizhou_existing_ties.py",
+      "bytes": 9442,
+      "sha256": "7a832cfffc6a53943e103da4d52bf5a1104d2f8feefbd0b5e6ff851a278686f1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/reverse_screen_2025.py",
+      "bytes": 3775,
+      "sha256": "66d14dc78312732dc43bbae0e20901eda0582128c357770be6370cd9e2c05f65"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/tie_section_audit.py",
+      "bytes": 2998,
+      "sha256": "121e330651fbb562d6769763dffb465415656650f7b36621ec024f97a1161ca8"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/transformer_only_path_2021_2025.py",
+      "bytes": 6124,
+      "sha256": "9b9a5549ca754bcb9339f581fa117e6c6853375b99c4b1b830f9194ca2cafc25"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/README.md",
+      "bytes": 2355,
+      "sha256": "be1191b275e84d486c46c3c8eedd728ce4c429b5b891f14de692cac5b4e5926f"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/五参数输入相关.csv",
+      "bytes": 718,
+      "sha256": "d2a412734f6b54c18bf0df245fd8dc5b29a5b52dc76b7d10e20023ea3b1d676b"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/六参数输入相关.csv",
+      "bytes": 968,
+      "sha256": "c6ef03619e9bc32f874c8a9999017e5a53df57cee9d87a06392efba5bb11893e"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/固定其余五项后的组内相关.csv",
+      "bytes": 1290,
+      "sha256": "99253c2b63a580ddc95460752315c3bf32774887f61e3b44740d4fb519daa4ad"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/推广矩阵与相关性分析_最新收资统一结果.xlsx",
+      "bytes": 2660547,
+      "sha256": "0bab383367dc03dd16809d3745807451a046a4a47ca2b66ff411bd116a4afb3a"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/推广矩阵有效区间.csv",
+      "bytes": 158403,
+      "sha256": "64f105fc130b68aea8c020d6e33ac6bb4b2ea43585b812d008a9f1828d1730b0"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/统一有效样本.csv",
+      "bytes": 5478942,
+      "sha256": "fa4b63dfae4a27d80b6a4963e0b632c964aec4fa533f145aca9afc14beeadd37"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/统一结果与使用说明.md",
+      "bytes": 4197,
+      "sha256": "2191029f65053199165bddced7a47c3564c4474f8c9a878df39b8fef65a89fed"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/统一结果核验.json",
+      "bytes": 1815,
+      "sha256": "aec8fe1cdfab85a1c8eb25408b91f4fcfcf57e9c77ceed764452ed6e0df38c42"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012参数结果锁定/依赖核查.json",
+      "bytes": 1829,
+      "sha256": "cfd4e8f3c52ea87b8838f2583834dfb63e007e4ce9f2b79a8ae81eb774a575ba"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012参数结果锁定/初始转供率独立核验.json",
+      "bytes": 1960,
+      "sha256": "f2550074a08032f7df61949bcea4ee3e3a66222dc81cbbbeb3dbe4e97ba9450b"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012参数结果锁定/矩阵端点及分层独立LP核验.json",
+      "bytes": 339039,
+      "sha256": "de7338fbe0ec171bad4637923871498cd9cc1c72c6c24353a878d2fc7074aaf4"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012参数结果锁定/转供率列间变化核验.csv",
+      "bytes": 15461,
+      "sha256": "16a7086d094afdbeaa7fef7308f38df72830063a997aba4366e53476fe94b124"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012参数结果锁定/迁移前交付完整性核验.json",
+      "bytes": 2612,
+      "sha256": "cd04d18c5da3cc9ecd177320639c2a1bf588d16659316f7e3314df141b0add76"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012参数结果锁定/迁移逐文件核验.json",
+      "bytes": 7384,
+      "sha256": "ae0fe8cdc6ca6f3313b3139fcc5b50b7757d98a1f30ce76ac203263b7ef97900"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/参数联合情景_20261012/README.md",
+      "bytes": 1664,
+      "sha256": "bdba95831aff5f94823c4eac139719237a4957a13138d79ec3944237f4feeeb7"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/参数联合情景_20261012/实际转供收资站点及来源.csv",
+      "bytes": 4767,
+      "sha256": "2ccb8ca7aa7d1d23ed4b5fb7851f571c8d4ebce9626fad5b89a5aa60bbd80381"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/参数联合情景_20261012/实际转供率统计范围核验.csv",
+      "bytes": 767,
+      "sha256": "89f94f5c5a3386f98425540e016d6f9177ebd6a478c7408b4ebdcf7718040d4a"
+    },
+    {
+      "path": "研究报告/试算/20261012_参数联合情景锁定/README.md",
+      "bytes": 1184,
+      "sha256": "3b202142cb00e816df9437a7b79f3ced6c18bf8503c793e56a3e0deb9fc85bd6"
+    },
+    {
+      "path": "研究报告/试算/20261012_参数联合情景锁定/局部补充汇总口径.json",
+      "bytes": 528,
+      "sha256": "49adcb815498fe8b4defc8ac6c7722c43b1b2bb04d38a20838d62488c625e182"
+    },
+    {
+      "path": "研究报告/试算/20261012_参数联合情景锁定/统一原始求解记录.jsonl",
+      "bytes": 83780404,
+      "sha256": "e27b5ad067d2f77842a2b79d5a873cd8d0f776f38443f21f417398b0a328e516"
+    },
+    {
+      "path": "研究报告/试算/20261012_参数联合情景锁定/统一试算设计.json",
+      "bytes": 7529,
+      "sha256": "02b598ed99103b1a6c56f05251573b19d799e4c30a3f67bf5114619ab0cfcd1a"
+    }
+  ]
+}

@@ -1,28 +1,20 @@
 {
   "来源SHA256": {
-    "研究报告/供电公司讨论稿/讨论稿.md": "079bc2d8301ea11215db525f3dea7b0d9fbd1b39330cb08c486ca0d9d242de99",
-    "tools/build_discussion_brief.py": "b61db0495e2e4e64c9cc100b7f1896070d07410daa25f88fe4cf43028995024f",
-    "研究报告/服务报告-国内外研究现状分析.md": "44f458f03c78df21ba9337b4bb1e8ea6fa05b973e70dedeca180f33126dfefaf",
-    "研究报告/03_MD/当前版/01 第一章 绪论.md": "4c038d593bdb6b79261ee56b2133e88d56a3604fa9ba58cb0955187f965e32ea",
-    "研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": "78470d2577607d77662ff23c8451cb3f1f615a031f395d5b6dba8d9c4bf85d0f",
-    "研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": "60a4f80ae271e7e788946ccecc5e32bbfd349f5d5af0914b3c1845bf01b106f1",
-    "研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md": "986726f303d86c48fda2b2faab43682506558b0898ad82b923052c1b2efef8b0",
-    "研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md": "67d83475601c6370fe574263b29b58650ba23dae9211cdf23773abf560f789d2",
-    "研究报告/03_MD/当前版/06 第六章 结论与建议.md": "02fc9b099b85f63652111bdb45ab85442d7c28263c0792f54a4b3b6cc5c028f4",
-    "研究报告/试算/20261010_四小时案例/pizhou/rigid_storage/summary.json": "19bfd0878d0b9c69ab3129474353cd3e40cd6d3355275ae36086157af2ba8205",
-    "研究报告/试算/20261010_四小时案例/pizhou/elastic_storage/summary.json": "2abdeaf51d023dc126be0d6284d73315154f5e4ce806a0001ead6596a3512cad",
-    "研究报告/试算/20261010_四小时案例/city/rigid_storage/summary.json": "e9f9705f20ad6423e86cb6994df181a9b51cf2ebc72188e90f7dde54868a721d",
-    "研究报告/试算/20261010_四小时案例/city/elastic_storage/summary.json": "be51a8a7a2c5ca4b589463e16ceb52ff33435110cbeac024bd30da2115462a54",
-    "研究报告/02图表/当前版/计算表.json": "aa6c726aab1ae23709228d6da971c97c4f5c00a87c178f27530da79c5c081205",
-    "研究报告/供电公司讨论稿/供电公司讨论稿.docx": "63a25f588e27a4432cc3b723dbf289f06d0d72917e43cd3e72f644a555153d02"
+    "研究报告/供电公司讨论稿/讨论稿.md": "855782bd4493b7eb95f20f306aa82f7be9f55b8024802585f7d4358678605472",
+    "研究报告/04_word/研究报告终稿.docx": "2512ad317d417a09cf6de8a17aa06afa5724d83b4eaeeb2525fc1d109ba792fe",
+    "tools/build_discussion_brief.py": "40b14a202ba9251a63deabb691b7edaf91ef9bc4b2a4284c230e6dfb38ee9360",
+    "研究报告/05_review/当前版/1011讨论稿重构/修前_供电公司讨论稿.docx": "63a25f588e27a4432cc3b723dbf289f06d0d72917e43cd3e72f644a555153d02",
+    "tools/report_policy.json": "3b26fe8358972deb2ba6a0f4a2bf815151d8e2ba3173da820a3e2804d1c75004",
+    "研究报告/供电公司讨论稿/供电公司讨论稿.docx": "035807630fe5cb9f703593855a12108fe18858497a41bd98a031f510637ee52c"
   },
+  "唯一内容依据": "研究报告/04_word/研究报告终稿.docx",
   "表格": {
     "RESULT_TABLE": [
       [
         "地区／方案",
         "主变容量\nMVA",
         "容载比",
-        "储能功率\nMW",
+        "储能额定功率\nMW",
         "累计新增联络\n条",
         "费用现值\n万元"
       ],
@@ -237,5 +229,25 @@
       ]
     ]
   },
-  "费用摘要": "两地区费用现值合计由120219.30万元降至84449.61万元，减少35769.70万元，约30%。邳州和市区分别减少8365.32万元、27404.38万元。"
+  "表格依据": {
+    "RESULT_TABLE": [
+      "5-4",
+      "5-6",
+      "5-8"
+    ],
+    "PIZHOU_ANNUAL_TABLE": [
+      "5-4",
+      "5-5"
+    ],
+    "CITY_ANNUAL_TABLE": [
+      "5-6",
+      "5-7"
+    ],
+    "RANGE_TABLE": [
+      "5-71",
+      "5-72",
+      "5-73"
+    ]
+  },
+  "交付格式": "用户要求仅Word，原有PDF为修前版本，本轮不生成PDF"
 }

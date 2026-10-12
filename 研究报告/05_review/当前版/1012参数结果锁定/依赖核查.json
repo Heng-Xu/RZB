@@ -1,0 +1,36 @@
+{
+  "当前模型导入代码": [
+    "实验/研究/rebuild_2026/matrix_20261012/model.py",
+    "实验/研究/rebuild_2026/annual_no_tie_investment_submodel.py",
+    "实验/研究/rebuild_2026/baseline_2021.py",
+    "实验/研究/rebuild_2026/asset_2025.py",
+    "实验/研究/rebuild_2026/official_annual.py",
+    "实验/研究/rebuild_2026/city_mapping_audit.py",
+    "实验/研究/rebuild_2026/hourly_source_profile.py",
+    "实验/研究/rebuild_2026/incremental_cost.py",
+    "实验/研究/rebuild_2026/cost_references.py",
+    "实验/研究/rebuild_2026/transformer_only_path_2021_2025.py",
+    "实验/研究/rebuild_2026/annual_forward_scenes.py",
+    "实验/研究/rebuild_2026/reverse_screen_2025.py",
+    "实验/研究/rebuild_2026/current_economic_assumptions.py",
+    "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+    "实验/研究/rebuild_2026/pizhou_existing_ties.py",
+    "实验/研究/rebuild_2026/feeder_2025.py",
+    "实验/研究/rebuild_2026/new_line_section_audit.py",
+    "实验/研究/rebuild_2026/tie_section_audit.py"
+  ],
+  "导入文件数": 18,
+  "与待清理文件交集": [],
+  "待清理入口被保留代码引用": [],
+  "保留的正式报告推广依赖": [
+    "实验/研究/rebuild_2026/matrix_20261010",
+    "研究报告/试算/20261010_五参数推广",
+    "研究报告/试算/20261010_负荷分散系数扩展"
+  ],
+  "清理范围": "仅本次参数专题的24个历史工具、5套review_matrix中间模型及反馈目录中的派生参数试验；保留正式报告和实际案例依赖",
+  "导入及构造输入时实际读取的数据": [
+    "实验/研究/data/tuomin/10kv_case/data/node_load_seed_pf095.csv",
+    "实验/研究/data/tuomin/10kv_case/data/node_master.csv",
+    "实验/研究/data/tuomin/10kv_case/data/physical_edges.csv"
+  ]
+}

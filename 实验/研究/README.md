@@ -1,6 +1,6 @@
 # 当前报告计算模型
 
-现行模型位于 `rebuild_2026`，保留29个直接或间接依赖模块及八份相关测试。原始收资和10 kV案例保留在 `data/tuomin`，模型必要输入位于 `rebuild_2026/source_audit`。
+现行模型位于 `rebuild_2026`，保留正式报告及锁定参数结果需要的依赖模块与相关测试。原始收资和10 kV案例保留在 `data/tuomin`，模型必要输入位于 `rebuild_2026/source_audit`。
 
 当前结果位于 `../../研究报告/01研究推荐/当前版`，正文和外推脚本位于相应 `当前版` 目录。使用 Conda 环境 `xuzhou110kv_clr`，依赖见 `../../tools/requirements-current.txt`。
 

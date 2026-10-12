@@ -142,7 +142,7 @@ def main():
         assert all(hashlib.sha256((root/k).read_bytes()).hexdigest()==v for k,v in hashes.items()),'源稿变化后未重新装配'
         if args.stage=='final':
             from build_discussion_brief import check as check_brief
-            check_brief(root,pdf=True)
+            check_brief(root,final=True)
             import pymupdf
             pdfpath=report/'04_word/研究报告终稿.pdf';pdf=pymupdf.open(pdfpath)
             assert any(s in str(pdf.metadata).lower() for s in ['wps','kingsoft'])

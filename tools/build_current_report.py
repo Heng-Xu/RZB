@@ -9,6 +9,7 @@ def run(script,root):
 
 def main():
  parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--discussion',action='store_true',help='维护当前讨论稿；以终稿DOCX为内容依据')
  parser.add_argument('--root',type=Path,default=ROOT,help='完整项目副本的根目录，可用于试构建')
  parser.add_argument('--rebuild',action='store_true',help='修改六章源后装配原生Word，随后须用WPS导出PDF并接收')
  parser.add_argument('--pdf-only',action='store_true',help='旧选项；现须从WPS原生导出PDF')
@@ -16,6 +17,12 @@ def main():
  parser.add_argument('--docx-only',action='store_true',help='装配原生DOCX，供WPS打开导出；完成导出后使用--accept-wps-pdf')
  parser.add_argument('--accept-wps-pdf',type=Path,help='接收由当前原生DOCX在WPS中直接导出的PDF，并同步目录缓存')
  args=parser.parse_args();root=args.root.resolve()
+ if args.discussion:
+  script=root/'tools/build_discussion_brief.py'
+  if args.rebuild:
+   subprocess.run([sys.executable,str(script),'--root',str(root)],check=True)
+  subprocess.run([sys.executable,str(script),'--root',str(root),'--check'],check=True)
+  return
  if args.docx_only or args.rebuild:
   if args.pdf_only or args.check_only or args.accept_wps_pdf:parser.error('--docx-only/--rebuild须单独使用')
   run('装配Word.py',root)

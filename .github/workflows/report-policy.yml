@@ -8,6 +8,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - run: pip install python-docx==1.2.0 PyMuPDF==1.28.2 openpyxl==3.1.5 numpy pandas scipy
+      - run: pip install python-docx==1.2.0 PyMuPDF==1.28.2 openpyxl==3.1.5 numpy pandas scipy highspy==1.15.1
       - run: python tools/test_report_prose_policy.py
       - run: python tools/check_report_policy.py --stage final
+      - run: python tools/locked_parameter_results.py
