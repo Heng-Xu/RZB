@@ -1,0 +1,1471 @@
+{
+  "scope": "2026-10-12 两地参数修正及固定存量网络承载力试算；结果供讨论",
+  "model": "实验/研究/rebuild_2026/case_parameters_20261012/capacity_run.py",
+  "final_result": "研究报告/01研究推荐/当前版/案例承载力复核_20261012",
+  "raw": "研究报告/试算/20261012_案例承载力复核_存量网络固定",
+  "checks": {
+    "model_tests": 11,
+    "static_cases": 22752,
+    "workbook_cells": 7929
+  },
+  "formal_and_locked_unchanged": [
+    {
+      "path": "研究报告/04_word/研究报告终稿.docx",
+      "bytes": 2523779,
+      "sha256": "2512ad317d417a09cf6de8a17aa06afa5724d83b4eaeeb2525fc1d109ba792fe"
+    },
+    {
+      "path": "研究报告/04_word/研究报告终稿.pdf",
+      "bytes": 3464943,
+      "sha256": "eb0d29e514f4be79ced2b5d169e2ea75dddd12fc4ede03cc39e866cf0442ee5d"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/参数联合情景_20261012/推广矩阵与相关性分析_最新收资统一结果.xlsx",
+      "bytes": 2660547,
+      "sha256": "0bab383367dc03dd16809d3745807451a046a4a47ca2b66ff411bd116a4afb3a"
+    }
+  ],
+  "files": [
+    {
+      "path": ".githooks/pre-commit",
+      "bytes": 1076,
+      "sha256": "fe1fd262e983244b82d5f67c3bb69a79873524561f17199e7c8332116e7e1408"
+    },
+    {
+      "path": ".github/workflows/report-policy.yml",
+      "bytes": 833,
+      "sha256": "6dbe499bea8966018db881d84716336be1fcf79ed2217f1ea131f30a8ad3c691"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2646,
+      "sha256": "7b92058091ed541943a747106e6644f7333dac3bd609a7b2b49ff6035328b0df"
+    },
+    {
+      "path": "memory/archive/2026-10-12-案例参数与承载力复核前.md",
+      "bytes": 6427,
+      "sha256": "4a7b62ffe7077cde3518c92ff6fe44dfc3f969b3ffb4cf7bb2375165ddc589f4"
+    },
+    {
+      "path": "memory/current.md",
+      "bytes": 4328,
+      "sha256": "5abe052170571fb63400f5bce0e30c64c7d06faf3c2c5ba00aefcf9fc900e9e7"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 62773,
+      "sha256": "9d3863a1228d475131d769e92f1515f63df68656a957751f5c476148fd46468e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/README.md",
+      "bytes": 2189,
+      "sha256": "b3af82ebebe47b18465b08dfaf5a8e2f222f5f3b2ed6688c1191e17c7a85e8ef"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/README.md",
+      "bytes": 3427,
+      "sha256": "7d3bb2464cb5a17b1f720dfe080512da213edf5dbc0dd2797e2b7022e6ffe836"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__init__.py",
+      "bytes": 73,
+      "sha256": "3930f807b6048732e2cc50d920674798487bce2d090f25d050e574f9fc25f4a3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/capacity_audit.py",
+      "bytes": 8506,
+      "sha256": "d9cc2b64fce223de865d9f453b61ef7daa965529628f722864ec130eccb04ca3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/capacity_report.py",
+      "bytes": 15842,
+      "sha256": "c0432ce5e798ebe6d3d8ab449b379950aa888f3f9e22741adbf619104afac6d6"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/capacity_run.py",
+      "bytes": 13089,
+      "sha256": "27c85489b38b6272ba6640a56761294cbfb3375c8626b41b755efa963257a06a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/capacity_verify.py",
+      "bytes": 6473,
+      "sha256": "1c713bb4b34cde74fbfd0e91fee34281bda68ac3fe58a781466ac9b940986a2c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/report.py",
+      "bytes": 13829,
+      "sha256": "2be4e77323b8b30ea85b8e68e2515c2b49c689e1cd5c0bbcbb93b132157876fe"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/run.py",
+      "bytes": 19626,
+      "sha256": "3ad1c77eebfe97eb544188246ef463aeb8554a9a120400ce512a7ea07cbf4538"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/test_model.py",
+      "bytes": 4124,
+      "sha256": "d9550d4ce738882ecdae3e0f15c5ded375911958bbce045459e739fa520c1150"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/verify.py",
+      "bytes": 10004,
+      "sha256": "3908478f9ef411e66781331d3ba1f6e6dd5c531e8d137b69c5f47b608a9ce915"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/README.md",
+      "bytes": 482,
+      "sha256": "f336b1723e4907c1bfd2fe19efd7357a43be4ce08ebbf880eea859f158ea786f"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/两地区参数修正_2.0下限有无对照.xlsx",
+      "bytes": 33960,
+      "sha256": "2523da6e0af38b6e95534028ac9ab1895e68dc7f87366a4b250a72ccb26a6842"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/使用说明.csv",
+      "bytes": 1684,
+      "sha256": "1577fe4b836d24e29f2201b361e03fb5e97a820126632e55d077fff3705e6177"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/参数修正.csv",
+      "bytes": 553,
+      "sha256": "87c8e5d2c5f79e1b6c8e941a7ffa53016179d8de86b895ede655a47b8a026357"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/新增联络项目.csv",
+      "bytes": 3088,
+      "sha256": "cb28961871d5c6c6cc988fa8a0989c29dc715d823c8fb5b583877df650bd0362"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/方案费用对照.csv",
+      "bytes": 594,
+      "sha256": "939333ab9655c3b331718b07c7f081379d344fb3662fbb334f4a7dc46cc7ae16"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/求解与核验.csv",
+      "bytes": 786,
+      "sha256": "93f1e950613029285fad9594bfa35325ad020e1c51af69eed7e5254cff45f0a1"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/结果说明.md",
+      "bytes": 5160,
+      "sha256": "373d44f80e00a4a9987e382c271c1b621ae5a34e2f184362b6566e30c17ca420"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/逐年方案.csv",
+      "bytes": 2819,
+      "sha256": "915190e41675e440dab781f8a8cfe55a68bfa9768183b3978484b164b09a4940"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例参数修正_20261012/逐站设备.csv",
+      "bytes": 30656,
+      "sha256": "d24717220ea08881df036673263dc63fd8ca070eb863111574c888bbee5a154a"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/README.md",
+      "bytes": 857,
+      "sha256": "f962ceb48bf82364e4fb49b5b63fbfb3c130587ed4d271ef648506f4a3dded70"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/两地区刚性与弹性方案_承载力复核.xlsx",
+      "bytes": 44933,
+      "sha256": "269eeade6dcd129a0b02e3bd607237f33ae27ac986684cfdfdb6275933238c25"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/压缩设备直接校核.csv",
+      "bytes": 520,
+      "sha256": "affbf649bd1deaaafe2cad73bc05971c370cf24b5a355e9da137ebe734f4103e"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/地区参数.csv",
+      "bytes": 679,
+      "sha256": "72801a357b81de146f448b73a005fdfb154754e4083bb26682de6e3edafc2b86"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/新增联络.csv",
+      "bytes": 2691,
+      "sha256": "f832ab62b73621f3e2d56ffc18321bf76c5f03a4dbad5af6bc1fa1d16780cca6"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/方案费用.csv",
+      "bytes": 1033,
+      "sha256": "0a02f98c52d5c75be4de1fcc98161f5029c5848a6794297d0cbe0b494576aef8"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/模型说明.csv",
+      "bytes": 2195,
+      "sha256": "0aa6da5c59aff4a0d49e93b5c41802a08767e953c9deaf5872db044f126ccc6c"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/结果与承载力说明.md",
+      "bytes": 7218,
+      "sha256": "723ac54d36c163c07eb98252acec8546da24780e0b19b1c7a49fb62bf508d58e"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/逐年方案.csv",
+      "bytes": 3382,
+      "sha256": "0b39574cad817e55d076ed813e8ceb305e725dce302ebdbf9e0b3b73852f0555"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/逐站设备.csv",
+      "bytes": 45900,
+      "sha256": "5e28cd6fc7a453cd3925ea5f13276cc53d122bfeb36b6555edea8e71bab5c019"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/案例承载力复核_20261012/首年补强与验收.csv",
+      "bytes": 702,
+      "sha256": "6fe1fcd420c35af7c48e2725d6152bbc1f88d899ee2a74a4475681aa1d482918"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012案例参数修正/压缩起点与首年承载力.csv",
+      "bytes": 724,
+      "sha256": "d30c556ab220717bb42bd09bda59f0ffe4c2588b7ca2143b3a0fdb7705303b56"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012案例参数修正/导出核验.json",
+      "bytes": 605,
+      "sha256": "76e43de3d5baeeac4540767678be2c70834b4f6fe51ff1a12798f697a235351f"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012案例参数修正/独立核验.json",
+      "bytes": 5909,
+      "sha256": "f4b824ddd2e79e60742d9416dab5a2eb7351ae7883093734be79185256b12d91"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012案例参数修正/首年承载力审查.json",
+      "bytes": 79343,
+      "sha256": "ad5936e7e8ebabb21d7ae4752b211eee75426eeb667c0b1ce7ecee8e3cebffa8"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012案例参数修正/首年承载力缺口.csv",
+      "bytes": 34017,
+      "sha256": "f861f71877d96d2a1463e8a49da1da3f9e4203328512b2209b64ba75a590b91b"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012案例承载力复核/README.md",
+      "bytes": 1504,
+      "sha256": "71645b664fd297c9d5cfc8c89da7cff8a3ff501e56e758b7df58f4c088fdb9b3"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012案例承载力复核/导出核验.json",
+      "bytes": 4221,
+      "sha256": "ec6f9945ad679c0738698e681c85d181ec319948d1ef57530495209786772ebe"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012案例承载力复核/矩阵费用及独立承载力核验.json",
+      "bytes": 9217,
+      "sha256": "aaabfeb29668bc7aae9f4b0dbe0c97d00fad58326f99ef2a0cbfc1b9d970a7eb"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/案例参数修正_20261012/README.md",
+      "bytes": 842,
+      "sha256": "4ca4eee0e60f11676f9073b7ad7959dca5efc67f2f0e62b28ba9d0b882f56643"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/案例参数修正_20261012/来源及参数.json",
+      "bytes": 6390,
+      "sha256": "577d3ce0578d64f5fd1207d2f8bee2c30e7ba3b595d27e24273b6e94275faf1a"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/案例参数修正_20261012/转供原表逐站提取.csv",
+      "bytes": 3810,
+      "sha256": "7b10af7d65c9b957bf551c6483527441027f0951b3a639d93641686df270ff7f"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/案例参数修正_20261012/转供统计范围.csv",
+      "bytes": 342,
+      "sha256": "1f42b5dea6bd8278960eef9e924cb4d158eb726ffaadc91e998ea3552107ee71"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/案例参数修正_20261012/邳州电缆长度提取.csv",
+      "bytes": 11192,
+      "sha256": "f372aee2ee82f1a556628235fa62a92ad8c0fb195ba7beb969a73e7d4c9fe339"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/README.md",
+      "bytes": 463,
+      "sha256": "d34bfc97078216882597c53d24fabf83d2164cd8bffd1fa7d2237c0de109867e"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/floor_2/chosen_solution.npz",
+      "bytes": 8723,
+      "sha256": "9881eae6d3d5914a7a02d0baecfe09714182938b642729da5cc6a63cb281f2f8"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/floor_2/dispatch.csv",
+      "bytes": 739398,
+      "sha256": "e4ed906bc77e218756b81e8bd58637945968dfe3eddb5ac34e277a84abe203b8"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/floor_2/independent_lp.json",
+      "bytes": 34989,
+      "sha256": "7b7a91b3e6aee10af81edc639cdb58afe0a84959055aaa611ed33f59b2dd74af"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/floor_2/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/floor_2/solve_solution.npz",
+      "bytes": 8723,
+      "sha256": "9881eae6d3d5914a7a02d0baecfe09714182938b642729da5cc6a63cb281f2f8"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/floor_2/solve_solver.json",
+      "bytes": 511,
+      "sha256": "6e86e2d397fd59a4c372cbde8ab358130f24342d8ccbd7950ed1ec5d6e5a8d29"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/floor_2/stations.csv",
+      "bytes": 5438,
+      "sha256": "af11c250f971ab8f93d051f43e83edb29479884cf946c1fd78714988a77d484a"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/floor_2/summary.json",
+      "bytes": 4029,
+      "sha256": "15909305974393a2c1b8501caf08ac4107c1a7e2dd91eba738326e72459ed23c"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/floor_2/years.csv",
+      "bytes": 773,
+      "sha256": "6cef47952512a835153580efab24c177e1c85852f6d93a881bc68434c7c71963"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/inputs.json",
+      "bytes": 738782,
+      "sha256": "b4cded208d12e98c48d397013a05df9702984a75afbcdcb6e47dfc81d6d36e7b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/no_floor/chosen_solution.npz",
+      "bytes": 9086,
+      "sha256": "0abbef0310284806adfd36f0df20068e74a348da5e98b5ef7dde3849399e93ed"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/no_floor/dispatch.csv",
+      "bytes": 738148,
+      "sha256": "f8c2adbc12bb419ce2f37029505b397da6e6059e0386daed41fc26da3696cee7"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/no_floor/independent_lp.json",
+      "bytes": 35008,
+      "sha256": "423ed497bfdb838509db71b6e66631ab702109435e552502d10025607342311a"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/no_floor/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/no_floor/solve_solution.npz",
+      "bytes": 9086,
+      "sha256": "0abbef0310284806adfd36f0df20068e74a348da5e98b5ef7dde3849399e93ed"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/no_floor/solve_solver.json",
+      "bytes": 484,
+      "sha256": "f6165f6a269e59d0b2d59e4727ab087ebde3ea7cdc2297da0e1a5f0cd396a2bb"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/no_floor/stations.csv",
+      "bytes": 5413,
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/no_floor/summary.json",
+      "bytes": 3914,
+      "sha256": "ed477b47a8c998d6301e0c6fe98d4858721ea1d8414e9d8e2705af3bcc19d10d"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/no_floor/years.csv",
+      "bytes": 698,
+      "sha256": "f33fa0cc2031a37a76bd701edca9fee5adc68a8ec383662c791763cc3ad9ea66"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/网络及候选.csv",
+      "bytes": 163482,
+      "sha256": "7a273d25dd10f0f303dcb55c84a544575f8afc4e05d16b3acfa2a2110014cec6"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/city/静态工况.csv",
+      "bytes": 37562,
+      "sha256": "0e205720dc37006cb67ad7f078a4b6767cd9068bdc97c6767643eded92535ea2"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/floor_2/chosen_solution.npz",
+      "bytes": 4015,
+      "sha256": "b31bd7a9e508f31dcf26e8b0e54c3fedfe31883bda9c21e6f5a946b5ce52cdfa"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/floor_2/dispatch.csv",
+      "bytes": 357963,
+      "sha256": "c7b062d28962e422d7db482c7d51f56e6f66f87f0e6993d42933007ea3736477"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/floor_2/independent_lp.json",
+      "bytes": 24439,
+      "sha256": "0b0d7f7e289114518facc482e6b32d50982c7a33c462c0baeb169b5ea6fd2217"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/floor_2/projects.csv",
+      "bytes": 1131,
+      "sha256": "f47fd233da7bb62e3fbd063c65fc253d0196ad6a17d365689f58009be8597fb2"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/floor_2/solve_solution.npz",
+      "bytes": 4015,
+      "sha256": "b31bd7a9e508f31dcf26e8b0e54c3fedfe31883bda9c21e6f5a946b5ce52cdfa"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/floor_2/solve_solver.json",
+      "bytes": 586,
+      "sha256": "2b3ad3fdf5023efabf2b06d06b2838fd7d6139bd1ff14369345d6a360188f8a8"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/floor_2/stations.csv",
+      "bytes": 3767,
+      "sha256": "73df5a478140decf16e6d2aecadcd6f7acf8049da88617885ad6d5ca2f533e92"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/floor_2/summary.json",
+      "bytes": 4272,
+      "sha256": "823bedffcc7aa42c778f08e394d7bb803526b24e839a6537797dad44aa1d1f85"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/floor_2/years.csv",
+      "bytes": 919,
+      "sha256": "a3cb25d2c4f7e1aedeff19ba437efb8ae348883668f1f9b48dd2504176c9d951"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/inputs.json",
+      "bytes": 301492,
+      "sha256": "132bbf97fc34fe1221f57b79bf113b7cd0b753975c4380940467d19d3726d6fd"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/no_floor/chosen_solution.npz",
+      "bytes": 4664,
+      "sha256": "bad5b9dd4a47ef0668e4ea3c0b885a510ec4ad4889d90ebdbddef833a1095571"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/no_floor/dispatch.csv",
+      "bytes": 358090,
+      "sha256": "6db4e62974e8638b40224de3cb8b6b6c306b52f74d94107a20daf607ce5593a7"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/no_floor/independent_lp.json",
+      "bytes": 24438,
+      "sha256": "89513916ccf859cfd20253addac42717a17536ee00c7462a8fdd633aebf5c2fd"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/no_floor/projects.csv",
+      "bytes": 1960,
+      "sha256": "89d4183ceb79c33456a262a0102a0cd48d180785c4d437150e632bdbbcfbc935"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/no_floor/solve_solution.npz",
+      "bytes": 4664,
+      "sha256": "bad5b9dd4a47ef0668e4ea3c0b885a510ec4ad4889d90ebdbddef833a1095571"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/no_floor/solve_solver.json",
+      "bytes": 588,
+      "sha256": "3c5c089bd9bb3708b775f0e61ffa6a0e3b61054641dd7837047323a1933afb78"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/no_floor/stations.csv",
+      "bytes": 3756,
+      "sha256": "9b382be262e39eee788cd541aac003279b38167331869348aa6d0cc969110919"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/no_floor/summary.json",
+      "bytes": 4286,
+      "sha256": "59a3f7d414b75dfeeaebe1d74b8267b5bbd89034014c55a1e15c4a798ba6ab94"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/no_floor/years.csv",
+      "bytes": 931,
+      "sha256": "77e383f26e35e0f5b47d0b795dc4f85bc8cf4c12bbc68265c0eaaa9bb1f2fee5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/网络及候选.csv",
+      "bytes": 71883,
+      "sha256": "1a3a46a4a419923af82e41f9b7944d8f53834657f6b403ddc90c7220225dd297"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例参数修正_下限对照/pizhou/静态工况.csv",
+      "bytes": 25610,
+      "sha256": "5d3f8f39163e0193ee150297082ad83d1847a754001517d43a63d5c83cf641ec"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/README.md",
+      "bytes": 482,
+      "sha256": "dc8e61a6ed6edb36113da46d1f706e0c1bf89438fe1ddd42dbdc43c32b1cbd51"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/candidate_01/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/candidate_01/stations.csv",
+      "bytes": 5413,
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/candidate_01/summary.json",
+      "bytes": 5668,
+      "sha256": "ed3c3efe36a9fc99b68f9e15ce2370666fb5f552a67b5dcd45096d4940d92789"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/chosen_solution.npz",
+      "bytes": 5456,
+      "sha256": "9b248622d4226cf51101c9c8ee9a561e271a76d1e92ebc8ce5bb634ce743e51b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/independent_lp.json",
+      "bytes": 932727,
+      "sha256": "d2dbd8744dbf024323c201d06a79458392ff544464a5c5ba16b821bbaba2888f"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/iteration_01_solution.npz",
+      "bytes": 5456,
+      "sha256": "9b248622d4226cf51101c9c8ee9a561e271a76d1e92ebc8ce5bb634ce743e51b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/iteration_01_solver.json",
+      "bytes": 491,
+      "sha256": "10b469cad28de4cfd8087b9b584c6dfd45805fb50045b166013ee52a96a2b749"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/selected_pairs.json",
+      "bytes": 8083,
+      "sha256": "4a582dc50cc3ae070b7ff54175b8286b3323bc3cc2cf8edd4e1654faab8a4b08"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/stations.csv",
+      "bytes": 5413,
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/summary.json",
+      "bytes": 6301,
+      "sha256": "d8273529b05ee90b3749c02ba883ddfbf1a021900fb8b96a186d9cb19c57c4e9"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/elastic_no_floor/years.csv",
+      "bytes": 741,
+      "sha256": "70e2afe5ad3996563ad4ebc6354145cfacf30a609f217842e9f298185da1d8c5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/inputs.json",
+      "bytes": 749081,
+      "sha256": "80eff902ce3ab6685886d82b795aaaa2d492d1c88e1ed0845e1b2a6b43507d94"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/candidate_01/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/candidate_01/stations.csv",
+      "bytes": 5413,
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/candidate_01/summary.json",
+      "bytes": 5665,
+      "sha256": "0dd3c6eb6a9711332b3a962e1f370a70b09999def13be02c7b1bc18e4e973237"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/chosen_solution.npz",
+      "bytes": 9692,
+      "sha256": "3fefe499562ab90a5d2a4ac051ce5b1d21ef3e37609398043f755d07e0a0731e"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/independent_lp.json",
+      "bytes": 932727,
+      "sha256": "d2dbd8744dbf024323c201d06a79458392ff544464a5c5ba16b821bbaba2888f"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/iteration_01_solution.npz",
+      "bytes": 9692,
+      "sha256": "3fefe499562ab90a5d2a4ac051ce5b1d21ef3e37609398043f755d07e0a0731e"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/iteration_01_solver.json",
+      "bytes": 491,
+      "sha256": "3e2f8917b62702d5ea17131e209557e47fa33d05767c803168518603d60cd5eb"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/selected_pairs.json",
+      "bytes": 8083,
+      "sha256": "4a582dc50cc3ae070b7ff54175b8286b3323bc3cc2cf8edd4e1654faab8a4b08"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/stations.csv",
+      "bytes": 5413,
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/summary.json",
+      "bytes": 6296,
+      "sha256": "6435ef3fc3ad019779c894f3b7c870fcaa92f78ae075d6e6121cef3d3502bf51"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/rigid_storage/years.csv",
+      "bytes": 739,
+      "sha256": "a11c68a180f101c81473d9acdf1c8496aab9cca785579eee88cffd156a032334"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/static_base.npz",
+      "bytes": 9979,
+      "sha256": "d4f23410c5a5d80fadfe83ed39193515dcb4fcfe387f46577969807068e643b5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/city/静态工况.csv",
+      "bytes": 414295,
+      "sha256": "d52e9e9c68a3cdfac2ebadb520ee5e6749acc98e72896ca145f80770d0dd5be2"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/candidate_01/projects.csv",
+      "bytes": 1960,
+      "sha256": "89d4183ceb79c33456a262a0102a0cd48d180785c4d437150e632bdbbcfbc935"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/candidate_01/stations.csv",
+      "bytes": 3756,
+      "sha256": "9b382be262e39eee788cd541aac003279b38167331869348aa6d0cc969110919"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/candidate_01/summary.json",
+      "bytes": 6135,
+      "sha256": "af4310b0b254a8aadf9fd9c4eff88339f8b22b62d5d5cb5eb448940f43dd7965"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/candidate_02/projects.csv",
+      "bytes": 2743,
+      "sha256": "690727063b6d850d89e95699f4cfbd1fa7efaa3982586c5f5479206d2809a05f"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/candidate_02/stations.csv",
+      "bytes": 3776,
+      "sha256": "ef563452e40b60777105a91342abb64bc0ebc20edb154d42b8940f74e270f001"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/candidate_02/summary.json",
+      "bytes": 8002,
+      "sha256": "1532e67cdcee84216b280ab68a7076e313a69b1341f35c5d01be67799e8de22b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/candidate_03/projects.csv",
+      "bytes": 2587,
+      "sha256": "81505e5a3d3dd578398576fe3c649f162438eb5171e8608e794546fc199254f6"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/candidate_03/stations.csv",
+      "bytes": 3793,
+      "sha256": "304fab4e0faa9157ed4ba6cb6d862a174977185e9e08a05f8361995ddacb418f"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/candidate_03/summary.json",
+      "bytes": 9697,
+      "sha256": "54e851d9c99aab83d53aa5ec47790d5c55dfc8f9e3fa03b89a6c771dffb2e14c"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/chosen_solution.npz",
+      "bytes": 6612,
+      "sha256": "bbfffd5dd800955dd0b8f96ac800accd190ea348c25ae633eae839edcfac0486"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/independent_lp.json",
+      "bytes": 373552,
+      "sha256": "6a7ec405156aff48fac47b5f963cbf776feeaff154ac1fe682f1b24395a0a35b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/iteration_01_solution.npz",
+      "bytes": 3413,
+      "sha256": "e1b163c8118c54a203fcb73fa007cc00c6cd79c0360632a890a9152d4f383ffe"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/iteration_01_solver.json",
+      "bytes": 535,
+      "sha256": "4fea52f8e259f5b26a2669d972be53d4a1148db95a7a89c74ae293cc731c7ce3"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/iteration_02_solution.npz",
+      "bytes": 6336,
+      "sha256": "ccfbcd9ffd289e7fd777e9779dcb37e8d1e25a0882d14e6c00342f0fe0c82164"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/iteration_02_solver.json",
+      "bytes": 605,
+      "sha256": "9ca3ae1f9de3d4f09e9578c9c40a9ebfe3f3e42bf5d69130a4bccb1becc298a0"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/iteration_03_solution.npz",
+      "bytes": 6612,
+      "sha256": "bbfffd5dd800955dd0b8f96ac800accd190ea348c25ae633eae839edcfac0486"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/iteration_03_solver.json",
+      "bytes": 591,
+      "sha256": "d796baf0cf215ab876442fd8ec8f4fbc5c2326b627cc6ef8c31d82f9b92821f1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/projects.csv",
+      "bytes": 2587,
+      "sha256": "81505e5a3d3dd578398576fe3c649f162438eb5171e8608e794546fc199254f6"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/selected_pairs.json",
+      "bytes": 6966,
+      "sha256": "c29eefc35a7f357edf88e9986677993d4c54377601c9e138ab47be3bdd038091"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/stations.csv",
+      "bytes": 3793,
+      "sha256": "304fab4e0faa9157ed4ba6cb6d862a174977185e9e08a05f8361995ddacb418f"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/summary.json",
+      "bytes": 10334,
+      "sha256": "e70ecbca7695dc4a93b46515a0e9c3a29e8c10eac8146800c5b06cb90c4f4f83"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/elastic_no_floor/years.csv",
+      "bytes": 960,
+      "sha256": "b7f61cc20271ebbb3e8c96fedea2d251cd960d9f00ea3405f3f6a153c2f690a2"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/inputs.json",
+      "bytes": 307802,
+      "sha256": "937e79c1976043a975c6b4a3dd0c19963791534f3134287b2624fd067a6b0630"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_01/projects.csv",
+      "bytes": 2039,
+      "sha256": "8bd20716a4e5dc772ecbcf3b599e6f651ca9426e814a9fc0393bd995ca7f5d3e"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_01/stations.csv",
+      "bytes": 3767,
+      "sha256": "1d82bbf42f2bb4dffa6e443204181fd0013702a6e22b5f36900bbfb663ff7c0c"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_01/summary.json",
+      "bytes": 6336,
+      "sha256": "cb13d08bb77d7da4de0a19b533e82e1ef2d0965b806b26c040e0d24bc2948b3b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_02/projects.csv",
+      "bytes": 4028,
+      "sha256": "1a5a453d44984b2f5fb351ad7b5969383d5bb6059049ef8e23e7568f8e83820a"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_02/stations.csv",
+      "bytes": 3789,
+      "sha256": "91ea45645646306c5d688c17a91d25ec3050b85667166b6832de938b9b960e45"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_02/summary.json",
+      "bytes": 8154,
+      "sha256": "99fdbd729e407e423df1b2940654b1de70f33148267c7c372ffc4ca581e6b4db"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_03/projects.csv",
+      "bytes": 4654,
+      "sha256": "e9990a33868bc387def5ecab3ff345c0618cd3e9dfa94960d69607ab33fddf16"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_03/stations.csv",
+      "bytes": 3876,
+      "sha256": "5e082f1d4c5d0e0ba3a37e96d8629a0c020f9b73f71911be349edd9bc82f0b57"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_03/summary.json",
+      "bytes": 9981,
+      "sha256": "316163dab356166c2080e5c0ccbe65061e47321b818524b6ee3dedb705f61d19"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_04/projects.csv",
+      "bytes": 3002,
+      "sha256": "8ec4fe91605b4505002f8dcbf85cd4fdb304e9bd7f34c95d55fa057b7b7d83d9"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_04/stations.csv",
+      "bytes": 3885,
+      "sha256": "c4a678357b8645d40d44e6034a6373718ae5948da579fc8d9a2b8b48bc1142d9"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_04/summary.json",
+      "bytes": 11761,
+      "sha256": "523d27d9446d865a5d6f4b2610c2bbf823879efec23954279edad127ad392ce1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_05/projects.csv",
+      "bytes": 2981,
+      "sha256": "0ca7b557148c78c8de1d17934efbdb23fa261aa9479212889d2ec776668fa01d"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_05/stations.csv",
+      "bytes": 3872,
+      "sha256": "355c5e3a9f12f9e82fdf39dbb4badbb288d52dbb8762c843ffdcd6b5f20d04a7"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_05/summary.json",
+      "bytes": 13568,
+      "sha256": "d9a4e2938e767afb45de6430e2b84348ec7125f0e481544afbc6d76944b0e04b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_06/projects.csv",
+      "bytes": 3002,
+      "sha256": "558589b269a48a49686bde0f9fde2d2512da1642cfe62726d7573ed7614b6681"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_06/stations.csv",
+      "bytes": 3882,
+      "sha256": "d91bd3ae288be92a63f9893663330faedf01c38b0d3b881b2f1fe5471bfd2a01"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/candidate_06/summary.json",
+      "bytes": 15316,
+      "sha256": "c42242a462fe43caad2ae1501fb2a606e7419e2e2e627b7660dc0ac0cc63d650"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/chosen_solution.npz",
+      "bytes": 5744,
+      "sha256": "be632895ba2378f36a2e1e3a037ca83c88c929fecb121eec09bf3d27b113b6c5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/independent_lp.json",
+      "bytes": 374016,
+      "sha256": "c3fed15e68aa98765632d95fd0bfa63e98cb30635434d511b6f3ce0d3e0f08c2"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_01_solution.npz",
+      "bytes": 6300,
+      "sha256": "110ae9c260ec01b9b850787aeb6d24190ee9704c3a2bfc971c77ce57055a7575"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_01_solver.json",
+      "bytes": 593,
+      "sha256": "edb7e0e81101f3bed57d53537f975e26da7a1bc37848c896c7c0cf365b013901"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_02_solution.npz",
+      "bytes": 8604,
+      "sha256": "4775e370b7633e6d2f87729a737e8b1b6420cfaae0dc25f49e6e0b17b0b11cb4"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_02_solver.json",
+      "bytes": 599,
+      "sha256": "ff4d6e39f6e250394ea0452a5f103f0c4ea8ae864e1515a247ab188178986953"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_03_solution.npz",
+      "bytes": 9505,
+      "sha256": "880123295fc414d5245315b4772feeca3d5576b17afacf6c1df176f9d49c5cfe"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_03_solver.json",
+      "bytes": 604,
+      "sha256": "3de98cc5e7e4ed3923e75fe7b5cd135aca11ba5ac9825176d3e1a39abc8ced9b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_04_solution.npz",
+      "bytes": 7203,
+      "sha256": "24d73eaef1d9039e7a787608c434bc6bd980cd1f5aa043c1a16baea510d1e163"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_04_solver.json",
+      "bytes": 602,
+      "sha256": "8127143fda280d55fd0a2acdc98b87a8aed7734d8e2468fe964eb23e0b6995b5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_05_solution.npz",
+      "bytes": 5953,
+      "sha256": "1402b109600c77582d1e9147ac9ea49026d0508e7c64b5f615b07cda9f5d0945"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_05_solver.json",
+      "bytes": 602,
+      "sha256": "186d195327c680c6dcdf10f6ec347d9b30caad6b2bda554e8bcda70a71223b11"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_06_solution.npz",
+      "bytes": 5744,
+      "sha256": "be632895ba2378f36a2e1e3a037ca83c88c929fecb121eec09bf3d27b113b6c5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/iteration_06_solver.json",
+      "bytes": 600,
+      "sha256": "d041890cbe6f4f86334c6d2df400e0388fcce1e1566d1f4e77d99e7c1f3c614a"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/projects.csv",
+      "bytes": 3002,
+      "sha256": "558589b269a48a49686bde0f9fde2d2512da1642cfe62726d7573ed7614b6681"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/selected_pairs.json",
+      "bytes": 7434,
+      "sha256": "e20bcba331071a5a2fc927c302ce11cf409d140a5f270804d3d267cbf5ef383d"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/stations.csv",
+      "bytes": 3882,
+      "sha256": "d91bd3ae288be92a63f9893663330faedf01c38b0d3b881b2f1fe5471bfd2a01"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/summary.json",
+      "bytes": 15953,
+      "sha256": "768d7bcf893db29d82d66c675ee6085d68c128e564dc6711890f765f596c1f4c"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/rigid_storage/years.csv",
+      "bytes": 1017,
+      "sha256": "3be4f4e7cd26cca1182d36dd3cc216dc97d7edd0f98de9ec83a30227f46755c0"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/static_base.npz",
+      "bytes": 3931,
+      "sha256": "aac6846c090cc12fe9efd5e329f8ccd999f51b9e77df286975b37189e99d68a3"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核/pizhou/静态工况.csv",
+      "bytes": 179727,
+      "sha256": "871bd2b1038a06d2958962920ba2e92913e9327be8d86f75aa8294b979cf6142"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/README.md",
+      "bytes": 983,
+      "sha256": "b4ee80ffc8c526f98f8087b283c518b20e9b4d104be5d1be43e9372bb4ff1e62"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/candidate_01/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/candidate_01/stations.csv",
+      "bytes": 5438,
+      "sha256": "af11c250f971ab8f93d051f43e83edb29479884cf946c1fd78714988a77d484a"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/candidate_01/summary.json",
+      "bytes": 5772,
+      "sha256": "61a46c468dfd591685ab2ca224634a9ebcba5a1cf3ccf6cb02447d8b39e07a78"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/chosen_solution.npz",
+      "bytes": 5374,
+      "sha256": "4e8ba3ead0188b4f4877cb796d9b322e34b70429eb3f8da248a36e6e3178d06a"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/independent_lp.json",
+      "bytes": 931312,
+      "sha256": "8cfe7fb573ae054ca29f665e95208b5ef7a8d5b831e056323756b795123cde89"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/iteration_01_solution.npz",
+      "bytes": 5374,
+      "sha256": "4e8ba3ead0188b4f4877cb796d9b322e34b70429eb3f8da248a36e6e3178d06a"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/iteration_01_solver.json",
+      "bytes": 500,
+      "sha256": "ce367d5b4393d99495fb2c4d3159f87595161afd58ea704435e35cbc9d27e4dc"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/selected_pairs.json",
+      "bytes": 8083,
+      "sha256": "4a582dc50cc3ae070b7ff54175b8286b3323bc3cc2cf8edd4e1654faab8a4b08"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/stations.csv",
+      "bytes": 5438,
+      "sha256": "af11c250f971ab8f93d051f43e83edb29479884cf946c1fd78714988a77d484a"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/summary.json",
+      "bytes": 6445,
+      "sha256": "b34299d872b208db568840c5504fc9ba734e0585e9a423df559abebe9334847c"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_floor_2/years.csv",
+      "bytes": 816,
+      "sha256": "76eb5ae593cbdffd45a95b484d1849725f8f9873b60660af8c0aed8637551810"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/candidate_01/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/candidate_01/stations.csv",
+      "bytes": 5413,
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/candidate_01/summary.json",
+      "bytes": 5630,
+      "sha256": "62d39baa88df8cb54a6ee18ef7374c1965737044b0f065fcbd755c1cc622c831"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/chosen_solution.npz",
+      "bytes": 5404,
+      "sha256": "e524a69ef0d45379bc8a2b9b74a20b546019a0faca248f4ad6b0fd670df65f8d"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/independent_lp.json",
+      "bytes": 932627,
+      "sha256": "9557f8c7539066be9494ef4931c5b0dcdec214a88520847231199a4d0c949a2c"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/iteration_01_solution.npz",
+      "bytes": 5404,
+      "sha256": "e524a69ef0d45379bc8a2b9b74a20b546019a0faca248f4ad6b0fd670df65f8d"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/iteration_01_solver.json",
+      "bytes": 472,
+      "sha256": "bf0f18f7edb6face7984799aa95ab7a5674f65046c9cfd532ca19d011c6d0bb7"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/selected_pairs.json",
+      "bytes": 8083,
+      "sha256": "4a582dc50cc3ae070b7ff54175b8286b3323bc3cc2cf8edd4e1654faab8a4b08"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/stations.csv",
+      "bytes": 5413,
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/summary.json",
+      "bytes": 6263,
+      "sha256": "b7335e8559843fa68817c23d9ac9685db2dc6610f2171d6979a420e86bf14ecb"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/elastic_no_floor/years.csv",
+      "bytes": 741,
+      "sha256": "70e2afe5ad3996563ad4ebc6354145cfacf30a609f217842e9f298185da1d8c5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/inputs.json",
+      "bytes": 754119,
+      "sha256": "0bbe1dfdd2d08cdd4976f64b19e42003ec3d8c3f7828182146d66e2488e92208"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/candidate_01/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/candidate_01/stations.csv",
+      "bytes": 5413,
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/candidate_01/summary.json",
+      "bytes": 5665,
+      "sha256": "31cfc94f9e5a6e6e8acc7c31f86eedc1ee226c89e52df59491e183993f7ad902"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/chosen_solution.npz",
+      "bytes": 9492,
+      "sha256": "576bd25868c13988ce4d05590a639dfaa0ff6f5ff39ac802af1a04835f695150"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/independent_lp.json",
+      "bytes": 932627,
+      "sha256": "9557f8c7539066be9494ef4931c5b0dcdec214a88520847231199a4d0c949a2c"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/iteration_01_solution.npz",
+      "bytes": 9492,
+      "sha256": "576bd25868c13988ce4d05590a639dfaa0ff6f5ff39ac802af1a04835f695150"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/iteration_01_solver.json",
+      "bytes": 491,
+      "sha256": "74fbda05420092413331587a1e033ab0e4031bc7493fbd878952b396ad9c0194"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/selected_pairs.json",
+      "bytes": 8083,
+      "sha256": "4a582dc50cc3ae070b7ff54175b8286b3323bc3cc2cf8edd4e1654faab8a4b08"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/stations.csv",
+      "bytes": 5413,
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/summary.json",
+      "bytes": 6296,
+      "sha256": "2700dd93675adce679586e1b71c7af379216894f0ea878ae267c9069fc841631"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/rigid_storage/years.csv",
+      "bytes": 739,
+      "sha256": "a11c68a180f101c81473d9acdf1c8496aab9cca785579eee88cffd156a032334"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/static_base.npz",
+      "bytes": 9979,
+      "sha256": "d4f23410c5a5d80fadfe83ed39193515dcb4fcfe387f46577969807068e643b5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/静态工况.csv",
+      "bytes": 414295,
+      "sha256": "d52e9e9c68a3cdfac2ebadb520ee5e6749acc98e72896ca145f80770d0dd5be2"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/candidate_01/projects.csv",
+      "bytes": 3,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/candidate_01/stations.csv",
+      "bytes": 3776,
+      "sha256": "002a4af585b8c4a824616786030257d82ed0da52fa491384802d43022b2a3822"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/candidate_01/summary.json",
+      "bytes": 6113,
+      "sha256": "3081d71176a63e3abcf4f97437790592e074105f1fb612d7e3288a9aadbdbd48"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/candidate_02/projects.csv",
+      "bytes": 562,
+      "sha256": "7692a4e5b13d16f10e893b6b452b9b55598bbcf0ae7a13ab6510df39ed78c5be"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/candidate_02/stations.csv",
+      "bytes": 3797,
+      "sha256": "1748c1fa8fa5e2af03b220a249050f17f2e9c0e1263d19794f12b945785439c7"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/candidate_02/summary.json",
+      "bytes": 7801,
+      "sha256": "f53be525281aec4f1f3b3b5ed6d331b2786a2e8e7a565d7f9f8052e1f2f9862b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/chosen_solution.npz",
+      "bytes": 5171,
+      "sha256": "04bbef1ed8abd4e76f10980b6b17a243959372ccb1082ae3126aa3e7e51d3d9d"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/independent_lp.json",
+      "bytes": 372983,
+      "sha256": "8fa956b069858c3019e34b4a2dea499c3a86532c417808f458fda70410429472"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/iteration_01_solution.npz",
+      "bytes": 3217,
+      "sha256": "d9de9d307094be2d202cc7cebfe74700e359ca0344de75f3d094cbf2db7125b8"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/iteration_01_solver.json",
+      "bytes": 555,
+      "sha256": "ea3be020845c516a7a8eaaf95bec550fe0b0592dc8a0dbc2766a802bb7904e2e"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/iteration_02_solution.npz",
+      "bytes": 5171,
+      "sha256": "04bbef1ed8abd4e76f10980b6b17a243959372ccb1082ae3126aa3e7e51d3d9d"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/iteration_02_solver.json",
+      "bytes": 556,
+      "sha256": "524e3d09e97bde317ac520d46dfcca05f61a89bd6f41c0d0470b29c9ae65eb63"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/projects.csv",
+      "bytes": 562,
+      "sha256": "7692a4e5b13d16f10e893b6b452b9b55598bbcf0ae7a13ab6510df39ed78c5be"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/selected_pairs.json",
+      "bytes": 6696,
+      "sha256": "8f9f978c257e5e2db96aad02bf2e624dd4ec86cc4d08b542e47cf1c8bc7c75fc"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/stations.csv",
+      "bytes": 3797,
+      "sha256": "1748c1fa8fa5e2af03b220a249050f17f2e9c0e1263d19794f12b945785439c7"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/summary.json",
+      "bytes": 8439,
+      "sha256": "c75c135ca294be5e54f3eda00358749319387a52ee07089e17492f9dad2c1b18"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_floor_2/years.csv",
+      "bytes": 922,
+      "sha256": "d9bff1296a06a73ac0d7ad50ad168624cdf23ae58004df24fcdad24cdb7a199e"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/candidate_01/projects.csv",
+      "bytes": 563,
+      "sha256": "4dd5f2df21530aeec1b7ba9eda52b3310c6079d24d2288207b604a2b636f4419"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/candidate_01/stations.csv",
+      "bytes": 3756,
+      "sha256": "9b382be262e39eee788cd541aac003279b38167331869348aa6d0cc969110919"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/candidate_01/summary.json",
+      "bytes": 6085,
+      "sha256": "4e09b40bdc86c22f5c79f17c058526c9b63657cb201dbcfc5db2ebb7b68a1644"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/candidate_02/projects.csv",
+      "bytes": 1173,
+      "sha256": "bc48f4d2be7ed16f4b7db237d65a0f9af2aaf3f1e2cda56033034bc80c9a6a58"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/candidate_02/stations.csv",
+      "bytes": 3793,
+      "sha256": "82f51b28d473c1976a13465aea75c8009066019bb3918024beb2ba428361c3e2"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/candidate_02/summary.json",
+      "bytes": 7706,
+      "sha256": "f45a9e3e91c092dbedc8dd8e9628112d6ba14ad98ce96a8f6043112c83e83f78"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/chosen_solution.npz",
+      "bytes": 5813,
+      "sha256": "f9482fdad2835d260eb2727bb3d0621063b06030f93f3413a6fad3d13f4e41bb"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/independent_lp.json",
+      "bytes": 373704,
+      "sha256": "6a3719e377eed61b858dae51e30457be5f054da73be21bf619ac5f8b50b09160"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/iteration_01_solution.npz",
+      "bytes": 4150,
+      "sha256": "55365576d293a0f9141345297c20139a2d21a78d230c3e600c8d72c613367125"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/iteration_01_solver.json",
+      "bytes": 538,
+      "sha256": "68c5acfd4c7133fb30c18075fd060b4a4277a2c0dbe6afe939a7c50e51121411"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/iteration_02_solution.npz",
+      "bytes": 5813,
+      "sha256": "f9482fdad2835d260eb2727bb3d0621063b06030f93f3413a6fad3d13f4e41bb"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/iteration_02_solver.json",
+      "bytes": 536,
+      "sha256": "b9883a49c14a8c097f0db8ecefdced60b7a53df0961a2c1541a9859d0ccf3cb6"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/projects.csv",
+      "bytes": 1173,
+      "sha256": "bc48f4d2be7ed16f4b7db237d65a0f9af2aaf3f1e2cda56033034bc80c9a6a58"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/selected_pairs.json",
+      "bytes": 6867,
+      "sha256": "141684d85051d1ad3511d29d6e369ea1f6c02774fa3290c942adbcd62c2cb4ce"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/stations.csv",
+      "bytes": 3793,
+      "sha256": "82f51b28d473c1976a13465aea75c8009066019bb3918024beb2ba428361c3e2"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/summary.json",
+      "bytes": 8343,
+      "sha256": "38034149bd9564f64155db4a48942e067e76a298e23e93c46df5a6f83c020f2a"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/elastic_no_floor/years.csv",
+      "bytes": 901,
+      "sha256": "784554459909ac8d58a21fec1289aa9f9eb733a1d78277557e2b13030bd5c495"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/inputs.json",
+      "bytes": 312259,
+      "sha256": "185b08220d6cfc55db1dfe6399c529a9f8098a83669e8cae030640519797f3fd"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_01/projects.csv",
+      "bytes": 780,
+      "sha256": "94c899e98a2da9501ebd19557dbd282da7d27f2f05cefebdc73cbc302d0244c4"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_01/stations.csv",
+      "bytes": 3760,
+      "sha256": "19368525fcd0ae3cdb5fc96a811174bdff0e43c02e2ac6e2e9907814de835398"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_01/summary.json",
+      "bytes": 6246,
+      "sha256": "44e1e151517ec8fbb20501ebb0fe0ab607f88c217c93cd30535f59b9ff2eb8f1"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_02/projects.csv",
+      "bytes": 975,
+      "sha256": "425b2d18b17d9f63881256388e169aaadc20e83840fa283da9ddcd81959e2098"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_02/stations.csv",
+      "bytes": 3803,
+      "sha256": "67710aaed427b921b33d3c1f34f3a010d07a307ebdfd462fb405f9f74cd56f4d"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_02/summary.json",
+      "bytes": 8064,
+      "sha256": "27d82f154c25cad884149203aa91c924095ae4173678c35a0191bade5fd34a5b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_03/projects.csv",
+      "bytes": 975,
+      "sha256": "e536ad3979bbe5585c5aa82d1e9abd100dd4eb5cfd96440c838650349656c14d"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_03/stations.csv",
+      "bytes": 3821,
+      "sha256": "3b85c5b1cd62cc78a047bf1472faff0b00bc8f4f35fc0471acf41dfd7e58f8c9"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_03/summary.json",
+      "bytes": 9880,
+      "sha256": "dd2b985707b7c3379bbe18384e34b4f9029b288caa2fec6aa239fef1671e7800"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_04/projects.csv",
+      "bytes": 1172,
+      "sha256": "714f4d8c5a1a946a800823997182270092aa88fe4f5e13a8e930179ae3df3f6b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_04/stations.csv",
+      "bytes": 3835,
+      "sha256": "606ea58aaa4adc8e822884628618cebff58f64d4504cccb67ae4a4f242a1f559"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/candidate_04/summary.json",
+      "bytes": 11576,
+      "sha256": "6b6a9553acff81faab05a17c1db14d79b57a98ede0fa65f99627bca9b3d65655"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/chosen_solution.npz",
+      "bytes": 4381,
+      "sha256": "7698121e65b04fc5494c2e132e1a27448d28c4199836d8d5f32d062dc994bef6"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/independent_lp.json",
+      "bytes": 373769,
+      "sha256": "1b3e963fa94404c0de81d00d5ecb95e290a58795fe660872911c41ebdc4172c8"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/iteration_01_solution.npz",
+      "bytes": 4989,
+      "sha256": "cc8597c4ed5fde3bf8265360b69e4168222b2147a1f4de737b160cab3186328b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/iteration_01_solver.json",
+      "bytes": 595,
+      "sha256": "512ff054a3929752162f979cd6123e28ada5420eedbda080cf0d237fbb995dc0"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/iteration_02_solution.npz",
+      "bytes": 3967,
+      "sha256": "5bfbf9470d971431a9471647b02dda5a82ac8d46f00d9e891d66688d3370f472"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/iteration_02_solver.json",
+      "bytes": 590,
+      "sha256": "6eaf0815e211f12e6bca16b07a180366cf447fe29e085d000ff365be39eb7979"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/iteration_03_solution.npz",
+      "bytes": 4972,
+      "sha256": "bfe2aaf552c5c36fab6068b7118ae44fb7f22b988034ddb15077dae336040ca9"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/iteration_03_solver.json",
+      "bytes": 590,
+      "sha256": "37704fecf94ad2bc40e64ead0dd129365a5850741be3eb13046ecefe777b9bca"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/iteration_04_solution.npz",
+      "bytes": 4381,
+      "sha256": "7698121e65b04fc5494c2e132e1a27448d28c4199836d8d5f32d062dc994bef6"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/iteration_04_solver.json",
+      "bytes": 587,
+      "sha256": "ef619eae6c971611b24f932ab1e4d4b4a2ec3cc8707916ee2dc839276929a2e7"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/projects.csv",
+      "bytes": 1172,
+      "sha256": "714f4d8c5a1a946a800823997182270092aa88fe4f5e13a8e930179ae3df3f6b"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/selected_pairs.json",
+      "bytes": 7134,
+      "sha256": "c41c9a7dc7581ac8693a2794b0a428ece7601d0893bc39e3dcfdcfe8602a7611"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/stations.csv",
+      "bytes": 3835,
+      "sha256": "606ea58aaa4adc8e822884628618cebff58f64d4504cccb67ae4a4f242a1f559"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/summary.json",
+      "bytes": 12212,
+      "sha256": "368cc26a6c8ceeeffa284e3d257baf525f2eb0b2a8dd4c5ed0e505ba8b38aa01"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/rigid_storage/years.csv",
+      "bytes": 980,
+      "sha256": "a06131b237d5322dc1c1f94bb27dbece718beb9ffdc6123389d0a6c69c53602e"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/static_base.npz",
+      "bytes": 3931,
+      "sha256": "aac6846c090cc12fe9efd5e329f8ccd999f51b9e77df286975b37189e99d68a3"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/静态工况.csv",
+      "bytes": 179727,
+      "sha256": "871bd2b1038a06d2958962920ba2e92913e9327be8d86f75aa8294b979cf6142"
+    }
+  ],
+  "file_count": 288
+}

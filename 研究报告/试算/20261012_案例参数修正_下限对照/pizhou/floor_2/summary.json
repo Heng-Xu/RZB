@@ -1,0 +1,143 @@
+{
+  "region": "pizhou",
+  "case": "floor_2",
+  "cost_npv_10k": 16747.88976342439,
+  "annual": [
+    {
+      "year": 2022,
+      "planning_year": 1,
+      "peak_mw": 825.004193,
+      "capacity_mva": 1813.5,
+      "clr": 2.1981706461460373,
+      "purchased_transformer_mva": 533.0,
+      "new_third_count": 2,
+      "new_lines": 1,
+      "cumulative_lines": 1,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 9750.628406608732,
+      "added_lifecycle_npv_10k": 13482.568987272178,
+      "cumulative_lifecycle_npv_10k": 13482.568987272178,
+      "transformer_npv_10k": 13331.73087223036,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 150.83811504181656,
+      "net_capacity_increment_mva": 350.0
+    },
+    {
+      "year": 2023,
+      "planning_year": 2,
+      "peak_mw": 761.231803,
+      "capacity_mva": 1813.5,
+      "clr": 2.3823229571505435,
+      "purchased_transformer_mva": 0.0,
+      "new_third_count": 0,
+      "new_lines": 0,
+      "cumulative_lines": 1,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 0.0,
+      "added_lifecycle_npv_10k": 0.0,
+      "cumulative_lifecycle_npv_10k": 13482.568987272178,
+      "transformer_npv_10k": 0.0,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 0.0,
+      "net_capacity_increment_mva": 0.0
+    },
+    {
+      "year": 2024,
+      "planning_year": 3,
+      "peak_mw": 862.661537,
+      "capacity_mva": 1813.5,
+      "clr": 2.1022149733331625,
+      "purchased_transformer_mva": 0.0,
+      "new_third_count": 0,
+      "new_lines": 1,
+      "cumulative_lines": 2,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 128.3750734197307,
+      "added_lifecycle_npv_10k": 132.6308723162269,
+      "cumulative_lifecycle_npv_10k": 13615.199859588405,
+      "transformer_npv_10k": 0.0,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 132.6308723162269,
+      "net_capacity_increment_mva": 0.0
+    },
+    {
+      "year": 2025,
+      "planning_year": 4,
+      "peak_mw": 956.45,
+      "capacity_mva": 1913.5,
+      "clr": 2.000627319776256,
+      "purchased_transformer_mva": 100.0,
+      "new_third_count": 2,
+      "new_lines": 3,
+      "cumulative_lines": 5,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 2831.1252202591922,
+      "added_lifecycle_npv_10k": 3132.6899038359857,
+      "cumulative_lifecycle_npv_10k": 16747.88976342439,
+      "transformer_npv_10k": 2759.8118171019823,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 372.8780867340035,
+      "net_capacity_increment_mva": 100.0
+    }
+  ],
+  "solver": {
+    "stage": "solve",
+    "status": "Optimal",
+    "solver": "1.15.1",
+    "elapsed_seconds": 64.50372213500668,
+    "variables": 105640,
+    "constraints": 201469,
+    "relative_gap_target": 0.01,
+    "objective": 16747.889763424384,
+    "dual_bound": 16602.76389263969,
+    "mip_gap": 0.008665322786016493,
+    "accepted": true,
+    "proven_infeasible": false,
+    "matrix_check": {
+      "lower_violation": 1.6910917111090384e-12,
+      "upper_violation": 2.9398567727425507e-12,
+      "bound_violation": 1.4543012382667472e-12,
+      "integer_violation": 3.9939452856051894e-13
+    },
+    "feasible_incumbent": true
+  },
+  "scenario_iterations": [],
+  "cost_recomputation_error_10k": 7.275957614183426e-12,
+  "scope": "原实际年度静态案例参数修正：地区转供标定、电缆造价；2.0下限有无对照",
+  "clr_floor": 2.0,
+  "input_sha256": "132bbf97fc34fe1221f57b79bf113b7cd0b753975c4380940467d19d3726d6fd",
+  "static_network_checks": [
+    {
+      "year": 2022,
+      "checked_pairs": 42,
+      "max_violation_mw": 1.1368683772161603e-13,
+      "verified": true
+    },
+    {
+      "year": 2023,
+      "checked_pairs": 42,
+      "max_violation_mw": 1.1368683772161603e-13,
+      "verified": true
+    },
+    {
+      "year": 2024,
+      "checked_pairs": 42,
+      "max_violation_mw": 1.1368683772161603e-13,
+      "verified": true
+    },
+    {
+      "year": 2025,
+      "checked_pairs": 42,
+      "max_violation_mw": 1.7053025658242404e-12,
+      "verified": true
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "region": "pizhou",
+  "case": "elastic_no_floor",
+  "cost_npv_10k": 11230.296254704754,
+  "annual": [
+    {
+      "year": 2022,
+      "planning_year": 1,
+      "peak_mw": 825.004193,
+      "capacity_mva": 1665.5,
+      "clr": 2.0187776185035706,
+      "purchased_transformer_mva": 465.0,
+      "new_third_count": 0,
+      "new_lines": 0,
+      "cumulative_lines": 0,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 7706.599999845001,
+      "added_lifecycle_npv_10k": 10677.573493464997,
+      "cumulative_lifecycle_npv_10k": 10677.573493464997,
+      "transformer_npv_10k": 10677.573493464997,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 0.0
+    },
+    {
+      "year": 2023,
+      "planning_year": 2,
+      "peak_mw": 761.231803,
+      "capacity_mva": 1665.5,
+      "clr": 2.1879012324975076,
+      "purchased_transformer_mva": 0.0,
+      "new_third_count": 0,
+      "new_lines": 0,
+      "cumulative_lines": 0,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 0.0,
+      "added_lifecycle_npv_10k": 0.0,
+      "cumulative_lifecycle_npv_10k": 10677.573493464997,
+      "transformer_npv_10k": 0.0,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 0.0
+    },
+    {
+      "year": 2024,
+      "planning_year": 3,
+      "peak_mw": 862.661537,
+      "capacity_mva": 1665.5,
+      "clr": 1.9306529021705996,
+      "purchased_transformer_mva": 0.0,
+      "new_third_count": 0,
+      "new_lines": 0,
+      "cumulative_lines": 0,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 0.0,
+      "added_lifecycle_npv_10k": 0.0,
+      "cumulative_lifecycle_npv_10k": 10677.573493464997,
+      "transformer_npv_10k": 0.0,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 0.0
+    },
+    {
+      "year": 2025,
+      "planning_year": 4,
+      "peak_mw": 956.45,
+      "capacity_mva": 1665.5,
+      "clr": 1.7413351455904647,
+      "purchased_transformer_mva": 0.0,
+      "new_third_count": 0,
+      "new_lines": 2,
+      "cumulative_lines": 2,
+      "storage_nameplate_mw": 1.4000000000000001,
+      "storage_mwh": 3.01,
+      "new_storage_mwh": 3.01,
+      "construction_capex_10k": 551.3889136394614,
+      "added_lifecycle_npv_10k": 552.7227612397562,
+      "cumulative_lifecycle_npv_10k": 11230.296254704754,
+      "transformer_npv_10k": 0.0,
+      "storage_npv_10k": 304.13737008375386,
+      "line_npv_10k": 248.58539115600232
+    }
+  ],
+  "solver": {
+    "stage": "iteration_01",
+    "status": "Optimal",
+    "solver": "1.15.1",
+    "elapsed_seconds": 17.85053011099808,
+    "variables": 105640,
+    "constraints": 201469,
+    "relative_gap_target": 0.01,
+    "objective": 11230.296254704752,
+    "dual_bound": 11230.296254704752,
+    "mip_gap": 0.0,
+    "accepted": true,
+    "proven_infeasible": false,
+    "matrix_check": {
+      "lower_violation": 7.105427357601002e-15,
+      "upper_violation": 1.7763568394002505e-15,
+      "bound_violation": 0.0,
+      "integer_violation": 0.0
+    },
+    "feasible_incumbent": true
+  },
+  "scenario_iterations": [
+    {
+      "iteration": 1,
+      "selected_pairs": 168,
+      "solver": {
+        "stage": "iteration_01",
+        "status": "Optimal",
+        "solver": "1.15.1",
+        "elapsed_seconds": 17.85053011099808,
+        "variables": 105640,
+        "constraints": 201469,
+        "relative_gap_target": 0.01,
+        "objective": 11230.296254704752,
+        "dual_bound": 11230.296254704752,
+        "mip_gap": 0.0,
+        "accepted": true,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 7.105427357601002e-15,
+          "upper_violation": 1.7763568394002505e-15,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      },
+      "checks": [
+        {
+          "year": 2022,
+          "checked_pairs": 546,
+          "independent_lp_calls": 153,
+          "direct_checks": 393,
+          "violating_pairs": 8,
+          "max_deficit_mw": 4.285220166845296,
+          "verified": false
+        },
+        {
+          "year": 2023,
+          "checked_pairs": 546,
+          "independent_lp_calls": 121,
+          "direct_checks": 425,
+          "violating_pairs": 5,
+          "max_deficit_mw": 2.48528490067881,
+          "verified": false
+        },
+        {
+          "year": 2024,
+          "checked_pairs": 546,
+          "independent_lp_calls": 168,
+          "direct_checks": 378,
+          "violating_pairs": 9,
+          "max_deficit_mw": 5.348074820650229,
+          "verified": false
+        },
+        {
+          "year": 2025,
+          "checked_pairs": 546,
+          "independent_lp_calls": 235,
+          "direct_checks": 311,
+          "violating_pairs": 20,
+          "max_deficit_mw": 8.543156733136797,
+          "verified": false
+        }
+      ]
+    }
+  ],
+  "full_hour_network_checks": [
+    {
+      "year": 2022,
+      "checked_pairs": 546,
+      "independent_lp_calls": 153,
+      "direct_checks": 393,
+      "violating_pairs": 8,
+      "max_deficit_mw": 4.285220166845296,
+      "verified": false
+    },
+    {
+      "year": 2023,
+      "checked_pairs": 546,
+      "independent_lp_calls": 121,
+      "direct_checks": 425,
+      "violating_pairs": 5,
+      "max_deficit_mw": 2.48528490067881,
+      "verified": false
+    },
+    {
+      "year": 2024,
+      "checked_pairs": 546,
+      "independent_lp_calls": 168,
+      "direct_checks": 378,
+      "violating_pairs": 9,
+      "max_deficit_mw": 5.348074820650229,
+      "verified": false
+    },
+    {
+      "year": 2025,
+      "checked_pairs": 546,
+      "independent_lp_calls": 235,
+      "direct_checks": 311,
+      "violating_pairs": 20,
+      "max_deficit_mw": 8.543156733136797,
+      "verified": false
+    }
+  ],
+  "cost_recomputation_error_10k": 1.8189894035458565e-12,
+  "scope": "全年8760小时及各站单台最大主变N-1，指定候选馈线网络静态代理通过；非SOC时序、非实测全县拓扑"
+}

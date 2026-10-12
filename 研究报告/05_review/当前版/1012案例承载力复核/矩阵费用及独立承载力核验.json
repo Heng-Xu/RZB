@@ -1,0 +1,298 @@
+{
+  "verified": true,
+  "regions": {
+    "city": {
+      "rigid_storage": {
+        "verified": true,
+        "checked_pairs": 5400,
+        "matrix_violation": 1.4210854715202004e-14,
+        "cost_recomputed_10k": 0.0,
+        "input_sha256": "0bbe1dfdd2d08cdd4976f64b19e42003ec3d8c3f7828182146d66e2488e92208",
+        "solution_sha256": "576bd25868c13988ce4d05590a639dfaa0ff6f5ff39ac802af1a04835f695150",
+        "checks": [
+          {
+            "year": 2022,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 419,
+            "direct_checks": 931,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2023,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 472,
+            "direct_checks": 878,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2024,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 435,
+            "direct_checks": 915,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2025,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 459,
+            "direct_checks": 891,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          }
+        ],
+        "solver_lower_bound_10k": 0.0,
+        "solver_gap": 0.0
+      },
+      "elastic_floor_2": {
+        "verified": true,
+        "checked_pairs": 5400,
+        "matrix_violation": 0.0,
+        "cost_recomputed_10k": 6333.822286985715,
+        "input_sha256": "0bbe1dfdd2d08cdd4976f64b19e42003ec3d8c3f7828182146d66e2488e92208",
+        "solution_sha256": "4e8ba3ead0188b4f4877cb796d9b322e34b70429eb3f8da248a36e6e3178d06a",
+        "checks": [
+          {
+            "year": 2022,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 419,
+            "direct_checks": 931,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2023,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 460,
+            "direct_checks": 890,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2024,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 421,
+            "direct_checks": 929,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2025,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 445,
+            "direct_checks": 905,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          }
+        ],
+        "solver_lower_bound_10k": 6333.822286985713,
+        "solver_gap": 4.3078002218740466e-16
+      },
+      "elastic_no_floor": {
+        "verified": true,
+        "checked_pairs": 5400,
+        "matrix_violation": 0.0,
+        "cost_recomputed_10k": 0.0,
+        "input_sha256": "0bbe1dfdd2d08cdd4976f64b19e42003ec3d8c3f7828182146d66e2488e92208",
+        "solution_sha256": "e524a69ef0d45379bc8a2b9b74a20b546019a0faca248f4ad6b0fd670df65f8d",
+        "checks": [
+          {
+            "year": 2022,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 419,
+            "direct_checks": 931,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2023,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 472,
+            "direct_checks": 878,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2024,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 435,
+            "direct_checks": 915,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2025,
+            "checked_pairs": 1350,
+            "independent_lp_calls": 459,
+            "direct_checks": 891,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          }
+        ],
+        "solver_lower_bound_10k": 0.0,
+        "solver_gap": 0.0
+      }
+    },
+    "pizhou": {
+      "rigid_storage": {
+        "verified": true,
+        "checked_pairs": 2184,
+        "matrix_violation": 3.228528555609955e-13,
+        "cost_recomputed_10k": 17070.58075268078,
+        "input_sha256": "185b08220d6cfc55db1dfe6399c529a9f8098a83669e8cae030640519797f3fd",
+        "solution_sha256": "7698121e65b04fc5494c2e132e1a27448d28c4199836d8d5f32d062dc994bef6",
+        "checks": [
+          {
+            "year": 2022,
+            "checked_pairs": 546,
+            "independent_lp_calls": 142,
+            "direct_checks": 404,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2023,
+            "checked_pairs": 546,
+            "independent_lp_calls": 113,
+            "direct_checks": 433,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2024,
+            "checked_pairs": 546,
+            "independent_lp_calls": 156,
+            "direct_checks": 390,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2025,
+            "checked_pairs": 546,
+            "independent_lp_calls": 218,
+            "direct_checks": 328,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          }
+        ],
+        "solver_lower_bound_10k": 16901.2550632992,
+        "solver_gap": 0.009919152244131495
+      },
+      "elastic_floor_2": {
+        "verified": true,
+        "checked_pairs": 2184,
+        "matrix_violation": 1.4210854715202004e-14,
+        "cost_recomputed_10k": 16896.022603345493,
+        "input_sha256": "185b08220d6cfc55db1dfe6399c529a9f8098a83669e8cae030640519797f3fd",
+        "solution_sha256": "04bbef1ed8abd4e76f10980b6b17a243959372ccb1082ae3126aa3e7e51d3d9d",
+        "checks": [
+          {
+            "year": 2022,
+            "checked_pairs": 546,
+            "independent_lp_calls": 135,
+            "direct_checks": 411,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2023,
+            "checked_pairs": 546,
+            "independent_lp_calls": 104,
+            "direct_checks": 442,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2024,
+            "checked_pairs": 546,
+            "independent_lp_calls": 152,
+            "direct_checks": 394,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2025,
+            "checked_pairs": 546,
+            "independent_lp_calls": 214,
+            "direct_checks": 332,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          }
+        ],
+        "solver_lower_bound_10k": 16730.581043093174,
+        "solver_gap": 0.009791745911819529
+      },
+      "elastic_no_floor": {
+        "verified": true,
+        "checked_pairs": 2184,
+        "matrix_violation": 2.1316282072803006e-14,
+        "cost_recomputed_10k": 12965.36767590886,
+        "input_sha256": "185b08220d6cfc55db1dfe6399c529a9f8098a83669e8cae030640519797f3fd",
+        "solution_sha256": "f9482fdad2835d260eb2727bb3d0621063b06030f93f3413a6fad3d13f4e41bb",
+        "checks": [
+          {
+            "year": 2022,
+            "checked_pairs": 546,
+            "independent_lp_calls": 142,
+            "direct_checks": 404,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2023,
+            "checked_pairs": 546,
+            "independent_lp_calls": 111,
+            "direct_checks": 435,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2024,
+            "checked_pairs": 546,
+            "independent_lp_calls": 156,
+            "direct_checks": 390,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          },
+          {
+            "year": 2025,
+            "checked_pairs": 546,
+            "independent_lp_calls": 218,
+            "direct_checks": 328,
+            "violating_pairs": 0,
+            "max_deficit_mw": 0.0,
+            "verified": true
+          }
+        ],
+        "solver_lower_bound_10k": 12965.36767590886,
+        "solver_gap": 0.0
+      }
+    }
+  },
+  "checked_pairs": 22752
+}
