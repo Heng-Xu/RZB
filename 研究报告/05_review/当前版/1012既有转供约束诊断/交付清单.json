@@ -32,13 +32,18 @@
     },
     {
       "path": "memory/current.md",
-      "size": 6670,
-      "sha256": "29e534ad7c2bd32125eb8dac351afedc73eb5e25630d978f4746a31f65b5ec8a"
+      "size": 7353,
+      "sha256": "8baa82eeccab3cc77e240c4dec5e398cf002256a70d3fca27f99592c53898a99"
     },
     {
       "path": "prompt.md",
-      "size": 63901,
-      "sha256": "ec813c26f1486d27eb34152e0f584fe267efd7816f9b28a242a26cb36366bb35"
+      "size": 64102,
+      "sha256": "c19bc5fe3c35ea0a734f082ac2559b9cb7ea8b4551cf7ab1c45e530faf87d0bf"
+    },
+    {
+      "path": "tools/export_case_parameter_comparison.py",
+      "size": 11233,
+      "sha256": "7ee0a36ca8017853df991c526945668b231409f55181bcbbe0615fceee322b7f"
     },
     {
       "path": "实验/研究/rebuild_2026/case_parameters_20261012/__init__.py",
@@ -246,6 +251,16 @@
       "sha256": "5fbef749a2a71c666d7784bee340bca54a659530a2b3433bdd42264a986f4868"
     },
     {
+      "path": "研究报告/05_review/当前版/1013案例参数对照/Excel导出核验.json",
+      "size": 9915,
+      "sha256": "0fd05f90ef656c8e5effcb264f8dd679781f64b33e8a9073561ddbbfa74a51ca"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1013案例参数对照/README.md",
+      "size": 1235,
+      "sha256": "6adc9b5a7dd703d76b4e1399af0f78b59434bab0da9ff53d576c97d672e47aaf"
+    },
+    {
       "path": "研究报告/数据来源/当前版/既有转供逐站约束_20261012/README.md",
       "size": 883,
       "sha256": "ab046bbaa302b0f40cf925d08cce1f8221b2fc17fac19e18b79272e9c484c733"
@@ -259,7 +274,18 @@
       "path": "研究报告/数据来源/当前版/既有转供逐站约束_20261012/逐站既有转供能力及对应.csv",
       "size": 4890,
       "sha256": "9f615ac4385e8037a0b17d152442af66909c130ff1aa8df6be0068b43a0cd5cf"
+    },
+    {
+      "path": "研究报告/甲方反馈/10.11/表5-4及表5-6_新旧参数对照.xlsx",
+      "size": 10521,
+      "sha256": "2d952504de161ab39028d5e2595e886b5619e21efd272a9283526deebeeed8fc"
     }
   ],
-  "Git范围": "本地提交；不推送，不重写历史；模型原始记录和其余对照保留。"
+  "Git范围": "本地提交；不推送，不重写历史；模型原始记录和其余对照保留。",
+  "新旧参数四表对照": {
+    "path": "研究报告/甲方反馈/10.11/表5-4及表5-6_新旧参数对照.xlsx",
+    "sheets": 4,
+    "verified_table_cells": 252,
+    "review": "研究报告/05_review/当前版/1013案例参数对照/Excel导出核验.json"
+  }
 }

@@ -1,0 +1,212 @@
+{
+  "verified": true,
+  "workbook": {
+    "path": "研究报告/甲方反馈/10.11/表5-4及表5-6_新旧参数对照.xlsx",
+    "sha256": "2d952504de161ab39028d5e2595e886b5619e21efd272a9283526deebeeed8fc"
+  },
+  "sheets": [
+    "邳州_旧参数",
+    "邳州_新参数",
+    "市区_旧参数",
+    "市区_新参数"
+  ],
+  "checked_table_cells": 252,
+  "cases": [
+    {
+      "region": "pizhou",
+      "version": "旧参数",
+      "case": "rigid_storage",
+      "source": "研究报告/试算/20261010_四小时案例/pizhou/rigid_storage",
+      "years": 4
+    },
+    {
+      "region": "pizhou",
+      "version": "旧参数",
+      "case": "elastic_storage",
+      "source": "研究报告/试算/20261010_四小时案例/pizhou/elastic_storage",
+      "years": 4
+    },
+    {
+      "region": "pizhou",
+      "version": "新参数",
+      "case": "rigid_storage_refine_02",
+      "source": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02",
+      "years": 4
+    },
+    {
+      "region": "pizhou",
+      "version": "新参数",
+      "case": "elastic_no_floor_refine_02",
+      "source": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02",
+      "years": 4
+    },
+    {
+      "region": "city",
+      "version": "旧参数",
+      "case": "rigid_storage",
+      "source": "研究报告/试算/20261010_四小时案例/city/rigid_storage",
+      "years": 4
+    },
+    {
+      "region": "city",
+      "version": "旧参数",
+      "case": "elastic_storage",
+      "source": "研究报告/试算/20261010_四小时案例/city/elastic_storage",
+      "years": 4
+    },
+    {
+      "region": "city",
+      "version": "新参数",
+      "case": "rigid_storage_refine_01",
+      "source": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01",
+      "years": 4
+    },
+    {
+      "region": "city",
+      "version": "新参数",
+      "case": "elastic_no_floor_refine_01",
+      "source": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01",
+      "years": 4
+    }
+  ],
+  "report_version": "case_station_caps_normal_adjust_20261013",
+  "notes": "旧参数逐格匹配当前原生Word及计算表；新参数取已锁定正常允许调整供区的刚性和弹性无下限。原报告为4 h，本版沿用锁定方案的市区6 h、邳州2 h及逐站既有转供上限，属于前后版本对照。储能列为额定功率MW；新线列为累计新增数量。工作簿仅标注新转供率，按用户要求输出至甲方反馈/10.11。",
+  "sources": [
+    {
+      "path": "tools/export_case_parameter_comparison.py",
+      "sha256": "7ee0a36ca8017853df991c526945668b231409f55181bcbbe0615fceee322b7f"
+    },
+    {
+      "path": "研究报告/02图表/当前版/计算表.json",
+      "sha256": "aa6c726aab1ae23709228d6da971c97c4f5c00a87c178f27530da79c5c081205"
+    },
+    {
+      "path": "研究报告/04_word/研究报告终稿.docx",
+      "sha256": "2512ad317d417a09cf6de8a17aa06afa5724d83b4eaeeb2525fc1d109ba792fe"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1012既有转供约束诊断/报告采用版本锁定清单.json",
+      "sha256": "1c3ccb6cbfd6854df578b40eb17c111ac3808b49a79769069dba19ecc827ef91"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/city/elastic_storage/projects.csv",
+      "sha256": "5e755bdbac7e853efd1b547522c98bc5bf471a33f22e7a0412de96900d0fcf2b"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/city/elastic_storage/stations.csv",
+      "sha256": "db172654fa1ffbd9241f432ca42011a77c63b04fcce279320d39978a621b5ac3"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/city/elastic_storage/years.csv",
+      "sha256": "036fec6f83f05900a7e33ff241230660453bb0d030dd134d22b65a2c0954fd4a"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/city/rigid_storage/projects.csv",
+      "sha256": "ccca4669bd069fd7c6a452983fdee65505358ddf11a919d23775b29b8573a380"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/city/rigid_storage/stations.csv",
+      "sha256": "7eee74d0299bd1b55ff22f194ea3c17f8595039f5f1687981702bbac5e76c8dd"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/city/rigid_storage/years.csv",
+      "sha256": "9afc89e2cc4fc509188f5bf5d0f666dc79a6cc9d0b821e896e2db9fed863115a"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/pizhou/elastic_storage/projects.csv",
+      "sha256": "395950e184122ed7052ad9d4263526966d2469160315bcc238d8c61aee7c63e9"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/pizhou/elastic_storage/stations.csv",
+      "sha256": "770e6bd2caa969c1761418ed6aff25f8381695df5e4982e9f5a8e0a903b7eaa8"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/pizhou/elastic_storage/years.csv",
+      "sha256": "93f6cae96105f2b8b7394386e90a227288f8c082d889e7af64a4d709e448b2e1"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/pizhou/rigid_storage/projects.csv",
+      "sha256": "e3fff9e43d8d9ca5175c642fe6898a470b83bcafd601c8539fe0633b2eca0976"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/pizhou/rigid_storage/stations.csv",
+      "sha256": "328e522a3170438fa514224e4c81b9f176e69b0b4ecdaf1537f738ca61246c73"
+    },
+    {
+      "path": "研究报告/试算/20261010_四小时案例/pizhou/rigid_storage/years.csv",
+      "sha256": "b58bc7528aa87b40da911b5b621f046a798e3b645df27e6ffaf4efbe3ececc66"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/chosen_solution.npz",
+      "sha256": "86c945de74a85df2825971f569974e8008c14511c9baeb62e400f82ae3ead5d4"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/projects.csv",
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/stations.csv",
+      "sha256": "0ef32b550250bb8e268d26f22fbcbeef4b739e7b17fa4af3d406af445df9720c"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/years.csv",
+      "sha256": "2bb2baff9dd10c5970de742d6176e5e5ac368f8c9955646d954bb2081ef5b10a"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/inputs.json",
+      "sha256": "280b0266f3964ca2981cb9a4fa527b0eec06e875221a46d21a4dd89d8d47e16c"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/chosen_solution.npz",
+      "sha256": "8390d2d48a2939d978211e85169d7d2692cab4fd07342c677a2e21b940b36a10"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/projects.csv",
+      "sha256": "3f05b8a4b63cd6a9ab76472429071d48f96757b2e1705d64557130540fb658b4"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/stations.csv",
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/years.csv",
+      "sha256": "ae5c6bbeae7135272630f48dcf84b58a57d699caf5cf29b3295e3e63c588891a"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/chosen_solution.npz",
+      "sha256": "2e12def85bedaed13628995d8dcd8c04e22ceab136fc52e871d83d2f0df7a21a"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/projects.csv",
+      "sha256": "a5de8ba7a81e3ba9cf25571259f739282354601a0cf38cb17b5bebf4d36a042c"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/stations.csv",
+      "sha256": "b1d26a65daa0b380d09cc956c90c9c0d083ba3fe96d5d0c49eb40f20fcb8ad1e"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/years.csv",
+      "sha256": "2d4e94b386bb66a4c7e73d77b23e7475b28beaead8e8e1674bbd72d681849aac"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/inputs.json",
+      "sha256": "7e9b84b33e5bac6781eb6d4bc06d792dee14fb8a76fb93925f9764bc88eefcf3"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/chosen_solution.npz",
+      "sha256": "afda2463c8d125d65a264dd57ee1dd71f7369c7f553a6584cf5d9317e0c85940"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/projects.csv",
+      "sha256": "d539030fb897f9b22b117223018df95c13c764a86d5df22409e1b5fcf8c8020d"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/stations.csv",
+      "sha256": "e7ab0ed289c2f72f975686f647b9c9aac7dabc63e62ab2260219ccd816b7ed06"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/years.csv",
+      "sha256": "b3641622acac4dd7d387921a395706265338958f95402de5cff4c53c8b3caec8"
+    }
+  ]
+}
