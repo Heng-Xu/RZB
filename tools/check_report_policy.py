@@ -14,7 +14,9 @@ def body_policy_errors(sources,sections,tables,patterns):
                     line_no=value[:equation.start()].count('\n')+1
                     errors.append(f'{location}:{line_no}: 多组等式或约束须分别换行，防止Word公式截断')
         for line_no,line in enumerate(value.splitlines(),1):
+            from report_prose_review import LOGIC_RULES,is_explanatory_line
             for rule,pattern in patterns.items():
+                if rule in LOGIC_RULES and is_explanatory_line(line):continue
                 for match in re.finditer(pattern,line):
                     errors.append(f'{location}:{line_no}: {rule}: {match[0]}')
             for kind,key in re.findall(r'\[\[(SECTION|TABLE):([^\]]+)\]\]',line):

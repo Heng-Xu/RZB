@@ -226,7 +226,7 @@ def case_assets():
                 if u[2]>previous[2]+1e-7:changed.append(f'扩建第三台{u[2]:g} MVA主变')
                 if changed:actions.append(str(yr)+'年'+ '，'.join(changed))
                 previous=u
-            action='；'.join(actions)+'。' if actions else '四年保留初始主变组合。'
+            action='，随后'.join(actions)+'。' if actions else '四年均保留该组合。'
             bp=min(.1,.215*.76/max(1,inp['stations'][sid]['forward_duration_h']))*z['n'][j]
             bn=min(.1,.215*.76/max(1,inp['stations'][sid]['reverse_duration_h']))*z['n'][j]
             remain=.95*(capacity-z['units'][j].max());faults=[];margins=[]
@@ -242,7 +242,7 @@ def case_assets():
                 new_n=group['弹性'][yr]['n'][j]
                 if new_n>previous_n+.5:storage_actions.append(f'{yr}年新增{f((new_n-previous_n)*.1)} MW储能')
                 previous_n=new_n
-            storage_text='；'.join(storage_actions)+'。' if storage_actions else '弹性方案四年均由主变及网络承担供电任务。'
+            storage_text=('，并'+ '，随后'.join(storage_actions)+'。') if storage_actions else '，四年供电任务均由主变及网络承担。'
             critical_year,critical_h=max(((yr,h) for yr in inp['years'] for h in range(len(scenes[yr]))),
                 key=lambda pair:abs(scenes[pair[0]][pair[1],j]))
             critical=group['弹性'][critical_year];power=scenes[critical_year][critical_h]
@@ -256,8 +256,8 @@ def case_assets():
             critical_remain=critical['units'][j].sum()-critical['units'][j].max()
             main_route=max(routes,key=lambda x:x[2]) if routes else None
             annual_analysis=(f'四年校核截面中，本站绝对功率最大的工况出现在{critical_year}年，'
-                f'转接前为{f(power[j])} MW，主要表现为'+('正向受电需求。' if power[j]>=0 else '反向输送需求。')+
-                f'按该年设备扣除最大单台主变后，剩余容量{f(critical_remain)} MVA。')
+                f'转接前为{f(power[j])} MW，主要表现为'+('正向受电需求，' if power[j]>=0 else '反向输送需求，')+
+                f'该年设备在最大单台主变N-1后剩余容量为{f(critical_remain)} MVA。')
             if main_route:
                 annual_analysis+=(f'故障方式下本站转出{f(critical_out)} MW、承接{f(critical_in)} MW，'
                     f'其中与{main_route[1]}之间的主要{main_route[0]}功率为{f(main_route[2])} MW，'
@@ -275,14 +275,14 @@ def case_assets():
             difference=(f'弹性方案本站增加{f(capacity-rcap)} MVA容量。' if capacity>rcap+1e-7 else
                         f'弹性方案本站容量减少{f(rcap-capacity)} MVA。' if capacity<rcap-1e-7 else
                         '两类方案本站主变总容量相同。')
-            para=(f'#### {name}规划分析\n\n该站初始主变组合为'+ '+'.join(f'{u:g}' for u in initial)+' MVA。'+action+storage_text+'\n\n'+
+            para=(f'#### {name}规划分析\n\n该站初始主变组合为'+ '+'.join(f'{u:g}' for u in initial)+' MVA，弹性方案'+action.rstrip('。')+storage_text+'\n\n'+
                 f'2025年本站最大正向、反向净负荷分别为{f(pplus[j])} MW、{f(pminus[j])} MW。'+
-                f'刚性方案当年主变容量为{f(rcap)} MVA、储能额定功率{f(rigid["n"][j]*.1)} MW；'
-                f'弹性方案分别为{f(capacity)} MVA和{f(z["n"][j]*.1)} MW。'+difference+
+                f'在同一需求下，刚性方案当年主变容量为{f(rcap)} MVA、储能额定功率{f(rigid["n"][j]*.1)} MW，'
+                f'弹性方案分别为{f(capacity)} MVA和{f(z["n"][j]*.1)} MW，'+difference.rstrip('。')+'。'+
                 f'弹性方案按当年各站局部极值计算的站级负载率为{pct(rate)}。\n\n[[TABLE:{key}]]\n\n'
                 f'2025年区域正向峰值正常工况下，本站转出{f(normal[0]["out"][j])} MW、承接{f(normal[0]["inc"][j])} MW，'
-                f'转接后净负荷为{f(normal[0]["net"][j])} MW；区域最低净负荷工况下为{f(normal[1]["net"][j])} MW。\n\n'
-                f'本站最大单台主变停运后剩余容量为{f(capacity-z["units"][j].max())} MVA。'
+                f'转接后净负荷为{f(normal[0]["net"][j])} MW，区域最低净负荷工况下为{f(normal[1]["net"][j])} MW。\n\n'
+                f'按最大单台主变N-1校核，本站剩余容量为{f(capacity-z["units"][j].max())} MVA，'
                 f'两代表工况重新转供后的本站净负荷分别为{f(faults[0])} MW、{f(faults[1])} MW，'
                 f'两方向最小容量余量为{f(max(0,min(margins)))} MW，正向储能有效支撑功率为{f(bp)} MW。\n\n'+annual_analysis+'\n')
             paragraphs.append(para);profile_count+=1
@@ -333,7 +333,7 @@ def case_assets():
         f'{f(-c_diff[2])}万元联络费用，合计减少{f(-c_diff.sum())}万元。'
         '既有转供在两类方案中均提供支援，费用优势来自新增补强方式的不同。'
         '两地区合计降幅由上述分项变化形成，区域容量变化与费用变化分别按设备及工程项目解释。')
-    s['restore_equipment_mix']=('2025年邳州两类方案均有1座三台主变站，但配储站数及储能规模不同；'
+    s['restore_equipment_mix']=('2025年邳州两类方案均有1座三台主变站，但配储站数及储能规模不同。'
         '市区两类方案均保持两台主变的站内结构，弹性方案通过翟山变单台升档提高故障后剩余容量。'
         '主变台数只反映设备结构的一部分，同样为两台主变的站，额定规格和最大单台停运后的可用容量仍有差异。'
         '各年的具体组合、支援方向和投运变化需结合逐站表确定。')

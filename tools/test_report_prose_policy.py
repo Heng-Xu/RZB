@@ -30,6 +30,17 @@ class ProsePolicyTests(unittest.TestCase):
         for value in ['主变更换规格及费用见研究报告第5.4节。','导则建议范围见表4[1]。']:
             self.assertEqual(self.check(value),[])
 
+    def test_paragraph_logic_and_explanation_exemptions(self):
+        for value in ['上述逐年结果由初始设备和费用目标形成；是否需要超出上限，还需比较其他方案。',
+                      '本次投运设备未达到更新年限。费用范围未计残值。所列费用用于比较。']:
+            self.assertTrue(self.check(value))
+        for value in ['方案由既定条件形成。若需论证超出上限的必要性，应检验建议范围内方案。',
+                      '设备寿命超过评价期，因此本期费用由建设和运维构成。',
+                      '式中，S为容量；因此处使用MVA单位，按功率因数折算。',
+                      '注：输入按已计算节点归类；是否补充节点需结合新资料。',
+                      '| 注 | 统一范围；因此采用同一单位 |']:
+            self.assertEqual(self.check(value),[])
+
     def test_substantive_limits_are_preserved(self):
         examples=[
             '建议范围内不能满足供电安全准则时，可结合实际情况适当提高。',

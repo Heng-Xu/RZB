@@ -10,7 +10,7 @@ from docx import Document
 ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'研究报告/甲方反馈/10.11/供电公司讨论稿.docx'
 REPORT=ROOT/'研究报告/04_word/研究报告终稿.docx'
-REVIEW=ROOT/'研究报告/05_review/当前版/1013讨论稿扩充'
+REVIEW=ROOT/'研究报告/05_review/当前版/1014事实与文字复核/讨论稿'
 from discussion_expansion import amend, table_like_report, image_paragraph, MATRIX_KEYS, FIGURES
 BACKUP=ROOT/'研究报告/05_review/当前版/1013局部表述复核/修前快照/供电公司讨论稿.docx'
 W='http://schemas.openxmlformats.org/wordprocessingml/2006/main'
@@ -107,7 +107,12 @@ def content():
   if m:=re.match(r'^\[(\d+)\]',p.text):refs[int(m[1])]=p.text[m.end():].strip()
  additions[91]=[('heading','参考依据')]+[('reference',f'[{i}] '+refs[n]) for i,n in enumerate([7,12,8,10,28],1)]
  with ZipFile(BACKUP) as z:base=list(xml(z.read('word/document.xml')).find(qn('body')))
- return amend(changes,tables,additions,base,REPORT,t,md_rows)
+ changes,tables,additions=amend(changes,tables,additions,base,REPORT,t,md_rows)
+ overrides=json.loads((ROOT/'tools/discussion_prose_overrides.json').read_text())
+ changes.update({int(k):v for k,v in overrides['原段落'].items()})
+ for index,items in additions.items():
+  additions[index]=[(kind,overrides['新增正文'].get(value,value) if kind=='p' else value) for kind,value in items]
+ return changes,tables,additions
 
 class Reviser:
  def __init__(self,root):
@@ -279,6 +284,8 @@ def apply():
  REVIEW.mkdir(parents=True,exist_ok=True)
  previous=ROOT/'研究报告/05_review/当前版/1013讨论稿批注修订/修订核验.json'
  allowed=[sha(BACKUP),json.loads(previous.read_text())['修后SHA256']]
+ expansion=ROOT/'研究报告/05_review/当前版/1013讨论稿扩充/修订核验.json'
+ allowed.append(json.loads(expansion.read_text())['修后SHA256'])
  if (REVIEW/'修订核验.json').exists():allowed.append(json.loads((REVIEW/'修订核验.json').read_text())['修后SHA256'])
  assert sha(TARGET) in allowed,'文件发生未登记修改，禁止覆盖'
  with ZipFile(BACKUP) as z:original=[(i,z.read(i.filename)) for i in z.infolist()];parts={i.filename:b for i,b in original}
@@ -370,7 +377,7 @@ def check():
     assert E.tostring(aa,method='c14n',exclusive=True)==E.tostring(bb,method='c14n',exclusive=True),('表格属性不一致',n,node)
    assert [E.tostring(x,method='c14n',exclusive=True) for x in actual_cell.findall('.//'+qn('rPr'))]==[E.tostring(x,method='c14n',exclusive=True) for x in ref_cell.findall('.//'+qn('rPr'))],('字体不一致',n)
  from discussion_expansion import verify_figures
- verify_figures(ROOT,REVIEW,new)
+ verify_figures(ROOT,ROOT/'研究报告/05_review/当前版/1013讨论稿扩充',new)
  assert '终稿' not in visible
  assert len(after.xpath('.//*[local-name()="drawing"]'))==4
  for p in body.findall(qn('p')):
