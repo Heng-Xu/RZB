@@ -1,0 +1,117 @@
+{
+  "verified": true,
+  "workbook": "研究报告/01研究推荐/当前版/既有转供约束诊断_20261012/既有转供量与约束调整对照.xlsx",
+  "sha256": "33b09c694c8dc04c193df7eb47a6e4d1c670c33263f5f24775baaf54ecd65f7e",
+  "checked_cells": 41098,
+  "original_checked_pairs": 22752,
+  "trial_checked_pairs": 45504,
+  "trial_sources": [
+    {
+      "region": "city",
+      "case": "elastic_floor_2",
+      "policy": "station_caps",
+      "input_sha256": "280b0266f3964ca2981cb9a4fa527b0eec06e875221a46d21a4dd89d8d47e16c",
+      "solution_sha256": "70cab8711875bed9d0ff229eda2c3c9b30acecc3660e21899beca12be0bf48bf"
+    },
+    {
+      "region": "city",
+      "case": "elastic_no_floor",
+      "policy": "station_caps",
+      "input_sha256": "280b0266f3964ca2981cb9a4fa527b0eec06e875221a46d21a4dd89d8d47e16c",
+      "solution_sha256": "86c945de74a85df2825971f569974e8008c14511c9baeb62e400f82ae3ead5d4"
+    },
+    {
+      "region": "city",
+      "case": "rigid_storage",
+      "policy": "station_caps",
+      "input_sha256": "280b0266f3964ca2981cb9a4fa527b0eec06e875221a46d21a4dd89d8d47e16c",
+      "solution_sha256": "8390d2d48a2939d978211e85169d7d2692cab4fd07342c677a2e21b940b36a10"
+    },
+    {
+      "region": "city",
+      "case": "elastic_floor_2",
+      "policy": "station_caps_normal_fixed",
+      "input_sha256": "654866fced63234255c44c715032ca66e9ae44a6dde490a10b8d14a640a21708",
+      "solution_sha256": "580ee37f4aa84b22c9fcaa82ffd88d7056d68e0e480e8a33aaf102d735b470b7"
+    },
+    {
+      "region": "city",
+      "case": "elastic_no_floor",
+      "policy": "station_caps_normal_fixed",
+      "input_sha256": "654866fced63234255c44c715032ca66e9ae44a6dde490a10b8d14a640a21708",
+      "solution_sha256": "83fd0eff17bc2533a592450929fcda82d53a9aee2f32304f4f5980db6d3d61bb"
+    },
+    {
+      "region": "city",
+      "case": "rigid_storage",
+      "policy": "station_caps_normal_fixed",
+      "input_sha256": "654866fced63234255c44c715032ca66e9ae44a6dde490a10b8d14a640a21708",
+      "solution_sha256": "31f3d429caeb5a5f10baaa1bec0e803e1e719064a56e00d46f21098fbbcaba9b"
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_floor_2",
+      "policy": "station_caps",
+      "input_sha256": "7e9b84b33e5bac6781eb6d4bc06d792dee14fb8a76fb93925f9764bc88eefcf3",
+      "solution_sha256": "36364edb6d9c1058cba7a43e68834663ac50eddeb61a31f5abe20e44114e6822"
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_no_floor",
+      "policy": "station_caps",
+      "input_sha256": "7e9b84b33e5bac6781eb6d4bc06d792dee14fb8a76fb93925f9764bc88eefcf3",
+      "solution_sha256": "2e12def85bedaed13628995d8dcd8c04e22ceab136fc52e871d83d2f0df7a21a"
+    },
+    {
+      "region": "pizhou",
+      "case": "rigid_storage",
+      "policy": "station_caps",
+      "input_sha256": "7e9b84b33e5bac6781eb6d4bc06d792dee14fb8a76fb93925f9764bc88eefcf3",
+      "solution_sha256": "afda2463c8d125d65a264dd57ee1dd71f7369c7f553a6584cf5d9317e0c85940"
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_floor_2",
+      "policy": "station_caps_normal_fixed",
+      "input_sha256": "1a8e666c57c4ca1a13fe6cdfe26a677ba797e75df943e662862ef5bcdb973673",
+      "solution_sha256": "9ca3f421e6540695d7d5cf30936633f6afe82589e4784308596f81f7836a02fb"
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_no_floor",
+      "policy": "station_caps_normal_fixed",
+      "input_sha256": "1a8e666c57c4ca1a13fe6cdfe26a677ba797e75df943e662862ef5bcdb973673",
+      "solution_sha256": "d4faea2adf21a1a4a0a95054a57289a6d5b428e24ba09d25bb06e1c2522b071d"
+    },
+    {
+      "region": "pizhou",
+      "case": "rigid_storage",
+      "policy": "station_caps_normal_fixed",
+      "input_sha256": "1a8e666c57c4ca1a13fe6cdfe26a677ba797e75df943e662862ef5bcdb973673",
+      "solution_sha256": "62ecaf0abae15f9e0375afb1f2965f445fca6b7e0002cc4507c5e0cc9e8e7fd6"
+    }
+  ],
+  "result_files": {
+    "两地六组转供.csv": "26a8ab511aa1089f7225e60d40e225538417d7de0041398e1771d73a45fcc3cd",
+    "代表工况通道.csv": "6bce4e79a026217deb2a8c515e33b45e992c749b99c1111336a72e124dc7ebdf",
+    "使用说明.csv": "2f50e2e8c3c65fc2db8ddf3c886da6a40364d78d7df321998c58960bed400601",
+    "原方案加逐站上限校核.csv": "0b5fce6082b7ebd661f51ecc183198fcfa6bb51d569a921078fcab0544e62ce6",
+    "原解与最小调度.csv": "317adb7cb283352e60366eaf34ecb51b52c306226595b6295889b0bf5d071b7c",
+    "审查预览_12组方案.xlsx": "3431e3f2b6cab646c5df737d758728f152ed39f056b68dfbe00ea3758300b57a",
+    "对照代表通道.csv": "21016bc7a2ee1a84553faf011212cedff7b2b6aac4c3e405dc005e91f98aad21",
+    "对照新增联络项目.csv": "a2cf666d67f3eefc575cb3d86871dbfdc7b62019368d7786a9acebb0f995c4d3",
+    "对照逐年措施.csv": "9c7d487e8cb350252fcb3ac3e71eb5786bf067f9228ed3df83394f0770f49be9",
+    "对照逐年转供.csv": "f3c8e407c8e40e3790faf46124257a04d347551fffda48d63befc9b1456db7c2",
+    "对照逐站设备.csv": "542d4fb5407b0a05198ca4a64db0435be2b150be0b89fac4a7baf8acba6bdf2d",
+    "市区刚性原方案转供.csv": "983e84e770a117e1b982e18dfd9a810242e192317d75417da527b638c043694c",
+    "报告主方案转供量.csv": "787b3038c9dc5637247184cf829845512c97dbf41ba6dd1eab95380cd44afab8",
+    "报告主方案逐年措施.csv": "d13dd8a56535573c5b4458d36c7cfb3dd1067227e48a04938c9527176d629c03",
+    "报告采用版本.csv": "313e4dafba84527c8731604cf826bb06ba2f19c27482044dc79a9c04ff3c7823",
+    "报告采用版本说明.md": "a128f9cb3a8e846f79657f1e829162e698c9cbf6295a70d6d6f4b3f4c0d74dca",
+    "既有转供量与约束调整对照.xlsx": "33b09c694c8dc04c193df7eb47a6e4d1c670c33263f5f24775baaf54ecd65f7e",
+    "约束建议.csv": "cb6976312ec830c95971e40f5ed383def344968ca86ddd8d6ee75b1708e22573",
+    "约束方案比选.csv": "e4cee4332898ed1fee5ab97ccdbb5c3a3588532b6c139198c7131be377896167",
+    "约束调整与结果说明.md": "57e05fffc069a6cb5382f1d2bdb17e5e3c3ca4a26eb348290e9813f71373551e",
+    "逐站转供收资.csv": "9f615ac4385e8037a0b17d152442af66909c130ff1aa8df6be0068b43a0cd5cf"
+  }
+}

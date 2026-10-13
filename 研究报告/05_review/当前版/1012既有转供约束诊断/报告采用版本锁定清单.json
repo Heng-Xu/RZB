@@ -1,0 +1,530 @@
+{
+  "version": "case_station_caps_normal_adjust_20261013",
+  "confirmed_date": "2026-10-13",
+  "user_instruction": "正常允许调整供区的弹性无下限和刚性作为撰写报告的数据和模型版本；其余方案保留。",
+  "scope": "市区、邳州；2022—2025共同压缩起点的规划回算；逐站既有转供MW上限；正常及最大单台主变N−1静态截面。",
+  "main": [
+    {
+      "region": "city",
+      "case": "elastic_no_floor",
+      "policy": "station_caps",
+      "verified": true,
+      "result_folder": "约束对照/city/station_caps/elastic_no_floor_refine_01",
+      "checked_pairs": 5400,
+      "matrix_violation": 1.3430808694820604e-12,
+      "cost_recomputed_10k": 1446.638989437193,
+      "input_sha256": "280b0266f3964ca2981cb9a4fa527b0eec06e875221a46d21a4dd89d8d47e16c",
+      "solution_sha256": "86c945de74a85df2825971f569974e8008c14511c9baeb62e400f82ae3ead5d4",
+      "dual_bound": 1446.6389894371937,
+      "mip_gap": 0.0
+    },
+    {
+      "region": "city",
+      "case": "rigid_storage",
+      "policy": "station_caps",
+      "verified": true,
+      "result_folder": "约束对照/city/station_caps/rigid_storage_refine_01",
+      "checked_pairs": 5400,
+      "matrix_violation": 0.0,
+      "cost_recomputed_10k": 2657.8042538603036,
+      "input_sha256": "280b0266f3964ca2981cb9a4fa527b0eec06e875221a46d21a4dd89d8d47e16c",
+      "solution_sha256": "8390d2d48a2939d978211e85169d7d2692cab4fd07342c677a2e21b940b36a10",
+      "dual_bound": 2563.857697667795,
+      "mip_gap": 0.03534743239877681
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_no_floor",
+      "policy": "station_caps",
+      "verified": true,
+      "result_folder": "约束对照/pizhou/station_caps/elastic_no_floor_refine_02",
+      "checked_pairs": 2184,
+      "matrix_violation": 2.3151845500679795e-13,
+      "cost_recomputed_10k": 14346.847197822715,
+      "input_sha256": "7e9b84b33e5bac6781eb6d4bc06d792dee14fb8a76fb93925f9764bc88eefcf3",
+      "solution_sha256": "2e12def85bedaed13628995d8dcd8c04e22ceab136fc52e871d83d2f0df7a21a",
+      "dual_bound": 14205.14927059054,
+      "mip_gap": 0.00987658997676362
+    },
+    {
+      "region": "pizhou",
+      "case": "rigid_storage",
+      "policy": "station_caps",
+      "verified": true,
+      "result_folder": "约束对照/pizhou/station_caps/rigid_storage_refine_02",
+      "checked_pairs": 2184,
+      "matrix_violation": 1.4210854715202004e-14,
+      "cost_recomputed_10k": 19133.01422449736,
+      "input_sha256": "7e9b84b33e5bac6781eb6d4bc06d792dee14fb8a76fb93925f9764bc88eefcf3",
+      "solution_sha256": "afda2463c8d125d65a264dd57ee1dd71f7369c7f553a6584cf5d9317e0c85940",
+      "dual_bound": 17146.392965365656,
+      "mip_gap": 0.1038321111259141
+    }
+  ],
+  "comparisons": [
+    {
+      "region": "city",
+      "case": "elastic_floor_2",
+      "policy": "station_caps",
+      "verified": true,
+      "result_folder": "约束对照/city/station_caps/elastic_floor_2_refine_02",
+      "checked_pairs": 5400,
+      "matrix_violation": 7.105427357601002e-15,
+      "cost_recomputed_10k": 6587.368606588103,
+      "input_sha256": "280b0266f3964ca2981cb9a4fa527b0eec06e875221a46d21a4dd89d8d47e16c",
+      "solution_sha256": "70cab8711875bed9d0ff229eda2c3c9b30acecc3660e21899beca12be0bf48bf",
+      "dual_bound": 6587.368606588103,
+      "mip_gap": 0.0
+    },
+    {
+      "region": "city",
+      "case": "elastic_floor_2",
+      "policy": "station_caps_normal_fixed",
+      "verified": true,
+      "result_folder": "约束对照/city/station_caps_normal_fixed/elastic_floor_2_refine_01",
+      "checked_pairs": 5400,
+      "matrix_violation": 2.842170943040401e-14,
+      "cost_recomputed_10k": 8677.916817539308,
+      "input_sha256": "654866fced63234255c44c715032ca66e9ae44a6dde490a10b8d14a640a21708",
+      "solution_sha256": "580ee37f4aa84b22c9fcaa82ffd88d7056d68e0e480e8a33aaf102d735b470b7",
+      "dual_bound": 8677.916817539306,
+      "mip_gap": 2.0961129747976143e-16
+    },
+    {
+      "region": "city",
+      "case": "elastic_no_floor",
+      "policy": "station_caps_normal_fixed",
+      "verified": true,
+      "result_folder": "约束对照/city/station_caps_normal_fixed/elastic_no_floor_refine_01",
+      "checked_pairs": 5400,
+      "matrix_violation": 8.498731757319495e-13,
+      "cost_recomputed_10k": 4730.279870223203,
+      "input_sha256": "654866fced63234255c44c715032ca66e9ae44a6dde490a10b8d14a640a21708",
+      "solution_sha256": "83fd0eff17bc2533a592450929fcda82d53a9aee2f32304f4f5980db6d3d61bb",
+      "dual_bound": 4730.279870223205,
+      "mip_gap": 0.0
+    },
+    {
+      "region": "city",
+      "case": "rigid_storage",
+      "policy": "station_caps_normal_fixed",
+      "verified": true,
+      "result_folder": "约束对照/city/station_caps_normal_fixed/rigid_storage_refine_01",
+      "checked_pairs": 5400,
+      "matrix_violation": 1.1652900866465643e-12,
+      "cost_recomputed_10k": 16644.018082789175,
+      "input_sha256": "654866fced63234255c44c715032ca66e9ae44a6dde490a10b8d14a640a21708",
+      "solution_sha256": "31f3d429caeb5a5f10baaa1bec0e803e1e719064a56e00d46f21098fbbcaba9b",
+      "dual_bound": 16478.28421166462,
+      "mip_gap": 0.009957563750542409
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_floor_2",
+      "policy": "station_caps",
+      "verified": true,
+      "result_folder": "约束对照/pizhou/station_caps/elastic_floor_2_refine_02",
+      "checked_pairs": 2184,
+      "matrix_violation": 1.4210854715202004e-14,
+      "cost_recomputed_10k": 18580.04112497004,
+      "input_sha256": "7e9b84b33e5bac6781eb6d4bc06d792dee14fb8a76fb93925f9764bc88eefcf3",
+      "solution_sha256": "36364edb6d9c1058cba7a43e68834663ac50eddeb61a31f5abe20e44114e6822",
+      "dual_bound": 17884.925143604476,
+      "mip_gap": 0.03741197216358076
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_floor_2",
+      "policy": "station_caps_normal_fixed",
+      "verified": true,
+      "result_folder": "约束对照/pizhou/station_caps_normal_fixed/elastic_floor_2_refine_02",
+      "checked_pairs": 2184,
+      "matrix_violation": 6.579625733138528e-12,
+      "cost_recomputed_10k": 19110.207983042055,
+      "input_sha256": "1a8e666c57c4ca1a13fe6cdfe26a677ba797e75df943e662862ef5bcdb973673",
+      "solution_sha256": "9ca3f421e6540695d7d5cf30936633f6afe82589e4784308596f81f7836a02fb",
+      "dual_bound": 18392.84983594447,
+      "mip_gap": 0.03753795603554659
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_no_floor",
+      "policy": "station_caps_normal_fixed",
+      "verified": true,
+      "result_folder": "约束对照/pizhou/station_caps_normal_fixed/elastic_no_floor_refine_02",
+      "checked_pairs": 2184,
+      "matrix_violation": 2.842170943040401e-14,
+      "cost_recomputed_10k": 15830.882491385408,
+      "input_sha256": "1a8e666c57c4ca1a13fe6cdfe26a677ba797e75df943e662862ef5bcdb973673",
+      "solution_sha256": "d4faea2adf21a1a4a0a95054a57289a6d5b428e24ba09d25bb06e1c2522b071d",
+      "dual_bound": 15657.340856994879,
+      "mip_gap": 0.010962221119698416
+    },
+    {
+      "region": "pizhou",
+      "case": "rigid_storage",
+      "policy": "station_caps_normal_fixed",
+      "verified": true,
+      "result_folder": "约束对照/pizhou/station_caps_normal_fixed/rigid_storage_refine_02",
+      "checked_pairs": 2184,
+      "matrix_violation": 5.314859663485549e-12,
+      "cost_recomputed_10k": 20958.466510711034,
+      "input_sha256": "1a8e666c57c4ca1a13fe6cdfe26a677ba797e75df943e662862ef5bcdb973673",
+      "solution_sha256": "62ecaf0abae15f9e0375afb1f2965f445fca6b7e0002cc4507c5e0cc9e8e7fd6",
+      "dual_bound": 20181.325740279823,
+      "mip_gap": 0.037080039707773745
+    }
+  ],
+  "model_files": [
+    {
+      "path": "实验/研究/rebuild_2026/__init__.py",
+      "sha256": "d42169fc0d28331f8b9e4d6ee039a89c7060c92a7e047b4a8fdc74e534066eca"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_forward_scenes.py",
+      "sha256": "3785d2140c5d32ed9b878d2fab0a35ea42f0e001b07105233965a29a221760de"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_no_tie_investment_submodel.py",
+      "sha256": "33603477cedd2471d0934a37faf91b2857eae9865e0447ff69e39fc49935139b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/asset_2025.py",
+      "sha256": "6972af56a2fc82a768c5994f1d62d0d0853a31bec1af281514b615b22d964181"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/baseline_2021.py",
+      "sha256": "741cdd18fbde78dfdc3607e8b6132134029d1243ad783ddf5e07252822157f7b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__init__.py",
+      "sha256": "3930f807b6048732e2cc50d920674798487bce2d090f25d050e574f9fc25f4a3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/capacity_audit.py",
+      "sha256": "d9cc2b64fce223de865d9f453b61ef7daa965529628f722864ec130eccb04ca3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/capacity_run.py",
+      "sha256": "27c85489b38b6272ba6640a56761294cbfb3375c8626b41b755efa963257a06a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/report.py",
+      "sha256": "2be4e77323b8b30ea85b8e68e2515c2b49c689e1cd5c0bbcbb93b132157876fe"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/report_version.py",
+      "sha256": "108ab40d90afed2c9e7cb2576330767c8fbe2931f55b47f45f6a6148d5cf9f20"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/run.py",
+      "sha256": "3ad1c77eebfe97eb544188246ef463aeb8554a9a120400ce512a7ea07cbf4538"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/transfer_diagnostic.py",
+      "sha256": "6d96c89da5aad3d885f217a0efb391abc58571d5f5749348b981809806632a58"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/city_district_calibration.py",
+      "sha256": "36a66d58c5d112fc141191f51b3c6ef04c9e95e0e0470c5fdcb129dbb83b9a88"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/city_mapping_audit.py",
+      "sha256": "0bdabe6f304780fa880748aa36979b55217f5ec2537ad5f893ae55c012e8601e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/cost_references.py",
+      "sha256": "83476dc1cb066787827ce88b4ede3982f6d9013f0374d9e6d89c2f5cf8f5ae21"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/current_economic_assumptions.py",
+      "sha256": "ca25b1cebbbe887ac32fef6572fbd6514d0f96003244bbd462c405eff9ffbabc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/feeder_2025.py",
+      "sha256": "f46f2385de37068ec86f2c3b2b09ecae8fd778a41de6abab104318ed21bb59fc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/hourly_source_profile.py",
+      "sha256": "7028e5ecda6fd6b04865cd2b601a7b329884cd80a2ec6f5c61ffda709bfd4156"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/incremental_cost.py",
+      "sha256": "acebec3a239f30016028fe1e816ad76f7846adba52f0b9562bc9c25939f575d5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/joint_lifecycle_optimizer.py",
+      "sha256": "dfd826a383b6735be5d1de1066ad3de40ae0060bba45db19e7cfece882614551"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/load_reallocation.py",
+      "sha256": "3eb72cfda22f42675328f191e08c323fe29655624bdc506158a06000a2253f08"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/__init__.py",
+      "sha256": "4157fa7be9da40f4b0cc3716fc4d8077dff1bec7c5d095ef29a6bb676668fc23"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/run.py",
+      "sha256": "dd6e58fcbc3e3c84ee6c50390030b2896425620e69b1d7d7007dc3821f0e9592"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/solver.py",
+      "sha256": "b935e418c24ec42a7997dfc9ec123bda3b2e3fafe4ea7513cf463a70ddb0155a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/new_line_section_audit.py",
+      "sha256": "49001957962dc0a6dbd50b3f938b10f32fe94e42839843eb88f26606b3d0c1a9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/official_annual.py",
+      "sha256": "24f2fcd8ae19282381209e87124cd3cd5290469d2b2902f6984880e14cd26699"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/pilot_20261009/__init__.py",
+      "sha256": "7cf20f29fa231c360acab11c1b9e6305ab35f514f4444cd21cd248afb9a264de"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/pilot_20261009/run.py",
+      "sha256": "be351531a7177b21ef471f1eab52d34963e027f3d8320bccc636e7d4f988c280"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/pizhou_existing_ties.py",
+      "sha256": "7a832cfffc6a53943e103da4d52bf5a1104d2f8feefbd0b5e6ff851a278686f1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/pizhou_transfer_fraction.py",
+      "sha256": "2da095ca5e176de6a296bcb5757c47eb9cf0d421b0ae1deb199c3b0ce5cb5e9e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/planning_load_profile.py",
+      "sha256": "d9f3fd7145332324dd21d75c8206b54f8b6f1e9df4804f006d182d24d69cceaa"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/regional_static_milp_v2.py",
+      "sha256": "45fa7a53cbc5c60125c5f483cc00a16637f8a74ab1f0183b8e9fdc4bfe2a0ce5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/regional_static_milp_v2_audit.py",
+      "sha256": "93baecee2a3283cf06e5ee900529a2a2d9149bf0ee3b891a8d14196d0001ab79"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/reverse_screen_2025.py",
+      "sha256": "66d14dc78312732dc43bbae0e20901eda0582128c357770be6370cd9e2c05f65"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_actual_20261010/__init__.py",
+      "sha256": "dcb3d8fe9e7ef117d03ae32dd4466bec2d7f36f8285a21084b8bd22994c45e50"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_actual_20261010/run.py",
+      "sha256": "370a083613d879f2bd44225d6d76dd832416c6f178c797ed9e63156cd02c25ff"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/station_grid_feasibility.py",
+      "sha256": "f7a50484a17e27adbf5dac37d6253f7e26ba2017fe19b15d617e0042148eb1ae"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/station_transfer_equivalent.py",
+      "sha256": "f9bb05bbb22049ff117439449d1db95e187a1964b777753fc41b6f6442782816"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/synchronous_20261009/__init__.py",
+      "sha256": "14c6ed4cc266ca28c9911442bbd52ef9ac3b8dfe0623ed3b4d23a9ffbac1f668"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/synchronous_20261009/model.py",
+      "sha256": "1948e6a3faaae5577aa7cc7f8e4decf6016a89643128719a03a58e56c9b0686f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/synchronous_20261009/prepare.py",
+      "sha256": "8349b09edb902d230b5f41d27109047afe60d8ec929540b8e9a99648b1ff11af"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/tie_section_audit.py",
+      "sha256": "121e330651fbb562d6769763dffb465415656650f7b36621ec024f97a1161ca8"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/transformer_only_path_2021_2025.py",
+      "sha256": "9b9a5549ca754bcb9339f581fa117e6c6853375b99c4b1b830f9194ca2cafc25"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/two_district_ordered_guide_run.py",
+      "sha256": "93d5d17563e64026839fa9817dea96030d1f8fd3f2231eddd4f2eef39918e5bc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/two_district_source_audit.py",
+      "sha256": "bfcbefde90e13e6b95c6f34933deb501c6db5686ac339963b7334c1ee4e15e94"
+    }
+  ],
+  "data_files": [
+    {
+      "path": "实验/研究/data/tuomin/变电站对应.md",
+      "sha256": "3a53fee4cf545625d22d3ca33eb66d6b0de49d772790ed6f541b505c1e655dd6"
+    },
+    {
+      "path": "实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/邳州10kV线路基础数据表.xlsx",
+      "sha256": "120d7d9cfa59a3b7b8abdd424773b18b1b5420bc2160249d0bf30d76615619d7"
+    },
+    {
+      "path": "实验/研究/data/tuomin/补充数据/徐州地区变电站全停全转情况分析汇总20250705.xlsx",
+      "sha256": "e176254aef7f421dd8128332faa4ba5b6064785b2c707b8b9c2df103504ff317"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/既有转供逐站约束_20261012/README.md",
+      "sha256": "ab046bbaa302b0f40cf925d08cce1f8221b2fc17fac19e18b79272e9c484c733"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/既有转供逐站约束_20261012/来源与口径.json",
+      "sha256": "5c826c1cfce6a068dcd75c0f5c5c275fb8225fb23b4f92ba34e8077a12cce68d"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/既有转供逐站约束_20261012/逐站既有转供能力及对应.csv",
+      "sha256": "9f615ac4385e8037a0b17d152442af66909c130ff1aa8df6be0068b43a0cd5cf"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/chosen_solution.npz",
+      "sha256": "86c945de74a85df2825971f569974e8008c14511c9baeb62e400f82ae3ead5d4"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/independent_lp.json",
+      "sha256": "585e7263b0e3342a6b2d64b57cc2bdd2b47048a5bf923a21aff4f10a3ca2e9a4"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/projects.csv",
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/selected_pairs.json",
+      "sha256": "4b26d0664a619e9d9139e9daa214cbff81fbb2ca8ff97bcaaeff1d52410c770b"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/stations.csv",
+      "sha256": "0ef32b550250bb8e268d26f22fbcbeef4b739e7b17fa4af3d406af445df9720c"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/summary.json",
+      "sha256": "a10cb4d41dc07aa776748b4afa175bc6e1e84df5a4c31af2b1deb54b60c92f6b"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/elastic_no_floor_refine_01/years.csv",
+      "sha256": "2bb2baff9dd10c5970de742d6176e5e5ac368f8c9955646d954bb2081ef5b10a"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/inputs.json",
+      "sha256": "280b0266f3964ca2981cb9a4fa527b0eec06e875221a46d21a4dd89d8d47e16c"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/chosen_solution.npz",
+      "sha256": "8390d2d48a2939d978211e85169d7d2692cab4fd07342c677a2e21b940b36a10"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/independent_lp.json",
+      "sha256": "5155b3ea69bc962e86f6c57ae582c162eb55470ad9222425279890d14ccfa7aa"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/projects.csv",
+      "sha256": "3f05b8a4b63cd6a9ab76472429071d48f96757b2e1705d64557130540fb658b4"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/selected_pairs.json",
+      "sha256": "4b26d0664a619e9d9139e9daa214cbff81fbb2ca8ff97bcaaeff1d52410c770b"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/stations.csv",
+      "sha256": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/summary.json",
+      "sha256": "20dbaf8fcb54d264b7943e618e98746aa6226e57a2cea85958e944ace5f21d0a"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/city/station_caps/rigid_storage_refine_01/years.csv",
+      "sha256": "ae5c6bbeae7135272630f48dcf84b58a57d699caf5cf29b3295e3e63c588891a"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/chosen_solution.npz",
+      "sha256": "2e12def85bedaed13628995d8dcd8c04e22ceab136fc52e871d83d2f0df7a21a"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/independent_lp.json",
+      "sha256": "d8ec7f2f669933fbc3df87831efab32ce2d4ff0263d59fb21f290f72a9d7f5fe"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/projects.csv",
+      "sha256": "a5de8ba7a81e3ba9cf25571259f739282354601a0cf38cb17b5bebf4d36a042c"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/selected_pairs.json",
+      "sha256": "180eb87cf21c20303a234fdc5624e91ececab2ec1f955dfb1ca4f42680d680c0"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/stations.csv",
+      "sha256": "b1d26a65daa0b380d09cc956c90c9c0d083ba3fe96d5d0c49eb40f20fcb8ad1e"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/summary.json",
+      "sha256": "ce6ef432574e4ab88bebc14aa0a655369cc2f5ea31f229fa39354e0c95935be8"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/elastic_no_floor_refine_02/years.csv",
+      "sha256": "2d4e94b386bb66a4c7e73d77b23e7475b28beaead8e8e1674bbd72d681849aac"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/inputs.json",
+      "sha256": "7e9b84b33e5bac6781eb6d4bc06d792dee14fb8a76fb93925f9764bc88eefcf3"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/chosen_solution.npz",
+      "sha256": "afda2463c8d125d65a264dd57ee1dd71f7369c7f553a6584cf5d9317e0c85940"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/independent_lp.json",
+      "sha256": "b01e7910d0fd9214957c8a36b72d0fe0e1ddfefd8d7dfed85da525adb3f0cc88"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/projects.csv",
+      "sha256": "d539030fb897f9b22b117223018df95c13c764a86d5df22409e1b5fcf8c8020d"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/selected_pairs.json",
+      "sha256": "e9c2ee53cc9407997ef6f60bda59cab40aa2d340a0f3ebe66d21e77fb7063163"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/stations.csv",
+      "sha256": "e7ab0ed289c2f72f975686f647b9c9aac7dabc63e62ab2260219ccd816b7ed06"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/summary.json",
+      "sha256": "2519b5e1839a04fd7d54b147680d8cd5918595b9c0c48d42bc394c4b195bc4f7"
+    },
+    {
+      "path": "研究报告/试算/20261012_既有转供约束诊断/约束对照/pizhou/station_caps/rigid_storage_refine_02/years.csv",
+      "sha256": "b3641622acac4dd7d387921a395706265338958f95402de5cff4c53c8b3caec8"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/inputs.json",
+      "sha256": "0bbe1dfdd2d08cdd4976f64b19e42003ec3d8c3f7828182146d66e2488e92208"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/city/static_base.npz",
+      "sha256": "d4f23410c5a5d80fadfe83ed39193515dcb4fcfe387f46577969807068e643b5"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/inputs.json",
+      "sha256": "185b08220d6cfc55db1dfe6399c529a9f8098a83669e8cae030640519797f3fd"
+    },
+    {
+      "path": "研究报告/试算/20261012_案例承载力复核_存量网络固定/pizhou/static_base.npz",
+      "sha256": "aac6846c090cc12fe9efd5e329f8ccd999f51b9e77df286975b37189e99d68a3"
+    }
+  ],
+  "dependencies": {
+    "numpy": "2.1.3",
+    "scipy": "1.18.0",
+    "highspy": "1.15.1",
+    "openpyxl": "3.1.5"
+  },
+  "cost_basis": "已核验具体可行方案费用；保留有效费用下界和正间隙。",
+  "report_status": "供后续撰写采用；正式六章和Word/PDF尚未切换。"
+}

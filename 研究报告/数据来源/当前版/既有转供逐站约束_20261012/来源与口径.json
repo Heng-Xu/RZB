@@ -1,0 +1,30 @@
+{
+  "转供原表": "实验/研究/data/tuomin/补充数据/徐州地区变电站全停全转情况分析汇总20250705.xlsx",
+  "转供原表SHA256": "e176254aef7f421dd8128332faa4ba5b6064785b2c707b8b9c2df103504ff317",
+  "站名对应": "实验/研究/data/tuomin/变电站对应.md",
+  "站名对应SHA256": "3a53fee4cf545625d22d3ca33eb66d6b0de49d772790ed6f541b505c1e655dd6",
+  "输入": [
+    {
+      "region": "city",
+      "input_sha256": "0bbe1dfdd2d08cdd4976f64b19e42003ec3d8c3f7828182146d66e2488e92208",
+      "snapshot_sha256": "d4f23410c5a5d80fadfe83ed39193515dcb4fcfe387f46577969807068e643b5",
+      "solutions": {
+        "rigid_storage": "576bd25868c13988ce4d05590a639dfaa0ff6f5ff39ac802af1a04835f695150",
+        "elastic_floor_2": "4e8ba3ead0188b4f4877cb796d9b322e34b70429eb3f8da248a36e6e3178d06a",
+        "elastic_no_floor": "e524a69ef0d45379bc8a2b9b74a20b546019a0faca248f4ad6b0fd670df65f8d"
+      }
+    },
+    {
+      "region": "pizhou",
+      "input_sha256": "185b08220d6cfc55db1dfe6399c529a9f8098a83669e8cae030640519797f3fd",
+      "snapshot_sha256": "aac6846c090cc12fe9efd5e329f8ccd999f51b9e77df286975b37189e99d68a3",
+      "solutions": {
+        "rigid_storage": "7698121e65b04fc5494c2e132e1a27448d28c4199836d8d5f32d062dc994bef6",
+        "elastic_floor_2": "04bbef1ed8abd4e76f10980b6b17a243959372ccb1082ae3126aa3e7e51d3d9d",
+        "elastic_no_floor": "f9482fdad2835d260eb2727bb3d0621063b06030f93f3413a6fad3d13f4e41bb"
+      }
+    }
+  ],
+  "约束": "Σ既有通道转出_i≤min(旧标定预算_i,原表站外最大可供负荷J_i)；未匹配站不新增信用；固定既有能力，新增改造另计费用。",
+  "样本": "市区26座实体站含铜山夹河条目及3模拟站；邳州20站。地区汇总率只保留为背景，不重新标定补足差额。"
+}
