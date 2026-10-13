@@ -10,7 +10,8 @@ from docx import Document
 ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'研究报告/甲方反馈/10.11/供电公司讨论稿.docx'
 REPORT=ROOT/'研究报告/04_word/研究报告终稿.docx'
-REVIEW=ROOT/'研究报告/05_review/当前版/1013讨论稿批注修订'
+REVIEW=ROOT/'研究报告/05_review/当前版/1013讨论稿扩充'
+from discussion_expansion import amend, table_like_report, image_paragraph, MATRIX_KEYS, FIGURES
 BACKUP=ROOT/'研究报告/05_review/当前版/1013局部表述复核/修前快照/供电公司讨论稿.docx'
 W='http://schemas.openxmlformats.org/wordprocessingml/2006/main'
 NS={'w':W};qn=lambda n:'{'+W+'}'+n
@@ -105,7 +106,8 @@ def content():
  for p in Document(REPORT).paragraphs:
   if m:=re.match(r'^\[(\d+)\]',p.text):refs[int(m[1])]=p.text[m.end():].strip()
  additions[91]=[('heading','参考依据')]+[('reference',f'[{i}] '+refs[n]) for i,n in enumerate([7,12,8,10,28],1)]
- return changes,tables,additions
+ with ZipFile(BACKUP) as z:base=list(xml(z.read('word/document.xml')).find(qn('body')))
+ return amend(changes,tables,additions,base,REPORT,t,md_rows)
 
 class Reviser:
  def __init__(self,root):
@@ -114,33 +116,45 @@ class Reviser:
  def mark(self,kind):
   x=E.Element(qn(kind));x.set(qn('id'),str(self.next));self.next+=1;x.set(qn('author'),AUTHOR);x.set(qn('date'),self.date);return x
  def replace(self,p,value):
-  old=text(p)
+  old=''.join((x.text or '') if x.tag==qn('t') else '\n' for x in p.xpath('.//w:r[not(ancestor::w:del)]/*[self::w:t or self::w:br]',namespaces=NS))
   if old==value:return
-  # 既有插入和删除容器原位保留，新增删除包裹其可见run，原作者与id继续保留。
-  for r in list(p.xpath('.//w:r[not(ancestor::w:del)]',namespaces=NS)):
-   if not r.xpath('./w:t|./w:br',namespaces=NS):continue
-   parent=r.getparent();idx=parent.index(r);parent.remove(r)
-   for t in r.xpath('.//w:t',namespaces=NS):t.tag=qn('delText')
-   deletion=self.mark('del');deletion.append(r);parent.insert(idx,deletion)
-  if value:
-   insertion=self.mark('ins');run=E.Element(qn('r'));sample=p.find('.//'+qn('rPr'))
-   if sample is not None:run.append(deepcopy(sample))
-   chunks=value.split('\n')
-   for i,chunk in enumerate(chunks):
-    if i:run.append(E.Element(qn('br')))
-    node=E.SubElement(run,qn('t'));node.set('{http://www.w3.org/XML/1998/namespace}space','preserve');node.text=chunk
-   insertion.append(run)
-   # 新文字放在原批注范围内，保留原批注ID与评论内容。
-   tail=list(p.xpath('./w:commentRangeEnd|./w:r[w:commentReference]',namespaces=NS))
-   for x in tail:p.remove(x)
-   p.append(insertion)
-   for x in tail:p.append(x)
-  else:
+  # 字符差异映射到原run，保留相同文字及甲方原修订容器。
+  from difflib import SequenceMatcher
+  edits=SequenceMatcher(None,old,value,autojunk=False).get_opcodes()
+  runs=list(p.xpath('.//w:r[not(ancestor::w:del)][w:t or w:br]',namespaces=NS))
+  pos=0
+  for run in runs:
+   source=''.join((x.text or '') if x.tag==qn('t') else '\n' for x in run if x.tag in [qn('t'),qn('br')]);end=pos+len(source)
+   parent=run.getparent();at=parent.index(run);pieces=[]
+   def piece(txt,kind):
+    if not txt:return
+    r=E.Element(qn('r'));rp=run.find(qn('rPr'))
+    if rp is not None:r.append(deepcopy(rp))
+    for j,part in enumerate(txt.split('\n')):
+     if j:E.SubElement(r,qn('br'))
+     node=E.SubElement(r,qn('delText' if kind=='del' else 't'));node.set('{http://www.w3.org/XML/1998/namespace}space','preserve');node.text=part
+    if kind:
+     wrapper=self.mark(kind);wrapper.append(r);pieces.append(wrapper)
+    else:pieces.append(r)
+   for tag,i,j,u,v in edits:
+    if tag in ['insert','replace'] and pos<=i<end:piece(value[u:v],'ins')
+    lo=max(i,pos);hi=min(j,end)
+    if hi>lo:piece(source[lo-pos:hi-pos],None if tag=='equal' else 'del')
+   if end==len(old):
+    for tag,i,j,u,v in edits:
+     if tag=='insert' and i==end:piece(value[u:v],'ins')
+   parent.remove(run)
+   for el in pieces:parent.insert(at,el);at+=1
+   pos=end
+  if not old and value:
+   ins=self.mark('ins');E.SubElement(E.SubElement(ins,qn('r')),qn('t')).text=value;p.append(ins)
+  if not value:
    pr=p.find(qn('pPr'))
    if pr is None:pr=E.Element(qn('pPr'));p.insert(0,pr)
    rp=pr.find(qn('rPr'))
    if rp is None:rp=E.SubElement(pr,qn('rPr'))
    rp.append(self.mark('del'))
+
  def new_paragraph(self,template,value,kind='p'):
   p=E.Element(qn('p'));pr=template.find(qn('pPr'))
   if pr is not None:p.append(deepcopy(pr))
@@ -149,6 +163,11 @@ class Reviser:
   ins=self.mark('ins');run=E.SubElement(ins,qn('r'));rpr=E.SubElement(run,qn('rPr'))
   rf=E.SubElement(rpr,qn('rFonts'));rf.set(qn('ascii'),'Times New Roman');rf.set(qn('hAnsi'),'Times New Roman');rf.set(qn('eastAsia'),'宋体' if kind=='caption' else '方正仿宋_GBK')
   sz=E.SubElement(rpr,qn('sz'));sz.set(qn('val'),'21' if kind=='caption' else '23')
+  E.SubElement(rpr,qn('color')).set(qn('val'),'000000')
+  if kind in ['heading','reference']:
+   kn=pr.find(qn('keepNext'))
+   if kn is None:kn=E.SubElement(pr,qn('keepNext'))
+   kn.set(qn('val'),'0' if value.startswith('[5]') else '1')
   if kind=='heading':E.SubElement(rpr,qn('b'))
   node=E.SubElement(run,qn('t'));node.text=value;p.append(ins);return p
  def new_row(self,prototype,values,header=False):
@@ -176,25 +195,16 @@ class Reviser:
    p.append(ins);tr.append(tc)
   return tr
  def new_table(self,template,values):
-  tbl=deepcopy(template)
-  for child in list(tbl):
-   if child.tag==qn('tr'):tbl.remove(child)
-  grid=tbl.find(qn('tblGrid'))
-  if grid is None:grid=E.SubElement(tbl,qn('tblGrid'))
-  for child in list(grid):grid.remove(child)
-  width=8306;cols=len(values[0]);sizes=[width//cols]*cols;sizes[-1]+=width-sum(sizes)
-  for size in sizes:E.SubElement(grid,qn('gridCol')).set(qn('w'),str(size))
-  pr=tbl.find(qn('tblPr'));tw=pr.find(qn('tblW'));tw.set(qn('type'),'dxa');tw.set(qn('w'),str(width))
-  for change in list(pr.findall(qn('tblPrChange'))):pr.remove(change)
-  for i,row in enumerate(values):
-   tr=self.new_row(template.findall(qn('tr'))[0 if i==0 else 1],row,i==0)
-   for c,size in zip(tr.findall(qn('tc')),sizes):
-    cp=c.find(qn('tcPr'));cw=cp.find(qn('tcW'));cw.set(qn('type'),'dxa');cw.set(qn('w'),str(size))
-    ppr=c.find(qn('p')).find(qn('pPr'));kn=ppr.find(qn('keepNext'))
-    if kn is None:kn=E.SubElement(ppr,qn('keepNext'))
-    kn.set(qn('val'),'1' if len(values)<=8 and i<len(values)-1 else '0')
-   tbl.append(tr)
+  tbl=table_like_report(values,REPORT)
+  for tr in tbl.findall(qn('tr')):
+   pr=tr.find(qn('trPr'))
+   if pr is None:pr=E.Element(qn('trPr'));tr.insert(0,pr)
+   pr.append(self.mark('ins'))
+   for p in tr.findall('.//'+qn('p')):
+    for r in list(p.findall(qn('r'))):
+     at=p.index(r);p.remove(r);ins=self.mark('ins');ins.append(r);p.insert(at,ins)
   return tbl
+
  def replace_table(self,tbl,values):
   oldrows=tbl.findall(qn('tr'));oldgrid=deepcopy(tbl.find(qn('tblGrid')));new=self.new_table(tbl,values)
   for tr in oldrows:
@@ -241,6 +251,9 @@ def write_package(path,original,replacements):
  temp=path.with_suffix('.tmp.docx')
  with ZipFile(temp,'w',ZIP_DEFLATED) as z:
   for info,data in original:z.writestr(info,replacements.get(info.filename,data))
+  known={info.filename for info,_ in original}
+  for name,data in replacements.items():
+   if name not in known:z.writestr(name,data)
  temp.replace(path)
 
 def reject_xh(root):
@@ -250,7 +263,7 @@ def reject_xh(root):
  for row in list(r.xpath('.//w:tr[w:trPr/w:ins[@w:author="xh"]]',namespaces=NS)):
   row.getparent().remove(row)
  for tbl in list(r.xpath('.//w:tbl[not(w:tr)]',namespaces=NS)):tbl.getparent().remove(tbl)
- for change in list(r.xpath('.//w:tblPrChange[@w:author="xh"]|.//w:tblGridChange[@w:author="xh"]|.//w:trPrChange[@w:author="xh"]',namespaces=NS)):
+ for change in list(r.xpath('.//w:tblPrChange[@w:author="xh"]|.//w:tblGridChange[@w:author="xh"]|.//w:trPrChange[@w:author="xh"]|.//w:pPrChange[@w:author="xh"]',namespaces=NS)):
   parent=change.getparent();old=deepcopy(change[0]);parent.getparent().replace(parent,old)
  for deletion in list(r.xpath('.//w:del[@w:author="xh"]',namespaces=NS)):
   parent=deletion.getparent();pos=parent.index(deletion)
@@ -264,22 +277,34 @@ def reject_xh(root):
 
 def apply():
  REVIEW.mkdir(parents=True,exist_ok=True)
- assert TARGET.read_bytes()==BACKUP.read_bytes(),'原稿已变化，须重新核对逐段定位，禁止覆盖新的用户修改'
- with ZipFile(TARGET) as z:original=[(i,z.read(i.filename)) for i in z.infolist()];parts={i.filename:b for i,b in original}
+ previous=ROOT/'研究报告/05_review/当前版/1013讨论稿批注修订/修订核验.json'
+ allowed=[sha(BACKUP),json.loads(previous.read_text())['修后SHA256']]
+ if (REVIEW/'修订核验.json').exists():allowed.append(json.loads((REVIEW/'修订核验.json').read_text())['修后SHA256'])
+ assert sha(TARGET) in allowed,'文件发生未登记修改，禁止覆盖'
+ with ZipFile(BACKUP) as z:original=[(i,z.read(i.filename)) for i in z.infolist()];parts={i.filename:b for i,b in original}
  root=xml(parts['word/document.xml']);body=root.find(qn('body'));elements=list(body);changes,tables,additions=content();revision=Reviser(root);log=[]
  for index,value in changes.items():
   p=elements[index];assert p.tag==qn('p');before=text(p);revision.replace(p,value);log.append(dict(原段落=index,原文=before,新文=value))
  for index,values in tables.items():
   tbl=elements[index];assert tbl.tag==qn('tbl')
-  if len(tbl.findall(qn('tr')))==len(values) and all(len(tr.findall(qn('tc')))==len(row) for tr,row in zip(tbl.findall(qn('tr')),values)):
-   for tr,row in zip(tbl.findall(qn('tr')),values):
-    for tc,value in zip(tr.findall(qn('tc')),row):revision.replace(tc.find(qn('p')),value)
-  else:revision.replace_table(tbl,values)
+  revision.replace_table(tbl,values)
+ for index in [54,72,81]:
+  pr=elements[index].find(qn('pPr'));previous=deepcopy(pr);br=pr.find(qn('pageBreakBefore'))
+  if br is None:br=E.SubElement(pr,qn('pageBreakBefore'))
+  br.set(qn('val'),'0');change=revision.mark('pPrChange');change.append(previous);pr.append(change)
  for index,items in additions.items():
   anchor=elements[index]
   for kind,value in items:
    if kind=='table':el=revision.new_table(elements[76],value)
+   elif kind=='image':el=image_paragraph(ROOT/'研究报告/02图表/当前版'/(value+'.png'),revision,parts)
    else:el=revision.new_paragraph(elements[32] if kind=='caption' else elements[90] if kind=='heading' else elements[53],value,kind)
+   if kind in ['caption','figcaption']:
+    pr=el.find(qn('pPr'))
+    for child in list(pr):
+     if child.tag not in [qn('rPr')]:pr.remove(child)
+    E.SubElement(pr,qn('jc')).set(qn('val'),'center');ind=E.SubElement(pr,qn('ind'))
+    for k in ['firstLine','hanging','left','right','start','end','firstLineChars','hangingChars','leftChars','rightChars','startChars','endChars']:ind.set(qn(k),'0')
+    E.SubElement(pr,qn('keepNext'))
    anchor.addnext(el);anchor=el
  settings=xml(parts['word/settings.xml']);track=settings.find(qn('trackRevisions'))
  if track is None:track=E.Element(qn('trackRevisions'));settings.insert(0,track)
@@ -287,6 +312,10 @@ def apply():
  core=xml(parts['docProps/core.xml']);cp={'cp':'http://schemas.openxmlformats.org/package/2006/metadata/core-properties','dcterms':'http://purl.org/dc/terms/'}
  core.find('cp:lastModifiedBy',cp).text=AUTHOR;core.find('dcterms:modified',cp).text=revision.date
  replacements={'word/document.xml':serialize(root),'word/settings.xml':serialize(settings),'docProps/core.xml':serialize(core)}
+ types=xml(parts['[Content_Types].xml']);ct='{http://schemas.openxmlformats.org/package/2006/content-types}'
+ if not any(x.get('Extension')=='png' for x in types):E.SubElement(types,ct+'Default',Extension='png',ContentType='image/png')
+ replacements['[Content_Types].xml']=serialize(types)
+ replacements.update({k:v for k,v in parts.items() if k=='word/_rels/document.xml.rels' or k.startswith('word/media/discussion_') or k=='word/media/planning_tier_heatmap.png'})
  record={'状态':'已修订，待原生与版面核验','源稿':str(TARGET.relative_to(ROOT)),'修前SHA256':sha(BACKUP),'研究报告SHA256':sha(REPORT),'修订作者':AUTHOR,'修改段落':log,'表格来源':tables,'新增表格与正文':additions,'仅修改包部件':list(replacements)}
  write_package(TARGET,original,replacements);record['修后SHA256']=sha(TARGET)
  (REVIEW/'修订核验.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
@@ -296,9 +325,9 @@ def check():
  record=json.loads((REVIEW/'修订核验.json').read_text());assert sha(TARGET)==record['修后SHA256'],'修订文件在登记后发生变化'
  with ZipFile(BACKUP) as z:old={n:z.read(n) for n in z.namelist()}
  with ZipFile(TARGET) as z:new={n:z.read(n) for n in z.namelist()}
- assert new.keys()==old.keys(),'不得重建包或丢失部件'
+ assert old.keys()<=new.keys(),'不得丢失原包部件'
  allowed=set(record['仅修改包部件'])
- assert all(new[k]==old[k] for k in new if k not in allowed),'未涉及的包部件被改动'
+ assert all(new[k]==old[k] for k in old if k not in allowed),'未涉及的包部件被改动'
  assert new['word/comments.xml']==old['word/comments.xml'] and new['word/commentsExtended.xml']==old['word/commentsExtended.xml']
  before=xml(old['word/document.xml']);after=xml(new['word/document.xml'])
  rejected=reject_xh(after)
@@ -308,9 +337,9 @@ def check():
  oldrev={(x.tag,x.get(qn('id')),x.get(qn('author'))) for x in before.xpath('.//w:ins|.//w:del',namespaces=NS)}
  newrev={(x.tag,x.get(qn('id')),x.get(qn('author'))) for x in after.xpath('.//w:ins|.//w:del',namespaces=NS)}
  assert oldrev<=newrev,'已有修订作者或id丢失'
- inserted=[x for x in after.xpath('.//w:ins|.//w:del|.//w:tblGridChange|.//w:tblPrChange|.//w:trPrChange',namespaces=NS) if (x.tag,x.get(qn('id')),x.get(qn('author'))) not in oldrev]
+ inserted=[x for x in after.xpath('.//w:ins|.//w:del|.//w:tblGridChange|.//w:tblPrChange|.//w:trPrChange|.//w:pPrChange',namespaces=NS) if (x.tag,x.get(qn('id')),x.get(qn('author'))) not in oldrev]
  assert inserted and all(x.get(qn('author'))==AUTHOR for x in inserted),'新修订作者须为xh'
- revision_ids=[x.get(qn('id')) for x in after.xpath('.//w:ins|.//w:del|.//w:tblPrChange|.//w:tblGridChange|.//w:trPrChange',namespaces=NS)]
+ revision_ids=[x.get(qn('id')) for x in after.xpath('.//w:ins|.//w:del|.//w:tblPrChange|.//w:tblGridChange|.//w:trPrChange|.//w:pPrChange',namespaces=NS)]
  assert len(revision_ids)==len(set(revision_ids)), '修订ID不得重复'
  for tag in ['commentRangeStart','commentRangeEnd','commentReference']:
   assert sorted(before.xpath('.//w:'+tag+'/@w:id',namespaces=NS))==sorted(after.xpath('.//w:'+tag+'/@w:id',namespaces=NS)),tag+'被破坏'
@@ -323,15 +352,36 @@ def check():
  assert not body_policy_errors([('供电公司讨论稿.docx',visible)],{},{},policy['forbidden_body_patterns'])
  for stale in ['线路成本系数','12600','648个','120219.30','84449.61','855.00','3324.00','40%为','局部六馈线','被动超限','统一采用4 h']:
   assert stale not in visible,'讨论稿旧结果或表述未清理:'+stale
- tables=body.findall(qn('tbl'));assert len(tables)==8,len(tables)
- rows=lambda tbl:[[text(tc).replace('\n','') for tc in tr.findall(qn('tc'))] for tr in tbl.findall(qn('tr'))]
- changes,expected,additions=content()
- for idx,tablepos in [(33,0),(45,1),(50,2),(76,6)]:
-  left=[[v.replace('\n','') for v in row] for row in expected[idx]];assert rows(tables[tablepos])==left,('表格与当前报告不一致',idx)
- for tablepos,key in [(3,'new_parameter_bins'),(4,'current_controlled_correlations'),(5,'current_input_correlations'),(7,'current_transfer_sequence')]:
-  t,_=assets();assert rows(tables[tablepos])==md_rows(t[key]),('补充表格不一致',key)
+ tables=body.findall(qn('tbl'))
+ changes,expected,additions=content();expected_rows=[]
+ for i in range(len(before.find(qn('body')))):
+  if i in expected:expected_rows.append(expected[i])
+  expected_rows.extend(v for k,v in additions.get(i,[]) if k=='table')
+ assert len(tables)==len(expected_rows)==15,len(tables)
+ for n,(tbl,wanted) in enumerate(zip(tables,expected_rows),1):
+  actual=[[text(tc) for tc in tr.findall(qn('tc'))] for tr in tbl.findall(qn('tr'))]
+  assert actual==[[v.replace('\n','') for v in row] for row in wanted],('表格不一致',n)
+  ref=table_like_report(wanted,REPORT)
+  for name in ['tblPr','tblGrid']:
+   assert E.tostring(tbl.find(qn(name)),method='c14n',exclusive=True)==E.tostring(ref.find(qn(name)),method='c14n',exclusive=True),('报告表格格式不一致',n,name)
+  for actual_cell,ref_cell in zip(tbl.findall('.//'+qn('tc')),ref.findall('.//'+qn('tc'))):
+   for node in ['tcPr','p/pPr']:
+    path='/'.join(qn(x) for x in node.split('/'));aa=actual_cell.find(path);bb=ref_cell.find(path)
+    assert E.tostring(aa,method='c14n',exclusive=True)==E.tostring(bb,method='c14n',exclusive=True),('表格属性不一致',n,node)
+   assert [E.tostring(x,method='c14n',exclusive=True) for x in actual_cell.findall('.//'+qn('rPr'))]==[E.tostring(x,method='c14n',exclusive=True) for x in ref_cell.findall('.//'+qn('rPr'))],('字体不一致',n)
+ from discussion_expansion import verify_figures
+ verify_figures(ROOT,REVIEW,new)
+ assert '终稿' not in visible
+ assert len(after.xpath('.//*[local-name()="drawing"]'))==4
+ for p in body.findall(qn('p')):
+  if p.xpath('.//*[local-name()="drawing"]') or re.match(r'^图[1-4] ',text(p)):
+   pr=p.find(qn('pPr'));assert pr.find(qn('jc')).get(qn('val'))=='center'
+   ind=pr.find(qn('ind'))
+   for k in ['firstLine','hanging','left','right','start','end','firstLineChars','hangingChars','leftChars','rightChars','startChars','endChars']:assert ind.get(qn(k))=='0'
+   assert not p.xpath('.//*[local-name()="anchor"]')
+ assert '1.2 区域容量' not in visible
  assert len(visible)>5500 and '40年' in visible and '25年' in visible and '2041年' in visible
- touched=set(changes)|set(expected)|set(additions)
+ touched=set(changes)|set(expected)|set(additions)|{54,72,81}
  # 原有正文节点在原位保留；未涉及段落逐节点字节复核。
  oldbody=list(before.find(qn('body')));afterbody=list(after.find(qn('body')))
  original_ids=[x.get('{http://schemas.microsoft.com/office/word/2010/wordml}paraId') for x in oldbody]

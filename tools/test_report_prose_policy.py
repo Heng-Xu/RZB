@@ -24,6 +24,12 @@ class ProsePolicyTests(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertTrue(self.check(text))
 
+    def test_supporting_file_narration_is_blocked(self):
+        for value in ['具体参数组合与设备结果见配套工作簿。','求解精度及经济比较核验记录见配套资料。','逐点设备配置保存在配套工作簿中。']:
+            self.assertTrue(self.check(value))
+        for value in ['主变更换规格及费用见研究报告第5.4节。','导则建议范围见表4[1]。']:
+            self.assertEqual(self.check(value),[])
+
     def test_substantive_limits_are_preserved(self):
         examples=[
             '建议范围内不能满足供电安全准则时，可结合实际情况适当提高。',

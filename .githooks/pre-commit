@@ -9,6 +9,7 @@ git diff --quiet -- tools/report_policy.json tools/check_report_policy.py tools/
   exit 1
 }
 "$REPORT_PYTHON" tools/test_report_prose_policy.py
+"$REPORT_PYTHON" tools/test_discussion_revisions.py
 "$REPORT_PYTHON" tools/check_report_policy.py --stage final
 "$REPORT_PYTHON" tools/revise_current_discussion.py
 "$REPORT_PYTHON" tools/locked_parameter_results.py
