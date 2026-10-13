@@ -2,7 +2,7 @@
 
 当前有效约束为根目录及研究报告目录的 `AGENTS.md`。正式源是六章Markdown、计算表及生成段落JSON；不要从历史正文快照恢复覆盖。环境使用 `/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python`。
 
-1. 从已确认模型更新时，先运行`tools/sync_current_report_results.py`，仅同步计算表与生成段落，保持锁定结果和经济参数不变；运行`tools/refresh_report_comparison_figures.py`同步图件。修改当前六章源；若涉及小时数据，运行 `tools/prepare_regional_profiles.py`，核对补值日志和区域峰段。实际年度相关分析运行 `tools/prepare_case_correlations.py`，从原始Excel分别提取两地区年度样本；源稿、Word和最终检查均重新核对样本、系数及展示表。
+1. 从已确认模型更新时，先运行`tools/sync_current_report_results.py`，仅同步计算表与生成段落，保持锁定结果和经济参数不变；运行`tools/refresh_report_comparison_figures.py`同步图件。修改当前六章源；若涉及小时数据，运行 `tools/prepare_regional_profiles.py`，核对补值日志和区域峰段。实际年度相关分析运行 `tools/prepare_case_correlations.py`，从原始Excel分别提取两地区年度样本；样本和系数继续在核验资料中复算，实际年度相关表按用户要求退出正文。
 2. 执行 `python tools/build_current_report.py --rebuild`。自动先查源稿规则，再装配原生Word，最后核对公式、式中段落和目录结构。
 3. 在WPS打开新Word，更新全部域并导出PDF。执行 `python tools/build_current_report.py --accept-wps-pdf <PDF路径>`，按实际标题页回填目录缓存。
 4. 重新打开更新后的Word，再次导出并接收，直到目录页码、正文页码和链接目标一致。PDF必须由原生Word经WPS输出，不能以公式图片副本替换。
@@ -15,7 +15,7 @@
 
 排除式说明按章节检索并逐段判断，覆盖实际引用的生成段落及表注。修订记录保留段落前后对照，以及实质约束、数据缺口等否定表述的保留理由；检查器报告源文件行号和JSON键名。`tools/test_report_prose_policy.py` 验证问题示例、必要表述及嵌套引用定位，Git提交和CI同步执行。
 
-讨论稿源文为 `研究报告/供电公司讨论稿/讨论稿.md`，以 `04_word/研究报告终稿.docx` 为唯一内容依据。运行 `python tools/build_current_report.py --discussion --rebuild` 直接替换原讨论稿，`python tools/build_discussion_brief.py --check` 核验源文、终稿表格和原生Word。本轮按用户要求不生成PDF，最终直接在WPS逐页复核，登记Word哈希及页面截图后运行 `python tools/build_discussion_brief.py --check --final`；讨论稿核验与完整报告核验分别执行；本轮仅修订完整报告，旧讨论稿尚待同步，完整报告检查不读取旧讨论稿。原讨论稿PDF为修前文件。终稿自身的源稿、原生Word和WPS PDF流程仍按上述步骤执行。
+讨论稿以用户指定的`研究报告/甲方反馈/10.11/供电公司讨论稿.docx`为修改对象，先备份并登记哈希，再直接以修订模式增改，修订人为`xh`，保留已有批注和未涉及段落。依据最新完整报告同步案例、六参数依据及相关性和矩阵；设备寿命与评价期仅改文字。不得调用`build_discussion_brief.py`重建或覆盖该文件。讨论稿独立核对修订作者、原始包部件、批注、数据与版面；研究报告本身仍执行上述三个阶段。
 
 图片段落和图题由装配器显式清零点值、字符及悬挂缩进并设为居中；Word检查逐段验证，PDF检查同时验证图件实际中心位置。该规则在构建、提交和CI中自动启用，不依赖人工记忆。
 

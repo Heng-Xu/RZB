@@ -18,10 +18,9 @@ def main():
  parser.add_argument('--accept-wps-pdf',type=Path,help='接收由当前原生DOCX在WPS中直接导出的PDF，并同步目录缓存')
  args=parser.parse_args();root=args.root.resolve()
  if args.discussion:
-  script=root/'tools/build_discussion_brief.py'
   if args.rebuild:
-   subprocess.run([sys.executable,str(script),'--root',str(root)],check=True)
-  subprocess.run([sys.executable,str(script),'--root',str(root),'--check'],check=True)
+   parser.error('讨论稿须在甲方反馈原文件上以xh修订，禁止调用历史生成器重建；核验使用--discussion --check-only')
+  subprocess.run([sys.executable,str(root/'tools/revise_current_discussion.py')],cwd=root,check=True)
   return
  if args.docx_only or args.rebuild:
   if args.pdf_only or args.check_only or args.accept_wps_pdf:parser.error('--docx-only/--rebuild须单独使用')

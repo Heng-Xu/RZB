@@ -77,9 +77,10 @@ def main():
     check_actual_correlations(root,check=True)
     chapter_three=next(p.read_text() for p in sources if p.name.startswith('03 '))
     actual_section=chapter_three.split('## 3.5 核心参数依据与相关性分析')[1].split('## 3.6 ')[0]
-    for key in ['actual_corr_pizhou','actual_corr_city','actual_corr_target',
-                'current_controlled_correlations','current_input_correlations','new_parameter_bins']:
+    for key in ['current_controlled_correlations','current_input_correlations','new_parameter_bins']:
         assert '[[TABLE:'+key+']]' in actual_section, '第3.5节缺少参数或相关分析: '+key
+    assert '### 3.5.5' not in actual_section, '实际年度相关分析按用户要求留在核验资料'
+    assert not any('[[TABLE:'+key+']]' in body for key in ['actual_corr_pizhou','actual_corr_city','actual_corr_target']), '实际年度相关表已退出正文'
     # 以已确认参数库复算展示，明确区分实际年度关联与受控仿真组内相关。
     import sync_current_report_results as current_results
     generated,generated_sections,cells,index,data=current_results.parameter_assets()
@@ -123,11 +124,12 @@ def main():
                 assert ind.get(qn('w:'+a))=='0',(a,ind.attrib)
             assert all(ind.get(qn('w:'+a),'0')=='0' for a in ['hanging','hangingChars','leftChars','rightChars','startChars','endChars'])
         result.update(check_figure_paragraphs(doc,policy,len(re.findall(r'\[\[FIG:',body))))
-        display=doc._element.xpath('.//w:p[m:oMathPara]')
+        from report_math_layout import check_equation_layout
+        layouts=check_equation_layout(doc)
+        display=[t._tbl.xpath('./w:tr/w:tc[2]/w:p')[0] for t in layouts]
         expected=len(re.findall(r'\\tag\{',body));assert len(display)==expected
         for p in display:
             zero_indent(p);assert p.xpath('./w:pPr/w:jc/@w:val')==['center']
-            assert p.xpath('.//m:oMathParaPr/m:jc/@m:val')==['center']
             row=p.getparent().getparent()
             assert all(x.xpath('./w:pPr/w:keepNext') for x in row.xpath('.//w:p')),'公式须与式中解释保持同页'
         explanations=[p for p in doc._element.xpath('.//w:p') if ''.join(p.xpath('./w:r/w:t/text()')).startswith('式中')]
@@ -169,6 +171,26 @@ def main():
                 assert offset<=policy['figure_paragraph_format']['pdf_center_tolerance_pt'],('PDF图片未居中',page.number+1,offset)
                 offsets.append(offset)
             result['PDF图片最大居中偏差_pt']=round(max(offsets,default=0),4)
+            # 单行公式另外检查渲染位置；多行公式按对称栏宽核验并逐式目视复核。
+            manifest=json.loads((asset/'公式/公式清单.json').read_text())
+            formula_offsets=[]
+            for equation in manifest:
+                if r'\begin{aligned}' in equation['tex'] or r'\sum' in equation['tex']:continue
+                found=[]
+                for page in pdf:
+                    found.extend((page,pymupdf.Rect(word[:4])) for word in page.get_text('words') if word[0]>468 and word[4]=='（'+equation['number']+'）')
+                assert len(found)==1,('独立式号缺失或重复',equation['number'])
+                page,number=found[0];spans=[]
+                for block in page.get_text('dict')['blocks']:
+                    for line in block.get('lines',[]):
+                        for span in line['spans']:
+                            x0,y0,x1,y1=span['bbox']
+                            if x0>125 and x1<470 and y0<number.y1+2 and y1>number.y0-15:spans.append(span)
+                assert spans,('未找到公式主体',equation['number'])
+                offset=abs((min(s['bbox'][0] for s in spans)+max(s['bbox'][2] for s in spans))/2-(page.rect.width+left-right)/2)
+                assert offset<=policy['math_format']['pdf_center_tolerance_pt'],('PDF公式主体未居中',equation['number'],offset)
+                formula_offsets.append(dict(公式=equation['number'],页码=page.number+1,中心偏差_pt=round(offset,4)))
+            result['PDF单行公式中心核验']=formula_offsets
             toc=json.loads((review/'目录页码核对.json').read_text())
             norm=lambda x:re.sub(r'\s+','',x)
             pages=[norm(p.get_text()) for p in pdf]

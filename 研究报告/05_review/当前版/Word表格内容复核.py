@@ -21,7 +21,7 @@ def main():
             rows.append([cell.strip() for cell in line.strip().strip('|').split('|')])
         expected.append(rows)
     doc=Document(word)
-    tables=[t for t in doc.tables if not t._tbl.xpath('.//m:oMathPara')]
+    tables=[t for t in doc.tables if t._tbl.xpath('./w:tblPr/w:tblCaption/@w:val')!=['ReportEquation']]
     actual=[[[cell.text for cell in row.cells] for row in table.rows] for table in tables]
     differences=[]
     if len(expected)!=len(actual):

@@ -222,6 +222,9 @@ def configure_doc(mathlist):
    for paragraph in cell.paragraphs:paragraph.paragraph_format.keep_with_next=True
   pp=tab.cell(0,2).paragraphs[0];pp.alignment=WD_ALIGN_PARAGRAPH.RIGHT
   font(pp.add_run(number),9)
+  sys.path.insert(0,str(ROOT/'tools'))
+  from report_math_layout import configure_equation_table
+  configure_equation_table(tab,p)
  # 页眉页脚采用页码域与目录缓存。
  h=sec.header.add_paragraph('徐州地区110 kV电网容载比弹性指标优化研究');h.alignment=1
  for r in h.runs:font(r,9,False,'宋体')
@@ -297,9 +300,7 @@ def configure_doc(mathlist):
   if pr is None:pr=OxmlElement('w:pPr');p.insert(0,pr)
   ind=pr.find(qn('w:ind'))
   if ind is None:ind=OxmlElement('w:ind');pr.append(ind)
-  for attr in ['firstLine','firstLineChars','hanging','hangingChars','leftChars','rightChars','startChars','endChars']:ind.attrib.pop(qn('w:'+attr),None)
-  ind.set(qn('w:firstLine'),'0');ind.set(qn('w:firstLineChars'),'0')
-  ind.set(qn('w:left'),'0');ind.set(qn('w:right'),'0')
+  for attr in ['firstLine','firstLineChars','hanging','hangingChars','left','right','start','end','leftChars','rightChars','startChars','endChars']:ind.set(qn('w:'+attr),'0')
  # 图片及图题必须覆盖正文样式中的字符缩进，点值首行置零不足以取消继承。
  figure_policy=json.loads((ROOT/'tools/report_policy.json').read_text())['figure_paragraph_format']
  for p in doc._element.xpath('.//w:body//w:p'):

@@ -4,6 +4,7 @@ import csv,hashlib,json,math,re
 from docx import Document
 from docx.oxml.ns import qn
 import sync_current_report_results as sync
+from report_math_layout import equation_tables
 
 ROOT=Path(__file__).resolve().parents[1]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -37,6 +38,8 @@ def verify_annual_guide():
     chapter=next((ROOT/'研究报告/03_MD/当前版').glob('05 *.md')).read_text()
     added=chapter.split('### 5.4.3 弹性方案与导则建议范围的逐年对照')[1].split('### 5.4.4')[0]
     assert '目标年' not in added and '[69]' in added
+    for row in ['| 饱和期 | KP≤2% | 1.5～1.7 |','| 较慢增长 | 2%＜KP≤4% | 1.6～1.8 |','| 中等增长 | 4%＜KP≤7% | 1.7～1.9 |','| 较快增长 | KP＞7% | 1.8～2.0 |']:
+        assert row in added, '导则分档表与原文不一致: '+row
     assert f'{1528.82*1.7:.2f}' in added and '翟山变' in added
     (sync.REVIEW/'逐年导则对照核验.json').write_text(json.dumps(dict(状态='通过',
         政策版本='2025年4月修订稿，第6.2.2.1条及表2，PDF第20页',
@@ -68,7 +71,7 @@ def main():
     for item in sync.read(sync.LOCK)['model_files']:
         assert sha(ROOT/item['path'])==item['sha256'],'模型锁定文件变化:'+item['path']
     result=dict(状态='通过',有效参数节点=32112,六参数矩阵=27,区间单元=1296,逐站分析=46,
-        图件=len(expected),原生公式=len(doc.element.xpath('.//m:oMathPara')),
+        图件=len(expected),原生公式=len(equation_tables(doc)),
         WordSHA256=sha(word),模型经济参数='锁定文件哈希一致，未改动',
         原始依据SHA256={str(p.relative_to(ROOT)):sha(p) for p in [sync.LOCK,
             sync.PUBLIC/'统一有效样本.csv',sync.PUBLIC/'固定其余五项后的组内相关.csv',

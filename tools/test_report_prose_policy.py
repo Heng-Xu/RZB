@@ -76,8 +76,54 @@ class ProsePolicyTests(unittest.TestCase):
             with self.subTest(text=text):self.assertTrue(self.check(text))
         for text in ['根据项目提供的2021—2025年容量及负荷记录计算。',
                      '| 储能支撑持续时间 | 2、4、6 h | 2 h；4 h；6 h |',
-                     '六项参数在本版均列入推广矩阵。']:
+                     '六项参数分别表征源荷、网络和措施条件。']:
             with self.subTest(text=text):self.assertEqual(self.check(text),[])
+
+    def test_local_review_examples_are_located(self):
+        examples=['甲方后续选取查表参数时，可结合本表判断，本版保留六项完整结果。',
+                  '六项参数在本版均列入推广矩阵。',
+                  '《配电网规划设计技术导则》修订资料第6.2.2条。',
+                  '采用《徐州地区变电站全停全转情况分析汇总20250705》。',
+                  '| 电量性质 | 典型场景及样本外推 |',
+                  '注：7%增长分界附近另有7.1%、7.5%的54个补充组合。',
+                  '刚性方案的被动超限由保留既有设备形成。']
+        for text in examples:
+            with self.subTest(text=text):
+                errors=self.check('[[TABLE:review]]',tables={'review':text})
+                self.assertTrue(any('计算表.json[review]:1' in e for e in errors))
+        self.assertEqual(self.check('采用变电站全停条件下的负荷转移统计数据。'),[])
+        self.assertEqual(self.check('主变容量保持不变，当年负荷减少，容载比随之升高。'),[])
+
+class EquationLayoutTests(unittest.TestCase):
+    def sample(self):
+        from docx import Document
+        from docx.shared import Cm
+        from docx.oxml import OxmlElement
+        from docx.enum.text import WD_ALIGN_PARAGRAPH
+        from report_math_layout import configure_equation_table
+        d=Document();t=d.add_table(rows=1,cols=3);t.autofit=False;t.alignment=1
+        widths=[Cm(1.3),Cm(12.0606),Cm(1.3)]
+        for col,width in zip(t.columns,widths):col.width=width
+        for c,width in zip(t.rows[0].cells,widths):c.width=width
+        pr=t._tbl.tblPr;pr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}tblW').set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w',str(sum(x.twips for x in widths)))
+        p=t.cell(0,1).paragraphs[0];mp=OxmlElement('m:oMathPara');mp.append(OxmlElement('m:oMath'));p._p.append(mp)
+        t.cell(0,2).paragraphs[0].alignment=WD_ALIGN_PARAGRAPH.RIGHT
+        configure_equation_table(t,p)
+        return d,t
+
+    def test_native_formula_is_centered_by_host_paragraph(self):
+        from report_math_layout import check_equation_layout
+        d,t=self.sample();self.assertEqual(len(check_equation_layout(d)),1)
+
+    def test_asymmetric_widths_are_rejected(self):
+        from report_math_layout import check_equation_layout
+        d,t=self.sample();t._tbl.tblGrid[0].set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}w','800')
+        with self.assertRaisesRegex(AssertionError,'左右栏须等宽'):check_equation_layout(d)
+
+    def test_inherited_character_indent_is_rejected(self):
+        from report_math_layout import check_equation_layout
+        d,t=self.sample();t._tbl.xpath('./w:tr/w:tc[2]/w:p/w:pPr/w:ind')[0].set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}leftChars','200')
+        with self.assertRaisesRegex(AssertionError,'缩进须全部清零'):check_equation_layout(d)
 
 if __name__=='__main__':
     unittest.main()

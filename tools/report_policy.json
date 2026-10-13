@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-13-six-parameters-current-results",
+  "version": "2026-10-13-local-prose-review",
   "forbidden_body_patterns": {
     "修订过程不得进入正文": "修正稿|(?<!配电网规划设计技术导则（)修订稿|上一轮|本轮修订",
     "取整和分档不反复解释": "显示取整|完整精度分档|显示为7%|不能据此将邳州|按显示精度取整",
@@ -16,7 +16,13 @@
     "资料来源采用正式叙述": "采用收资[《“]|收资《近5年容载比》",
     "删除反向声明的专项分析安排": "另作专项敏感性分析[，,]不增加主矩阵查表维度",
     "禁止以仿真输入相关证明现实独立": "(?:输入相关|正交仿真)[^。；\\n]{0,30}(?:证明|证实)(?:实际|现实)[^。；\\n]{0,15}独立",
-    "定值参数按定值展示": "(?:储能支撑持续时间[^\\n]{0,100}(?:≤2 h|>4 h)|负荷分散系数[^\\n]{0,100}(?:≤1[.]10|>1[.]10))"
+    "定值参数按定值展示": "(?:储能支撑持续时间[^\\n]{0,100}(?:≤2 h|>4 h)|负荷分散系数[^\\n]{0,100}(?:≤1[.]10|>1[.]10))",
+    "正文不写撰写分工或参数保留声明": "甲方后续选取查表参数|本版保留六项完整结果|六项参数在本版均列入推广矩阵",
+    "政策名称保留真实版本": "修订资料",
+    "工程数据来源概述统计内容": "《[^》]*(?:分析汇总|数据收集)[^》]*20\\d{6}[^》]*》",
+    "表格删除泛化的数据性质标签": "典型场景及样本外推",
+    "采样表不附追加组合说明": "增长分界附近另有|54个补充组合",
+    "容量比值变化说明设备和负荷原因": "被动超限"
   },
   "required_profile_hours": 8760,
   "profile_regions": [
@@ -47,6 +53,11 @@
     "font": "Times New Roman",
     "variables_italic": true,
     "numbers_operators_units_upright": true,
-    "native_omml": true
+    "native_omml": true,
+    "layout": "symmetric_three_columns_with_paragraph_centered_omml",
+    "zero_all_indents": true,
+    "zero_cell_margins": true,
+    "separate_right_equation_number": true,
+    "pdf_center_tolerance_pt": 1.0
   }
 }

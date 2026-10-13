@@ -10,6 +10,7 @@ git diff --quiet -- tools/report_policy.json tools/check_report_policy.py tools/
 }
 "$REPORT_PYTHON" tools/test_report_prose_policy.py
 "$REPORT_PYTHON" tools/check_report_policy.py --stage final
+"$REPORT_PYTHON" tools/revise_current_discussion.py
 "$REPORT_PYTHON" tools/locked_parameter_results.py
 "$REPORT_PYTHON" -m pytest -p no:cacheprovider -q 实验/研究/rebuild_2026/case_parameters_20261012/test_model.py 实验/研究/rebuild_2026/case_parameters_20261012/test_transfer_diagnostic.py 实验/研究/rebuild_2026/static_actual_20261010/test_rules.py 实验/研究/rebuild_2026/network_case_20261010/test_network.py
 "$REPORT_PYTHON" -m 实验.研究.rebuild_2026.case_parameters_20261012.capacity_verify
