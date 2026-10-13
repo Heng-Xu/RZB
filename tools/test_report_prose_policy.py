@@ -56,9 +56,28 @@ class ProsePolicyTests(unittest.TestCase):
     def test_unreferenced_records_are_not_body(self):
         self.assertEqual(self.check('正文',{'archived':'不能直接等同于设备新增过多。'}),[])
 
+    def test_actual_policy_version_name_is_preserved(self):
+        self.assertEqual(self.check('2025年4月《配电网规划设计技术导则（修订稿）》第6.2.2.1条[69]。'),[])
+        self.assertTrue(self.check('研究报告修订稿采用新结果。'))
+
+    def test_multiple_constraints_need_explicit_math_break(self):
+        self.assertTrue(self.check(r'\begin{aligned} A&\leq B, C&\leq D.\end{aligned}'))
+        self.assertEqual(self.check(r'\begin{aligned} A&\leq B,\\ C&\leq D.\end{aligned}'),[])
+
     def test_reference_cycle_fails(self):
         with self.assertRaisesRegex(ValueError,'正文引用循环'):
             self.check('[[SECTION:a]]',{'a':'[[SECTION:a]]'})
+
+    def test_feedback_1013_prose_and_fixed_values(self):
+        for text in ['采用收资《近5年容载比》中的记录。',
+                     '储能价格另作专项敏感性分析，不增加主矩阵查表维度。',
+                     '| 储能支撑持续时间 | 2、4、6 h | ≤2 h；(2 h,4 h]；>4 h |',
+                     '| 负荷分散系数 | 1.00、1.10、1.15 | ≤1.10；>1.10 |']:
+            with self.subTest(text=text):self.assertTrue(self.check(text))
+        for text in ['根据项目提供的2021—2025年容量及负荷记录计算。',
+                     '| 储能支撑持续时间 | 2、4、6 h | 2 h；4 h；6 h |',
+                     '六项参数在本版均列入推广矩阵。']:
+            with self.subTest(text=text):self.assertEqual(self.check(text),[])
 
 if __name__=='__main__':
     unittest.main()

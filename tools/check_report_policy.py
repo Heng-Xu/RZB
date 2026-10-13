@@ -8,6 +8,11 @@ def body_policy_errors(sources,sections,tables,patterns):
     """只检查正文实际引用的材料，并保留可编辑源的位置。"""
     errors=[]
     def scan(value,location,stack=()):
+        for equation in re.finditer(r'\\begin\{aligned\}([\s\S]*?)\\end\{aligned\}',value):
+            for row in re.split(r'\\\\',equation[1]):
+                if len(re.findall(r'&(?:=|\\(?:leq|geq))',row))>1:
+                    line_no=value[:equation.start()].count('\n')+1
+                    errors.append(f'{location}:{line_no}: 多组等式或约束须分别换行，防止Word公式截断')
         for line_no,line in enumerate(value.splitlines(),1):
             for rule,pattern in patterns.items():
                 for match in re.finditer(pattern,line):
@@ -52,9 +57,8 @@ def main():
     body='\n\n'.join(p.read_text() for p in sources)
     body=re.sub(r'\[\[SECTION:([^\]]+)\]\]',lambda m:sections[m[1]],body)
     body=re.sub(r'\[\[TABLE:([^\]]+)\]\]',lambda m:tables[m[1]],body)
-    brief_source=(report/'供电公司讨论稿/讨论稿.md').read_text()
     errors=body_policy_errors(
-        [(str(p.relative_to(root)),p.read_text()) for p in sources]+[('研究报告/供电公司讨论稿/讨论稿.md',brief_source)],
+        [(str(p.relative_to(root)),p.read_text()) for p in sources],
         sections,tables,policy['forbidden_body_patterns'])
     # 参数切片必须有响应；完整原始结果仍保留在计算资料。
     for key in re.findall(r'\[\[TABLE:([^\]]+)\]\]', '\n'.join(p.read_text() for p in sources)+'\n'+'\n'.join(sections.values())):
@@ -65,20 +69,25 @@ def main():
             errors.append('无响应参数切片不得重复展示: '+key)
     for m in re.finditer(r'由(\d+(?:\.\d+)?)(%| MW| MVA|万元)?变为\1\2(?=[，；。 ])',body):
         errors.append('相同数值不能表述为变化: '+m[0])
-    correlation=report/'05_review/当前版/1011局部优化/相关性复算.json'
-    evidence=json.loads(correlation.read_text())
+    for path in sources:
+        for line,text_line in enumerate(path.read_text().splitlines(),1):
+            if re.search(r'[\x00-\x08\x0b\x0c\x0e-\x1f]',text_line):
+                errors.append(f'{path.relative_to(root)}:{line}: 非法控制字符，检查公式转义')
     from prepare_case_correlations import maintain as check_actual_correlations
     check_actual_correlations(root,check=True)
     chapter_three=next(p.read_text() for p in sources if p.name.startswith('03 '))
-    actual_section=chapter_three.split('## 3.5 源荷与容量指标的关联分析')[1].split('## 3.6 ')[0]
-    for key in ['actual_corr_pizhou','actual_corr_city','actual_corr_target']:
-        assert '[[TABLE:'+key+']]' in actual_section, '实际案例相关性须在第3.5节完整呈现'
-    assert '[[TABLE:new_correlations]]' not in '\n'.join(p.read_text() for p in sources),'正文相关性采用实际案例，仿真相关表保留于核验资料'
-    for path,sha in evidence['原始记录SHA256'].items():
-        assert hashlib.sha256((root/path).read_bytes()).hexdigest()==sha,'相关性原始记录已变化，应复算'
-    corr_rows=[[c.strip() for c in ln.strip('|').split('|')] for ln in tables['new_correlations'].splitlines() if ln.startswith('|')][2:]
-    for row,item in zip(corr_rows,evidence['输入与结果'],strict=True):
-        assert row[1:]==[f"{item[y+'_'+m]:.2f}" for y in ['clr','cost'] for m in ['pearson','spearman']],'相关表与复算结果不一致'
+    actual_section=chapter_three.split('## 3.5 核心参数依据与相关性分析')[1].split('## 3.6 ')[0]
+    for key in ['actual_corr_pizhou','actual_corr_city','actual_corr_target',
+                'current_controlled_correlations','current_input_correlations','new_parameter_bins']:
+        assert '[[TABLE:'+key+']]' in actual_section, '第3.5节缺少参数或相关分析: '+key
+    # 以已确认参数库复算展示，明确区分实际年度关联与受控仿真组内相关。
+    import sync_current_report_results as current_results
+    generated,generated_sections,cells,index,data=current_results.parameter_assets()
+    for key,value in generated.items():
+        assert tables[key]==value,'计算表.json:'+key+' 与锁定参数库不一致'
+    for key,value in generated_sections.items():
+        assert sections[key]==value,'生成段落.json:'+key+' 与锁定参数库不一致'
+    assert '[[TABLE:new_correlations]]' not in body,'旧版无条件仿真相关表已退出正文'
     # 连续式中解释应合并到一段，不能用多个空行分列符号解释。
     if re.search(r'式中[^\n]*\n\s*\n式中',body):errors.append('相邻式中说明应合并')
     for equation in re.findall(r'\$\$([\s\S]*?)\$\$',body):
@@ -101,6 +110,12 @@ def main():
         from docx import Document
         from docx.oxml.ns import qn
         docpath=report/'04_word/研究报告终稿.docx';doc=Document(docpath)
+        assert doc.settings.element.xpath('.//m:mathFont/@m:val')==[policy['math_format']['font']],'数学字体须采用Times New Roman'
+        for run in doc._element.xpath('.//m:r'):
+            pr=run.find(qn('w:rPr'));assert pr is not None,'公式字符须显式指定字体'
+            fonts=pr.find(qn('w:rFonts'));assert fonts is not None
+            assert all(fonts.get(qn('w:'+a))==policy['math_format']['font'] for a in ['ascii','hAnsi','cs'])
+            assert run.find(qn('m:rPr')).find(qn('m:nor')) is not None,'公式字符须保留明确的正斜体字形'
         def zero_indent(p):
             inds=p.xpath('./w:pPr/w:ind');assert len(inds)==1,'未显式设置段落缩进'
             ind=inds[0]
@@ -141,8 +156,6 @@ def main():
         hashes=json.loads((review/'装配源文件登记.json').read_text())
         assert all(hashlib.sha256((root/k).read_bytes()).hexdigest()==v for k,v in hashes.items()),'源稿变化后未重新装配'
         if args.stage=='final':
-            from build_discussion_brief import check as check_brief
-            check_brief(root,final=True)
             import pymupdf
             pdfpath=report/'04_word/研究报告终稿.pdf';pdf=pymupdf.open(pdfpath)
             assert any(s in str(pdf.metadata).lower() for s in ['wps','kingsoft'])

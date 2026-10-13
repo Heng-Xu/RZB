@@ -90,7 +90,9 @@ def assemble():
  assert '[[' not in txt
  (TEXT/'研究报告装配稿.md').write_text(txt)
  (MATH/'公式清单.json').write_text(json.dumps(mathlist,ensure_ascii=False,indent=2))
- subprocess.run(['pandoc',str(TEXT/'研究报告装配稿.md'),'--reference-doc='+str(REVIEW/'排版参照.docx'),'--from=markdown+tex_math_dollars','--to=docx','--output='+str(REVIEW/'原始装配.docx')],check=True,cwd=ROOT)
+ result=subprocess.run(['pandoc',str(TEXT/'研究报告装配稿.md'),'--reference-doc='+str(REVIEW/'排版参照.docx'),'--from=markdown+tex_math_dollars','--to=docx','--output='+str(REVIEW/'原始装配.docx')],check=True,cwd=ROOT,capture_output=True,text=True)
+ assert 'Could not convert TeX math' not in result.stderr,result.stderr
+ if result.stderr:print(result.stderr,file=sys.stderr)
  return mathlist
 def configure_doc(mathlist):
  doc=Document(REVIEW/'原始装配.docx');sec=doc.sections[0]
@@ -264,7 +266,29 @@ def configure_doc(mathlist):
    pr=s.element.get_or_add_pPr()
    for node in pr.findall(qn('w:snapToGrid')):pr.remove(node)
    node=OxmlElement('w:snapToGrid');node.set(qn('w:val'),'0');pr.append(node)
- for node in settings.xpath('.//m:mathFont'):node.set(qn('m:val'),'Cambria Math')
+ math_font=json.loads((ROOT/'tools/report_policy.json').read_text())['math_format']['font']
+ for node in settings.xpath('.//m:mathFont'):node.set(qn('m:val'),math_font)
+ # 用原生OMML结构配合明确的西文字体，防止WPS将变量改映射到替代数学字形。
+ for run in doc._element.xpath('.//m:r'):
+  mr=run.find(qn('m:rPr'))
+  if mr is None:mr=OxmlElement('m:rPr');run.insert(0,mr)
+  sty=mr.find(qn('m:sty'));scr=mr.find(qn('m:scr'))
+  text=''.join(node.text or '' for node in run.findall(qn('m:t')))
+  italic=any(('A'<=c<='Z') or ('a'<=c<='z') or ('α'<=c<='ϕ') for c in text)
+  if sty is not None and sty.get(qn('m:val')) in ['p','b'] and scr is None:italic=False
+  nor=mr.find(qn('m:nor'))
+  if nor is None:nor=OxmlElement('m:nor');mr.append(nor)
+  nor.set(qn('m:val'),'1')
+  pr=run.find(qn('w:rPr'))
+  if pr is None:pr=OxmlElement('w:rPr');run.insert(list(run).index(mr)+1,pr)
+  rf=pr.find(qn('w:rFonts'))
+  if rf is None:rf=OxmlElement('w:rFonts');pr.insert(0,rf)
+  for key in ['ascii','hAnsi','cs']:rf.set(qn('w:'+key),math_font)
+  rf.set(qn('w:eastAsia'),'方正仿宋_GBK')
+  for key in ['i','iCs']:
+   node=pr.find(qn('w:'+key))
+   if node is None:node=OxmlElement('w:'+key);pr.append(node)
+   node.set(qn('w:val'),'1' if italic else '0')
  for node in settings.findall(qn('w:updateFields')):settings.remove(node)
  node=OxmlElement('w:updateFields');node.set(qn('w:val'),'true');settings.append(node)
  # 表格单元格及独立公式段落的特殊缩进显式置零，覆盖模板继承。

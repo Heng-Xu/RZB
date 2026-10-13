@@ -48,6 +48,6 @@ def main():
   return
  subprocess.run([sys.executable,str(root/'tools/check_report_policy.py'),'--root',str(root),'--stage','final'],cwd=root,check=True)
  run('Word表格内容复核.py',root)
- run('1010统一修订/核验.py',root)
+ subprocess.run([sys.executable,str(root/'tools/verify_current_report.py')],cwd=root,check=True)
 
 if __name__=='__main__':main()

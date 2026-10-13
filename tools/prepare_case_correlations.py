@@ -13,7 +13,7 @@ from openpyxl import load_workbook
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = Path('实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/近5年容载比.xlsx')
 OUTPUT = Path('研究报告/数据来源/当前版/实际案例相关性')
-LABELS = ['主变容量', '年网供最大负荷', '年度同比增长率', '容载比']
+LABELS = ['主变容量', '年网供最大负荷', '年最大净负荷平均增长率', '容载比']
 FIELDS = ['capacity_mva', 'peak_mw', 'growth', 'clr']
 
 
@@ -29,20 +29,20 @@ def calculate(root):
     samples, matrices, tables, targets = [], {}, {}, []
     for region, code, row in [('邳州', 'QX-00005', 19), ('市区', 'QX-00007', 9)]:
         assert ws.cell(row, 1).value == code and ws.cell(row, 2).value == '110千伏'
-        records, previous = [], None
+        records, initial_peak = [], None
         for year, column in zip(range(2021, 2026), [3, 6, 9, 12, 15]):
             assert ws.cell(1, column).value == f'{year}年'
             capacity = float(ws.cell(row, column).value) * 10  # 万kVA -> MVA
             peak = float(ws.cell(row, column + 1).value) * 10  # 万kW -> MW
             clr = capacity / peak
             assert abs(clr - float(ws.cell(row, column + 2).value)) <= .0051
+            if initial_peak is None: initial_peak = peak
             record = dict(region=region, year=year, capacity_mva=capacity, peak_mw=peak,
-                          growth=peak / previous - 1 if previous else None, clr=clr,
+                          growth=(peak / initial_peak)**(1/(year-2021))-1 if year>2021 else None, clr=clr,
                           source_sheet='Sheet1', source_row=row,
                           source_columns=f'{ws.cell(row,column).column_letter}:{ws.cell(row,column+2).column_letter}')
             records.append(record)
             samples.append(record)
-            previous = peak
         frame = pd.DataFrame(records)[FIELDS]
         pearson, spearman = frame.corr(), frame.corr(method='spearman')
         counts = frame.notna().astype(int).T @ frame.notna().astype(int)
@@ -73,7 +73,9 @@ def maintain(root=ROOT, check=False):
     tables = json.loads(asset.read_text())
     record = {'样本来源':str(SOURCE), '来源SHA256':hashlib.sha256((root/SOURCE).read_bytes()).hexdigest(),
               '生成器SHA256':hashlib.sha256((root/'tools/prepare_case_correlations.py').read_bytes()).hexdigest(),
-              '样本单位':'同一地区110 kV年度统计；地区分别计算', '样本':samples, '相关矩阵':matrices}
+              '样本单位':'同一地区110 kV年度统计；地区分别计算',
+              '增长率定义':'各观测年度相对2021年的复合年平均增长率，与推广参数采用相同定义',
+              '样本':samples, '相关矩阵':matrices}
     stream = io.StringIO(newline='')
     writer = csv.DictWriter(stream, fieldnames=list(samples[0]));writer.writeheader();writer.writerows(samples)
     if check:
