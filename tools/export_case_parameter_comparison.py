@@ -12,6 +12,7 @@ from docx.table import Table
 from docx.text.paragraph import Paragraph
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Alignment, Border, Font, Side
+from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.page import PageMargins
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +29,8 @@ HEADERS = ['方案', '年份', '年网供最大负荷/MW', '主变容量/MVA', '
 FIELDS = ['peak_mw', 'capacity_mva', 'clr', 'storage_nameplate_mw', 'cumulative_lines']
 REGIONS = [('pizhou', '邳州', '5-4', '约67%'), ('city', '市区', '5-6', '约91%')]
 CASES = [('rigid_storage', '刚性'), ('elastic_no_floor', '弹性')]
+LAYOUT = [(1, 1), (1, 9), (15, 1), (15, 9)]
+SHEET = '新旧参数对照'
 
 
 def sha(path):
@@ -112,69 +115,76 @@ def source_tables():
 
 def build(tables):
     book = Workbook()
-    book.remove(book.active)
+    sheet = book.active
+    sheet.title = SHEET
     book.properties.title = '表5-4及表5-6 新旧参数对照'
     book.properties.creator = 'xh'
-    for table in tables:
-        sheet = book.create_sheet(table['sheet'])
-        sheet.sheet_view.showGridLines = False
-        sheet.sheet_properties.pageSetUpPr.fitToPage = True
-        sheet.sheet_properties.tabColor = '4472C4' if '旧参数' in sheet.title else '548235'
-        for row, value in [(1, table['caption']), (2, table['note'])]:
-            sheet.merge_cells(start_row=row, start_column=1, end_row=row, end_column=7)
-            cell = sheet.cell(row, 1, value)
-            cell.font = Font(name='方正仿宋_GBK', size=14 if row == 1 else 11, bold=row == 1)
+    sheet.sheet_view.showGridLines = False
+    sheet.sheet_view.zoomScale = 85
+    sheet.sheet_properties.pageSetUpPr.fitToPage = True
+    for table, (top, left) in zip(tables, LAYOUT):
+        for offset, value in [(0, table['caption']), (1, table['note'])]:
+            row = top + offset
+            sheet.merge_cells(start_row=row, start_column=left, end_row=row, end_column=left + 6)
+            cell = sheet.cell(row, left, value)
+            cell.font = Font(name='方正仿宋_GBK', size=14 if offset == 0 else 11, bold=offset == 0)
             cell.alignment = Alignment(horizontal='center', vertical='center')
-        sheet.row_dimensions[1].height = 28
-        sheet.row_dimensions[2].height = 23
-        sheet.row_dimensions[3].height = 9
-        for row_number, values in enumerate([HEADERS] + table['rows'], start=4):
-            sheet.row_dimensions[row_number].height = 36 if row_number == 4 else 25
-            for column, value in enumerate(values, start=1):
+        sheet.row_dimensions[top].height = 26
+        sheet.row_dimensions[top + 1].height = 21
+        sheet.row_dimensions[top + 2].height = 8
+        for row_number, values in enumerate([HEADERS] + table['rows'], start=top + 3):
+            header = row_number == top + 3
+            sheet.row_dimensions[row_number].height = 32 if header else 22
+            for column, value in enumerate(values, start=left):
                 cell = sheet.cell(row_number, column, value)
-                cell.font = Font(name='方正仿宋_GBK' if row_number == 4 or column == 1 else 'Times New Roman',
-                                 size=11, bold=row_number == 4)
+                cell.font = Font(name='方正仿宋_GBK' if header or column == left else 'Times New Roman',
+                                 size=11, bold=header)
                 cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
-                if row_number > 4 and column > 1:
-                    cell.number_format = '0' if column in (2, 7) else '0.00'
-                if row_number == 4:
+                if not header and column > left:
+                    cell.number_format = '0' if column in (left + 1, left + 6) else '0.00'
+                if header:
                     cell.border = Border(top=Side(style='medium'), bottom=Side(style='thin'))
-                elif row_number == 12:
+                elif row_number == top + 11:
                     cell.border = Border(bottom=Side(style='medium'))
-        for column, width in zip('ABCDEFG', [10, 10, 23, 19, 12, 23, 18]):
-            sheet.column_dimensions[column].width = width
-        sheet.freeze_panes = 'C5'
-        sheet.print_area = 'A1:G12'
-        sheet.page_setup.orientation = 'landscape'
-        sheet.page_setup.paperSize = sheet.PAPERSIZE_A4
-        sheet.page_setup.fitToWidth = 1
-        sheet.page_setup.fitToHeight = 1
-        sheet.print_options.horizontalCentered = True
-        sheet.page_margins = PageMargins(left=.3, right=.3, top=.4, bottom=.4, header=.15, footer=.15)
+        for column, width in enumerate([8, 8, 20, 17, 10, 21, 16], start=left):
+            sheet.column_dimensions[get_column_letter(column)].width = width
+    sheet.column_dimensions['H'].width = 4
+    sheet.row_dimensions[13].height = 8
+    sheet.row_dimensions[14].height = 8
+    sheet.print_area = 'A1:O26'
+    sheet.page_setup.orientation = 'landscape'
+    sheet.page_setup.paperSize = sheet.PAPERSIZE_A3
+    sheet.page_setup.fitToWidth = 1
+    sheet.page_setup.fitToHeight = 1
+    sheet.print_options.horizontalCentered = True
+    sheet.page_margins = PageMargins(left=.3, right=.3, top=.4, bottom=.4, header=.15, footer=.15)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     book.save(OUTPUT)
 
 
 def verify(tables):
     book = load_workbook(OUTPUT, data_only=False)
-    assert book.sheetnames == [t['sheet'] for t in tables] and len(book.sheetnames) == 4
+    assert book.sheetnames == [SHEET]
+    sheet = book[SHEET]
+    assert sheet.max_row == 26 and sheet.max_column == 15
+    expected_merges = {'A1:G1', 'A2:G2', 'I1:O1', 'I2:O2', 'A15:G15', 'A16:G16', 'I15:O15', 'I16:O16'}
+    assert {str(r) for r in sheet.merged_cells.ranges} == expected_merges
+    assert sheet.page_setup.fitToWidth == sheet.page_setup.fitToHeight == 1
+    assert str(sheet.print_area) == "'新旧参数对照'!$A$1:$O$26"
     count = 0
-    for table in tables:
-        sheet = book[table['sheet']]
-        assert sheet.max_row == 12 and sheet.max_column == 7
-        assert str(sheet.merged_cells) == 'A1:G1 A2:G2'
-        assert sheet['A1'].value == table['caption'] and sheet['A2'].value == table['note']
-        for r, row in enumerate([HEADERS] + table['rows'], start=4):
-            for c, expected in enumerate(row, start=1):
+    for table, (top, left) in zip(tables, LAYOUT):
+        assert sheet.cell(top, left).value == table['caption'] and sheet.cell(top + 1, left).value == table['note']
+        for r, row in enumerate([HEADERS] + table['rows'], start=top + 3):
+            for c, expected in enumerate(row, start=left):
                 cell = sheet.cell(r, c)
                 actual = cell.value
                 if isinstance(expected, (float, int)):
                     assert cell.data_type == 'n' and isclose(actual, expected, rel_tol=1e-12, abs_tol=1e-10), (sheet.title, cell.coordinate)
-                    assert cell.number_format == ('0' if c in (2, 7) else '0.00')
+                    assert cell.number_format == ('0' if c in (left + 1, left + 6) else '0.00')
                 else:
                     assert actual == expected, (sheet.title, cell.coordinate)
                 count += 1
-        assert all(sheet.cell(12, c).border.bottom.style == 'medium' for c in range(1, 8))
+        assert all(sheet.cell(top + 11, c).border.bottom.style == 'medium' for c in range(left, left + 7))
     book.close()
     return count
 
@@ -195,13 +205,14 @@ def main():
             assert sha(ROOT / entry['path']) == entry['sha256'], entry['path']
     else:
         record = dict(verified=True, workbook=dict(path=str(OUTPUT.relative_to(ROOT)), sha256=sha(OUTPUT)),
-                      sheets=[t['sheet'] for t in tables], checked_table_cells=cells, cases=cases,
+                      sheets=[SHEET], table_layout=[dict(table=t['sheet'], top=r, left=c) for t, (r, c) in zip(tables, LAYOUT)],
+                      checked_table_cells=cells, cases=cases,
                       report_version=json.loads(LOCK.read_text())['version'],
                       notes='旧参数逐格匹配当前原生Word及计算表；新参数取已锁定正常允许调整供区的刚性和弹性无下限。原报告为4 h，本版沿用锁定方案的市区6 h、邳州2 h及逐站既有转供上限，属于前后版本对照。储能列为额定功率MW；新线列为累计新增数量。工作簿仅标注新转供率，按用户要求输出至甲方反馈/10.11。',
                       sources=[dict(path=str(p.relative_to(ROOT)), sha256=sha(p)) for p in sorted(sources)])
         REVIEW.mkdir(parents=True, exist_ok=True)
         CHECK.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
-    print(f'VERIFIED_EXCEL {len(tables)} tables / {cells} table cells: {OUTPUT.relative_to(ROOT)}')
+    print(f'VERIFIED_EXCEL 1 sheet / {len(tables)} tables / {cells} table cells: {OUTPUT.relative_to(ROOT)}')
 
 
 if __name__ == '__main__':

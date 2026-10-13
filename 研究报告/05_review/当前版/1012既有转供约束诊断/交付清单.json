@@ -32,18 +32,18 @@
     },
     {
       "path": "memory/current.md",
-      "size": 7353,
-      "sha256": "8baa82eeccab3cc77e240c4dec5e398cf002256a70d3fca27f99592c53898a99"
+      "size": 7411,
+      "sha256": "29d1d502a37c244d4956a81f48796fdcc828cfa2ebca53acc969681bee3db056"
     },
     {
       "path": "prompt.md",
-      "size": 64102,
-      "sha256": "c19bc5fe3c35ea0a734f082ac2559b9cb7ea8b4551cf7ab1c45e530faf87d0bf"
+      "size": 64420,
+      "sha256": "d2d8686207c794504f213f4697682a7cc85476574d660bf0263b69f747732309"
     },
     {
       "path": "tools/export_case_parameter_comparison.py",
-      "size": 11233,
-      "sha256": "7ee0a36ca8017853df991c526945668b231409f55181bcbbe0615fceee322b7f"
+      "size": 11860,
+      "sha256": "97ea5c98bf8dd361de0862e507734dd4cc86b569fd603856a4b0e60dae764857"
     },
     {
       "path": "实验/研究/rebuild_2026/case_parameters_20261012/__init__.py",
@@ -252,13 +252,13 @@
     },
     {
       "path": "研究报告/05_review/当前版/1013案例参数对照/Excel导出核验.json",
-      "size": 9915,
-      "sha256": "0fd05f90ef656c8e5effcb264f8dd679781f64b33e8a9073561ddbbfa74a51ca"
+      "size": 10191,
+      "sha256": "16266f882bfe78707d361637160d1b52c8ff33a493078cee512538c718066a09"
     },
     {
       "path": "研究报告/05_review/当前版/1013案例参数对照/README.md",
-      "size": 1235,
-      "sha256": "6adc9b5a7dd703d76b4e1399af0f78b59434bab0da9ff53d576c97d672e47aaf"
+      "size": 1360,
+      "sha256": "0a9c95a8af2b74d5c7d9dd4ca7b9e42b7b006472fd2821e7a13f5fff69221957"
     },
     {
       "path": "研究报告/数据来源/当前版/既有转供逐站约束_20261012/README.md",
@@ -277,15 +277,17 @@
     },
     {
       "path": "研究报告/甲方反馈/10.11/表5-4及表5-6_新旧参数对照.xlsx",
-      "size": 10521,
-      "sha256": "2d952504de161ab39028d5e2595e886b5619e21efd272a9283526deebeeed8fc"
+      "size": 7380,
+      "sha256": "f287148289a97a3da9248873cc605ea5fa110d685c351b310a3a1201be668a05"
     }
   ],
   "Git范围": "本地提交；不推送，不重写历史；模型原始记录和其余对照保留。",
   "新旧参数四表对照": {
     "path": "研究报告/甲方反馈/10.11/表5-4及表5-6_新旧参数对照.xlsx",
-    "sheets": 4,
+    "sheets": 1,
     "verified_table_cells": 252,
-    "review": "研究报告/05_review/当前版/1013案例参数对照/Excel导出核验.json"
+    "review": "研究报告/05_review/当前版/1013案例参数对照/Excel导出核验.json",
+    "tables": 4,
+    "layout": "同页两行两列；上邳州下市区，左旧参数右新参数"
   }
 }

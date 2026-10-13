@@ -2,13 +2,32 @@
   "verified": true,
   "workbook": {
     "path": "研究报告/甲方反馈/10.11/表5-4及表5-6_新旧参数对照.xlsx",
-    "sha256": "2d952504de161ab39028d5e2595e886b5619e21efd272a9283526deebeeed8fc"
+    "sha256": "f287148289a97a3da9248873cc605ea5fa110d685c351b310a3a1201be668a05"
   },
   "sheets": [
-    "邳州_旧参数",
-    "邳州_新参数",
-    "市区_旧参数",
-    "市区_新参数"
+    "新旧参数对照"
+  ],
+  "table_layout": [
+    {
+      "table": "邳州_旧参数",
+      "top": 1,
+      "left": 1
+    },
+    {
+      "table": "邳州_新参数",
+      "top": 1,
+      "left": 9
+    },
+    {
+      "table": "市区_旧参数",
+      "top": 15,
+      "left": 1
+    },
+    {
+      "table": "市区_新参数",
+      "top": 15,
+      "left": 9
+    }
   ],
   "checked_table_cells": 252,
   "cases": [
@@ -74,7 +93,7 @@
   "sources": [
     {
       "path": "tools/export_case_parameter_comparison.py",
-      "sha256": "7ee0a36ca8017853df991c526945668b231409f55181bcbbe0615fceee322b7f"
+      "sha256": "97ea5c98bf8dd361de0862e507734dd4cc86b569fd603856a4b0e60dae764857"
     },
     {
       "path": "研究报告/02图表/当前版/计算表.json",
