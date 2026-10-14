@@ -10,10 +10,12 @@
 
 源稿、原生Word及最终WPS PDF三阶段通过，120张内容表7619单元、14幅图、27个独立原生OMML公式、46项真实目录页码及链接通过。原生公式文字与修前相同，变量Times New Roman斜体；对称固定三栏使主体居中、式号右置，全部缩进清零。最终PDF单行公式居中偏差小于0.06 pt，全部公式页已查看。Windows Word未实机核验。讨论稿原生修订、拒绝xh恢复、原批注保留、表格格式及WPS逐页检查通过。设备寿命和评价期仅改文字。
 
-当前维护入口`tools/build_current_report.py`；结果同步`tools/sync_current_report_results.py`；讨论稿局部覆盖文字在`tools/discussion_prose_overrides.json`，应用入口`tools/revise_current_discussion.py`。规则在AGENTS、report_policy和check_report_policy固化。15项表述/公式规则测试与2项局部修订测试通过；锁定结果、模型及转供核验由Git提交钩子执行。`tools/verify_report_review.py`同时核对当前成果、源稿、依据、逐段判断、计算表、逐站数字和公式，变化后旧复核登记失效。自动扫描不替代人工判断。
+当前维护入口`tools/build_current_report.py`；结果同步`tools/sync_current_report_results.py`；讨论稿局部覆盖文字在`tools/discussion_prose_overrides.json`，应用入口`tools/revise_current_discussion.py`。规则在AGENTS、report_policy和check_report_policy固化。15项表述/公式规则测试与3项局部修订及日期测试通过；锁定结果、模型及转供核验由Git提交钩子执行。`tools/verify_report_review.py`同时核对当前成果、源稿、依据、逐段判断、计算表、逐站数字和公式，变化后旧复核登记失效。自动扫描不替代人工判断。
 
 审阅记录、修前快照、最终差异、文献核读及版面证据在`研究报告/05_review/当前版/1014事实与文字复核`。修前状态按字节归档`memory/archive/2026-10-14-事实与文字复核前.md`。用户prompt内容保留并纳入本次提交。
 
-研究报告Word SHA256：`1a8f39949f1e146d7df269224661e4cbdecb2e3d589d0803bf669f5ed8a94e6e`；PDF SHA256：`cea27256d0d10e7dd72693051e4c2949fd10c09ffa98a86414d3c1db89dc6e7c`。讨论稿Word SHA256：`38a8ea3288f21c256ec264aa92f222bff49bb0d7c4a3533b63d9905aec035a19`。文件已备妥，尚未向老师发送，待明确收件人和渠道。
+研究报告Word SHA256：`1a8f39949f1e146d7df269224661e4cbdecb2e3d589d0803bf669f5ed8a94e6e`；PDF SHA256：`cea27256d0d10e7dd72693051e4c2949fd10c09ffa98a86414d3c1db89dc6e7c`。讨论稿Word SHA256：`c27802ac7984b5e517c8ccb79a018bff7317951038de66bcbd053b38dc35faf6`。文件已备妥，尚未向老师发送，待明确收件人和渠道。
 
 用户另行修改的新旧参数对照Excel保持工作区原状态，不覆盖、不暂存。未推送远端，远端CI未核验。
+
+本轮按用户要求只调整讨论稿xh新增修订的显示日期，2141项按114组分配至2026年10月12日至13日每天08:00—20:00，显式+08:00偏移。原73项修订、5条批注及全部正文与排版属性保持，其他包部件逐字节一致。真实操作时间、原件及逐项映射留在`研究报告/05_review/当前版/1014修订时间显示调整`，原状态归档`memory/archive/2026-10-14-修订时间显示调整前.md`。源稿、原生Word和WPS检查通过，PDF文字、表格及图片位置一致；Linux备用字形在两页有局部差异，证据保留。日期设置仅作用于本版，不自动用于后续修订。

@@ -330,6 +330,9 @@ def apply():
 
 def check():
  record=json.loads((REVIEW/'修订核验.json').read_text());assert sha(TARGET)==record['修后SHA256'],'修订文件在登记后发生变化'
+ if record.get('修订时间显示调整'):
+  from adjust_discussion_revision_dates import verify
+  verify(TARGET,ROOT/record['修订时间显示调整'])
  with ZipFile(BACKUP) as z:old={n:z.read(n) for n in z.namelist()}
  with ZipFile(TARGET) as z:new={n:z.read(n) for n in z.namelist()}
  assert old.keys()<=new.keys(),'不得丢失原包部件'

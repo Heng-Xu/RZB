@@ -1,7 +1,9 @@
 """验证局部修订保留甲方文字、原修订及拒绝修订后的内容。"""
 import unittest
+from datetime import date,datetime
 from lxml import etree as E
 from revise_current_discussion import Reviser,qn,NS,text,accept_view,reject_xh
+from adjust_discussion_revision_dates import plan,masked
 class LocalRevisionTests(unittest.TestCase):
  def test_keeps_client_words_and_revision(self):
   p=E.Element(qn('p'),nsmap={'w':NS['w']});ins=E.SubElement(p,qn('ins'),{qn('id'):'3',qn('author'):'甲方'})
@@ -15,4 +17,21 @@ class LocalRevisionTests(unittest.TestCase):
   p=E.Element(qn('p'),nsmap={'w':NS['w']});r=E.SubElement(p,qn('r'));E.SubElement(r,qn('t')).text='主变容量';E.SubElement(r,qn('br'));E.SubElement(r,qn('t')).text='MVA'
   Reviser(p).replace(p,'')
   self.assertEqual(text(reject_xh(p)),'主变容量MVA')
+ def test_dates_keep_content_client_and_paired_changes(self):
+  root=E.Element(qn('document'),nsmap={'w':NS['w']});body=E.SubElement(root,qn('body'))
+  for i in range(4):
+   p=E.SubElement(body,qn('p'))
+   for j,kind in enumerate(['del','ins']):
+    el=E.SubElement(p,qn(kind),{qn('id'):str(i*2+j),qn('author'):'甲方' if i==0 else 'xh',qn('date'):'2026-10-14T01:00:00Z'})
+    E.SubElement(E.SubElement(el,qn('r')),qn('t')).text='保留内容'
+  original=E.tostring(root,encoding='UTF-8')
+  new,rows,groups=plan(original,'xh',date(2026,10,12),date(2026,10,13),8,20,'Asia/Shanghai',1234)
+  self.assertEqual(groups,3);self.assertEqual(len(rows),6)
+  self.assertEqual(masked(original,'xh'),masked(new,'xh'))
+  self.assertIn(b'w:author="\xe7\x94\xb2\xe6\x96\xb9" w:date="2026-10-14T01:00:00Z"',new)
+  for i in range(0,6,2):self.assertEqual(rows[i]['显示时间'],rows[i+1]['显示时间'])
+  for row in rows:
+   dt=datetime.fromisoformat(row['显示时间']);self.assertIn(dt.date(),[date(2026,10,12),date(2026,10,13)])
+   self.assertTrue(8<=dt.hour<20 or (dt.hour==20 and dt.minute==dt.second==0))
+   self.assertEqual(dt.utcoffset().total_seconds(),8*3600)
 if __name__=='__main__':unittest.main()

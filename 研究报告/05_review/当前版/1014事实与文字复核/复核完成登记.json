@@ -20,15 +20,15 @@
     "研究报告/02图表/当前版/生成段落.json": "b9f44c27164f7f9ab86f144b81862df89c151a6ffcc3cbd5638d61c75bc26232",
     "研究报告/04_word/研究报告终稿.docx": "1a8f39949f1e146d7df269224661e4cbdecb2e3d589d0803bf669f5ed8a94e6e",
     "研究报告/04_word/研究报告终稿.pdf": "cea27256d0d10e7dd72693051e4c2949fd10c09ffa98a86414d3c1db89dc6e7c",
-    "研究报告/甲方反馈/10.11/供电公司讨论稿.docx": "38a8ea3288f21c256ec264aa92f222bff49bb0d7c4a3533b63d9905aec035a19",
+    "研究报告/甲方反馈/10.11/供电公司讨论稿.docx": "c27802ac7984b5e517c8ccb79a018bff7317951038de66bcbd053b38dc35faf6",
     "AGENTS.md": "d52c273448b8763d068363be3c159ff5261ac11e5134990a7f4ee2569431df86",
     "研究报告/AGENTS.md": "e038be458697cb0d3efed67398b146c4649c9a5526b0a8734140501a18f0e7c6",
-    "docs/CURRENT-WORKFLOW.md": "4523f5805bb2d8feb67ac9c93409a83aef80a4d86bdb9751fe34a8e45e907a06",
+    "docs/CURRENT-WORKFLOW.md": "d28978ba0808ddd3a95522cade1a26c00136f42a15d6f48aa948a4a1486368c1",
     "tools/report_policy.json": "99ad50f331bb79d49e1b730eb9fc1e493d707ac0844f4f7d2be0288e8f1a2e7c",
     "tools/check_report_policy.py": "7595577c1c83b57da2a7628bf19a90efbcb4aa9d20e9e0c53d713f2b23b9c48e",
     "tools/build_current_report.py": "84a367fb94db51053fcad7b59384cb9d23ccd295e27bf07c1c94198af46ca276",
     "tools/sync_current_report_results.py": "fd1b4de837c296db967ef3b3854004fe00f071afe1c433704d9f711cbfaad564",
-    "tools/revise_current_discussion.py": "a7b6f2ec9e522b266891a3ad39b4d03b439d337da7db622ace26710d53d2e127",
+    "tools/revise_current_discussion.py": "95bc7c0ac020a93c4d5b7f03a4c1329103c32f672e48775c46231de43d24a2d5",
     "tools/discussion_prose_overrides.json": "4eea5c2f78793951b02f04d9fc5379e505cf54d9cb4e48f533e89292d27b2cde",
     "tools/report_prose_review.py": "cacdbb9f71007bcf85931ab277bc13b6eed72d05f7cbb8e6a0dce5b77ffa337f",
     "tools/verify_report_review.py": "837b69426e88b883748d678e8c8d00836523ff74ac0f214ab645c2458b1ade98",
@@ -37,9 +37,12 @@
     ".github/workflows/report-policy.yml": "ea5a4b89ddfd14682d93a48162a6f31a7456bff6939967473660ac443d47d458",
     "研究报告/05_review/当前版/1014事实与文字复核/引文依据核读登记.json": "3b9e90bd3cdf44e6b9cc75c58771f67d4f9a89831553402e93820eef7034acd6",
     "研究报告/05_review/当前版/1014事实与文字复核/正文复核定位.json": "a600a8bbb08100f9272c3acffdb5eea55a3ba452bc85a77ad9908ec78cd50945",
-    "研究报告/05_review/当前版/1014事实与文字复核/讨论稿/WPS最终视图核验.pdf": "c2243d273ecc07ce04ebce8d316ac680690552e234b37108584591331e846c27",
-    "研究报告/05_review/当前版/1014事实与文字复核/讨论稿/WPS版面核验.json": "c01266c514b92f2b59857b41f6a24dd2ddc63cfbae746b375742168e18085043",
-    "研究报告/05_review/当前版/1014事实与文字复核/研究报告版面/WPS版面核验.json": "9b1f970981313c0cf0a7ace4882979b0768f4bb119023e04e2d3590229e298b1"
+    "研究报告/05_review/当前版/1014事实与文字复核/讨论稿/WPS最终视图核验.pdf": "f75c7e268a70743d6f3e3f27e2269ae450db051a8b81c85c59cb2c3ec8ac260b",
+    "研究报告/05_review/当前版/1014事实与文字复核/讨论稿/WPS版面核验.json": "a23888ecac363769550869af44dfff440afd1f187126420bb33c3d432ddd8d9a",
+    "研究报告/05_review/当前版/1014事实与文字复核/研究报告版面/WPS版面核验.json": "9b1f970981313c0cf0a7ace4882979b0768f4bb119023e04e2d3590229e298b1",
+    "tools/adjust_discussion_revision_dates.py": "ef6b65b1b9c01e00494d348f81bdab20f467298e4eb7de098f679154c40f80c2",
+    "tools/test_discussion_revisions.py": "c26dc86c5ac585ca16dda691901c20594b1af6607cf5db8d7403f64f912e18a1",
+    "研究报告/05_review/当前版/1014修订时间显示调整/时间显示调整.json": "1c0be424a43e9da6f35feb878b338c18e81c0c20cdf3764ccf49c7d5e792a0fe"
   },
   "事实核验": {
     "依据登记": 95,
@@ -72,5 +75,9 @@
     "讨论稿修订人": "xh",
     "Windows Word实机": "未执行，兼容结构及WPS实际版面已核验"
   },
-  "发送状态": "文件已备妥；尚未发送，缺少收件人和发送渠道。"
+  "发送状态": "文件已备妥；尚未发送，缺少收件人和发送渠道。",
+  "修订时间显示调整": {
+    "记录": "研究报告/05_review/当前版/1014修订时间显示调整/时间显示调整.json",
+    "说明": "仅w:date变化；依据原件及逐项映射复核，原事实、文字结论有效。原复核登记保留在时间调整目录修前登记中。"
+  }
 }
