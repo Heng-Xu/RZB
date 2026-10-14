@@ -27,6 +27,21 @@ class LocalRevisionTests(unittest.TestCase):
   restored=reject_ids(p,ids)
   self.assertEqual(text(accept_view(restored)),'原转供率40%。')
   self.assertEqual(restored.xpath('.//w:ins/@w:date',namespaces=NS),['2026-10-12T02:00:00Z'])
+ def test_report_copy_preserves_math_and_rejects_only_new_paragraph(self):
+  from revise_discussion_report_section import mark_insert
+  from revise_discussion_selection import reject_ids,revision_nodes
+  root=E.Element(qn('document'),nsmap={'w':NS['w']});body=E.SubElement(root,qn('body'))
+  old=E.SubElement(body,qn('p'));history=E.SubElement(old,qn('ins'),{qn('id'):'42',qn('author'):'xh',qn('date'):'2026-10-14T08:00:00Z'})
+  E.SubElement(E.SubElement(history,qn('r')),qn('t')).text='既有正文'
+  original=E.tostring(old)
+  copied=E.Element(qn('p'));m='http://schemas.openxmlformats.org/officeDocument/2006/math'
+  math=E.SubElement(copied,'{'+m+'}oMath');E.SubElement(E.SubElement(math,'{'+m+'}r'),'{'+m+'}t').text='x+1'
+  body.append(mark_insert(copied,Reviser(root)))
+  self.assertEqual(accept_view(root).xpath('.//*[local-name()="oMath"]//*[local-name()="t"]/text()'),['x+1'])
+  ids={n.get(qn('id')) for n in revision_nodes(root)}-{'42'}
+  rejected=reject_ids(root,ids)
+  self.assertEqual(len(rejected.find(qn('body'))),1)
+  self.assertEqual(E.tostring(rejected.find(qn('body'))[0]),original)
  def test_dates_keep_content_client_and_paired_changes(self):
   root=E.Element(qn('document'),nsmap={'w':NS['w']});body=E.SubElement(root,qn('body'))
   for i in range(4):

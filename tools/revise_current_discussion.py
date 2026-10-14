@@ -418,5 +418,5 @@ def check():
 
 if __name__=='__main__':
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--apply',action='store_true');args=parser.parse_args()
- from revise_discussion_selection import apply as current_apply, check as current_check
+ from revise_discussion_report_section import apply as current_apply, check as current_check
  current_apply() if args.apply else current_check()

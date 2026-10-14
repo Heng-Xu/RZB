@@ -47,9 +47,13 @@ def main():
  for old,new in zip(reviewed,current):
   assert old['位置']==new['位置'] and old['SHA256']==new['SHA256'],'正文逐段复核记录已过期: '+new['位置']
   assert old.get('复核结论') and old.get('理由'),'缺少逐段判断: '+new['位置']
- for path in [AUDIT/'研究报告版面/WPS版面核验.json',AUDIT/'讨论稿/WPS版面核验.json']:
+ discussion_proof=ROOT/record.get('讨论稿版面核验',str((AUDIT/'讨论稿/WPS版面核验.json').relative_to(ROOT)))
+ for path in [AUDIT/'研究报告版面/WPS版面核验.json',discussion_proof]:
   proof=json.loads(path.read_text());assert proof['状态']=='通过'
   assert sha(ROOT/proof['PDF'])==proof['PDF_SHA256']
   assert sha(ROOT/proof['DOCX'])==proof['DOCX_SHA256']
+ if '讨论稿完整复用' in record:
+  from revise_discussion_report_section import check
+  check()
  print(json.dumps({'状态':'通过','引文依据':len(facts),'正文复核段落':len(current),'计算表':'参数展示对应复算；其他结果原值一致','逐站叙述数字':'原值一致','独立公式':'27式内容一致','稿件与复核记录':'哈希一致'},ensure_ascii=False))
 if __name__=='__main__':main()
