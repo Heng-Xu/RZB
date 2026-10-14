@@ -14,6 +14,8 @@ jobs:
       - run: python tools/check_report_policy.py --stage final
       - run: python tools/revise_current_discussion.py
       - run: python tools/verify_report_review.py
+      - run: python tools/manage_preliminary_archive.py
+      - run: python tools/verify_preliminary_baseline.py
       - run: python tools/locked_parameter_results.py
       - run: python tools/extend_indicator_analysis.py --verify
       - run: python -m pytest -q 实验/研究/rebuild_2026/indicator_extension_20261014/test_model.py

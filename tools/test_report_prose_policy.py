@@ -7,6 +7,13 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_statistics_require_displayed_table_evidence(self):
+        for value in ['Spearman按组内排序检验关联方向[12][13]。',
+                      'Spearman最大绝对值为0.26，说明排序关联也较弱。']:
+            errors=self.check('[[SECTION:correlations]]',{'correlations':value})
+            self.assertTrue(any('生成段落.json[correlations]:1' in e for e in errors))
+        self.assertEqual(self.check('五项参数中，电缆长度占比与初始转供率的Pearson系数为0.29。'),[])
+        self.assertEqual(self.check('正文保留Pearson统计。',{'archive':'Spearman原始核验保留。'}),[])
     def check(self,text,sections=None,tables=None):
         return body_policy_errors([('第三章.md',text)],sections or {},tables or {},POLICY['forbidden_body_patterns'])
 

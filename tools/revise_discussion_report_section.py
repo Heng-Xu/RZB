@@ -222,12 +222,29 @@ def strip_empty_properties(node):
     node = deepcopy(node)
     for p in node.xpath('.//w:pPr/w:rPr', namespaces=r.NS):
         if not len(p) and not p.attrib: p.getparent().remove(p)
+    # 修订会拆分同格式文字run；比较可见内容与格式，不把拆分当作正文差异。
+    for t in node.xpath('.//w:t', namespaces=r.NS):
+        t.attrib.pop('{http://www.w3.org/XML/1998/namespace}space', None)
+    for p in ([node] if node.tag == r.qn('p') else node.findall('.//'+r.qn('p'))):
+        previous = None
+        for child in list(p):
+            plain = child.tag == r.qn('r') and all(n.tag in [r.qn('rPr'), r.qn('t')] for n in child)
+            if not plain: previous = None; continue
+            prop = lambda n: E.tostring(n.find(r.qn('rPr')), method='c14n', exclusive=True) if n.find(r.qn('rPr')) is not None else b''
+            if previous is not None and prop(previous) == prop(child):
+                text = ''.join(previous.xpath('./w:t/text()', namespaces=r.NS))+''.join(child.xpath('./w:t/text()', namespaces=r.NS))
+                for t in list(previous.findall(r.qn('t'))): previous.remove(t)
+                E.SubElement(previous, r.qn('t')).text = text
+                p.remove(child)
+            else: previous = child
     return node
 
 
 def check():
     record = json.loads((AUDIT/'修订核验.json').read_text())
     assert r.sha(r.TARGET) == record['修后SHA256'] and r.sha(r.REPORT) == record['报告SHA256']
+    if '用户WPS保存核验' in record:
+        return check_user_saved(record)
     old = {i.filename: data for i, data in package(BASELINE)}
     new = {i.filename: data for i, data in package(r.TARGET)}
     assert set(old) == set(new)
@@ -241,7 +258,8 @@ def check():
     for n in revision_nodes(after):
         all_ids.append(n.get(r.qn('id')))
         if n.get(r.qn('id')) in ids:
-            assert n.get(r.qn('author')) == r.AUTHOR and n.get(r.qn('date')) == record['新修订时间']
+            date = record.get('新修订时间映射', {}).get(n.get(r.qn('id')), record['新修订时间'])
+            assert n.get(r.qn('author')) == r.AUTHOR and n.get(r.qn('date')) == date
     assert len(all_ids) == len(set(all_ids)), '修订ID重复'
     for kind in ['commentRangeStart', 'commentRangeEnd', 'commentReference']:
         assert before.xpath('.//w:'+kind+'/@w:id', namespaces=r.NS) == after.xpath('.//w:'+kind+'/@w:id', namespaces=r.NS)
@@ -273,7 +291,7 @@ def check():
         新增修订=len(ids), 最终视图表格数=22, 复用原生行内公式=13, 批注及未涉及包部件='保持',
         拒绝本轮修订='恢复修前最终视图', 完整复用='49个节点，包括5个小节、11张表和13个行内OMML对象')
     proof_path = AUDIT/'WPS版面核验.json'
-    if proof_path.exists():
+    if proof_path.exists() and json.loads(proof_path.read_text()).get('状态') == '通过':
         proof = json.loads(proof_path.read_text()); assert proof['状态'] == '通过'
         assert proof['DOCX_SHA256'] == r.sha(r.TARGET) and proof['PDF_SHA256'] == r.sha(ROOT/proof['PDF'])
         import pymupdf
@@ -298,8 +316,71 @@ def check():
         assert sum(len(page.get_image_info()) for page in pdf) == 4
         record.update(状态='原生修订、完整复用及WPS版面核验通过', PDF表格逐行核验='全部22表含跨页表头一致')
     (AUDIT/'修订核验.json').write_text(json.dumps(record, ensure_ascii=False, indent=2)+'\n')
-    (AUDIT/'最终视图正文.txt').write_text(visible+'\n')
+    (AUDIT/'最终视图正文.txt').write_text(visible.rstrip()+'\n')
     print(json.dumps({k: record[k] for k in ['状态', '保留原有修订', '新增修订', '最终视图表格数', '完整复用']}, ensure_ascii=False))
+
+
+def check_user_saved(record):
+    """用户WPS保存会重编号及合并run，按已登记保存前后文件验证语义与历史删除内容。"""
+    from collections import Counter, defaultdict
+    proof = json.loads((ROOT/record['用户WPS保存核验']).read_text())
+    before_path = ROOT/proof['保存前文件']; after_path = ROOT/proof['保存后文件']
+    assert r.sha(before_path) == proof['保存前SHA256']
+    assert r.sha(after_path) == proof['保存后SHA256'] == r.sha(r.TARGET)
+    before_parts = {i.filename: data for i, data in package(before_path)}
+    after_parts = {i.filename: data for i, data in package(r.TARGET)}
+    before, after = r.xml(before_parts['word/document.xml']), r.xml(after_parts['word/document.xml'])
+    def blocks(tree):
+        return [(E.QName(n).localname, r.text(n), ''.join(n.xpath('.//*[local-name()="oMath"]//*[local-name()="t"]/text()')))
+            for n in r.accept_view(tree).find(r.qn('body')) if r.text(n) or n.tag in [r.qn('tbl'), r.qn('sectPr')]
+            or n.xpath('.//*[local-name()="drawing"]')]
+    assert blocks(before) == blocks(after), '用户保存后出现未核对的正文变化'
+    for name in before_parts:
+        if name == 'word/comments.xml' or name.startswith('word/media/'):
+            assert before_parts[name] == after_parts[name], '保存后批注或图件变化: '+name
+    def deleted_chars(tree):
+        result = defaultdict(Counter)
+        for node in tree.xpath('.//w:del', namespaces=r.NS):
+            result[node.get(r.qn('author'))].update(''.join(node.xpath('.//w:delText/text()', namespaces=r.NS)))
+        return result
+    assert deleted_chars(before) == deleted_chars(after), '保存后历史删除内容变化'
+    nodes = list(r.accept_view(after).find(r.qn('body'))); start, end = section_bounds(nodes)
+    copied, mapping, refs, _ = expected()
+    signature = lambda n: (E.QName(n).localname, r.text(n), ''.join(n.xpath('.//*[local-name()="oMath"]//*[local-name()="t"]/text()')))
+    assert len(nodes[start:end]) == len(copied) == 49
+    assert [signature(n) for n in nodes[start:end]] == [signature(n) for n in copied], '完整复用正文、表格或公式变化'
+    bibliography = {int(m[1]): r.text(n) for n in nodes if (m := re.match(r'^\[(\d+)\]', r.text(n)))}
+    for original, local in mapping.items():
+        assert bibliography[local].removeprefix(f'[{local}]').strip() == r.text(refs[original]).removeprefix(f'[{original}]').strip()
+    visible = '\n'.join(r.text(n) for n in nodes)
+    from check_report_policy import body_policy_errors
+    policy = json.loads((ROOT/'tools/report_policy.json').read_text())
+    assert not body_policy_errors([('供电公司讨论稿.docx最终视图', visible.split('参考依据')[0])], {}, {}, policy['forbidden_body_patterns'])
+    record.update(状态='用户保存语义、完整复用核验通过，待WPS', 用户保存后修订数=len(revision_nodes(after)))
+    p = AUDIT/'WPS版面核验.json'
+    if p.exists() and json.loads(p.read_text()).get('状态') == '通过':
+        render = json.loads(p.read_text()); assert render['DOCX_SHA256'] == r.sha(r.TARGET)
+        assert render['PDF_SHA256'] == r.sha(ROOT/render['PDF'])
+        import pymupdf
+        pdf = pymupdf.open(ROOT/render['PDF']); norm = lambda s: re.sub(r'\s+', '', s or '')
+        rendered = [(page.number+1, t.extract()) for page in pdf for t in page.find_tables().tables]
+        flat = [[norm(v) for v in row] for _, t in rendered for row in t]
+        pages = [page for page, t in rendered for _ in t]
+        tables = [n for n in nodes if n.tag == r.qn('tbl')]
+        captions = [r.text(n) for n in nodes if n.tag == r.qn('p') and re.match(r'^表\d+(?:[（(][ab][）)])?\s', r.text(n))]
+        assert len(tables) == len(captions) == 22
+        cursor = 0
+        for caption, table in zip(captions, tables):
+            rows = [[norm(r.text(c)) for c in row.findall(r.qn('tc'))] for row in table.findall(r.qn('tr'))]
+            assert norm(caption) in norm(pdf[pages[cursor]-1].get_text()), ('表题分页', caption)
+            for i, row in enumerate(rows):
+                if i and flat[cursor] == rows[0]: cursor += 1
+                assert flat[cursor] == row; cursor += 1
+        assert cursor == len(flat) and sum(len(page.get_image_info()) for page in pdf) == 4
+        record.update(状态='用户保存语义、完整复用及WPS版面核验通过')
+    (AUDIT/'修订核验.json').write_text(json.dumps(record, ensure_ascii=False, indent=2)+'\n')
+    (AUDIT/'最终视图正文.txt').write_text(visible.rstrip()+'\n')
+    print(json.dumps({k:record[k] for k in ['状态','用户保存后修订数','最终视图表格数','完整复用']}, ensure_ascii=False))
 
 
 if __name__ == '__main__':
