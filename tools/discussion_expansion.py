@@ -108,8 +108,9 @@ def verify_figures(root,audit,package):
  import pandas as pd,numpy as np
  raw=pd.read_csv(root/'研究报告/01研究推荐/当前版/参数联合情景_20261012/统一有效样本.csv')
  keys=list(raw.columns[:6]);indexed=raw.set_index(keys)
+ images=[data for name,data in package.items() if name.startswith('word/media/') and name.endswith('.png')]
  for name in FIGURES:
-  assert package['word/media/'+name+'.png']==(root/'研究报告/02图表/当前版'/(name+'.png')).read_bytes()
+  assert (root/'研究报告/02图表/当前版'/(name+'.png')).read_bytes() in images, '讨论稿图件与已核验绘图不一致:'+name
   if name=='planning_tier_heatmap':continue
   shown=pd.read_csv(audit/(name+'.csv')).set_index(keys)
   assert not shown.index.duplicated().any()

@@ -53,6 +53,8 @@ def main():
     t=sync.read(sync.A/'计算表.json');s=sync.read(sync.A/'生成段落.json')
     for k,v in (pt|ct).items():assert t[k]==v,'计算表.json:'+k
     for k,v in (ps|cs).items():assert s[k]==v,'生成段落.json:'+k
+    from report_parameter_selection import verify as verify_selection
+    selection=verify_selection()
     source=ROOT/'研究报告/03_MD/当前版/研究报告装配稿.md';text=source.read_text()
     expected=re.findall(r'^!\[\]\(([^)]+)\)',text,re.M)
     word=ROOT/'研究报告/04_word/研究报告终稿.docx';doc=Document(word)
@@ -63,14 +65,15 @@ def main():
         blip=shape._inline.xpath('.//a:blip')[0];part=doc.part.related_parts[blip.get(qn('r:embed'))]
         assert hashlib.sha256(part.blob).hexdigest()==sha(ROOT/path),'图件未同步:'+path
     assert len(re.findall(r'^#### .*规划分析$',text,re.M))==46
-    assert len(cells)==1296 and len(index)==27 and sum(c['有效样本数'] for c in cells)==32112
+    assert len(cells)==432 and len(index)==9 and sum(c['有效样本数'] for c in cells)==32112
     assert all(r['最小余量_MW']>-1e-6 for r in evidence)
     body=text.split('# 参考文献')[0]
     for stale in ['12600组','648个','2.001','邳州124.80','市区499.20','年度同比增长率','案例敏感性','储能价格的专项比较']:
         assert stale not in body,'仍有旧版表述:'+stale
     for item in sync.read(sync.LOCK)['model_files']:
         assert sha(ROOT/item['path'])==item['sha256'],'模型锁定文件变化:'+item['path']
-    result=dict(状态='通过',有效参数节点=32112,六参数矩阵=27,区间单元=1296,逐站分析=46,
+    result=dict(状态='通过',有效参数节点=32112,五参数矩阵=9,区间单元=432,逐站分析=46,
+        指标筛选=selection,
         图件=len(expected),原生公式=len(equation_tables(doc)),
         WordSHA256=sha(word),模型经济参数='锁定文件哈希一致，未改动',
         原始依据SHA256={str(p.relative_to(ROOT)):sha(p) for p in [sync.LOCK,

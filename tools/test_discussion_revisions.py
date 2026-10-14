@@ -17,6 +17,16 @@ class LocalRevisionTests(unittest.TestCase):
   p=E.Element(qn('p'),nsmap={'w':NS['w']});r=E.SubElement(p,qn('r'));E.SubElement(r,qn('t')).text='主变容量';E.SubElement(r,qn('br'));E.SubElement(r,qn('t')).text='MVA'
   Reviser(p).replace(p,'')
   self.assertEqual(text(reject_xh(p)),'主变容量MVA')
+ def test_reject_current_ids_keeps_earlier_xh_revision(self):
+  from revise_discussion_selection import reject_ids,revision_nodes
+  p=E.Element(qn('p'),nsmap={'w':NS['w']})
+  earlier=E.SubElement(p,qn('ins'),{qn('id'):'7',qn('author'):'xh',qn('date'):'2026-10-12T02:00:00Z'})
+  E.SubElement(E.SubElement(earlier,qn('r')),qn('t')).text='原转供率40%。'
+  revision=Reviser(p);revision.replace(p,'原转供率67%。')
+  ids={n.get(qn('id')) for n in revision_nodes(p)}-{'7'}
+  restored=reject_ids(p,ids)
+  self.assertEqual(text(accept_view(restored)),'原转供率40%。')
+  self.assertEqual(restored.xpath('.//w:ins/@w:date',namespaces=NS),['2026-10-12T02:00:00Z'])
  def test_dates_keep_content_client_and_paired_changes(self):
   root=E.Element(qn('document'),nsmap={'w':NS['w']});body=E.SubElement(root,qn('body'))
   for i in range(4):

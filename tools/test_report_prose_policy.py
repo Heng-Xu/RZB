@@ -111,6 +111,30 @@ class ProsePolicyTests(unittest.TestCase):
         self.assertEqual(self.check('采用变电站全停条件下的负荷转移统计数据。'),[])
         self.assertEqual(self.check('主变容量保持不变，当年负荷减少，容载比随之升高。'),[])
 
+    def test_selection_narrative_and_deleted_feedback_phrase(self):
+        for value in ['扩展相关性分析用于支撑参数筛选，推广矩阵沿用原结果库。',
+                      '矩阵沿用原数据，只筛掉时间指标。',
+                      '两项分母分别采用典型场景和样本外推估计。']:
+            errors=self.check('[[SECTION:selection]]',{'selection':value})
+            self.assertTrue(any('生成段落.json[selection]:1' in e for e in errors))
+        for value in ['十三项候选指标经相关强度及信息重叠分析确定五项推广参数。',
+                      '矩阵归纳2、4、6 h支撑条件下的容量范围。',
+                      '源荷与价格受控情景分别列明有效组数和节点数。']:
+            self.assertEqual(self.check(value),[])
+
+    def test_sampling_and_chinese_parameter_names(self):
+        for value in ['源荷、网络和储能条件采用五站模板联合采样。',
+                      '电量、峰段和价格条件采用97548个互异组合。',
+                      '表3-17 五项推广参数的共线性核验',
+                      '方差膨胀因子按VIFj=1/(1−Rj2)计算。',
+                      'ηC、ḡ、α、r₀依次表示四项参数。']:
+            errors=self.check('[[TABLE:sampling]]',tables={'sampling':value})
+            self.assertTrue(any('计算表.json[sampling]:1' in e for e in errors))
+        for value in ['仿真采用统一五站模板，各指标的采样节点与点数集中列于表3-11。',
+                      '分布式电源装机渗透率与初始转供率的相关系数为0.00。',
+                      '五项推广参数间的最大Pearson绝对值为0.29。']:
+            self.assertEqual(self.check(value),[])
+
 class EquationLayoutTests(unittest.TestCase):
     def sample(self):
         from docx import Document

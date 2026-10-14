@@ -81,7 +81,6 @@ def main():
     actual_section=chapter_three.split('## 3.5 核心参数依据与相关性分析')[1].split('## 3.6 ')[0]
     for key in ['current_controlled_correlations','current_input_correlations','new_parameter_bins']:
         assert '[[TABLE:'+key+']]' in actual_section, '第3.5节缺少参数或相关分析: '+key
-    assert '### 3.5.5' not in actual_section, '实际年度相关分析按用户要求留在核验资料'
     assert not any('[[TABLE:'+key+']]' in body for key in ['actual_corr_pizhou','actual_corr_city','actual_corr_target']), '实际年度相关表已退出正文'
     # 以已确认参数库复算展示，明确区分实际年度关联与受控仿真组内相关。
     import sync_current_report_results as current_results
@@ -90,6 +89,12 @@ def main():
         assert tables[key]==value,'计算表.json:'+key+' 与锁定参数库不一致'
     for key,value in generated_sections.items():
         assert sections[key]==value,'生成段落.json:'+key+' 与锁定参数库不一致'
+    # 所有指标及筛选表必须实际进入第3.5节，五参数矩阵由锁定节点归纳。
+    required=['extended_parameter_nodes','extended_indicator_correlations_1','extended_indicator_correlations_2',
+        'parameter_redundancy_groups','parameter_selection_summary']
+    for key in required:
+        assert '[[TABLE:'+key+']]' in actual_section, '第3.5节缺少筛选证据:'+key
+    assert len(cells)==432 and len(index)==9
     assert '[[TABLE:new_correlations]]' not in body,'旧版无条件仿真相关表已退出正文'
     # 连续式中解释应合并到一段，不能用多个空行分列符号解释。
     if re.search(r'式中[^\n]*\n\s*\n式中',body):errors.append('相邻式中说明应合并')

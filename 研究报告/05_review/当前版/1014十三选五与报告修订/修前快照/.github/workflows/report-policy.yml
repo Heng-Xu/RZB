@@ -1,0 +1,22 @@
+name: Report policy
+on: [push, pull_request]
+jobs:
+  report-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install python-docx==1.2.0 PyMuPDF==1.28.2 openpyxl==3.1.5 numpy pandas scipy highspy==1.15.1 pytest
+      - run: python tools/test_report_prose_policy.py
+      - run: python tools/test_discussion_revisions.py
+      - run: python tools/check_report_policy.py --stage final
+      - run: python tools/revise_current_discussion.py
+      - run: python tools/verify_report_review.py
+      - run: python tools/locked_parameter_results.py
+      - run: python tools/extend_indicator_analysis.py --verify
+      - run: python -m pytest -q 实验/研究/rebuild_2026/indicator_extension_20261014/test_model.py
+      - run: python -m pytest -q 实验/研究/rebuild_2026/case_parameters_20261012/test_model.py 实验/研究/rebuild_2026/case_parameters_20261012/test_transfer_diagnostic.py 实验/研究/rebuild_2026/static_actual_20261010/test_rules.py 实验/研究/rebuild_2026/network_case_20261010/test_network.py
+      - run: python -m 实验.研究.rebuild_2026.case_parameters_20261012.capacity_verify
+      - run: python -m 实验.研究.rebuild_2026.case_parameters_20261012.transfer_diagnostic --verify

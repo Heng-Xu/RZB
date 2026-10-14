@@ -238,6 +238,8 @@ def accept_view(root,author=None):
  for row in list(r.xpath('.//w:tr',namespaces=NS)):
   dels=row.xpath('./w:trPr/w:del',namespaces=NS)
   if any(author is None or x.get(qn('author'))==author for x in dels):row.getparent().remove(row)
+ for table in list(r.xpath('.//w:tbl[not(w:tr)]',namespaces=NS)):
+  table.getparent().remove(table)
  for el in list(r.xpath('.//w:del|.//w:moveFrom',namespaces=NS)):
   if author is None or el.get(qn('author'))==author:
    if el.getparent() is not None:el.getparent().remove(el)
@@ -416,4 +418,5 @@ def check():
 
 if __name__=='__main__':
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--apply',action='store_true');args=parser.parse_args()
- apply() if args.apply else check()
+ from revise_discussion_selection import apply as current_apply, check as current_check
+ current_apply() if args.apply else current_check()

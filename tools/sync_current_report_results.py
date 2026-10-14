@@ -51,32 +51,16 @@ def controlled_sequences(d):
 
 def parameter_assets():
     d=pd.read_csv(PUBLIC/'统一有效样本.csv')
-    corr=pd.read_csv(PUBLIC/'固定其余五项后的组内相关.csv')
-    t={};s={}
-    t['current_controlled_correlations']=table('表3-0 六项参数与容载比的组内相关',
-        ['参数','有效组数','有效节点数','Pearson','容量响应组占比'],
-        [[r['参数'],r['有效受控组数'],r['有效节点数'],f(r['组内Pearson']),pct(r['主变容量响应组占比'])]
-         for r in corr.to_dict('records')])
-    # 与锁定六参数输入相关表逐项复算，保留全部六项。
-    cm=d[FIELDS].corr();saved=pd.read_csv(PUBLIC/'六参数输入相关.csv',index_col=0)
-    np.testing.assert_allclose(cm,saved,atol=1e-12)
-    t['current_input_correlations']=table('表3-0 六项输入参数的Pearson相关矩阵',
-        ['参数']+SYMBOL, [[SHORT[i]]+[f(v) for v in cm.iloc[i]] for i in range(6)])
-    nodes=[['分布式电源装机渗透率','0～3.00，步长0.25','≤1；(1,2]；>2'],
-        ['年最大净负荷平均增长率','0、2%、3%、4%、5.5%、7%、8%、10%','≤2%；(2%,4%]；(4%,7%]；>7%'],
-        ['电缆长度占比','10%、30%、50%、80%、90%','≤10%；(10%,30%]；>30%'],
-        ['初始转供率','10%～90%，步长10%','≤30%；(30%,50%]；(50%,70%]；>70%'],
-        ['储能支撑持续时间','2、4、6 h','2 h；4 h；6 h'],
-        ['负荷分散系数','1.00、1.10、1.15','1.00；1.10；1.15']]
-    t['new_parameter_bins']=table('表3-0 六项参数采样节点与矩阵分类',['参数','采样节点','矩阵分类'],nodes)
+    from report_parameter_selection import assets as selection_assets
+    t=selection_assets();s={}
     # 展示层将分散系数的三个定值分别列示；不改锁定18表及原始节点。
     b=d.copy()
     for i,(field,cuts) in enumerate(zip(FIELDS[:4],CUTS)):
         b['b'+str(i)]=b[field].map(lambda x,cuts=cuts:sum(x>c+1e-9 for c in cuts))
     cells=[];matrix_sections=[];index=[]
-    for (q,h,kd),g in b.groupby(['b2',FIELDS[4],FIELDS[5]],sort=True):
-        key=f'current_matrix_{q}_{int(h)}_{kd:.2f}'
-        title=f'电缆长度占比{LABELS[2][q]}，储能支撑{int(h)} h，负荷分散系数{kd:.2f}'
+    for (q,kd),g in b.groupby(['b2',FIELDS[5]],sort=True):
+        key=f'current_matrix_{q}_{kd:.2f}'
+        title=f'电缆长度占比{LABELS[2][q]}，负荷分散系数{kd:.2f}'
         rows=[]
         for (growth,eta),row in g.groupby(['b1','b0'],sort=True):
             values=[]
@@ -85,7 +69,7 @@ def parameter_assets():
                 assert len(sub)>=2,(q,h,kd,growth,eta,r)
                 lo,hi=sub['容载比'].min(),sub['容载比'].max()
                 values.append(interval(lo,hi))
-                cells.append(dict(电缆档=int(q),支撑时间_h=int(h),负荷分散系数=kd,
+                cells.append(dict(电缆档=int(q),负荷分散系数=kd,
                     增长档=int(growth),渗透率档=int(eta),转供档=r,有效样本数=len(sub),
                     下界=lo,上界=hi,展示区间=values[-1],
                     下界参数=list(sub.loc[sub['容载比'].idxmin(),FIELDS]),
@@ -94,13 +78,13 @@ def parameter_assets():
         t[key]=table('表5-0 '+title,['平均增长率','装机渗透率']+LABELS[3],rows)
         matrix_sections.append('[[TABLE:'+key+']]')
         index.append(dict(key=key,title=title))
-    assert len(index)==27 and len(cells)==1296
+    assert len(index)==9 and len(cells)==432
     assert sum(c['有效样本数'] for c in cells)==32112
     s['new_matrix_tables']='\n\n'.join(matrix_sections)+'\n'
-    s['new_matrix_summary']=(f'六项参数共设置34686个组合，其中32112个有效组合形成容载比区间。'
-        f'按电缆长度占比三档、储能支撑持续时间三个定值和负荷分散系数三个定值分为27张表，'
-        f'每表以平均增长率和装机渗透率构成12行、初始转供率构成4列，共1296个单元。'
-        f'每个单元包含2～60个有效样本，容载比区间总体为{interval(d["容载比"].min(),d["容载比"].max())}。\n')
+    s['new_matrix_summary']=(f'五站模板共设置34686个情景组合，其中32112个有效组合形成容载比区间。'
+        f'按电缆长度占比三档和负荷分散系数三个定值分为9张表，'
+        f'每表以平均增长率和装机渗透率构成12行、初始转供率构成4列，共432个单元。'
+        f'容载比区间总体为{interval(d["容载比"].min(),d["容载比"].max())}。\n')
     # 给出同一组背景下的完整转供序列，表后按设备切换解释。
     sample=d[np.isclose(d[FIELDS[0]],1.5)&np.isclose(d[FIELDS[1]],.04)&
              np.isclose(d[FIELDS[2]],.1)&np.isclose(d[FIELDS[4]],4)&np.isclose(d[FIELDS[5]],1.1)].sort_values(FIELDS[3])
@@ -368,11 +352,11 @@ def main():
     else:
         tables.update(newt);sections.update(news)
         for path,value in [(A/'计算表.json',tables),(A/'生成段落.json',sections),
-            (REVIEW/'定值展示矩阵.json',dict(说明='从锁定32112节点按三个分散系数定值重分组，保留锁定18表原件',索引=index,单元=cells)),
+            (REVIEW/'定值展示矩阵.json',dict(说明='从锁定32112节点按五参数重分组，时间2/4/6h取包络，保留原锁定成果',索引=index,单元=cells)),
             (REVIEW/'逐站展示复算.json',evidence)]:
             path.write_text(json.dumps(value,ensure_ascii=False,indent=2,default=lambda x:x.item())+'\n')
         (REVIEW/'六参数受控完整序列.json').write_text(json.dumps(
             {k:v.to_dict('records') for k,v in controlled_sequences(data).items()},ensure_ascii=False,indent=2)+'\n')
-    print('报告资产核验通过：六参数、32112节点、27张定值矩阵、1296单元、46座站')
+    print('报告资产核验通过：十三项指标筛选五参数、32112节点、9张矩阵、432单元、46座站')
 
 if __name__=='__main__':main()
