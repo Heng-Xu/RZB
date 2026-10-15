@@ -36,3 +36,5 @@ git diff --quiet -- tools/report_policy.json tools/check_report_policy.py tools/
 "$REPORT_PYTHON" -m pytest -p no:cacheprovider -q 实验/研究/rebuild_2026/static_joint_20261015/test_model.py
 "$REPORT_PYTHON" -m 实验.研究.rebuild_2026.static_joint_20261015.lock_review
 "$REPORT_PYTHON" -m 实验.研究.rebuild_2026.static_joint_20261015.verify
+"$REPORT_PYTHON" tools/verify_adopted_report_results.py
+"$REPORT_PYTHON" -m pytest -p no:cacheprovider -q tools/test_report_adoption_governance.py

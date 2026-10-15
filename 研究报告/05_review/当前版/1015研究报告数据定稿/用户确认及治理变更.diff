@@ -1,0 +1,122 @@
+diff --git a/docs/CURRENT-WORKFLOW.md b/docs/CURRENT-WORKFLOW.md
+index dca2295..45b057e 100644
+--- a/docs/CURRENT-WORKFLOW.md
++++ b/docs/CURRENT-WORKFLOW.md
+@@ -2,7 +2,7 @@
+ 
+ 当前有效约束为根目录及研究报告目录的 `AGENTS.md`。正式源是六章Markdown、计算表及生成段落JSON；不要从历史正文快照恢复覆盖。环境使用 `/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python`。
+ 
+-1. 从已确认模型更新时，先运行`tools/sync_current_report_results.py`，仅同步计算表与生成段落，保持锁定结果和经济参数不变；运行`tools/refresh_report_comparison_figures.py`同步图件。修改当前六章源；若涉及小时数据，运行 `tools/prepare_regional_profiles.py`，核对补值日志和区域峰段。实际年度相关分析运行 `tools/prepare_case_correlations.py`，从原始Excel分别提取两地区年度样本；样本和系数继续在核验资料中复算，实际年度相关表按用户要求退出正文。
++1. 从已确认模型更新时，先运行`tools/verify_adopted_report_results.py`核对`研究报告/01研究推荐/当前版/报告数据采用版本.json`。后续同步需先将计算表、生成段落及图件入口适配登记的8组结果，再修改当前六章源；当前`tools/sync_current_report_results.py`和正式稿核验仍对应既有已交付正文，不能直接作为新结果的同步入口。保持定稿结果与经济参数不变。若涉及小时数据，运行 `tools/prepare_regional_profiles.py`，核对补值日志和区域峰段。实际年度相关分析运行 `tools/prepare_case_correlations.py`，从原始Excel分别提取两地区年度样本；样本和系数继续在核验资料中复算，实际年度相关表按用户要求退出正文。
+ 2. 执行 `python tools/build_current_report.py --rebuild`。自动先查源稿规则，再装配原生Word，最后核对公式、式中段落和目录结构。
+ 3. 在WPS打开新Word，更新全部域并导出PDF。执行 `python tools/build_current_report.py --accept-wps-pdf <PDF路径>`，按实际标题页回填目录缓存。
+ 4. 重新打开更新后的Word，再次导出并接收，直到目录页码、正文页码和链接目标一致。PDF必须由原生Word经WPS输出，不能以公式图片副本替换。
+@@ -21,11 +21,11 @@
+ 
+ 参数结果采用独立锁定流程，入口为`tools/locked_parameter_results.py`。已确认工作簿位于`研究报告/01研究推荐/当前版/参数联合情景_20261012`，原始库位于`研究报告/试算/20261012_参数联合情景锁定`；来源与核验归入各自标准目录。默认核验文件哈希、从原始库复算相关与矩阵、回算设备费用，并核对来源CSV及工作簿；`--lp`重新检查矩阵端点和分层节点。`--export-to`与`--solve-to`只写独立空目录。锁定版不随正文构建自动覆盖，后续调整须另建经审查的版本。提交钩子与CI同时核验锁定数据。
+ 
+-正文采用十三项候选指标至五项推广参数的两层筛选逻辑，相关分析集中于第3.5节，组内相关和指标间关联分别呈现，并列明研究阈值、基础输入代表原则及五参数之间的相关关系。实际年度平均增长率采用复合定义，实际年度相关表退出正文。矩阵按原五项分档归纳2/4/6 h设备结果的单元包络，以电缆三档、分散系数三个定值展示9表、432单元，原锁定库及工作簿保持。研究报告按普通模式修改，讨论稿在当前原文件上增量修订，已有修订和批注保持；本轮新修订使用正常系统时间。设备寿命和评价期只修改内容表述。
++正文采用十三项候选指标至五项推广参数的两层筛选逻辑，相关分析集中于第3.5节，组内相关和指标间关联分别呈现，并列明研究阈值、基础输入代表原则及五参数之间的相关关系。实际年度平均增长率采用复合定义，实际年度相关表退出正文。原五项分档、2/4/6 h单元包络及9表432单元的原始锁定库和工作簿保留。后续正文推荐矩阵按定稿登记展示典型四档转供响应，集中说明电缆占比、支撑时长、装机、增长和分散条件，完整细节点用于核对平台，不独立按线路系数分类讨论。研究报告按普通模式修改，讨论稿在当前原文件上增量修订，已有修订和批注保持；本轮新修订使用正常系统时间。设备寿命和评价期只修改内容表述。
+ 
+-案例正文后续采用`研究报告/01研究推荐/当前版/既有转供约束诊断_20261012/报告采用版本说明.md`指定的4组主方案，以对应的`报告采用版本锁定清单.json`核对模型、输入和解。正常供区固定及2.0下限组保留用于对照分析；不得从历史零费用版或其他对照组替换主方案。先登记版本，再导出带用途标记的完整工作簿；`transfer_diagnostic --verify`同时核验版本与导出哈希。
++案例正文后续以`研究报告/01研究推荐/当前版/报告数据采用版本.json`登记的20261015-static-joint为准，阅读入口为同目录`报告采用数据说明.md`。邳州、市区共同仿真起点的刚性及弹性经济优选共4组为主方案，保留2021原表地区容量的对应4组为补充对照。2021固定、2022—2025优化，正常与N-1共同使用储能和联络，两方案共同采用主变位置期内最多更换一次的工程实施假设。弹性按经济参考费用5%以内优先简化联络的条件优选，经济参考独立保留。8组结果、输入、原始解、费用及间隙、完整校核、推广矩阵均按原冻结清单核对。采用说明纠正原汇总兴塘段落的工况引用，所有设备、费用及逐年数值保持。该登记确定后续写作依据，正式六章、Word/WPS PDF和讨论稿本次未同步；旧采用记录作为既有稿件复现依据保留。
+ 
+-本版数据核验入口为`tools/verify_current_report.py`，以报告采用版本、锁定参数库和当前源稿逐项复算。`tools/build_current_report.py --check-only`依次检查当前约束、全部Word表格及本版数据。新增表达规则须有文件或JSON键定位；公式控制字符和Pandoc数学转换失败均阻止构建。初步定档清单登记交付文件、六章源、维护入口及保留复现依据的哈希。历史清理按依赖核对、逐文件备份及SHA256校验、移出无关文件、完整交付核验的顺序执行，`tools/manage_preliminary_archive.py`在提交与CI检查清理清单和保留资料；本地备份被Git忽略，Git旧历史保持。
++既有已交付稿的数据核验入口为`tools/verify_current_report.py`，以该稿原采用版本、锁定参数库和当前源稿逐项复算。新定稿数据由`tools/verify_adopted_report_results.py`独立核验并接入提交与CI；正式稿同步后须同步适配正文数据核验及事实审阅记录。`tools/build_current_report.py --check-only`依次检查当前约束、全部Word表格及本版数据。新增表达规则须有文件或JSON键定位；公式控制字符和Pandoc数学转换失败均阻止构建。初步定档清单登记交付文件、六章源、维护入口及保留复现依据的哈希。历史清理按依赖核对、逐文件备份及SHA256校验、移出无关文件、完整交付核验的顺序执行，`tools/manage_preliminary_archive.py`在提交与CI检查清理清单和保留资料；本地备份被Git忽略，Git旧历史保持。
+ 
+ 讨论稿当前内容及局部修订入口为`tools/revise_current_discussion.py`，完整复用检查委托`tools/revise_discussion_report_section.py`；补充图表与格式复用规则在`tools/discussion_expansion.py`，`tools/prepare_discussion_figures.py`只读锁定有效样本，生成可复用图件及逐点绘图CSV。每次以当前修订稿为基线增量修改，原批注和原修订保留，拒绝本轮新增ID须恢复本轮前最终视图，不能以作者名批量拒绝此前xh修订。新增图片只添加必需媒体和关系部件。原生检查逐格核对当前有效表格、研究报告格式属性和绘图节点；WPS版面证据登记DOCX与PDF哈希，变化后重新导出。
+ 
+diff --git a/prompt.md b/prompt.md
+index c219e45..4a5d556 100644
+--- a/prompt.md
++++ b/prompt.md
+@@ -585,7 +585,17 @@ WPS在线排版存在格式错乱问题：报告在WPS云文档中传输后公
+ 
+ 整体不错，就这样吧。按照这个方案继续做一版 （弹性经济参考），市区的也要做出来。另外需要补充，不改变初始年份的容量直接给两个区县寻优方案的结果。
+ 
+-另外还有一点，当前的推广矩阵是不是有的场景矩阵可以完全体现，推荐区间随转供率变化的方案结果（各个区间节点都有响应的），有的话就可以，后面就按照这个展示，且研究报告的推荐矩阵不需要独立针对 线路系数单独分类讨论撰写。
++
++背景：已经按照甲方提议和要求 修正了推广矩阵和案例分析的建模结果，可以按照上一版的确定结果替换和补充原研究报告的结果数据以及对应内容，只做研究报告就好，原有结构严格保留。
++
++内容补充：
++1、补充约束说明，说明可以细致一些，比如承载力约束等。
++2、第五章内补充一个小节，说明不压缩容量起点的方案，汇总就好不需要特别的逐站说明。
++
++核心点（需要学习 体现到研究报告中）：当前的推广矩阵是不是有的场景矩阵可以完全体现推荐区间随转供率变化的方案结果（各个区间节点都有响应的），有的话就可以，后面就按照这个展示，且研究报告的推荐矩阵不需要独立针对"线路系数"单独分类讨论撰写。
++
++
++
+ 
+ [账户凭据原文已保留于本地私密备份，不纳入Git。]
+ 
+diff --git a/tools/verify_preliminary_baseline.py b/tools/verify_preliminary_baseline.py
+index b01daae..756a0d0 100644
+--- a/tools/verify_preliminary_baseline.py
++++ b/tools/verify_preliminary_baseline.py
+@@ -6,8 +6,8 @@ import json
+ ROOT = Path(__file__).resolve().parents[1]
+ MANIFEST = ROOT/'研究报告/05_review/当前版/1014初步定档与表述约束/初步定档清单.json'
+ SUCCESSOR = ROOT/'研究报告/05_review/当前版/1015会后建模复核/后继变更登记.json'
+-GOVERNANCE_FILES = {'AGENTS.md', 'docs/CURRENT-WORKFLOW.md', 'prompt.md',
+-                    'tools/verify_preliminary_baseline.py'}
++GOVERNANCE_FILES = {'AGENTS.md', '研究报告/AGENTS.md', 'docs/CURRENT-WORKFLOW.md', 'prompt.md',
++                    'tools/verify_preliminary_baseline.py', 'tools/verify_report_review.py'}
+ 
+ 
+ def sha(path):
+@@ -29,9 +29,8 @@ def verify_files(root, expected, updates):
+             assert sha(p) == digest, '定档文件已变化: '+name
+ 
+ 
+-def main():
+-    record = json.loads(MANIFEST.read_text())
+-    assert record['状态'] == '文件核验通过'
++def verified_successor():
++    """读取有原件归档及独立证据的治理变更，正文和数据保持原哈希。"""
+     updates = {}
+     if SUCCESSOR.exists():
+         successor = json.loads(SUCCESSOR.read_text())
+@@ -40,6 +39,13 @@ def main():
+         updates = successor['治理文件变更']
+         for item in successor['核验依据']:
+             assert sha(ROOT/item['path']) == item['sha256'], '后继核验依据已变化: '+item['path']
++    return updates
++
++
++def main():
++    record = json.loads(MANIFEST.read_text())
++    assert record['状态'] == '文件核验通过'
++    updates = verified_successor()
+     verify_files(ROOT, record['文件SHA256'], updates)
+     from manage_preliminary_archive import verify
+     verify()
+diff --git a/tools/verify_report_review.py b/tools/verify_report_review.py
+index 9ea8b20..21d5f01 100644
+--- a/tools/verify_report_review.py
++++ b/tools/verify_report_review.py
+@@ -13,7 +13,8 @@ def formula_text(path):
+  return [''.join(t.xpath('.//m:t/text()',namespaces=ns)) for t in r.xpath('.//w:tbl[w:tblPr/w:tblCaption[@w:val="ReportEquation"]]//m:oMath',namespaces=ns)]
+ def main():
+  record=json.loads((AUDIT/'复核完成登记.json').read_text());assert record['状态']=='通过'
+- for name,digest in record['当前文件SHA256'].items():assert sha(ROOT/name)==digest,'审阅记录已过期，须核对变化后重新登记: '+name
++ from verify_preliminary_baseline import verify_files,verified_successor
++ verify_files(ROOT,record['当前文件SHA256'],verified_successor())
+  assert sha(PRIOR/'引文依据核读登记.json')==record['事实核验']['既有依据登记SHA256']
+  facts=json.loads((PRIOR/'引文依据核读登记.json').read_text())['记录'];assert len(facts)==95
+  for row in facts:
+diff --git "a/\347\240\224\347\251\266\346\212\245\345\221\212/AGENTS.md" "b/\347\240\224\347\251\266\346\212\245\345\221\212/AGENTS.md"
+index b0b19a6..b627fa5 100644
+--- "a/\347\240\224\347\251\266\346\212\245\345\221\212/AGENTS.md"
++++ "b/\347\240\224\347\251\266\346\212\245\345\221\212/AGENTS.md"
+@@ -3,8 +3,9 @@
+ 本目录同时遵守项目根目录 `AGENTS.md`。这里仅列报告专有条件；本文件替代多轮叠加的历史规则，旧文本已保留于本轮修前快照。
+ 
+ - 正文源：`03_MD/当前版/01` 至 `06` 开头的六章；表格及生成段落：`02图表/当前版/计算表.json`、`生成段落.json`。正式交付为 `04_word/研究报告终稿.docx` 与同名WPS PDF。正文前只有封面及目录。
+-- 已确认案例为2022—2025年实际年度负荷、共同初始设备、具体馈线网络及静态正常/N-1约束。市区初始容量2900 MVA，邳州1463.5 MVA；最新案例正向储能支撑时间为邳州2 h、市区6 h，并覆盖地区及各站局部极值截面。刚性方案新增容量按当年容载比2.0控制；当年负荷回落时保留上一年度在役容量，容载比可因此超过2.0；弹性取消2.0下限，费用是唯一经济目标，不强制地区排序，不恢复2.60统一上限。
+-- 第3.5节展示十三项指标至五项参数的两层筛选，保留指标定义、采样、有效组数及节点数和指标间相关矩阵。基础输入组内相关固定其余五项，电量、时间及价格受控分析固定其余八项独立输入。第5.6节按五项参数归纳锁定有效设备配置，2/4/6 h支撑条件取单元包络，电缆三档及分散系数1.00/1.10/1.15形成9表、432单元。46座有设备对应资料站点的独立分析保持。连续输入首尾开口，定值参数按具体值列示，容载比输出为有限区间。
++- 已定稿案例以`01研究推荐/当前版/报告数据采用版本.json`登记的8组静态联合替代结果为后续撰写依据。2021年固定，优化2022—2025年。共同仿真起点市区2900 MVA、邳州1463.5 MVA的4组为主方案；保留2021原表地区容量市区3113.5 MVA、邳州2027 MVA的4组为补充对照，逐站组合沿用冻结标定。正常与N-1共同允许储能和10kV联络参与，逐站转供率、通道及接收侧限额沿用锁定输入；正向储能支撑邳州2 h、市区6 h。
++- 两方案共同采用同一主变位置四年内最多更换一次的工程实施假设。刚性保留容载比2.0新增容量控制和既有容量，弹性取消该控制。弹性采用经济参考费用5%以内优先简化联络的工程优选可行方案，费用增量和下界间隙据实保留；经济参考单列，不代替已定稿方案。不设置刚弹容量、储能或联络排序约束。定稿登记不表示正式稿已完成数据同步。
++- 第3.5节展示十三项指标至五项参数的两层筛选，保留指标定义、采样、有效组数及节点数和指标间相关矩阵。基础输入组内相关固定其余五项，电量、时间及价格受控分析固定其余八项独立输入。原锁定参数库及9表432单元保留复现；后续推荐矩阵优先采用定稿登记的典型四档转供响应，适用条件和完整九节点序列共同核对，保留真实平台，不单独按线路系数分类讨论。46座有设备对应资料站点的独立分析保持。连续输入首尾开口，定值参数按具体值列示，容载比输出为有限区间。
+ - 经济参数集中在 `实验/研究/rebuild_2026/current_economic_assumptions.py`，不得用历史默认值覆盖。主变/线路/储能寿命40/40/25年，维护费率4.2%/2.2%/3%，折现率6%，评价截止2041年。
+ - 时序处理及区域峰段入口为 `tools/prepare_regional_profiles.py`，结果与补值逐项记录在 `数据来源/当前版/区域时序`。只用于运行特征统计，不新增储能SOC优化，不改变既定静态工况和费用结果。
+ - 正文简称“站级负载率”，第3.4节集中说明容量基准及0.95功率因数；逐台实测年最大负载率保留独立名称。不能混淆两者。

@@ -13,7 +13,8 @@ def formula_text(path):
  return [''.join(t.xpath('.//m:t/text()',namespaces=ns)) for t in r.xpath('.//w:tbl[w:tblPr/w:tblCaption[@w:val="ReportEquation"]]//m:oMath',namespaces=ns)]
 def main():
  record=json.loads((AUDIT/'复核完成登记.json').read_text());assert record['状态']=='通过'
- for name,digest in record['当前文件SHA256'].items():assert sha(ROOT/name)==digest,'审阅记录已过期，须核对变化后重新登记: '+name
+ from verify_preliminary_baseline import verify_files,verified_successor
+ verify_files(ROOT,record['当前文件SHA256'],verified_successor())
  assert sha(PRIOR/'引文依据核读登记.json')==record['事实核验']['既有依据登记SHA256']
  facts=json.loads((PRIOR/'引文依据核读登记.json').read_text())['记录'];assert len(facts)==95
  for row in facts:

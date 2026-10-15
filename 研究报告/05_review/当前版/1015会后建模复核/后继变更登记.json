@@ -4,13 +4,28 @@
   "治理文件变更": {
     "prompt.md": {
       "原SHA256": "d8316fd84bc4d68808e59c077e365901013a508228f6eb37504390b5b7cd4afc",
-      "现SHA256": "5efcd437dadb7a06fcb9ab7a71b66d9d3a40ce646056a59bab3ad5d34750d001",
+      "现SHA256": "aed89940a9624ebbace5cd66728f0d2bbc4d6f9f8ad1ed9eb4e18f0fd4d82f74",
       "原件归档": "研究报告/05_review/当前版/1015会后建模复核/继承基线/prompt.md"
     },
     "tools/verify_preliminary_baseline.py": {
       "原SHA256": "b1bf50c18763e37f4743ddcf52831db8c6d136c35f3665c409b9248cdc82f682",
-      "现SHA256": "d8ccb335a342a65cfcea1df538c73b0c4d42b8f3538c3a890bd01dc9200f7b0a",
+      "现SHA256": "75dded68dbbebf0e79fcabb43ca1952628f31d765fc9a8527f5f8b81a5e437af",
       "原件归档": "研究报告/05_review/当前版/1015会后建模复核/继承基线/verify_preliminary_baseline.py"
+    },
+    "docs/CURRENT-WORKFLOW.md": {
+      "原SHA256": "d7b3e6fca3210fd79e67bc0c39c1ab5d4c1c4f60cccfae39eac627b14b1db309",
+      "现SHA256": "8eea72ce6e333c6b7968f50d48eae5193fc826964f897039c761caa7a3a56c3c",
+      "原件归档": "研究报告/05_review/当前版/1015研究报告数据定稿/继承基线/CURRENT-WORKFLOW.md"
+    },
+    "研究报告/AGENTS.md": {
+      "原SHA256": "6b8c798b6ade75d6f3b94da33e525f1b946f0293d389c07e16ee5dae2e9b29d8",
+      "现SHA256": "b8ad6e31877db739374ae95f405164acd92080a7ba4608c0753a556231f1b754",
+      "原件归档": "研究报告/05_review/当前版/1015研究报告数据定稿/继承基线/AGENTS.md"
+    },
+    "tools/verify_report_review.py": {
+      "原SHA256": "c6ceee08c9ce049bc8acfadb0d2ea0971093e5fae5eae087599e17d79cf30ae7",
+      "现SHA256": "3810dae957af4bc06643025430a1d44ca59e9495b9af99b05ca8a3d08bf8593e",
+      "原件归档": "研究报告/05_review/当前版/1015研究报告数据定稿/继承基线/verify_report_review.py"
     }
   },
   "核验依据": [
@@ -77,6 +92,18 @@
     {
       "path": "研究报告/05_review/当前版/1015静态联合替代/本轮用户任务增补.diff",
       "sha256": "8a0ad37fa495114c1161d21fbdebc3915f72fda76acdf6ee88ac9543b51718f7"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015研究报告数据定稿/定稿登记清单.json",
+      "sha256": "3b8329c201c3c660a25fa9170d7e21c1b98a7a7d4f34d4c08e8c1bb4807590fa"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015研究报告数据定稿/采用登记复核.md",
+      "sha256": "7c5638748b35d133e6783b3b4758272b5cd046e0a4cd65b3c3cdfc0535c556b8"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015研究报告数据定稿/用户确认及治理变更.diff",
+      "sha256": "429ffe86e923cd30922329c740a9e055dd28078039307fed99e0c329bba3b7e9"
     }
   ]
 }

@@ -6,8 +6,8 @@ import json
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT/'研究报告/05_review/当前版/1014初步定档与表述约束/初步定档清单.json'
 SUCCESSOR = ROOT/'研究报告/05_review/当前版/1015会后建模复核/后继变更登记.json'
-GOVERNANCE_FILES = {'AGENTS.md', 'docs/CURRENT-WORKFLOW.md', 'prompt.md',
-                    'tools/verify_preliminary_baseline.py'}
+GOVERNANCE_FILES = {'AGENTS.md', '研究报告/AGENTS.md', 'docs/CURRENT-WORKFLOW.md', 'prompt.md',
+                    'tools/verify_preliminary_baseline.py', 'tools/verify_report_review.py'}
 
 
 def sha(path):
@@ -29,9 +29,8 @@ def verify_files(root, expected, updates):
             assert sha(p) == digest, '定档文件已变化: '+name
 
 
-def main():
-    record = json.loads(MANIFEST.read_text())
-    assert record['状态'] == '文件核验通过'
+def verified_successor():
+    """读取有原件归档及独立证据的治理变更，正文和数据保持原哈希。"""
     updates = {}
     if SUCCESSOR.exists():
         successor = json.loads(SUCCESSOR.read_text())
@@ -40,6 +39,13 @@ def main():
         updates = successor['治理文件变更']
         for item in successor['核验依据']:
             assert sha(ROOT/item['path']) == item['sha256'], '后继核验依据已变化: '+item['path']
+    return updates
+
+
+def main():
+    record = json.loads(MANIFEST.read_text())
+    assert record['状态'] == '文件核验通过'
+    updates = verified_successor()
     verify_files(ROOT, record['文件SHA256'], updates)
     from manage_preliminary_archive import verify
     verify()
