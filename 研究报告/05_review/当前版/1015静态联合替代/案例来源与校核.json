@@ -1,0 +1,514 @@
+{
+  "verified": true,
+  "sources": [
+    {
+      "region": "pizhou",
+      "baseline": "compressed",
+      "case": "rigid",
+      "folder": "研究报告/试算/20261015_静态联合替代/pizhou/compressed/rigid_main",
+      "input_sha256": "c7bd94a05512782341089767f8a341caa9a8092529c24b0ecfbb45ee0102f20a",
+      "files": {
+        "summary.json": "b410b51a14310dffe1b460738fba9b44be95794d4c525cd40fb7e3ff3667f449",
+        "stations.csv": "359d5c8ef5c57998c05e3e44a620aef070386434189d49281eefc28b94194360",
+        "projects.csv": "96d564e4ee9d2ed18a75854f8229f60fdd4d5f9c5da794159b893f87d62e6271",
+        "chosen_solution.npz": "5de5713d976c2887d26905e47e8acbab239bb9a551d1be0f9d0b9c99ea86ae12",
+        "selected_pairs.json": "507409527681abc7978f461409fc6960dd9e305047839462e8f0ab6b3c67c38f",
+        "independent_lp.json": "f742fe00b594dc124bf12abab38c761be57a60a629221c1507f25cfec8007773"
+      }
+    },
+    {
+      "region": "pizhou",
+      "baseline": "compressed",
+      "case": "elastic_free",
+      "folder": "研究报告/试算/20261015_静态联合替代/pizhou/compressed/elastic_engineering",
+      "input_sha256": "c7bd94a05512782341089767f8a341caa9a8092529c24b0ecfbb45ee0102f20a",
+      "files": {
+        "summary.json": "07f093a989a20c9e1611731e311afe3ddc3e4ea310fd014ff7fa78996bd2665d",
+        "stations.csv": "c61bb6ae4ea7ef751a421ceaee7523fbcce0ab28313f53a4bd12730648b06432",
+        "projects.csv": "f0601e5c206ccbb4a5c591367eb03421df99514dd612e92eaea63c9891a199d4",
+        "chosen_solution.npz": "d20d604b675e67dc6c1b694b9bf2f684436f3744fdc114c92c7e12d7829c432c",
+        "selected_pairs.json": "08df1fdf78e6ae3648f7e0f9b589fad726437a3f730c5d6af5e0a0090b9e71f6",
+        "independent_lp.json": "be531de71f4afaf00ac1bc1d8609aeebfe3cd2c8efa033a2baae7a375fa91d0e"
+      }
+    },
+    {
+      "region": "pizhou",
+      "baseline": "annual_2021",
+      "case": "rigid",
+      "folder": "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/rigid_certified",
+      "input_sha256": "a58f3e1269387d0102a4c9a58c2ae2baa1fd2b94f6be479d8ea1ced038cf89a7",
+      "files": {
+        "summary.json": "3db1f4036d79028e9ebc8740e2a86b87c32c778613bc6dfd68c8015bb419df29",
+        "stations.csv": "0ae6a221c8918f21f3aa441053e37ae413922f1a21ffe46bf0dd13d195ad56a4",
+        "projects.csv": "32e078339c73331fb65eaab726b9b632efc62ed56c4f5c68b032da9deae42e02",
+        "chosen_solution.npz": "f863220cb0fc7b887a0b1c4716bfd42cf064be613dd34b29eb004a561dd20381",
+        "selected_pairs.json": "08a0b3d0c6ec3b7f93c856c9c8be660caee656d8954d80c2f846d61858afc167",
+        "independent_lp.json": "e4a1c5f705e48456415f4ad2a6f976a4229dfaadb461fa62bbf4b20a4c3db8fb"
+      }
+    },
+    {
+      "region": "pizhou",
+      "baseline": "annual_2021",
+      "case": "elastic_free",
+      "folder": "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/elastic_engineering",
+      "input_sha256": "a58f3e1269387d0102a4c9a58c2ae2baa1fd2b94f6be479d8ea1ced038cf89a7",
+      "files": {
+        "summary.json": "b098213802036806833f592cd64a4332156f4726690194151e43a70051887815",
+        "stations.csv": "e0fa3b4973c41367f9e0840a91bb57f14314a0678e04b1f7a29eeb14ed465dfb",
+        "projects.csv": "71d4a2f40702863dd8607ca22efd7824ec8c6913d14839d274a01ddb9115f84d",
+        "chosen_solution.npz": "f3a6fbea178036f5017a31790a9686e7043bbf76974958cab52c5fd5e4c8f135",
+        "selected_pairs.json": "08df1fdf78e6ae3648f7e0f9b589fad726437a3f730c5d6af5e0a0090b9e71f6",
+        "independent_lp.json": "3f055141e7f5f7e426287bc0ceaaaa97b1767b53eec13ad3e76d269006e26845"
+      }
+    },
+    {
+      "region": "city",
+      "baseline": "compressed",
+      "case": "rigid",
+      "folder": "研究报告/试算/20261015_静态联合替代/city/compressed/rigid_certified",
+      "input_sha256": "9694f3e83ac36bb9412ef199dd3b6925a6bb028bdae64e77d4685f9bf37eb5a3",
+      "files": {
+        "summary.json": "44bdca1d08fee1acd655f7a2e89df8e1ff802b731f13fe8be1c6e0b6d9c22e4e",
+        "stations.csv": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1",
+        "projects.csv": "b940912d88b1f1f3bd5b4b66119b441aff9ca628b7c077878cf731c37429fabe",
+        "chosen_solution.npz": "d1193a28087b5d2b52a53860a89e13a4de9cd0d6f91cedb60786ae761d333299",
+        "selected_pairs.json": "636e45b8eb6c68bb1aee0cb6bf2b19b309abbe602baf46383dd9d462a69d54ba",
+        "independent_lp.json": "86edb6dc377165d48eaee5625ab343fffa2f1670be98620995576f4ff17abdf9"
+      }
+    },
+    {
+      "region": "city",
+      "baseline": "compressed",
+      "case": "elastic_free",
+      "folder": "研究报告/试算/20261015_静态联合替代/city/compressed/elastic_free_certified",
+      "input_sha256": "9694f3e83ac36bb9412ef199dd3b6925a6bb028bdae64e77d4685f9bf37eb5a3",
+      "files": {
+        "summary.json": "c9020094de09d6625ceed9cf2a7e2068f3349fb6a14f23dea2737b9e4ddab9bd",
+        "stations.csv": "0ef32b550250bb8e268d26f22fbcbeef4b739e7b17fa4af3d406af445df9720c",
+        "projects.csv": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5",
+        "chosen_solution.npz": "4f8bc7572965b50d9cd1568b5537df9ed2d499a5484344055958dbdf7534bc60",
+        "selected_pairs.json": "636e45b8eb6c68bb1aee0cb6bf2b19b309abbe602baf46383dd9d462a69d54ba",
+        "independent_lp.json": "3cf167d27895a76a90461c5ba4a449b136f4567577a34b338602fc1ce44945c9"
+      }
+    },
+    {
+      "region": "city",
+      "baseline": "annual_2021",
+      "case": "rigid",
+      "folder": "研究报告/试算/20261015_静态联合替代/city/annual_2021/rigid_certified",
+      "input_sha256": "90a3d169674584f7181308991ca9ed13e76fab85c90c1ad656f73a86a79fafa6",
+      "files": {
+        "summary.json": "a6e46f10c799a4bd4f06500944534cf0d67376147d10a2b55d3a93e879501d3f",
+        "stations.csv": "e9f8e114e2f187625dd42d1fa73065f30954eb8ff4f449ec25ecf7c69c18a3b0",
+        "projects.csv": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5",
+        "chosen_solution.npz": "8e2785dd37b853897f3a844af8cf4e4850bc886c34d3c15bb17e073e5a13c987",
+        "selected_pairs.json": "636e45b8eb6c68bb1aee0cb6bf2b19b309abbe602baf46383dd9d462a69d54ba",
+        "independent_lp.json": "145871e05bbb32ed99cdbdefe9ddae2cd768aa2ce4d60cd654e69558df18c1d5"
+      }
+    },
+    {
+      "region": "city",
+      "baseline": "annual_2021",
+      "case": "elastic_free",
+      "folder": "研究报告/试算/20261015_静态联合替代/city/annual_2021/elastic_free_certified",
+      "input_sha256": "90a3d169674584f7181308991ca9ed13e76fab85c90c1ad656f73a86a79fafa6",
+      "files": {
+        "summary.json": "7afedb9f8bc2178ab4b967586bf2a5e5f29a8f9ea0baf86e3783d7670add2c7b",
+        "stations.csv": "e9f8e114e2f187625dd42d1fa73065f30954eb8ff4f449ec25ecf7c69c18a3b0",
+        "projects.csv": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5",
+        "chosen_solution.npz": "a7ee41499c836a7cff4b494a7daaa9f1d66cd7f81daaf7ae38be56c2504fbd9f",
+        "selected_pairs.json": "636e45b8eb6c68bb1aee0cb6bf2b19b309abbe602baf46383dd9d462a69d54ba",
+        "independent_lp.json": "145871e05bbb32ed99cdbdefe9ddae2cd768aa2ce4d60cd654e69558df18c1d5"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "地区": "邳州",
+      "起点": "共同仿真起点",
+      "方案": "刚性方案",
+      "year": 2022,
+      "checked_pairs": 546,
+      "independent_lp_calls": 142,
+      "direct_checks": 404,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "共同仿真起点",
+      "方案": "刚性方案",
+      "year": 2023,
+      "checked_pairs": 546,
+      "independent_lp_calls": 113,
+      "direct_checks": 433,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "共同仿真起点",
+      "方案": "刚性方案",
+      "year": 2024,
+      "checked_pairs": 546,
+      "independent_lp_calls": 156,
+      "direct_checks": 390,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "共同仿真起点",
+      "方案": "刚性方案",
+      "year": 2025,
+      "checked_pairs": 546,
+      "independent_lp_calls": 218,
+      "direct_checks": 328,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "共同仿真起点",
+      "方案": "弹性经济优选方案",
+      "year": 2022,
+      "checked_pairs": 546,
+      "independent_lp_calls": 142,
+      "direct_checks": 404,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "共同仿真起点",
+      "方案": "弹性经济优选方案",
+      "year": 2023,
+      "checked_pairs": 546,
+      "independent_lp_calls": 111,
+      "direct_checks": 435,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "共同仿真起点",
+      "方案": "弹性经济优选方案",
+      "year": 2024,
+      "checked_pairs": 546,
+      "independent_lp_calls": 154,
+      "direct_checks": 392,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "共同仿真起点",
+      "方案": "弹性经济优选方案",
+      "year": 2025,
+      "checked_pairs": 546,
+      "independent_lp_calls": 217,
+      "direct_checks": 329,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "保留2021原表容量",
+      "方案": "刚性方案",
+      "year": 2022,
+      "checked_pairs": 546,
+      "independent_lp_calls": 63,
+      "direct_checks": 483,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "保留2021原表容量",
+      "方案": "刚性方案",
+      "year": 2023,
+      "checked_pairs": 546,
+      "independent_lp_calls": 45,
+      "direct_checks": 501,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "保留2021原表容量",
+      "方案": "刚性方案",
+      "year": 2024,
+      "checked_pairs": 546,
+      "independent_lp_calls": 66,
+      "direct_checks": 480,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "保留2021原表容量",
+      "方案": "刚性方案",
+      "year": 2025,
+      "checked_pairs": 546,
+      "independent_lp_calls": 84,
+      "direct_checks": 462,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "保留2021原表容量",
+      "方案": "弹性经济优选方案",
+      "year": 2022,
+      "checked_pairs": 546,
+      "independent_lp_calls": 59,
+      "direct_checks": 487,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "保留2021原表容量",
+      "方案": "弹性经济优选方案",
+      "year": 2023,
+      "checked_pairs": 546,
+      "independent_lp_calls": 40,
+      "direct_checks": 506,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "保留2021原表容量",
+      "方案": "弹性经济优选方案",
+      "year": 2024,
+      "checked_pairs": 546,
+      "independent_lp_calls": 63,
+      "direct_checks": 483,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "邳州",
+      "起点": "保留2021原表容量",
+      "方案": "弹性经济优选方案",
+      "year": 2025,
+      "checked_pairs": 546,
+      "independent_lp_calls": 82,
+      "direct_checks": 464,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "共同仿真起点",
+      "方案": "刚性方案",
+      "year": 2022,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 419,
+      "direct_checks": 931,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "共同仿真起点",
+      "方案": "刚性方案",
+      "year": 2023,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 472,
+      "direct_checks": 878,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "共同仿真起点",
+      "方案": "刚性方案",
+      "year": 2024,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 435,
+      "direct_checks": 915,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "共同仿真起点",
+      "方案": "刚性方案",
+      "year": 2025,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 459,
+      "direct_checks": 891,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "共同仿真起点",
+      "方案": "弹性经济优选方案",
+      "year": 2022,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 411,
+      "direct_checks": 939,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "共同仿真起点",
+      "方案": "弹性经济优选方案",
+      "year": 2023,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 466,
+      "direct_checks": 884,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "共同仿真起点",
+      "方案": "弹性经济优选方案",
+      "year": 2024,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 428,
+      "direct_checks": 922,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "共同仿真起点",
+      "方案": "弹性经济优选方案",
+      "year": 2025,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 453,
+      "direct_checks": 897,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "保留2021原表容量",
+      "方案": "刚性方案",
+      "year": 2022,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 299,
+      "direct_checks": 1051,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "保留2021原表容量",
+      "方案": "刚性方案",
+      "year": 2023,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 394,
+      "direct_checks": 956,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "保留2021原表容量",
+      "方案": "刚性方案",
+      "year": 2024,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 302,
+      "direct_checks": 1048,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "保留2021原表容量",
+      "方案": "刚性方案",
+      "year": 2025,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 353,
+      "direct_checks": 997,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "保留2021原表容量",
+      "方案": "弹性经济优选方案",
+      "year": 2022,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 299,
+      "direct_checks": 1051,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "保留2021原表容量",
+      "方案": "弹性经济优选方案",
+      "year": 2023,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 394,
+      "direct_checks": 956,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "保留2021原表容量",
+      "方案": "弹性经济优选方案",
+      "year": 2024,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 302,
+      "direct_checks": 1048,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "地区": "市区",
+      "起点": "保留2021原表容量",
+      "方案": "弹性经济优选方案",
+      "year": 2025,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 353,
+      "direct_checks": 997,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    }
+  ],
+  "static_pairs": 30336,
+  "schemes": 8,
+  "normal_storage_allowed": true
+}

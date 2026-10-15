@@ -1,0 +1,312 @@
+{
+  "region": "pizhou",
+  "case": "elastic_free",
+  "cost_npv_10k": 7342.180945264584,
+  "annual": [
+    {
+      "year": 2022,
+      "planning_year": 1,
+      "peak_mw": 825.004193,
+      "capacity_mva": 2148.5,
+      "clr": 2.6042291884448643,
+      "purchased_transformer_mva": 244.5,
+      "new_third_count": 1,
+      "new_lines": 1,
+      "cumulative_lines": 1,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 4574.888406688231,
+      "added_lifecycle_npv_10k": 6311.528031036071,
+      "cumulative_lifecycle_npv_10k": 6311.528031036071,
+      "transformer_npv_10k": 6160.689915994255,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 150.83811504181656
+    },
+    {
+      "year": 2023,
+      "planning_year": 2,
+      "peak_mw": 761.231803,
+      "capacity_mva": 2148.5,
+      "clr": 2.8223991582232935,
+      "purchased_transformer_mva": 0.0,
+      "new_third_count": 0,
+      "new_lines": 0,
+      "cumulative_lines": 1,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 0.0,
+      "added_lifecycle_npv_10k": 0.0,
+      "cumulative_lifecycle_npv_10k": 6311.528031036071,
+      "transformer_npv_10k": 0.0,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 0.0
+    },
+    {
+      "year": 2024,
+      "planning_year": 3,
+      "peak_mw": 862.661537,
+      "capacity_mva": 2148.5,
+      "clr": 2.490548039815991,
+      "purchased_transformer_mva": 0.0,
+      "new_third_count": 0,
+      "new_lines": 0,
+      "cumulative_lines": 1,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 0.0,
+      "added_lifecycle_npv_10k": 0.0,
+      "cumulative_lifecycle_npv_10k": 6311.528031036071,
+      "transformer_npv_10k": 0.0,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 0.0
+    },
+    {
+      "year": 2025,
+      "planning_year": 4,
+      "peak_mw": 956.45,
+      "capacity_mva": 2148.5,
+      "clr": 2.2463275654765016,
+      "purchased_transformer_mva": 0.0,
+      "new_third_count": 0,
+      "new_lines": 2,
+      "cumulative_lines": 3,
+      "storage_nameplate_mw": 3.6,
+      "storage_mwh": 7.74,
+      "new_storage_mwh": 7.74,
+      "construction_capex_10k": 1014.3926900394615,
+      "added_lifecycle_npv_10k": 1030.6529142285124,
+      "cumulative_lifecycle_npv_10k": 7342.180945264584,
+      "transformer_npv_10k": 0.0,
+      "storage_npv_10k": 782.0675230725101,
+      "line_npv_10k": 248.58539115600232
+    }
+  ],
+  "solver": {
+    "stage": "iteration_01",
+    "status": "Feasible engineering selection within economic reference cost allowance",
+    "solver": "1.15.1",
+    "elapsed_seconds": 91.9724375839578,
+    "variables": 235881,
+    "constraints": 468882,
+    "relative_gap_target": 0.0001,
+    "objective": 7342.180945264585,
+    "dual_bound": 7097.163977169455,
+    "mip_gap": 0.0333711427056501,
+    "accepted": false,
+    "proven_infeasible": false,
+    "matrix_check": {
+      "lower_violation": 0.0,
+      "upper_violation": 0.0,
+      "bound_violation": 0.0,
+      "integer_violation": 0.0
+    },
+    "feasible_incumbent": true,
+    "construction_search": {
+      "stage": "iteration_01",
+      "status": "Time limit reached",
+      "solver": "1.15.1",
+      "elapsed_seconds": 91.9724375839578,
+      "variables": 235881,
+      "constraints": 468882,
+      "relative_gap_target": 0.0001,
+      "objective": 3.000009852602115,
+      "dual_bound": 1.6247866714437664,
+      "mip_gap": 0.45840622155474686,
+      "accepted": false,
+      "proven_infeasible": false,
+      "matrix_check": {
+        "lower_violation": 0.0,
+        "upper_violation": 0.0,
+        "bound_violation": 0.0,
+        "integer_violation": 0.0
+      },
+      "feasible_incumbent": true
+    }
+  },
+  "scenario_iterations": [
+    {
+      "iteration": 1,
+      "selected_pairs": 381,
+      "construction_solver": {
+        "stage": "iteration_01",
+        "status": "Time limit reached",
+        "solver": "1.15.1",
+        "elapsed_seconds": 91.9724375839578,
+        "variables": 235881,
+        "constraints": 468882,
+        "relative_gap_target": 0.0001,
+        "objective": 3.000009852602115,
+        "dual_bound": 1.6247866714437664,
+        "mip_gap": 0.45840622155474686,
+        "accepted": false,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      },
+      "checks": [
+        {
+          "year": 2022,
+          "checked_pairs": 546,
+          "independent_lp_calls": 59,
+          "direct_checks": 487,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        },
+        {
+          "year": 2023,
+          "checked_pairs": 546,
+          "independent_lp_calls": 40,
+          "direct_checks": 506,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        },
+        {
+          "year": 2024,
+          "checked_pairs": 546,
+          "independent_lp_calls": 63,
+          "direct_checks": 483,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        },
+        {
+          "year": 2025,
+          "checked_pairs": 546,
+          "independent_lp_calls": 82,
+          "direct_checks": 464,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "cost_recomputation_error_10k": 9.094947017729282e-13,
+  "scope": "2021固定基期；2022—2025静态正常/N-1共同替代；主变期内最多更换一次",
+  "baseline": "annual_2021",
+  "checks": [
+    {
+      "year": 2022,
+      "checked_pairs": 546,
+      "independent_lp_calls": 59,
+      "direct_checks": 487,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "year": 2023,
+      "checked_pairs": 546,
+      "independent_lp_calls": 40,
+      "direct_checks": 506,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "year": 2024,
+      "checked_pairs": 546,
+      "independent_lp_calls": 63,
+      "direct_checks": 483,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    },
+    {
+      "year": 2025,
+      "checked_pairs": 546,
+      "independent_lp_calls": 82,
+      "direct_checks": 464,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    }
+  ],
+  "history": [
+    {
+      "iteration": 1,
+      "selected_pairs": 381,
+      "construction_solver": {
+        "stage": "iteration_01",
+        "status": "Time limit reached",
+        "solver": "1.15.1",
+        "elapsed_seconds": 91.9724375839578,
+        "variables": 235881,
+        "constraints": 468882,
+        "relative_gap_target": 0.0001,
+        "objective": 3.000009852602115,
+        "dual_bound": 1.6247866714437664,
+        "mip_gap": 0.45840622155474686,
+        "accepted": false,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      },
+      "checks": [
+        {
+          "year": 2022,
+          "checked_pairs": 546,
+          "independent_lp_calls": 59,
+          "direct_checks": 487,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        },
+        {
+          "year": 2023,
+          "checked_pairs": 546,
+          "independent_lp_calls": 40,
+          "direct_checks": 506,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        },
+        {
+          "year": 2024,
+          "checked_pairs": 546,
+          "independent_lp_calls": 63,
+          "direct_checks": 483,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        },
+        {
+          "year": 2025,
+          "checked_pairs": 546,
+          "independent_lp_calls": 82,
+          "direct_checks": 464,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "method": {
+    "type": "经济参考费用5%以内，优先减少末年累计联络工程，次选费用较低布局",
+    "economic_reference": "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/elastic_free_certified",
+    "reference_cost": 7097.163977169455,
+    "cost_allowance": 0.05,
+    "cost_upper": 7452.022176027928,
+    "actual_premium": 0.03452322207621439,
+    "warm_source": "研究报告/试算/20261015_会后建模复核/案例/pizhou/annual_2021_reverse80/elastic_target",
+    "no_cross_scheme_ordering_constraints": true
+  },
+  "input_sha256": "a58f3e1269387d0102a4c9a58c2ae2baa1fd2b94f6be479d8ea1ced038cf89a7",
+  "selection_conditions": {}
+}

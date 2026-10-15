@@ -1,0 +1,104 @@
+{
+  "verified": true,
+  "schemes": 8,
+  "static_pairs": 30336,
+  "full_lp_recomputed": true,
+  "cases": [
+    {
+      "region": "pizhou",
+      "baseline": "compressed",
+      "case": "rigid",
+      "verified": true,
+      "static_pairs": 2184,
+      "cost_npv_10k": 19196.057647685906,
+      "lower_bound": 17444.35174469658,
+      "gap": 0.09125341958954247,
+      "max_master_violation": 4.263256414560601e-14
+    },
+    {
+      "region": "pizhou",
+      "baseline": "compressed",
+      "case": "elastic_free",
+      "verified": true,
+      "static_pairs": 2184,
+      "cost_npv_10k": 14801.985379694574,
+      "lower_bound": 14239.595771178287,
+      "gap": 0.03799420105412167,
+      "max_master_violation": 1.4210854715202004e-14
+    },
+    {
+      "region": "pizhou",
+      "baseline": "annual_2021",
+      "case": "rigid",
+      "verified": true,
+      "static_pairs": 2184,
+      "cost_npv_10k": 23753.31200486026,
+      "lower_bound": 23753.312004860265,
+      "gap": 0.0,
+      "max_master_violation": 0.0
+    },
+    {
+      "region": "pizhou",
+      "baseline": "annual_2021",
+      "case": "elastic_free",
+      "verified": true,
+      "static_pairs": 2184,
+      "cost_npv_10k": 7342.180945264584,
+      "lower_bound": 7097.163977169455,
+      "gap": 0.0333711427056501,
+      "max_master_violation": 0.0
+    },
+    {
+      "region": "city",
+      "baseline": "compressed",
+      "case": "rigid",
+      "verified": true,
+      "static_pairs": 5400,
+      "cost_npv_10k": 2591.772213988463,
+      "lower_bound": 2591.7722139884636,
+      "gap": 0.0,
+      "max_master_violation": 1.4210854715202004e-14
+    },
+    {
+      "region": "city",
+      "baseline": "compressed",
+      "case": "elastic_free",
+      "verified": true,
+      "static_pairs": 5400,
+      "cost_npv_10k": 1446.638989437193,
+      "lower_bound": 1446.638989437193,
+      "gap": 0.0,
+      "max_master_violation": 0.0
+    },
+    {
+      "region": "city",
+      "baseline": "annual_2021",
+      "case": "rigid",
+      "verified": true,
+      "static_pairs": 5400,
+      "cost_npv_10k": 0.0,
+      "lower_bound": 0.0,
+      "gap": 0.0,
+      "max_master_violation": 0.0
+    },
+    {
+      "region": "city",
+      "baseline": "annual_2021",
+      "case": "elastic_free",
+      "verified": true,
+      "static_pairs": 5400,
+      "cost_npv_10k": 0.0,
+      "lower_bound": 0.0,
+      "gap": 0.0,
+      "max_master_violation": 0.0
+    }
+  ],
+  "workbooks": [
+    {
+      "file": "两区县全套逐年方案.xlsx",
+      "cells": 136681,
+      "sha256": "54196c75ccf2558a57c1e3eeded1c76f3581b06e0f9618b00b78b89d877d2e0f"
+    }
+  ],
+  "normal_storage_verified": true
+}

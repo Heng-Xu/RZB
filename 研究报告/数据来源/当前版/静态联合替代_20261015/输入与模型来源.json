@@ -1,0 +1,66 @@
+{
+  "sources": [
+    {
+      "path": "研究报告/试算/20261015_会后建模复核/案例/pizhou/compressed_reverse80/inputs.json",
+      "sha256": "ea58f5ca94f299ef88b4a3eda8489ed8d5b996a5e32e8f3cde03f223ecb64526"
+    },
+    {
+      "path": "研究报告/试算/20261015_会后建模复核/案例/pizhou/annual_2021_reverse80/inputs.json",
+      "sha256": "b94db6cc367833d9256dcd1ea2f9912880ec4bfce80cdb41fb3c6cd6dea7a37c"
+    },
+    {
+      "path": "研究报告/试算/20261015_会后建模复核/案例/city/compressed_reverse80/inputs.json",
+      "sha256": "323e92178ca27cce098465e1a19e67a5b48db0ce0f92ccdcef2656fe901521d3"
+    },
+    {
+      "path": "研究报告/试算/20261015_会后建模复核/案例/city/annual_2021_reverse80/inputs.json",
+      "sha256": "e70007de7a4c0397f27ee93cb555e6721d0bcd86ffc58dab2f74a5bd2988f2b8"
+    }
+  ],
+  "工程条件": "新购主变在四年期内不重复更换；正常储能与联络恢复参与静态平衡",
+  "初始年份": 2021,
+  "优化年份": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "依赖源码": [
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/cases.py",
+      "sha256": "5ae29905b4785521cb4722d6632b4932d2b6c69bb4253b0825bb3f54dff4dd9b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/transfer_diagnostic.py",
+      "sha256": "6d96c89da5aad3d885f217a0efb391abc58571d5f5749348b981809806632a58"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/capacity_run.py",
+      "sha256": "27c85489b38b6272ba6640a56761294cbfb3375c8626b41b755efa963257a06a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/capacity_audit.py",
+      "sha256": "d9cc2b64fce223de865d9f453b61ef7daa965529628f722864ec130eccb04ca3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/run.py",
+      "sha256": "3ad1c77eebfe97eb544188246ef463aeb8554a9a120400ce512a7ea07cbf4538"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/run.py",
+      "sha256": "dd6e58fcbc3e3c84ee6c50390030b2896425620e69b1d7d7007dc3821f0e9592"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/solver.py",
+      "sha256": "b935e418c24ec42a7997dfc9ec123bda3b2e3fafe4ea7513cf463a70ddb0155a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/synchronous_20261009/model.py",
+      "sha256": "1948e6a3faaae5577aa7cc7f8e4decf6016a89643128719a03a58e56c9b0686f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/current_economic_assumptions.py",
+      "sha256": "ca25b1cebbbe887ac32fef6572fbd6514d0f96003244bbd462c405eff9ffbabc"
+    }
+  ]
+}

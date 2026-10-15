@@ -1,0 +1,89 @@
+Running HiGHS 1.15.1 (git hash: 04024d7): Copyright (c) 2026 under MIT licence terms
+Includes third-party software components, see THIRD_PARTY_NOTICES.md for full details
+MIP has 468881 rows; 235881 cols; 2779040 nonzeros; 1860 integer variables (52 binary)
+Coefficient ranges:
+  Matrix  [5e-02, 8e+01]
+  Cost    [2e+00, 2e+03]
+  Bound   [1e+00, 1e+02]
+  RHS     [1e-03, 4e+03]
+Attempting to find feasible solution by solving MIP for user-supplied values of 1712 / 1860 discrete variables
+Presolving model
+36184 rows, 26801 cols, 285538 nonzeros 0s
+23480 rows, 25291 cols, 141387 nonzeros 0s
+20805 rows, 23408 cols, 130573 nonzeros 1s
+Presolve reductions: rows 20805(-448076); columns 23408(-212473); nonzeros 130573(-2648467) 
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   20805 rows
+   23408 cols (0 binary, 0 integer, 0 implied int., 23408 continuous, 0 domain fixed)
+   130573 nonzeros
+   Thread count 1 (of 16 threads). Using 1 max workers. Parallel search off
+
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+ J       0       0         0 100.00%   -inf            7097.163977        Large        0      0      0         0     1.2s
+         1       0         1 100.00%   7097.163977     7097.163977        0.00%        0      0      0         0     1.2s
+
+Solving report
+  Status            Optimal
+  Primal bound      7097.16397717
+  Dual bound        7097.16397717
+  Gap               0% (tolerance: 0.01%)
+  P-D integral      0
+  Solution status   feasible
+                    7097.16397717 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            1.23
+                    1.15 (Presolve)
+                    0.07 (Solve)
+                    0.00 (Postsolve)
+  Max sub-MIP depth 0
+  Nodes             1
+  Repair LPs        0
+  LP iterations     0
+Presolving model
+36184 rows, 26801 cols, 285538 nonzeros 0s
+23480 rows, 25291 cols, 141387 nonzeros 1s
+20805 rows, 23408 cols, 130573 nonzeros 1s
+Presolve reductions: rows 20805(-448076); columns 23408(-212473); nonzeros 130573(-2648467) 
+
+MIP start solution is feasible, objective value is 7097.16397717
+
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0 100.00%   7097.163977     7097.163977        0.00%        0      0      0         0     1.2s
+
+Solving report
+  Status            Optimal
+  Primal bound      7097.16397717
+  Dual bound        7097.16397717
+  Gap               0% (tolerance: 0.01%)
+  P-D integral      0
+  Solution status   feasible
+                    7097.16397717 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            1.22
+                    1.21 (Presolve)
+                    0.01 (Solve)
+                    0.00 (Postsolve)
+  Max sub-MIP depth 0
+  Nodes             0
+  Repair LPs        0
+  LP iterations     0
