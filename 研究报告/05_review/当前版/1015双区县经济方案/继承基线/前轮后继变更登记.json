@@ -1,0 +1,58 @@
+{
+  "状态": "逐项审阅及独立核验通过",
+  "父清单SHA256": "43a6b507a22136cf870a99f239d60da567d75be42a360b5c4156b3abf52cbdcb",
+  "治理文件变更": {
+    "prompt.md": {
+      "原SHA256": "d8316fd84bc4d68808e59c077e365901013a508228f6eb37504390b5b7cd4afc",
+      "现SHA256": "def8b172273006b2b7b2caf57c113ac80121c06604872d6f46d6f29ac2ca0a0b",
+      "原件归档": "研究报告/05_review/当前版/1015会后建模复核/继承基线/prompt.md"
+    },
+    "tools/verify_preliminary_baseline.py": {
+      "原SHA256": "b1bf50c18763e37f4743ddcf52831db8c6d136c35f3665c409b9248cdc82f682",
+      "现SHA256": "d8ccb335a342a65cfcea1df538c73b0c4d42b8f3538c3a890bd01dc9200f7b0a",
+      "原件归档": "研究报告/05_review/当前版/1015会后建模复核/继承基线/verify_preliminary_baseline.py"
+    }
+  },
+  "核验依据": [
+    {
+      "path": "研究报告/05_review/当前版/1015会后建模复核/本轮成果清单.json",
+      "sha256": "9f102436955babb4755539a1bbf417a018d4d0e3c0e666adea2d28294cce4ee7"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015会后建模复核/人工复核记录.md",
+      "sha256": "7ed0c2afadadddc565f3400c0d55aa8736d1ae3945e3bf1271f985c1ef2025af"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015会后建模复核/用户任务增补.diff",
+      "sha256": "dea9a28a1b9205dd6645a26c23d7c8ae98a506348a914178f53cc60dd023a6e9"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015会后建模复核/后继核验器实现.diff",
+      "sha256": "db89a2375c90ed25a20b8d2db168a82600eda3e7da071f745757f594ff4270d7"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015运行约束及五参数深化/本轮深化成果清单.json",
+      "sha256": "a8bec6b52217277a966f6a6e3bc33e9e52e9c2743a7d244dfca2fc7d8adc96ed"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015运行约束及五参数深化/人工逐项复核记录.md",
+      "sha256": "c4e9687a7f06b3be4364428bc2fda7767a1cda0ace650f521e95092a1f33aea2"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015运行约束及五参数深化/本轮用户任务增补.diff",
+      "sha256": "6340c9d9d2a78a5521a77d851c785a4063a3838125906bc7cc242f25555889ef"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015增容替代推荐/本轮推荐成果清单.json",
+      "sha256": "ac3a5da33084ccbe8d63531c0b7cd615a8789394ab2061da0992d34193125a03"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015增容替代推荐/逐项复核记录.md",
+      "sha256": "1d60e7b6673888ad467fd7650d87f27a41e009f96814a3449782aff7e78ab52e"
+    },
+    {
+      "path": "研究报告/05_review/当前版/1015增容替代推荐/本轮用户任务增补.diff",
+      "sha256": "81d74a341dae99a0a4a924c905a6a80b2d0fe0d3c20f244a631d4533e03c6c04"
+    }
+  ]
+}

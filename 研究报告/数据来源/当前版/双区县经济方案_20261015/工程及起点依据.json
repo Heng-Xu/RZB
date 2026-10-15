@@ -1,0 +1,101 @@
+{
+  "来源": [
+    {
+      "path": "实验/研究/data/tuomin/电网建模数据_Agent整合版_V1.2/近5年容载比.xlsx",
+      "sha256": "f64be1be4955a268e97edc2678b2a39c3e89f651b7f40cc96e2e700395fe45a1"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/会后建模复核_20261015/工程原始来源.json",
+      "sha256": "f070104c52db90152541a9e7f469cebc070abb5f8f7c8c072e63c1407846c389"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/会后建模复核_20261015/规范核读定位.json",
+      "sha256": "ef1fce422cc4bbf21282599d18376772da76e5b55458122e63fccb309e733f65"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/current_economic_assumptions.py",
+      "sha256": "ca25b1cebbbe887ac32fef6572fbd6514d0f96003244bbd462c405eff9ffbabc"
+    }
+  ],
+  "原表核验": [
+    {
+      "region": "city",
+      "sheet": "Sheet1",
+      "row": 9,
+      "capacity_2021_mva": 3113.5,
+      "peak_2021_mw": 1449.77
+    },
+    {
+      "region": "pizhou",
+      "sheet": "Sheet1",
+      "row": 19,
+      "capacity_2021_mva": 2027.0,
+      "peak_2021_mw": 731.7700000000001
+    }
+  ],
+  "继承输入": [
+    {
+      "region": "pizhou",
+      "baseline": "compressed",
+      "path": "研究报告/试算/20261015_会后建模复核/案例/pizhou/compressed_reverse80/inputs.json",
+      "sha256": "ea58f5ca94f299ef88b4a3eda8489ed8d5b996a5e32e8f3cde03f223ecb64526"
+    },
+    {
+      "region": "pizhou",
+      "baseline": "annual_2021",
+      "path": "研究报告/试算/20261015_会后建模复核/案例/pizhou/annual_2021_reverse80/inputs.json",
+      "sha256": "b94db6cc367833d9256dcd1ea2f9912880ec4bfce80cdb41fb3c6cd6dea7a37c",
+      "station_fit_path": "研究报告/试算/20261015_会后建模复核/案例/pizhou/annual_2021_reverse80/initial_capacity_fit.json",
+      "station_fit_sha256": "7e31f39e36f45edde6005d8cd02862bfa4f71de98c565eaa700b3aee62684df9"
+    },
+    {
+      "region": "city",
+      "baseline": "compressed",
+      "path": "研究报告/试算/20261015_会后建模复核/案例/city/compressed_reverse80/inputs.json",
+      "sha256": "323e92178ca27cce098465e1a19e67a5b48db0ce0f92ccdcef2656fe901521d3"
+    },
+    {
+      "region": "city",
+      "baseline": "annual_2021",
+      "path": "研究报告/试算/20261015_会后建模复核/案例/city/annual_2021_reverse80/inputs.json",
+      "sha256": "e70007de7a4c0397f27ee93cb555e6721d0bcd86ffc58dab2f74a5bd2988f2b8",
+      "station_fit_path": "研究报告/试算/20261015_会后建模复核/案例/city/annual_2021_reverse80/initial_capacity_fit.json",
+      "station_fit_sha256": "ac61ff2c3eb1ea32d83061682477752b67d02c8566471ab406cc4c1505f2c81a"
+    }
+  ],
+  "规范核读继承": [
+    {
+      "path": "参考文献/前沿调研/pdfs/D8_政策标准/分布式电源接入电力系统承载力评估导则（DLT 2041-2025).pdf",
+      "sha256": "b6173403df3f3aa88406e9feb1078d9bd025409affa7d9b780d0e575745539d5",
+      "pdf_pages": [
+        6,
+        7
+      ],
+      "clauses": [
+        "6.3",
+        "6.4a",
+        "6.4b",
+        "6.4c"
+      ],
+      "method": "逐页核读原始PDF；扫描页查看图像"
+    },
+    {
+      "path": "参考政策/《配电网规划设计技术导则（修订稿）》.pdf",
+      "sha256": "5069a46e9c2e71fb43ffc6db141f5d276bda79f833e4bc178aeed3858b8caf6c",
+      "pdf_pages": [
+        20,
+        24
+      ],
+      "clauses": [
+        "6.2.2.1",
+        "6.5.3"
+      ],
+      "method": "逐页核读原始PDF；扫描页查看图像"
+    }
+  ],
+  "时间设置": "2021固定基期，2022—2025寻优，2021不新增投资",
+  "采用方案": "弹性经济参考；仅费用目标及共同安全条件，刚性保留2.0扩容控制",
+  "原表对照": "保留2021原表地区总量，逐站组合为第一轮已冻结比例标定，历史逐台档案不完整",
+  "运行范围": "年度正常固定比例、正常储能备用、直接事故转接；保留等效通道与补齐时序代理",
+  "矩阵展示": "固定电缆50%、储能4h，展示四个转供分档上下界均下降的典型场景；线路系数不独立分类讨论"
+}
