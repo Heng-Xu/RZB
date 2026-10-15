@@ -1,0 +1,163 @@
+{
+  "status": "complete",
+  "raw_records": 5832,
+  "unique_nodes": 5832,
+  "valid_nodes": 5346,
+  "infeasible_nodes": 486,
+  "other_unverified_nodes": 0,
+  "cells": 846,
+  "metrics": {
+    "greenfield": {
+      "首尾均有效组数": 162,
+      "首尾容量下降组数": 153,
+      "平均首尾容量降幅": 0.16976734680350944,
+      "平均首尾容载比下降": 0.31921425088612276,
+      "相邻不变占比": 0.5410813111962537,
+      "相邻上升占比": 0.06641123882503193,
+      "转供率与容载比组内Pearson": -0.7116080111150207
+    },
+    "stock": {
+      "首尾均有效组数": 162,
+      "首尾容量下降组数": 133,
+      "平均首尾容量降幅": 0.09868975737325426,
+      "平均首尾容载比下降": 0.22772509629291918,
+      "相邻不变占比": 0.7645806726266496,
+      "相邻上升占比": 0.022137079608343976,
+      "转供率与容载比组内Pearson": -0.6960172526979111
+    }
+  },
+  "selected_cases": [
+    {
+      "region": "pizhou",
+      "baseline": "compressed",
+      "case": "rigid",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/pizhou/compressed_reverse80/rigid",
+      "input_sha256": "ea58f5ca94f299ef88b4a3eda8489ed8d5b996a5e32e8f3cde03f223ecb64526",
+      "solution_sha256": "229374f8dfa48c038646f9852ca761170c49a5805ff48ad4dbf3bd5cc28f05ae",
+      "cost": 18592.390413933288,
+      "lower": 17444.35174469658,
+      "gap": 0.06174777119441065
+    },
+    {
+      "region": "pizhou",
+      "baseline": "compressed",
+      "case": "elastic_free",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/pizhou/compressed_reverse80/elastic_free_certified80",
+      "input_sha256": "ea58f5ca94f299ef88b4a3eda8489ed8d5b996a5e32e8f3cde03f223ecb64526",
+      "solution_sha256": "610734402ca3622c9ed277e07027685cf5c46c785da3f35867ee244753d95ef4",
+      "cost": 14338.50902108449,
+      "lower": 14239.595771178287,
+      "gap": 0.006898433425730851
+    },
+    {
+      "region": "pizhou",
+      "baseline": "compressed",
+      "case": "elastic_target",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/pizhou/compressed_reverse80/elastic_target_witness_pruned",
+      "input_sha256": "ea58f5ca94f299ef88b4a3eda8489ed8d5b996a5e32e8f3cde03f223ecb64526",
+      "solution_sha256": "083f9570e46abac5522425fecdab6b472fbb2f51d81266b0e1fc917c80cd1842",
+      "cost": 14801.985379694574,
+      "lower": 14307.114915127124,
+      "gap": 0.03343270864503848
+    },
+    {
+      "region": "pizhou",
+      "baseline": "annual_2021",
+      "case": "rigid",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/pizhou/annual_2021_reverse80/rigid",
+      "input_sha256": "b94db6cc367833d9256dcd1ea2f9912880ec4bfce80cdb41fb3c6cd6dea7a37c",
+      "solution_sha256": "c3e76e13e08222c3e4be9235a3d5bc404616012e24a6a3c31d7a73a23b63fd76",
+      "cost": 23753.31200486026,
+      "lower": 23753.312004860265,
+      "gap": 0.0
+    },
+    {
+      "region": "pizhou",
+      "baseline": "annual_2021",
+      "case": "elastic_free",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/pizhou/annual_2021_reverse80/elastic_free_certified80",
+      "input_sha256": "b94db6cc367833d9256dcd1ea2f9912880ec4bfce80cdb41fb3c6cd6dea7a37c",
+      "solution_sha256": "f6bc6ef4a36f1ce3b6630ea18c57884700d5743ad689fb43b53a4f91bf86ae68",
+      "cost": 7097.163977169455,
+      "lower": 7097.163977169455,
+      "gap": 0.0
+    },
+    {
+      "region": "pizhou",
+      "baseline": "annual_2021",
+      "case": "elastic_target",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/pizhou/annual_2021_reverse80/elastic_target",
+      "input_sha256": "b94db6cc367833d9256dcd1ea2f9912880ec4bfce80cdb41fb3c6cd6dea7a37c",
+      "solution_sha256": "3c848e48f82f78981e6efb41a066418506ac3e3df47fba79af3059844e3de6fb",
+      "cost": 7342.180945264584,
+      "lower": 7342.180945264584,
+      "gap": 0.0
+    },
+    {
+      "region": "city",
+      "baseline": "compressed",
+      "case": "rigid",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/city/compressed_reverse80/rigid_certified80",
+      "input_sha256": "323e92178ca27cce098465e1a19e67a5b48db0ce0f92ccdcef2656fe901521d3",
+      "solution_sha256": "f60a5c72b62874087b2a3854d79b1b46f2afe4c3be326d5b877b3c40c8dd528f",
+      "cost": 2591.772213988463,
+      "lower": 2591.7722139884636,
+      "gap": 0.0
+    },
+    {
+      "region": "city",
+      "baseline": "compressed",
+      "case": "elastic_free",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/city/compressed_reverse80/elastic_free_certified80",
+      "input_sha256": "323e92178ca27cce098465e1a19e67a5b48db0ce0f92ccdcef2656fe901521d3",
+      "solution_sha256": "b6a0fca0d2c9c7990065fcadfe6d289cfe0e4ddfbf60ad6ed50d97d32c7ababa",
+      "cost": 1446.638989437193,
+      "lower": 1446.638989437193,
+      "gap": 0.0
+    },
+    {
+      "region": "city",
+      "baseline": "compressed",
+      "case": "elastic_target",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/city/compressed_reverse80/elastic_target",
+      "input_sha256": "323e92178ca27cce098465e1a19e67a5b48db0ce0f92ccdcef2656fe901521d3",
+      "solution_sha256": "b6a0fca0d2c9c7990065fcadfe6d289cfe0e4ddfbf60ad6ed50d97d32c7ababa",
+      "cost": 1446.638989437193,
+      "lower": 1446.638989437193,
+      "gap": 0.0
+    },
+    {
+      "region": "city",
+      "baseline": "annual_2021",
+      "case": "rigid",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/city/annual_2021_reverse80/rigid",
+      "input_sha256": "e70007de7a4c0397f27ee93cb555e6721d0bcd86ffc58dab2f74a5bd2988f2b8",
+      "solution_sha256": "b6db4645c5d3867e514b4323aaebb70196dfae6233c746432c54e89fa0fc9253",
+      "cost": 0.0,
+      "lower": 0.0,
+      "gap": 0.0
+    },
+    {
+      "region": "city",
+      "baseline": "annual_2021",
+      "case": "elastic_free",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/city/annual_2021_reverse80/elastic_free_certified80",
+      "input_sha256": "e70007de7a4c0397f27ee93cb555e6721d0bcd86ffc58dab2f74a5bd2988f2b8",
+      "solution_sha256": "32c4d7391dbada0c7e9ee3e1833824631d51f023db17d6f49f295595e2c492e7",
+      "cost": 0.0,
+      "lower": 0.0,
+      "gap": 0.0
+    },
+    {
+      "region": "city",
+      "baseline": "annual_2021",
+      "case": "elastic_target",
+      "folder": "研究报告/试算/20261015_会后建模复核/案例/city/annual_2021_reverse80/elastic_target",
+      "input_sha256": "e70007de7a4c0397f27ee93cb555e6721d0bcd86ffc58dab2f74a5bd2988f2b8",
+      "solution_sha256": "2535dde0d90599dc1ca53bdb987f7c33770da2bc61079f7c0e9462cb3f648198",
+      "cost": 1148.1261820930104,
+      "lower": 1148.1261820930104,
+      "gap": 0.0
+    }
+  ]
+}

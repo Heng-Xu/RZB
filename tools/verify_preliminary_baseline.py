@@ -5,18 +5,46 @@ import json
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT/'研究报告/05_review/当前版/1014初步定档与表述约束/初步定档清单.json'
+SUCCESSOR = ROOT/'研究报告/05_review/当前版/1015会后建模复核/后继变更登记.json'
+GOVERNANCE_FILES = {'AGENTS.md', 'docs/CURRENT-WORKFLOW.md', 'prompt.md',
+                    'tools/verify_preliminary_baseline.py'}
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def verify_files(root, expected, updates):
+    assert set(updates) <= GOVERNANCE_FILES, '后继登记不能放开正式稿件、模型或数据的定档校验'
+    for name, digest in expected.items():
+        p = root/name
+        assert p.is_file(), '定档文件缺失: '+name
+        if name in updates:
+            change = updates[name]
+            assert change['原SHA256'] == digest
+            archived = root/change['原件归档']
+            assert archived.is_file() and sha(archived) == digest, '继承基线原件不一致: '+name
+            assert sha(p) == change['现SHA256'], '后继文件已变化，须重新审阅登记: '+name
+        else:
+            assert sha(p) == digest, '定档文件已变化: '+name
 
 
 def main():
     record = json.loads(MANIFEST.read_text())
     assert record['状态'] == '文件核验通过'
-    for name, digest in record['文件SHA256'].items():
-        p = ROOT/name
-        assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest() == digest, '定档文件已变化: '+name
+    updates = {}
+    if SUCCESSOR.exists():
+        successor = json.loads(SUCCESSOR.read_text())
+        assert successor['状态'] == '逐项审阅及独立核验通过'
+        assert successor['父清单SHA256'] == sha(MANIFEST)
+        updates = successor['治理文件变更']
+        for item in successor['核验依据']:
+            assert sha(ROOT/item['path']) == item['sha256'], '后继核验依据已变化: '+item['path']
+    verify_files(ROOT, record['文件SHA256'], updates)
     from manage_preliminary_archive import verify
     verify()
     print(json.dumps({'状态':'通过','版本':record['版本'],'定档文件':len(record['文件SHA256']),
-        'Git标签':record['Git标签']},ensure_ascii=False))
+        'Git标签':record['Git标签'],'后继治理文件':len(updates)},ensure_ascii=False))
 
 
 if __name__ == '__main__':
