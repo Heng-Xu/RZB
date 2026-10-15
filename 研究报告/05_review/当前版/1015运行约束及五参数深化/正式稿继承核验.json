@@ -1,0 +1,16 @@
+{
+  "状态": "源稿、原生Word及WPS PDF检查通过",
+  "入口": "tools/build_current_report.py --check-only",
+  "退出码": 0,
+  "文件": [
+    {
+      "path": "研究报告/04_word/研究报告终稿.docx",
+      "sha256": "b2f183fc14df6495d7a1ad9616ad61d82028d655e8469ec41dad4450a83fe417"
+    },
+    {
+      "path": "研究报告/04_word/研究报告终稿.pdf",
+      "sha256": "01450bca5dddf373d1fa836576e5e432cd12ed9fa56c4d53e3861977ee9420fe"
+    }
+  ],
+  "范围": "正式源、计算表、全部Word表格、图片公式目录结构及最终WPS PDF，讨论稿完整复用与事实文字核验通过；本轮未替换正式稿数据"
+}

@@ -1,0 +1,47 @@
+{
+  "verified": true,
+  "records": [
+    {
+      "dataset": "现报告",
+      "parameter": "initial_transfer_fraction",
+      "pairs": 27378,
+      "max_bound_contradiction": 3.166423994116485e-07,
+      "verified": true
+    },
+    {
+      "dataset": "现报告",
+      "parameter": "cable_fraction",
+      "pairs": 24528,
+      "max_bound_contradiction": 6.366462912410498e-12,
+      "verified": true
+    },
+    {
+      "dataset": "stock",
+      "parameter": "initial_transfer_fraction",
+      "pairs": 2349,
+      "max_bound_contradiction": 1.5643308870494366e-10,
+      "verified": true
+    },
+    {
+      "dataset": "stock",
+      "parameter": "cable_fraction",
+      "pairs": 1782,
+      "max_bound_contradiction": 3.410605131648481e-12,
+      "verified": true
+    },
+    {
+      "dataset": "greenfield",
+      "parameter": "initial_transfer_fraction",
+      "pairs": 2349,
+      "max_bound_contradiction": 3.128661774098873e-10,
+      "verified": true
+    },
+    {
+      "dataset": "greenfield",
+      "parameter": "cable_fraction",
+      "pairs": 1782,
+      "max_bound_contradiction": 5.484253051690757e-10,
+      "verified": true
+    }
+  ]
+}
