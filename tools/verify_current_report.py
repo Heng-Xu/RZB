@@ -73,10 +73,12 @@ def main():
     body=text.split('# 参考文献')[0]
     for stale in ['12600组','648个','2.001','邳州124.80','市区499.20','年度同比增长率','案例敏感性','储能价格的专项比较']:
         assert stale not in body,'仍有旧版表述:'+stale
+    from verify_report_expansion import verify as verify_expansion
+    expansion=verify_expansion()
     from verify_adopted_report_results import verify as verify_adoption
     adoption=verify_adoption()
     result=dict(状态='通过',相关分析有效节点=32112,典型场景=2,转供节点=18,区间单元=8,逐站分析=46,
-        指标筛选=selection,采用结果=adoption,
+        指标筛选=selection,采用结果=adoption,矩阵与图文扩充=expansion,
         图件=len(expected),原生公式=len(equation_tables(doc)),
         WordSHA256=sha(word),模型经济参数='采用登记冻结文件哈希一致，未改动',
         原始依据SHA256={str(p.relative_to(ROOT)):sha(p) for p in [sync.LOCK,

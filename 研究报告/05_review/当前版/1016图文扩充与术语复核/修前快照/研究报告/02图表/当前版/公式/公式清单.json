@@ -1,0 +1,110 @@
+[
+  {
+    "number": "3-1",
+    "tex": "\\bar g=\\left(\\frac{P_{2025}}{P_{2021}}\\right)^{1/4}-1."
+  },
+  {
+    "number": "3-2",
+    "tex": "\\begin{aligned}\n\\widehat C_{y,m}&=C_{2023,m}\\left(\\frac{C_{2023,m}}{C_{2024,m}}\\right)^{2023-y}\\\\\ny&=2021,2022.\n\\end{aligned}"
+  },
+  {
+    "number": "3-3",
+    "tex": "\\widehat E_\\mathrm{PV}=\\sum_{m=1}^{12}\\sum_{t\\in m}\\phi_t\\frac{C_m+C_{m-1}}{2}\\Delta t."
+  },
+  {
+    "number": "3-4",
+    "tex": "\\eta_C=\\frac{C_\\mathrm{DG}}{P_\\mathrm{user,max}}."
+  },
+  {
+    "number": "3-5",
+    "tex": "\\begin{aligned}\n\\widehat E_\\mathrm{user}&=a\\sum_tP_{\\mathrm{net},t}\\Delta t+\\widehat E_\\mathrm{PV}\\\\\n\\eta_E&=\\frac{\\widehat E_\\mathrm{PV}}{\\widehat E_\\mathrm{user}}.\n\\end{aligned}"
+  },
+  {
+    "number": "3-6",
+    "tex": "\\begin{aligned}P^+&=\\max_t(P_t,0),\\quad P^-=\\max_t(-P_t,0),\\\\P^\\mathrm{abs}&=\\max(P^+,P^-).\\end{aligned}"
+  },
+  {
+    "number": "3-7",
+    "tex": "H_{95}=\\max\\{\\text{连续时段长度}:|P_{\\mathrm{region},t}|\\geq0.95P_{\\mathrm{region}}^{\\mathrm{abs}}\\}."
+  },
+  {
+    "number": "3-8",
+    "tex": "r_{\\mathrm{region}}=\\frac{\\sum_i Q_i}{\\sum_i(Q_i+U_i)}."
+  },
+  {
+    "number": "4-1",
+    "tex": "c_T=\\frac{1151+1335}{50+100}\\approx16.57\\quad\\text{万元/MVA}."
+  },
+  {
+    "number": "4-2",
+    "tex": "\\begin{aligned}\nI_{T,iky}&=c_T S^\\mathrm{new}_{iky}\\,z_{iky}\\\\\n\\Delta S_{iky}&=\\left(S^\\mathrm{new}_{iky}-S^\\mathrm{old}_{ik,y-1}\\right)z_{iky}.\n\\end{aligned}"
+  },
+  {
+    "number": "4-3",
+    "tex": "I_{T,\\mathrm{exp}}=\\frac{1206+1240}{2}=1223\\quad\\text{万元/项}."
+  },
+  {
+    "number": "4-4",
+    "tex": "I_L=24Lk_L+6."
+  },
+  {
+    "number": "4-5",
+    "tex": "\\begin{aligned}\nc_B&=\\frac{2104562.62}{10000\\times10}\\approx21.05\\quad\\text{万元/柜}\\\\\nI_{B,iy}&=c_B\\Delta n_{iy}.\n\\end{aligned}"
+  },
+  {
+    "number": "4-6",
+    "tex": "B(n,H)=\\min\\left\\{0.10n,\\frac{0.215\\times0.76n}{H}\\right\\},\\qquad H>0."
+  },
+  {
+    "number": "4-7",
+    "tex": "\\begin{aligned}\nC(I,y,L,q)={}&\\frac{I}{(1+r)^{y-2021}}\\\\\n&+\\sum_{k\\geq1,\\ y+kL<T}\\frac{I}{(1+r)^{y+kL-2021}}\\\\\n&+\\sum_{t=y+1}^{T}\\frac{qI}{(1+r)^{t-2021}}.\n\\end{aligned}"
+  },
+  {
+    "number": "4-8",
+    "tex": "C_\\mathrm{plan}=\\sum_{e\\in\\mathcal E_T}C_e+\\sum_{e\\in\\mathcal E_B}C_e+\\sum_{e\\in\\mathcal E_L}C_e."
+  },
+  {
+    "number": "5-1",
+    "tex": "P_{c,y}=P^{\\mathrm{stat}}_{c,y},\\quad y=2021,\\ldots,2025,\\qquad R_{c,0}=\\frac{S_{c,0}}{P_{c,2021}}\\approx2.00."
+  },
+  {
+    "number": "5-2",
+    "tex": "\\begin{aligned}\nR_{c,s,y}&=S_{c,s,y}/P_{c,y},\\\\\n\\max\\{S_{c,\\mathrm{rigid},y-1},\\underline R_cP_{c,y}\\}&\\leq S_{c,\\mathrm{rigid},y},\\\\\nS_{c,\\mathrm{rigid},y}&\\leq\\max\\{S_{c,\\mathrm{rigid},y-1},2P_{c,y}\\},\\\\\nS_{c,\\mathrm{elastic},y}&\\geq S_{c,\\mathrm{elastic},y-1},\\\\\nS_{c,\\mathrm{elastic},y}&\\leq\\sum_i S_{i,\\mathrm{candidate}}^{\\max}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-3",
+    "tex": "\\begin{aligned}\nS_{i,y}&=\\sum_{j,r}r x_{i,j,r,y}+50z_{i,y},\\\\\n\\sum_r x_{i,j,r,y}&=1,\\\\\nn_{i,y}&\\geq n_{i,y-1}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-4",
+    "tex": "\\begin{aligned}\n\\rho_i&=\\frac{Q_i^{\\mathrm{data}}}{Q_i^{\\mathrm{data}}+U_i},\\\\\n\\sum_{e\\in\\mathcal E_i^{\\mathrm{existing}}}q_{e,\\omega}^{\\mathrm{out}}&\\leq\\min\\{\\rho_iP_{i,y}^{+},Q_i^{\\mathrm{data}}\\}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-5",
+    "tex": "\\begin{aligned}\nq_{e,\\omega}^{a\\to b}+q_{e,\\omega}^{b\\to a}&\\leq F_e x_{e,y},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{out}}}q_{e,\\omega}&\\leq P_{f,\\omega}^{\\mathrm{own}},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{in}}}q_{e,\\omega}&\\leq F_f-P_{f,y}^{\\mathrm{ref}}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-6",
+    "tex": "\\begin{aligned}\nP'_{i,\\omega}&=P_{i,\\omega}-Q^{\\mathrm{out}}_{i,\\omega}+Q^{\\mathrm{in}}_{i,\\omega},\\\\\n\\sum_iQ^{\\mathrm{out}}_{i,\\omega}&=\\sum_iQ^{\\mathrm{in}}_{i,\\omega},\\\\\n\\sum_iP'_{i,\\omega}&=\\sum_iP_{i,\\omega}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-7",
+    "tex": "B_i^{\\pm}=\\min\\left\\{0.10n_i,\\frac{0.215\\times0.76n_i}{\\max(1,H_i^{\\pm})}\\right\\}."
+  },
+  {
+    "number": "5-8",
+    "tex": "\\begin{aligned}\n-\\gamma_{i,\\omega}\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}-B_i^-&\\leq P_{i,\\omega}-q_{i,\\omega}^{\\mathrm{out}}+q_{i,\\omega}^{\\mathrm{in}}\\\\\n&\\leq\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}+B_i^+,\\\\\nS_{i,\\omega}^{\\mathrm{av}}&=S_i-\\mathbf1_{i\\text{为故障站}}\\max_j S_{i,j}.\n\\end{aligned}"
+  },
+  {
+    "number": "5-9",
+    "tex": "\\begin{aligned}\\min C_{\\mathrm{plan}}=\\sum_y\\bigl[&I_{T,y}A_T(y)+I_{B,y}A_B(y)\\\\&+I_{L,y}A_L(y)\\bigr].\\end{aligned}"
+  },
+  {
+    "number": "5-10",
+    "tex": "R_y-R_{y-1}=\n\\frac{S_y-S_{y-1}}{P_y}\n+S_{y-1}\\left(\\frac1{P_y}-\\frac1{P_{y-1}}\\right)."
+  },
+  {
+    "number": "5-11",
+    "tex": "\\begin{aligned}\nP_T&=250(1+\\bar g)^4,\\\\\nP_{i,\\mathrm{evening}}&=w_i^L P_T,\\\\\nP_{i,\\mathrm{day}}&=0.30w_i^L P_T-0.75\\eta_Cw_i^G P_T.\n\\end{aligned}"
+  }
+]

@@ -7,6 +7,31 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_saved_discussion_uses_its_verified_report_policy(self):
+        from unittest.mock import patch
+        import revise_discussion_report_section as discussion
+        prior = discussion.ROOT/'研究报告/05_review/当前版/1016研究报告结果同步'
+        preserved = prior/'修前快照/研究报告/04_word/研究报告终稿.docx'
+        with patch.object(discussion.r, 'REPORT', preserved):
+            historical = discussion.policy_for_report()
+        self.assertEqual(historical['version'], '2026-10-14-preliminary-baseline')
+        value = '复合平均增长率为4%。'
+        self.assertEqual(body_policy_errors([('已审定讨论稿', value)], {}, {},
+                                           historical['forbidden_body_patterns']), [])
+        self.assertTrue(self.check(value))
+        with patch.object(discussion.r, 'REPORT', discussion.ROOT/'研究报告/04_word/研究报告终稿.docx'):
+            self.assertEqual(discussion.policy_for_report(), POLICY)
+
+    def test_capacity_growth_and_diagram_terminology(self):
+        for value in ['保留2021原表容量。','平均增长率决定行位置。','复合平均增长率为4%。',
+                      '本项目年负荷平均增长率为4%。',
+                      '图1 六参数推广矩阵及三项核心参数独立扰动。']:
+            self.assertTrue(self.check('[[TABLE:terms]]', tables={'terms':value}))
+        for value in ['保留2021实际容量。','年最大净负荷平均增长率决定行位置。',
+                      'DL/T 5729—2023的年负荷平均增长率分档。',
+                      '文献采用年负荷增长率描述当地发展水平。']:
+            self.assertEqual(self.check(value), [])
+
     def test_typical_transfer_response_and_matrix_conditions(self):
         for value in ['推荐矩阵按线路系数分表。','九个细节点均严格下降。','所有转供率节点严格下降。']:
             self.assertTrue(self.check('[[SECTION:matrix]]',{'matrix':value}))

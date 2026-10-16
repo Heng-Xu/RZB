@@ -13,7 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from 实验.研究.rebuild_2026.case_parameters_20261012 import transfer_diagnostic as case
 A=ROOT/'研究报告/02图表/当前版'
-R=ROOT/'研究报告/05_review/当前版/1016研究报告结果同步'
+R=ROOT/'研究报告/05_review/当前版/1016图文扩充与术语复核'
 LOCK=json.loads((ROOT/'研究报告/01研究推荐/当前版/报告数据采用版本.json').read_text())
 fontManager.addfont('/usr/share/fonts/wps-office/FZFSK.TTF')
 plt.rcParams.update({'font.family':['Times New Roman',FontProperties(fname='/usr/share/fonts/wps-office/FZFSK.TTF').get_name()],
@@ -72,7 +72,7 @@ nodes=pd.read_csv(ROOT/'研究报告/01研究推荐/当前版/静态联合替代
 fig,axes=plt.subplots(1,2,figsize=(10,4))
 for i,((growth,kd),group) in enumerate(nodes.groupby(['年最大净负荷平均增长率','负荷分散系数']),1):
     group=group.sort_values('初始转供率');x=group['初始转供率']*100
-    label=f'场景{i}（增长率{growth:.3f}，分散系数{kd:.2f}）'
+    label=f'场景{i}'
     axes[0].plot(x,group['容载比'],marker='o',label=label)
     axes[1].plot(x,group['费用现值_万元'],marker='o',label=label)
 for ax in axes:ax.set_xlabel('初始转供率/%');ax.set_xticks([10,30,50,70,90]);ax.grid(alpha=.2)

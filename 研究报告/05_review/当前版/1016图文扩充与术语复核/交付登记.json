@@ -1,0 +1,603 @@
+{
+  "状态": "三阶段核验及逐段复核通过",
+  "用户范围": "在当前六章上重绘图1，容量改用实际容量，项目增长术语统一，恢复完整矩阵并将电缆节点归入区间不另分类，逐段审查表述，增加有证据图文至150页以上。",
+  "采用版本": "20261015-static-joint",
+  "当前文件SHA256": {
+    ".githooks/pre-commit": "12ed98be4a8646deb1be579e9321ae4bc9620a2f8b67f25554f78f71cac58ea6",
+    ".github/workflows/report-policy.yml": "e155de85e56512c9050df38986d6e99ccb4d5f9d04a9115f229af31a8b27d0e7",
+    "docs/CURRENT-WORKFLOW.md": "0b0fb79c56e47b40f43d8cf83698d69b1c492ed06f77f36307c055c570edc267",
+    "memory/archive/2026-10-16-图文扩充与术语复核前.md": "8fcf29480046a9a4b75cc2091c74debc2cf5b9bb14191546361a337ca3f06f81",
+    "memory/archive/2026-10-16-研究报告正式同步前.md": "a0ba4f26dd1976f5ee8f79b94803a0fea0e3667dc1e33725a8ce1524e04bd7de",
+    "memory/current.md": "31b53038aa0edbe10969664e0f56f8f8b177a2fcebc24ac85e262881e130ea9f",
+    "prompt.md": "332ab106f4b1f18daaab7fbb77a13613a2195f735f59dcf1615f0223b4a4d851",
+    "tools/check_report_policy.py": "4738b35776a9040771a84810b3aeb3eaab2d826dffd34a5b73ad25db7fe60969",
+    "tools/expand_report_figures.py": "c62d8ca8b792817d63991feb426778e70b230e376cba7d0776a88d663dbf532f",
+    "tools/refresh_report_comparison_figures.py": "139bf6d328662f2f8996f1cacc5eeaec0ceaa81f94999f653878be9e2e890be5",
+    "tools/report_matrix_display.py": "e2247716a7cf3133c3d751b8899c5521c18787cb92078a154fe99a942e2d2802",
+    "tools/report_parameter_selection.py": "7d2ed512c0a9f045ab8566cbba7e34c13cfb35756b4b3664825e2fb027bae721",
+    "tools/report_policy.json": "ca64e7975a718cd327d4bcb2be8387bcddf44772f5d3278da32afdbf2573c2e9",
+    "tools/report_prose_review.py": "c2830449241838d0f44c5411614aef2892dff36c3b6e23675a1f8e95b6bdf568",
+    "tools/revise_discussion_report_section.py": "63d1503a20288b7b5e7a1abe436820124d37dbcf0135a891b373c021aa4fcdca",
+    "tools/sync_current_report_results.py": "fcc7bb4cc0202100fc5cba905927a433bccd1e8efd7ccceb51b532419cd0d121",
+    "tools/test_report_prose_policy.py": "2105de452ed09e2021e72049a7d996c99eb513d1512b4fd0ee9cd43e654a9345",
+    "tools/verify_current_report.py": "bd9c4242e6c8637a79df24d48b7063f9af620aa9f0232afe6ca638c7188449e7",
+    "tools/verify_preliminary_baseline.py": "ba11283324117328b429bd5beb42f63171b2ce8466922ac52a74aad635b9a7a6",
+    "tools/verify_report_expansion.py": "b2b428f9fecf091097e41e8d9aeb2517166c69361f4552755c1d3e6ac83d8271",
+    "tools/verify_report_release.py": "9cfe37051fe119f643e301eee8f98cce607847580c44a15898b64c4d90e69cb6",
+    "tools/verify_report_review.py": "61d8a325d254993899f948ef9d28183f5199b4a30723eb8af4ac850cef2675a7",
+    "研究报告/01研究推荐/当前版/报告数据采用版本.json": "434497dc04040b3ad9673f90bd87eb0d008df8185f4597927eb12c71ba450ef7",
+    "研究报告/02图表/当前版/annual_clr.png": "5b3283cf268adf45fd7971e06b6297cf3bd5ef5b834deb3935e821678151dc8a",
+    "研究报告/02图表/当前版/annual_load.png": "a3806b41d35c1d4afefdd9271bd95147c13c778d34e89395756fd2bed8eddbcc",
+    "研究报告/02图表/当前版/annual_model_pressure.png": "be5667ac25226e135c69998c912121539c8e7e5ff77ebfc74b1f5ab23d860b2a",
+    "研究报告/02图表/当前版/case_sensitivity.png": "2bc71bd9cfe900e4023b17ebdd71ed994cdad495db5ab47c6f26ac844ffffa2d",
+    "研究报告/02图表/当前版/city_annual_new_measures.png": "2dd6a29a40670ed3978333f3acca980f62a8d201327d5405bb7b303b13b84078",
+    "研究报告/02图表/当前版/city_modeled_peaks.png": "b75da45661118dd51d364a603d7c8cfc3e7b439a000c6cef4416fe52e9166499",
+    "研究报告/02图表/当前版/city_regional_peak.png": "afc3e984f29641187f6fc7634606352310386ab8a575a683964efc4dd1605291",
+    "研究报告/02图表/当前版/city_station_direction.png": "8de2631fc6e704a0874cdfe8b82570abba8a96f8081f494d65a3a5aaae59ef96",
+    "研究报告/02图表/当前版/city_station_n1.png": "8311387fad29110d82ea109e4f0217e17e820efc20d7408eb22d103bf5dc5a4c",
+    "研究报告/02图表/当前版/discussion_cable_transfer.pdf": "7c599119e3ffc1b45be7fe19eb622725baa2f79ce5d7cbffa5d6f20a431b52eb",
+    "研究报告/02图表/当前版/discussion_cable_transfer.png": "9908b2e13ec60373fe5440e9036c344b002daf0f00abeffc071003a5abcd7563",
+    "研究报告/02图表/当前版/discussion_dispersion_transfer.pdf": "7721755822303bd97885646b112a9539ffb0f9327c11aa15cb0219d429c6c54b",
+    "研究报告/02图表/当前版/discussion_dispersion_transfer.png": "6375d51644d0a1d111c95e218ae93eaae958197cbbad8aefc95a0f2c53a7fb0c",
+    "研究报告/02图表/当前版/discussion_hours_eta.pdf": "55a3746cbd08f5e0dbc390121110019e2f09d6e771c2a15ba793da8be61dd51d",
+    "研究报告/02图表/当前版/discussion_hours_eta.png": "dfb52ca7b2420c905bcf9669c1adad030a2d46dc8b4bfbe3f6e8776f208a0448",
+    "研究报告/02图表/当前版/energy_capacity_storage.png": "c1014dc8024bc7427809cbb95f0b30be80216d39ad27156598e0d540adb8cc92",
+    "研究报告/02图表/当前版/eta_device_response.png": "1514519e97e622169dfaeba8aa974448bb36c62b794ef68494841e4d67fdd573",
+    "研究报告/02图表/当前版/five_parameter_correlation_map.png": "ff6c012b133ab37927b13623460580a72846fac6ebd1ecf294efa4914f89372a",
+    "研究报告/02图表/当前版/growth_capacity_reserve.png": "ee9ce53c0a87ce0644eb50e32d0644420fee847328abc44db96a514a46b45e14",
+    "研究报告/02图表/当前版/historical_capacity_load.png": "ee703809e9020f308093c476a711bc8f8ab1e9aff0ebfcd539f8aeadcafb76bd",
+    "研究报告/02图表/当前版/historical_clr_contribution.png": "9db1194c857bc9fa0c7c36f3b69c5b7888fd39cb9f8791c5724a8a573b88d87a",
+    "研究报告/02图表/当前版/indicator_correlation_strength.png": "6f1e2a9f0034fe141fd395edbdf81661f9cbf480d259ca53ebc78e4880775d71",
+    "研究报告/02图表/当前版/initial_capacity_cost_comparison.png": "78377721248fb8fe58957aef9d01fe5da0a08149e47145bac29defe30b324f72",
+    "研究报告/02图表/当前版/lifecycle_components.png": "817784552185398a51432a543848d21c72685ee724a18aa512a435055a611074",
+    "研究报告/02图表/当前版/lifecycle_investment_maintenance.png": "5b9034fe35c045850ff3bc28ecf20b4120c24031e693a8adc748da95149d6ee0",
+    "研究报告/02图表/当前版/line_investment_components.png": "3388f66fa865efc76c2510d3be4b1e9ac85c2e07e593e60ae00bf06167107c34",
+    "研究报告/02图表/当前版/loading_distribution.png": "979a770e02e5c612fb83d625d0131ea050fe60fa038a50592af7c017533d3dad",
+    "研究报告/02图表/当前版/lookup_matrix_bounds.png": "acb933718e911f6e5e623660ab3ceab23d5c19c762a32e0bd3c343e6a7340b06",
+    "研究报告/02图表/当前版/measure_comparison.png": "e122365b95a73c6dae0b27caf2f50c8b6086ac37b886c98d6934ce8e05024f5e",
+    "研究报告/02图表/当前版/pizhou_annual_new_measures.png": "58ad00cfad6e926a9b7fc08ac3585edd199e0f9cc4b300a0fc1b022ef050fc16",
+    "研究报告/02图表/当前版/pizhou_modeled_peaks.png": "bba35626b188b863006b321e20c7bbfea229123bef3603f9eb26c156dfab5275",
+    "研究报告/02图表/当前版/pizhou_regional_peak.png": "145db7502fc8598b0af0e4c404e1f928ce11199423fa7c5dac23f2198298c6b2",
+    "研究报告/02图表/当前版/pizhou_station_direction.png": "2a8c7b338e1f2c3024ba826a50c30deca65d932f6222fd564476ac862626e504",
+    "研究报告/02图表/当前版/pizhou_station_n1.png": "90abe6b9e790541641ad8768208cd1162feaa8cab4c022b5ed5f2d5e376aaa71",
+    "研究报告/02图表/当前版/pizhou_storage_distribution.png": "d89a204b519c3571b1e0c17be9a927ca1b74be6f093a575ae187eaf72770e993",
+    "研究报告/02图表/当前版/plan_cost_difference.png": "7624be5c54d5e13e301ae0e4897246a368b53e9eebaa7e489bd1e325a542c582",
+    "研究报告/02图表/当前版/planning_tier_heatmap.png": "6b30ef4e5dd0d4c3cb11133279c4835538ef0ea860711fa6707cbe7431604ac2",
+    "研究报告/02图表/当前版/pv_monthly.png": "d16968a14c23a042ed205ad96e56c9ebab5454105e889a87af62117199c40927",
+    "研究报告/02图表/当前版/quarterly_energy_comparison.png": "a9a6041391f5580cfeaa7cf53c0bdedc0e439bfb02a77271701ed93cd2490203",
+    "研究报告/02图表/当前版/regional_load_duration.png": "4ff913741462ecac784d8409f4f2f21774be3c8683f629df82db724f7d2b68e4",
+    "研究报告/02图表/当前版/storage_effective_cost.png": "848b040a221597da19bc9cf59940b44e2e66422063569a0cf2e0a014ea2321cd",
+    "研究报告/02图表/当前版/storage_support_modules.png": "8b5817ed588f3ebe97de33dffe4bf6e829e951c7bc2564fb80fc744d753eb51f",
+    "研究报告/02图表/当前版/technical_route.png": "867fb6c3831782efa6a76bd7bb8d1f0d000fa8a17b2c781df2064adcfbbc4ebf",
+    "研究报告/02图表/当前版/transformer_capacity_balance.png": "ae8cba95f5fc55d362c25f8df1a45cab9c55977d6eb9e9d6f11f7d509d98653a",
+    "研究报告/02图表/当前版/transformer_unit_cost_basis.png": "ae99101caf93ecdbadb8df8cd2de6a2672c2b43120effc238dce0b613921bb71",
+    "研究报告/02图表/当前版/typical_transfer_response.png": "deaaa06d89ae63dd2733fd24755038923da3f1275ed7ef025e12314fdb73d543",
+    "研究报告/02图表/当前版/xingtang_reverse_capacity.png": "7f61fd0753d309ec2c9ad2e81c42b68f5eb2630fcb48439948625bfcc4f27ce8",
+    "研究报告/02图表/当前版/公式/公式清单.json": "568a99ac2e42d54ba5a83180509684d4316b3bda4655165cebc21b57d4ea9370",
+    "研究报告/02图表/当前版/图件原始数值.json": "dc54d304345e736c96e1f9a199840e29c7e29b8611abdb4b99f4ce15fc8d869e",
+    "研究报告/02图表/当前版/指标复算.json": "17b96701df5bf50bb6cd52df73cd4fe0ec515431a2472a325d252f240c2a8868",
+    "研究报告/02图表/当前版/生成段落.json": "39f0451e25dc2a4fd4e4bc161f6b8b2c3b40c89d4320e688908f6eb6dea1b16c",
+    "研究报告/02图表/当前版/计算表.json": "beb26ca761b124b10ec4a1f07d0d2c290ade3f7c583fe121e7cf9a04d6b3bec6",
+    "研究报告/03_MD/当前版/01 第一章 绪论.md": "f07f3d3f2832f821463b70eea5302cf5891180eaf859f1c74d088fdb9c2c4013",
+    "研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": "5d98dfb99f4b0241789769e3251916aa02065b67c06cc99f0f843c210cdcd248",
+    "研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": "105be00e03076b4f6998100682a275edbbc22398c91cb0f88d0d794594129b64",
+    "研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md": "5f678b95fdb019cd148f398f7f587094812795eaa429880b5e81404126f75a15",
+    "研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md": "df2834cc310a26ff5c09bf95a51e5716ae4d21a0a25a6cbffc63272d8b1c6571",
+    "研究报告/03_MD/当前版/06 第六章 结论与建议.md": "c7c69cb7b292bdcca33ae250d74f0fbe3bd9ac68ecd595df7d8ea64208bf7928",
+    "研究报告/03_MD/当前版/参考文献.md": "4a19c927841cc29932341cfb351c4f2ed3a4b1e651e8859b4841788aee213ee0",
+    "研究报告/03_MD/当前版/研究报告装配稿.md": "96d97bc632050be1a22316caf6d2c738fdb0c87d071d8b4b48af8c2dc104acb1",
+    "研究报告/04_word/研究报告终稿.docx": "9036abaeabaede974df1ee2624ec1345a9f2ff05c7aa3528d71ed8f51a822631",
+    "研究报告/04_word/研究报告终稿.pdf": "33adae5a2ecdc4a79fe90950bbe1606899a70f8ec340a7a19103fe581a89d64f",
+    "研究报告/05_review/当前版/1011局部优化/docx约束检查.json": "0df416b0b516e313d23e49a3cd3597526bd49a13ee99ba78b7cf2fc7064e2a1c",
+    "研究报告/05_review/当前版/1011局部优化/final约束检查.json": "cb11ef1ef4519addbac9d5f33bd6625c1ab9a451ea2c3c6e45b7712928208414",
+    "研究报告/05_review/当前版/1011局部优化/source约束检查.json": "3cb9802ad34f1379d2e98f380d915e38b5a604c705ec4b60631d0ddf2cbe711b",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/PDF图题与实际页码.json": "220ce7df732d9f5afe84b9581251d345d1871b83b9e9b93541b5e7c5374efe7a",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/WPS版面核验.json": "266a3b9b124f2db4c3c8d4dc7609ff553424f1ee5f3b7ff313b4b34070f207d3",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/上一版交付原件/prompt.md": "aed89940a9624ebbace5cd66728f0d2bbc4d6f9f8ad1ed9eb4e18f0fd4d82f74",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/上一版交付原件/tools/revise_discussion_report_section.py": "8e96748f2a56edd787fc92326ae29099758f659755796b830ccc10b0119bfb8c",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/上一版交付继承差异.json": "cfdfdf7ceb5ffdf358c171290914dcf3edff69745bc46af1f2b7b95f08e94bd2",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/两次WPS导出对照.json": "e9ab866af268626dcc80022190d0aa0bff53c54fb348ff0023e877828cea709f",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/AGENTS.md": "27b52fcc564b89d326d68731e10fca3b39d390ee05091fcb120944110c6d420d",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/docs/CURRENT-WORKFLOW.md": "287ee16b1a5747e074e0579ecabff612b5b2bff43c9952ee9f313d69ec3899b8",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/memory/current.md": "8fcf29480046a9a4b75cc2091c74debc2cf5b9bb14191546361a337ca3f06f81",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/prompt.md": "332ab106f4b1f18daaab7fbb77a13613a2195f735f59dcf1615f0223b4a4d851",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/check_report_policy.py": "2adf92bd1cc97ef84b56ca4fb46d3bb305718161448c5fb6e28468bc9ba48f61",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/refresh_report_comparison_figures.py": "b820615a0b9e2e6e596a608ec644476140ebf81856f059a34507d3f5705d71c4",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/report_parameter_selection.py": "8e5ad0aef99bf149d4f79a28d1df616d272fd13accc04a2406b919e4a0fbc57f",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/report_policy.json": "eb00fbb8603ef3944c68a2119848fa1f8981588819af136050ae642011cc99b2",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/revise_discussion_report_section.py": "8e96748f2a56edd787fc92326ae29099758f659755796b830ccc10b0119bfb8c",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/sync_current_report_results.py": "dbe2e8a8683fa5c48d373c591f483f72b3cdff1193a6262fec179732e3fd7044",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/test_report_prose_policy.py": "8fafc42761fb339d852e94ecb9ddb2c0aa4ffda23da8da9f97218473405adb3b",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/verify_current_report.py": "92bdbf2da3ba5b968a4aba98326589d96d252ed741f0c486847dee958545bf1e",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/verify_report_release.py": "89ae642bbc1ff537c6776fcc333e730d103c60aeb266d39e2b2221e0b3ee09ad",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/annual_clr.png": "5b3283cf268adf45fd7971e06b6297cf3bd5ef5b834deb3935e821678151dc8a",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/annual_load.png": "a3806b41d35c1d4afefdd9271bd95147c13c778d34e89395756fd2bed8eddbcc",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/annual_model_pressure.png": "be5667ac25226e135c69998c912121539c8e7e5ff77ebfc74b1f5ab23d860b2a",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/case_sensitivity.png": "2bc71bd9cfe900e4023b17ebdd71ed994cdad495db5ab47c6f26ac844ffffa2d",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/city_modeled_peaks.png": "b75da45661118dd51d364a603d7c8cfc3e7b439a000c6cef4416fe52e9166499",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/city_regional_peak.png": "afc3e984f29641187f6fc7634606352310386ab8a575a683964efc4dd1605291",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/discussion_cable_transfer.png": "9908b2e13ec60373fe5440e9036c344b002daf0f00abeffc071003a5abcd7563",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/discussion_dispersion_transfer.png": "6375d51644d0a1d111c95e218ae93eaae958197cbbad8aefc95a0f2c53a7fb0c",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/discussion_hours_eta.png": "dfb52ca7b2420c905bcf9669c1adad030a2d46dc8b4bfbe3f6e8776f208a0448",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/lifecycle_components.png": "817784552185398a51432a543848d21c72685ee724a18aa512a435055a611074",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/loading_distribution.png": "979a770e02e5c612fb83d625d0131ea050fe60fa038a50592af7c017533d3dad",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/measure_comparison.png": "e122365b95a73c6dae0b27caf2f50c8b6086ac37b886c98d6934ce8e05024f5e",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/pizhou_modeled_peaks.png": "bba35626b188b863006b321e20c7bbfea229123bef3603f9eb26c156dfab5275",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/pizhou_regional_peak.png": "145db7502fc8598b0af0e4c404e1f928ce11199423fa7c5dac23f2198298c6b2",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/planning_tier_heatmap.png": "6b30ef4e5dd0d4c3cb11133279c4835538ef0ea860711fa6707cbe7431604ac2",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/pv_monthly.png": "d16968a14c23a042ed205ad96e56c9ebab5454105e889a87af62117199c40927",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/storage_effective_cost.png": "848b040a221597da19bc9cf59940b44e2e66422063569a0cf2e0a014ea2321cd",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/technical_route.png": "e612df0cf13640e4d7f30cf83a663f2cc3da576b74bd873826930a714623e47a",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/typical_transfer_response.png": "f7bf1f126c4542ab10ce125c4f6a2fa5a8fca0ef20d5a87c8aa80e1e4cb87476",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/公式/公式清单.json": "568a99ac2e42d54ba5a83180509684d4316b3bda4655165cebc21b57d4ea9370",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/图件原始数值.json": "dc54d304345e736c96e1f9a199840e29c7e29b8611abdb4b99f4ce15fc8d869e",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/指标复算.json": "17b96701df5bf50bb6cd52df73cd4fe0ec515431a2472a325d252f240c2a8868",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/生成段落.json": "eee433d80e72f84970c63785f9aa74715768d966093cd7c2029f70cf8de51efc",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/计算表.json": "dd82cd795d990b109d7c8a0af3878091eb3c612858f8fc946beabc026fa7371c",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/01 第一章 绪论.md": "79186d13efe5289aaacefcf3831753e019bec8da675d51a8fe78e646997fdd94",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": "c57a6564523c66ca3e49f5f7d7f858fa6de694c4bd4d1485c12cbafb970a8b2f",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": "c37c6d3e2b0c6d067c023c54e921450fd7a3afff8ab78e36c46bbc5d81b9d99d",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md": "783f5f348147bc8614177a20b31cfdcb2208ed00ffc44ecad58be208fdf27e9c",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md": "204a8df665d08aafa59e683d3a82a0b1e541333324b61620facf3effb3c380da",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/06 第六章 结论与建议.md": "cc6242d33a9e0bb7b3e6c541295977cae10fc059755e809863a1ca08a40d8687",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/参考文献.md": "4a19c927841cc29932341cfb351c4f2ed3a4b1e651e8859b4841788aee213ee0",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/研究报告装配稿.md": "af227ab2e9a34f7ed363de8cf88c70e9522c43939725a9a7d59ab69677a3e3bf",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/04_word/研究报告终稿.docx": "7b2a0722ec63a41f9e6ca527363f88e71618cd72bfe55f692274bca647931211",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/04_word/研究报告终稿.pdf": "dd9f2114f355ae18fa19259fb124118ab5de09e1910b1c301d036de03b0067ef",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/05_review/当前版/1016研究报告结果同步/交付登记.json": "7a65a59399813fc29a3c5dcff8eec0bbd1aa326dfae4ed8defdc13dc31d81fa1",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/05_review/当前版/装配Word.py": "5aee2545d3b1e26b1cdc19a32c60bdcdef208218e1c88f6ecd3f7673f5649341",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/AGENTS.md": "726da3fc139014a40634befbc1341ca86a54a465b0c80fbdfa99105d02905b84",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修前文件登记.json": "170c6d6aee0fe0f237819ecd7ef92d281b11173b7a971781889a8b6b69aca39c",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/修订说明.md": "1584f08a838c69404bc32e3b3aab38c1a577bd9b2f4388e717f9e40eae69671a",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/六参数受控完整序列.json": "2707b3c332b2fa411fd424938bc0ad07faff75275ca29bba226e5ed9da4d07bf",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/历史初步定档新增原件衔接.json": "2c0108f4f0531e31cbda85105842a1f4433860a62a307a03ad741541c4e70254",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/定值展示矩阵.json": "81a5479033a7cbae53053ebb27ee36e998895d5540f89225c4dcd8a0b3b6d5a9",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/市区负载率绘图值.csv": "a7c18338c9ec3c33a43663fb6d99ede4e04b11351c463499db03737b9d9d4857",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/当前报告数据核验.json": "f84cbb62d7fed12fc8220051321662b00e58c70f9fd252a5700fc78a16bc39d6",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/新增图件来源与图形选择.json": "a9596e5bb52ea7abf5e2535cd3ef28f77816333b8eaf547b6dee521e2fdfce4f",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/本轮事实核验.json": "a815c357ece0013fae0f790d4345a7c84af3b939526959cff40cf41b86b9c502",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/术语例外逐项核对.json": "86c23e6653e615d3766491eed2cfed4ae0f2e632bda095c5e2782f0d7aaf5f4b",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/术语修订范围.json": "9cfeeefbd33becf2d6eabe98757dff6178400bba2695af27966fd8368fdede13",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/正文逐段复核.json": "b82ec40e747929b092a2f9312cbc617df19e965ad3f72f1d2b495d012e21609b",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/源稿及生成资产前后对照.json": "09b96a4b109559170b098d4ea944f08f245c97323490508e27aefa8aaced5f9e",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/总览0.png": "da0d78c7f9c04d3b15d05f2b754adee921fd39617fb8c768326635ab9d0aa4e7",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/总览1.png": "a86ca18478e2f5b9c03136b5a8ed4aa007059aac818fd3275e850ba0f505cb8f",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/总览2.png": "793df22d9f9db4cc6ed380d62f5b4c86ba481b0d19179ca8f340b4d9b5cac392",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/总览3.png": "ade70a8bc8f1c9dadcad3d18926a82f303348b5154df4be9b33ee069aaa35a65",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/总览4.png": "0565ba2d7968b7ece48eb15be19b9a543bcd468f496999dc58904a576b59a6be",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/总览5.png": "e8d9b17a9e424301b27d9d5407529a86585cedf91a1c804fbbfee70d7ed8834b",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/长公式补核.png": "14d5caeeec3456d74240d6b1ef0238e9a047dbe523a94a832a6107cececd240c",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面101.png": "a1dacb68ad182909c4a51b51ae5ecd987ee12bd018d684084a1c48345e7b809f",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面11.png": "36e4a509629a0562fd7acb8186666a5e960a12b04c9015402bb59ade2437aabe",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面121.png": "6178bc8b03e1b88b7c7be8148ba90fdba328f069c789e3922ed03e4e1af1da6c",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面124.png": "d22d307c6a18854ad3b11fc7e9212c23b0831543435b838578457f37071b1d55",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面127.png": "519cc634c9b269efe7ed3c6a94e8cfc82f348d80a9598e8a9e467fec3fe98c3b",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面129.png": "86e77f602b2c06d15a42dca7ebd2ba783704aed7d26b70a4c994c6bbda192798",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面130.png": "6878b14a1b22017c127f37f0a4923d5e5cfe9683249f57d12f21deabcf355824",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面131.png": "f619e41c713513a4c155edc6c9313616da4539744fb89be1535c87ae2131768f",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面132.png": "1d4e1a8d3016e781ecbcf79fce483774b8c165a025ae622d8be1aea6bba1ac81",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面133.png": "fafc9cf6a0ae5b3b55941465dd97fedaf7770b5b7e5ba8180bf10a84cbc14147",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面135.png": "7d0b7e4a36b1e701730a74a41ddc15d31549ff4645ab7f55314f3fcdb842dabf",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面136.png": "116b7a9541324539448a0c9fead26f287232973a82a98804bb76bdd83d2b54f3",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面138.png": "145d53b9068b25dc06892bf11379dbfde0d462522142df7b4801b37ad7567a69",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面139.png": "83e05ab578ef2a59b274bc52631b274b9924eb30f971a05cfe880ce68edf0f22",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面140.png": "4f4c405dfda2b8a421cacb845bdae8c2c3f6e1faaa5622e25ffd2330885d48c3",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面141.png": "892d10a77422728df53deaabdd5e3903d3f442228da9e72ad7545e3ba7468670",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面143.png": "3ef16e7663c25dda3751aea574ec8b986c5c26c037ad980a2539284fffceb5cc",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面2.png": "be3133a0a0acf3f62f5e5731f92094d8dcccc82c8a38bc8bf7c4afae8d9a7955",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面28.png": "ddda90079542803c0972239414d78e3467bf5a930e8f5dd7924ebd4a3a9f5487",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面29.png": "be61600803ce74bd9801181714a2de0bf74ea72bb944548504b4730fa42d0af3",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面3.png": "9a4e89ebfcd0bc69a65cb2472b7bcd04d1032376542439bdc39ce77ed63556e7",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面30.png": "360359454dd8fc47f1abd4c5de1afb8d1aafdfae5290b8cc939071ed7d680c5a",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面31.png": "28ebc1df7147cbb6f591fe7ee746804057b21bc18dbcf3083f62ab28b4921a69",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面32.png": "3cb1813344e14f4ab316806c1c47a4de3202493c6de120e85d5ccdc094b11dbd",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面33.png": "cd99e5da138f129a6148e4f8c4011fa605caf1308f05f8de614339e0838704e1",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面35.png": "e44f31353df508c44f2644f4fb9f9b9a8af907c4aacf7ad57f19a7721b7467f7",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面36.png": "173348710d7ec25550e05c0ab1ebf741d6e3d21ab17fdf78be0ef7fbd3ae47f4",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面37.png": "476cf739ff4ef3a5fb832674bb92eccf3d9d335d721504afa2fb51e2eaeba96a",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面38.png": "366101786f68c092991b0508ec9d6b2c56f31beaa712ef31405e2fae3721c415",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面39.png": "8883d192ac88338468eb37b7a0f616515bc4d8c087b60bdd038618d7496d9f55",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面40.png": "db6d0ed9f13cfad9d5d461d6aaf57320f128f2599c93e84ac447a85f22f10a8e",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面44.png": "b6f7fa754cdd03e3f129f6e1b51d5a99345b70a6f0706441d51be3dea48f10b9",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面47.png": "8977d5b059691bb6fcafc6d24fb2822f9e20ab957604ffbb60a3fd3ee7b9ce46",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面48.png": "d88d85ce251eedfa4927edd05aeed7229d7bf0d86972c9b01fa5a8ea68db5302",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面50.png": "cd4270cb7c6ffbe2b94cee4de241c8baf982929396be78e5bcfd25637d17e8ef",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面53.png": "812b9f98122d9aa0d7a54802a4e02d152ca7f1984fbb07d297de8d261045e8ae",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面54.png": "723cd6a5f22157b95ec068e2cee2e659e2e9602af567c3973b0ab6e357352079",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面58.png": "810584d0f657d89015fce0fe9468caa5398b83b0bfdb2d3f86e181d7739554f5",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面59.png": "c838c74ef6a9ca8e15b34db9bee521b822ed62505599a1c42cbac5a76fb6bf8d",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面60.png": "2d91c86f4cabef6ad057b0d630df7df6cac7d91a3f8e09e984691c20acc58964",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面61.png": "41109fcaef3e87498a7491acef2020c21a6b8e63b0e9e05971a4f7a839404403",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面62.png": "7e88ae59c6d5f39e0a328106aab606f2587ca41ad25f41738dd641d1160a32b7",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面63.png": "b8251179ba209bf51ba6b37382fce30cb15ce7d7eb3e302fc568a1060db72651",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面64.png": "26acac60b1ff100792fc6840751735ca539f716ecc9364f2d89519236d5489d6",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面66.png": "0e990fb6226ff5db852a976454ca32080d5c38cfd3b515eaa72eefd4e34c9399",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面67.png": "02bc944c569b86ef38d060d4fe8edf2f475b7ad9d351cde22687781cb46ea777",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面68.png": "33f21aad1d1d7472d95d7e626182a3c0b59bf1870861b149615fa04c1080f165",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面70.png": "1f023c6f9abf0bac2df959e497346ac8fb521603c09827b4ea64fb2f173a482d",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面71.png": "0f4a426ebf7b34b3346d0802722fe2ae991f75c857b0f71a6dda5f626ebf9aca",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面73.png": "689f32b430797e2767f310a7fe3ae66aaf2913e16f12861c58880cdea89cfc7b",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面74.png": "0bf079482ed959d0d5697a5c3a1ef4248acf3674380266e769288df658147957",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面75.png": "d830be76964c42320975fa1787e028d21ea15df8a5f6b0f339c4ee2b247aad56",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面76.png": "3387d114159fd1d3f46020163d27425a978e392508efd5fbfd7e95d1eee6c347",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面78.png": "817c49d2f8d8e167f78b842d7bc3ae8e57463532f4c37642f258d0d99055bea7",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面79.png": "52d4093e11433d79add41d087b5fa41059cedd27fa5eb119ed9b53ea4979e665",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面80.png": "a0446f584787b28475ca91ea5809651f280821950b6667c498a992cd1d5af1e1",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面82.png": "4df683489427eb1f5a4c785073781c27cc8dba9d2f423768de19147117f91e6a",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面84.png": "65dd6d5e4eeab221a85c830661500d2a39e05e58c6275964dedd9794a8c38d47",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/版面/页面85.png": "df2c15bb92ff9039fd5274d8734b56683a0cc9a90e337310ed324d48002d75d9",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/矩阵与图件独立核验.json": "4db2ddf9f9317e200007066654ea5111faa95e15e6bf0dc1e04bb6b3eb02ec07",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/表注复核.json": "d1994372f23119ebaac4caff7de10f772057647f4b2a58468b7bb4960db5934f",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/逐年导则对照核验.json": "0328eef9f588f851d88b22045c01b2c43260dc06cebd474ca97ccf700f8d7d1f",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/逐站展示复算.json": "1a6034df3e3a783a9f3df0caeb4b6e36f92e7ca065b8c4b0edca0df915a8191d",
+    "研究报告/05_review/当前版/1016图文扩充与术语复核/邳州负载率绘图值.csv": "1ce43c3920c51d9c029bd73e1f09f6f72012eca280a728dba195ea40ee251f0d",
+    "研究报告/05_review/当前版/1016研究报告结果同步/WPS版面核验.json": "e23920daa763af348b12117cae4bffd03367ddf75b8951c46f6153ddff58c6c0",
+    "研究报告/05_review/当前版/1016研究报告结果同步/修前快照去重核验.json": "51fc5434d2f6f86ccba1688b882a843a6c8ee38b906aab33e9f285abeecfffa1",
+    "研究报告/05_review/当前版/1016研究报告结果同步/修前文件登记.json": "bf0f4029835d7c0e84f6bd217a57eb10f2c13e56082b393c78ca77df5314c972",
+    "研究报告/05_review/当前版/1016研究报告结果同步/修订说明.md": "e1b8a89674576a4788c001fb417324dee9a77c200e446e73d885d0552b408cad",
+    "研究报告/05_review/当前版/1016研究报告结果同步/六参数受控完整序列.json": "2707b3c332b2fa411fd424938bc0ad07faff75275ca29bba226e5ed9da4d07bf",
+    "研究报告/05_review/当前版/1016研究报告结果同步/定值展示矩阵.json": "9fe373b6cb7085222603a2a2249418568b9b82ecf9dae559238833b952f6516b",
+    "研究报告/05_review/当前版/1016研究报告结果同步/市区负载率绘图值.csv": "a7c18338c9ec3c33a43663fb6d99ede4e04b11351c463499db03737b9d9d4857",
+    "研究报告/05_review/当前版/1016研究报告结果同步/当前报告数据核验.json": "d90d59c1342a4840b5c6747462ef2123ceee408a1fbd80135c2fdef30fc37a28",
+    "研究报告/05_review/当前版/1016研究报告结果同步/本轮事实核验.json": "f91c7270237014c79aecdc26433af1656bbcdbb6e9aa5e38bb3b742bdb9ea693",
+    "研究报告/05_review/当前版/1016研究报告结果同步/正文逐段复核.json": "d57fd4ff54911a59615bf9435182eecb265380d9f526dcd6882ed5410bf42cca",
+    "研究报告/05_review/当前版/1016研究报告结果同步/源稿及生成资产前后对照.json": "6f6162063a0255de53e9bdff964d32110a2159030d10896c950e5960a4861cae",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面107.png": "bda2db2960bd16d440243cc947f0d57e2acc377f46137a87bf1c5b1b8309ddef",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面108.png": "00fe7c4a12b3baca353110eec5e90cf4c4d3df0c861410ec161aa6b1806ffe1c",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面111.png": "c90635f4b64facf533c3556b3e3de4c0b52b1202ea9660eab1ffa08fbb607afc",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面112.png": "ced7486f683fe0433e93a7dd4638c365c8788d2a94d179d799f1a004f0c75fbb",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面113.png": "ab665334d75a36e780783188ceff65b6c149ad0f13f2a6227bf5ff07bc49caa1",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面114.png": "cbebe8b587f198e656c3f42062b2cf7525ab45271ff8353c31d57fdd9ce2529b",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面115.png": "7b6a28ea6d96a213a93190509b8dddf97168b6b2c0ca4128a5845f922d247665",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面116.png": "7055473b840a7dfd9011474a8f8590498f00b0129e21fb909edc12971477c0a5",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面2.png": "f0608212959500a690b130f6430562683449a689522269d17fc588e343f234c1",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面3.png": "fc8dcb79a43969b8773250443bf45f9b43c903e0b0c96bece0ecf687bf5bc7f5",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面64.png": "243a10aecfd14633cca1552bb5f96c6e56070cffcf1b3711c0726e79ba2c6f1e",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面65.png": "88ba475b6e8116dbb16845890100d970c8922dc53a63a7dcb691d370e4a7a250",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面66.png": "5f77ca2ab5ce3a49ca54bccf905ac61b37996567dc7bc36c65673c72cbfec5d4",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面67.png": "9103e86c65c64a364b7b63d469bf3605d5933f6a8824e03dde6c00ed102c4715",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面69.png": "0240a6f3789549ca99b2906b99a98f9418f4a046c1a512fd513c6a61e59e37a3",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面70.png": "6e7e559854ae90d62418376c7d974926b0f343c4a3326c26f15e257e12b5fab7",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面71.png": "b3d2c02bd5795ec9755e41a2718a4c4ea7bf48faa091145e8bc6d442373f2090",
+    "研究报告/05_review/当前版/1016研究报告结果同步/版面/页面72.png": "6d435e3eb4b07f1fa25cca8f12f954ba87b0de5446815125611d575a9b03b009",
+    "研究报告/05_review/当前版/1016研究报告结果同步/表注复核.json": "2e3a86041e60b8c091f93dc3b0b5ae5b8f6acd3c8e2d11b714d82b51b64290a5",
+    "研究报告/05_review/当前版/1016研究报告结果同步/逐年导则对照核验.json": "0328eef9f588f851d88b22045c01b2c43260dc06cebd474ca97ccf700f8d7d1f",
+    "研究报告/05_review/当前版/1016研究报告结果同步/逐站展示复算.json": "1a6034df3e3a783a9f3df0caeb4b6e36f92e7ca065b8c4b0edca0df915a8191d",
+    "研究报告/05_review/当前版/1016研究报告结果同步/邳州负载率绘图值.csv": "1ce43c3920c51d9c029bd73e1f09f6f72012eca280a728dba195ea40ee251f0d",
+    "研究报告/05_review/当前版/WPS原生导出登记.json": "c509649976ec812b6d802b47b891091d8f1bbbad947cbed2bedf02048193309f",
+    "研究报告/05_review/当前版/Word表格内容复核.json": "f0753ee7378e32b67f15fb3a2789ea5b1941853d9631800eb7d87cbc71d0c134",
+    "研究报告/05_review/当前版/目录标题.json": "efdf78f2afe5a7aae405a5d427fe27af7182365c7cf4895c159ab4495555e12d",
+    "研究报告/05_review/当前版/目录页码核对.json": "13734b35ea69795f1b6253de57fd572dc1c5bef783b6ffdc830d9fe6ee38f1fa",
+    "研究报告/05_review/当前版/装配源文件登记.json": "973f64c3b0e66756503db5929bfce08d2bfa91148620f465cd965fe22ba69fb0",
+    "研究报告/AGENTS.md": "86f8f3efc7b2bdccc7239569e28298f16ead9355bbc94b536e18031415744d92",
+    "研究报告/数据来源/当前版/图文扩充_20261016/city_annual_new_measures.csv": "fb6138e74815c68411884c99579b58bcf3331f78534b1f26319d99c33d518e03",
+    "研究报告/数据来源/当前版/图文扩充_20261016/city_annual_new_measures.pdf": "292e085238ba98defe0257f121c70bc15e5e3bef694c6efe4c5db47e7d741d40",
+    "研究报告/数据来源/当前版/图文扩充_20261016/city_annual_new_measures.svg": "9f66391b8e70bb385501ec87af0c1f5d41faa4b27be8c48428ee23cf76066962",
+    "研究报告/数据来源/当前版/图文扩充_20261016/city_station_direction.csv": "0b7ef51c174dacc83dbade767cf91fda6ab64ae66f6bbf1c5588a02ee144be7d",
+    "研究报告/数据来源/当前版/图文扩充_20261016/city_station_direction.pdf": "c578b38e2859b1fac39f846c0acec23c649c1bbaa47f873df35ba4ae42ff79a9",
+    "研究报告/数据来源/当前版/图文扩充_20261016/city_station_direction.svg": "30cb7986fb47cc7ae38b672295a34a3be46308251df25ac0e6a8fb2ebaac8266",
+    "研究报告/数据来源/当前版/图文扩充_20261016/city_station_n1.csv": "59f8eab14a54b4938214b4eb3d52d41299542a7967efa48f4a006aa171ba44a4",
+    "研究报告/数据来源/当前版/图文扩充_20261016/city_station_n1.pdf": "cda37153fce4d976633fe5d14962fa4e394755dda8653f2254fb13dba28f2407",
+    "研究报告/数据来源/当前版/图文扩充_20261016/city_station_n1.svg": "8ea3bf99ca8dded835bb2a076790d39eed8383fcb29c4aaeff7b73e5018f39a6",
+    "研究报告/数据来源/当前版/图文扩充_20261016/energy_capacity_storage.csv": "c3d898128e568762f97e46085abf25574400321be80affc222fdd46f0b81e510",
+    "研究报告/数据来源/当前版/图文扩充_20261016/energy_capacity_storage.pdf": "a0e12431e23b194e316d4edbd7e73d9be349c4cf2276ede70cc0758efdaf7841",
+    "研究报告/数据来源/当前版/图文扩充_20261016/energy_capacity_storage.svg": "86b89394012034b89f66d7dc0941470c8ed4ad4a6ee2bf905b006195c4ad4d13",
+    "研究报告/数据来源/当前版/图文扩充_20261016/eta_device_response.csv": "b250884d0a7f120d2ca29457fa13588903572f530c2f678325721bfb88f2cfdb",
+    "研究报告/数据来源/当前版/图文扩充_20261016/eta_device_response.pdf": "cd9a0f926524199830185c74f4c03cd66aae121917b0d8556c39c6d276f093b2",
+    "研究报告/数据来源/当前版/图文扩充_20261016/eta_device_response.svg": "9e6a36a9f71288cab45a5a8dc7bf67aafb818fc5a404ef2245e469cc6becc13f",
+    "研究报告/数据来源/当前版/图文扩充_20261016/five_parameter_correlation_map.csv": "af4c6f45fb43133677eda87f7652d5ef2732e4915a7c2532fb5d24f1ae012b7d",
+    "研究报告/数据来源/当前版/图文扩充_20261016/five_parameter_correlation_map.pdf": "0ecb59f04ca8f8eb33b050e573ec4812bfd1614631f6ed6cd2fc0beb1b32c618",
+    "研究报告/数据来源/当前版/图文扩充_20261016/five_parameter_correlation_map.svg": "4f318939d421baf3be52bbb193cb4c383f363bb2ca95d9d3fc3be4098a26551f",
+    "研究报告/数据来源/当前版/图文扩充_20261016/growth_capacity_reserve.csv": "4750c51b67468db75b467b2ededc5e05ff51f35f56706391988ffc951f35c871",
+    "研究报告/数据来源/当前版/图文扩充_20261016/growth_capacity_reserve.pdf": "0b65e1dd3a731988490b692b3e04525a611840ee5424baddc364df5815ecfff0",
+    "研究报告/数据来源/当前版/图文扩充_20261016/growth_capacity_reserve.svg": "61bfb0ee49bb589cb901fa5568afadd039cdf9570cdd7e7c04e7747b7c2a6801",
+    "研究报告/数据来源/当前版/图文扩充_20261016/historical_capacity_load.csv": "d4398d37c0b08cee46df0b6c30b299d65f350ccb5fd7548b41068103b60d1e39",
+    "研究报告/数据来源/当前版/图文扩充_20261016/historical_capacity_load.pdf": "315ec3381f88c17235ec19160c124d108aaf08188328b03a10cc8e5253b7e160",
+    "研究报告/数据来源/当前版/图文扩充_20261016/historical_capacity_load.svg": "194319d33e195facb9372a97d03ddfd19e0c301000af548eacfbb52fe682dedd",
+    "研究报告/数据来源/当前版/图文扩充_20261016/historical_clr_contribution.csv": "240f3f5248cda27a904a2390221e5b7c1391af22d0ebc34902be01ed2111b4d6",
+    "研究报告/数据来源/当前版/图文扩充_20261016/historical_clr_contribution.pdf": "7fb44310879553d9227098e6230bc74dba4126adb9b72c35f6e2b018a4f87dd2",
+    "研究报告/数据来源/当前版/图文扩充_20261016/historical_clr_contribution.svg": "77ebb9e9c76c2d9c5d326772849f85fb85ad1cabab9661f64e10bd462a0d6cba",
+    "研究报告/数据来源/当前版/图文扩充_20261016/indicator_correlation_strength.csv": "2281f38de8b9dcb3b3a9ae75eb52bc02f6ec2cd8a8ec71812fb1c082a8a36286",
+    "研究报告/数据来源/当前版/图文扩充_20261016/indicator_correlation_strength.pdf": "10cd562cf3de35d71a5807320799a7b1378b97cf5ffa39d2fc3e07e14708be24",
+    "研究报告/数据来源/当前版/图文扩充_20261016/indicator_correlation_strength.svg": "2906f8ab587951980319b625d320c1cfec4e12b167f387882b9519c492930a5f",
+    "研究报告/数据来源/当前版/图文扩充_20261016/initial_capacity_cost_comparison.csv": "b64c6ec75073838bc8b0ca882a80f7db7eced2a161aae2154b8e8400fff16f6c",
+    "研究报告/数据来源/当前版/图文扩充_20261016/initial_capacity_cost_comparison.pdf": "f458d02effb6394805a532298b9d2fcd2f53bf84d7b8d64235bab58b7158e1ac",
+    "研究报告/数据来源/当前版/图文扩充_20261016/initial_capacity_cost_comparison.svg": "4d02be312ca1b0b3d09989a776a1d494c88c2d1a837347a0ccc62cff75bf1fb7",
+    "研究报告/数据来源/当前版/图文扩充_20261016/lifecycle_investment_maintenance.csv": "6eec8672d670d59937965f766f5a1183405ec162bbbcf98907fb67fdae7ca5fc",
+    "研究报告/数据来源/当前版/图文扩充_20261016/lifecycle_investment_maintenance.pdf": "03a74f7db797acc8170a6b87e9b2858fb506a5339e5c8e225ca5e1fd2dfd816f",
+    "研究报告/数据来源/当前版/图文扩充_20261016/lifecycle_investment_maintenance.svg": "8446b70c5b6c5cad7c139e8e7fc0b877bd2264e059777bf66fb1de3b75d8b11f",
+    "研究报告/数据来源/当前版/图文扩充_20261016/line_investment_components.csv": "71c867000479b67cf218f85e640a9077494b0513aa32939d629599bfb7d4240d",
+    "研究报告/数据来源/当前版/图文扩充_20261016/line_investment_components.pdf": "5a1a124d6cd3a5472fc8f18a912a8a0d7906cfe83689e0993701cee61691d2fb",
+    "研究报告/数据来源/当前版/图文扩充_20261016/line_investment_components.svg": "916e852e05829cc142daace89bb3f2b475a59319a9e99fc7db17d034a0282e26",
+    "研究报告/数据来源/当前版/图文扩充_20261016/lookup_matrix_bounds.csv": "75ea0bef242db98d4a5c956a4da24243685afbdada4a5cb800d3faaafc3abde6",
+    "研究报告/数据来源/当前版/图文扩充_20261016/lookup_matrix_bounds.pdf": "0d03c5d059bbca074e608ae6346f23f28ac7222e7f5854f92730096fc5094252",
+    "研究报告/数据来源/当前版/图文扩充_20261016/lookup_matrix_bounds.svg": "79f20a5a75f6f932a12e69590f759ad63d2c511d0b655672f0b97c976978c282",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_annual_new_measures.csv": "05a0bd660e70c3c9be31d40f88ebf4346a5906147303e392379cbd6b461126a8",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_annual_new_measures.pdf": "2c5cd37538993fb9a7f06e4c4973fddab8f5ec1c9ab54b179d20572d4140e4d2",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_annual_new_measures.svg": "2b940c897d9ffc66697bf678c99d3174460654c7d3a0bd82f7e96be93719fee8",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_station_direction.csv": "c1435a327d418fc49b3742e2aea87591d9eb37ac4eb973279229c660338330c3",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_station_direction.pdf": "af75f0bcbe545f30f3b870f30b6f21dd3d76ab5881e53d59431e1e420f018ed0",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_station_direction.svg": "19ca14eba29c7e32a42c4418c23dff23ac2b584680a492632d66e22a24bb0738",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_station_n1.csv": "2428b36398b929e9ede0adc458a4a804b7bc5ad7247ffd9b6cf58cbd772e6fdb",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_station_n1.pdf": "66fdcfcff0734c9e63137ec2894f550ab551b3dabab9ac5667eb68c0e8375946",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_station_n1.svg": "9f8287989c08c940d02ca470612048f22867751b1cd7bbbf1b4e017cbc071461",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_storage_distribution.csv": "df8866b8bb48d106a443ad3ca5e61113cc27748c85f891b94e56e0f698ea1560",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_storage_distribution.pdf": "2fed9d5dd6c4040be69dd4adf0e066e5b645903aaaa936e68e7e2ae39300fac1",
+    "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_storage_distribution.svg": "54a856e018b8f354bbff678eec823cbfe9e80fadf9b59845a9c73f0ca368e4d2",
+    "研究报告/数据来源/当前版/图文扩充_20261016/plan_cost_difference.csv": "04b76d1e23f5beea9f95b68f4f4423d64360e9399fe517b29f916c3ab8d2e478",
+    "研究报告/数据来源/当前版/图文扩充_20261016/plan_cost_difference.pdf": "950fe004c29ce16bb219b6a0a6f25b52958cf364d69dbe0a8f625b49b164c126",
+    "研究报告/数据来源/当前版/图文扩充_20261016/plan_cost_difference.svg": "71cdefcb47d2448389a68f258865eb6130de809aee40c6e7b7680970f0d52ae6",
+    "研究报告/数据来源/当前版/图文扩充_20261016/quarterly_energy_comparison.csv": "2181ddd1fdb15b9182f1b3fb1fcff1b6140ed91de2d9ca3fecdd6eb95cfea510",
+    "研究报告/数据来源/当前版/图文扩充_20261016/quarterly_energy_comparison.pdf": "62140de5be186ec261b455e5cefbf708b63b0b962fc85f6b58226ae2b7b155f4",
+    "研究报告/数据来源/当前版/图文扩充_20261016/quarterly_energy_comparison.svg": "c58736241ed047de1a2f22346d410c63e53245d1f0b7723fbaee24e73a06313e",
+    "研究报告/数据来源/当前版/图文扩充_20261016/regional_load_duration.csv": "445126d75908d5b82beeeca11f4875c3951d08016d54b67423f13623e0583863",
+    "研究报告/数据来源/当前版/图文扩充_20261016/regional_load_duration.pdf": "1c7af0286e1c131679b4ad557dda2b0304df94047aa08e377afdc465358b8bb3",
+    "研究报告/数据来源/当前版/图文扩充_20261016/regional_load_duration.svg": "b0e9f10031724e1966b3f40e166f567fa6225beac7de7ab2d8fbeb9ae6791018",
+    "研究报告/数据来源/当前版/图文扩充_20261016/storage_support_modules.csv": "43447d9621ba100ce2e8ed4476036ea9ab46084b7c634f50442b315c6debf064",
+    "研究报告/数据来源/当前版/图文扩充_20261016/storage_support_modules.pdf": "ae14f7755fe2f67ed46eb74242b51deb5fb93d51da6fb409d457cf26b84e5468",
+    "研究报告/数据来源/当前版/图文扩充_20261016/storage_support_modules.svg": "a8f58930c8f5c8596f0159f64ea430d117949ef10f09e99759f5d809ac127383",
+    "研究报告/数据来源/当前版/图文扩充_20261016/technical_route.csv": "e9d4c03c650305f05dc9d9b27bd371b4117946d9b4ee1753ae95a2e08090e5cf",
+    "研究报告/数据来源/当前版/图文扩充_20261016/technical_route.pdf": "cb3cfd7863e3676c2f77dad0c9c4b8d1027fe73821bca8dfdfd9af42f32b7a8a",
+    "研究报告/数据来源/当前版/图文扩充_20261016/technical_route.svg": "72ac2acdc0ce902da67e4059443b5cc82f70fa2da52c4d401ba40f92a621607b",
+    "研究报告/数据来源/当前版/图文扩充_20261016/transformer_capacity_balance.csv": "bdb1052d8745748f497bfc68ed591b8b3bb3e46b79642b2e58c2d438d7dbc699",
+    "研究报告/数据来源/当前版/图文扩充_20261016/transformer_capacity_balance.pdf": "f05e5ab79c84f0b0a23cadb3fb6ca9f3091912bd11279c464bbc07b6770d73af",
+    "研究报告/数据来源/当前版/图文扩充_20261016/transformer_capacity_balance.svg": "5aa9a895c9dcb4ee6513effeec4c606f0212efed5c2eaa88c5bf6c1d6c639baa",
+    "研究报告/数据来源/当前版/图文扩充_20261016/transformer_unit_cost_basis.csv": "bdb1052d8745748f497bfc68ed591b8b3bb3e46b79642b2e58c2d438d7dbc699",
+    "研究报告/数据来源/当前版/图文扩充_20261016/transformer_unit_cost_basis.pdf": "ee39e32c1de86ce6c369c47752320a8a071d0b1f36491e301accad84ccf3e7cc",
+    "研究报告/数据来源/当前版/图文扩充_20261016/transformer_unit_cost_basis.svg": "a962029ccd0c39fd0c52b8c32587319035357f1be8b322e03f64a04af1dd8d92",
+    "研究报告/数据来源/当前版/图文扩充_20261016/xingtang_reverse_capacity.csv": "a3c21805e6c4b89dcdc32f9e379a94cc50818f55f367f1895500695db137fb4f",
+    "研究报告/数据来源/当前版/图文扩充_20261016/xingtang_reverse_capacity.pdf": "07a5bc3f9d5a3fc40bb06365e11bf53cc802760f38b5226da5add713881728f4",
+    "研究报告/数据来源/当前版/图文扩充_20261016/xingtang_reverse_capacity.svg": "3c6b9a9aff2e08b534c53dad6d9aa8de1781e45d36a31724b1d69ec7c6a62ec7",
+    "研究报告/甲方反馈/10.11/供电公司讨论稿.docx": "f93ba4066a8aa63d240038fb4d6d5f0c8f54343487b0e7f1ea407613455cdcf4"
+  },
+  "修改原件": {
+    ".githooks/pre-commit": {
+      "原SHA256": "5abe334ec744c923f95fe693c93da34fca7c8ed85d34090d029a58e7f8abe6b0",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/.githooks/pre-commit"
+    },
+    ".github/workflows/report-policy.yml": {
+      "原SHA256": "441c278ecf929c223089918855422e8807df5fd7ce58be0951a3b12b0d55ced9",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/.github/workflows/report-policy.yml"
+    },
+    "docs/CURRENT-WORKFLOW.md": {
+      "原SHA256": "8eea72ce6e333c6b7968f50d48eae5193fc826964f897039c761caa7a3a56c3c",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/docs/CURRENT-WORKFLOW.md"
+    },
+    "memory/current.md": {
+      "原SHA256": "a0ba4f26dd1976f5ee8f79b94803a0fea0e3667dc1e33725a8ce1524e04bd7de",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/memory/current.md"
+    },
+    "tools/check_report_policy.py": {
+      "原SHA256": "f8a49cd82f817228355ea5289dc5dafddbf21bbd9cb82afbf9eddd5b113c5c29",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/check_report_policy.py"
+    },
+    "tools/refresh_report_comparison_figures.py": {
+      "原SHA256": "efc3550727be61146ecd325147fe16e0c7906aa89d9c7c36f457a98e0ada08b9",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/refresh_report_comparison_figures.py"
+    },
+    "tools/report_policy.json": {
+      "原SHA256": "5c57ac10d068a98f2d40e01341c8600615c544ab73397946707d92506e5861c6",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/report_policy.json"
+    },
+    "tools/report_prose_review.py": {
+      "原SHA256": "cacdbb9f71007bcf85931ab277bc13b6eed72d05f7cbb8e6a0dce5b77ffa337f",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/report_prose_review.py"
+    },
+    "tools/revise_discussion_report_section.py": {
+      "原SHA256": "2f0727cdc9ec8c2653339cf05675f6cb169afbff73d0e43dc056ce4374e04078",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/revise_discussion_report_section.py"
+    },
+    "tools/sync_current_report_results.py": {
+      "原SHA256": "16d51c6ed5d6f8a0f1532b4b033a29b24d9173073407a79c2fbff9eebe7f0225",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/sync_current_report_results.py"
+    },
+    "tools/test_report_prose_policy.py": {
+      "原SHA256": "936884f9e44912b3dd4557eb5dec0cf37d7a867476bab052056108c7bf2dc8fe",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/test_report_prose_policy.py"
+    },
+    "tools/verify_current_report.py": {
+      "原SHA256": "068635f411775da0311044c83edd80735f0b989d8f35ecbe7396268b7d9219af",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/verify_current_report.py"
+    },
+    "tools/verify_preliminary_baseline.py": {
+      "原SHA256": "75dded68dbbebf0e79fcabb43ca1952628f31d765fc9a8527f5f8b81a5e437af",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/verify_preliminary_baseline.py"
+    },
+    "tools/verify_report_review.py": {
+      "原SHA256": "3810dae957af4bc06643025430a1d44ca59e9495b9af99b05ca8a3d08bf8593e",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/tools/verify_report_review.py"
+    },
+    "研究报告/02图表/当前版/annual_clr.png": {
+      "原SHA256": "911b5f0db7a18dc68d6ebf3f35cf680b218be72d0b623e2f22d18eac0c360cd6",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/02图表/当前版/annual_clr.png"
+    },
+    "研究报告/02图表/当前版/lifecycle_components.png": {
+      "原SHA256": "1776383fead9c22b836bc701de741d2ba7da2e3b90a3a89f73ce13f51e895aad",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/02图表/当前版/lifecycle_components.png"
+    },
+    "研究报告/02图表/当前版/measure_comparison.png": {
+      "原SHA256": "e87110ae778859a8f0538f12015658976bf825773ae4afe73bd1114e4cf7d1ab",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/02图表/当前版/measure_comparison.png"
+    },
+    "研究报告/02图表/当前版/公式/公式清单.json": {
+      "原SHA256": "80e4b88ca7a5cb062ff34e3f3868f17334d594bd4d884251f8de53f3e56d366e",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/02图表/当前版/公式/公式清单.json"
+    },
+    "研究报告/02图表/当前版/生成段落.json": {
+      "原SHA256": "fd2e968acbd9bc98e57ce1ab8736e4f832badd7bd8b3d26687ebb48423c31221",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/02图表/当前版/生成段落.json"
+    },
+    "研究报告/02图表/当前版/计算表.json": {
+      "原SHA256": "a9a6ee3d2bfb1750898887c9508959e67c079b8e742210b2bf898fa3e59833cf",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/02图表/当前版/计算表.json"
+    },
+    "研究报告/03_MD/当前版/01 第一章 绪论.md": {
+      "原SHA256": "b34f5e60130d29e1264efb547e714ae131989fc0671896927fa7d2ea4f9be9ea",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/03_MD/当前版/01 第一章 绪论.md"
+    },
+    "研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": {
+      "原SHA256": "f5bfd1b6d7b0610b566d71ae5a484c1ae159ecef335df135a50f7cc892f6c578",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/03_MD/当前版/02 第二章 国内外研究现状.md"
+    },
+    "研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": {
+      "原SHA256": "8d1ccd8e6fc29db3e49acef912116ce968d6005f75a6ce3773d108850279e0a1",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md"
+    },
+    "研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md": {
+      "原SHA256": "5b97cb12d815daa9f5f9a53713098823b5af69e57798e551fd5b0c37ab061339",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md"
+    },
+    "研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md": {
+      "原SHA256": "f08e2ad7080abe213cfef5a8982e006a75f68734afd6370a38ea2e70012c9c20",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md"
+    },
+    "研究报告/03_MD/当前版/06 第六章 结论与建议.md": {
+      "原SHA256": "2753001f592664a5c7d4c7d213b9d7fa4d9f88ccc4c262e49a5ac82ccf69d693",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/03_MD/当前版/06 第六章 结论与建议.md"
+    },
+    "研究报告/03_MD/当前版/研究报告装配稿.md": {
+      "原SHA256": "14715b7f9c988a05b23ae4d14750c8dbdde79c7ee941002718e1527c20c8495d",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/03_MD/当前版/研究报告装配稿.md"
+    },
+    "研究报告/04_word/研究报告终稿.docx": {
+      "原SHA256": "b2f183fc14df6495d7a1ad9616ad61d82028d655e8469ec41dad4450a83fe417",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/04_word/研究报告终稿.docx"
+    },
+    "研究报告/04_word/研究报告终稿.pdf": {
+      "原SHA256": "01450bca5dddf373d1fa836576e5e432cd12ed9fa56c4d53e3861977ee9420fe",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/04_word/研究报告终稿.pdf"
+    },
+    "研究报告/AGENTS.md": {
+      "原SHA256": "b8ad6e31877db739374ae95f405164acd92080a7ba4608c0753a556231f1b754",
+      "原件归档": "研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/AGENTS.md"
+    },
+    "prompt.md": {
+      "原SHA256": "aed89940a9624ebbace5cd66728f0d2bbc4d6f9f8ad1ed9eb4e18f0fd4d82f74",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/上一版交付原件/prompt.md"
+    },
+    "tools/report_parameter_selection.py": {
+      "原SHA256": "8e5ad0aef99bf149d4f79a28d1df616d272fd13accc04a2406b919e4a0fbc57f",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/report_parameter_selection.py"
+    },
+    "研究报告/02图表/当前版/technical_route.png": {
+      "原SHA256": "e612df0cf13640e4d7f30cf83a663f2cc3da576b74bd873826930a714623e47a",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/technical_route.png"
+    }
+  },
+  "修改原件说明": "承继前版历史初步定档原件，并补入本轮新涉及文件及用户追加prompt的前版原件。所有原件与初步定档/已核验治理后继哈希逐项一致。本轮修改原件单独登记，不改写历史基线。",
+  "本轮修改原件": {
+    "研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md": {
+      "原SHA256": "783f5f348147bc8614177a20b31cfdcb2208ed00ffc44ecad58be208fdf27e9c",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md"
+    },
+    "研究报告/03_MD/当前版/06 第六章 结论与建议.md": {
+      "原SHA256": "cc6242d33a9e0bb7b3e6c541295977cae10fc059755e809863a1ca08a40d8687",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/06 第六章 结论与建议.md"
+    },
+    "研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md": {
+      "原SHA256": "204a8df665d08aafa59e683d3a82a0b1e541333324b61620facf3effb3c380da",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md"
+    },
+    "研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": {
+      "原SHA256": "c37c6d3e2b0c6d067c023c54e921450fd7a3afff8ab78e36c46bbc5d81b9d99d",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md"
+    },
+    "研究报告/03_MD/当前版/01 第一章 绪论.md": {
+      "原SHA256": "79186d13efe5289aaacefcf3831753e019bec8da675d51a8fe78e646997fdd94",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/01 第一章 绪论.md"
+    },
+    "研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": {
+      "原SHA256": "c57a6564523c66ca3e49f5f7d7f858fa6de694c4bd4d1485c12cbafb970a8b2f",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/02 第二章 国内外研究现状.md"
+    },
+    "研究报告/02图表/当前版/计算表.json": {
+      "原SHA256": "dd82cd795d990b109d7c8a0af3878091eb3c612858f8fc946beabc026fa7371c",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/计算表.json"
+    },
+    "研究报告/02图表/当前版/生成段落.json": {
+      "原SHA256": "eee433d80e72f84970c63785f9aa74715768d966093cd7c2029f70cf8de51efc",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/生成段落.json"
+    },
+    "研究报告/02图表/当前版/technical_route.png": {
+      "原SHA256": "e612df0cf13640e4d7f30cf83a663f2cc3da576b74bd873826930a714623e47a",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/technical_route.png"
+    },
+    "研究报告/02图表/当前版/typical_transfer_response.png": {
+      "原SHA256": "f7bf1f126c4542ab10ce125c4f6a2fa5a8fca0ef20d5a87c8aa80e1e4cb87476",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/02图表/当前版/typical_transfer_response.png"
+    },
+    "研究报告/AGENTS.md": {
+      "原SHA256": "726da3fc139014a40634befbc1341ca86a54a465b0c80fbdfa99105d02905b84",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/AGENTS.md"
+    },
+    "memory/current.md": {
+      "原SHA256": "8fcf29480046a9a4b75cc2091c74debc2cf5b9bb14191546361a337ca3f06f81",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/memory/current.md"
+    },
+    "tools/sync_current_report_results.py": {
+      "原SHA256": "dbe2e8a8683fa5c48d373c591f483f72b3cdff1193a6262fec179732e3fd7044",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/sync_current_report_results.py"
+    },
+    "tools/refresh_report_comparison_figures.py": {
+      "原SHA256": "b820615a0b9e2e6e596a608ec644476140ebf81856f059a34507d3f5705d71c4",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/refresh_report_comparison_figures.py"
+    },
+    "tools/report_policy.json": {
+      "原SHA256": "eb00fbb8603ef3944c68a2119848fa1f8981588819af136050ae642011cc99b2",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/report_policy.json"
+    },
+    "tools/check_report_policy.py": {
+      "原SHA256": "2adf92bd1cc97ef84b56ca4fb46d3bb305718161448c5fb6e28468bc9ba48f61",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/check_report_policy.py"
+    },
+    "tools/verify_current_report.py": {
+      "原SHA256": "92bdbf2da3ba5b968a4aba98326589d96d252ed741f0c486847dee958545bf1e",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/verify_current_report.py"
+    },
+    "tools/verify_report_release.py": {
+      "原SHA256": "89ae642bbc1ff537c6776fcc333e730d103c60aeb266d39e2b2221e0b3ee09ad",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/verify_report_release.py"
+    },
+    "tools/test_report_prose_policy.py": {
+      "原SHA256": "8fafc42761fb339d852e94ecb9ddb2c0aa4ffda23da8da9f97218473405adb3b",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/test_report_prose_policy.py"
+    },
+    "研究报告/04_word/研究报告终稿.docx": {
+      "原SHA256": "7b2a0722ec63a41f9e6ca527363f88e71618cd72bfe55f692274bca647931211",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/04_word/研究报告终稿.docx"
+    },
+    "研究报告/04_word/研究报告终稿.pdf": {
+      "原SHA256": "dd9f2114f355ae18fa19259fb124118ab5de09e1910b1c301d036de03b0067ef",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/04_word/研究报告终稿.pdf"
+    },
+    "tools/report_parameter_selection.py": {
+      "原SHA256": "8e5ad0aef99bf149d4f79a28d1df616d272fd13accc04a2406b919e4a0fbc57f",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/report_parameter_selection.py"
+    },
+    "docs/CURRENT-WORKFLOW.md": {
+      "原SHA256": "287ee16b1a5747e074e0579ecabff612b5b2bff43c9952ee9f313d69ec3899b8",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/docs/CURRENT-WORKFLOW.md"
+    },
+    "研究报告/03_MD/当前版/研究报告装配稿.md": {
+      "原SHA256": "af227ab2e9a34f7ed363de8cf88c70e9522c43939725a9a7d59ab69677a3e3bf",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/研究报告/03_MD/当前版/研究报告装配稿.md"
+    },
+    "tools/revise_discussion_report_section.py": {
+      "原SHA256": "8e96748f2a56edd787fc92326ae29099758f659755796b830ccc10b0119bfb8c",
+      "原件归档": "研究报告/05_review/当前版/1016图文扩充与术语复核/修前快照/tools/revise_discussion_report_section.py"
+    }
+  },
+  "承继引文核读SHA256": "3b9e90bd3cdf44e6b9cc75c58771f67d4f9a89831553402e93820eef7034acd6",
+  "承继上一版交付登记SHA256": "7a65a59399813fc29a3c5dcff8eec0bbd1aa326dfae4ed8defdc13dc31d81fa1",
+  "文字复核": {
+    "正文段落": 684,
+    "表注": 6,
+    "规则扫描代替逐段判断": false,
+    "技能": "humanizer；仅对命中问题作局部编辑，保留技术含义和原有结构。"
+  },
+  "数据核验": "8组采用冻结结果、169个原始文件、30336静态工况，完整矩阵三表144单元32112有效节点；典型18细节点及8区间独立核对；46站及108表6436单元格对应。",
+  "图文核验": "图1重绘及25幅新图，配套CSV、矢量原件和来源哈希；43幅正文图、27原生公式，WPS两轮导出均153页，59选页目视及46项目录实际页码核对。",
+  "校验路径": "源稿、原生Word、最终WPS PDF；独立矩阵和数据复算、逐格表格、修前原件继承及逐段复核共同验证。",
+  "讨论稿": "本轮未修改，继续核验其对应历史研究报告原件。",
+  "未完成的报告交付事项": []
+}

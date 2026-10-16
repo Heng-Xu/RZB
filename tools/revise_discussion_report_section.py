@@ -15,6 +15,19 @@ BASELINE = AUDIT/'修前快照/研究报告/甲方反馈/10.11/供电公司讨�
 STYLE_PREFIX = 'Report35_'
 
 
+def policy_for_report():
+    """未改动的已审定讨论稿，与其采用的报告原件共用对应规则。"""
+    prior = ROOT/'研究报告/05_review/当前版/1016研究报告结果同步'
+    preserved = prior/'修前快照/研究报告/04_word/研究报告终稿.docx'
+    path = ROOT/'tools/report_policy.json'
+    if r.REPORT == preserved:
+        release = json.loads((prior/'交付登记.json').read_text())
+        original = release['修改原件']['tools/report_policy.json']
+        path = ROOT/original['原件归档']
+        assert r.sha(path) == original['原SHA256'], '讨论稿对应规则原件已变化'
+    return json.loads(path.read_text())
+
+
 def package(path):
     with ZipFile(path) as z:
         return [(info, z.read(info.filename)) for info in z.infolist()]
@@ -243,9 +256,9 @@ def strip_empty_properties(node):
 def check():
     record = json.loads((AUDIT/'修订核验.json').read_text())
     # 用户本轮只修改研究报告，讨论稿继续对应其已审定的报告原件。
-    from verify_report_release import RELEASE, AUDIT as report_audit
+    from verify_report_release import RELEASE
     if RELEASE.exists():
-        preserved=report_audit/'修前快照/研究报告/04_word/研究报告终稿.docx'
+        preserved=ROOT/'研究报告/05_review/当前版/1016研究报告结果同步/修前快照/研究报告/04_word/研究报告终稿.docx'
         assert r.sha(preserved)==record['报告SHA256'],'讨论稿采用报告原件不一致'
         r.REPORT=preserved
     assert r.sha(r.TARGET) == record['修后SHA256'] and r.sha(r.REPORT) == record['报告SHA256']
@@ -290,7 +303,7 @@ def check():
         assert bibliography[local].removeprefix(f'[{local}]').strip() == r.text(refs[original]).removeprefix(f'[{original}]').strip(), ('引文依据错配', original, local)
     visible = '\n'.join(r.text(n) for n in nodes)
     from check_report_policy import body_policy_errors
-    policy = json.loads((ROOT/'tools/report_policy.json').read_text())
+    policy = policy_for_report()
     body_text = visible.split('参考依据')[0]
     assert not body_policy_errors([('供电公司讨论稿.docx最终视图', body_text)], {}, {}, policy['forbidden_body_patterns'])
     record.update(状态='原生修订与完整复用核验通过，待WPS版面检查', 保留原有修订=len(prior),
@@ -360,7 +373,7 @@ def check_user_saved(record):
         assert bibliography[local].removeprefix(f'[{local}]').strip() == r.text(refs[original]).removeprefix(f'[{original}]').strip()
     visible = '\n'.join(r.text(n) for n in nodes)
     from check_report_policy import body_policy_errors
-    policy = json.loads((ROOT/'tools/report_policy.json').read_text())
+    policy = policy_for_report()
     assert not body_policy_errors([('供电公司讨论稿.docx最终视图', visible.split('参考依据')[0])], {}, {}, policy['forbidden_body_patterns'])
     record.update(状态='用户保存语义、完整复用核验通过，待WPS', 用户保存后修订数=len(revision_nodes(after)))
     p = AUDIT/'WPS版面核验.json'

@@ -18,6 +18,11 @@ def body_policy_errors(sources,sections,tables,patterns):
             for rule,pattern in patterns.items():
                 if rule in LOGIC_RULES and is_explanatory_line(line):continue
                 for match in re.finditer(pattern,line):
+                    if (rule=='项目核心增长指标采用完整名称'
+                        and line[max(0,match.start()-3):match.start()]=='年负荷'
+                        and re.search(r'DL/T\s*5729[—－-]2023',line)):
+                        # 仅豁免明确对应2023版规范的原指标名称。
+                        continue
                     errors.append(f'{location}:{line_no}: {rule}: {match[0]}')
             for kind,key in re.findall(r'\[\[(SECTION|TABLE):([^\]]+)\]\]',line):
                 token=(kind,key)
@@ -96,11 +101,13 @@ def main():
         assert '[[TABLE:'+key+']]' in actual_section, '第3.5节缺少筛选证据:'+key
     assert len(cells)==8 and len(index)==2
     chapter_five=next(p.read_text() for p in sources if p.name.startswith('05 '))
-    assert '### 5.4.8 保留2021原表容量的方案对照' in chapter_five
+    assert '### 5.4.8 保留2021实际容量的方案对照' in chapter_five
     referenced='\n'.join(p.read_text() for p in sources)+'\n'+'\n'.join(sections.values())
     for key in ['uncompressed_annual_summary','uncompressed_cost_summary','typical_transfer_matrix','current_transfer_sequence_second']:
         assert '[[TABLE:'+key+']]' in referenced,'第五章缺少已确认结果：'+key
-    assert not re.search(r'\[\[TABLE:current_matrix_',referenced),'推荐矩阵应按典型场景展示'
+    assert not re.search(r'\[\[TABLE:current_matrix_',referenced),'矩阵不得单独按线路费用分类'
+    assert all('[[TABLE:lookup_matrix_'+f'{kd:.2f}'+']]' in sections['new_matrix_tables'] for kd in [1.,1.1,1.15]),'缺少完整分散系数矩阵'
+    assert '线路成本系数' not in sections['new_matrix_tables']
     assert '取0.80' in chapter_five and '故障站取1.00' in chapter_five,'反向承载系数须明确'
     assert '[[TABLE:new_correlations]]' not in body,'旧版无条件仿真相关表已退出正文'
     # 连续式中解释应合并到一段，不能用多个空行分列符号解释。
@@ -175,6 +182,7 @@ def main():
             import pymupdf
             pdfpath=report/'04_word/研究报告终稿.pdf';pdf=pymupdf.open(pdfpath)
             assert any(s in str(pdf.metadata).lower() for s in ['wps','kingsoft'])
+            assert len(pdf)>=policy['minimum_pdf_pages'],f'PDF篇幅不足：{len(pdf)}页'
             # 同时验证渲染后的图片位置，防止Word结构正确但导出排版偏移。
             pdf_images=[(page,im) for page in pdf for im in page.get_image_info()]
             assert len(pdf_images)==len(doc.inline_shapes),'PDF图件数量与Word不一致'

@@ -11,17 +11,25 @@ from 实验.研究.rebuild_2026.static_joint_20261015.model import OperatingLP
 
 REPORT = ROOT/'研究报告'
 A = REPORT/'02图表/当前版'
-REVIEW = REPORT/'05_review/当前版/1016研究报告结果同步'
+REVIEW = REPORT/'05_review/当前版/1016图文扩充与术语复核'
 PUBLIC = REPORT/'01研究推荐/当前版/参数联合情景_20261012'
 CASE = REPORT/'01研究推荐/当前版/静态联合替代_20261015'
 LOCK = REPORT/'01研究推荐/当前版/报告数据采用版本.json'
 FIELDS = ['分布式电源装机渗透率','年最大净负荷平均增长率','电缆长度占比',
           '初始转供率','储能支撑持续时间_h','负荷分散系数']
-SHORT = ['装机渗透率','平均增长率','电缆长度占比','初始转供率','支撑持续时间','负荷分散系数']
+SHORT = ['装机渗透率','年最大净负荷平均增长率','电缆长度占比','初始转供率','支撑持续时间','负荷分散系数']
 SYMBOL = ['ηC','ḡ','α','r₀','H','KD']
 CUTS = [[1,2],[.02,.04,.07],[.1,.3],[.3,.5,.7]]
 LABELS = [['≤1','(1,2]','>2'],['≤2%','(2%,4%]','(4%,7%]','>7%'],
           ['≤10%','(10%,30%]','>30%'],['≤30%','(30%,50%]','(50%,70%]','>70%']]
+
+def display_text(value):
+    import re
+    value=value.replace('原表容量','实际容量')
+    value=value.replace('年最大净负荷平均增长率','__CORE_GROWTH__')
+    value=re.sub(r'(?:四年复合平均|复合平均|复合|年平均|平均|负荷)?增长率','年最大净负荷平均增长率',value)
+    return value.replace('__CORE_GROWTH__','年最大净负荷平均增长率')
+
 
 def read(p): return json.loads(p.read_text())
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -62,7 +70,7 @@ def parameter_assets():
     cells=[];index=[];rows=[]
     for i,r in enumerate(matrix.to_dict('records'),1):
         key=f'typical_transfer_{i}'
-        rows.append([pct(r['装机渗透率']),f"{r['年最大净负荷平均增长率']:.3f}",f(r['负荷分散系数'])]+[r[k] for k in LABELS[3]])
+        rows.append([pct(r['装机渗透率']),f"{100*r['年最大净负荷平均增长率']:g}%",f(r['负荷分散系数'])]+[r[k] for k in LABELS[3]])
         index.append(dict(key=key,装机渗透率=r['装机渗透率'],年最大净负荷平均增长率=r['年最大净负荷平均增长率'],负荷分散系数=r['负荷分散系数']))
         group=nodes[np.isclose(nodes['年最大净负荷平均增长率'],r['年最大净负荷平均增长率'])&np.isclose(nodes['负荷分散系数'],r['负荷分散系数'])].sort_values('初始转供率')
         assert len(group)==9
@@ -76,10 +84,12 @@ def parameter_assets():
             ['初始转供率','主变/MVA','容载比','储能/MWh','新增联络/条','费用现值/万元'],
             [[pct(x['初始转供率']),f(x['主变_MVA']),f(x['容载比']),f(x['储能_MWh']),int(x['新增联络_条']),f(x['费用现值_万元'])] for x in group.to_dict('records')])
     t['typical_transfer_matrix']=table('表5-0 典型源荷条件下随初始转供率变化的容载比推荐范围',
-        ['装机渗透率','平均增长率（小数）','负荷分散系数']+LABELS[3],rows,
+        ['装机渗透率','年最大净负荷平均增长率','负荷分散系数']+LABELS[3],rows,
         '两组均采用电缆长度占比50%、储能支撑持续时间4 h和五站设备重新选配条件。')
-    s['new_matrix_tables']='[[TABLE:typical_transfer_matrix]]\n'
-    s['new_matrix_summary']='在电缆长度占比50%、储能支撑持续时间4 h的共同条件下，选取装机渗透率50%的两组典型源荷场景。每组包含10%～90%的九个初始转供率节点，按四档归纳容载比推荐范围，共形成8个区间单元。两组区间上下界均随转供档位提高而逐档下降。\n'
+    from report_matrix_display import assets as matrix_assets
+    mt,ms,lookup_cells,lookup_index=matrix_assets(d,table,interval)
+    t.update(mt);s.update(ms)
+    s['typical_matrix_summary']='在电缆长度占比50%、储能支撑持续时间4 h的共同条件下，选取装机渗透率50%的两组典型源荷场景。每组包含10%～90%的九个初始转供率节点，按四档归纳容载比推荐范围，共形成8个区间单元。两组区间上下界均随转供档位提高而逐档下降。\n'
     seq=controlled_sequences(d)
     heads=['参数节点','主变/MVA','容载比','储能额定功率/MW','新增联络/条','费用现值/万元']
     def show_node(r,label):return [label,f(r['主变容量_MVA']),f(r['容载比']),f(r['储能额定功率_MW']),int(r['新增联络合计_条']),f(r['费用现值_万元'])]
@@ -89,7 +99,7 @@ def parameter_assets():
         eta_rows.append(show_node(r,'0～1.50' if r[FIELDS[0]]==1.5 else f(r[FIELDS[0]])))
     t['current_eta_sequence']=table('表5-0 装机渗透率对应的设备配置变化',heads,eta_rows,
         '0～1.50合并表示该范围内步长0.25的采样节点采用相同方案。')
-    t['current_growth_sequence']=table('表5-0 平均增长率对应的容量及工程变化',heads,
+    t['current_growth_sequence']=table('表5-0 年最大净负荷平均增长率对应的容量及工程变化',heads,
         [show_node(r,f'{100*r[FIELDS[1]]:g}%') for r in seq['growth'].to_dict('records')])
     cable=seq['cable'];fixed=cable[cable[FIELDS[2]]<.9];r=cable[cable[FIELDS[2]].eq(.9)].iloc[0]
     t['current_cable_sequence']=table('表5-0 电缆长度占比对应的造价与设备切换',heads,
@@ -102,14 +112,15 @@ def parameter_assets():
     t['current_diversity_sequence']=table('表5-0 局部峰值分散程度对应的设备配置',heads,
         [show_node(r,f(r[FIELDS[5]])) for r in seq['diversity'].to_dict('records')])
     t['new_template_assumptions']=table('表5-0 五站推广模板', ['项目','设置'],[
-        ['设备条件','5站，每站2台主变，从31.50、50、63、80 MVA重新选配，基础最小总容量315 MVA'],
+        ['区间矩阵设备','5站，每站保留2×50 MVA，允许更换63、80 MVA，并可扩建第三台50 MVA主变，初始总容量500 MVA'],
+        ['典型转供对照设备','5站，每站两台在31.50、50、63、80 MVA中重新选配，基础最小总容量315 MVA'],
         ['基期网供峰值/目标时点','250 MW/基期后第4年'],
         ['负荷权重','0.10、0.15、0.20、0.25、0.30'],['光伏权重','0.08、0.14、0.18、0.25、0.35'],
         ['日间负荷系数/光伏出力系数','0.30/0.75'],
         ['既有网络','相邻站环网；按基期可实现转供率标定通道和馈线余量'],
         ['新增联络','单项3 km、7.49 MW；允许独立接收馈线，备用间隔按站限制'],
         ['经济参数','第四章统一工程价格与评价期费用'],['容载比','由满足正常及N-1约束、按费用目标比选的可行设备方案计算']])
-    return t,s,cells,index,d
+    return {k:display_text(v) for k,v in t.items()},{k:display_text(v) for k,v in s.items()},cells,index,d
 
 def case_assets():
     lock=read(LOCK);t={};s={};evidence=[];costrows=[];measures=[];costparts=[];decomp=[];mix=[]
@@ -344,7 +355,7 @@ def case_assets():
     sub=fees[fees['起点']=='保留2021原表容量']
     t['uncompressed_cost_summary']=table('表5-0 保留2021原表容量的方案费用',
         ['地区','方案','评价期费用现值/万元'],[[r['地区'],'刚性' if r['方案']=='刚性方案' else '弹性',f(r['费用现值_万元'])] for r in sub.to_dict('records')])
-    return t,s,evidence
+    return {k:display_text(v) for k,v in t.items()},{k:display_text(v) for k,v in s.items()},evidence
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--check',action='store_true');args=ap.parse_args()
@@ -356,8 +367,9 @@ def main():
         for k,v in news.items(): assert sections[k]==v,'生成段落.json:'+k
     else:
         tables.update(newt);sections.update(news)
+        tables={k:display_text(v) for k,v in tables.items()};sections={k:display_text(v) for k,v in sections.items()}
         for path,value in [(A/'计算表.json',tables),(A/'生成段落.json',sections),
-            (REVIEW/'定值展示矩阵.json',dict(说明='采用登记的两组典型场景，18节点按四档转供率归纳8单元，原锁定库保留',索引=index,单元=cells)),
+            (REVIEW/'定值展示矩阵.json',dict(说明='典型转供对照18节点8单元；区间查表另由锁定参数库归纳3表144单元',索引=index,单元=cells)),
             (REVIEW/'逐站展示复算.json',evidence)]:
             path.write_text(json.dumps(value,ensure_ascii=False,indent=2,default=lambda x:x.item())+'\n')
         (REVIEW/'六参数受控完整序列.json').write_text(json.dumps(
