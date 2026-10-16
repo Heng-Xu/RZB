@@ -11,7 +11,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def verify_annual_guide():
     import pymupdf
     annual=ROOT/'研究报告/数据来源/当前版/实际案例相关性/年度样本.csv'
-    measures=sync.CASE/'报告主方案逐年措施.csv'
+    measures=sync.CASE/'逐年方案.csv'
     policy=ROOT/'参考政策/《配电网规划设计技术导则（修订稿）》.pdf'
     with pymupdf.open(policy) as pdf:
         page=pdf[19].get_text()
@@ -26,8 +26,8 @@ def verify_annual_guide():
         assert math.isclose(kp,expected_kp,abs_tol=1e-12)
         assert (0.04<kp<=.07) if region=='邳州' else kp<=.02
         for r in rows:
-            if r['地区']!=region or r['方案']!='弹性无下限':continue
-            y=int(r['年份']);capacity=float(r['年末容量_MVA']);load=float(r['年度负荷_MW']);ratio=capacity/load
+            if r['地区']!=region or r['方案']!='弹性经济优选方案' or r['起点']!='共同仿真起点' or r['年份']=='2021':continue
+            y=int(r['年份']);capacity=float(r['年末主变_MVA']);load=float(r['规划负荷_MW']);ratio=capacity/load
             assert math.isclose(load,float(actual[y]['peak_mw']),abs_tol=1e-8)
             assert math.isclose(ratio,float(r['容载比']),abs_tol=1e-12)
             assert ratio>=lo
@@ -65,20 +65,23 @@ def main():
         blip=shape._inline.xpath('.//a:blip')[0];part=doc.part.related_parts[blip.get(qn('r:embed'))]
         assert hashlib.sha256(part.blob).hexdigest()==sha(ROOT/path),'图件未同步:'+path
     assert len(re.findall(r'^#### .*规划分析$',text,re.M))==46
-    assert len(cells)==432 and len(index)==9 and sum(c['有效样本数'] for c in cells)==32112
+    assert len(cells)==8 and len(index)==2 and sum(c['有效样本数'] for c in cells)==18
+    for scene in [1,2]:
+        group=[c for c in cells if c['场景']==scene]
+        assert all(a['下界']>b['下界'] and a['上界']>b['上界'] for a,b in zip(group,group[1:]))
     assert all(r['最小余量_MW']>-1e-6 for r in evidence)
     body=text.split('# 参考文献')[0]
     for stale in ['12600组','648个','2.001','邳州124.80','市区499.20','年度同比增长率','案例敏感性','储能价格的专项比较']:
         assert stale not in body,'仍有旧版表述:'+stale
-    for item in sync.read(sync.LOCK)['model_files']:
-        assert sha(ROOT/item['path'])==item['sha256'],'模型锁定文件变化:'+item['path']
-    result=dict(状态='通过',有效参数节点=32112,五参数矩阵=9,区间单元=432,逐站分析=46,
-        指标筛选=selection,
+    from verify_adopted_report_results import verify as verify_adoption
+    adoption=verify_adoption()
+    result=dict(状态='通过',相关分析有效节点=32112,典型场景=2,转供节点=18,区间单元=8,逐站分析=46,
+        指标筛选=selection,采用结果=adoption,
         图件=len(expected),原生公式=len(equation_tables(doc)),
-        WordSHA256=sha(word),模型经济参数='锁定文件哈希一致，未改动',
+        WordSHA256=sha(word),模型经济参数='采用登记冻结文件哈希一致，未改动',
         原始依据SHA256={str(p.relative_to(ROOT)):sha(p) for p in [sync.LOCK,
             sync.PUBLIC/'统一有效样本.csv',sync.PUBLIC/'固定其余五项后的组内相关.csv',
-            sync.PUBLIC/'六参数输入相关.csv',sync.CASE/'报告主方案逐年措施.csv']})
+            sync.PUBLIC/'六参数输入相关.csv',sync.CASE/'逐年方案.csv',sync.CASE/'典型场景完整节点.csv']})
     (sync.REVIEW/'当前报告数据核验.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({k:v for k,v in result.items() if k!='原始依据SHA256'},ensure_ascii=False))
 if __name__=='__main__':main()

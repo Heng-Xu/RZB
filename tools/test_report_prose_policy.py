@@ -7,6 +7,13 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_typical_transfer_response_and_matrix_conditions(self):
+        for value in ['推荐矩阵按线路系数分表。','九个细节点均严格下降。','所有转供率节点严格下降。']:
+            self.assertTrue(self.check('[[SECTION:matrix]]',{'matrix':value}))
+        for value in ['四档推荐区间上下界均下降，九个细节点保留平台。',
+                      '线路成本系数用于内部计价，电缆长度占比50%。',
+                      '80%节点主变增加，新增联络减少，方案费用继续下降。']:
+            self.assertEqual(self.check(value),[])
     def test_statistics_require_displayed_table_evidence(self):
         for value in ['Spearman按组内排序检验关联方向[12][13]。',
                       'Spearman最大绝对值为0.26，说明排序关联也较弱。']:

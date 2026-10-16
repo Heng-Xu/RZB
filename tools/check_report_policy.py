@@ -94,7 +94,14 @@ def main():
         'parameter_redundancy_groups','parameter_selection_summary']
     for key in required:
         assert '[[TABLE:'+key+']]' in actual_section, '第3.5节缺少筛选证据:'+key
-    assert len(cells)==432 and len(index)==9
+    assert len(cells)==8 and len(index)==2
+    chapter_five=next(p.read_text() for p in sources if p.name.startswith('05 '))
+    assert '### 5.4.8 保留2021原表容量的方案对照' in chapter_five
+    referenced='\n'.join(p.read_text() for p in sources)+'\n'+'\n'.join(sections.values())
+    for key in ['uncompressed_annual_summary','uncompressed_cost_summary','typical_transfer_matrix','current_transfer_sequence_second']:
+        assert '[[TABLE:'+key+']]' in referenced,'第五章缺少已确认结果：'+key
+    assert not re.search(r'\[\[TABLE:current_matrix_',referenced),'推荐矩阵应按典型场景展示'
+    assert '取0.80' in chapter_five and '故障站取1.00' in chapter_five,'反向承载系数须明确'
     assert '[[TABLE:new_correlations]]' not in body,'旧版无条件仿真相关表已退出正文'
     # 连续式中解释应合并到一段，不能用多个空行分列符号解释。
     if re.search(r'式中[^\n]*\n\s*\n式中',body):errors.append('相邻式中说明应合并')

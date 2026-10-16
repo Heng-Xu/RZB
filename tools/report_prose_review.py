@@ -6,7 +6,7 @@ LOGIC_RULES={'正文避免以分号代替转折条件或推论衔接','正文避
 def is_explanatory_line(line):
  s=line.strip()
  return bool(not s or s.startswith(('#','|','$$','[[FIG:')) or re.match(r'^(?:式中[，：:]|注[：:]|图\s*\d+(?:[-－]\d+)?\s|表\s*\d+(?:[-－]\d+)?\s|\[\d+\])',s) or re.match(r'^(?:表中符号|各项计算分别采用|ηC、ḡ、α、r₀)',s))
-def collect(root=ROOT):
+def collect(root=ROOT,include_discussion=True):
  assets=root/'研究报告/02图表/当前版';sections=json.loads((assets/'生成段落.json').read_text());tables=json.loads((assets/'计算表.json').read_text());entries=[]
  def walk(value,loc,stack=()):
   in_math=False
@@ -27,6 +27,7 @@ def collect(root=ROOT):
    if len(sents)>=3 and short>=2:flags.append('多句衔接逐段复核')
    entries.append({'位置':f'{loc}:{i}','正文':line,'SHA256':hashlib.sha256(line.encode()).hexdigest(),'复核提示':flags})
  for p in sorted((root/'研究报告/03_MD/当前版').glob('0[1-6] *.md')):walk(p.read_text(),str(p.relative_to(root)))
+ if not include_discussion:return entries
  # 最终视图，以修订后的可见内容为准。
  import sys
  sys.path.insert(0,str(root/'tools'))

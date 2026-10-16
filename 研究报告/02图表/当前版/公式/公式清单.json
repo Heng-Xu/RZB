@@ -77,7 +77,7 @@
   },
   {
     "number": "5-4",
-    "tex": "\\sum_{e\\in\\mathcal E_i^{\\mathrm{existing}}}q_{e,\\omega}^{\\mathrm{out}}\\leq\\min\\{B_{i,0},Q_i^{\\mathrm{data}}\\}."
+    "tex": "\\begin{aligned}\n\\rho_i&=\\frac{Q_i^{\\mathrm{data}}}{Q_i^{\\mathrm{data}}+U_i},\\\\\n\\sum_{e\\in\\mathcal E_i^{\\mathrm{existing}}}q_{e,\\omega}^{\\mathrm{out}}&\\leq\\min\\{\\rho_iP_{i,y}^{+},Q_i^{\\mathrm{data}}\\}.\n\\end{aligned}"
   },
   {
     "number": "5-5",
@@ -93,7 +93,7 @@
   },
   {
     "number": "5-8",
-    "tex": "\\begin{aligned}\n-\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}-B_i^-&\\leq P_{i,\\omega}-q_{i,\\omega}^{\\mathrm{out}}+q_{i,\\omega}^{\\mathrm{in}}\\\\\n&\\leq\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}+B_i^+,\\\\\nS_{i,\\omega}^{\\mathrm{av}}&=S_i-\\mathbf1_{i\\text{为故障站}}\\max_j S_{i,j}.\n\\end{aligned}"
+    "tex": "\\begin{aligned}\n-\\gamma_{i,\\omega}\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}-B_i^-&\\leq P_{i,\\omega}-q_{i,\\omega}^{\\mathrm{out}}+q_{i,\\omega}^{\\mathrm{in}}\\\\\n&\\leq\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}+B_i^+,\\\\\nS_{i,\\omega}^{\\mathrm{av}}&=S_i-\\mathbf1_{i\\text{为故障站}}\\max_j S_{i,j}.\n\\end{aligned}"
   },
   {
     "number": "5-9",

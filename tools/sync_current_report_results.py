@@ -7,13 +7,14 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from 实验.研究.rebuild_2026.case_parameters_20261012 import transfer_diagnostic as case
+from 实验.研究.rebuild_2026.static_joint_20261015.model import OperatingLP
 
 REPORT = ROOT/'研究报告'
 A = REPORT/'02图表/当前版'
-REVIEW = REPORT/'05_review/当前版/1013正文与矩阵修订'
+REVIEW = REPORT/'05_review/当前版/1016研究报告结果同步'
 PUBLIC = REPORT/'01研究推荐/当前版/参数联合情景_20261012'
-CASE = REPORT/'01研究推荐/当前版/既有转供约束诊断_20261012'
-LOCK = REPORT/'05_review/当前版/1012既有转供约束诊断/报告采用版本锁定清单.json'
+CASE = REPORT/'01研究推荐/当前版/静态联合替代_20261015'
+LOCK = REPORT/'01研究推荐/当前版/报告数据采用版本.json'
 FIELDS = ['分布式电源装机渗透率','年最大净负荷平均增长率','电缆长度占比',
           '初始转供率','储能支撑持续时间_h','负荷分散系数']
 SHORT = ['装机渗透率','平均增长率','电缆长度占比','初始转供率','支撑持续时间','负荷分散系数']
@@ -24,7 +25,9 @@ LABELS = [['≤1','(1,2]','>2'],['≤2%','(2%,4%]','(4%,7%]','>7%'],
 
 def read(p): return json.loads(p.read_text())
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
-def f(x): return f'{0.0 if abs(float(x))<.005 else float(x):.2f}'
+def f(x):
+    from decimal import Decimal, ROUND_HALF_UP
+    return str(Decimal(str(round(float(x),9))).quantize(Decimal('.01'),rounding=ROUND_HALF_UP))
 def pct(x): return f'{float(x)*100:.0f}%'
 def table(title, headers, rows, note=''):
     result=title+'\n\n| '+' | '.join(headers)+' |\n| '+' | '.join(['---']*len(headers))+' |\n'
@@ -53,51 +56,30 @@ def parameter_assets():
     d=pd.read_csv(PUBLIC/'统一有效样本.csv')
     from report_parameter_selection import assets as selection_assets
     t=selection_assets();s={}
-    # 展示层将分散系数的三个定值分别列示；不改锁定18表及原始节点。
-    b=d.copy()
-    for i,(field,cuts) in enumerate(zip(FIELDS[:4],CUTS)):
-        b['b'+str(i)]=b[field].map(lambda x,cuts=cuts:sum(x>c+1e-9 for c in cuts))
-    cells=[];matrix_sections=[];index=[]
-    for (q,kd),g in b.groupby(['b2',FIELDS[5]],sort=True):
-        key=f'current_matrix_{q}_{kd:.2f}'
-        title=f'电缆长度占比{LABELS[2][q]}，负荷分散系数{kd:.2f}'
-        rows=[]
-        for (growth,eta),row in g.groupby(['b1','b0'],sort=True):
-            values=[]
-            for r in range(4):
-                sub=row[row.b3.eq(r)]
-                assert len(sub)>=2,(q,h,kd,growth,eta,r)
-                lo,hi=sub['容载比'].min(),sub['容载比'].max()
-                values.append(interval(lo,hi))
-                cells.append(dict(电缆档=int(q),负荷分散系数=kd,
-                    增长档=int(growth),渗透率档=int(eta),转供档=r,有效样本数=len(sub),
-                    下界=lo,上界=hi,展示区间=values[-1],
-                    下界参数=list(sub.loc[sub['容载比'].idxmin(),FIELDS]),
-                    上界参数=list(sub.loc[sub['容载比'].idxmax(),FIELDS])))
-            rows.append([LABELS[1][growth],LABELS[0][eta]]+values)
-        t[key]=table('表5-0 '+title,['平均增长率','装机渗透率']+LABELS[3],rows)
-        matrix_sections.append('[[TABLE:'+key+']]')
-        index.append(dict(key=key,title=title))
-    assert len(index)==9 and len(cells)==432
-    assert sum(c['有效样本数'] for c in cells)==32112
-    s['new_matrix_tables']='\n\n'.join(matrix_sections)+'\n'
-    s['new_matrix_summary']=(f'五站模板共设置34686个情景组合，其中32112个有效组合形成容载比区间。'
-        f'按电缆长度占比三档和负荷分散系数三个定值分为9张表，'
-        f'每表以平均增长率和装机渗透率构成12行、初始转供率构成4列，共432个单元。'
-        f'容载比区间总体为{interval(d["容载比"].min(),d["容载比"].max())}。\n')
-    # 给出同一组背景下的完整转供序列，表后按设备切换解释。
-    sample=d[np.isclose(d[FIELDS[0]],1.5)&np.isclose(d[FIELDS[1]],.04)&
-             np.isclose(d[FIELDS[2]],.1)&np.isclose(d[FIELDS[4]],4)&np.isclose(d[FIELDS[5]],1.1)].sort_values(FIELDS[3])
-    assert len(sample)==9
-    sample_rows=[]
-    for r in sample.to_dict('records'):
-        values=[f(r['主变容量_MVA']),f(r['容载比']),f(r['储能额定功率_MW']),
-                int(r['新增联络合计_条']),f(r['费用现值_万元'])]
-        if sample_rows and sample_rows[-1][1:]==values:
-            sample_rows[-1][0]+='、'+pct(r[FIELDS[3]])
-        else:sample_rows.append([pct(r[FIELDS[3]])]+values)
-    t['current_transfer_sequence']=table('表5-0 固定源荷和线路条件下的转供率比较',
-        ['初始转供率','主变/MVA','容载比','储能/MW','新增联络/条','费用现值/万元'],sample_rows)
+    adopted=read(LOCK)
+    matrix=pd.read_csv(CASE/'典型响应推荐矩阵.csv')
+    nodes=pd.read_csv(CASE/'典型场景完整节点.csv')
+    cells=[];index=[];rows=[]
+    for i,r in enumerate(matrix.to_dict('records'),1):
+        key=f'typical_transfer_{i}'
+        rows.append([pct(r['装机渗透率']),f"{r['年最大净负荷平均增长率']:.3f}",f(r['负荷分散系数'])]+[r[k] for k in LABELS[3]])
+        index.append(dict(key=key,装机渗透率=r['装机渗透率'],年最大净负荷平均增长率=r['年最大净负荷平均增长率'],负荷分散系数=r['负荷分散系数']))
+        group=nodes[np.isclose(nodes['年最大净负荷平均增长率'],r['年最大净负荷平均增长率'])&np.isclose(nodes['负荷分散系数'],r['负荷分散系数'])].sort_values('初始转供率')
+        assert len(group)==9
+        for j,label in enumerate(LABELS[3]):
+            sub=group[group['初始转供率'].map(lambda x:sum(x>c+1e-9 for c in CUTS[3]))==j]
+            lo,hi=sub['容载比'].min(),sub['容载比'].max()
+            assert interval(lo,hi)==r[label]
+            cells.append(dict(场景=i,转供档=j,下界=float(lo),上界=float(hi),展示区间=r[label],有效样本数=len(sub)))
+        t['current_transfer_sequence' if i==1 else 'current_transfer_sequence_second']=table(
+            f'表5-0 场景{i}的完整转供率节点及设备方案',
+            ['初始转供率','主变/MVA','容载比','储能/MWh','新增联络/条','费用现值/万元'],
+            [[pct(x['初始转供率']),f(x['主变_MVA']),f(x['容载比']),f(x['储能_MWh']),int(x['新增联络_条']),f(x['费用现值_万元'])] for x in group.to_dict('records')])
+    t['typical_transfer_matrix']=table('表5-0 典型源荷条件下随初始转供率变化的容载比推荐范围',
+        ['装机渗透率','平均增长率（小数）','负荷分散系数']+LABELS[3],rows,
+        '两组均采用电缆长度占比50%、储能支撑持续时间4 h和五站设备重新选配条件。')
+    s['new_matrix_tables']='[[TABLE:typical_transfer_matrix]]\n'
+    s['new_matrix_summary']='在电缆长度占比50%、储能支撑持续时间4 h的共同条件下，选取装机渗透率50%的两组典型源荷场景。每组包含10%～90%的九个初始转供率节点，按四档归纳容载比推荐范围，共形成8个区间单元。两组区间上下界均随转供档位提高而逐档下降。\n'
     seq=controlled_sequences(d)
     heads=['参数节点','主变/MVA','容载比','储能额定功率/MW','新增联络/条','费用现值/万元']
     def show_node(r,label):return [label,f(r['主变容量_MVA']),f(r['容载比']),f(r['储能额定功率_MW']),int(r['新增联络合计_条']),f(r['费用现值_万元'])]
@@ -120,7 +102,7 @@ def parameter_assets():
     t['current_diversity_sequence']=table('表5-0 局部峰值分散程度对应的设备配置',heads,
         [show_node(r,f(r[FIELDS[5]])) for r in seq['diversity'].to_dict('records')])
     t['new_template_assumptions']=table('表5-0 五站推广模板', ['项目','设置'],[
-        ['初始设备','5站，每站2×50 MVA；按位置允许升档和扩建第三台50 MVA'],
+        ['设备条件','5站，每站2台主变，从31.50、50、63、80 MVA重新选配，基础最小总容量315 MVA'],
         ['基期网供峰值/目标时点','250 MW/基期后第4年'],
         ['负荷权重','0.10、0.15、0.20、0.25、0.30'],['光伏权重','0.08、0.14、0.18、0.25、0.35'],
         ['日间负荷系数/光伏出力系数','0.30/0.75'],
@@ -136,10 +118,10 @@ def case_assets():
         row=line.split()
         if len(row)>=3:names[row[-1]]=row[1]
     profile_count=0;loading=[];directions=[];rank=[]
-    selected={}
+    selected={};necessary=[]
     for region in ['pizhou','city']:
-        entries=[r for r in lock['main'] if r['region']==region]
-        inp=read((case.OUT/entries[0]['result_folder']).parent/'inputs.json')
+        entries=[r for r in lock['方案采用'] if r['地区代码']==region and r['起点代码']=='compressed']
+        inp=read(ROOT/entries[0]['输入']['path'])
         cn=inp['region_name'];ids=list(inp['stations']);show=[sid for sid in ids if not sid.startswith('SIM-')]
         scenes=case.base.load_scenes(case.base.OUT/region,inp)
         show_indices=[ids.index(sid) for sid in show]
@@ -154,13 +136,13 @@ def case_assets():
         for j in sorted(show_indices,key=lambda j:-rates[j])[:8]:
             rank.append([cn,names[ids[j]],f(initial_caps[j]),f(pplus[j]),f(pminus[j]),pct(rates[j]),
                          '正向' if pplus[j]>=pminus[j] else '反向'])
-        lp=case.DiagnosticLP(inp)
+        lp=OperatingLP(inp)
         hs=[next(i for i,r in enumerate(inp['station_snapshot_roles']) if role in r['roles'])
             for role in ['地区正向峰值','地区最低净负荷']]
         group={};yearrows=[];construction=[];transfer=[];paragraphs=[]
-        for label,code in [('刚性','rigid_storage'),('弹性','elastic_no_floor')]:
-            entry=next(x for x in entries if x['case']==code);folder=case.OUT/entry['result_folder']
-            assert sha(folder/'chosen_solution.npz')==entry['solution_sha256']
+        for label,code in [('刚性','rigid'),('弹性','elastic_free')]:
+            entry=next(x for x in entries if x['方案代码']==code);folder=ROOT/entry['结果目录']
+            assert sha(folder/'summary.json')==entry['方案汇总']['sha256']
             summary=read(folder/'summary.json');group[label]={};selected[region,label]=summary
             costrows.append([cn,label,f(summary['cost_npv_10k'])])
             sums=[sum(y[k] for y in summary['annual']) for k in ['transformer_npv_10k','storage_npv_10k','line_npv_10k']]
@@ -181,9 +163,17 @@ def case_assets():
                     transfer.append([label,yr,'区域正向峰值' if h==hs[0] else '区域最低净负荷',
                         int((out>1e-7).sum()),int((inc>1e-7).sum()),f(dispatch['total_mw']),
                         f(dispatch['existing_mw']),f(dispatch['new_mw']),f(out.max()),f(inc.max())])
+                maxima=np.zeros(4)
+                for power in scenes[yr]:
+                    ready=lp.prepared(power,yr,units,n,built)
+                    for failed in range(-1,len(ids)):
+                        run=lp.dispatch(power,ready,failed)
+                        j=0 if failed<0 else 2
+                        maxima[j]=max(maxima[j],run['total_mw']);maxima[j+1]=max(maxima[j+1],run['existing_mw'])
+                necessary.append(dict(地区=cn,方案=label,年份=yr,正常总量=maxima[0],正常既有=maxima[1],故障总量=maxima[2],故障既有=maxima[3]))
                 group[label][yr]=dict(units=units,n=n,built=built,normal=normal)
                 yearrows.append([label,yr,f(y['peak_mw']),f(y['capacity_mva']),f(y['clr']),f(y['storage_nameplate_mw']),y['cumulative_lines']])
-                construction.append([label,yr,f(y['net_capacity_increment_mva']),f(y['purchased_transformer_mva']),
+                construction.append([label,yr,f(y['capacity_mva']-prev_s),f(y['purchased_transformer_mva']),
                     y['new_third_count'],f(y['new_storage_mwh']),y['new_lines'],f(y['added_lifecycle_npv_10k'])])
                 capacity=(y['capacity_mva']-prev_s)/y['peak_mw'];load=prev_s*(1/y['peak_mw']-1/prev_p)
                 decomp.append([cn,label,yr,f(capacity),f(load),f(capacity+load)])
@@ -226,7 +216,7 @@ def case_assets():
                 new_n=group['弹性'][yr]['n'][j]
                 if new_n>previous_n+.5:storage_actions.append(f'{yr}年新增{f((new_n-previous_n)*.1)} MW储能')
                 previous_n=new_n
-            storage_text=('，并'+ '，随后'.join(storage_actions)+'。') if storage_actions else '，四年供电任务均由主变及网络承担。'
+            storage_text=('，并于'+ '，随后'.join(storage_actions)+'。') if storage_actions else '，供电任务由主变及网络承担。'
             critical_year,critical_h=max(((yr,h) for yr in inp['years'] for h in range(len(scenes[yr]))),
                 key=lambda pair:abs(scenes[pair[0]][pair[1],j]))
             critical=group['弹性'][critical_year];power=scenes[critical_year][critical_h]
@@ -283,8 +273,8 @@ def case_assets():
             ['方案','年份','工况','转出站数','承接站数','转接合计/MW','既有边/MW','新增边/MW','单站最大转出/MW','单站最大承接/MW'],transfer)
         final=selected[region,'弹性']['annual'][-1]
         first=selected[region,'弹性']['annual'][0]
-        s[f'new_{region}_results']=(f'{cn}弹性方案2022年完成{f(first["net_capacity_increment_mva"])} MVA净增容量，'
-            f'主变总容量达到{f(first["capacity_mva"])} MVA，之后三年保持该容量。'
+        s[f'new_{region}_results']=(f'{cn}弹性方案2022年完成{f(first["capacity_mva"]-inp["initial_capacity_mva"])} MVA净增容量，'
+            f'主变总容量达到{f(first["capacity_mva"])} MVA，2025年为{f(final["capacity_mva"])} MVA。'
             f'各年储能和联络工程按当年供电需求安排，具体在役规模及新增建设分别列于下表。\n')
         s[f'restore_{region}_transfer']=''
     assert profile_count==46
@@ -312,7 +302,7 @@ def case_assets():
     s['restore_cost_components']=(f'邳州弹性方案主变费用现值增加{f(p_diff[0])}万元，'
         f'储能和联络分别减少{f(-p_diff[1])}万元、{f(-p_diff[2])}万元，'
         f'合计减少{f(-p_diff.sum())}万元。首年较充分的主变补强降低了后续配储需求，'
-        '储能费用减少是该地区费用差的主要来源。两类方案2024年起总容量相同，但主变采购及配套措施的时序不同。\n\n'
+        '储能费用减少是该地区费用差的主要来源。2024年弹性方案进一步补强八义集，主变总容量较刚性多11.50 MVA，站内容量分配与配套措施的时序共同形成费用差。\n\n'
         f'市区弹性方案以{f(c_diff[0])}万元主变费用现值替代刚性方案'
         f'{f(-c_diff[2])}万元联络费用，合计减少{f(-c_diff.sum())}万元。'
         '既有转供在两类方案中均提供支援，费用优势来自新增补强方式的不同。'
@@ -331,14 +321,29 @@ def case_assets():
         ['既有转供能力','逐站MW上限与网络能力共同限制','全停全转统计及馈线资料'],
         ['新增联络费用','邳州128.38、市区452.40万元/项','地区电缆长度占比'],
         ['供电安全及功率因数','正常及最大单台主变N-1；0.95','逐工况校核']])
+    t['new_case_assumptions']=t['new_case_assumptions'].rstrip()+'\n'+''.join([
+        '| 反向承载 | 正常及健康站80%，故障站按剩余主变能力 | 导则反向限值与N-1静态校核 |\n',
+        '| 主变采购组织 | 四年内同一位置最多更换一次 | 两类方案共同的工程实施假设 |\n',
+        '| 弹性工程优选 | 经济参考费用5%以内优先简化联络 | 本研究费用容差 |\n'])
     t['line_cost_components']=table('表4-0 电缆长度占比与项目费用',
         ['电缆长度占比','长度/km','单位长度费用/万元·km⁻¹','固定接入费/万元','项目投资/万元'],
         [[pct(q),'3.00',f(24*(1-q)+180*q),'6.00',f(3*(24*(1-q)+180*q)+6)] for q in [.1,.3,.5,.8,.9]])
-    amounts=pd.read_csv(CASE/'报告主方案转供量.csv')
-    t['current_necessary_transfers']=table('表5-0 逐年最大必要既有转供功率',
-        ['地区','方案','年份','正常最大/MW','N-1最大/MW'],
-        [[r['地区'], '弹性' if r['方案']=='弹性无下限' else r['方案'],r['年份'],
-          f(r['正常最大既有转供_MW']),f(r['N1最大既有转供_MW'])] for r in amounts.to_dict('records')])
+    amounts=pd.DataFrame(necessary)
+    t['current_necessary_transfers']=table('表5-0 全部静态工况中的最大必要转供功率',
+        ['地区','方案','年份','正常总量/MW','正常既有边/MW','N-1总量/MW','N-1既有边/MW'],
+        [[r['地区'],r['方案'],r['年份'],f(r['正常总量']),f(r['正常既有']),f(r['故障总量']),f(r['故障既有'])] for r in necessary],
+        '固定设备后逐工况最小化通道转供功率，分别取正常及N-1工况最大值；总量与既有边列分别取最大值。')
+    annual=pd.read_csv(CASE/'逐年方案.csv');fees=pd.read_csv(CASE/'费用及精度.csv');rows=[]
+    for entry in lock['方案采用']:
+        if entry['起点代码']!='annual_2021':continue
+        sub=annual[(annual['地区']==entry['地区'])&(annual['起点']=='保留2021原表容量')&(annual['方案']==entry['方案'])].query('年份>2021').sort_values('年份')
+        for r in sub.to_dict('records'):
+            rows.append([entry['地区'],'刚性' if entry['方案代码']=='rigid' else '弹性',int(r['年份']),f(r['年末主变_MVA']),f(r['容载比']),f(r['年末储能_MWh']),int(r['累计新增联络_条'])])
+    t['uncompressed_annual_summary']=table('表5-0 保留2021原表容量的逐年规划汇总',
+        ['地区','方案','年份','年末主变/MVA','容载比','年末储能/MWh','累计新联络/条'],rows)
+    sub=fees[fees['起点']=='保留2021原表容量']
+    t['uncompressed_cost_summary']=table('表5-0 保留2021原表容量的方案费用',
+        ['地区','方案','评价期费用现值/万元'],[[r['地区'],'刚性' if r['方案']=='刚性方案' else '弹性',f(r['费用现值_万元'])] for r in sub.to_dict('records')])
     return t,s,evidence
 
 def main():
@@ -352,11 +357,11 @@ def main():
     else:
         tables.update(newt);sections.update(news)
         for path,value in [(A/'计算表.json',tables),(A/'生成段落.json',sections),
-            (REVIEW/'定值展示矩阵.json',dict(说明='从锁定32112节点按五参数重分组，时间2/4/6h取包络，保留原锁定成果',索引=index,单元=cells)),
+            (REVIEW/'定值展示矩阵.json',dict(说明='采用登记的两组典型场景，18节点按四档转供率归纳8单元，原锁定库保留',索引=index,单元=cells)),
             (REVIEW/'逐站展示复算.json',evidence)]:
             path.write_text(json.dumps(value,ensure_ascii=False,indent=2,default=lambda x:x.item())+'\n')
         (REVIEW/'六参数受控完整序列.json').write_text(json.dumps(
             {k:v.to_dict('records') for k,v in controlled_sequences(data).items()},ensure_ascii=False,indent=2)+'\n')
-    print('报告资产核验通过：十三项指标筛选五参数、32112节点、9张矩阵、432单元、46座站')
+    print('报告资产核验通过：十三项指标筛选五参数、典型转供18节点8单元、46座站')
 
 if __name__=='__main__':main()

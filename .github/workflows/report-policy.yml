@@ -12,6 +12,7 @@ jobs:
       - run: python tools/test_report_prose_policy.py
       - run: python tools/test_discussion_revisions.py
       - run: python tools/check_report_policy.py --stage final
+      - run: python tools/verify_current_report.py
       - run: python tools/revise_current_discussion.py
       - run: python tools/verify_report_review.py
       - run: python tools/manage_preliminary_archive.py

@@ -242,6 +242,12 @@ def strip_empty_properties(node):
 
 def check():
     record = json.loads((AUDIT/'修订核验.json').read_text())
+    # 用户本轮只修改研究报告，讨论稿继续对应其已审定的报告原件。
+    from verify_report_release import RELEASE, AUDIT as report_audit
+    if RELEASE.exists():
+        preserved=report_audit/'修前快照/研究报告/04_word/研究报告终稿.docx'
+        assert r.sha(preserved)==record['报告SHA256'],'讨论稿采用报告原件不一致'
+        r.REPORT=preserved
     assert r.sha(r.TARGET) == record['修后SHA256'] and r.sha(r.REPORT) == record['报告SHA256']
     if '用户WPS保存核验' in record:
         return check_user_saved(record)

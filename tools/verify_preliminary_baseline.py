@@ -46,7 +46,20 @@ def main():
     record = json.loads(MANIFEST.read_text())
     assert record['状态'] == '文件核验通过'
     updates = verified_successor()
-    verify_files(ROOT, record['文件SHA256'], updates)
+    from verify_report_release import RELEASE, verify as verify_release
+    if RELEASE.exists():
+        release=verify_release()
+        for name,digest in record['文件SHA256'].items():
+            original=ROOT/name
+            if name in release['修改原件']:
+                original=ROOT/release['修改原件'][name]['原件归档']
+            if name in updates:
+                assert updates[name]['原SHA256']==digest
+                assert sha(ROOT/updates[name]['原件归档'])==digest
+                digest=updates[name]['现SHA256']
+            assert sha(original)==digest,'历史定档原件不一致：'+name
+    else:
+        verify_files(ROOT, record['文件SHA256'], updates)
     from manage_preliminary_archive import verify
     verify()
     print(json.dumps({'状态':'通过','版本':record['版本'],'定档文件':len(record['文件SHA256']),

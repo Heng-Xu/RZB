@@ -12,6 +12,10 @@ def formula_text(path):
  ns={'w':'http://schemas.openxmlformats.org/wordprocessingml/2006/main','m':'http://schemas.openxmlformats.org/officeDocument/2006/math'}
  return [''.join(t.xpath('.//m:t/text()',namespaces=ns)) for t in r.xpath('.//w:tbl[w:tblPr/w:tblCaption[@w:val="ReportEquation"]]//m:oMath',namespaces=ns)]
 def main():
+ from verify_report_release import RELEASE,verify
+ if RELEASE.exists():
+  verify()
+  return
  record=json.loads((AUDIT/'复核完成登记.json').read_text());assert record['状态']=='通过'
  from verify_preliminary_baseline import verify_files,verified_successor
  verify_files(ROOT,record['当前文件SHA256'],verified_successor())
