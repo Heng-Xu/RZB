@@ -8,6 +8,7 @@ from docx.oxml.ns import qn
 from docx.enum.style import WD_STYLE_TYPE
 import cairosvg
 ROOT=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(ROOT/'tools'))
 TEXT=ROOT/'研究报告/03_MD/当前版';REVIEW=Path(__file__).parent
 ASSET=ROOT/'研究报告/02图表/当前版';MATH=ASSET/'公式';MATH.mkdir(exist_ok=True)
 OUT=ROOT/'研究报告/04_word';OUT.mkdir(exist_ok=True,parents=True)
@@ -48,24 +49,10 @@ def assemble():
  txt=re.sub(r'\[\[TABLE:([^\]]+)\]\]',lambda m:TABLES[m[1]],txt)
  txt=re.sub(r'\[\[FIG:([^|]+)\|([^\]]+)\]\]',lambda m:'![]('+str((ASSET/(m[1]+'.png')).relative_to(ROOT))+'){width=5.6in}\n\n'+m[2],txt)
  registry={int(k):v for k,v in json.loads((REVIEW/'文献原编号登记.json').read_text()).items()}
- order=[]
- def ids(text):
-  values=[]
-  for part in re.split(r'[,，、]',text):
-   z=re.split(r'[—–－-]',part)
-   values.extend(range(int(z[0]),int(z[-1])+1))
-  return values
- pattern=r'\[([0-9]+(?:[—–－,，、-][0-9]+)*)\]'
- for m in re.finditer(pattern,txt):
-  for n in ids(m[1]):
-   assert n in registry,(n,m[0])
-   if n not in order:order.append(n)
- mapping_refs={n:i+1 for i,n in enumerate(order)}
- def citation(m):return '['+','.join(str(mapping_refs[n]) for n in ids(m[1]))+']'
- txt=re.sub(pattern,citation,txt)
- refs='# 参考文献\n\n'+'\n\n'.join('['+str(mapping_refs[n])+'] '+registry[n] for n in order)+'\n'
+ from report_citations import arrange
+ txt,refs,reference_records=arrange(txt,registry)
  (TEXT/'参考文献.md').write_text(refs)
- (REVIEW/'引文顺序与对应.json').write_text(json.dumps([{'原编号':n,'新编号':mapping_refs[n],'条目':registry[n]} for n in order],ensure_ascii=False,indent=2))
+ (REVIEW/'引文顺序与对应.json').write_text(json.dumps(reference_records,ensure_ascii=False,indent=2))
  txt+='\n\n'+refs
  # 按正文顺序连续编号，公式引用同步改号。
  counters={};mapping={}
@@ -191,7 +178,7 @@ def configure_doc(mathlist):
     cp.append(mar)
     for p in cell.paragraphs:
      f=p.paragraph_format;f.first_line_indent=Pt(0);f.alignment=WD_ALIGN_PARAGRAPH.CENTER;f.line_spacing=Pt(13);f.space_before=Pt(1);f.space_after=Pt(1);f.keep_with_next=idx==0
-     if len(tab.rows)<=10:
+     if len(tab.rows)<=10 or (len(tab.rows)==13 and n==6 and head[:2]==['年最大净负荷平均增长率','装机渗透率']):
       f.keep_with_next=idx<len(tab.rows)-1
      for r in p.runs:font(r,9,idx==0,'宋体')
  # 公式采用等宽侧栏，数学对象居中，式号独立在右栏。

@@ -7,6 +7,15 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_matrix_time_exclusion_is_scoped_and_located(self):
+        from check_report_policy import matrix_policy_errors
+        source='地区案例支撑持续时间为2 h。\n## 5.6 五参数推广矩阵\n[[SECTION:matrix]]\n## 5.7 规划建议'
+        pattern=POLICY['matrix_display']['forbidden_duration_pattern']
+        for value in ['矩阵归纳2、4、6 h支撑条件。','储能支撑持续时间为4 h。']:
+            errors=matrix_policy_errors(source,'第五章.md',{'matrix':value},{},pattern)
+            self.assertTrue(any('第五章.md:3 → 生成段落.json[matrix]:1' in e for e in errors))
+        self.assertEqual(matrix_policy_errors(source,'第五章.md',{'matrix':'按电缆分区列示五参数矩阵。'},{},pattern),[])
+
     def test_saved_discussion_uses_its_verified_report_policy(self):
         from unittest.mock import patch
         import revise_discussion_report_section as discussion

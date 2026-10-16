@@ -20,7 +20,7 @@ from sync_current_report_results import case, controlled_sequences, PUBLIC, LOCK
 from 实验.研究.rebuild_2026.current_economic_assumptions import cost_factors
 
 A = ROOT/'研究报告/02图表/当前版'
-REVIEW = ROOT/'研究报告/05_review/当前版/1016图文扩充与术语复核'
+REVIEW = ROOT/'研究报告/05_review/当前版/1016矩阵分区与文献补充'
 SOURCE = ROOT/'研究报告/数据来源/当前版/图文扩充_20261016'
 SOURCE.mkdir(parents=True, exist_ok=True)
 fontManager.addfont('/usr/share/fonts/wps-office/FZFSK.TTF')
@@ -267,10 +267,6 @@ def parameter_responses():
     axes[0].bar(x-.18,f['主变容量_MVA'],.35,color=BLUE,label='主变容量/MVA');peak=250*(1+f['年最大净负荷平均增长率'])**4;axes[0].bar(x+.18,peak,.35,facecolor='white',edgecolor=GOLD,hatch='//',label='规划负荷/MW');axes[0].set_ylabel('MVA / MW');axes[0].legend(fontsize=10);axes[0].set_title('负荷发展与容量储备消耗',fontsize=14)
     axes[1].plot(x,f['容载比'],'o-',color=BLUE);axes[1].set_ylabel('容载比');axes[1].set_xlabel('年最大净负荷平均增长率');axes[1].set_xticks(x,labels);axes[1].grid(alpha=.18)
     save(fig,'growth_capacity_reserve',f,[path],'容量增量与负荷增长怎样共同改变比值','分面分组柱与比值点线','固定容量段负荷消耗储备，离散增容点改变比值')
-    f=frame('extended_energy_sequence');x=np.arange(len(f));fig,axes=plt.subplots(2,1,figsize=(6.8,6.2),sharex=True)
-    axes[0].bar(x,numeric(f['主变/MVA']),color=BLUE);axes[0].set_ylabel('主变容量/MVA');axes[0].set_title('固定装机条件下的电量与配套措施',fontsize=14)
-    axes[1].bar(x,numeric(f['储能/MW']),color=GOLD);axes[1].set_ylabel('储能额定功率/MW');axes[1].set_xlabel('分布式电源电量渗透率');axes[1].set_xticks(x,f.iloc[:,0],rotation=35,ha='right')
-    save(fig,'energy_capacity_storage',f,[A/'计算表.json'],'电量增加怎样改变主变与储能组合','分面柱图','主变达到平台后仍有储能功率变化')
 
 
 def duration_and_storage_distribution():
@@ -303,24 +299,14 @@ def duration_and_storage_distribution():
         for yy,v in zip(y+offset,d[label]):ax.text(v+.15,yy,show_number(v),va='center',fontsize=10)
     ax.set_yticks(y,d['变电站']);ax.invert_yaxis();ax.set_xlabel('2025年在役储能额定能量/MWh');ax.set_xlim(0,d[['刚性','弹性']].to_numpy().max()*1.2);ax.set_title('邳州末年储能的站点分布',fontsize=14);ax.legend(fontsize=10)
     save(fig,'pizhou_storage_distribution',d,sources,'配储减少集中在哪些站点','逐站分组条形图','储能变化集中于兴塘、邳城等站，部分站保留或新增局部支撑')
-    data=frame('lookup_matrix_1.10');low=[];high=[]
-    for row in data.iloc[:,2:].to_numpy():
-        values=[str(v).split('～') for v in row];low.append([float(v[0]) for v in values]);high.append([float(v[1]) for v in values])
-    labels=[g+' / '+e for g,e in data.iloc[:,:2].to_numpy()]
-    fig,axes=plt.subplots(1,2,figsize=(6.8,7.0),sharey=True)
-    vmin=min(map(min,low));vmax=max(map(max,high))
-    for ax,values,title in zip(axes,[low,high],['区间下界','区间上界']):
-        im=ax.imshow(values,aspect='auto',cmap=LinearSegmentedColormap.from_list('report_range',['#ffffff',BLUE]),vmin=vmin,vmax=vmax)
-        ax.set_xticks(range(4),list(data.columns[2:]),rotation=35,ha='right');ax.set_yticks(range(12),labels,fontsize=10);ax.set_title(title,fontsize=13);ax.set_xlabel('初始转供率')
-        for i in range(12):
-            for j in range(4):ax.text(j,i,f'{values[i][j]:.2f}',ha='center',va='center',fontsize=9,color='white' if values[i][j]>(vmin+vmax)/2 else INK)
-    axes[0].set_ylabel('年最大净负荷平均增长率 / 装机渗透率');fig.suptitle('负荷分散系数1.10的矩阵区间端点',fontsize=14)
-    # 两图采用同一数值色阶，并以格内数字给出精确端点。
-    save(fig,'lookup_matrix_bounds',data,[A/'计算表.json',PUBLIC/'统一有效样本.csv'],'完整矩阵区间怎样随源荷与转供条件分布','同尺度端点热图','区间内多种设备配置共同形成上下界')
+    from report_matrix_figures import lookup_bounds
+    lookup_bounds(save)
 
 
 def main():
     technical_route();history();station_inputs();correlations();engineering();planning();parameter_responses();duration_and_storage_distribution()
+    from report_matrix_figures import parameter_devices
+    parameter_devices(save)
     (REVIEW/'新增图件来源与图形选择.json').write_text(json.dumps(MAP,ensure_ascii=False,indent=2)+'\n')
     print('可复现图件',len(MAP),'（含重绘图1-1）')
 

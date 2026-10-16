@@ -1,0 +1,375 @@
+[
+  {
+    "图键": "technical_route",
+    "分析问题": "方法与成果如何衔接",
+    "图形": "流程框图",
+    "支持结论": "地区规划与参数推广分别组织，并共同核验",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/technical_route.csv",
+    "原始依据": {
+      "研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md": "5f678b95fdb019cd148f398f7f587094812795eaa429880b5e81404126f75a15",
+      "研究报告/05_review/当前版/1016矩阵分区与文献补充/修前快照/研究报告/03_MD/当前版/06 第六章 结论与建议.md": "c7c69cb7b292bdcca33ae250d74f0fbe3bd9ac68ecd595df7d8ea64208bf7928",
+      "研究报告/05_review/当前版/1016矩阵分区与文献补充/修前快照/研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md": "df2834cc310a26ff5c09bf95a51e5716ae4d21a0a25a6cbffc63272d8b1c6571",
+      "研究报告/05_review/当前版/1016矩阵分区与文献补充/修前快照/研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": "105be00e03076b4f6998100682a275edbbc22398c91cb0f88d0d794594129b64",
+      "研究报告/05_review/当前版/1016矩阵分区与文献补充/修前快照/研究报告/03_MD/当前版/01 第一章 绪论.md": "f07f3d3f2832f821463b70eea5302cf5891180eaf859f1c74d088fdb9c2c4013",
+      "研究报告/05_review/当前版/1016矩阵分区与文献补充/修前快照/研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": "5d98dfb99f4b0241789769e3251916aa02065b67c06cc99f0f843c210cdcd248"
+    },
+    "图件SHA256": "867fb6c3831782efa6a76bd7bb8d1f0d000fa8a17b2c781df2064adcfbbc4ebf"
+  },
+  {
+    "图键": "historical_capacity_load",
+    "分析问题": "容量和负荷是否同步变化",
+    "图形": "分面分组柱图",
+    "支持结论": "两地区容量与负荷增长关系不同",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/historical_capacity_load.csv",
+    "原始依据": {
+      "研究报告/数据来源/当前版/实际案例相关性/年度样本.csv": "fc0484261a8367f7d66ae43df6a01c39ffbfcc3d04f1c33a381d8685aea52c83"
+    },
+    "图件SHA256": "ee703809e9020f308093c476a711bc8f8ab1e9aff0ebfcd539f8aeadcafb76bd"
+  },
+  {
+    "图键": "historical_clr_contribution",
+    "分析问题": "比值变化由容量还是负荷引起",
+    "图形": "分组柱与净变化点",
+    "支持结论": "负荷回落和容量建设分别影响比值",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/historical_clr_contribution.csv",
+    "原始依据": {
+      "研究报告/数据来源/当前版/实际案例相关性/年度样本.csv": "fc0484261a8367f7d66ae43df6a01c39ffbfcc3d04f1c33a381d8685aea52c83"
+    },
+    "图件SHA256": "9db1194c857bc9fa0c7c36f3b69c5b7888fd39cb9f8791c5724a8a573b88d87a"
+  },
+  {
+    "图键": "quarterly_energy_comparison",
+    "分析问题": "季节电量比值如何受供用电规模影响",
+    "图形": "分面柱图",
+    "支持结论": "二季度比值高于三季度，分母规模不同",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/quarterly_energy_comparison.csv",
+    "原始依据": {
+      "研究报告/05_review/当前版/1016矩阵分区与文献补充/修前快照/研究报告/02图表/当前版/计算表.json": "beb26ca761b124b10ec4a1f07d0d2c290ade3f7c583fe121e7cf9a04d6b3bec6"
+    },
+    "图件SHA256": "a9a6041391f5580cfeaa7cf53c0bdedc0e439bfb02a77271701ed93cd2490203"
+  },
+  {
+    "图键": "pizhou_station_direction",
+    "分析问题": "各站主要承受哪个方向的容量任务",
+    "图形": "逐站分组条形图",
+    "支持结论": "两方向极值分别展示；各站极值时刻可以不同",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_station_direction.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/inputs.json": "c7bd94a05512782341089767f8a341caa9a8092529c24b0ecfbb45ee0102f20a",
+      "研究报告/01研究推荐/当前版/静态联合替代_20261015/逐年方案.csv": "2e01790e15c19740ec47ce8dc3d66fd6eb6954868232aae06aedd43546e3dfc0"
+    },
+    "图件SHA256": "2a8c7b338e1f2c3024ba826a50c30deca65d932f6222fd564476ac862626e504"
+  },
+  {
+    "图键": "pizhou_station_n1",
+    "分析问题": "总容量变化怎样落实到故障剩余能力",
+    "图形": "分组点图",
+    "支持结论": "相同总容量下设备台数和规格影响N-1剩余能力",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_station_n1.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/inputs.json": "c7bd94a05512782341089767f8a341caa9a8092529c24b0ecfbb45ee0102f20a",
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/rigid_main/stations.csv": "359d5c8ef5c57998c05e3e44a620aef070386434189d49281eefc28b94194360",
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/elastic_engineering/stations.csv": "c61bb6ae4ea7ef751a421ceaee7523fbcce0ab28313f53a4bd12730648b06432"
+    },
+    "图件SHA256": "90abe6b9e790541641ad8768208cd1162feaa8cab4c022b5ed5f2d5e376aaa71"
+  },
+  {
+    "图键": "city_station_direction",
+    "分析问题": "各站主要承受哪个方向的容量任务",
+    "图形": "逐站分组条形图",
+    "支持结论": "两方向极值分别展示；各站极值时刻可以不同",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/city_station_direction.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/city/compressed/inputs.json": "9694f3e83ac36bb9412ef199dd3b6925a6bb028bdae64e77d4685f9bf37eb5a3",
+      "研究报告/01研究推荐/当前版/静态联合替代_20261015/逐年方案.csv": "2e01790e15c19740ec47ce8dc3d66fd6eb6954868232aae06aedd43546e3dfc0"
+    },
+    "图件SHA256": "8de2631fc6e704a0874cdfe8b82570abba8a96f8081f494d65a3a5aaae59ef96"
+  },
+  {
+    "图键": "city_station_n1",
+    "分析问题": "总容量变化怎样落实到故障剩余能力",
+    "图形": "分组点图",
+    "支持结论": "相同总容量下设备台数和规格影响N-1剩余能力",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/city_station_n1.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/city/compressed/inputs.json": "9694f3e83ac36bb9412ef199dd3b6925a6bb028bdae64e77d4685f9bf37eb5a3",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/rigid_certified/stations.csv": "e5006b4654f17ceff3238297be167b60a6cdefdf508d37006c968ffa7bbb05a1",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/elastic_free_certified/stations.csv": "0ef32b550250bb8e268d26f22fbcbeef4b739e7b17fa4af3d406af445df9720c"
+    },
+    "图件SHA256": "8311387fad29110d82ea109e4f0217e17e820efc20d7408eb22d103bf5dc5a4c"
+  },
+  {
+    "图键": "indicator_correlation_strength",
+    "分析问题": "哪些指标达到研究相关强度要求",
+    "图形": "带参考线的相关系数条形图",
+    "支持结论": "九项达到绝对值0.40要求；灰色为其余四项",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/indicator_correlation_strength.csv",
+    "原始依据": {
+      "研究报告/05_review/当前版/1016矩阵分区与文献补充/修前快照/研究报告/02图表/当前版/计算表.json": "beb26ca761b124b10ec4a1f07d0d2c290ade3f7c583fe121e7cf9a04d6b3bec6"
+    },
+    "图件SHA256": "6f1e2a9f0034fe141fd395edbdf81661f9cbf480d259ca53ebc78e4880775d71"
+  },
+  {
+    "图键": "five_parameter_correlation_map",
+    "分析问题": "五项代表参数保留多少线性重叠信息",
+    "图形": "相关矩阵热图",
+    "支持结论": "有效情景库中最大非对角绝对值0.29",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/five_parameter_correlation_map.csv",
+    "原始依据": {
+      "研究报告/01研究推荐/当前版/参数联合情景_20261012/五参数输入相关.csv": "d2a412734f6b54c18bf0df245fd8dc5b29a5b52dc76b7d10e20023ea3b1d676b"
+    },
+    "图件SHA256": "ff6c012b133ab37927b13623460580a72846fac6ebd1ecf294efa4914f89372a"
+  },
+  {
+    "图键": "transformer_capacity_balance",
+    "分析问题": "采购规模与容量增量怎样对应",
+    "图形": "容量构成堆积柱图",
+    "支持结论": "更换工程需要采购被替换的原有容量",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/transformer_capacity_balance.csv",
+    "原始依据": {
+      "研究报告/05_review/当前版/1016矩阵分区与文献补充/修前快照/研究报告/02图表/当前版/计算表.json": "beb26ca761b124b10ec4a1f07d0d2c290ade3f7c583fe121e7cf9a04d6b3bec6"
+    },
+    "图件SHA256": "ae8cba95f5fc55d362c25f8df1a45cab9c55977d6eb9e9d6f11f7d509d98653a"
+  },
+  {
+    "图键": "transformer_unit_cost_basis",
+    "分析问题": "费用系数分母选择如何影响单位值",
+    "图形": "分组柱图",
+    "支持结论": "王庄和鲁庙按净增折算的系数高于按新购折算",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/transformer_unit_cost_basis.csv",
+    "原始依据": {
+      "研究报告/05_review/当前版/1016矩阵分区与文献补充/修前快照/研究报告/02图表/当前版/计算表.json": "beb26ca761b124b10ec4a1f07d0d2c290ade3f7c583fe121e7cf9a04d6b3bec6"
+    },
+    "图件SHA256": "ae99101caf93ecdbadb8df8cd2de6a2672c2b43120effc238dce0b613921bb71"
+  },
+  {
+    "图键": "line_investment_components",
+    "分析问题": "敷设组成怎样改变单项联络价格",
+    "图形": "投资构成堆积柱图",
+    "支持结论": "固定接入费保持6万元，线长部分随电缆占比改变",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/line_investment_components.csv",
+    "原始依据": {
+      "实验/研究/rebuild_2026/current_economic_assumptions.py": "ca25b1cebbbe887ac32fef6572fbd6514d0f96003244bbd462c405eff9ffbabc"
+    },
+    "图件SHA256": "3388f66fa865efc76c2510d3be4b1e9ac85c2e07e593e60ae00bf06167107c34"
+  },
+  {
+    "图键": "storage_support_modules",
+    "分析问题": "同一缺口需要多少功率和电量",
+    "图形": "分面柱图",
+    "支持结论": "支撑时间延长增加所需柜数和额定能量",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/storage_support_modules.csv",
+    "原始依据": {
+      "实验/研究/rebuild_2026/current_economic_assumptions.py": "ca25b1cebbbe887ac32fef6572fbd6514d0f96003244bbd462c405eff9ffbabc"
+    },
+    "图件SHA256": "8b5817ed588f3ebe97de33dffe4bf6e829e951c7bc2564fb80fc744d753eb51f"
+  },
+  {
+    "图键": "lifecycle_investment_maintenance",
+    "分析问题": "不同措施与投运年如何形成现值因子",
+    "图形": "分面堆积柱图",
+    "支持结论": "共同评价期内建设和固定运维形成费用现值",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/lifecycle_investment_maintenance.csv",
+    "原始依据": {
+      "实验/研究/rebuild_2026/current_economic_assumptions.py": "ca25b1cebbbe887ac32fef6572fbd6514d0f96003244bbd462c405eff9ffbabc"
+    },
+    "图件SHA256": "5b9034fe35c045850ff3bc28ecf20b4120c24031e693a8adc748da95149d6ee0"
+  },
+  {
+    "图键": "pizhou_annual_new_measures",
+    "分析问题": "建设措施集中在哪些年份",
+    "图形": "分面分组柱图",
+    "支持结论": "当年新购与新增工程对应投运时点",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_annual_new_measures.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/rigid_main/summary.json": "b410b51a14310dffe1b460738fba9b44be95794d4c525cd40fb7e3ff3667f449",
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/elastic_engineering/summary.json": "07f093a989a20c9e1611731e311afe3ddc3e4ea310fd014ff7fa78996bd2665d",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/rigid_certified/summary.json": "3db1f4036d79028e9ebc8740e2a86b87c32c778613bc6dfd68c8015bb419df29",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/elastic_engineering/summary.json": "b098213802036806833f592cd64a4332156f4726690194151e43a70051887815",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/rigid_certified/summary.json": "44bdca1d08fee1acd655f7a2e89df8e1ff802b731f13fe8be1c6e0b6d9c22e4e",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/elastic_free_certified/summary.json": "c9020094de09d6625ceed9cf2a7e2068f3349fb6a14f23dea2737b9e4ddab9bd",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/rigid_certified/summary.json": "a6e46f10c799a4bd4f06500944534cf0d67376147d10a2b55d3a93e879501d3f",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/elastic_free_certified/summary.json": "7afedb9f8bc2178ab4b967586bf2a5e5f29a8f9ea0baf86e3783d7670add2c7b"
+    },
+    "图件SHA256": "58ad00cfad6e926a9b7fc08ac3585edd199e0f9cc4b300a0fc1b022ef050fc16"
+  },
+  {
+    "图键": "city_annual_new_measures",
+    "分析问题": "建设措施集中在哪些年份",
+    "图形": "分面分组柱图",
+    "支持结论": "当年新购与新增工程对应投运时点",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/city_annual_new_measures.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/rigid_main/summary.json": "b410b51a14310dffe1b460738fba9b44be95794d4c525cd40fb7e3ff3667f449",
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/elastic_engineering/summary.json": "07f093a989a20c9e1611731e311afe3ddc3e4ea310fd014ff7fa78996bd2665d",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/rigid_certified/summary.json": "3db1f4036d79028e9ebc8740e2a86b87c32c778613bc6dfd68c8015bb419df29",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/elastic_engineering/summary.json": "b098213802036806833f592cd64a4332156f4726690194151e43a70051887815",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/rigid_certified/summary.json": "44bdca1d08fee1acd655f7a2e89df8e1ff802b731f13fe8be1c6e0b6d9c22e4e",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/elastic_free_certified/summary.json": "c9020094de09d6625ceed9cf2a7e2068f3349fb6a14f23dea2737b9e4ddab9bd",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/rigid_certified/summary.json": "a6e46f10c799a4bd4f06500944534cf0d67376147d10a2b55d3a93e879501d3f",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/elastic_free_certified/summary.json": "7afedb9f8bc2178ab4b967586bf2a5e5f29a8f9ea0baf86e3783d7670add2c7b"
+    },
+    "图件SHA256": "2dd6a29a40670ed3978333f3acca980f62a8d201327d5405bb7b303b13b84078"
+  },
+  {
+    "图键": "plan_cost_difference",
+    "分析问题": "费用降低由哪些措施贡献",
+    "图形": "带零基准的有符号条形图",
+    "支持结论": "主变费用增加与储能、联络费用节省共同形成合计差",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/plan_cost_difference.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/rigid_main/summary.json": "b410b51a14310dffe1b460738fba9b44be95794d4c525cd40fb7e3ff3667f449",
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/elastic_engineering/summary.json": "07f093a989a20c9e1611731e311afe3ddc3e4ea310fd014ff7fa78996bd2665d",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/rigid_certified/summary.json": "3db1f4036d79028e9ebc8740e2a86b87c32c778613bc6dfd68c8015bb419df29",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/elastic_engineering/summary.json": "b098213802036806833f592cd64a4332156f4726690194151e43a70051887815",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/rigid_certified/summary.json": "44bdca1d08fee1acd655f7a2e89df8e1ff802b731f13fe8be1c6e0b6d9c22e4e",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/elastic_free_certified/summary.json": "c9020094de09d6625ceed9cf2a7e2068f3349fb6a14f23dea2737b9e4ddab9bd",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/rigid_certified/summary.json": "a6e46f10c799a4bd4f06500944534cf0d67376147d10a2b55d3a93e879501d3f",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/elastic_free_certified/summary.json": "7afedb9f8bc2178ab4b967586bf2a5e5f29a8f9ea0baf86e3783d7670add2c7b"
+    },
+    "图件SHA256": "7624be5c54d5e13e301ae0e4897246a368b53e9eebaa7e489bd1e325a542c582"
+  },
+  {
+    "图键": "initial_capacity_cost_comparison",
+    "分析问题": "初始资产条件如何影响新增费用",
+    "图形": "分面柱图",
+    "支持结论": "起点与逐站结构共同影响新增工程，地区比较使用同一已定稿输入",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/initial_capacity_cost_comparison.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/rigid_main/summary.json": "b410b51a14310dffe1b460738fba9b44be95794d4c525cd40fb7e3ff3667f449",
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/elastic_engineering/summary.json": "07f093a989a20c9e1611731e311afe3ddc3e4ea310fd014ff7fa78996bd2665d",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/rigid_certified/summary.json": "3db1f4036d79028e9ebc8740e2a86b87c32c778613bc6dfd68c8015bb419df29",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/elastic_engineering/summary.json": "b098213802036806833f592cd64a4332156f4726690194151e43a70051887815",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/rigid_certified/summary.json": "44bdca1d08fee1acd655f7a2e89df8e1ff802b731f13fe8be1c6e0b6d9c22e4e",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/elastic_free_certified/summary.json": "c9020094de09d6625ceed9cf2a7e2068f3349fb6a14f23dea2737b9e4ddab9bd",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/rigid_certified/summary.json": "a6e46f10c799a4bd4f06500944534cf0d67376147d10a2b55d3a93e879501d3f",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/elastic_free_certified/summary.json": "7afedb9f8bc2178ab4b967586bf2a5e5f29a8f9ea0baf86e3783d7670add2c7b"
+    },
+    "图件SHA256": "78377721248fb8fe58957aef9d01fe5da0a08149e47145bac29defe30b324f72"
+  },
+  {
+    "图键": "xingtang_reverse_capacity",
+    "分析问题": "主变补强如何减少反向吸收任务",
+    "图形": "功率分担堆积柱图",
+    "支持结论": "剩余主变能力增加，对应储能吸收需求减少",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/xingtang_reverse_capacity.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/rigid_main/summary.json": "b410b51a14310dffe1b460738fba9b44be95794d4c525cd40fb7e3ff3667f449",
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/elastic_engineering/summary.json": "07f093a989a20c9e1611731e311afe3ddc3e4ea310fd014ff7fa78996bd2665d",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/rigid_certified/summary.json": "3db1f4036d79028e9ebc8740e2a86b87c32c778613bc6dfd68c8015bb419df29",
+      "研究报告/试算/20261015_静态联合替代/pizhou/annual_2021/elastic_engineering/summary.json": "b098213802036806833f592cd64a4332156f4726690194151e43a70051887815",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/rigid_certified/summary.json": "44bdca1d08fee1acd655f7a2e89df8e1ff802b731f13fe8be1c6e0b6d9c22e4e",
+      "研究报告/试算/20261015_静态联合替代/city/compressed/elastic_free_certified/summary.json": "c9020094de09d6625ceed9cf2a7e2068f3349fb6a14f23dea2737b9e4ddab9bd",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/rigid_certified/summary.json": "a6e46f10c799a4bd4f06500944534cf0d67376147d10a2b55d3a93e879501d3f",
+      "研究报告/试算/20261015_静态联合替代/city/annual_2021/elastic_free_certified/summary.json": "7afedb9f8bc2178ab4b967586bf2a5e5f29a8f9ea0baf86e3783d7670add2c7b"
+    },
+    "图件SHA256": "7f61fd0753d309ec2c9ad2e81c42b68f5eb2630fcb48439948625bfcc4f27ce8"
+  },
+  {
+    "图键": "eta_device_response",
+    "分析问题": "反向任务何时触发主变与储能变化",
+    "图形": "容量曲线与储能柱图",
+    "支持结论": "0至1.50配置保持，之后出现储能及主变组合切换",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/eta_device_response.csv",
+    "原始依据": {
+      "研究报告/01研究推荐/当前版/参数联合情景_20261012/统一有效样本.csv": "fa4b63dfae4a27d80b6a4963e0b632c964aec4fa533f145aca9afc14beeadd37"
+    },
+    "图件SHA256": "1514519e97e622169dfaeba8aa974448bb36c62b794ef68494841e4d67fdd573"
+  },
+  {
+    "图键": "growth_capacity_reserve",
+    "分析问题": "容量增量与负荷增长怎样共同改变比值",
+    "图形": "分面分组柱与比值点线",
+    "支持结论": "固定容量段负荷消耗储备，离散增容点改变比值",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/growth_capacity_reserve.csv",
+    "原始依据": {
+      "研究报告/01研究推荐/当前版/参数联合情景_20261012/统一有效样本.csv": "fa4b63dfae4a27d80b6a4963e0b632c964aec4fa533f145aca9afc14beeadd37"
+    },
+    "图件SHA256": "ee9ce53c0a87ce0644eb50e32d0644420fee847328abc44db96a514a46b45e14"
+  },
+  {
+    "图键": "regional_load_duration",
+    "分析问题": "全年高功率时段的累计占用有多长",
+    "图形": "全时段与近峰段分面持续曲线",
+    "支持结论": "排序用于累计占用分析，连续时长由原时间顺序统计",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/regional_load_duration.csv",
+    "原始依据": {
+      "研究报告/数据来源/当前版/区域时序/pizhou_8760.csv": "091dfc82394100dcd4e14b2384ea4faea290426cc65ebc5d56c10e5f110d87f1",
+      "研究报告/数据来源/当前版/区域时序/city_8760.csv": "fba48108ce6a401528336bd8459fd9383444dd9f936c3ee3a22b7f06a3951a4d"
+    },
+    "图件SHA256": "4ff913741462ecac784d8409f4f2f21774be3c8683f629df82db724f7d2b68e4"
+  },
+  {
+    "图键": "pizhou_storage_distribution",
+    "分析问题": "配储减少集中在哪些站点",
+    "图形": "逐站分组条形图",
+    "支持结论": "储能变化集中于兴塘、邳城等站，部分站保留或新增局部支撑",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/图文扩充_20261016/pizhou_storage_distribution.csv",
+    "原始依据": {
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/rigid_main/stations.csv": "359d5c8ef5c57998c05e3e44a620aef070386434189d49281eefc28b94194360",
+      "研究报告/试算/20261015_静态联合替代/pizhou/compressed/elastic_engineering/stations.csv": "c61bb6ae4ea7ef751a421ceaee7523fbcce0ab28313f53a4bd12730648b06432"
+    },
+    "图件SHA256": "d89a204b519c3571b1e0c17be9a927ca1b74be6f093a575ae187eaf72770e993"
+  },
+  {
+    "图键": "cable_device_response",
+    "分析问题": "参数改变时哪些设备替代、容载比何处切换",
+    "图形": "完整节点的比值曲线及设备分面图",
+    "支持结论": "全部容载比大于2，完整保留响应及真实平台",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/矩阵分区_20261016/cable_device_response.csv",
+    "原始依据": {
+      "研究报告/01研究推荐/当前版/参数联合情景_20261012/统一有效样本.csv": "fa4b63dfae4a27d80b6a4963e0b632c964aec4fa533f145aca9afc14beeadd37"
+    },
+    "图件SHA256": "8289590e26e8eea1d1672835c15754056cc2fd8022eb9a34d5dfdb302cb87ccb"
+  },
+  {
+    "图键": "diversity_device_response",
+    "分析问题": "参数改变时哪些设备替代、容载比何处切换",
+    "图形": "完整节点的比值曲线及设备分面图",
+    "支持结论": "全部容载比大于2，完整保留响应及真实平台",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/矩阵分区_20261016/diversity_device_response.csv",
+    "原始依据": {
+      "研究报告/01研究推荐/当前版/参数联合情景_20261012/统一有效样本.csv": "fa4b63dfae4a27d80b6a4963e0b632c964aec4fa533f145aca9afc14beeadd37"
+    },
+    "图件SHA256": "4e7fb0ef8b608babd570ad7e5873639fa52f075e1efb9291a892d6548f9b6fd5"
+  },
+  {
+    "图键": "lookup_matrix_bounds",
+    "分析问题": "电缆分区内区间端点怎样分布",
+    "图形": "同色阶端点热图",
+    "支持结论": "区间上下界对应相同电缆档和分散系数",
+    "颜色": "蓝、金及灰阶；两类方案以空心、实心或线型共同区分",
+    "绘图数据": "研究报告/数据来源/当前版/矩阵分区_20261016/lookup_matrix_bounds.csv",
+    "原始依据": {
+      "研究报告/02图表/当前版/计算表.json": "cdeff4ed744c77583ad2987e2cc04ba38b3a4018ea96ee776ca7a8683689c86a",
+      "研究报告/01研究推荐/当前版/参数联合情景_20261012/统一有效样本.csv": "fa4b63dfae4a27d80b6a4963e0b632c964aec4fa533f145aca9afc14beeadd37"
+    },
+    "图件SHA256": "2422f9b0c0cd1a13b7b18b753ec38f31e2dd9910cd6ae95da150439d0ae1beab"
+  }
+]

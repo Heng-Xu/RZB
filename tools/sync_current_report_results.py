@@ -11,7 +11,7 @@ from 实验.研究.rebuild_2026.static_joint_20261015.model import OperatingLP
 
 REPORT = ROOT/'研究报告'
 A = REPORT/'02图表/当前版'
-REVIEW = REPORT/'05_review/当前版/1016图文扩充与术语复核'
+REVIEW = REPORT/'05_review/当前版/1016矩阵分区与文献补充'
 PUBLIC = REPORT/'01研究推荐/当前版/参数联合情景_20261012'
 CASE = REPORT/'01研究推荐/当前版/静态联合替代_20261015'
 LOCK = REPORT/'01研究推荐/当前版/报告数据采用版本.json'
@@ -48,10 +48,10 @@ def controlled_sequences(d):
     controls={
         'eta':(0,[1.5,.04,.1,.4,4,1.1]),
         'growth':(1,[1.5,.04,.1,.4,4,1.1]),
-        'cable':(2,[2.5,.04,.1,.7,4,1.1]),
+        'cable':(2,[2.75,.055,.1,.6,2,1.15]),
         'transfer':(3,[1.5,.04,.1,.4,4,1.1]),
         'duration':(4,[2.5,.04,.1,.4,4,1.1]),
-        'diversity':(5,[0,.04,.1,.4,4,1.1])}
+        'diversity':(5,[2.5,.07,.1,.5,4,1.1])}
     results={}
     for name,(index,base) in controls.items():
         mask=np.ones(len(d),dtype=bool)
@@ -85,11 +85,11 @@ def parameter_assets():
             [[pct(x['初始转供率']),f(x['主变_MVA']),f(x['容载比']),f(x['储能_MWh']),int(x['新增联络_条']),f(x['费用现值_万元'])] for x in group.to_dict('records')])
     t['typical_transfer_matrix']=table('表5-0 典型源荷条件下随初始转供率变化的容载比推荐范围',
         ['装机渗透率','年最大净负荷平均增长率','负荷分散系数']+LABELS[3],rows,
-        '两组均采用电缆长度占比50%、储能支撑持续时间4 h和五站设备重新选配条件。')
+        '两组均采用电缆长度占比50%和五站设备重新选配条件。')
     from report_matrix_display import assets as matrix_assets
     mt,ms,lookup_cells,lookup_index=matrix_assets(d,table,interval)
     t.update(mt);s.update(ms)
-    s['typical_matrix_summary']='在电缆长度占比50%、储能支撑持续时间4 h的共同条件下，选取装机渗透率50%的两组典型源荷场景。每组包含10%～90%的九个初始转供率节点，按四档归纳容载比推荐范围，共形成8个区间单元。两组区间上下界均随转供档位提高而逐档下降。\n'
+    s['typical_matrix_summary']='在电缆长度占比50%的共同条件下，选取装机渗透率50%的两组典型源荷场景。每组包含10%～90%的九个初始转供率节点，按四档归纳容载比推荐范围，共形成8个区间单元。两组区间上下界均随转供档位提高而逐档下降。\n'
     seq=controlled_sequences(d)
     heads=['参数节点','主变/MVA','容载比','储能额定功率/MW','新增联络/条','费用现值/万元']
     def show_node(r,label):return [label,f(r['主变容量_MVA']),f(r['容载比']),f(r['储能额定功率_MW']),int(r['新增联络合计_条']),f(r['费用现值_万元'])]
@@ -101,10 +101,15 @@ def parameter_assets():
         '0～1.50合并表示该范围内步长0.25的采样节点采用相同方案。')
     t['current_growth_sequence']=table('表5-0 年最大净负荷平均增长率对应的容量及工程变化',heads,
         [show_node(r,f'{100*r[FIELDS[1]]:g}%') for r in seq['growth'].to_dict('records')])
-    cable=seq['cable'];fixed=cable[cable[FIELDS[2]]<.9];r=cable[cable[FIELDS[2]].eq(.9)].iloc[0]
+    cable=seq['cable'];cable_rows=[]
+    # 仅费用变化的相邻节点合并，保留每次设备切换及其真实费用范围。
+    for _, group in cable.groupby((cable[['主变容量_MVA','储能额定功率_MW','新增联络合计_条']]
+                                   .ne(cable[['主变容量_MVA','储能额定功率_MW','新增联络合计_条']].shift()).any(axis=1)).cumsum(), sort=False):
+        labels='、'.join(pct(v) for v in group[FIELDS[2]])
+        prices=sorted(group['费用现值_万元'])
+        cable_rows.append(show_node(group.iloc[0],labels)[:-1]+[f(prices[0]) if len(group)==1 else f(prices[0])+'～'+f(prices[-1])])
     t['current_cable_sequence']=table('表5-0 电缆长度占比对应的造价与设备切换',heads,
-        [show_node(fixed.iloc[0],'10%、30%、50%、80%')[:-1]+[f(fixed['费用现值_万元'].min())+'～'+f(fixed['费用现值_万元'].max())],
-         show_node(r,'90%')], '首行四个节点配置相同，费用范围对应四个已计算节点。')
+        cable_rows, '同列多个电缆占比表示配置相同，费用范围对应所列采样节点。')
     t['current_duration_sequence']=table('表5-0 固定主变及联络配置下的储能持续时间比较',
         ['储能支撑持续时间/h','储能额定功率/MW','储能额定能量/MWh','费用现值/万元'],
         [[int(r[FIELDS[4]]),f(r['储能额定功率_MW']),f(r['储能额定能量_MWh']),f(r['费用现值_万元'])]
@@ -369,7 +374,7 @@ def main():
         tables.update(newt);sections.update(news)
         tables={k:display_text(v) for k,v in tables.items()};sections={k:display_text(v) for k,v in sections.items()}
         for path,value in [(A/'计算表.json',tables),(A/'生成段落.json',sections),
-            (REVIEW/'定值展示矩阵.json',dict(说明='典型转供对照18节点8单元；区间查表另由锁定参数库归纳3表144单元',索引=index,单元=cells)),
+            (REVIEW/'定值展示矩阵.json',dict(说明='典型转供对照18节点8单元；区间查表另由锁定参数库归纳9表432单元',索引=index,单元=cells)),
             (REVIEW/'逐站展示复算.json',evidence)]:
             path.write_text(json.dumps(value,ensure_ascii=False,indent=2,default=lambda x:x.item())+'\n')
         (REVIEW/'六参数受控完整序列.json').write_text(json.dumps(

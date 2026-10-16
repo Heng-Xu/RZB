@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-16-terminology-full-matrices-and-figures",
+  "version": "2026-10-16-five-parameter-cable-zones-and-citations",
   "forbidden_body_patterns": {
     "修订过程不得进入正文": "修正稿|(?<!配电网规划设计技术导则（)修订稿|上一轮|本轮修订",
     "取整和分档不反复解释": "显示取整|完整精度分档|显示为7%|不能据此将邳州|按显示精度取整",
@@ -81,5 +81,37 @@
     "逐段定位入口": "tools/report_prose_review.py",
     "自动检测边界": "只阻止明确识别的复发句式，其他分号与短句提示供人工判断，禁止按数量一刀切。"
   },
-  "minimum_pdf_pages": 151
+  "minimum_pdf_pages": 160,
+  "matrix_display": {
+    "cable_cuts": [
+      0.1,
+      0.3
+    ],
+    "cable_labels": [
+      "≤10%",
+      "(10%,30%]",
+      ">30%"
+    ],
+    "diversity_values": [
+      1.0,
+      1.1,
+      1.15
+    ],
+    "cells": 432,
+    "forbidden_duration_pattern": "储能支撑持续时间|支撑持续时间|储能持续时间|支撑时长|2、4、6\\s*h",
+    "keep_table_together": true
+  },
+  "citations": {
+    "order": "first_appearance",
+    "same_source_same_number": true,
+    "cluster_order": "ascending_unique",
+    "one_to_one": true,
+    "verify_stages": [
+      "source",
+      "docx",
+      "final"
+    ]
+  },
+  "target_body_pages": 160,
+  "body_page_tolerance": 3
 }

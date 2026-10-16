@@ -35,6 +35,14 @@ def body_policy_errors(sources,sections,tables,patterns):
         scan(value,location)
     return errors
 
+def matrix_policy_errors(source,location,sections,tables,pattern):
+    """只在推荐矩阵范围内应用时长展示规则，保留源行与嵌套资产键。"""
+    lines=source.splitlines();start=next(i for i,line in enumerate(lines) if line.startswith('## 5.6 '))
+    end=next(i for i,line in enumerate(lines[start+1:],start+1) if line.startswith('## 5.7 '))
+    part='\n'.join(lines[start:end])
+    found=body_policy_errors([(location,part)],sections,tables,{'推荐矩阵不展示已排除的时长参数':pattern})
+    return [re.sub(re.escape(location)+r':(\d+)',lambda m:location+':'+str(int(m[1])+start),e,count=1) for e in found]
+
 def check_figure_paragraphs(doc,policy,expected_count):
     from docx.oxml.ns import qn
     figure_policy=policy['figure_paragraph_format']
@@ -106,8 +114,14 @@ def main():
     for key in ['uncompressed_annual_summary','uncompressed_cost_summary','typical_transfer_matrix','current_transfer_sequence_second']:
         assert '[[TABLE:'+key+']]' in referenced,'第五章缺少已确认结果：'+key
     assert not re.search(r'\[\[TABLE:current_matrix_',referenced),'矩阵不得单独按线路费用分类'
-    assert all('[[TABLE:lookup_matrix_'+f'{kd:.2f}'+']]' in sections['new_matrix_tables'] for kd in [1.,1.1,1.15]),'缺少完整分散系数矩阵'
+    assert all('[[TABLE:lookup_matrix_'+f'{c}_{kd:.2f}'+']]' in sections['new_matrix_tables']
+               for c in range(3) for kd in [1.,1.1,1.15]),'缺少电缆分区或负荷分散系数矩阵'
     assert '线路成本系数' not in sections['new_matrix_tables']
+    chapter_path=next(p for p in sources if p.name.startswith('05 '))
+    errors.extend(matrix_policy_errors(chapter_five,str(chapter_path.relative_to(root)),sections,tables,
+                                       policy['matrix_display']['forbidden_duration_pattern']))
+    from report_citations import verify as verify_citations
+    citation_result=verify_citations(root,args.stage)
     assert '取0.80' in chapter_five and '故障站取1.00' in chapter_five,'反向承载系数须明确'
     assert '[[TABLE:new_correlations]]' not in body,'旧版无条件仿真相关表已退出正文'
     # 连续式中解释应合并到一段，不能用多个空行分列符号解释。
@@ -132,6 +146,14 @@ def main():
         from docx import Document
         from docx.oxml.ns import qn
         docpath=report/'04_word/研究报告终稿.docx';doc=Document(docpath)
+        matrices=[tab for tab in doc.tables if len(tab.columns)==6 and len(tab.rows)==13
+                  and [c.text for c in tab.rows[0].cells[:2]]==['年最大净负荷平均增长率','装机渗透率']]
+        assert len(matrices)==9,'原生Word须包含九张完整电缆分区矩阵'
+        for tab in matrices:
+            for i,row in enumerate(tab.rows):
+                for cell in row.cells:
+                    for p in cell.paragraphs:
+                        assert p.paragraph_format.keep_with_next==(i<12),'区间矩阵须按整表连续分页'
         assert doc.settings.element.xpath('.//m:mathFont/@m:val')==[policy['math_format']['font']],'数学字体须采用Times New Roman'
         for run in doc._element.xpath('.//m:r'):
             pr=run.find(qn('w:rPr'));assert pr is not None,'公式字符须显式指定字体'
@@ -182,6 +204,23 @@ def main():
             import pymupdf
             pdfpath=report/'04_word/研究报告终稿.pdf';pdf=pymupdf.open(pdfpath)
             assert any(s in str(pdf.metadata).lower() for s in ['wps','kingsoft'])
+            major=[entry for entry in pdf.get_toc() if entry[0]==1]
+            first=next(entry[2] for entry in major if entry[1].startswith('第一章'))
+            references=next(entry[2] for entry in major if entry[1]=='参考文献')
+            body_pages=references-first
+            assert abs(body_pages-policy['target_body_pages'])<=policy['body_page_tolerance'],('六章正文篇幅偏离约160页',body_pages)
+            result['六章正文页数']=body_pages
+            matrix_pdf=[]
+            for page in pdf:
+                compact=re.sub(r'\s+','',page.get_text())
+                if not re.search(r'表5-\d+电缆长度占比.+容载比区间矩阵',compact):continue
+                for tab in page.find_tables().tables:
+                    header=re.sub(r'\s+','',''.join(x or '' for x in tab.extract()[0]))
+                    if header.startswith('年最大净负荷平均增长率装机渗透率'):
+                        assert (tab.row_count,tab.col_count)==(13,6),('WPS矩阵跨页或不完整',page.number+1)
+                        matrix_pdf.append(dict(页码=page.number+1,行数=tab.row_count,列数=tab.col_count))
+            assert len(matrix_pdf)==9,('WPS完整矩阵数量不符',len(matrix_pdf))
+            result['PDF矩阵整表核验']=matrix_pdf
             assert len(pdf)>=policy['minimum_pdf_pages'],f'PDF篇幅不足：{len(pdf)}页'
             # 同时验证渲染后的图片位置，防止Word结构正确但导出排版偏移。
             pdf_images=[(page,im) for page in pdf for im in page.get_image_info()]
@@ -236,6 +275,7 @@ def main():
             result.update(PDF页数=len(pdf),PDFSHA256=hashlib.sha256(pdfpath.read_bytes()).hexdigest())
             exported=json.loads((review/'WPS原生导出登记.json').read_text())
             assert exported['WordSHA256']==result['WordSHA256'] and exported['PDFSHA256']==result['PDFSHA256'],'Word/PDF导出登记未同步'
+    result['引文一致性']=citation_result
     out=review/'1011局部优化';out.mkdir(exist_ok=True)
     (out/f'{args.stage}约束检查.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     print(json.dumps({k:v for k,v in result.items() if k!='源稿SHA256'},ensure_ascii=False))
