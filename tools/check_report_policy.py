@@ -17,7 +17,9 @@ def body_policy_errors(sources,sections,tables,patterns):
             from report_prose_review import LOGIC_RULES,is_explanatory_line
             for rule,pattern in patterns.items():
                 if rule in LOGIC_RULES and is_explanatory_line(line):continue
-                for match in re.finditer(pattern,line):
+                candidate = re.sub(r'\$[^$]*\$', '', line) if rule=='最终功率电量展示保留两位小数' else line
+                if rule=='最终功率电量展示保留两位小数' and '$$' in line:continue
+                for match in re.finditer(pattern,candidate):
                     if (rule=='项目核心增长指标采用完整名称'
                         and line[max(0,match.start()-3):match.start()]=='年负荷'
                         and re.search(r'DL/T\s*5729[—－-]2023',line)):
@@ -68,6 +70,8 @@ def main():
     policy=json.loads((root/'tools/report_policy.json').read_text())
     report=root/'研究报告';text=report/'03_MD/当前版';asset=report/'02图表/当前版';review=report/'05_review/当前版'
     tables=json.loads((asset/'计算表.json').read_text());sections=json.loads((asset/'生成段落.json').read_text())
+    from report_storage_display import storage_duration_table
+    assert tables['storage_duration_cost']==storage_duration_table(), '计算表.json[storage_duration_cost]: 有效功率、费用或两位小数展示未对应完整精度计算'
     sources=sorted(text.glob('0[1-6] *.md'));assert len(sources)==6
     body='\n\n'.join(p.read_text() for p in sources)
     body=re.sub(r'\[\[SECTION:([^\]]+)\]\]',lambda m:sections[m[1]],body)
@@ -97,6 +101,7 @@ def main():
     assert not any('[[TABLE:'+key+']]' in body for key in ['actual_corr_pizhou','actual_corr_city','actual_corr_target']), '实际年度相关表已退出正文'
     # 以已确认参数库复算展示，明确区分实际年度关联与受控仿真组内相关。
     import sync_current_report_results as current_results
+    assert tables['economic_assumptions']==current_results.economic_assumptions_table(), '计算表.json[economic_assumptions]: 经济费率展示未对应锁定参数的两位小数值'
     generated,generated_sections,cells,index,data=current_results.parameter_assets()
     for key,value in generated.items():
         assert tables[key]==value,'计算表.json:'+key+' 与锁定参数库不一致'

@@ -266,7 +266,7 @@ def parameter_responses():
     f=seq['growth'];x=np.arange(len(f));labels=[f'{v*100:g}%' for v in f['年最大净负荷平均增长率']];fig,axes=plt.subplots(2,1,figsize=(6.8,6.3),sharex=True)
     axes[0].bar(x-.18,f['主变容量_MVA'],.35,color=BLUE,label='主变容量/MVA');peak=250*(1+f['年最大净负荷平均增长率'])**4;axes[0].bar(x+.18,peak,.35,facecolor='white',edgecolor=GOLD,hatch='//',label='规划负荷/MW');axes[0].set_ylabel('MVA / MW');axes[0].legend(fontsize=10);axes[0].set_title('负荷发展与容量储备消耗',fontsize=14)
     axes[1].plot(x,f['容载比'],'o-',color=BLUE);axes[1].set_ylabel('容载比');axes[1].set_xlabel('年最大净负荷平均增长率');axes[1].set_xticks(x,labels);axes[1].grid(alpha=.18)
-    save(fig,'growth_capacity_reserve',f,[path],'容量增量与负荷增长怎样共同改变比值','分面分组柱与比值点线','固定容量段负荷消耗储备，离散增容点改变比值')
+    save(fig,'growth_capacity_reserve',f,[path],'容量增量与负荷增长怎样共同改变比值','分面分组柱与比值点线','固定容量段负荷消耗储备，整台主变增容改变比值')
 
 
 def duration_and_storage_distribution():

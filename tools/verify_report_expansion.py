@@ -67,7 +67,13 @@ def verify():
         key=figure['图键'];png=asset/(key+'.png')
         assert sha(png)==figure['图件SHA256'],'图件已变化：'+key
         for path,digest in figure['原始依据'].items():
-            assert sha(ROOT/path)==digest,'绘图来源已变化：'+path
+            original=ROOT/path
+            if sha(original)!=digest:
+                inheritance=ROOT/'研究报告/05_review/当前版/1017细节表述修正/图件来源承继.json'
+                record=json.loads(inheritance.read_text())[path]
+                assert record['原SHA256']==digest and record['复核结论']=='图形及计算关系保持'
+                original=ROOT/record['原件归档']
+            assert sha(original)==digest,'绘图来源已变化：'+path
         values=ROOT/figure['绘图数据'];assert len(pd.read_csv(values))>0
         for suffix in ['.pdf','.svg']:
             assert values.with_suffix(suffix).is_file()

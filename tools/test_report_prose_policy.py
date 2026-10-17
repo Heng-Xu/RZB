@@ -7,6 +7,34 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_equipment_terms_and_storage_precision(self):
+        for value in ['基期主变按离散规格配置。', '离散设备投运改变容量。',
+                      '市区3座模拟站参与地区计算。', '有效功率为0.08170 MW。']:
+            errors=self.check('[[SECTION:equipment]]',{'equipment':value})
+            self.assertTrue(any('生成段落.json[equipment]:1' in e for e in errors))
+        for value in ['主变按可选额定容量逐台配置。', '文献采用离散粒子群算法。',
+                      '采用相依离散卷积刻画不确定性。', '有效功率为0.82 MW。',
+                      r'计算过程为$E=0.1634\ \mathrm{MWh}$。']:
+            self.assertEqual(self.check(value), [])
+
+    def test_storage_duration_power_and_unrounded_cost(self):
+        from decimal import Decimal
+        from report_storage_display import effective_power,storage_duration_table
+        self.assertEqual(effective_power(1), Decimal('1.00'))
+        self.assertEqual(effective_power(2), Decimal('.8170'))
+        self.assertEqual(effective_power(4), Decimal('.4085'))
+        table=storage_duration_table()
+        self.assertIn('| 1.00 | 2.15 | 0.76 | 1.00 | 210.46 |', table)
+        self.assertIn('| 2.00 | 2.15 | 0.76 | 0.82 | 257.60 |', table)
+        with self.assertRaises(ValueError):effective_power(0)
+
+    def test_economic_table_preserves_actual_rate_precision(self):
+        from sync_current_report_results import economic_assumptions_table
+        value=economic_assumptions_table()
+        for rate in ['4.20%/年', '2.20%/年', '3.00%/年', '6.00%']:
+            self.assertIn(rate,value)
+        self.assertNotIn('初始投资4%/年',value)
+
     def test_matrix_time_exclusion_is_scoped_and_located(self):
         from check_report_policy import matrix_policy_errors
         source='地区案例支撑持续时间为2 h。\n## 5.6 五参数推广矩阵\n[[SECTION:matrix]]\n## 5.7 规划建议'

@@ -11,7 +11,7 @@ from 实验.研究.rebuild_2026.static_joint_20261015.model import OperatingLP
 
 REPORT = ROOT/'研究报告'
 A = REPORT/'02图表/当前版'
-REVIEW = REPORT/'05_review/当前版/1016矩阵分区与文献补充'
+REVIEW = REPORT/'05_review/当前版/1017细节表述修正'
 PUBLIC = REPORT/'01研究推荐/当前版/参数联合情景_20261012'
 CASE = REPORT/'01研究推荐/当前版/静态联合替代_20261015'
 LOCK = REPORT/'01研究推荐/当前版/报告数据采用版本.json'
@@ -43,6 +43,18 @@ def table(title, headers, rows, note=''):
     return result+('\n注：'+note+'\n' if note else '')
 def interval(lo,hi):
     return f'{math.floor((lo+1e-10)*100)/100:.2f}～{math.ceil((hi-1e-10)*100)/100:.2f}'
+
+def economic_assumptions_table():
+    from 实验.研究.rebuild_2026 import current_economic_assumptions as economic
+    return table('表4-1 统一经济评价参数',['参数','取值','计算依据与用途'],[
+        ['评价基准年/截止年','2021/2041','共同评价期费用比较'],
+        ['折现率',f(economic.DISCOUNT_RATE*100)+'%','现值法；统一资金时间价值参数[20—22]'],
+        ['主变/线路使用年限',f'{economic.TRANSFORMER_LIFE}/{economic.LINE_LIFE}年','设备更新间隔；本评价期内无更新'],
+        ['储能使用年限',f'{economic.STORAGE_LIFE}年','设备更新间隔；本评价期内无更新'],
+        ['变电固定运维费率','初始投资'+f(economic.TRANSFORMER_OM*100)+'%/年','按初始投资比例估算年度运维[21]'],
+        ['线路固定运维费率','初始投资'+f(economic.LINE_OM*100)+'%/年','按初始投资比例估算年度运维[22]'],
+        ['储能固定运维费率','初始投资'+f(economic.STORAGE_OM*100)+'%/年','按初始投资比例估算年度运维[20]']],
+        '文献支持费用构成和折现方法，所列年限与费率为本研究统一经济比较取值。')
 
 def controlled_sequences(d):
     controls={
@@ -330,8 +342,9 @@ def case_assets():
     t['new_case_assumptions']=table('表5-0 两地区共同计算条件',['参数','设置','依据'],[
         ['年度负荷','2022—2025年逐年统计','同范围110 kV年度记录'],
         ['静态截面','邳州26个、市区45个','地区和各站局部极值同期截面'],
-        ['正向储能支撑持续时间','邳州2 h、市区6 h','地区95%峰值持续时间'],
-        ['储能规格及可用电量系数','100 kW/215 kWh；0.76','采购资料及静态折算'],
+        ['正向储能支撑持续时间','邳州2.00 h、市区6.00 h','地区95%峰值持续时间'],
+        ['储能规格','100.00 kW/215.00 kWh','采购资料'],
+        ['可用电量系数','0.76','SOC可用窗口与放电效率的研究取值[122]'],
         ['新购主变规格','31.50、50、63、80 MVA','按站限制'],
         ['第三台主变','有预留条件时50 MVA','按站限制'],
         ['既有转供能力','逐站MW上限与网络能力共同限制','全停全转统计及馈线资料'],
@@ -360,6 +373,9 @@ def case_assets():
     sub=fees[fees['起点']=='保留2021原表容量']
     t['uncompressed_cost_summary']=table('表5-0 保留2021原表容量的方案费用',
         ['地区','方案','评价期费用现值/万元'],[[r['地区'],'刚性' if r['方案']=='刚性方案' else '弹性',f(r['费用现值_万元'])] for r in sub.to_dict('records')])
+    from report_storage_display import storage_duration_table
+    t['storage_duration_cost'] = storage_duration_table()
+    t['economic_assumptions'] = economic_assumptions_table()
     return {k:display_text(v) for k,v in t.items()},{k:display_text(v) for k,v in s.items()},evidence
 
 def main():
