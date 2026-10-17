@@ -1,0 +1,24 @@
+{
+  "inherited_data": {
+    "inputs.json": {
+      "path": "研究报告/试算/20261017_逐年需求驱动2035/pizhou/inputs.json",
+      "sha256": "4f7dd33b88f9e9f822fa450de3fdee216ad412a578b9fa509e301c11be2301c2"
+    },
+    "hourly.npz": {
+      "path": "研究报告/试算/20261017_逐年需求驱动2035/pizhou/hourly.npz",
+      "sha256": "57a8489cf106e4e110d0ef8b5b9ec053df1b5031af98248f375b0e75710f6ef3"
+    },
+    "base_components.npz": {
+      "path": "研究报告/试算/20261017_逐年需求驱动2035/pizhou/base_components.npz",
+      "sha256": "91ab653eba1440c38860f635089fceae32e2fca710c97dae50823bd537a15e5a"
+    }
+  },
+  "interval_years": 4,
+  "reference": "研究报告/AGENTS.md中四年内最多更换一次的工程实施假设，用户本轮同意重新定义长周期更换间隔并按总费用比较",
+  "policies": {
+    "replacement_policy": "任意连续四个规划年度内同一原主变位置最多更换一次；两次更换年份之差至少为4。为研究工程实施假设，不冒称规范条款。基期设备既往更换年份缺失，2022年起登记。",
+    "selection_policy": "按当年新增主变、储能和联络全费用现值直接寻优，无配套费用20%容差及少建联络优先阶段，无刚弹结果排序约束",
+    "third_policy": "仅原有允许位置可增第三台，整台50MVA；暂无扩大第三台规格或新增站址的工程证据"
+  },
+  "unchanged": "源荷、年度统计峰值、逐站转供MW上限、通道/端口/受端条件、初始容量和锁定经济参数沿用前版"
+}

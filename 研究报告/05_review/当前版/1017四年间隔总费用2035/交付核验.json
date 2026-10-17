@@ -1,0 +1,41 @@
+{
+  "verified": true,
+  "confidence": "附适用条件用于研究比较",
+  "full_hour_pairs": 12509280,
+  "spot_station_years": 32,
+  "max_spot_error_mw": 0.0,
+  "max_matrix_error": 3.043786810495196e-10,
+  "max_cost_error_10k": 3.4051481634378433e-09,
+  "workbook_cells": 116175,
+  "late_probes": 20,
+  "formal_checks": {
+    "verified": true,
+    "stages": [
+      {
+        "stage": "source",
+        "passed": true,
+        "path": "研究报告/05_review/当前版/1017四年间隔总费用2035/既有报告_source_约束检查.json",
+        "sha256": "14808d9785670777f3cd995358b113a9bb7d7dbe4ddb78e4415e709a4f2e6c5a"
+      },
+      {
+        "stage": "docx",
+        "passed": true,
+        "path": "研究报告/05_review/当前版/1017四年间隔总费用2035/既有报告_docx_约束检查.json",
+        "sha256": "84bff1e9852bcbc999f6b4af8fcec7139e68de014bf2d8651627e6bee877a269"
+      },
+      {
+        "stage": "final",
+        "passed": true,
+        "path": "研究报告/05_review/当前版/1017四年间隔总费用2035/既有报告_final_约束检查.json",
+        "sha256": "9faa65014492b78b39a41720c4deba19517aa768e7699d98f03c8dfcba456a68"
+      }
+    ],
+    "scope": "正式六章、原生Word及既有WPS PDF未替换；仅复核现有交付并保留原冻结核验记录"
+  },
+  "caveats": [
+    "历史源荷为回算及补值序列；2025转供收资用于早期年度，EQ为研究代理",
+    "储能为静态时长支撑，无连续SOC；费用是逐年条件候选，年度下界不作全期最优界",
+    "后期无新增储能检验为单年极限能力反事实；第三台与新增站址未凭空扩展"
+  ],
+  "scope": "本轮新增两地区逐年模型、表格与核验；正式六章、Word、WPS PDF和冻结采用案例未替换"
+}

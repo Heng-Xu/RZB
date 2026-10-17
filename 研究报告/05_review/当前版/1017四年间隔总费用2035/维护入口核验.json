@@ -1,0 +1,10 @@
+{
+  "verified": true,
+  "command": "env OPENBLAS_NUM_THREADS=1 /home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python tools/build_current_report.py --check-only",
+  "exit_code": 0,
+  "scope": "既有六章源、原生Word、WPS PDF、采用成果及上下文衔接通过；正式报告未改写",
+  "docx_sha256": "2b4c4cc80ee660eecaf600015b64715da6c3d6bd0447c96c9fa21db26b3daa94",
+  "pdf_sha256": "d7ad74062ff55112292abf66ba7ca06d3f7f0a2c49acad585a37e02df281cf30",
+  "tests": "本轮15项回归检查通过，含重复写入锁、可行域包含关系及储能补足热启动",
+  "whitespace": "保留继承基线prompt.md原文字节；其原有行尾空格不作清洗，其余本轮变更执行git diff --check"
+}
