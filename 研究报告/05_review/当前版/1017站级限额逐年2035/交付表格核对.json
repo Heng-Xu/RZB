@@ -1,0 +1,25 @@
+{
+  "verified": true,
+  "table_style": "表5-4列项，刚性左、弹性右，增加当年净增容量",
+  "regions": 2,
+  "years_per_region": 15,
+  "common_initial_capacity": true,
+  "strict_planning_year_direction": true,
+  "workbook_sha256": "fe4c109778a653d78bbdcee07b139abebec32b1a2e552af7f147c4dfda1c1720",
+  "md_sha256": "3c25fbd89b42099381a5ec2f2be0a1e5059e174707f9764ef75401fd642adf8f",
+  "checks": [
+    "原始整数解约束重建",
+    "8760小时正常及N-1固定预案检查",
+    "逐年费用重算",
+    "16个重点站点抽样复算",
+    "5项边界回归",
+    "Excel37225格回读",
+    "两张主表列项及首末年逐项核读"
+  ],
+  "caveats": [
+    "20%转供限额为研究情景假设",
+    "配套费用20%优选容差为工程偏好",
+    "静态储能，候选接线含代理，非全期联合最优",
+    "2021固定基线缺口单列"
+  ]
+}

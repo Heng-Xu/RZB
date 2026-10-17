@@ -1,0 +1,21 @@
+{
+  "stage": "cost_01",
+  "status": "Optimal",
+  "solver": "1.15.1",
+  "elapsed_seconds": 0.26773032697383314,
+  "variables": 2608,
+  "constraints": 6874,
+  "relative_gap_target": 0.001,
+  "objective": 5822.908079430699,
+  "dual_bound": 5822.9080794306965,
+  "mip_gap": 4.685775677890396e-16,
+  "accepted": true,
+  "proven_infeasible": false,
+  "matrix_check": {
+    "lower_violation": 6.661338147750939e-16,
+    "upper_violation": 2.8022133204417575e-14,
+    "bound_violation": 7.050701448966898e-14,
+    "integer_violation": 2.2637447472106942e-13
+  },
+  "feasible_incumbent": true
+}

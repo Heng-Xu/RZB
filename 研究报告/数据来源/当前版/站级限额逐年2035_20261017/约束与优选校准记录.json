@@ -1,0 +1,97 @@
+{
+  "target": "用户要求偏向主变增容，弹性较刚性采用更高容量、更少储能和联络；保留真实年度例外",
+  "diagnosis": "上一版既有与新增未共用站级总限额，正常永久跨站卸载与事故追加合计可达到约65%—68%；短期定容加全期单次采购限制后期增容。",
+  "physical": "正常转供归零，既有与新增事故转供合计不超过本站20%区段，采购选型参考2035；刚弹共同适用。",
+  "selection": "先试配套优选和5%/20%容差时，独立对账发现辅助目标漏计了在new_projects变量计价的联络费用，未采用这些候选；修复为按路径逐项计价并加入回归检查后，重算20%配套容差的采用候选。该20%与转供20%为两个独立研究设定，均非规范强制限值。",
+  "caveat": "目标导向的工程情景，不能将期望排序解释成放宽容载比上限的普遍定理；不得以改写数字取得排序。",
+  "candidates": [
+    {
+      "region": "city",
+      "case": "elastic_capacity_auxcost",
+      "adopted": false,
+      "objective_reconciliation": "辅助目标漏计联络费用，独立对账未通过，未采用",
+      "capacity_mva": 4169.0,
+      "storage_mwh": 2657.83,
+      "lines": 20,
+      "cost_npv_10k": 261417.1206731717,
+      "summary_sha256": "955fb4f9fe34ea75e387a626ee07bf25158f855fc54ab1af8e41eb9ff4c0ac1c"
+    },
+    {
+      "region": "city",
+      "case": "elastic_capacity_aux5",
+      "adopted": false,
+      "objective_reconciliation": "辅助目标漏计联络费用，独立对账未通过，未采用",
+      "capacity_mva": 4130.5,
+      "storage_mwh": 2673.095,
+      "lines": 19,
+      "cost_npv_10k": 260618.51889134973,
+      "summary_sha256": "5ace7827fdbf1238d0a558d2515d646bdc7c5c83b410e8d8494970e1be826901"
+    },
+    {
+      "region": "city",
+      "case": "elastic_capacity_aux20_unreconciled",
+      "adopted": false,
+      "objective_reconciliation": "辅助目标漏计联络费用，独立对账未通过，未采用",
+      "capacity_mva": 4140.5,
+      "storage_mwh": 2739.1,
+      "lines": 16,
+      "cost_npv_10k": 264520.9469753347,
+      "summary_sha256": "162ee160b01a5a4cdb3853f9ed344f695bc4ca7d63fe1c87125edefc64eafb83"
+    },
+    {
+      "region": "city",
+      "case": "elastic_capacity",
+      "adopted": true,
+      "objective_reconciliation": "已将储能与联络费用逐项对账",
+      "capacity_mva": 4060.5,
+      "storage_mwh": 2757.375,
+      "lines": 15,
+      "cost_npv_10k": 264396.06633599824,
+      "summary_sha256": "e9d308ca45e24b664b05f7e930dd338d9ecd51c7ca3c0ed798f647fe4741ef92"
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_capacity_auxcost",
+      "adopted": false,
+      "objective_reconciliation": "辅助目标漏计联络费用，独立对账未通过，未采用",
+      "capacity_mva": 3349.0,
+      "storage_mwh": 449.995,
+      "lines": 16,
+      "cost_npv_10k": 70402.17639134476,
+      "summary_sha256": "4cf8f4c07d9db3a6f920fbb54caf55bc7543c260fc684bed8a2d693fd556bd7d"
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_capacity_aux5",
+      "adopted": false,
+      "objective_reconciliation": "辅助目标漏计联络费用，独立对账未通过，未采用",
+      "capacity_mva": 3349.0,
+      "storage_mwh": 450.64,
+      "lines": 13,
+      "cost_npv_10k": 70695.56096170723,
+      "summary_sha256": "de87ebe8529ced2e3743453c2961ff0d0378bfead18fa4c6a17eaba4b3f0fb59"
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_capacity_aux20_unreconciled",
+      "adopted": false,
+      "objective_reconciliation": "辅助目标漏计联络费用，独立对账未通过，未采用",
+      "capacity_mva": 3349.0,
+      "storage_mwh": 471.28,
+      "lines": 10,
+      "cost_npv_10k": 71059.69670072504,
+      "summary_sha256": "58b50b8d0a0033f6fce4dd657c3ee44cdb2d97f4d1e835439cecbdbea8c4b737"
+    },
+    {
+      "region": "pizhou",
+      "case": "elastic_capacity",
+      "adopted": true,
+      "objective_reconciliation": "已将储能与联络费用逐项对账",
+      "capacity_mva": 3349.0,
+      "storage_mwh": 477.945,
+      "lines": 8,
+      "cost_npv_10k": 71408.6522908562,
+      "summary_sha256": "058839f4227487d857f38b0659d1c58c2b86e59bd6206f0f0470b55e3d967371"
+    }
+  ]
+}
