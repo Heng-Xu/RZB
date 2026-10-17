@@ -1,0 +1,163 @@
+{
+  "region": "pizhou",
+  "case": "elastic_free",
+  "cost_npv_10k": 6171.928456109021,
+  "annual": [
+    {
+      "year": 2025,
+      "planning_year": 4,
+      "peak_mw": 956.45,
+      "capacity_mva": 2148.5,
+      "clr": 2.2463275654765016,
+      "purchased_transformer_mva": 244.5,
+      "new_third_count": 1,
+      "new_lines": 3,
+      "cumulative_lines": 3,
+      "storage_nameplate_mw": 3.6,
+      "storage_mwh": 7.74,
+      "new_storage_mwh": 7.74,
+      "construction_capex_10k": 5589.281096727692,
+      "added_lifecycle_npv_10k": 6171.928456109021,
+      "cumulative_lifecycle_npv_10k": 6171.928456109021,
+      "transformer_npv_10k": 5016.982846302507,
+      "storage_npv_10k": 782.0675230725101,
+      "line_npv_10k": 372.8780867340035
+    }
+  ],
+  "solver": {
+    "stage": "engineering_01",
+    "status": "经济参考5%费用容差内优先简化联络的单年可行方案",
+    "solver": "1.15.1",
+    "elapsed_seconds": 0.17294130090158433,
+    "variables": 14068,
+    "constraints": 27190,
+    "relative_gap_target": 1e-05,
+    "objective": 6171.92845610902,
+    "dual_bound": 5926.911488013892,
+    "mip_gap": 0.0396986079533388,
+    "accepted": false,
+    "proven_infeasible": false,
+    "matrix_check": {
+      "lower_violation": 0.0,
+      "upper_violation": 0.0,
+      "bound_violation": 0.0,
+      "integer_violation": 0.0
+    },
+    "feasible_incumbent": true,
+    "construction_search": {
+      "stage": "engineering_01",
+      "status": "Optimal",
+      "solver": "1.15.1",
+      "elapsed_seconds": 0.17294130090158433,
+      "variables": 14068,
+      "constraints": 27190,
+      "relative_gap_target": 1e-05,
+      "objective": 3.0000099175213144,
+      "dual_bound": 3.0000099175213144,
+      "mip_gap": 0.0,
+      "accepted": true,
+      "proven_infeasible": false,
+      "matrix_check": {
+        "lower_violation": 0.0,
+        "upper_violation": 0.0,
+        "bound_violation": 0.0,
+        "integer_violation": 0.0
+      },
+      "feasible_incumbent": true
+    }
+  },
+  "scenario_iterations": [
+    {
+      "iteration": 1,
+      "construction_search": {
+        "stage": "engineering_01",
+        "status": "Optimal",
+        "solver": "1.15.1",
+        "elapsed_seconds": 0.17294130090158433,
+        "variables": 14068,
+        "constraints": 27190,
+        "relative_gap_target": 1e-05,
+        "objective": 3.0000099175213144,
+        "dual_bound": 3.0000099175213144,
+        "mip_gap": 0.0,
+        "accepted": true,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      },
+      "checks": [
+        {
+          "year": 2025,
+          "checked_pairs": 546,
+          "independent_lp_calls": 82,
+          "direct_checks": 464,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "full_hour_network_checks": [
+    {
+      "year": 2025,
+      "checked_pairs": 546,
+      "independent_lp_calls": 82,
+      "direct_checks": 464,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    }
+  ],
+  "cost_recomputation_error_10k": 9.094947017729282e-13,
+  "scope": "2025单年静态机制筛查，2021设备保持且只决定本年度措施；不代替逐年规划",
+  "common_floor": 1.7,
+  "history": [
+    {
+      "iteration": 1,
+      "construction_search": {
+        "stage": "engineering_01",
+        "status": "Optimal",
+        "solver": "1.15.1",
+        "elapsed_seconds": 0.17294130090158433,
+        "variables": 14068,
+        "constraints": 27190,
+        "relative_gap_target": 1e-05,
+        "objective": 3.0000099175213144,
+        "dual_bound": 3.0000099175213144,
+        "mip_gap": 0.0,
+        "accepted": true,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      },
+      "checks": [
+        {
+          "year": 2025,
+          "checked_pairs": 546,
+          "independent_lp_calls": 82,
+          "direct_checks": 464,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "selection": {
+    "reference_cost": 5926.911488013892,
+    "cost_tolerance": 0.05,
+    "actual_premium": 0.041339738005305104,
+    "rule": "费用容差内优先最少联络；未施加容量或储能跨方案排序要求"
+  }
+}

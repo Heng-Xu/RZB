@@ -29,13 +29,16 @@ def verify_context(root, release, expected):
     manifest_path = root/record['独立成果清单']
     assert digest(manifest_path) == record['独立成果清单SHA256']
     manifest = json.loads(manifest_path.read_text())
-    assert manifest['状态'] == '逐年可行方案已核对'
+    assert manifest['状态'] in {'逐年可行方案已核对', '机制审查及单年筛查已核对'}
     for item in manifest['files']:
         assert digest(root/item['path']) == item['sha256'], '后继成果变化：'+item['path']
     proof_path = root/record['独立核验记录']
     assert digest(proof_path) == record['独立核验记录SHA256']
     proof = json.loads(proof_path.read_text())
-    assert proof['verified'] and len(proof['schemes']) == 2
+    assert proof['verified'] and proof['schemes'] and proof['solution_sources']
+    if manifest['状态']=='机制审查及单年筛查已核对':
+        assert proof['artifact_kind']=='model_mechanism_review'
+        assert proof['limitation'] and proof['static_pairs_probes']>0
     for source in proof['solution_sources']:
         folder = root/source['folder']
         for name, value in source['files'].items():

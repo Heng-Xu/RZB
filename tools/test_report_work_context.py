@@ -49,3 +49,11 @@ def test_formal_report_change_is_rejected():
         root=Path(folder);release,expected=fixture(root)
         put(root,'研究报告/正文.md','新的正文');expected['研究报告/正文.md']=hashlib.sha256(b'old').hexdigest()
         with pytest.raises(AssertionError):verify_context(root,release,expected)
+
+
+def test_wrong_scope_cannot_be_registered_as_verified_mechanism_review():
+    with tempfile.TemporaryDirectory() as folder:
+        root=Path(folder);release,expected=fixture(root)
+        p=root/'manifest.json';manifest=json.loads(p.read_text());manifest['状态']='机制审查及单年筛查已核对';put(root,'manifest.json',manifest)
+        record=json.loads((root/CONTEXT).read_text());record['独立成果清单SHA256']=digest(p);put(root,CONTEXT,record)
+        with pytest.raises((AssertionError,KeyError)):verify_context(root,release,expected)

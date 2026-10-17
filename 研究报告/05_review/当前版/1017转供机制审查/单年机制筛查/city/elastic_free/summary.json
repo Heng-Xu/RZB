@@ -1,0 +1,138 @@
+{
+  "region": "pizhou",
+  "case": "elastic_free",
+  "cost_npv_10k": 2430.9511666205503,
+  "annual": [
+    {
+      "year": 2025,
+      "planning_year": 4,
+      "peak_mw": 1528.82,
+      "capacity_mva": 3140.5,
+      "clr": 2.0541986630211535,
+      "purchased_transformer_mva": 130.0,
+      "new_third_count": 0,
+      "new_lines": 0,
+      "cumulative_lines": 0,
+      "storage_nameplate_mw": 0.0,
+      "storage_mwh": 0.0,
+      "new_storage_mwh": 0.0,
+      "construction_capex_10k": 2154.53333329,
+      "added_lifecycle_npv_10k": 2430.9511666205503,
+      "cumulative_lifecycle_npv_10k": 2430.9511666205503,
+      "transformer_npv_10k": 2430.9511666205503,
+      "storage_npv_10k": 0.0,
+      "line_npv_10k": 0.0
+    }
+  ],
+  "solver": {
+    "stage": "probe_01",
+    "status": "Optimal",
+    "solver": "1.15.1",
+    "elapsed_seconds": 0.45471066096797585,
+    "variables": 39292,
+    "constraints": 90144,
+    "relative_gap_target": 0.01,
+    "objective": 2430.9511666205503,
+    "dual_bound": 2430.9511666205503,
+    "mip_gap": 0.0,
+    "accepted": true,
+    "proven_infeasible": false,
+    "matrix_check": {
+      "lower_violation": 0.0,
+      "upper_violation": 0.0,
+      "bound_violation": 0.0,
+      "integer_violation": 0.0
+    },
+    "feasible_incumbent": true
+  },
+  "scenario_iterations": [
+    {
+      "iteration": 1,
+      "selected_pairs": 30,
+      "checks": [
+        {
+          "year": 2025,
+          "checked_pairs": 1350,
+          "independent_lp_calls": 271,
+          "direct_checks": 1079,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        }
+      ],
+      "solver": {
+        "stage": "probe_01",
+        "status": "Optimal",
+        "solver": "1.15.1",
+        "elapsed_seconds": 0.45471066096797585,
+        "variables": 39292,
+        "constraints": 90144,
+        "relative_gap_target": 0.01,
+        "objective": 2430.9511666205503,
+        "dual_bound": 2430.9511666205503,
+        "mip_gap": 0.0,
+        "accepted": true,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      }
+    }
+  ],
+  "full_hour_network_checks": [
+    {
+      "year": 2025,
+      "checked_pairs": 1350,
+      "independent_lp_calls": 271,
+      "direct_checks": 1079,
+      "violating_pairs": 0,
+      "max_deficit_mw": 0.0,
+      "verified": true
+    }
+  ],
+  "cost_recomputation_error_10k": 0.0,
+  "scope": "2025单年静态机制筛查，2021设备保持且只决定本年度措施；不代替逐年规划",
+  "common_floor": 1.5,
+  "history": [
+    {
+      "iteration": 1,
+      "selected_pairs": 30,
+      "checks": [
+        {
+          "year": 2025,
+          "checked_pairs": 1350,
+          "independent_lp_calls": 271,
+          "direct_checks": 1079,
+          "violating_pairs": 0,
+          "max_deficit_mw": 0.0,
+          "verified": true
+        }
+      ],
+      "solver": {
+        "stage": "probe_01",
+        "status": "Optimal",
+        "solver": "1.15.1",
+        "elapsed_seconds": 0.45471066096797585,
+        "variables": 39292,
+        "constraints": 90144,
+        "relative_gap_target": 0.01,
+        "objective": 2430.9511666205503,
+        "dual_bound": 2430.9511666205503,
+        "mip_gap": 0.0,
+        "accepted": true,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      }
+    }
+  ]
+}
