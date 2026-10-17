@@ -1,0 +1,214 @@
+{
+  "verified": true,
+  "reviewed": [
+    "两地区全部年度完整序列",
+    "2021固定基线与2022起补强范围",
+    "2022/2025/2030/2035关键配置",
+    "费用分项差额和总现值",
+    "原始整数解与工作簿一致",
+    "MWh显示舍入与整数柜数"
+  ],
+  "checks": [
+    {
+      "region": "city",
+      "year": 2022,
+      "capacity_more": 233.0,
+      "storage_less": 3.655,
+      "ties_less": 30
+    },
+    {
+      "region": "city",
+      "year": 2023,
+      "capacity_more": 233.0,
+      "storage_less": 3.4399999999999995,
+      "ties_less": 33
+    },
+    {
+      "region": "city",
+      "year": 2024,
+      "capacity_more": 233.0,
+      "storage_less": 3.4399999999999995,
+      "ties_less": 33
+    },
+    {
+      "region": "city",
+      "year": 2025,
+      "capacity_more": 233.0,
+      "storage_less": 3.4399999999999995,
+      "ties_less": 33
+    },
+    {
+      "region": "city",
+      "year": 2026,
+      "capacity_more": 183.0,
+      "storage_less": 3.6549999999999994,
+      "ties_less": 31
+    },
+    {
+      "region": "city",
+      "year": 2027,
+      "capacity_more": 201.5,
+      "storage_less": 3.869999999999999,
+      "ties_less": 34
+    },
+    {
+      "region": "city",
+      "year": 2028,
+      "capacity_more": 183.0,
+      "storage_less": 0.21499999999999986,
+      "ties_less": 34
+    },
+    {
+      "region": "city",
+      "year": 2029,
+      "capacity_more": 183.0,
+      "storage_less": 0.8600000000000012,
+      "ties_less": 35
+    },
+    {
+      "region": "city",
+      "year": 2030,
+      "capacity_more": 183.0,
+      "storage_less": 16.125,
+      "ties_less": 34
+    },
+    {
+      "region": "city",
+      "year": 2031,
+      "capacity_more": 180.0,
+      "storage_less": 16.555,
+      "ties_less": 33
+    },
+    {
+      "region": "city",
+      "year": 2032,
+      "capacity_more": 173.0,
+      "storage_less": 12.04,
+      "ties_less": 36
+    },
+    {
+      "region": "city",
+      "year": 2033,
+      "capacity_more": 106.0,
+      "storage_less": 14.835,
+      "ties_less": 29
+    },
+    {
+      "region": "city",
+      "year": 2034,
+      "capacity_more": 56.0,
+      "storage_less": 14.835,
+      "ties_less": 24
+    },
+    {
+      "region": "city",
+      "year": 2035,
+      "capacity_more": 30.5,
+      "storage_less": 41.709999999999994,
+      "ties_less": 22
+    },
+    {
+      "region": "pizhou",
+      "year": 2022,
+      "capacity_more": 23.0,
+      "storage_less": 48.375,
+      "ties_less": 2
+    },
+    {
+      "region": "pizhou",
+      "year": 2023,
+      "capacity_more": 23.0,
+      "storage_less": 48.375,
+      "ties_less": 2
+    },
+    {
+      "region": "pizhou",
+      "year": 2024,
+      "capacity_more": 23.0,
+      "storage_less": 55.04,
+      "ties_less": 0
+    },
+    {
+      "region": "pizhou",
+      "year": 2025,
+      "capacity_more": 41.5,
+      "storage_less": 65.79,
+      "ties_less": 2
+    },
+    {
+      "region": "pizhou",
+      "year": 2026,
+      "capacity_more": 71.5,
+      "storage_less": 88.36500000000001,
+      "ties_less": 5
+    },
+    {
+      "region": "pizhou",
+      "year": 2027,
+      "capacity_more": 41.5,
+      "storage_less": 85.35499999999999,
+      "ties_less": 4
+    },
+    {
+      "region": "pizhou",
+      "year": 2028,
+      "capacity_more": 50.0,
+      "storage_less": 83.42000000000002,
+      "ties_less": 5
+    },
+    {
+      "region": "pizhou",
+      "year": 2029,
+      "capacity_more": 11.5,
+      "storage_less": 79.33500000000001,
+      "ties_less": 7
+    },
+    {
+      "region": "pizhou",
+      "year": 2030,
+      "capacity_more": 61.5,
+      "storage_less": 80.625,
+      "ties_less": 6
+    },
+    {
+      "region": "pizhou",
+      "year": 2031,
+      "capacity_more": 56.0,
+      "storage_less": 85.35499999999999,
+      "ties_less": 6
+    },
+    {
+      "region": "pizhou",
+      "year": 2032,
+      "capacity_more": 57.5,
+      "storage_less": 72.24000000000001,
+      "ties_less": 0
+    },
+    {
+      "region": "pizhou",
+      "year": 2033,
+      "capacity_more": 20.5,
+      "storage_less": 58.69500000000002,
+      "ties_less": 3
+    },
+    {
+      "region": "pizhou",
+      "year": 2034,
+      "capacity_more": 110.5,
+      "storage_less": 70.73499999999996,
+      "ties_less": 4
+    },
+    {
+      "region": "pizhou",
+      "year": 2035,
+      "capacity_more": 140.5,
+      "storage_less": 78.90499999999997,
+      "ties_less": 9
+    }
+  ],
+  "workbook_cells": 196828,
+  "assessment": "可供讨论，包含明确代理假设；正式报告未变",
+  "user_handoff": "用户要求先给结果，有问题再后续分析；不继续扩展分析或HTML渲染",
+  "limitations": "代理区段与候选网络的静态逐年可行方案，非真实竣工拓扑、非连续SOC调度、非全期联合全局最优；2021固定基线缺口单列",
+  "formatting": "计算及判定保留完整精度；展示先消除1e-9量级浮点噪声再按两位小数四舍五入"
+}

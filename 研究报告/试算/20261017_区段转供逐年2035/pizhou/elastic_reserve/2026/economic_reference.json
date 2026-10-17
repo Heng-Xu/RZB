@@ -1,0 +1,775 @@
+{
+  "solver": {
+    "stage": "reference_fixed",
+    "status": "固定设备及预案可行性复核；规划问题只登记非负费用的零下界",
+    "solver": "1.15.1",
+    "elapsed_seconds": 0.06210588896647096,
+    "variables": 2688,
+    "constraints": 7224,
+    "relative_gap_target": 1e-05,
+    "objective": 2088.94825461362,
+    "dual_bound": 0.0,
+    "mip_gap": 1.0,
+    "accepted": false,
+    "proven_infeasible": false,
+    "matrix_check": {
+      "lower_violation": 0.0,
+      "upper_violation": 0.0,
+      "bound_violation": 0.0,
+      "integer_violation": 0.0
+    },
+    "feasible_incumbent": true,
+    "fixed_layout_bound": 2088.9482546136205,
+    "source_status": "Optimal"
+  },
+  "units": [
+    [
+      31.5,
+      63.0,
+      0.0
+    ],
+    [
+      63.0,
+      80.0,
+      0.0
+    ],
+    [
+      31.5,
+      63.0,
+      0.0
+    ],
+    [
+      31.5,
+      50.0,
+      0.0
+    ],
+    [
+      40.0,
+      63.0,
+      0.0
+    ],
+    [
+      50.0,
+      63.0,
+      0.0
+    ],
+    [
+      80.0,
+      80.0,
+      0.0
+    ],
+    [
+      40.0,
+      63.0,
+      0.0
+    ],
+    [
+      31.5,
+      63.0,
+      0.0
+    ],
+    [
+      63.0,
+      80.0,
+      0.0
+    ],
+    [
+      31.5,
+      63.0,
+      0.0
+    ],
+    [
+      80.0,
+      80.0,
+      0.0
+    ],
+    [
+      40.0,
+      63.0,
+      0.0
+    ],
+    [
+      63.0,
+      63.0,
+      0.0
+    ],
+    [
+      31.5,
+      63.0,
+      0.0
+    ],
+    [
+      31.5,
+      40.0,
+      0.0
+    ],
+    [
+      31.5,
+      63.0,
+      0.0
+    ],
+    [
+      20.0,
+      50.0,
+      0.0
+    ],
+    [
+      20.0,
+      40.0,
+      0.0
+    ],
+    [
+      31.5,
+      63.0,
+      0.0
+    ]
+  ],
+  "modules": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    114,
+    0,
+    0,
+    0,
+    0,
+    5,
+    0
+  ],
+  "built": [
+    "FEEDER-002",
+    "FEEDER-007",
+    "FEEDER-017",
+    "FEEDER-026",
+    "FEEDER-028",
+    "FEEDER-034",
+    "FEEDER-039",
+    "FEEDER-050",
+    "FEEDER-053",
+    "FEEDER-081",
+    "FEEDER-086",
+    "FEEDER-087",
+    "FEEDER-095",
+    "NEW-001",
+    "NEW-002",
+    "NEW-038",
+    "NEW-040",
+    "NEW-041",
+    "NEW-043",
+    "NEW-045",
+    "NEW-047",
+    "NEW-052",
+    "NEW-054",
+    "NEW-064",
+    "NEW-075",
+    "NEW-098",
+    "NEW-107",
+    "NEW-141",
+    "NEW-162",
+    "NEW-163",
+    "NEW-168",
+    "NEW-173",
+    "NEW-175"
+  ],
+  "normal": {
+    "77": 3,
+    "87": 2,
+    "91": 1,
+    "324": 3,
+    "357": 1,
+    "374": 1,
+    "379": 4
+  },
+  "extra": {
+    "0": 5,
+    "2": 5,
+    "4": 5,
+    "73": 5,
+    "77": 1,
+    "78": 1,
+    "79": 5,
+    "80": 4,
+    "83": 5,
+    "84": 5,
+    "87": 2,
+    "88": 5,
+    "92": 5,
+    "100": 5,
+    "101": 3,
+    "104": 3,
+    "105": 2,
+    "122": 5,
+    "123": 1,
+    "142": 1,
+    "143": 4,
+    "183": 5,
+    "184": 2,
+    "199": 3,
+    "200": 3,
+    "264": 5,
+    "301": 5,
+    "302": 4,
+    "303": 3,
+    "304": 5,
+    "313": 2,
+    "314": 5,
+    "323": 2,
+    "324": 2,
+    "328": 5,
+    "342": 3,
+    "347": 3,
+    "357": 4,
+    "366": 5,
+    "368": 5,
+    "374": 3,
+    "379": 1,
+    "390": 4,
+    "393": 5,
+    "421": 5,
+    "426": 5,
+    "427": 5,
+    "435": 5,
+    "439": 5,
+    "440": 5,
+    "441": 5,
+    "442": 5,
+    "447": 5,
+    "449": 5,
+    "454": 5,
+    "456": 5,
+    "462": 3,
+    "467": 3,
+    "477": 5,
+    "478": 5,
+    "479": 5,
+    "482": 5,
+    "489": 5,
+    "492": 3,
+    "496": 5,
+    "510": 5,
+    "525": 5,
+    "531": 5,
+    "532": 3,
+    "544": 5,
+    "546": 3,
+    "547": 5,
+    "548": 5,
+    "549": 5,
+    "555": 5,
+    "564": 5,
+    "567": 5,
+    "575": 5,
+    "577": 5,
+    "580": 5,
+    "583": 5,
+    "584": 5,
+    "587": 5,
+    "589": 5
+  },
+  "check": {
+    "verified": true,
+    "year": 2026,
+    "checked_hour_contingency_pairs": 183960,
+    "max_deficit_mw": 0.0,
+    "records": [
+      {
+        "year": 2026,
+        "failed": "正常",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 6419,
+        "worst_station": "BDZ-00022",
+        "minimum_margin_mw": 9.364435190496977
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00005",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 5588,
+        "worst_station": "BDZ-00005",
+        "minimum_margin_mw": 1.829728724503049
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00016",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4461,
+        "worst_station": "BDZ-00016",
+        "minimum_margin_mw": 0.764160158690629
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00021",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 5226,
+        "worst_station": "BDZ-00021",
+        "minimum_margin_mw": 0.052411543453217746
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00022",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 6419,
+        "worst_station": "BDZ-00022",
+        "minimum_margin_mw": 0.2083764120200442
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00026",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 5589,
+        "worst_station": "BDZ-00026",
+        "minimum_margin_mw": 1.2166471231106328
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00027",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 5589,
+        "worst_station": "BDZ-00026",
+        "minimum_margin_mw": 3.5236199646944044
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00028",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 908,
+        "worst_station": "BDZ-00028",
+        "minimum_margin_mw": 0.10725011584412414
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00031",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 8314,
+        "worst_station": "BDZ-00031",
+        "minimum_margin_mw": 0.7433410058314109
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00037",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 3132,
+        "worst_station": "BDZ-00037",
+        "minimum_margin_mw": 4.451168953867665
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00048",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4462,
+        "worst_station": "BDZ-00048",
+        "minimum_margin_mw": 1.8464201308595278
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00095",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 3014,
+        "worst_station": "BDZ-00095",
+        "minimum_margin_mw": 0.05162441828112918
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00096",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4462,
+        "worst_station": "BDZ-00096",
+        "minimum_margin_mw": 2.4575307129369293
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00124",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4461,
+        "worst_station": "BDZ-00164",
+        "minimum_margin_mw": 1.0479730447945599
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00135",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4485,
+        "worst_station": "BDZ-00135",
+        "minimum_margin_mw": 0.023946671055711022
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00141",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 3012,
+        "worst_station": "BDZ-00141",
+        "minimum_margin_mw": 0.49778376859600115
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00146",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 2940,
+        "worst_station": "BDZ-00146",
+        "minimum_margin_mw": 1.3580392766609712
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00147",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4462,
+        "worst_station": "BDZ-00147",
+        "minimum_margin_mw": 0.14453977914493876
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00162",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 6419,
+        "worst_station": "BDZ-00022",
+        "minimum_margin_mw": 0.4515153070432376
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00164",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4461,
+        "worst_station": "BDZ-00164",
+        "minimum_margin_mw": 0.07059042681042982
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00172",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4461,
+        "worst_station": "BDZ-00172",
+        "minimum_margin_mw": 1.5991709791149908
+      }
+    ],
+    "transfers": [
+      {
+        "year": 2026,
+        "failed": "正常",
+        "switched_blocks": 15,
+        "existing_transfer_peak_upper_mw": 0,
+        "new_transfer_peak_upper_mw": 16.78666345351992
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00005",
+        "switched_blocks": 25,
+        "existing_transfer_peak_upper_mw": 10.805873567498825,
+        "new_transfer_peak_upper_mw": 16.78666345351992
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00016",
+        "switched_blocks": 28,
+        "existing_transfer_peak_upper_mw": 10.3659368142648,
+        "new_transfer_peak_upper_mw": 19.89644449779936
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00021",
+        "switched_blocks": 18,
+        "existing_transfer_peak_upper_mw": 1.7923553073928067,
+        "new_transfer_peak_upper_mw": 16.78666345351992
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00022",
+        "switched_blocks": 45,
+        "existing_transfer_peak_upper_mw": 7.619647073841017,
+        "new_transfer_peak_upper_mw": 32.02595760120195
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00026",
+        "switched_blocks": 49,
+        "existing_transfer_peak_upper_mw": 14.147443414188205,
+        "new_transfer_peak_upper_mw": 50.740527647571604
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00027",
+        "switched_blocks": 50,
+        "existing_transfer_peak_upper_mw": 6.910624542843201,
+        "new_transfer_peak_upper_mw": 34.06322481062792
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00028",
+        "switched_blocks": 38,
+        "existing_transfer_peak_upper_mw": 14.054212941510349,
+        "new_transfer_peak_upper_mw": 35.05714027748338
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00031",
+        "switched_blocks": 22,
+        "existing_transfer_peak_upper_mw": 4.466174904018344,
+        "new_transfer_peak_upper_mw": 17.53102593752298
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00037",
+        "switched_blocks": 25,
+        "existing_transfer_peak_upper_mw": 6.703639748982192,
+        "new_transfer_peak_upper_mw": 16.78666345351992
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00048",
+        "switched_blocks": 28,
+        "existing_transfer_peak_upper_mw": 14.147214602229381,
+        "new_transfer_peak_upper_mw": 21.030827834188734
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00095",
+        "switched_blocks": 23,
+        "existing_transfer_peak_upper_mw": 6.289131701414499,
+        "new_transfer_peak_upper_mw": 16.78666345351992
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00096",
+        "switched_blocks": 18,
+        "existing_transfer_peak_upper_mw": 4.183214155113642,
+        "new_transfer_peak_upper_mw": 16.78666345351992
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00124",
+        "switched_blocks": 38,
+        "existing_transfer_peak_upper_mw": 11.887238884908717,
+        "new_transfer_peak_upper_mw": 32.240074003901256
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00135",
+        "switched_blocks": 37,
+        "existing_transfer_peak_upper_mw": 8.864083760121066,
+        "new_transfer_peak_upper_mw": 27.423563965665195
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00141",
+        "switched_blocks": 38,
+        "existing_transfer_peak_upper_mw": 6.688003688955453,
+        "new_transfer_peak_upper_mw": 25.48106824916201
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00146",
+        "switched_blocks": 28,
+        "existing_transfer_peak_upper_mw": 3.9285565078454066,
+        "new_transfer_peak_upper_mw": 23.07235386607257
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00147",
+        "switched_blocks": 31,
+        "existing_transfer_peak_upper_mw": 14.181171533740503,
+        "new_transfer_peak_upper_mw": 25.29536637376422
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00162",
+        "switched_blocks": 41,
+        "existing_transfer_peak_upper_mw": 8.069499642109827,
+        "new_transfer_peak_upper_mw": 29.69786288089564
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00164",
+        "switched_blocks": 44,
+        "existing_transfer_peak_upper_mw": 7.437657528149838,
+        "new_transfer_peak_upper_mw": 30.918212757004618
+      },
+      {
+        "year": 2026,
+        "failed": "BDZ-00172",
+        "switched_blocks": 25,
+        "existing_transfer_peak_upper_mw": 7.655629465104057,
+        "new_transfer_peak_upper_mw": 16.78666345351992
+      }
+    ]
+  },
+  "history": [
+    {
+      "iteration": 1,
+      "solver": {
+        "stage": "economic_01",
+        "status": "Optimal",
+        "solver": "1.15.1",
+        "elapsed_seconds": 1.620066933101043,
+        "variables": 2688,
+        "constraints": 6900,
+        "relative_gap_target": 0.02,
+        "objective": 1766.3748664059194,
+        "dual_bound": 1766.3748664059194,
+        "mip_gap": 0.0,
+        "accepted": true,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      },
+      "verified": false,
+      "selected_pairs": 66
+    },
+    {
+      "iteration": 2,
+      "solver": {
+        "stage": "economic_02",
+        "status": "Optimal",
+        "solver": "1.15.1",
+        "elapsed_seconds": 12.751132496050559,
+        "variables": 2688,
+        "constraints": 7144,
+        "relative_gap_target": 0.02,
+        "objective": 2088.948254613618,
+        "dual_bound": 2047.1946024160852,
+        "mip_gap": 0.019987882469235954,
+        "accepted": true,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 1.4210854715202004e-13,
+          "upper_violation": 3.4986029774891117e-13,
+          "bound_violation": 2.6310060176842425e-13,
+          "integer_violation": 3.126388037344441e-13
+        },
+        "feasible_incumbent": true
+      },
+      "verified": false,
+      "selected_pairs": 72
+    },
+    {
+      "iteration": 3,
+      "solver": {
+        "stage": "economic_03",
+        "status": "Optimal",
+        "solver": "1.15.1",
+        "elapsed_seconds": 10.54168715304695,
+        "variables": 2688,
+        "constraints": 7184,
+        "relative_gap_target": 0.02,
+        "objective": 2088.94825461362,
+        "dual_bound": 2047.1731833126007,
+        "mip_gap": 0.019998136003970202,
+        "accepted": true,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      },
+      "verified": false,
+      "selected_pairs": 73
+    },
+    {
+      "iteration": 4,
+      "solver": {
+        "stage": "economic_04",
+        "status": "Optimal",
+        "solver": "1.15.1",
+        "elapsed_seconds": 5.18231994798407,
+        "variables": 2688,
+        "constraints": 7224,
+        "relative_gap_target": 0.02,
+        "objective": 2088.94825461362,
+        "dual_bound": 2049.449676824497,
+        "mip_gap": 0.01890835625147102,
+        "accepted": true,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      },
+      "verified": true,
+      "selected_pairs": 74
+    }
+  ],
+  "method": "父方案本年费用参考在追加容量后的既有资产上保持原配置及预案的可行费用基准；未重新寻优",
+  "parent_solver": {
+    "stage": "economic_04",
+    "status": "Optimal",
+    "solver": "1.15.1",
+    "elapsed_seconds": 5.18231994798407,
+    "variables": 2688,
+    "constraints": 7224,
+    "relative_gap_target": 0.02,
+    "objective": 2088.94825461362,
+    "dual_bound": 2049.449676824497,
+    "mip_gap": 0.01890835625147102,
+    "accepted": true,
+    "proven_infeasible": false,
+    "matrix_check": {
+      "lower_violation": 0.0,
+      "upper_violation": 0.0,
+      "bound_violation": 0.0,
+      "integer_violation": 0.0
+    },
+    "feasible_incumbent": true
+  },
+  "parent_source_sha256": "6f9a2babfc29c406decf6803397ef594d87aea898cf9beb87b80681bb1b891f1"
+}

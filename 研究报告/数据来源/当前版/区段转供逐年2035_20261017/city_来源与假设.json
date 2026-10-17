@@ -1,0 +1,35 @@
+{
+  "inputs_sha256": "cc47ff49493e0b321375df700223cc59b57ad7eecd1bd83c7144937607c03395",
+  "forecast": {
+    "source": "实验/研究/data/tuomin/补充数据/负荷和光伏装机预测.md",
+    "sha256": "85c48e1444c0d1375b7df8816f258bb6ea83858357dd1e5ceb52c6de7afd15bb",
+    "historical": "2021—2025原统计峰值与同期净负荷模板保持",
+    "future": "2025代理负荷与光伏分别乘最新负荷及全市光伏相对2025比例；缺年等增量插值",
+    "peak": "110kV原2025统计峰值按预测负荷比例外推；不直接替换成全市总负荷",
+    "decomposition": "08—18时按归档夜间中位代理分解，2025逐点还原；空间分布为研究代理",
+    "lower": "2022—2025沿用历史平均增长率分档，未来每五年用预测负荷复合增长率分档，两方案一致",
+    "network": "原候选连接保留为代理可达范围，既有EQ不作为真实竣工线路；区段约束后不再自由重配",
+    "switching": "正常方案及各站事故预案在年内所有小时共用；故障只追加转出故障站原属区段"
+  },
+  "sources": [
+    {
+      "path": "实验/研究/data/tuomin/补充数据/负荷和光伏装机预测.md",
+      "sha256": "85c48e1444c0d1375b7df8816f258bb6ea83858357dd1e5ceb52c6de7afd15bb"
+    },
+    {
+      "path": "研究报告/试算/20261015_静态联合替代/city/annual_2021/inputs.json",
+      "sha256": "90a3d169674584f7181308991ca9ed13e76fab85c90c1ad656f73a86a79fafa6"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/区域时序/city_stations.npz",
+      "sha256": "749d6642e64d200e335616a8e721b9a19139d96b3ac6a5bdd08fd178f903b24e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/source_audit/annual_reverse_station_proxy_2021_2025.csv",
+      "sha256": "323b9faeda8d27b8dbd652ccff802229d517665bb82a60dd2d5922ab8d877da1"
+    }
+  ],
+  "initial_capacity_mva": 3113.5,
+  "fitted_station_baseline": "保留2021原表地区容量；逐站组合按2025容量比例标定，非2021逐台历史复原",
+  "baseline_reconstruction_error_mw": 3.552713678800501e-15
+}
