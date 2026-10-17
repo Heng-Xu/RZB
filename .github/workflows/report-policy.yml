@@ -40,4 +40,6 @@ jobs:
       - run: python -m 实验.研究.rebuild_2026.static_joint_20261015.lock_review
       - run: python -m 实验.研究.rebuild_2026.static_joint_20261015.verify
       - run: python tools/verify_adopted_report_results.py
+      - run: python tools/verify_future_case_results.py
+      - run: python -m pytest -q tools/test_future_case_results.py
       - run: python -m pytest -q tools/test_report_adoption_governance.py

@@ -17,6 +17,7 @@ def main():
  parser.add_argument('--docx-only',action='store_true',help='装配原生DOCX，供WPS打开导出；完成导出后使用--accept-wps-pdf')
  parser.add_argument('--accept-wps-pdf',type=Path,help='接收由当前原生DOCX在WPS中直接导出的PDF，并同步目录缓存')
  args=parser.parse_args();root=args.root.resolve()
+ subprocess.run([sys.executable,str(root/'tools/verify_future_case_results.py'),'--root',str(root)],cwd=root,check=True)
  if args.discussion:
   if args.rebuild:
    parser.error('讨论稿须在甲方反馈原文件上以xh修订，禁止调用历史生成器重建；核验使用--discussion --check-only')

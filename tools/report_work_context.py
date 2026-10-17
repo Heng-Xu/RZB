@@ -3,12 +3,28 @@ import hashlib
 import json
 from pathlib import Path
 
-ALLOWED = {'memory/current.md', 'prompt.md', 'tools/verify_report_release.py'}
+ALLOWED = {'memory/current.md', 'prompt.md', 'tools/verify_report_release.py',
+           'docs/CURRENT-WORKFLOW.md'}
 CONTEXT = Path('研究报告/05_review/当前版/工作上下文衔接.json')
+MAINTENANCE_FILES = {'研究报告/AGENTS.md', 'tools/build_current_report.py',
+                     '.githooks/pre-commit', '.github/workflows/report-policy.yml'}
 
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def maintenance_original(root, name, path, expected):
+    """维护入口升级后仍按旧交付哈希核验其原件，正文与数据不可走此分支。"""
+    if digest(path) == expected:
+        return path
+    assert name in MAINTENANCE_FILES, '非维护文件不能继承旧原件：' + name
+    record = json.loads((root/CONTEXT).read_text())['维护文件原件'][name]
+    assert record['原SHA256'] == expected
+    archived = root/record['原件归档']
+    assert digest(archived) == expected, '维护入口原件不一致：' + name
+    assert digest(root/name) == record['现SHA256'], '维护入口尚未登记：' + name
+    return archived
 
 
 def verify_context(root, release, expected):

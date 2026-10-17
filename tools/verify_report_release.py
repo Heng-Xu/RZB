@@ -65,7 +65,7 @@ def verify_matrix_release():
 def verify():
  if not RELEASE.exists():return verify_matrix_release()
  r=json.loads(RELEASE.read_text());assert r['状态']=='三阶段核验及逐段复核通过'
- from report_work_context import verify_context
+ from report_work_context import verify_context,maintenance_original
  context=verify_context(ROOT,RELEASE,r['当前文件SHA256'])
  for name,digest in r['当前文件SHA256'].items():
   original=ROOT/context[name]['原件归档'] if name in context else ROOT/name
@@ -75,7 +75,10 @@ def verify():
  parent_record=json.loads(parent.read_text())
  assert set(link['原件映射'])==set(parent_record['当前文件SHA256'])
  for name,digest in parent_record['当前文件SHA256'].items():
-  assert sha(ROOT/link['原件映射'][name])==digest,'上一版交付原件不一致：'+name
+  original=maintenance_original(ROOT,name,ROOT/link['原件映射'][name],digest)
+  assert sha(original)==digest,'上一版交付原件不一致：'+name
+  if original!=ROOT/link['原件映射'][name]:
+   r['修改原件'].setdefault(name,dict(原SHA256=digest,原件归档=str(original.relative_to(ROOT))))
  before=json.loads((DETAILS/'修前文件登记.json').read_text())
  for name,digest in before.items():
   assert sha(DETAILS/'修前快照'/name)==digest,'修前快照不一致：'+name
