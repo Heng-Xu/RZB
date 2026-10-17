@@ -1,0 +1,46 @@
+{
+  "parent_input_sha256": "62b28144a52c4b094f1c668ed455efe47f56310b43cac390e8b9136133983e81",
+  "hourly_sha256": "57a8489cf106e4e110d0ef8b5b9ec053df1b5031af98248f375b0e75710f6ef3",
+  "existing_source": "原站级转供收资证据，J列能力为全站上限，不向任何一条路径重复赋值",
+  "caveat": "既有EQ连接仍为研究代理，端口分组是聚合模型修正；不冒称实际馈线竣工拓扑",
+  "historical": [
+    {
+      "year": 2021,
+      "pv_factor": 0.07334273624823695,
+      "demand_factor": 0.7650896544513566,
+      "planning_peak_mw": 731.77
+    },
+    {
+      "year": 2022,
+      "pv_factor": 0.16361071932299012,
+      "demand_factor": 0.8625690762716294,
+      "planning_peak_mw": 825.004193
+    },
+    {
+      "year": 2023,
+      "pv_factor": 0.3906911142454161,
+      "demand_factor": 0.7958929405614512,
+      "planning_peak_mw": 761.231803
+    },
+    {
+      "year": 2024,
+      "pv_factor": 0.7193229901269393,
+      "demand_factor": 0.9019410706257514,
+      "planning_peak_mw": 862.661537
+    },
+    {
+      "year": 2025,
+      "pv_factor": 1.0,
+      "demand_factor": 1.0,
+      "planning_peak_mw": 956.45
+    }
+  ],
+  "policies": {
+    "normal_transfer_policy": "2021校准既有供区作为上界；以后可将校准区段回切原属站，既有通道不扩大正常转供；新增付费联络可安排年度固定供区调整",
+    "existing_transfer_policy": "收资既有转供能力以原MW固定封顶，各年不随负荷自动放大；馈线共享、路径、受端及整区段约束同时校核",
+    "group_policy": "EQ为聚合端口，按收资能力及基期区段峰值计算所代表馈线组数；每组5段/3端点/2邻站，非把全站聚合端口当单条馈线",
+    "annual_capacity_policy": "只用当年负荷、光伏、共同容载比下限及正常/N1工况选择当年工程，继承上年设备；无2035规格下限、无5%建设上限、无终期清单或反推进度约束",
+    "historical_profile_policy": "2021—2024用本年光伏相对2025比例回算，负荷系数以原年度正向峰值标定；2025逐点还原，2026—2035沿用原预测。历史为源荷模板回算，非历史实测曲线"
+  },
+  "inputs_sha256": "4f7dd33b88f9e9f822fa450de3fdee216ad412a578b9fa509e301c11be2301c2"
+}

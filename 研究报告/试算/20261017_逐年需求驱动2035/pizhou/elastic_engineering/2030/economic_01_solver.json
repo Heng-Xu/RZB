@@ -1,0 +1,21 @@
+{
+  "stage": "economic_01",
+  "status": "Optimal",
+  "solver": "1.15.1",
+  "elapsed_seconds": 6.010105315013789,
+  "variables": 2831,
+  "constraints": 9590,
+  "relative_gap_target": 0.02,
+  "objective": 3307.594476262812,
+  "dual_bound": 3241.742868716482,
+  "mip_gap": 0.01990921439097769,
+  "accepted": true,
+  "proven_infeasible": false,
+  "matrix_check": {
+    "lower_violation": 8.881784197001252e-16,
+    "upper_violation": 2.003192610239148e-14,
+    "bound_violation": 2.353672812205332e-14,
+    "integer_violation": 1.442748681883186e-13
+  },
+  "feasible_incumbent": true
+}

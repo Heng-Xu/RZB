@@ -1,0 +1,813 @@
+{
+  "solver": {
+    "stage": "economic_05",
+    "status": "Time limit reached",
+    "solver": "1.15.1",
+    "elapsed_seconds": 8.147659783018753,
+    "variables": 2824,
+    "constraints": 10690,
+    "relative_gap_target": 0.02,
+    "objective": 7996.885279236035,
+    "dual_bound": 7264.317995456323,
+    "mip_gap": 0.09160657658573991,
+    "accepted": false,
+    "proven_infeasible": false,
+    "matrix_check": {
+      "lower_violation": 0.0,
+      "upper_violation": 0.0,
+      "bound_violation": 0.0,
+      "integer_violation": 0.0
+    },
+    "feasible_incumbent": true
+  },
+  "units": [
+    [
+      31.5,
+      63.0,
+      0.0
+    ],
+    [
+      63.0,
+      80.0,
+      0.0
+    ],
+    [
+      31.5,
+      63.0,
+      0.0
+    ],
+    [
+      50.0,
+      50.0,
+      0.0
+    ],
+    [
+      50.0,
+      63.0,
+      50.0
+    ],
+    [
+      50.0,
+      63.0,
+      0.0
+    ],
+    [
+      80.0,
+      80.0,
+      0.0
+    ],
+    [
+      40.0,
+      63.0,
+      0.0
+    ],
+    [
+      50.0,
+      63.0,
+      0.0
+    ],
+    [
+      63.0,
+      80.0,
+      0.0
+    ],
+    [
+      50.0,
+      63.0,
+      0.0
+    ],
+    [
+      80.0,
+      80.0,
+      0.0
+    ],
+    [
+      40.0,
+      63.0,
+      0.0
+    ],
+    [
+      63.0,
+      63.0,
+      0.0
+    ],
+    [
+      50.0,
+      63.0,
+      0.0
+    ],
+    [
+      31.5,
+      40.0,
+      50.0
+    ],
+    [
+      31.5,
+      63.0,
+      0.0
+    ],
+    [
+      31.5,
+      50.0,
+      50.0
+    ],
+    [
+      31.5,
+      40.0,
+      50.0
+    ],
+    [
+      31.5,
+      63.0,
+      0.0
+    ]
+  ],
+  "modules": [
+    8,
+    0,
+    20,
+    328,
+    21,
+    165,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    33,
+    745,
+    234,
+    16,
+    0,
+    0,
+    0,
+    0
+  ],
+  "built": [
+    "FEEDER-001",
+    "FEEDER-003",
+    "FEEDER-004",
+    "FEEDER-015",
+    "FEEDER-017",
+    "FEEDER-026",
+    "FEEDER-039",
+    "FEEDER-060",
+    "FEEDER-068",
+    "FEEDER-085",
+    "FEEDER-086",
+    "FEEDER-087",
+    "NEW-001",
+    "NEW-002",
+    "NEW-003",
+    "NEW-018",
+    "NEW-021",
+    "NEW-028",
+    "NEW-037",
+    "NEW-038",
+    "NEW-039",
+    "NEW-043",
+    "NEW-052",
+    "NEW-062",
+    "NEW-064",
+    "NEW-085",
+    "NEW-091",
+    "NEW-094",
+    "NEW-097",
+    "NEW-105",
+    "NEW-106",
+    "NEW-112",
+    "NEW-125",
+    "NEW-127",
+    "NEW-137",
+    "NEW-143",
+    "NEW-162",
+    "NEW-164",
+    "NEW-170",
+    "NEW-172",
+    "NEW-173",
+    "NEW-175",
+    "NEW-180",
+    "NEW-181"
+  ],
+  "normal": {
+    "6": 1,
+    "35": 4,
+    "36": 1,
+    "41": 1,
+    "71": 1,
+    "75": 2,
+    "120": 5,
+    "173": 2,
+    "198": 1,
+    "209": 1,
+    "255": 1,
+    "268": 2,
+    "301": 4,
+    "323": 2,
+    "340": 1,
+    "357": 4,
+    "366": 5,
+    "379": 2,
+    "400": 2,
+    "427": 4
+  },
+  "extra": {
+    "1": 3,
+    "2": 5,
+    "3": 3,
+    "5": 1,
+    "6": 2,
+    "56": 4,
+    "71": 3,
+    "73": 2,
+    "83": 2,
+    "101": 1,
+    "160": 1,
+    "161": 1,
+    "172": 3,
+    "177": 5,
+    "181": 5,
+    "182": 1,
+    "196": 4,
+    "197": 2,
+    "233": 2,
+    "234": 1,
+    "237": 4,
+    "256": 3,
+    "305": 4,
+    "306": 1,
+    "322": 4,
+    "340": 2,
+    "341": 5,
+    "343": 3,
+    "344": 5,
+    "355": 5,
+    "408": 5,
+    "425": 4,
+    "426": 5,
+    "427": 1,
+    "439": 4,
+    "440": 3,
+    "441": 4,
+    "442": 3,
+    "443": 3,
+    "444": 3,
+    "445": 3,
+    "446": 8,
+    "447": 6,
+    "448": 7,
+    "449": 7,
+    "450": 7,
+    "451": 2,
+    "464": 3,
+    "466": 3,
+    "467": 9,
+    "471": 6,
+    "475": 2,
+    "477": 2,
+    "479": 1,
+    "481": 1,
+    "483": 5,
+    "485": 5,
+    "486": 2,
+    "488": 7,
+    "490": 7,
+    "492": 9,
+    "494": 10,
+    "496": 1,
+    "505": 2,
+    "507": 3,
+    "509": 3,
+    "510": 5,
+    "515": 10,
+    "516": 5,
+    "519": 4,
+    "520": 1,
+    "529": 6,
+    "535": 1,
+    "537": 4,
+    "543": 2,
+    "545": 2,
+    "546": 3,
+    "548": 2,
+    "550": 2,
+    "553": 6,
+    "554": 5,
+    "558": 6,
+    "559": 1,
+    "561": 3,
+    "562": 9,
+    "563": 4,
+    "565": 4,
+    "566": 6,
+    "568": 3,
+    "570": 7,
+    "575": 2,
+    "577": 2,
+    "578": 5,
+    "579": 1,
+    "581": 1,
+    "583": 3,
+    "585": 3
+  },
+  "check": {
+    "verified": true,
+    "year": 2033,
+    "checked_hour_contingency_pairs": 183960,
+    "max_deficit_mw": 0.0,
+    "records": [
+      {
+        "year": 2033,
+        "failed": "正常",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 2892,
+        "worst_station": "BDZ-00027",
+        "minimum_margin_mw": 4.8995196531045195
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00005",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 5588,
+        "worst_station": "BDZ-00005",
+        "minimum_margin_mw": 0.0526857611446232
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00016",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 3132,
+        "worst_station": "BDZ-00037",
+        "minimum_margin_mw": 0.3161383177290844
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00021",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 2941,
+        "worst_station": "BDZ-00021",
+        "minimum_margin_mw": 0.03843401097312338
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00022",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 6419,
+        "worst_station": "BDZ-00022",
+        "minimum_margin_mw": 0.05622321692082721
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00026",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 5589,
+        "worst_station": "BDZ-00026",
+        "minimum_margin_mw": 0.712404595887449
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00027",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 2892,
+        "worst_station": "BDZ-00027",
+        "minimum_margin_mw": 0.16531694613036052
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00028",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 908,
+        "worst_station": "BDZ-00028",
+        "minimum_margin_mw": 0.8535055179021214
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00031",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 2892,
+        "worst_station": "BDZ-00031",
+        "minimum_margin_mw": 0.3991996669304356
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00037",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 3133,
+        "worst_station": "BDZ-00037",
+        "minimum_margin_mw": 0.39660254180022747
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00048",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4462,
+        "worst_station": "BDZ-00048",
+        "minimum_margin_mw": 0.35165292995976216
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00095",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 2941,
+        "worst_station": "BDZ-00021",
+        "minimum_margin_mw": 0.4822817501027714
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00096",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4462,
+        "worst_station": "BDZ-00096",
+        "minimum_margin_mw": 1.0997231002235424
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00124",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4461,
+        "worst_station": "BDZ-00124",
+        "minimum_margin_mw": 0.07624963571352339
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00135",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 2437,
+        "worst_station": "BDZ-00135",
+        "minimum_margin_mw": 0.008958421526855886
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00141",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 3012,
+        "worst_station": "BDZ-00141",
+        "minimum_margin_mw": 0.08004343088686028
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00146",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 2940,
+        "worst_station": "BDZ-00146",
+        "minimum_margin_mw": 0.9487371274393865
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00147",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 4462,
+        "worst_station": "BDZ-00147",
+        "minimum_margin_mw": 0.10442084368662208
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00162",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 5339,
+        "worst_station": "BDZ-00162",
+        "minimum_margin_mw": 1.2176792733278177
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00164",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 2892,
+        "worst_station": "BDZ-00164",
+        "minimum_margin_mw": 0.206958916870434
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00172",
+        "checked_hours": 8760,
+        "violating_hours": 0,
+        "max_deficit_mw": 0.0,
+        "worst_hour": 3301,
+        "worst_station": "BDZ-00172",
+        "minimum_margin_mw": 0.07406638353031525
+      }
+    ],
+    "transfers": [
+      {
+        "year": 2033,
+        "failed": "正常",
+        "switched_blocks": 46,
+        "existing_transfer_peak_upper_mw": 0,
+        "new_transfer_peak_upper_mw": 68.13925142525744
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00005",
+        "switched_blocks": 61,
+        "existing_transfer_peak_upper_mw": 11.361452306885603,
+        "new_transfer_peak_upper_mw": 78.08052219378233
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00016",
+        "switched_blocks": 73,
+        "existing_transfer_peak_upper_mw": 25.884878995669972,
+        "new_transfer_peak_upper_mw": 79.0381478444869
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00021",
+        "switched_blocks": 68,
+        "existing_transfer_peak_upper_mw": 21.20135540435711,
+        "new_transfer_peak_upper_mw": 74.37494419124482
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00022",
+        "switched_blocks": 59,
+        "existing_transfer_peak_upper_mw": 9.08420114525425,
+        "new_transfer_peak_upper_mw": 78.73748609472072
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00026",
+        "switched_blocks": 65,
+        "existing_transfer_peak_upper_mw": 33.468361523380295,
+        "new_transfer_peak_upper_mw": 69.998604843223
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00027",
+        "switched_blocks": 75,
+        "existing_transfer_peak_upper_mw": 18.563198506497013,
+        "new_transfer_peak_upper_mw": 83.22185021178626
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00028",
+        "switched_blocks": 80,
+        "existing_transfer_peak_upper_mw": 46.1775108487202,
+        "new_transfer_peak_upper_mw": 84.76315533079672
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00031",
+        "switched_blocks": 69,
+        "existing_transfer_peak_upper_mw": 30.980621113084894,
+        "new_transfer_peak_upper_mw": 68.13925142525744
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00037",
+        "switched_blocks": 62,
+        "existing_transfer_peak_upper_mw": 15.343363440117912,
+        "new_transfer_peak_upper_mw": 75.11350753440195
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00048",
+        "switched_blocks": 66,
+        "existing_transfer_peak_upper_mw": 29.749173535020113,
+        "new_transfer_peak_upper_mw": 75.57654480901247
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00095",
+        "switched_blocks": 62,
+        "existing_transfer_peak_upper_mw": 13.925420894866924,
+        "new_transfer_peak_upper_mw": 78.97013434348727
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00096",
+        "switched_blocks": 59,
+        "existing_transfer_peak_upper_mw": 23.824082091679394,
+        "new_transfer_peak_upper_mw": 68.13925142525744
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00124",
+        "switched_blocks": 68,
+        "existing_transfer_peak_upper_mw": 28.121434867582945,
+        "new_transfer_peak_upper_mw": 74.3884591736092
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00135",
+        "switched_blocks": 56,
+        "existing_transfer_peak_upper_mw": 5.614304259463868,
+        "new_transfer_peak_upper_mw": 76.56070781445325
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00141",
+        "switched_blocks": 64,
+        "existing_transfer_peak_upper_mw": 8.317219571139143,
+        "new_transfer_peak_upper_mw": 84.77369056753574
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00146",
+        "switched_blocks": 53,
+        "existing_transfer_peak_upper_mw": 10.808902189208691,
+        "new_transfer_peak_upper_mw": 68.13925142525744
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00147",
+        "switched_blocks": 67,
+        "existing_transfer_peak_upper_mw": 35.41193774812213,
+        "new_transfer_peak_upper_mw": 71.86682381979662
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00162",
+        "switched_blocks": 50,
+        "existing_transfer_peak_upper_mw": 0,
+        "new_transfer_peak_upper_mw": 74.42203858503059
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00164",
+        "switched_blocks": 56,
+        "existing_transfer_peak_upper_mw": 13.844743830791753,
+        "new_transfer_peak_upper_mw": 68.13925142525744
+      },
+      {
+        "year": 2033,
+        "failed": "BDZ-00172",
+        "switched_blocks": 68,
+        "existing_transfer_peak_upper_mw": 18.017869615832407,
+        "new_transfer_peak_upper_mw": 78.43517692001882
+      }
+    ]
+  },
+  "history": [
+    {
+      "iteration": 1,
+      "solver": {
+        "stage": "economic_01",
+        "status": "Time limit reached",
+        "solver": "1.15.1",
+        "elapsed_seconds": 8.113992543076165,
+        "variables": 2824,
+        "constraints": 10128,
+        "relative_gap_target": 0.02,
+        "objective": 8445.485283541335,
+        "dual_bound": 7240.659159130034,
+        "mip_gap": 0.14265919410922198,
+        "accepted": false,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 3.552713678800501e-15,
+          "upper_violation": 2.220446049250313e-16,
+          "bound_violation": 0.0,
+          "integer_violation": 7.105427357601002e-15
+        },
+        "feasible_incumbent": true
+      },
+      "verified": false,
+      "selected_pairs": 146
+    },
+    {
+      "iteration": 2,
+      "solver": {
+        "stage": "economic_02",
+        "status": "Time limit reached",
+        "solver": "1.15.1",
+        "elapsed_seconds": 8.139217210002244,
+        "variables": 2824,
+        "constraints": 10448,
+        "relative_gap_target": 0.02,
+        "objective": 8822.238620441798,
+        "dual_bound": 7073.969560111062,
+        "mip_gap": 0.19816614983410946,
+        "accepted": false,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 1.7763568394002505e-14,
+          "upper_violation": 3.566999033623854e-12,
+          "bound_violation": 7.133998067247708e-13,
+          "integer_violation": 3.135713910751292e-12
+        },
+        "feasible_incumbent": true
+      },
+      "verified": false,
+      "selected_pairs": 154
+    },
+    {
+      "iteration": 3,
+      "solver": {
+        "stage": "economic_03",
+        "status": "Time limit reached",
+        "solver": "1.15.1",
+        "elapsed_seconds": 8.228406821959652,
+        "variables": 2824,
+        "constraints": 10488,
+        "relative_gap_target": 0.02,
+        "objective": 8138.006809836524,
+        "dual_bound": 7264.317995456323,
+        "mip_gap": 0.10735906651296491,
+        "accepted": false,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 2.220446049250313e-16,
+          "integer_violation": 1.9539925233402755e-14
+        },
+        "feasible_incumbent": true
+      },
+      "verified": false,
+      "selected_pairs": 155
+    },
+    {
+      "iteration": 4,
+      "solver": {
+        "stage": "economic_04",
+        "status": "Time limit reached",
+        "solver": "1.15.1",
+        "elapsed_seconds": 8.189487498952076,
+        "variables": 2824,
+        "constraints": 10648,
+        "relative_gap_target": 0.02,
+        "objective": 7996.885279236034,
+        "dual_bound": 7170.02635967909,
+        "mip_gap": 0.10339762178455762,
+        "accepted": false,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 3.552713678800501e-15,
+          "upper_violation": 8.748557434046234e-14,
+          "bound_violation": 1.9718652817710303e-14,
+          "integer_violation": 8.726954061123245e-14
+        },
+        "feasible_incumbent": true
+      },
+      "verified": false,
+      "selected_pairs": 159
+    },
+    {
+      "iteration": 5,
+      "solver": {
+        "stage": "economic_05",
+        "status": "Time limit reached",
+        "solver": "1.15.1",
+        "elapsed_seconds": 8.147659783018753,
+        "variables": 2824,
+        "constraints": 10690,
+        "relative_gap_target": 0.02,
+        "objective": 7996.885279236035,
+        "dual_bound": 7264.317995456323,
+        "mip_gap": 0.09160657658573991,
+        "accepted": false,
+        "proven_infeasible": false,
+        "matrix_check": {
+          "lower_violation": 0.0,
+          "upper_violation": 0.0,
+          "bound_violation": 0.0,
+          "integer_violation": 0.0
+        },
+        "feasible_incumbent": true
+      },
+      "verified": true,
+      "selected_pairs": 160
+    }
+  ]
+}
