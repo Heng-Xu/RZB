@@ -1,0 +1,382 @@
+[
+  {
+    "year": 2026,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Optimal",
+          "solver": "1.15.1",
+          "elapsed_seconds": 0.304907568031922,
+          "variables": 2289,
+          "constraints": 3347,
+          "relative_gap_target": 0.03,
+          "objective": 410.29261502376494,
+          "dual_bound": 410.29261502376494,
+          "mip_gap": 0.0,
+          "accepted": true,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 1.4210854715202004e-14,
+            "upper_violation": 1.9562275859935943e-17,
+            "bound_violation": 0.0,
+            "integer_violation": 1.9761969838327786e-14
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2026,
+            "checked_pairs": 1410,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2027,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Optimal",
+          "solver": "1.15.1",
+          "elapsed_seconds": 0.6325068490114063,
+          "variables": 3565,
+          "constraints": 6340,
+          "relative_gap_target": 0.03,
+          "objective": 1152.4225045415385,
+          "dual_bound": 1152.4225045415385,
+          "mip_gap": 0.0,
+          "accepted": true,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 1.4210854715202004e-14,
+            "upper_violation": 2.994029492331407e-14,
+            "bound_violation": 3.9968028886505635e-15,
+            "integer_violation": 3.9968028886505635e-15
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2027,
+            "checked_pairs": 1410,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2028,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Optimal",
+          "solver": "1.15.1",
+          "elapsed_seconds": 1.4572650679619983,
+          "variables": 6117,
+          "constraints": 12326,
+          "relative_gap_target": 0.03,
+          "objective": 2156.816064687327,
+          "dual_bound": 2156.816064687327,
+          "mip_gap": 0.0,
+          "accepted": true,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 5.684341886080802e-14,
+            "upper_violation": 9.43689570931383e-15,
+            "bound_violation": 0.0,
+            "integer_violation": 1.3322676295501878e-14
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2028,
+            "checked_pairs": 1410,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2029,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Optimal",
+          "solver": "1.15.1",
+          "elapsed_seconds": 1.1591523280367255,
+          "variables": 6117,
+          "constraints": 12326,
+          "relative_gap_target": 0.03,
+          "objective": 2722.6055558509956,
+          "dual_bound": 2722.6055558509956,
+          "mip_gap": 0.0,
+          "accepted": true,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 1.7763568394002505e-15,
+            "upper_violation": 1.3322676295501878e-15,
+            "bound_violation": 0.0,
+            "integer_violation": 1.4432899320127035e-15
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2029,
+            "checked_pairs": 1410,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2030,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Optimal",
+          "solver": "1.15.1",
+          "elapsed_seconds": 1.2738779849605635,
+          "variables": 11221,
+          "constraints": 24298,
+          "relative_gap_target": 0.03,
+          "objective": 3878.6715021967116,
+          "dual_bound": 3878.671502196712,
+          "mip_gap": 0.0,
+          "accepted": true,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 1.4210854715202004e-14,
+            "upper_violation": 6.461106679815886e-14,
+            "bound_violation": 4.908317500372467e-14,
+            "integer_violation": 2.6595194338408327e-14
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2030,
+            "checked_pairs": 1410,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2031,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Optimal",
+          "solver": "1.15.1",
+          "elapsed_seconds": 8.176447214907967,
+          "variables": 13773,
+          "constraints": 30284,
+          "relative_gap_target": 0.03,
+          "objective": 6044.93381624518,
+          "dual_bound": 5971.053479040272,
+          "mip_gap": 0.012221860395950478,
+          "accepted": true,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 1.7053025658242404e-13,
+            "upper_violation": 2.4181210775942136e-13,
+            "bound_violation": 2.0472512574087887e-13,
+            "integer_violation": 5.040412531798211e-14
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2031,
+            "checked_pairs": 1440,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2032,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Time limit reached",
+          "solver": "1.15.1",
+          "elapsed_seconds": 20.098570098052733,
+          "variables": 16325,
+          "constraints": 36270,
+          "relative_gap_target": 0.03,
+          "objective": 10339.905104858984,
+          "dual_bound": 10029.35085616511,
+          "mip_gap": 0.030034535669764974,
+          "accepted": false,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 2.4158453015843406e-13,
+            "upper_violation": 1.509903313490213e-14,
+            "bound_violation": 6.386108691305191e-14,
+            "integer_violation": 1.587618925213974e-14
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2032,
+            "checked_pairs": 1470,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2033,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Optimal",
+          "solver": "1.15.1",
+          "elapsed_seconds": 14.087129167979583,
+          "variables": 18871,
+          "constraints": 42253,
+          "relative_gap_target": 0.03,
+          "objective": 13944.695752731213,
+          "dual_bound": 13624.937989850478,
+          "mip_gap": 0.022930422330519912,
+          "accepted": true,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 2.842170943040401e-14,
+            "upper_violation": 0.0,
+            "bound_violation": 1.0658141036401503e-14,
+            "integer_violation": 0.0
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2033,
+            "checked_pairs": 1470,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2034,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Time limit reached",
+          "solver": "1.15.1",
+          "elapsed_seconds": 20.123679835931398,
+          "variables": 18867,
+          "constraints": 42251,
+          "relative_gap_target": 0.03,
+          "objective": 18599.67896361389,
+          "dual_bound": 17754.279633475686,
+          "mip_gap": 0.04545236139785179,
+          "accepted": false,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 5.684341886080802e-14,
+            "upper_violation": 3.319566843629218e-14,
+            "bound_violation": 1.1735057370287905e-13,
+            "integer_violation": 1.1368683772161603e-13
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2034,
+            "checked_pairs": 1470,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "year": 2035,
+    "method": "固定上年资产的逐年费用寻优",
+    "history": [
+      {
+        "iteration": 1,
+        "solver": {
+          "stage": "year_01",
+          "status": "Optimal",
+          "solver": "1.15.1",
+          "elapsed_seconds": 8.899955312954262,
+          "variables": 16315,
+          "constraints": 36265,
+          "relative_gap_target": 0.03,
+          "objective": 22112.018997200095,
+          "dual_bound": 21817.05831761305,
+          "mip_gap": 0.013339382515201116,
+          "accepted": true,
+          "proven_infeasible": false,
+          "matrix_check": {
+            "lower_violation": 2.842170943040401e-14,
+            "upper_violation": 2.842170943040401e-14,
+            "bound_violation": 0.0,
+            "integer_violation": 0.0
+          },
+          "feasible_incumbent": true
+        },
+        "checks": [
+          {
+            "year": 2035,
+            "checked_pairs": 1470,
+            "violating_pairs": 0,
+            "verified": true
+          }
+        ]
+      }
+    ]
+  }
+]

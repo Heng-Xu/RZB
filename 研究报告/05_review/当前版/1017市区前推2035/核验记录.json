@@ -1,0 +1,71 @@
+{
+  "verified": true,
+  "schemes": [
+    {
+      "方案": "刚性",
+      "费用现值_万元": 28146.110761534193,
+      "费用下界_万元": 20799.413191548,
+      "相对间隙": 0.26101999072733484,
+      "独立静态校核工况数": 14370,
+      "最大原模型违反量": 5.684341886080802e-14,
+      "重复更换次数最大值": 1,
+      "输入SHA256": "ed6c3762dee063a6f5ba036af939b23b604b9305f98d9eb5c7586b7dd17486ba"
+    },
+    {
+      "方案": "弹性经济参考",
+      "费用现值_万元": 23234.70500908,
+      "费用下界_万元": 16592.542228705137,
+      "相对间隙": 0.2858724816079714,
+      "独立静态校核工况数": 14370,
+      "最大原模型违反量": 8.526512829121202e-14,
+      "重复更换次数最大值": 1,
+      "输入SHA256": "ed6c3762dee063a6f5ba036af939b23b604b9305f98d9eb5c7586b7dd17486ba"
+    }
+  ],
+  "workbook_cells": 9501,
+  "support_rows": 20,
+  "manual_review": "逐年检查采购容量与净增容量关系、容量/负荷比值、储能整数柜数及累计联络；2035关键5站逐项复算N-1剩余主变、正反向支撑及转供后净功率。",
+  "artifacts": [
+    {
+      "path": "研究报告/01研究推荐/当前版/市区前推2035_20261017/市区2026—2035刚弹对比.xlsx",
+      "sha256": "2a6d9bd38b12890e983fdc5aff559863f2de4d639eabd2df35cd6d641e360d9f"
+    },
+    {
+      "path": "研究报告/01研究推荐/当前版/市区前推2035_20261017/方案结果.md",
+      "sha256": "5b771e796effa41b69cb6a6b816e92eb89b66248b2a236c698945c883d1ce274"
+    },
+    {
+      "path": "研究报告/试算/20261017_市区前推2035/inputs.json",
+      "sha256": "ed6c3762dee063a6f5ba036af939b23b604b9305f98d9eb5c7586b7dd17486ba"
+    }
+  ],
+  "solution_sources": [
+    {
+      "case": "rigid",
+      "folder": "研究报告/试算/20261017_市区前推2035/rigid_rolling",
+      "files": {
+        "summary.json": "f897dfac12a9cb8ca0534baf69b69abb43fc57ffaba236a9f9cebaf3d4dffe43",
+        "stations.csv": "b814e86c0558e4dcaeb7961c73c8be1d20a386a6fbb9f76b6182a89c5102845b",
+        "projects.csv": "ab89ecf8c8657dd24ba41cd5b163c8d96a95915f1c673c33fb5429e1b7569da7",
+        "selected_pairs.json": "2ba4f535b76096e876f65ed4251ffaef6b44bc1bac22763e9e8697b09e46d4dc",
+        "chosen_solution.npz": "b95cf7ba180bc3ea6963745433721022d0b0eaaa44f5d4a9cea5a80fd5640adc",
+        "independent_lp.json": "09d23629974235590da98686f905230869fd363ead0297a621b12b3e96b5acea",
+        "rolling_history.json": "85f9e972ffd2e99fcb13a64a9f5dd8424dc57274805273f8fd460fb800b4b9a2"
+      }
+    },
+    {
+      "case": "elastic_free",
+      "folder": "研究报告/试算/20261017_市区前推2035/elastic_free_rolling",
+      "files": {
+        "summary.json": "3549e9e167ee12e265fb2af98a510c452cded4f7c167cd2f0208ce81bd2e8a00",
+        "stations.csv": "6e27ae52eca45d099cbba5100aff2d759db53c3c97f4a99982bd3196c005663f",
+        "projects.csv": "dd8bc5a2122a5a045d20f214349db7ef58cc5fa8d7548b7dbec8340d327ea155",
+        "selected_pairs.json": "0c6017eff0cda6b327e9aa7948c83b07bef7f279d679e52c727446f629b5ff79",
+        "chosen_solution.npz": "af788d1a8aa36a7e09d36d671513a99713a4980f0db28fc98e119da399177ae5",
+        "independent_lp.json": "b8c2f6e5fb6ddc0ac5fe6b0fcb34e7bf6397a3ec37339c85aeb4d5ebb3ababb3",
+        "rolling_history.json": "192b7216307f1a72a22670c4cbf7dafb4deb7e4ec61050bde3e0b8d2b3a77650"
+      }
+    }
+  ],
+  "scope": "本次独立试算仅交付Markdown、XLSX及CSV，不修改正式研究报告，无Word/PDF交付"
+}

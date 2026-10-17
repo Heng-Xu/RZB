@@ -1,0 +1,32 @@
+{
+  "inputs_sha256": "ed6c3762dee063a6f5ba036af939b23b604b9305f98d9eb5c7586b7dd17486ba",
+  "assumptions": {
+    "source": "实验/研究/data/tuomin/补充数据/负荷和光伏装机预测.md",
+    "sha256": "85c48e1444c0d1375b7df8816f258bb6ea83858357dd1e5ceb52c6de7afd15bb",
+    "load": "最新市区总负荷相对2025年比例作用于原110kV负荷分量，缺年按相邻节点等增量插值",
+    "pv": "徐州市光伏装机相对2025年比例作用于市区光伏代理，缺年等增量插值；单位在比例中消去",
+    "decomposition": "日间08—18时，用归档night_central负荷代理与同期净负荷之较大值作为负荷分量，差额为光伏代理；夜间原净功率作为非光伏分量。2025原净负荷逐点还原。",
+    "static_scope": "各年保留原45个同期截面，并补充外推后地区及各站正向峰值与最低净负荷截面；非SOC调度",
+    "historical": "2021起点3113.5 MVA及2022—2025已确认配置保持，2026起直接接续",
+    "economics": "延用40/40/25年寿命、4.2%/2.2%/3%维护、6%折现、2021现值基年和2041评价截止，延长可投运年份"
+  },
+  "sources": [
+    {
+      "path": "实验/研究/data/tuomin/补充数据/负荷和光伏装机预测.md",
+      "sha256": "85c48e1444c0d1375b7df8816f258bb6ea83858357dd1e5ceb52c6de7afd15bb"
+    },
+    {
+      "path": "研究报告/试算/20261015_静态联合替代/city/annual_2021/inputs.json",
+      "sha256": "90a3d169674584f7181308991ca9ed13e76fab85c90c1ad656f73a86a79fafa6"
+    },
+    {
+      "path": "研究报告/数据来源/当前版/区域时序/city_stations.npz",
+      "sha256": "749d6642e64d200e335616a8e721b9a19139d96b3ac6a5bdd08fd178f903b24e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/source_audit/annual_reverse_station_proxy_2021_2025.csv",
+      "sha256": "323b9faeda8d27b8dbd652ccff802229d517665bb82a60dd2d5922ab8d877da1"
+    }
+  ],
+  "decomposition_baseline_error_mw": 3.552713678800501e-15
+}

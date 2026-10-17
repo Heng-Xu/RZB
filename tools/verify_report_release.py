@@ -65,8 +65,11 @@ def verify_matrix_release():
 def verify():
  if not RELEASE.exists():return verify_matrix_release()
  r=json.loads(RELEASE.read_text());assert r['状态']=='三阶段核验及逐段复核通过'
+ from report_work_context import verify_context
+ context=verify_context(ROOT,RELEASE,r['当前文件SHA256'])
  for name,digest in r['当前文件SHA256'].items():
-  assert sha(ROOT/name)==digest,'本轮交付文件变化，须重新核验：'+name
+  original=ROOT/context[name]['原件归档'] if name in context else ROOT/name
+  assert sha(original)==digest,'本轮交付文件变化，须重新核验：'+name
  previous=DETAILS/'上一版交付衔接.json';link=json.loads(previous.read_text())
  parent=ROOT/link['父交付登记'];assert sha(parent)==link['父交付登记SHA256']
  parent_record=json.loads(parent.read_text())
