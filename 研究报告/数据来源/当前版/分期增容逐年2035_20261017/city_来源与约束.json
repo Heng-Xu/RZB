@@ -1,0 +1,34 @@
+{
+  "parent_input": "研究报告/试算/20261017_远景定容站级限额逐年2035/city/inputs.json",
+  "parent_input_sha256": "4758d98aa2d7fc2ac72a6aef3f20c63ac3e8b647f81d71a4944bc262c26e9b9f",
+  "inputs_sha256": "a4b381853236b799a9caefd1811da160093267100f7ef9acac9d49bc5e69df7e",
+  "hourly_sha256": "4992471df0bec82b0513ada8e9460ac53c9261d83a1a024f7d982e3767f1b67b",
+  "parent_hourly_sha256": "4992471df0bec82b0513ada8e9460ac53c9261d83a1a024f7d982e3767f1b67b",
+  "change": "同地区两方案每年净增主变铭牌容量不超过上年容量5%；采购仍按整台实施，未使用的额度不跨年累积",
+  "basis": "预测期负荷年均增长约3.8%—4.1%，取5%作为包含整台工程余量的建设节奏研究假设，非规范强制限值",
+  "schedule_policy": "保留上一版2035主变工程清单，以五年预测负荷增长趋势分配累计建设进度，各年容许50MVA整台工程余量；终年匹配原清单。刚性进度同时服从2.0新增容量控制。仅调整建设排程，储能与联络逐年重新选配。",
+  "terminal_references": [
+    {
+      "case": "rigid",
+      "path": "研究报告/试算/20261017_远景定容站级限额逐年2035/city/rigid/2035/adopted.json",
+      "sha256": "22fce88c1a79d0e9884008dc75480c83abba3c06a976c5a90064b50fa119bf7d",
+      "terminal_capacity_mva": 3668.0
+    },
+    {
+      "case": "elastic_capacity",
+      "path": "研究报告/试算/20261017_远景定容站级限额逐年2035/city/elastic_capacity/2035/adopted.json",
+      "sha256": "4edb7bd35d68f107e08e8b103b7826fc158a4ca7d2ec77468fb7d2e8dff0214d",
+      "terminal_capacity_mva": 4060.5
+    }
+  ],
+  "forecast_growth_2025_2030": 0.03834748783368824,
+  "forecast_growth_2030_2035": 0.03824041600285355,
+  "retained": [
+    "2021起点",
+    "负荷与光伏逐小时序列",
+    "同年共同下限",
+    "整台采购与远景选型",
+    "站级20%转供上限",
+    "原费用与储能口径"
+  ]
+}
