@@ -5,31 +5,47 @@
   },
   {
     "number": "3-2",
-    "tex": "\\begin{aligned}\n\\widehat C_{y,m}&=C_{2023,m}\\left(\\frac{C_{2023,m}}{C_{2024,m}}\\right)^{2023-y}\\\\\ny&=2021,2022.\n\\end{aligned}"
+    "tex": "\\begin{aligned}\nP_{c,y}&=P_{c,2025}\\frac{F_{c,y}}{F_{c,2025}},\\\\\ng^L_{c,y}&=\\frac{F_{c,y}}{F_{c,y-1}}-1,\\\\\n\\bar g^L_{c,[a,b]}&=\\left(\\frac{F_{c,b}}{F_{c,a}}\\right)^{1/(b-a)}-1.\n\\end{aligned}"
   },
   {
     "number": "3-3",
-    "tex": "\\widehat E_\\mathrm{PV}=\\sum_{m=1}^{12}\\sum_{t\\in m}\\phi_t\\frac{C_m+C_{m-1}}{2}\\Delta t."
+    "tex": "\\begin{aligned}\n\\widehat C_{y,m}&=C_{2023,m}\\left(\\frac{C_{2023,m}}{C_{2024,m}}\\right)^{2023-y}\\\\\ny&=2021,2022.\n\\end{aligned}"
   },
   {
     "number": "3-4",
-    "tex": "\\eta_C=\\frac{C_\\mathrm{DG}}{P_\\mathrm{user,max}}."
+    "tex": "\\begin{aligned}\nC_{c,y}&=C_{c,2025}\\frac{V_y}{V_{2025}},\\qquad\ng^{\\mathrm{PV}}_y=\\frac{V_y}{V_{y-1}}-1,\\\\\n\\bar g^{\\mathrm{PV}}_{[a,b]}&=\\left(\\frac{V_b}{V_a}\\right)^{1/(b-a)}-1.\n\\end{aligned}"
   },
   {
     "number": "3-5",
-    "tex": "\\begin{aligned}\n\\widehat E_\\mathrm{user}&=a\\sum_tP_{\\mathrm{net},t}\\Delta t+\\widehat E_\\mathrm{PV}\\\\\n\\eta_E&=\\frac{\\widehat E_\\mathrm{PV}}{\\widehat E_\\mathrm{user}}.\n\\end{aligned}"
+    "tex": "\\widehat E_\\mathrm{PV}=\\sum_{m=1}^{12}\\sum_{t\\in m}\\phi_t\\frac{C_m+C_{m-1}}{2}\\Delta t."
   },
   {
     "number": "3-6",
-    "tex": "\\begin{aligned}P^+&=\\max_t(P_t,0),\\quad P^-=\\max_t(-P_t,0),\\\\P^\\mathrm{abs}&=\\max(P^+,P^-).\\end{aligned}"
+    "tex": "\\eta_C=\\frac{C_\\mathrm{DG}}{P_\\mathrm{user,max}}."
   },
   {
     "number": "3-7",
-    "tex": "H_{95}=\\max\\{\\text{连续时段长度}:|P_{\\mathrm{region},t}|\\geq0.95P_{\\mathrm{region}}^{\\mathrm{abs}}\\}."
+    "tex": "\\begin{aligned}\n\\widehat E_\\mathrm{user}&=a\\sum_tP_{\\mathrm{net},t}\\Delta t+\\widehat E_\\mathrm{PV}\\\\\n\\eta_E&=\\frac{\\widehat E_\\mathrm{PV}}{\\widehat E_\\mathrm{user}}.\n\\end{aligned}"
   },
   {
     "number": "3-8",
+    "tex": "\\begin{aligned}P^+&=\\max_t(P_t,0),\\quad P^-=\\max_t(-P_t,0),\\\\P^\\mathrm{abs}&=\\max(P^+,P^-).\\end{aligned}"
+  },
+  {
+    "number": "3-9",
+    "tex": "H_{95}=\\max\\{\\text{连续时段长度}:|P_{\\mathrm{region},t}|\\geq0.95P_{\\mathrm{region}}^{\\mathrm{abs}}\\}."
+  },
+  {
+    "number": "3-10",
     "tex": "r_{\\mathrm{region}}=\\frac{\\sum_i Q_i}{\\sum_i(Q_i+U_i)}."
+  },
+  {
+    "number": "3-11",
+    "tex": "\\begin{aligned}\nQ_{\\mathrm{sec}}&=\\sum_{k\\in\\mathcal N_{\\mathrm{sec}}}p_k\n=8.2344\\times0.90972763\\approx7.49\\ \\mathrm{MW},\\\\\nF_{\\mathrm{new}}&=\\frac{\\sqrt3\\,U I_{\\mathrm{allow}}\\cos\\varphi}{1000}\\\\\n&=\\frac{\\sqrt3\\times10\\times550\\times0.95}{1000}\n\\approx9.05\\ \\mathrm{MW},\\\\\nQ_{\\mathrm{ref}}&=\\min(Q_{\\mathrm{sec}},F_{\\mathrm{new}})=7.49\\ \\mathrm{MW}.\n\\end{aligned}"
+  },
+  {
+    "number": "3-12",
+    "tex": "\\begin{aligned}\n0\\leq q_{e,\\omega}&\\leq Q_{\\mathrm{ref}}x_{e,y},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{out}}}q_{e,\\omega}&\\leq L_{f,\\omega}^{\\mathrm{cut}},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{in}}}q_{e,\\omega}&\\leq\\max(0,F_f-P_{f,y}^{\\mathrm{ref}}),\\\\\n\\sum_{e\\in\\mathcal E_j^{\\mathrm{in}}}q_{e,\\omega}&\\leq R_{j,\\omega}.\n\\end{aligned}"
   },
   {
     "number": "4-1",
@@ -93,7 +109,7 @@
   },
   {
     "number": "5-8",
-    "tex": "\\begin{aligned}\n-\\gamma_{i,\\omega}\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}-B_i^-&\\leq P_{i,\\omega}-q_{i,\\omega}^{\\mathrm{out}}+q_{i,\\omega}^{\\mathrm{in}}\\\\\n&\\leq\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}+B_i^+,\\\\\nS_{i,\\omega}^{\\mathrm{av}}&=S_i-\\mathbf1_{i\\text{为故障站}}\\max_j S_{i,j}.\n\\end{aligned}"
+    "tex": "\\begin{aligned}\n-k_{i,\\omega}\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}-B_i^-&\\leq P_{i,\\omega}-q_{i,\\omega}^{\\mathrm{out}}+q_{i,\\omega}^{\\mathrm{in}}\\\\\n&\\leq k_{i,\\omega}\\cos\\varphi\\,S_{i,\\omega}^{\\mathrm{av}}+B_i^+,\\\\\nS_{i,\\omega}^{\\mathrm{av}}&=S_i-\\mathbf1_{i\\text{为故障站}}\\max_j S_{i,j}.\n\\end{aligned}"
   },
   {
     "number": "5-9",

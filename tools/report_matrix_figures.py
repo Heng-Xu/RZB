@@ -48,7 +48,7 @@ def lookup_bounds(save):
     labels = [g+' / '+e for g,e in data.iloc[:,:2].to_numpy()]
     fig, axes = plt.subplots(1,2,figsize=(6.8,7.0),sharey=True)
     vmin, vmax = low.min(), high.max()
-    for ax, values, title in zip(axes,[low,high],['区间下界','区间上界']):
+    for ax, values, title in zip(axes,[low,high],['推荐带下界','推荐带上界']):
         ax.imshow(values,aspect='auto',cmap=LinearSegmentedColormap.from_list('bounds',['#ffffff','#32698c']),vmin=vmin,vmax=vmax)
         ax.set_xticks(range(4),list(data.columns[2:]),rotation=35,ha='right')
         ax.set_yticks(range(12),labels,fontsize=10);ax.set_title(title,fontsize=13);ax.set_xlabel('初始转供率')
@@ -58,7 +58,7 @@ def lookup_bounds(save):
     axes[0].set_ylabel('年最大净负荷平均增长率 / 装机渗透率')
     fig.suptitle('电缆长度占比>30%、负荷分散系数1.10',fontsize=13)
     save(fig,'lookup_matrix_bounds',data,[asset/'计算表.json',ROOT/'研究报告/01研究推荐/当前版/参数联合情景_20261012/统一有效样本.csv'],
-         '电缆分区内区间端点怎样分布','同色阶端点热图','区间上下界对应相同电缆档和分散系数')
+         '电缆分区内推荐带端点怎样分布','同色阶端点热图','同一行按转供档容量下界设置相邻档共用界值')
 
 
 def main():

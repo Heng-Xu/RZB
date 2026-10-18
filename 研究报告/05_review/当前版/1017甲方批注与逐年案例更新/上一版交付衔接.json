@@ -1,614 +1,442 @@
 {
-  "父交付登记": "研究报告/05_review/当前版/1017细节表述修正/交付登记.json",
-  "父交付登记SHA256": "83656e070a4cf4919a059f8ab1a2f1ff1461bc2ce40dafc1e6ed89a2ab92a4e5",
+  "父交付登记": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/交付登记.json",
+  "父交付登记SHA256": "f0c869f413582487c64bb24d5000317574d2ba29206f99ea78afa9657f7ecf79",
   "原件映射": {
+    ".githooks/pre-commit": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/.githooks/pre-commit",
+      "SHA256": "3df3389eaa84e18a451cf7dc9e3082d1dc7ba7411876d64a2809c309cdf6042a"
+    },
+    ".github/workflows/report-policy.yml": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/.github/workflows/report-policy.yml",
+      "SHA256": "c5bf9f2228e0b90b1cefea1a1a419c4b430b1f2e7dcce733f153e476d3f38113"
+    },
     "AGENTS.md": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/AGENTS.md",
-      "SHA256": "54594ea5125f534d8970ce6b9a6dcc640d7d4c09e9788a71b4bd41c9711d0e3f"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/AGENTS.md",
+      "SHA256": "b677a6f534f32ffe6e0a117dde1d9af8ec353a7715b56bb152483dfedee976a1"
     },
     "docs/CURRENT-WORKFLOW.md": {
-      "path": "研究报告/05_review/当前版/1017区县案例结果锁定/继承基线/docs/CURRENT-WORKFLOW.md",
-      "SHA256": "add115d61984255c484242af8f4a4b7786f1ab59c9dbe6ca0376ff616d81bf6e"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/docs/CURRENT-WORKFLOW.md",
+      "SHA256": "85dc1562f207fd2f50c0b25d63e394b6d54d33b0c66fa0b2bcfa29e4b484fff8"
     },
-    "memory/archive/2026-10-17-细节表述修正前.md": {
-      "path": "memory/archive/2026-10-17-细节表述修正前.md",
-      "SHA256": "c64a2da658a339ea3ddb54314e1605d8489641ecf8701972a04dfaf10dbed28a"
+    "memory/archive/2026-10-18-甲方批注与案例更新前.md": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/memory/archive/2026-10-18-甲方批注与案例更新前.md",
+      "SHA256": "20b0eb88618c8277b529e2ce6de5d0362d9c5020ac345b1e241ba642947b31bc"
     },
     "memory/current.md": {
-      "path": "研究报告/05_review/当前版/1017市区前推2035/继承基线/current.md",
-      "SHA256": "7cd5e5c340e1d5be8d2d94a51e0e7450395d0c180a1d83dcc4ff86821fe0b207"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/memory/current.md",
+      "SHA256": "495de1228e89e611d7f2e58e5a2a0c96c3fb828fbf41a9990c2a9702b293ea1e"
     },
     "prompt.md": {
-      "path": "研究报告/05_review/当前版/1017市区前推2035/继承基线/prompt.md",
-      "SHA256": "0457891dab55605f7826c960a352768f7658ff07adc4b7370b89d30fe05ac1ed"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/上一版登记原件/prompt.md",
+      "SHA256": "17dc5c48c51102d569b308543195d6c1d98f61ae48443f577f8855c2698e6e85"
+    },
+    "tools/build_current_report.py": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/build_current_report.py",
+      "SHA256": "4fc1d76a7e06555cf9df2015fd4993899da4068ec48e57c2ad5e557ecebf731a"
     },
     "tools/check_report_policy.py": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/tools/check_report_policy.py",
-      "SHA256": "57bb1d6481e94ec495567133d74b2e1ec0e657c3ba1ca064ef38513d0dd6d50a"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/check_report_policy.py",
+      "SHA256": "2b6da9641541c7cde1289ed7508fb2d670a056eb15f9067a8e09c879576886f2"
     },
-    "tools/expand_report_figures.py": {
-      "path": "tools/expand_report_figures.py",
-      "SHA256": "ada9aeed0c31342345eb91b0257d6fa52b50778ac668c9e18b38505cbab64180"
+    "tools/refresh_annual_report_figures.py": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/refresh_annual_report_figures.py",
+      "SHA256": "b6c58a88672a80ff0e04739ab56412fdba4554d103730ecefc19a027ae39713a"
+    },
+    "tools/report_annual_update.py": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/report_annual_update.py",
+      "SHA256": "13c5715711f0251f73044ba480ffa68f61dd4f6b7a63e26dba4d5576ae6d8716"
     },
     "tools/report_policy.json": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/tools/report_policy.json",
-      "SHA256": "60025e4e340c8f91e04710183e9129448fb804393cf1faafe49a4f7a1fa578f4"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/report_policy.json",
+      "SHA256": "d85d7e7617c45cd6be5fcd88fd1b7580b951ee269043e75f8fbe052f82e976d0"
     },
-    "tools/report_storage_display.py": {
-      "path": "tools/report_storage_display.py",
-      "SHA256": "db2166fa25ae63490de83d6c133c4474c12edf0742291a966dfd6a8459c7d8b7"
+    "tools/revise_report_in_place.py": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/revise_report_in_place.py",
+      "SHA256": "53ccc3201ab26487b942495928d94bf041745704bf9748ea9cfc06e66853530f"
     },
     "tools/sync_current_report_results.py": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/tools/sync_current_report_results.py",
-      "SHA256": "db556afe8dec2efd3a102a4a2b1a3e4fdf465cbdbc559e7c23c0422582f37344"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/sync_current_report_results.py",
+      "SHA256": "0a4c99f919bfc2d082e0f7617d7365f7aa66666a2fe796e3c7f830766b3a4774"
+    },
+    "tools/test_report_in_place.py": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/test_report_in_place.py",
+      "SHA256": "c2585d3443a982f5cb8934025b2ed9abcb202dcebbd56795cbb185ba81c52ea6"
     },
     "tools/test_report_prose_policy.py": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/tools/test_report_prose_policy.py",
-      "SHA256": "d7ecbd56880b6eb634eaee3438001151f5b901aa7aaf30551e245087a8dedee5"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/test_report_prose_policy.py",
+      "SHA256": "93b11d9256204f3ff85dd8cb4a3f55e611b81b77b474870fce0560350439af0f"
     },
-    "tools/verify_report_expansion.py": {
-      "path": "tools/verify_report_expansion.py",
-      "SHA256": "85d667f5252d236b33ba058a48bf8d0aab03d5a94a7a919e3274f8a0ab2b5a2c"
+    "tools/verify_annual_report_update.py": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/verify_annual_report_update.py",
+      "SHA256": "280f21af2fc44bfeb65f23cdccd846a6febb5d249765037fbc6abd78e33ae8c4"
+    },
+    "tools/verify_current_report.py": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/verify_current_report.py",
+      "SHA256": "d002c9f86b795ceb29d8267fca06df5ed2dcd4d6e8a34e6236b91a7b40a219a1"
+    },
+    "tools/verify_preliminary_baseline.py": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/verify_preliminary_baseline.py",
+      "SHA256": "cdbaf7f63ffc8ba4b713a6765a59909d2e68d96a7e0127594532cfa73ee50233"
     },
     "tools/verify_report_release.py": {
-      "path": "研究报告/05_review/当前版/1017市区前推2035/继承基线/tools/verify_report_release.py",
-      "SHA256": "a24dc57d25e32185fe90ee064721f11f0ef200d72d9103093845296544f129fb"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/verify_report_release.py",
+      "SHA256": "ebd213ceda1522c72be942d75cf2effe3e287bb5a44dd74e2fed1b9047e488ae"
+    },
+    "tools/verify_report_review.py": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/tools/verify_report_review.py",
+      "SHA256": "c73d040de9dc166667d9f5d18c47c593439c6dd889a453b5ea8b8a00bb53bdcf"
     },
     "研究报告/02图表/当前版/annual_clr.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/annual_clr.png",
-      "SHA256": "5b3283cf268adf45fd7971e06b6297cf3bd5ef5b834deb3935e821678151dc8a"
-    },
-    "研究报告/02图表/当前版/annual_load.png": {
-      "path": "研究报告/02图表/当前版/annual_load.png",
-      "SHA256": "a3806b41d35c1d4afefdd9271bd95147c13c778d34e89395756fd2bed8eddbcc"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/annual_clr.png",
+      "SHA256": "68b43b579a7bbec82a7a076be0c5729c8d5b539229145faeff859a0808df9bf1"
     },
     "研究报告/02图表/当前版/annual_model_pressure.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/annual_model_pressure.png",
-      "SHA256": "be5667ac25226e135c69998c912121539c8e7e5ff77ebfc74b1f5ab23d860b2a"
-    },
-    "研究报告/02图表/当前版/cable_device_response.png": {
-      "path": "研究报告/02图表/当前版/cable_device_response.png",
-      "SHA256": "8289590e26e8eea1d1672835c15754056cc2fd8022eb9a34d5dfdb302cb87ccb"
-    },
-    "研究报告/02图表/当前版/case_sensitivity.png": {
-      "path": "研究报告/02图表/当前版/case_sensitivity.png",
-      "SHA256": "2bc71bd9cfe900e4023b17ebdd71ed994cdad495db5ab47c6f26ac844ffffa2d"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/annual_model_pressure.png",
+      "SHA256": "576d57a39ee3276c4a43f2cd59fccca68681e10d0edfcad362bfeb4f40afcc84"
     },
     "研究报告/02图表/当前版/city_annual_new_measures.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/city_annual_new_measures.png",
-      "SHA256": "2dd6a29a40670ed3978333f3acca980f62a8d201327d5405bb7b303b13b84078"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/city_annual_new_measures.png",
+      "SHA256": "29c265d7c1c67e24a2f8a08ebcee155851cf14ad53f1d5bfe59ffaf08d0734c1"
     },
     "研究报告/02图表/当前版/city_modeled_peaks.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/city_modeled_peaks.png",
-      "SHA256": "b75da45661118dd51d364a603d7c8cfc3e7b439a000c6cef4416fe52e9166499"
-    },
-    "研究报告/02图表/当前版/city_regional_peak.png": {
-      "path": "研究报告/02图表/当前版/city_regional_peak.png",
-      "SHA256": "afc3e984f29641187f6fc7634606352310386ab8a575a683964efc4dd1605291"
-    },
-    "研究报告/02图表/当前版/city_station_direction.png": {
-      "path": "研究报告/02图表/当前版/city_station_direction.png",
-      "SHA256": "8de2631fc6e704a0874cdfe8b82570abba8a96f8081f494d65a3a5aaae59ef96"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/city_modeled_peaks.png",
+      "SHA256": "b061f3ee587062749128f70a1a95d8be02f45b7915cf7cc5fc0e93584d27df78"
     },
     "研究报告/02图表/当前版/city_station_n1.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/city_station_n1.png",
-      "SHA256": "8311387fad29110d82ea109e4f0217e17e820efc20d7408eb22d103bf5dc5a4c"
-    },
-    "研究报告/02图表/当前版/discussion_cable_transfer.pdf": {
-      "path": "研究报告/02图表/当前版/discussion_cable_transfer.pdf",
-      "SHA256": "7c599119e3ffc1b45be7fe19eb622725baa2f79ce5d7cbffa5d6f20a431b52eb"
-    },
-    "研究报告/02图表/当前版/discussion_cable_transfer.png": {
-      "path": "研究报告/02图表/当前版/discussion_cable_transfer.png",
-      "SHA256": "9908b2e13ec60373fe5440e9036c344b002daf0f00abeffc071003a5abcd7563"
-    },
-    "研究报告/02图表/当前版/discussion_dispersion_transfer.pdf": {
-      "path": "研究报告/02图表/当前版/discussion_dispersion_transfer.pdf",
-      "SHA256": "7721755822303bd97885646b112a9539ffb0f9327c11aa15cb0219d429c6c54b"
-    },
-    "研究报告/02图表/当前版/discussion_dispersion_transfer.png": {
-      "path": "研究报告/02图表/当前版/discussion_dispersion_transfer.png",
-      "SHA256": "6375d51644d0a1d111c95e218ae93eaae958197cbbad8aefc95a0f2c53a7fb0c"
-    },
-    "研究报告/02图表/当前版/discussion_hours_eta.pdf": {
-      "path": "研究报告/02图表/当前版/discussion_hours_eta.pdf",
-      "SHA256": "55a3746cbd08f5e0dbc390121110019e2f09d6e771c2a15ba793da8be61dd51d"
-    },
-    "研究报告/02图表/当前版/discussion_hours_eta.png": {
-      "path": "研究报告/02图表/当前版/discussion_hours_eta.png",
-      "SHA256": "dfb52ca7b2420c905bcf9669c1adad030a2d46dc8b4bfbe3f6e8776f208a0448"
-    },
-    "研究报告/02图表/当前版/diversity_device_response.png": {
-      "path": "研究报告/02图表/当前版/diversity_device_response.png",
-      "SHA256": "4e7fb0ef8b608babd570ad7e5873639fa52f075e1efb9291a892d6548f9b6fd5"
-    },
-    "研究报告/02图表/当前版/energy_capacity_storage.png": {
-      "path": "研究报告/02图表/当前版/energy_capacity_storage.png",
-      "SHA256": "c1014dc8024bc7427809cbb95f0b30be80216d39ad27156598e0d540adb8cc92"
-    },
-    "研究报告/02图表/当前版/eta_device_response.png": {
-      "path": "研究报告/02图表/当前版/eta_device_response.png",
-      "SHA256": "1514519e97e622169dfaeba8aa974448bb36c62b794ef68494841e4d67fdd573"
-    },
-    "研究报告/02图表/当前版/five_parameter_correlation_map.png": {
-      "path": "研究报告/02图表/当前版/five_parameter_correlation_map.png",
-      "SHA256": "ff6c012b133ab37927b13623460580a72846fac6ebd1ecf294efa4914f89372a"
-    },
-    "研究报告/02图表/当前版/growth_capacity_reserve.png": {
-      "path": "研究报告/02图表/当前版/growth_capacity_reserve.png",
-      "SHA256": "ee9ce53c0a87ce0644eb50e32d0644420fee847328abc44db96a514a46b45e14"
-    },
-    "研究报告/02图表/当前版/historical_capacity_load.png": {
-      "path": "研究报告/02图表/当前版/historical_capacity_load.png",
-      "SHA256": "ee703809e9020f308093c476a711bc8f8ab1e9aff0ebfcd539f8aeadcafb76bd"
-    },
-    "研究报告/02图表/当前版/historical_clr_contribution.png": {
-      "path": "研究报告/02图表/当前版/historical_clr_contribution.png",
-      "SHA256": "9db1194c857bc9fa0c7c36f3b69c5b7888fd39cb9f8791c5724a8a573b88d87a"
-    },
-    "研究报告/02图表/当前版/indicator_correlation_strength.png": {
-      "path": "研究报告/02图表/当前版/indicator_correlation_strength.png",
-      "SHA256": "6f1e2a9f0034fe141fd395edbdf81661f9cbf480d259ca53ebc78e4880775d71"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/city_station_n1.png",
+      "SHA256": "fa039d4cae20d0fdfc4735d2d58eceae8da7ac512180f220f922321870150a5e"
     },
     "研究报告/02图表/当前版/initial_capacity_cost_comparison.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/initial_capacity_cost_comparison.png",
-      "SHA256": "78377721248fb8fe58957aef9d01fe5da0a08149e47145bac29defe30b324f72"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/initial_capacity_cost_comparison.png",
+      "SHA256": "c95e9c017dcfad71e3ac40226ed4bef49a72d01d499fe097587436623c66e7fe"
     },
     "研究报告/02图表/当前版/lifecycle_components.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/lifecycle_components.png",
-      "SHA256": "817784552185398a51432a543848d21c72685ee724a18aa512a435055a611074"
-    },
-    "研究报告/02图表/当前版/lifecycle_investment_maintenance.png": {
-      "path": "研究报告/02图表/当前版/lifecycle_investment_maintenance.png",
-      "SHA256": "5b9034fe35c045850ff3bc28ecf20b4120c24031e693a8adc748da95149d6ee0"
-    },
-    "研究报告/02图表/当前版/line_investment_components.png": {
-      "path": "研究报告/02图表/当前版/line_investment_components.png",
-      "SHA256": "3388f66fa865efc76c2510d3be4b1e9ac85c2e07e593e60ae00bf06167107c34"
-    },
-    "研究报告/02图表/当前版/loading_distribution.png": {
-      "path": "研究报告/02图表/当前版/loading_distribution.png",
-      "SHA256": "979a770e02e5c612fb83d625d0131ea050fe60fa038a50592af7c017533d3dad"
-    },
-    "研究报告/02图表/当前版/lookup_matrix_bounds.png": {
-      "path": "研究报告/02图表/当前版/lookup_matrix_bounds.png",
-      "SHA256": "2422f9b0c0cd1a13b7b18b753ec38f31e2dd9910cd6ae95da150439d0ae1beab"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/lifecycle_components.png",
+      "SHA256": "3fbfcea99db9108b3e68417e4a1dd99118c73ba01823114ee9a81aab028df07d"
     },
     "研究报告/02图表/当前版/measure_comparison.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/measure_comparison.png",
-      "SHA256": "e122365b95a73c6dae0b27caf2f50c8b6086ac37b886c98d6934ce8e05024f5e"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/measure_comparison.png",
+      "SHA256": "036078c6d5765616489a58336574a102facccec01e1a67fe476f6ecb1221b46f"
     },
     "研究报告/02图表/当前版/pizhou_annual_new_measures.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/pizhou_annual_new_measures.png",
-      "SHA256": "58ad00cfad6e926a9b7fc08ac3585edd199e0f9cc4b300a0fc1b022ef050fc16"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/pizhou_annual_new_measures.png",
+      "SHA256": "6dd84f26eb9d1f5d3ae5fcd7360ca87b5c96a7ea4f0682fc382a07ded47f040b"
     },
     "研究报告/02图表/当前版/pizhou_modeled_peaks.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/pizhou_modeled_peaks.png",
-      "SHA256": "bba35626b188b863006b321e20c7bbfea229123bef3603f9eb26c156dfab5275"
-    },
-    "研究报告/02图表/当前版/pizhou_regional_peak.png": {
-      "path": "研究报告/02图表/当前版/pizhou_regional_peak.png",
-      "SHA256": "145db7502fc8598b0af0e4c404e1f928ce11199423fa7c5dac23f2198298c6b2"
-    },
-    "研究报告/02图表/当前版/pizhou_station_direction.png": {
-      "path": "研究报告/02图表/当前版/pizhou_station_direction.png",
-      "SHA256": "2a8c7b338e1f2c3024ba826a50c30deca65d932f6222fd564476ac862626e504"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/pizhou_modeled_peaks.png",
+      "SHA256": "7e818ba839b22d8d78b11640d4adc0a39a9be7de80f7d532f4be9d92326ba735"
     },
     "研究报告/02图表/当前版/pizhou_station_n1.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/pizhou_station_n1.png",
-      "SHA256": "90abe6b9e790541641ad8768208cd1162feaa8cab4c022b5ed5f2d5e376aaa71"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/pizhou_station_n1.png",
+      "SHA256": "a0f0eddeabc1774d66ebddd94e65b287b0ba5ed59c9ba8ca7be93b6909d6340c"
     },
     "研究报告/02图表/当前版/pizhou_storage_distribution.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/pizhou_storage_distribution.png",
-      "SHA256": "d89a204b519c3571b1e0c17be9a927ca1b74be6f093a575ae187eaf72770e993"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/pizhou_storage_distribution.png",
+      "SHA256": "ad24e5c4405349f83ce081a6737f62cd89fd1c775fee00ca9763d774d8243d26"
     },
     "研究报告/02图表/当前版/plan_cost_difference.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/plan_cost_difference.png",
-      "SHA256": "7624be5c54d5e13e301ae0e4897246a368b53e9eebaa7e489bd1e325a542c582"
-    },
-    "研究报告/02图表/当前版/planning_tier_heatmap.png": {
-      "path": "研究报告/02图表/当前版/planning_tier_heatmap.png",
-      "SHA256": "6b30ef4e5dd0d4c3cb11133279c4835538ef0ea860711fa6707cbe7431604ac2"
-    },
-    "研究报告/02图表/当前版/pv_monthly.png": {
-      "path": "研究报告/02图表/当前版/pv_monthly.png",
-      "SHA256": "d16968a14c23a042ed205ad96e56c9ebab5454105e889a87af62117199c40927"
-    },
-    "研究报告/02图表/当前版/quarterly_energy_comparison.png": {
-      "path": "研究报告/02图表/当前版/quarterly_energy_comparison.png",
-      "SHA256": "a9a6041391f5580cfeaa7cf53c0bdedc0e439bfb02a77271701ed93cd2490203"
-    },
-    "研究报告/02图表/当前版/regional_load_duration.png": {
-      "path": "研究报告/02图表/当前版/regional_load_duration.png",
-      "SHA256": "4ff913741462ecac784d8409f4f2f21774be3c8683f629df82db724f7d2b68e4"
-    },
-    "研究报告/02图表/当前版/storage_effective_cost.png": {
-      "path": "研究报告/02图表/当前版/storage_effective_cost.png",
-      "SHA256": "848b040a221597da19bc9cf59940b44e2e66422063569a0cf2e0a014ea2321cd"
-    },
-    "研究报告/02图表/当前版/storage_support_modules.png": {
-      "path": "研究报告/02图表/当前版/storage_support_modules.png",
-      "SHA256": "8b5817ed588f3ebe97de33dffe4bf6e829e951c7bc2564fb80fc744d753eb51f"
-    },
-    "研究报告/02图表/当前版/technical_route.png": {
-      "path": "研究报告/02图表/当前版/technical_route.png",
-      "SHA256": "867fb6c3831782efa6a76bd7bb8d1f0d000fa8a17b2c781df2064adcfbbc4ebf"
-    },
-    "研究报告/02图表/当前版/transformer_capacity_balance.png": {
-      "path": "研究报告/02图表/当前版/transformer_capacity_balance.png",
-      "SHA256": "ae8cba95f5fc55d362c25f8df1a45cab9c55977d6eb9e9d6f11f7d509d98653a"
-    },
-    "研究报告/02图表/当前版/transformer_unit_cost_basis.png": {
-      "path": "研究报告/02图表/当前版/transformer_unit_cost_basis.png",
-      "SHA256": "ae99101caf93ecdbadb8df8cd2de6a2672c2b43120effc238dce0b613921bb71"
-    },
-    "研究报告/02图表/当前版/typical_transfer_response.png": {
-      "path": "研究报告/02图表/当前版/typical_transfer_response.png",
-      "SHA256": "deaaa06d89ae63dd2733fd24755038923da3f1275ed7ef025e12314fdb73d543"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/plan_cost_difference.png",
+      "SHA256": "170203abb7a7f4e4626644670afb48f10d47ed44432a29cc50dda1af2cc993a8"
     },
     "研究报告/02图表/当前版/xingtang_reverse_capacity.png": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/xingtang_reverse_capacity.png",
-      "SHA256": "7f61fd0753d309ec2c9ad2e81c42b68f5eb2630fcb48439948625bfcc4f27ce8"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/xingtang_reverse_capacity.png",
+      "SHA256": "76708a356f2857c42f2ed7820486d06bcebb8efd191578668dee4fa5b857311b"
     },
     "研究报告/02图表/当前版/公式/公式清单.json": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/公式/公式清单.json",
-      "SHA256": "568a99ac2e42d54ba5a83180509684d4316b3bda4655165cebc21b57d4ea9370"
-    },
-    "研究报告/02图表/当前版/图件原始数值.json": {
-      "path": "研究报告/02图表/当前版/图件原始数值.json",
-      "SHA256": "dc54d304345e736c96e1f9a199840e29c7e29b8611abdb4b99f4ce15fc8d869e"
-    },
-    "研究报告/02图表/当前版/指标复算.json": {
-      "path": "研究报告/02图表/当前版/指标复算.json",
-      "SHA256": "17b96701df5bf50bb6cd52df73cd4fe0ec515431a2472a325d252f240c2a8868"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/公式/公式清单.json",
+      "SHA256": "96872b713c06ab2e9d25e751cfbf4593f743ae44529f8c548bcf5099a2a6140d"
     },
     "研究报告/02图表/当前版/生成段落.json": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/生成段落.json",
-      "SHA256": "4474f9a64363f1eb306c47ed704098951114548c39a244caf48846d1812b2600"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/生成段落.json",
+      "SHA256": "58857aea754070a402bd4a4b96765173b9195839cd2eb6dd5aa40dc211f9304d"
     },
     "研究报告/02图表/当前版/计算表.json": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/02图表/当前版/计算表.json",
-      "SHA256": "5db70e744a53204a9e319ee3bc8166835d00a22c9359a2a2be9dc33f99576f30"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/02图表/当前版/计算表.json",
+      "SHA256": "fd95b6a929d0e80758d6b88b2012fd80ca7801b221a8cf1a08d4479c26629c5c"
     },
     "研究报告/03_MD/当前版/01 第一章 绪论.md": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/03_MD/当前版/01 第一章 绪论.md",
-      "SHA256": "8362205d83bbdff15188c03564dd2dcb339c2beaf1ab9fef6d7784dca7bfb6ce"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/03_MD/当前版/01 第一章 绪论.md",
+      "SHA256": "88856bd27f9f50fd1903e46f9fe9a744b6d236ca9954630f0ca291d3a2c395f6"
     },
     "研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/03_MD/当前版/02 第二章 国内外研究现状.md",
-      "SHA256": "4a30ce55216b03d9b5a34ab8fbf35921d5a58e6c354963abe8e49b11230deda5"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/03_MD/当前版/02 第二章 国内外研究现状.md",
+      "SHA256": "b56f0952ae9577b7ba8012cb2039988ce621bc3e2051639228ed17440ca8260a"
     },
     "研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md",
-      "SHA256": "e7851eb587ee4f8fa7514630367ab8696805a90a38dc89aac3189f58d9e32711"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md",
+      "SHA256": "debe1b2bfce3097d97092d6d3d420e9abbb0487dd188b0aca3d0f3ad7b2c0133"
     },
     "研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md",
-      "SHA256": "87133f1b2414f1c6582678b6ff0893ce8d02ba8d27813255dd2c2c56a78c6f37"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md",
+      "SHA256": "5d5d60e97999401d6f5d87c568732ce7984a35626bfc86f811d4213f1c44d6b2"
     },
     "研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md",
-      "SHA256": "289ad42dc4ea0afdbff2a0e479e6a26e51ab505731eabb9ebc4bbdc814b66ab8"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md",
+      "SHA256": "fb8505ae183c8f965de32d3780976b29a6c68d75d0b8b1229c0021dc0fdb7897"
     },
     "研究报告/03_MD/当前版/06 第六章 结论与建议.md": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/03_MD/当前版/06 第六章 结论与建议.md",
-      "SHA256": "4318ff370842751879a49f6488c649be0bacd6907191f17a55b797a1ce897612"
-    },
-    "研究报告/03_MD/当前版/参考文献.md": {
-      "path": "研究报告/03_MD/当前版/参考文献.md",
-      "SHA256": "af93c84864dd92949d99db6e5d288dd3c75bdf9115a3eab88145b7dfea4ad615"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/03_MD/当前版/06 第六章 结论与建议.md",
+      "SHA256": "296371fb53f5ff05e40d92d355a3eb87eb69469a90fc8cd4c0bf73ef9a35ddd3"
     },
     "研究报告/03_MD/当前版/研究报告装配稿.md": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/03_MD/当前版/研究报告装配稿.md",
-      "SHA256": "71ed61948bb3349b4c21a7b4089a61e708780c76e1f854549bf04a84dbb78af2"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/03_MD/当前版/研究报告装配稿.md",
+      "SHA256": "072e0e12671e933501e083fe388fd00ad06cd30d757cc49e52b2828a822e5c07"
     },
     "研究报告/04_word/研究报告终稿.docx": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/04_word/研究报告终稿.docx",
-      "SHA256": "2b4c4cc80ee660eecaf600015b64715da6c3d6bd0447c96c9fa21db26b3daa94"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/04_word/研究报告终稿.docx",
+      "SHA256": "58641de2e6622868a87bfa301e8e83022427df0c0c108d5f1389769b0faf4aac"
     },
     "研究报告/04_word/研究报告终稿.pdf": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/04_word/研究报告终稿.pdf",
-      "SHA256": "d7ad74062ff55112292abf66ba7ca06d3f7f0a2c49acad585a37e02df281cf30"
-    },
-    "研究报告/05_review/当前版/1011局部优化/docx约束检查.json": {
-      "path": "研究报告/05_review/当前版/1011局部优化/docx约束检查.json",
-      "SHA256": "7c651d7d3839a20452126524b8cf48b61d84257990007106651cb483d00fcd40"
-    },
-    "研究报告/05_review/当前版/1011局部优化/final约束检查.json": {
-      "path": "研究报告/05_review/当前版/1011局部优化/final约束检查.json",
-      "SHA256": "9faa65014492b78b39a41720c4deba19517aa768e7699d98f03c8dfcba456a68"
-    },
-    "研究报告/05_review/当前版/1011局部优化/source约束检查.json": {
-      "path": "研究报告/05_review/当前版/1011局部优化/source约束检查.json",
-      "SHA256": "14808d9785670777f3cd995358b113a9bb7d7dbe4ddb78e4415e709a4f2e6c5a"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/WPS两轮比对.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/WPS两轮比对.json",
-      "SHA256": "2468282d725cced217dd092d97df4a7d22246d6a3b40c165bc2730143505e573"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/WPS版面核验.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/WPS版面核验.json",
-      "SHA256": "6dbe30c0d8fc53b30bc05c16b30bc3a86ce8720195c7cd7656cd5f2007c7a0e3"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/上一版交付衔接.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/上一版交付衔接.json",
-      "SHA256": "d93bb505eada8970a09ea6bae15447331b9d880fcd4839474c401b1e8e34417d"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/上一版原件/prompt.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/上一版原件/prompt.md",
-      "SHA256": "d7728f8ecc5ba0a82da7753fddd764f5866ef8f85682086dcfdc5fc86c7bd13f"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/上一版原件/研究报告/05_review/当前版/1011局部优化/docx约束检查.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/上一版原件/研究报告/05_review/当前版/1011局部优化/docx约束检查.json",
-      "SHA256": "9197b95a456de4d787c0517dde1e63b1e284a8b8ed08118ba338c6428f85ae27"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/上一版原件/研究报告/05_review/当前版/1011局部优化/final约束检查.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/上一版原件/研究报告/05_review/当前版/1011局部优化/final约束检查.json",
-      "SHA256": "0eb6107cbf5fd2eeb2e60f2ce6b0ce96f44cf0a5e76d6bf7470f1ab2d263038c"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/上一版原件/研究报告/05_review/当前版/1011局部优化/source约束检查.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/上一版原件/研究报告/05_review/当前版/1011局部优化/source约束检查.json",
-      "SHA256": "7e5fb774d902ce111345227ed5981ebbc43ca8fc4b9135f88193b579e4e5bedc"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/AGENTS.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/AGENTS.md",
-      "SHA256": "7c1c745d284eafbbac52526eeebadbed8bf6d8ffe8a12f79717f714885804857"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/docs/CURRENT-WORKFLOW.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/docs/CURRENT-WORKFLOW.md",
-      "SHA256": "fe695044a7c9a13b52ddf6f7d56aa309e2d2a8f26ed9fa98288775687d57dbbd"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/memory/current.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/memory/current.md",
-      "SHA256": "c64a2da658a339ea3ddb54314e1605d8489641ecf8701972a04dfaf10dbed28a"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/check_report_policy.py": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/check_report_policy.py",
-      "SHA256": "0e53ff447cd416e85b2c25c0824b3decb2a97002063bbcbd2d257571d3d00775"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/expand_report_figures.py": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/expand_report_figures.py",
-      "SHA256": "2c2632d60e080883697d8219de10bb7e6805a7413e3ef88257f6e2ee6a205a98"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/report_policy.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/report_policy.json",
-      "SHA256": "11ec1d529fbb8159673627dddf0f955e3d8c7fa7bf812ab1f62fbfa42f7d53c7"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/sync_current_report_results.py": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/sync_current_report_results.py",
-      "SHA256": "a92693d44ed43107182a3732811c1dd3afe08bc88aba179439b471c834e95820"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/test_report_prose_policy.py": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/test_report_prose_policy.py",
-      "SHA256": "d3cbcb1a9906cdee0cd962c4d6ff8dd2929d746dc16de5c6bea2f440153f4281"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/verify_report_expansion.py": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/verify_report_expansion.py",
-      "SHA256": "3738a7478a6faa667c8a3abc7e0398678640e11184064f2cb0d716088d72c5ae"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/verify_report_release.py": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/tools/verify_report_release.py",
-      "SHA256": "3f0624788323e91ce8e051aeb03daaf7c1866d7e8395c99746aae41632dc3929"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/02图表/当前版/生成段落.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/02图表/当前版/生成段落.json",
-      "SHA256": "4474f9a64363f1eb306c47ed704098951114548c39a244caf48846d1812b2600"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/02图表/当前版/计算表.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/02图表/当前版/计算表.json",
-      "SHA256": "cdeff4ed744c77583ad2987e2cc04ba38b3a4018ea96ee776ca7a8683689c86a"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/01 第一章 绪论.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/01 第一章 绪论.md",
-      "SHA256": "d130755cb39e7cebeaa5c14daadfba17b2113b42484c432a40ecef574cdb79a3"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/02 第二章 国内外研究现状.md",
-      "SHA256": "2c7b22d73f90a25b9156b6c31a03ec83e339cc1a655eb88775034e2bb5b982f0"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md",
-      "SHA256": "fd542802816997b4c7e8403e5518361e9600eae4334c273b001e2e1aa3b28226"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md",
-      "SHA256": "5f678b95fdb019cd148f398f7f587094812795eaa429880b5e81404126f75a15"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md",
-      "SHA256": "50901182b64b96530f669a914cd799869169978fb9c3e2886764ff4b082104d2"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/06 第六章 结论与建议.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/06 第六章 结论与建议.md",
-      "SHA256": "4318ff370842751879a49f6488c649be0bacd6907191f17a55b797a1ce897612"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/参考文献.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/参考文献.md",
-      "SHA256": "bb2f473175827ff655f9c65ca0e9eb1a8ebeff7281e10f146dd2e3d52c1ee5aa"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/研究报告装配稿.md": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/03_MD/当前版/研究报告装配稿.md",
-      "SHA256": "354536b931a217d6aadc317ad511926c91e1d38ab2e23425e673b74aafbecf31"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/04_word/研究报告终稿.docx": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/04_word/研究报告终稿.docx",
-      "SHA256": "12a5e43e90ad7c6debb26900f89ee95ab1b6784f3c34a111e0f5411580abfb2c"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/04_word/研究报告终稿.pdf": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/04_word/研究报告终稿.pdf",
-      "SHA256": "04cc91c5335f857f43a12d01e5bcdfb13523251b8183ffe9428df8133184ff17"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/WPS原生导出登记.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/WPS原生导出登记.json",
-      "SHA256": "6d0451de614f058b5892e41802caa3a1d322224d552864d45aac0940015a3571"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/Word表格内容复核.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/Word表格内容复核.json",
-      "SHA256": "760b020f697e16fd55510399cb414d879cf8477c658683558c17bae45972fb0f"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/docx引文一致性核验.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/docx引文一致性核验.json",
-      "SHA256": "89b07b79948c0abccd0b055026c030c8febd2d58804bc443294ae167ae261877"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/final引文一致性核验.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/final引文一致性核验.json",
-      "SHA256": "e308d4d749b62109d98efd36564e06a3a76a3bba9d9a746d34d3b57036d6c882"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/source引文一致性核验.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/source引文一致性核验.json",
-      "SHA256": "cd4648f1305df6d6c73eef9686a222b166e3cc37d2ba1beff9cbe60d1e374750"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/引文顺序与对应.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/引文顺序与对应.json",
-      "SHA256": "c82301f5eadb2c8c8d65a2ce6a5fa604255d0fbc72a5b9d14d7f55bda7042ca8"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/文献原编号登记.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/文献原编号登记.json",
-      "SHA256": "8dea49bdc36a1c8be95d19f3a53ba3d1cef48de8721f2d8099065e700d28a144"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/目录页码核对.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/目录页码核对.json",
-      "SHA256": "1dbda5e24511336b4127a49248ff4185d3358c6679d39c58418ff6eeb3acadd5"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/装配源文件登记.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前快照/研究报告/05_review/当前版/装配源文件登记.json",
-      "SHA256": "039e50d291811fcedfb5d389c60740cd89354c391bfc807510a231719a8bdce5"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/修前文件登记.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/修前文件登记.json",
-      "SHA256": "0a8a9947b68f50b3a0fe37fcfc706562266b00b989297322a177de35d9067687"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/储能系数原文核读.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/储能系数原文核读.json",
-      "SHA256": "b80ef9b51674e2174d3c90279cb1c50ba2da81cd13991dc573646d151f4f418d"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/冗余副本清理核验.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/冗余副本清理核验.json",
-      "SHA256": "f9a8545e545c9635020e76f7e0ee3ccd1ebd9f9ea73d6053befbccd3d3f7a5cf"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/原文核读_1.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/原文核读_1.png",
-      "SHA256": "e6093dc8c46f731fd863487dd4865535d3976a856be56ab0cb937ab7c834c573"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/原文核读_11.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/原文核读_11.png",
-      "SHA256": "d0e1481562db652a11098f1bea0520868d9296edd31bf39c1ff8262f7f68fc9d"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/原文核读_4.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/原文核读_4.png",
-      "SHA256": "0ff3c449f6935847848058c7f4d17976f0fd65a43ce74d255b778195261d3146"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/原文核读_5.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/原文核读_5.png",
-      "SHA256": "02aea04bfaef3975b3aee7abf0363e402ca0d7d0d014c5509516990cdc74a01c"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/图件来源承继.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/图件来源承继.json",
-      "SHA256": "6759cf2c8ed3f52b57488786f8ab0cb83e1da196f23c8b9b60ccb940377ec2ca"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/备份范围.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/备份范围.json",
-      "SHA256": "15ae140b4f3c17fd39834c81169973c803e9cd5142f7ffe17b5d0493602d2d0e"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/当前报告数据核验.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/当前报告数据核验.json",
-      "SHA256": "f0237083619d44790ccd7f12f5bd7ac3199a4498afbaf6f31a398d698fcd8d89"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/正文逐段复核.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/正文逐段复核.json",
-      "SHA256": "cfd8d92d83428bdad9108ae546cb99b338838ae87c30e6289cb2544dc31016fc"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/源稿前后对照.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/源稿前后对照.json",
-      "SHA256": "5b9612aa86412836528eb5bdff2110022555211a51c4ed35928bf27b55c48277"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_1.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_1.png",
-      "SHA256": "d66780840a1e7a70fc1b29ebf7c1515bc9a208fa5e6bfbaa805711b4743dcfcb"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_2.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_2.png",
-      "SHA256": "5fc1fcab1b80f04799c20f96bb9b81cca305b4328b62a6b4a02de8ce980f1489"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_3.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_3.png",
-      "SHA256": "a0739da9f0b32b3f6b82348e4207fb1505f50ef9c99efbd9e675f2f2a758a7e6"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_4.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_4.png",
-      "SHA256": "40e5d7f33ef9a5f8ee571adc181547508a110726b6da7b4a76a32807448e3b0c"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_5.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/复核拼页_5.png",
-      "SHA256": "10a3c371c3fc915892637945d7444823ed72efa459f9f428e6d158400bad4901"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/重点页_139.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/重点页_139.png",
-      "SHA256": "63ffb63e3716a4d10a008f9dc16b4fa2828e53459e45c64bf9c09a2d374919ff"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/重点页_31.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/重点页_31.png",
-      "SHA256": "1a5552c3b41a035a1dbdec6e03865bb27993f497cf40b3b8dbe3aa37477cdd02"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/重点页_67.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/重点页_67.png",
-      "SHA256": "44bd938d2a9b104a9ca3a62dc853fe672d03af93f0fa7dee3f801fa72fa2c051"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/重点页_73.png": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/重点页_73.png",
-      "SHA256": "435ca06b26562af94c4cfd64fc78fe9a912abe0f2985f9936815a4c513e4015e"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/版面/首轮选页.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/版面/首轮选页.json",
-      "SHA256": "0af0b5bd5c2e6d5b0394a33fc36b2ad3c311f630bf78abb51dac79a667b4451f"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/表格前后对照.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/表格前后对照.json",
-      "SHA256": "c905dd975077f2faf8d642ad0f8dc2874bb2eb81ba3ff171e36bbdd2a224ccaf"
-    },
-    "研究报告/05_review/当前版/1017细节表述修正/逐年导则对照核验.json": {
-      "path": "研究报告/05_review/当前版/1017细节表述修正/逐年导则对照核验.json",
-      "SHA256": "0328eef9f588f851d88b22045c01b2c43260dc06cebd474ca97ccf700f8d7d1f"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/04_word/研究报告终稿.pdf",
+      "SHA256": "dbd9dc8cd3fbcd496e4b0ab5c35f9bd869d0083383fbbd7d2bdd7175a9e196e2"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/WPS最终视图核验.docx": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/WPS最终视图核验.docx",
+      "SHA256": "bbc65669a7c687ab41514abf34e61a626d7b7eee7b814d7d2932964e1ad6d892"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/WPS版面核验.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/WPS版面核验.json",
+      "SHA256": "b78c8df5a40b5511b85477a14aa3a8a5aaad150ff5dc6889dff55bd3b0b2dd0b"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/上一版交付衔接.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/上一版交付衔接.json",
+      "SHA256": "2016b028aed1a73ec375a620c76d3d07f4bd4ecffd222b4b7dce8d7a5d151bb3"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/事实核验.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/事实核验.json",
+      "SHA256": "5429d061b817e2f0d2b5c59b275bacc71235e1cbe81b81af78b944651dc8b7a1"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前哈希.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前哈希.json",
+      "SHA256": "b23143df30822853d6480a1fb5b97d4f7f63dbe85cac781fdb59255f49b2a559"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/原文件修订核验.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/原文件修订核验.json",
+      "SHA256": "6f50b487e2b78c834e1a271f725903b20cc3efb1aaa84534dd0de573b339aa48"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/批注处理说明.md": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/批注处理说明.md",
+      "SHA256": "e0259fc3aa993e002d0bdea099b5fc07adb421480462195d5bfef6f6b5c2291a"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/本轮图件及绘图数据.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/本轮图件及绘图数据.json",
+      "SHA256": "6b54a4de65a1c6c008dde73a15a6ce00afeb3aa281a734b785e2b167cfee28d6"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/本轮采用登记.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/本轮采用登记.json",
+      "SHA256": "7161aec3a0c9bbba7d50cb320970cb40b12824d52b50d67dc7d67a926bad90ba"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/正文逐段复核.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/正文逐段复核.json",
+      "SHA256": "b4968a53603a82a408387bcfcfb4104e5b8867b5a7551db3263b3f3150ad6bba"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/源稿局部修改对照.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/源稿局部修改对照.json",
+      "SHA256": "16a7568c4981fd11e15a53674f356084a64abcfa76ec931dd746f33239165b30"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/目标清稿.docx": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/1017甲方批注与逐年案例更新/目标清稿.docx",
+      "SHA256": "94b8a12e6651a22d873e3c47445c58d955cf5e17edf6b7f1dd2821079fe02260"
     },
     "研究报告/05_review/当前版/WPS原生导出登记.json": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/05_review/当前版/WPS原生导出登记.json",
-      "SHA256": "19f2abbe45efd3f05ee24b6bc841bf494b32112957eeb9de56c1bd1d89636654"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/WPS原生导出登记.json",
+      "SHA256": "cca82157da3d6270471dde8ee8883d21a66f930bf85470a60859112fa6ca9f00"
     },
-    "研究报告/05_review/当前版/Word表格内容复核.json": {
-      "path": "研究报告/05_review/当前版/Word表格内容复核.json",
-      "SHA256": "0c9ddb4a4848921313cd466e353bcb467e1bfbd459c2a7f6fbb747123a371ec6"
-    },
-    "研究报告/05_review/当前版/docx引文一致性核验.json": {
-      "path": "研究报告/05_review/当前版/docx引文一致性核验.json",
-      "SHA256": "2aa67cdbcd223b20865565150b353145167229bd25ab7109447b138faa3bb5fb"
-    },
-    "研究报告/05_review/当前版/final引文一致性核验.json": {
-      "path": "研究报告/05_review/当前版/final引文一致性核验.json",
-      "SHA256": "82a3d6653c7ca76ef745cd0ad1710c44dbfb116e80b5b320d4ce12c7e0f54982"
-    },
-    "研究报告/05_review/当前版/source引文一致性核验.json": {
-      "path": "研究报告/05_review/当前版/source引文一致性核验.json",
-      "SHA256": "3ee8f1685e9ef16ba5d9389c12292cc1a64e52e75387dad0bb4b52a8a5889395"
-    },
-    "研究报告/05_review/当前版/引文顺序与对应.json": {
-      "path": "研究报告/05_review/当前版/引文顺序与对应.json",
-      "SHA256": "23627f7852ea526a657680cbae8e30f986bfba270cf9d6039b682856a85a24dc"
-    },
-    "研究报告/05_review/当前版/文献原编号登记.json": {
-      "path": "研究报告/05_review/当前版/文献原编号登记.json",
-      "SHA256": "3b9fcbf46f0c829a4b82e96a42c9bb6d531c850df381d4b5d8edee84b6346955"
+    "研究报告/05_review/当前版/目录标题.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/目录标题.json",
+      "SHA256": "6a16d29eb5603f652e2c83b6b29e7151192a71215175ae1ccff86d6f60e4e718"
     },
     "研究报告/05_review/当前版/目录页码核对.json": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/05_review/当前版/目录页码核对.json",
-      "SHA256": "a603daf9c4fcbe3f93706629615ddb4ca3cacd3944e644c6c6af3d6c8060ab10"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/目录页码核对.json",
+      "SHA256": "d9ad512d08c6dcad7c8bc48b894117d4e8fe6472ab0f5da230a14191e64d97e6"
     },
     "研究报告/05_review/当前版/装配源文件登记.json": {
-      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前原件/研究报告/05_review/当前版/装配源文件登记.json",
-      "SHA256": "3e928817641b9857f2a8c24176c70b19b3394def4e7e3f9ea0fcacfde0941076"
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/05_review/当前版/装配源文件登记.json",
+      "SHA256": "7912d03dbd77300d047ce222598d320eea74317daedd4ffd1809a10f56cd4312"
     },
-    "研究报告/数据来源/当前版/引用原文/[122]郭自文等_配电网集群划分_2026.pdf": {
-      "path": "研究报告/数据来源/当前版/引用原文/[122]郭自文等_配电网集群划分_2026.pdf",
-      "SHA256": "075112d67ca3183a1cf80994079b7ac757613893bc20586fa824cb2ab95b3815"
+    "研究报告/AGENTS.md": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/AGENTS.md",
+      "SHA256": "60b71652a8883ba1c8988bc6b4f44b47b0f2c0d5882889bd097275b84656fd49"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_clr.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/annual_clr.csv",
+      "SHA256": "24a34dc18c9a9c0679915c66b93c8ad7c9447582c884bae7f2ba7ba856b47f8d"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_clr.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/annual_clr.pdf",
+      "SHA256": "9c2700c602c4bf73c49d901b80a9fd45d09c8ed6bab1e8173f13e1b37a1e2f64"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_clr.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/annual_clr.svg",
+      "SHA256": "968161d49ad5268dd678aded716f3759da45e58a9d6f496bc0908d758bbf6466"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.csv",
+      "SHA256": "b6e163342323ef66e64627db0ba15e81817d9371eba47e3781be19b60ff7da34"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.pdf",
+      "SHA256": "61e10863a96378f840ed15eff533ae9e0c876a94362db3a96ebce57e340ca645"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.svg",
+      "SHA256": "0c840197e15871e64f60b2d383bc532ef00e3c6bb3150e836a3082e7e6f47b9c"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.csv",
+      "SHA256": "cf5c4e9405f7d901c520c71445361c75964c5d01c0fbf42b47c285c16532a225"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.pdf",
+      "SHA256": "277b7626a4ba48e4a785a0bc778df44a6ffb7ac7fabdfffe7358a80eff546812"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.svg",
+      "SHA256": "ec1d5d170714b5fdf24f024f0e2f6075e2c157beb97558e291b1acf95eb3abff"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.csv",
+      "SHA256": "1fce0e3d88729da926f4fe4cdbe8ec83491bfa92582d10c2f527fc9f1dc12cbc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.pdf",
+      "SHA256": "8d1896b5174d37149b55ff46df43eb1d1527b328a95b181fb10f4a7072eb3a15"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.svg",
+      "SHA256": "2b28d93ed071818fa3a018847bda1022d0b94b4301ebec397299b9f7d1bf4869"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.csv",
+      "SHA256": "843db622bcc1598dabfe401a2d9c3b7dfaf7ff510fdf6ca0b53f0642a54ceb4c"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.pdf",
+      "SHA256": "c48476297d111e9c9b1b458b574dc1e7800745478dad8a3b6bd4bda6b3d9aa62"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.svg",
+      "SHA256": "14674ecdde6832688437dd3248ff3d94cf5a017bc74f1ab52c4f79be6bbd25cc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.csv",
+      "SHA256": "24a34dc18c9a9c0679915c66b93c8ad7c9447582c884bae7f2ba7ba856b47f8d"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.pdf",
+      "SHA256": "ecaa135811f4b56453504794d503fb631871e3fc0f4aa603ee5886f305b005dc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.svg",
+      "SHA256": "21e6b0ae0af7a343fc0b726c0a75591fd950f2765855cedaef9904d9c6b75ab5"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.csv",
+      "SHA256": "635ebf3e94ee23c1d989f1dba724d8c03a72085dbd6de46bebd2f0159b9a6dfe"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.pdf",
+      "SHA256": "f60542513526311b1931113d26b00737f83818f359e7bb226cc98958c965cf5b"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.svg",
+      "SHA256": "030ae5cf26e93bab64b0494d3ec06e7c633314456c883c9d07a2137dff8ddb10"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.csv",
+      "SHA256": "24a34dc18c9a9c0679915c66b93c8ad7c9447582c884bae7f2ba7ba856b47f8d"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.pdf",
+      "SHA256": "b51d835a6eda678a6cf7777093f6758e62c9d456f352c3f183f8043af94afadc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.svg",
+      "SHA256": "b34f3e2836df7523966f2c7e0822de509ee1f6f33e3e9d240aee6e838712cd31"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.csv",
+      "SHA256": "b4f2e936b5b3a09790e090b610e441074ed3e52eb6c4fa915429c403fd4dd7f9"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.pdf",
+      "SHA256": "4fa5a9572a352c97997be4bf9a9f3262b1be1888e5821b80f3228b906727804b"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.svg",
+      "SHA256": "3d2f2790d494523222b759aaff989c3d5cd847feb7dffaca76c6a5f5a2083d2b"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.csv",
+      "SHA256": "ee84595c240e714d77d848f1e210267af0d6b7cbe2fd133b5036237fada01f44"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.pdf",
+      "SHA256": "b8323a3bec9d1ccc431a1ac15dfde50a70bb6db6bd9cae56101732382adb80d6"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.svg",
+      "SHA256": "456399cd641bab7975e5b70fbfe7b186d55ede4005e2b3efe9fe929e951246dd"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.csv",
+      "SHA256": "44aa483ab3f0f032a3d3642fde8aee493c0924d285ae62bb731c98c9d919a4e2"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.pdf",
+      "SHA256": "e1d54a2038486f0c2dd748033765b802c59d26649d11c2f109c39fbe9da86c45"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.svg",
+      "SHA256": "93cc33058c27fa780da46a0e499f5f9e263d52aeb2c928b4a6bcfbf45c0e8e0c"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.csv",
+      "SHA256": "de98d067d2bbc36bf1f356a73b31d68f43c6f1136a818b0f5d0411a01dc000dc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.pdf",
+      "SHA256": "a17dd6550442e32604b7ffdb21ed1a4a996e95806d095f160b02e0864285dcd7"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.svg",
+      "SHA256": "2183ca373c926509273dca324538fd91e240b45c381bf31102b88d72f449ac07"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.csv",
+      "SHA256": "6a79d3b3261e5ad0ca8e72e82e82baf368e8674697e64a8fe9937993b710a467"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.pdf",
+      "SHA256": "51ced2ed415f5121788fa48071810df1fe0bcfe58406d1bba9573cabda5f78ee"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.svg",
+      "SHA256": "1948aa9ffb7e675bf0f934a46b9b28721eb4921353898987c5e2eccff8bafd49"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.csv",
+      "SHA256": "7e8d153e6c5cc939367d8151e5639ba1c5651ce3f89c7630e7e6e9955ec9726d"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.pdf": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.pdf",
+      "SHA256": "9138807ddc58f979ee6c831d2ea52e8a2f0c02f3754023b8760990dddb8e3b1f"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.svg": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.svg",
+      "SHA256": "f1b93de4f9933a81898b4268fd296361a5e2cbe73546a0a2728a7b4196853c53"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/逐站2035核验.csv": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/数据来源/当前版/1017报告案例更新/逐站2035核验.csv",
+      "SHA256": "8bcac4a644596f21b81bc6b40fbebf6c74eef9cd00249b87c5592330e004f0ce"
+    },
+    "研究报告/甲方反馈/10.17/10.17研究报告.docx": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/甲方反馈/10.17/10.17研究报告.docx",
+      "SHA256": "f298cb000809dc77e7e292ec474ac321b6ed5ff5bc2c8d5a7fb7549d665c7fd7"
+    },
+    "研究报告/甲方反馈/10.17/10.17研究报告_批注与修正意见.md": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前原件/研究报告/甲方反馈/10.17/10.17研究报告_批注与修正意见.md",
+      "SHA256": "2ac6808c3f80616ec0e2c5d0c716222e5210916369baaf0c1d707daaf2049f42"
     }
   }
 }

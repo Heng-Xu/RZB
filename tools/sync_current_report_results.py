@@ -11,7 +11,7 @@ from 实验.研究.rebuild_2026.static_joint_20261015.model import OperatingLP
 
 REPORT = ROOT/'研究报告'
 A = REPORT/'02图表/当前版'
-REVIEW = REPORT/'05_review/当前版/1017细节表述修正'
+REVIEW = REPORT/'05_review/当前版/1018五项局部修正'
 PUBLIC = REPORT/'01研究推荐/当前版/参数联合情景_20261012'
 CASE = REPORT/'01研究推荐/当前版/静态联合替代_20261015'
 LOCK = REPORT/'01研究推荐/当前版/报告数据采用版本.json'
@@ -80,9 +80,11 @@ def parameter_assets():
     matrix=pd.read_csv(CASE/'典型响应推荐矩阵.csv')
     nodes=pd.read_csv(CASE/'典型场景完整节点.csv')
     cells=[];index=[];rows=[]
+    from report_matrix_display import adjoining_bands
     for i,r in enumerate(matrix.to_dict('records'),1):
         key=f'typical_transfer_{i}'
-        rows.append([pct(r['装机渗透率']),f"{100*r['年最大净负荷平均增长率']:g}%",f(r['负荷分散系数'])]+[r[k] for k in LABELS[3]])
+        bands=adjoining_bands([r[k] for k in LABELS[3]])
+        rows.append([pct(r['装机渗透率']),f"{100*r['年最大净负荷平均增长率']:g}%",f(r['负荷分散系数'])]+bands)
         index.append(dict(key=key,装机渗透率=r['装机渗透率'],年最大净负荷平均增长率=r['年最大净负荷平均增长率'],负荷分散系数=r['负荷分散系数']))
         group=nodes[np.isclose(nodes['年最大净负荷平均增长率'],r['年最大净负荷平均增长率'])&np.isclose(nodes['负荷分散系数'],r['负荷分散系数'])].sort_values('初始转供率')
         assert len(group)==9
@@ -90,18 +92,18 @@ def parameter_assets():
             sub=group[group['初始转供率'].map(lambda x:sum(x>c+1e-9 for c in CUTS[3]))==j]
             lo,hi=sub['容载比'].min(),sub['容载比'].max()
             assert interval(lo,hi)==r[label]
-            cells.append(dict(场景=i,转供档=j,下界=float(lo),上界=float(hi),展示区间=r[label],有效样本数=len(sub)))
+            cells.append(dict(场景=i,转供档=j,下界=float(lo),上界=float(hi),展示区间=r[label],推荐带=bands[j],有效样本数=len(sub)))
         t['current_transfer_sequence' if i==1 else 'current_transfer_sequence_second']=table(
             f'表5-0 场景{i}的完整转供率节点及设备方案',
             ['初始转供率','主变/MVA','容载比','储能/MWh','新增联络/条','费用现值/万元'],
             [[pct(x['初始转供率']),f(x['主变_MVA']),f(x['容载比']),f(x['储能_MWh']),int(x['新增联络_条']),f(x['费用现值_万元'])] for x in group.to_dict('records')])
     t['typical_transfer_matrix']=table('表5-0 典型源荷条件下随初始转供率变化的容载比推荐范围',
         ['装机渗透率','年最大净负荷平均增长率','负荷分散系数']+LABELS[3],rows,
-        '两组均采用电缆长度占比50%和五站设备重新选配条件。')
+        '两组均采用电缆长度占比50%和五站设备重新选配条件；按第5.6.2节的相邻档共用界值方法划定推荐带。')
     from report_matrix_display import assets as matrix_assets
     mt,ms,lookup_cells,lookup_index=matrix_assets(d,table,interval)
     t.update(mt);s.update(ms)
-    s['typical_matrix_summary']='在电缆长度占比50%的共同条件下，选取装机渗透率50%的两组典型源荷场景。每组包含10%～90%的九个初始转供率节点，按四档归纳容载比推荐范围，共形成8个区间单元。两组区间上下界均随转供档位提高而逐档下降。\n'
+    s['typical_matrix_summary']='在电缆长度占比50%的共同条件下，选取装机渗透率50%的两组典型源荷场景。每组包含10%～90%的九个初始转供率节点，按各档容量下界划定首尾相接的四档容载比推荐带，共形成8个区间单元。具体节点的设备配置与费用分别列示。\n'
     seq=controlled_sequences(d)
     heads=['参数节点','主变/MVA','容载比','储能额定功率/MW','新增联络/条','费用现值/万元']
     def show_node(r,label):return [label,f(r['主变容量_MVA']),f(r['容载比']),f(r['储能额定功率_MW']),int(r['新增联络合计_条']),f(r['费用现值_万元'])]

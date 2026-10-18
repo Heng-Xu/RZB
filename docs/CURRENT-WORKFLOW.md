@@ -2,7 +2,7 @@
 
 当前有效约束为根目录及研究报告目录的 `AGENTS.md`。正式源是六章Markdown、计算表及生成段落JSON；不要从历史正文快照恢复覆盖。环境使用 `/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python`。
 
-1. 后续案例更新先运行`tools/verify_future_case_results.py`，核对`研究报告/01研究推荐/当前版/后续报告案例采用版本.json`及指定结果的锁定清单。原八组历史采用结果继续由`tools/verify_adopted_report_results.py`核对；当前案例的同步入口为`tools/report_annual_update.py`，`tools/sync_current_report_results.py`已衔接该入口，图件入口为`tools/refresh_annual_report_figures.py`。同步只读取固定结果，绘图CSV、矢量原件和来源哈希归入既有来源目录。若涉及小时数据，运行 `tools/prepare_regional_profiles.py`，核对补值日志和区域峰段。实际年度相关分析运行 `tools/prepare_case_correlations.py`，从原始Excel分别提取两地区年度样本；样本和系数继续在核验资料中复算，实际年度相关表按用户要求退出正文。
+1. 局部调整预测表与推荐分档时，通过`tools/sync_current_report_results.py`同步资产；预测取值由`tools/report_forecast_display.py`只读提取，推荐带由`tools/report_matrix_display.py`按原容量下界衔接，原始节点包络另行归档。后续案例更新先运行`tools/verify_future_case_results.py`，核对`研究报告/01研究推荐/当前版/后续报告案例采用版本.json`及指定结果的锁定清单。原八组历史采用结果继续由`tools/verify_adopted_report_results.py`核对；当前案例的同步入口为`tools/report_annual_update.py`，`tools/sync_current_report_results.py`已衔接该入口，图件入口为`tools/refresh_annual_report_figures.py`。同步只读取固定结果，绘图CSV、矢量原件和来源哈希归入既有来源目录。若涉及小时数据，运行 `tools/prepare_regional_profiles.py`，核对补值日志和区域峰段。实际年度相关分析运行 `tools/prepare_case_correlations.py`，从原始Excel分别提取两地区年度样本；样本和系数继续在核验资料中复算，实际年度相关表按用户要求退出正文。
 2. 本轮执行`python tools/report_annual_update.py`只读同步锁定年度案例，图件由`tools/refresh_annual_report_figures.py`更新。执行`python tools/build_current_report.py --feedback-report --rebuild`，先查六章源并装配核验清稿，再由`tools/revise_report_in_place.py`在10.17甲方原文件包内以xh增量修订，保留全部批注及甲方已有修订，核对接受和拒绝本轮修订视图。禁止用清稿覆盖甲方原文件。
 3. 在WPS打开新Word，更新全部域并导出PDF。执行 `python tools/build_current_report.py --accept-wps-pdf <PDF路径>`，按实际标题页回填目录缓存。
 4. 重新打开更新后的Word，再次导出并接收，直到目录页码、正文页码和链接目标一致。PDF必须由原生Word经WPS输出，不能以公式图片副本替换。

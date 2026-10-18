@@ -67,7 +67,9 @@ def verify(final=False):
     policy=json.loads((ROOT/'tools/report_policy.json').read_text())
     figures=check_figure_paragraphs(doc,policy,41)
     from report_math_layout import check_equation_layout
-    equations=check_equation_layout(doc);assert len(equations)==27
+    equations=check_equation_layout(doc)
+    expected_equations=sum(len(re.findall(r'\\tag\{',p.read_text())) for p in (REPORT/'03_MD/当前版').glob('0[1-6] *.md'))
+    assert len(equations)==expected_equations
     anchors={b.get(qn('name')):b for b in accepted.findall('.//'+qn('bookmarkStart'))}
     toc=accepted.xpath('.//w:body/w:p[.//w:instrText[contains(text(),"PAGEREF")]]',namespaces=NS)
     assert len(toc)==46
@@ -88,8 +90,16 @@ def verify(final=False):
     original_tables=json.loads((REVIEW/'修前原件/研究报告/02图表/当前版/计算表.json').read_text())
     tables=json.loads((ASSET/'计算表.json').read_text())
     matrix_keys=[key for key in original_tables if re.fullmatch(r'lookup_matrix_[0-2]_1\.(?:00|10|15)',key)]
-    assert len(matrix_keys)==9 and all(tables[k]==original_tables[k] for k in matrix_keys),'矩阵原始区间发生变化'
-    result={'状态':'通过','阶段':'final' if final else 'docx','锁定案例':frozen,'数据':assets,'六章架构':'与修前一致，仅修改指定5.3.1标题','批注数':len(xml(old['word/comments.xml'])),'原批注部件及锚点':'全部保留','甲方既有修订':len(oldrevisions),'本轮xh修订':len(revisions),'显示时间范围':[min(dates),max(dates)],'矩阵':'9表432单元原值不变','逐格表格':len(doc.tables),'原生公式':len(equations),'原文件目录链接':len(toc),**figures,'修订稿SHA256':sha(TARGET),'清稿SHA256':sha(CLEAN)}
+    assert len(matrix_keys)==9
+    from report_matrix_display import adjoining_bands
+    for key in matrix_keys:
+        before=[line for line in original_tables[key].splitlines() if line.startswith('|') and '～' in line]
+        after=[line for line in tables[key].splitlines() if line.startswith('|') and '～' in line]
+        assert len(before)==len(after)==12
+        for a,b in zip(before,after):
+            aa=[v.strip() for v in a.strip('|').split('|')];bb=[v.strip() for v in b.strip('|').split('|')]
+            assert aa[:2]==bb[:2] and bb[2:]==adjoining_bands(aa[2:]),'推荐分档与原始容量下界不对应:'+key
+    result={'状态':'通过','阶段':'final' if final else 'docx','锁定案例':frozen,'数据':assets,'六章架构':'与修前一致，仅修改指定5.3.1标题','批注数':len(xml(old['word/comments.xml'])),'原批注部件及锚点':'全部保留','甲方既有修订':len(oldrevisions),'本轮xh修订':len(revisions),'显示时间范围':[min(dates),max(dates)],'矩阵':'9表432单元按原始下界形成相邻档共用界值的推荐带；原始节点不变','逐格表格':len(doc.tables),'原生公式':len(equations),'原文件目录链接':len(toc),**figures,'修订稿SHA256':sha(TARGET),'清稿SHA256':sha(CLEAN)}
     if final:
         proof=json.loads((REVIEW/'WPS版面核验.json').read_text());assert proof['状态']=='通过'
         for file,key in [('DOCX','DOCX_SHA256'),('最终视图副本','最终视图副本SHA256'),('PDF','PDF_SHA256')]:assert sha(ROOT/proof[file])==proof[key],file+'变化后须重新检查WPS输出'

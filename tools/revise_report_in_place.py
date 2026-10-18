@@ -44,6 +44,64 @@ def descriptor(node):
     if re.match(r'^[图表]\d+-\d+',value):return value.split(' ')[0]
     return E.QName(node).localname
 
+
+def reuse_unchanged_blocks(root, previous, current):
+    """后续局部修稿保留未变正文块的修订ID、日期及原XML。"""
+    prior = xml(previous['word/document.xml'])
+    body, before = root.find(qn('body')), prior.find(qn('body'))
+    relations = {}
+    for label, parts in [('old', previous), ('new', current)]:
+        relations[label] = {r.get('Id'): (r.get('TargetMode'), r.get('Target'))
+                           for r in xml(parts['word/_rels/document.xml.rels'])}
+    def key(node, label):
+        parts = previous if label == 'old' else current
+        def walk(item):
+            attrs = dict(item.attrib)
+            if item.get(qn('author')) == 'xh':
+                attrs.pop(qn('id'), None); attrs.pop(qn('date'), None)
+            if item.tag in [qn('bookmarkStart'), qn('bookmarkEnd')]: attrs.pop(qn('id'), None)
+            for name, val in list(attrs.items()):
+                if name.startswith('{'+R+'}') and val in relations[label]:
+                    mode, target = relations[label][val]
+                    attrs[name] = (mode, target if mode == 'External' else sha256(parts['word/'+target]).hexdigest())
+            return (item.tag, tuple(sorted(attrs.items())), item.text, tuple(walk(c) for c in item))
+        return walk(node)
+    oldnodes, newnodes = list(before), list(body)
+    oldids = [int(v) for v in prior.xpath('.//@w:id', namespaces=NS) if v.isdigit()]
+    nextid = max(oldids+[0])+1
+    fresh = set()
+    for mark in root.xpath('.//*[@w:author="xh"]', namespaces=NS):
+        mark.set(qn('id'), str(nextid));fresh.add(str(nextid));nextid += 1
+    preserved = []
+    for op, i, j, a, b in SequenceMatcher(None, [key(n, 'old') for n in oldnodes],
+                                          [key(n, 'new') for n in newnodes], autojunk=False).get_opcodes():
+        if op != 'equal': continue
+        for oldnode, newnode in zip(oldnodes[i:j], newnodes[a:b]):
+            # 复用块的媒体、链接、样式依赖须在当前包中保持同一含义。
+            for item in oldnode.iter():
+                for name, val in item.attrib.items():
+                    if name.startswith('{'+R+'}') and val in relations['old']:
+                        assert relations['old'][val] == relations['new'].get(val), '未变块的关系ID指向已变化'
+            copy = deepcopy(oldnode);body.replace(newnode, copy);preserved.append(copy)
+    used = {n.get(qn('id')) for block in preserved for n in block.findall('.//'+qn('bookmarkStart'))}
+    # 新分配的书签ID还须避开尚未遍历的新增块。
+    nextbookmark = max([int(n.get(qn('id'))) for n in root.findall('.//'+qn('bookmarkStart'))]+[0])+1
+    remap = {}
+    for block in body:
+        if block in preserved: continue
+        for mark in block.findall('.//'+qn('bookmarkStart')):
+            ident = mark.get(qn('id'))
+            if ident in used:
+                remap[ident] = str(nextbookmark);nextbookmark += 1;mark.set(qn('id'), remap[ident])
+            else: used.add(ident)
+    for block in body:
+        if block in preserved: continue
+        for mark in block.findall('.//'+qn('bookmarkEnd')):
+            ident = mark.get(qn('id'))
+            if ident in remap:mark.set(qn('id'), remap[ident])
+    retained = root.xpath('.//*[@w:author="xh"]', namespaces=NS)
+    return fresh, {'复用未变正文块': len(preserved), '未变修订ID及日期保留': sum(n.get(qn('id')) not in fresh for n in retained)}
+
 class Editor(Reviser):
     def delete_block(self,node):
         paragraphs=[node] if node.tag==qn('p') else node.findall('.//'+qn('p'))
@@ -107,10 +165,14 @@ def view(root,accept=True):
     return root
 
 def apply():
+    previous_parts = package(TARGET) if TARGET.exists() else None
+    previous_dates = {}
     if TARGET.exists():
         known={sha256(BASE.read_bytes()).hexdigest()}
         previous=REVIEW/'原文件修订核验.json'
-        if previous.exists():known.add(json.loads(previous.read_text())['修后SHA256'])
+        if previous.exists():
+            record=json.loads(previous.read_text());known.add(record['修后SHA256'])
+            previous_dates={r['修订ID']:r for r in record['时间逐项映射']}
         assert sha256(TARGET.read_bytes()).hexdigest() in known,'原文件已被外部编辑，须先保留并合并用户改动'
     old,new=package(BASE),package(CLEAN)
     root=xml(old['word/document.xml']);goal=xml(new['word/document.xml'])
@@ -254,6 +316,11 @@ def apply():
     for el in settings.findall(qn('revisionView')):settings.remove(el)
     show=E.SubElement(settings,qn('revisionView'))
     for name in ['markup','insDel','formatting','inkAnnotations']:show.set(qn(name),'1')
+    # 再修稿时先复用未变块，避免改写既有修订的ID和显示日期。
+    fresh_ids = None; reuse = {}
+    if previous_parts is not None and sha256(TARGET.read_bytes()).hexdigest() != sha256(BASE.read_bytes()).hexdigest():
+        fresh_ids, reuse = reuse_unchanged_blocks(root, previous_parts,
+            {**old, **replacements, 'word/_rels/document.xml.rels': dump(rels)})
     # 修订显示时间按正文块分组递增，实际时间另存，批注及甲方时间保持原值。
     groups=[]
     for index,node in enumerate(body):
@@ -266,8 +333,11 @@ def apply():
         day=0 if slot<3600 else 1;offset=slot if day==0 else slot-3600
         timestamp=(windows[day][0]+timedelta(seconds=offset)).isoformat(timespec='seconds')
         for revision in revisions:
-            dates.append({'修订ID':revision.get(qn('id')),'类型':E.QName(revision).localname,'实际写入时间UTC':revision.get(qn('date')),'显示时间':timestamp,'正文块':index})
-            revision.set(qn('date'),timestamp)
+            ident=revision.get(qn('id'));retained=fresh_ids is not None and ident not in fresh_ids
+            display=revision.get(qn('date')) if retained else timestamp
+            actual=previous_dates.get(ident,{}).get('实际写入时间UTC') if retained else revision.get(qn('date'))
+            dates.append({'修订ID':ident,'类型':E.QName(revision).localname,'实际写入时间UTC':actual,'显示时间':display,'正文块':index,'保留既有修订':retained})
+            if not retained:revision.set(qn('date'),display)
     replacements.update({'word/document.xml':dump(root),'word/settings.xml':dump(settings),'word/_rels/document.xml.rels':dump(rels),'[Content_Types].xml':dump(contenttypes)})
     if added_style_ids:replacements['word/styles.xml']=dump(styles)
     parts={**old,**replacements}
@@ -285,7 +355,7 @@ def apply():
     with ZipFile(temporary,'w',ZIP_DEFLATED) as z:
         for name,data in parts.items():z.writestr(name,data)
     temporary.replace(TARGET)
-    record={'状态':'原生修订及可逆视图检查通过，待WPS最终核验','实际操作时间UTC':datetime.now(timezone.utc).isoformat(),'修前原件':str(BASE.relative_to(ROOT)),'修前SHA256':sha256(BASE.read_bytes()).hexdigest(),'修后SHA256':sha256(TARGET.read_bytes()).hexdigest(),'目标清稿SHA256':sha256(CLEAN.read_bytes()).hexdigest(),'作者':'xh','批注数':len(xml(old['word/comments.xml'])),'既有修订保留':True,'时间性质':'仅用户指定的修订显示元数据，非实际编辑过程','时间逐项映射':dates,'修改记录':changes,'接受本轮修订':'正文及图片与当前六章目标清稿逐块一致','拒绝本轮修订':'正文及图片与甲方原件逐块一致'}
+    record={'状态':'原生修订及可逆视图检查通过，待WPS最终核验','实际操作时间UTC':datetime.now(timezone.utc).isoformat(),'修前原件':str(BASE.relative_to(ROOT)),'修前SHA256':sha256(BASE.read_bytes()).hexdigest(),'修后SHA256':sha256(TARGET.read_bytes()).hexdigest(),'目标清稿SHA256':sha256(CLEAN.read_bytes()).hexdigest(),'作者':'xh','批注数':len(xml(old['word/comments.xml'])),'既有修订保留':True,'时间性质':'仅用户指定的修订显示元数据，非实际编辑过程','时间逐项映射':dates,'修改记录':changes,'局部修稿复用':reuse,'接受本轮修订':'正文及图片与当前六章目标清稿逐块一致','拒绝本轮修订':'正文及图片与甲方原件逐块一致'}
     (REVIEW/'原文件修订核验.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({k:record[k] for k in ['状态','作者','批注数','既有修订保留','接受本轮修订','拒绝本轮修订']},ensure_ascii=False))
 

@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-18-annual-2021-2035-tracked-feedback",
+  "version": "2026-10-19-five-targeted-refinements",
   "forbidden_body_patterns": {
     "修订过程不得进入正文": "修正稿|(?<!配电网规划设计技术导则（)修订稿|上一轮|本轮修订",
     "取整和分档不反复解释": "显示取整|完整精度分档|显示为7%|不能据此将邳州|按显示精度取整",
@@ -104,7 +104,9 @@
     ],
     "cells": 432,
     "forbidden_duration_pattern": "储能支撑持续时间|支撑持续时间|储能持续时间|支撑时长|2、4、6\\s*h",
-    "keep_table_together": true
+    "keep_table_together": true,
+    "output_kind": "adjoining_planning_recommendation_bands",
+    "band_boundary_method": "首档保留原始上界，四档下界取原始节点包络下界，后续上界与前档下界相接；定值平台保留"
   },
   "citations": {
     "order": "first_appearance",

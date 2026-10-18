@@ -62,6 +62,17 @@ def check_figure_paragraphs(doc,policy,expected_count):
             assert inds[0].get(qn('w:'+attr))=='0',label+'缩进未清零: '+attr
     return {'图片无缩进居中':len(figures),'图题无缩进居中':len(captions)}
 
+
+def check_adjoining_matrix(value, location):
+    """正文推荐带须逐行首尾相接；定值平台允许保留。"""
+    from decimal import Decimal
+    for number, line in enumerate(value.splitlines(), 1):
+        if not line.startswith('|') or '～' not in line:continue
+        cells = [c.strip() for c in line.strip('|').split('|')][-4:]
+        bands = [tuple(Decimal(x) for x in c.split('～')) for c in cells]
+        assert all(lo <= hi for lo, hi in bands), f'{location}:{number}: 推荐带上下界倒置'
+        assert all(left[0] == right[1] for left, right in zip(bands, bands[1:])), f'{location}:{number}: 相邻转供档推荐带须共用界值'
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',type=Path,default=ROOT)
@@ -122,12 +133,15 @@ def main():
     assert all('[[TABLE:lookup_matrix_'+f'{c}_{kd:.2f}'+']]' in sections['new_matrix_tables']
                for c in range(3) for kd in [1.,1.1,1.15]),'缺少电缆分区或负荷分散系数矩阵'
     assert '线路成本系数' not in sections['new_matrix_tables']
+    for key in ['typical_transfer_matrix']+[f'lookup_matrix_{c}_{kd:.2f}' for c in range(3) for kd in [1.,1.1,1.15]]:
+        check_adjoining_matrix(tables[key], '计算表.json['+key+']')
     chapter_path=next(p for p in sources if p.name.startswith('05 '))
     errors.extend(matrix_policy_errors(chapter_five,str(chapter_path.relative_to(root)),sections,tables,
                                        policy['matrix_display']['forbidden_duration_pattern']))
     from report_citations import verify as verify_citations
     citation_result=verify_citations(root,args.stage)
-    assert '取0.80' in chapter_five and '故障站取1.00' in chapter_five,'反向承载系数须明确'
+    assert '正常运行主变负载率不超过80%' in chapter_five and '剩余主变短时负载率不超过130%' in chapter_five,'工程负载率校核标准须明确'
+    assert '工程允许负载率' in chapter_five and '取1.30' in chapter_five,'公式系数须与正常80%及主变N-1短时130%要求对应'
     assert '[[TABLE:new_correlations]]' not in body,'旧版无条件仿真相关表已退出正文'
     # 连续式中解释应合并到一段，不能用多个空行分列符号解释。
     if re.search(r'式中[^\n]*\n\s*\n式中',body):errors.append('相邻式中说明应合并')
@@ -216,13 +230,20 @@ def main():
             assert abs(body_pages-policy['target_body_pages'])<=policy['body_page_tolerance'],('六章正文篇幅偏离约160页',body_pages)
             result['六章正文页数']=body_pages
             matrix_pdf=[]
+            matrix_keys=[f'lookup_matrix_{c}_{kd:.2f}' for c in range(3) for kd in [1.,1.1,1.15]]
+            compact_cell=lambda x:re.sub(r'\s+','',x or '').replace('～','~').replace('〜','~')
             for page in pdf:
                 compact=re.sub(r'\s+','',page.get_text())
-                if not re.search(r'表5-\d+电缆长度占比.+容载比区间矩阵',compact):continue
+                if not re.search(r'表5-\d+电缆长度占比.+容载比(?:区间|分档建议)矩阵',compact):continue
                 for tab in page.find_tables().tables:
                     header=re.sub(r'\s+','',''.join(x or '' for x in tab.extract()[0]))
                     if header.startswith('年最大净负荷平均增长率装机渗透率'):
                         assert (tab.row_count,tab.col_count)==(13,6),('WPS矩阵跨页或不完整',page.number+1)
+                        assert len(matrix_pdf)<len(matrix_keys),'PDF出现多余矩阵'
+                        key=matrix_keys[len(matrix_pdf)]
+                        expected=[[c.strip() for c in line.strip('|').split('|')] for line in tables[key].splitlines()
+                                  if line.startswith('|') and not re.fullmatch(r'[| :\-]+',line)]
+                        assert [[compact_cell(c) for c in row] for row in tab.extract()]==[[compact_cell(c) for c in row] for row in expected],('PDF矩阵逐格数据不对应',key,page.number+1)
                         matrix_pdf.append(dict(页码=page.number+1,行数=tab.row_count,列数=tab.col_count))
             assert len(matrix_pdf)==9,('WPS完整矩阵数量不符',len(matrix_pdf))
             result['PDF矩阵整表核验']=matrix_pdf

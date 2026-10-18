@@ -8,8 +8,19 @@ TRANSFER = ['≤30%', '(30%,50%]', '(50%,70%]', '>70%']
 CABLE = ['≤10%', '(10%,30%]', '>30%']
 
 
+def adjoining_bands(intervals):
+    """由四档容量下界划定相接的规划推荐带；输入的节点包络另行保留。"""
+    from decimal import Decimal
+    bounds = [tuple(Decimal(x) for x in value.split('～')) for value in intervals]
+    assert len(bounds) == 4 and all(lo <= hi for lo, hi in bounds)
+    lows = [lo for lo, hi in bounds]
+    assert all(a >= b for a, b in zip(lows, lows[1:])), '容量下界出现回升，须另选场景或核查，不能自动压平'
+    ends = [bounds[0][1]] + lows
+    return [f'{ends[j+1]:.2f}～{ends[j]:.2f}' for j in range(4)]
+
+
 def assets(data, table, interval):
-    """电缆三档、分散系数三个定值分表，完整保留有效节点包络。"""
+    """节点包络留存依据，正文按四档容量下界衔接规划推荐带。"""
     subset = data.copy()
     fields = ['年最大净负荷平均增长率', '分布式电源装机渗透率', '初始转供率', '电缆长度占比']
     cuts = [[.02, .04, .07], [1, 2], [.3, .5, .7], [.1, .3]]
@@ -35,8 +46,12 @@ def assets(data, table, interval):
                                       有效样本数=len(sub), 下界=float(lo), 上界=float(hi), 展示区间=text,
                                       下界原始节点=sub.loc[sub['容载比'].idxmin(), fields + ['储能支撑持续时间_h']].to_dict(),
                                       上界原始节点=sub.loc[sub['容载比'].idxmax(), fields + ['储能支撑持续时间_h']].to_dict()))
-                rows.append([GROWTH[g], ETA[eta]] + values)
-        tables[key] = table(f'表5-0 电缆长度占比{CABLE[cable]}、负荷分散系数{kd:.2f}的容载比区间矩阵',
+                bands = adjoining_bands(values)
+                for cell, band in zip(cells[-4:], bands):
+                    cell['节点包络'] = cell['展示区间']
+                    cell['推荐带'] = band
+                rows.append([GROWTH[g], ETA[eta]] + bands)
+        tables[key] = table(f'表5-0 电缆长度占比{CABLE[cable]}、负荷分散系数{kd:.2f}的容载比分档建议矩阵',
                             ['年最大净负荷平均增长率', '装机渗透率'] + TRANSFER, rows)
         indexes.append(dict(表键=key, 电缆档=cable, 电缆区间=CABLE[cable], 负荷分散系数=kd,
                             电缆长度占比节点=sorted(frame['电缆长度占比'].unique().tolist()),
