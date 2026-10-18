@@ -140,6 +140,9 @@ def parameter_assets():
     return {k:display_text(v) for k,v in t.items()},{k:display_text(v) for k,v in s.items()},cells,index,d
 
 def case_assets():
+    if (ROOT/'研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前哈希.json').exists():
+        from report_annual_update import assets as annual_assets
+        return annual_assets()
     lock=read(LOCK);t={};s={};evidence=[];costrows=[];measures=[];costparts=[];decomp=[];mix=[]
     names={}
     for line in case.MAPPING.read_text().splitlines()[1:]:

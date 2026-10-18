@@ -7,6 +7,22 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_annual_case_model_wording(self):
+        for value in ['以该比例乘当年最大正向净负荷形成年度预算。',
+                      '由于电源仍归属原站，反向压力按电源原归属保守处理。']:
+            errors=self.check('[[SECTION:annual]]',{'annual':value})
+            self.assertTrue(any('生成段落.json[annual]:1' in e for e in errors))
+        for value in ['既有能力采用收资MW值，所有年份固定封顶。',
+                      '源荷区段内负荷和光伏共同切换。',
+                      '若仅将用电负荷转出而电源保持接入原站，本地反送需求可能增加。']:
+            self.assertEqual(self.check(value),[])
+    def test_body_omits_result_lock_maintenance_process(self):
+        for value in ['推广矩阵沿用已确认参数结果，各单元为有限范围。',
+                      '地区案例保留原锁定配置，在8760小时序列上校核。']:
+            self.assertTrue(self.check(value))
+        for value in ['推广矩阵各单元为有效节点形成的有限范围。',
+                      '地区案例在各年8760小时源荷上分别校核正常和主变N-1。']:
+            self.assertEqual(self.check(value),[])
     def test_equipment_terms_and_storage_precision(self):
         for value in ['基期主变按离散规格配置。', '离散设备投运改变容量。',
                       '市区3座模拟站参与地区计算。', '有效功率为0.08170 MW。']:

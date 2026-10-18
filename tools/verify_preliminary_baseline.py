@@ -51,7 +51,10 @@ def main():
         release=verify_release()
         for name,digest in record['文件SHA256'].items():
             original=ROOT/name
-            if name in release['修改原件']:
+            historical=release.get('历史定档原件', {})
+            if name in historical:
+                original=ROOT/historical[name]['原件归档']
+            elif name in release['修改原件']:
                 original=ROOT/release['修改原件'][name]['原件归档']
             if name in updates:
                 assert updates[name]['原SHA256']==digest

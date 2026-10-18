@@ -12,6 +12,11 @@ def formula_text(path):
  ns={'w':'http://schemas.openxmlformats.org/wordprocessingml/2006/main','m':'http://schemas.openxmlformats.org/officeDocument/2006/math'}
  return [''.join(t.xpath('.//m:t/text()',namespaces=ns)) for t in r.xpath('.//w:tbl[w:tblPr/w:tblCaption[@w:val="ReportEquation"]]//m:oMath',namespaces=ns)]
 def main():
+ if (ROOT/'研究报告/05_review/当前版/1017甲方批注与逐年案例更新/交付登记.json').exists():
+  from verify_annual_report_update import verify_release
+  verify_release()
+  print('原文件批注修订、六章架构、锁定年度结果及WPS最终视图核验通过')
+  return
  from verify_report_release import RELEASE,verify
  if RELEASE.exists():
   verify()

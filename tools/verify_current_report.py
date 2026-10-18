@@ -48,6 +48,10 @@ def verify_annual_guide():
         市区初始容量超出折算容量_MVA=2900-1528.82*1.7),ensure_ascii=False,indent=2)+'\n')
 
 def main():
+    if (ROOT/'研究报告/05_review/当前版/1017甲方批注与逐年案例更新/原文件修订核验.json').exists():
+        from verify_annual_report_update import verify
+        print(json.dumps(verify(final=True),ensure_ascii=False))
+        return
     verify_annual_guide()
     pt,ps,cells,index,data=sync.parameter_assets();ct,cs,evidence=sync.case_assets()
     t=sync.read(sync.A/'计算表.json');s=sync.read(sync.A/'生成段落.json')

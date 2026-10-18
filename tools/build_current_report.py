@@ -10,6 +10,7 @@ def run(script,root):
 def main():
  parser=argparse.ArgumentParser(description=__doc__)
  parser.add_argument('--discussion',action='store_true',help='维护当前讨论稿；以终稿DOCX为内容依据')
+ parser.add_argument('--feedback-report',action='store_true',help='在10.17甲方原文件内以xh增量修订；保留批注和甲方既有修订')
  parser.add_argument('--root',type=Path,default=ROOT,help='完整项目副本的根目录，可用于试构建')
  parser.add_argument('--rebuild',action='store_true',help='修改六章源后装配原生Word，随后须用WPS导出PDF并接收')
  parser.add_argument('--pdf-only',action='store_true',help='旧选项；现须从WPS原生导出PDF')
@@ -26,6 +27,13 @@ def main():
  if args.docx_only or args.rebuild:
   if args.pdf_only or args.check_only or args.accept_wps_pdf:parser.error('--docx-only/--rebuild须单独使用')
   run('装配Word.py',root)
+  if args.feedback_report:
+   # 先用现有WPS PDF回填实际目录页码；重导出后仍须逐项重新核验。
+   run('更新目录缓存.py',root)
+   review=root/'研究报告/05_review/当前版/1017甲方批注与逐年案例更新'
+   shutil.copy2(root/'研究报告/04_word/研究报告终稿.docx',review/'目标清稿.docx')
+   subprocess.run([sys.executable,str(root/'tools/revise_report_in_place.py')],cwd=root,check=True)
+   subprocess.run([sys.executable,str(root/'tools/verify_annual_report_update.py')],cwd=root,check=True)
   print('原生DOCX已装配。请在WPS重新打开并导出PDF，再用--accept-wps-pdf接收。')
   return
  if args.pdf_only:
@@ -47,6 +55,9 @@ def main():
   print('WPS PDF及Word目录缓存已同步。请核对印出的目录并完成版面检查，再运行--check-only。')
   return
  subprocess.run([sys.executable,str(root/'tools/check_report_policy.py'),'--root',str(root),'--stage','final'],cwd=root,check=True)
+ if (root/'研究报告/05_review/当前版/1017甲方批注与逐年案例更新/原文件修订核验.json').exists():
+  subprocess.run([sys.executable,str(root/'tools/verify_annual_report_update.py'),'--final'],cwd=root,check=True)
+  return
  run('Word表格内容复核.py',root)
  subprocess.run([sys.executable,str(root/'tools/verify_current_report.py')],cwd=root,check=True)
  subprocess.run([sys.executable,str(root/'tools/verify_report_review.py')],cwd=root,check=True)

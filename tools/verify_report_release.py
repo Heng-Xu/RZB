@@ -63,6 +63,10 @@ def verify_matrix_release():
      章节结构='六章保留；按授权删两小节并顺延一节',本轮事实核验='8组冻结数据、432区间单元、完整响应序列及新增引文论述'),ensure_ascii=False))
  return r
 def verify():
+ annual=ROOT/'研究报告/05_review/当前版/1017甲方批注与逐年案例更新/交付登记.json'
+ if annual.exists():
+  from verify_annual_report_update import verify_release
+  return verify_release()
  if not RELEASE.exists():return verify_matrix_release()
  r=json.loads(RELEASE.read_text());assert r['状态']=='三阶段核验及逐段复核通过'
  from report_work_context import verify_context,maintenance_original

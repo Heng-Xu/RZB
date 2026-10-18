@@ -11,6 +11,7 @@ git diff --quiet -- tools/report_policy.json tools/check_report_policy.py tools/
 "$REPORT_PYTHON" tools/test_report_prose_policy.py
 "$REPORT_PYTHON" tools/test_report_citations.py
 "$REPORT_PYTHON" tools/test_discussion_revisions.py
+"$REPORT_PYTHON" -m pytest -p no:cacheprovider -q tools/test_report_in_place.py
 "$REPORT_PYTHON" tools/check_report_policy.py --stage final
 "$REPORT_PYTHON" tools/verify_current_report.py > /tmp/xuzhou-report-current-data-check.log
 "$REPORT_PYTHON" tools/revise_current_discussion.py

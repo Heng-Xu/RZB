@@ -281,7 +281,7 @@ def main():
             exported=json.loads((review/'WPS原生导出登记.json').read_text())
             assert exported['WordSHA256']==result['WordSHA256'] and exported['PDFSHA256']==result['PDFSHA256'],'Word/PDF导出登记未同步'
     result['引文一致性']=citation_result
-    out=review/'1011局部优化';out.mkdir(exist_ok=True)
+    out=review/('1017甲方批注与逐年案例更新' if (review/'1017甲方批注与逐年案例更新/修前哈希.json').exists() else '1011局部优化');out.mkdir(exist_ok=True)
     (out/f'{args.stage}约束检查.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     print(json.dumps({k:v for k,v in result.items() if k!='源稿SHA256'},ensure_ascii=False))
 
