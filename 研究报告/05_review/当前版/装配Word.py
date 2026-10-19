@@ -306,5 +306,7 @@ def configure_doc(mathlist):
 def main():
  subprocess.run([sys.executable,str(ROOT/'tools/check_report_policy.py'),'--stage','source'],cwd=ROOT,check=True)
  refdoc();ml=assemble();configure_doc(ml)
+ from report_plain_revision import active as plain_active,apply as apply_plain
+ if plain_active(ROOT):apply_plain()
  subprocess.run([sys.executable,str(ROOT/'tools/check_report_policy.py'),'--stage','docx'],cwd=ROOT,check=True)
 if __name__=='__main__':main()

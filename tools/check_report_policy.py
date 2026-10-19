@@ -165,6 +165,11 @@ def main():
         from docx import Document
         from docx.oxml.ns import qn
         docpath=report/'04_word/研究报告终稿.docx';doc=Document(docpath)
+        from report_plain_revision import active as plain_active, check_plain_document
+        if plain_active(root):
+            comment_ids=[n.get(qn('w:id')) for n in doc.part._comments_part.element]
+            assert len(comment_ids)==11,'普通模式稿须保留全部11条原批注'
+            check_plain_document(doc.element,doc.settings.element,comment_ids)
         matrices=[tab for tab in doc.tables if len(tab.columns)==6 and len(tab.rows)==13
                   and [c.text for c in tab.rows[0].cells[:2]]==['年最大净负荷平均增长率','装机渗透率']]
         assert len(matrices)==9,'原生Word须包含九张完整电缆分区矩阵'
@@ -302,7 +307,8 @@ def main():
             exported=json.loads((review/'WPS原生导出登记.json').read_text())
             assert exported['WordSHA256']==result['WordSHA256'] and exported['PDFSHA256']==result['PDFSHA256'],'Word/PDF导出登记未同步'
     result['引文一致性']=citation_result
-    out=review/('1017甲方批注与逐年案例更新' if (review/'1017甲方批注与逐年案例更新/修前哈希.json').exists() else '1011局部优化');out.mkdir(exist_ok=True)
+    from report_plain_revision import active as plain_active
+    out=review/('1019七项表述与清稿' if plain_active(root) else '1017甲方批注与逐年案例更新' if (review/'1017甲方批注与逐年案例更新/修前哈希.json').exists() else '1011局部优化');out.mkdir(exist_ok=True)
     (out/f'{args.stage}约束检查.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     print(json.dumps({k:v for k,v in result.items() if k!='源稿SHA256'},ensure_ascii=False))
 

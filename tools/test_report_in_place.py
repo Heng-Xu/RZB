@@ -6,6 +6,7 @@ import pytest
 from verify_annual_report_update import check_capacity_period
 from report_matrix_display import adjoining_bands
 from check_report_policy import check_adjoining_matrix
+from report_plain_revision import anchor_comment, check_plain_document
 
 
 def test_adjoining_planning_bands_preserve_capacity_bounds_and_platforms():
@@ -31,6 +32,36 @@ def test_capacity_period_must_match_every_annual_record():
 
 def fixture(body):
     return E.fromstring(('<w:document xmlns:w="'+NS['w']+'"><w:body>'+body+'</w:body></w:document>').encode())
+
+
+def test_plain_delivery_preserves_comments_but_rejects_any_author_revision():
+    root = fixture('<w:p><w:r><w:t>有效正文</w:t></w:r></w:p>')
+    settings = E.Element(qn('settings'))
+    anchor_comment(root.find('.//'+qn('p')), '8')
+    check_plain_document(root, settings, ['8'])
+    revision = E.SubElement(root.find('.//'+qn('p')), qn('ins'))
+    revision.set(qn('author'), '甲方')
+    with pytest.raises(AssertionError, match='历史或新增修订'):
+        check_plain_document(root, settings, ['8'])
+    revision.getparent().remove(revision)
+    E.SubElement(settings, qn('trackRevisions'))
+    with pytest.raises(AssertionError, match='仍开启修订'):
+        check_plain_document(root, settings, ['8'])
+
+
+def test_plain_delivery_detects_comment_lost_with_deleted_paragraph():
+    root = fixture('<w:p><w:r><w:t>新段落</w:t></w:r></w:p>')
+    with pytest.raises(AssertionError, match='commentRangeStart'):
+        check_plain_document(root, E.Element(qn('settings')), ['0'])
+    anchor_comment(root.find('.//'+qn('p')), '0')
+    check_plain_document(root, E.Element(qn('settings')), ['0'])
+
+
+def test_plain_document_accepts_python_docx_elements():
+    from docx import Document
+    doc = Document()
+    anchor_comment(doc.add_paragraph('正文')._p, '0')
+    check_plain_document(doc.element, doc.settings.element, ['0'])
 
 
 def test_followup_reuses_unchanged_revision_id_and_date():

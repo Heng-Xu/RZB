@@ -23,6 +23,8 @@ def doc_from_parts(parts,root):
     data.seek(0);return Document(data)
 
 def verify(final=False):
+    from report_plain_revision import active,verify as verify_plain
+    if active():return verify_plain(final)
     from verify_future_case_results import verify as future
     frozen=future(ROOT);assets=sync(check=True)
     chapter=next((REPORT/'03_MD/当前版').glob('05 *.md'))
@@ -110,6 +112,8 @@ def verify(final=False):
 
 def verify_release():
     """核验本次交付及其历史原件；不将旧版结果断言套用到已授权的新案例。"""
+    from report_plain_revision import active,verify_release as verify_plain_release
+    if active():return verify_plain_release()
     result=verify(final=True)
     release=json.loads((REVIEW/'交付登记.json').read_text())
     assert release['状态']=='三阶段核验及逐段复核通过'

@@ -11,6 +11,7 @@ def main():
  parser=argparse.ArgumentParser(description=__doc__)
  parser.add_argument('--discussion',action='store_true',help='维护当前讨论稿；以终稿DOCX为内容依据')
  parser.add_argument('--feedback-report',action='store_true',help='在10.17甲方原文件内以xh增量修订；保留批注和甲方既有修订')
+ parser.add_argument('--plain-report',action='store_true',help='在已交付清稿基础上局部修改，保留批注，全部历史修订接受')
  parser.add_argument('--root',type=Path,default=ROOT,help='完整项目副本的根目录，可用于试构建')
  parser.add_argument('--rebuild',action='store_true',help='修改六章源后装配原生Word，随后须用WPS导出PDF并接收')
  parser.add_argument('--pdf-only',action='store_true',help='旧选项；现须从WPS原生导出PDF')
@@ -18,6 +19,9 @@ def main():
  parser.add_argument('--docx-only',action='store_true',help='装配原生DOCX，供WPS打开导出；完成导出后使用--accept-wps-pdf')
  parser.add_argument('--accept-wps-pdf',type=Path,help='接收由当前原生DOCX在WPS中直接导出的PDF，并同步目录缓存')
  args=parser.parse_args();root=args.root.resolve()
+ from report_plain_revision import active as plain_active
+ plain=args.plain_report or plain_active(root)
+ if plain and args.feedback_report:parser.error('本轮普通模式清稿与历史修订稿模式不能同时使用')
  subprocess.run([sys.executable,str(root/'tools/verify_future_case_results.py'),'--root',str(root)],cwd=root,check=True)
  if args.discussion:
   if args.rebuild:
@@ -55,6 +59,10 @@ def main():
   print('WPS PDF及Word目录缓存已同步。请核对印出的目录并完成版面检查，再运行--check-only。')
   return
  subprocess.run([sys.executable,str(root/'tools/check_report_policy.py'),'--root',str(root),'--stage','final'],cwd=root,check=True)
+ if plain:
+  from report_plain_revision import verify_release
+  verify_release()
+  return
  if (root/'研究报告/05_review/当前版/1017甲方批注与逐年案例更新/原文件修订核验.json').exists():
   subprocess.run([sys.executable,str(root/'tools/verify_annual_report_update.py'),'--final'],cwd=root,check=True)
   return

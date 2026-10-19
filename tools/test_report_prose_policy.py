@@ -8,14 +8,23 @@ POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
     def test_annual_case_model_wording(self):
-        for value in ['以该比例乘当年最大正向净负荷形成年度预算。',
-                      '由于电源仍归属原站，反向压力按电源原归属保守处理。']:
+        for value in ['以该比例乘当年最大正向净负荷形成年度预算。']:
             errors=self.check('[[SECTION:annual]]',{'annual':value})
             self.assertTrue(any('生成段落.json[annual]:1' in e for e in errors))
         for value in ['既有能力采用收资MW值，所有年份固定封顶。',
                       '源荷区段内负荷和光伏共同切换。',
+                      '由于电源仍归属原站，反向压力按电源原归属保守处理。',
                       '若仅将用电负荷转出而电源保持接入原站，本地反送需求可能增加。']:
             self.assertEqual(self.check(value),[])
+    def test_three_measure_wording_locates_unwanted_implementation_details(self):
+        for value in ['在配套费用参考值的20%范围内优先减少联络。',
+                      '在该配套费用参考值的120%以内优先减少联络。',
+                      '源荷区段切换数为整数决策。']:
+            errors=self.check('[[SECTION:annual]]', {'annual':value})
+            self.assertTrue(any('生成段落.json[annual]:1' in e for e in errors))
+        for value in ['主变增容、储能配置和10 kV联络三种措施联合寻优。',
+                      '弹性方案不限制容载比上限。', '储能柜数采用整数变量。']:
+            self.assertEqual(self.check(value), [])
     def test_body_omits_result_lock_maintenance_process(self):
         for value in ['推广矩阵沿用已确认参数结果，各单元为有限范围。',
                       '地区案例保留原锁定配置，在8760小时序列上校核。']:

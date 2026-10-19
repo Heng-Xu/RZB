@@ -8,6 +8,9 @@ import pymupdf
 ROOT=Path(__file__).resolve().parents[3];R=Path(__file__).parent;OUT=ROOT/'研究报告/04_word'
 def norm(s):return re.sub(r'\s+','',s)
 def main():
+ # python-docx保存时会重序列化批注；目录回填须保留原批注部件字节。
+ with zipfile.ZipFile(OUT/'研究报告终稿.docx') as original:
+  preserved_comments={n:original.read(n) for n in original.namelist() if 'comment' in n.lower() or n=='word/people.xml'}
  pdf=pymupdf.open(OUT/'研究报告终稿.pdf');assert len(pdf)>30,len(pdf)
  pages=[norm(p.get_text()) for p in pdf];headings=json.loads((R/'目录标题.json').read_text());indices={};entries=[]
  for title,level,anchor in headings:
@@ -42,7 +45,7 @@ def main():
  path=OUT/'研究报告终稿.docx';tmp=path.with_suffix('.tmp.docx')
  with zipfile.ZipFile(path) as inp,zipfile.ZipFile(tmp,'w',zipfile.ZIP_DEFLATED) as out:
   for info in inp.infolist():
-   data=inp.read(info.filename)
+   data=preserved_comments.get(info.filename,inp.read(info.filename))
    if info.filename=='docProps/app.xml':
     tree=etree.fromstring(data);ns={'ep':'http://schemas.openxmlformats.org/officeDocument/2006/extended-properties'};e=tree.find('ep:Pages',ns)
     if e is not None:e.text=str(len(pdf))
