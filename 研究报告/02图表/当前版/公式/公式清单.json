@@ -5,15 +5,15 @@
   },
   {
     "number": "3-2",
-    "tex": "\\begin{aligned}\nP_{c,y}&=P_{c,2025}\\frac{F_{c,y}}{F_{c,2025}},\\\\\ng^L_{c,y}&=\\frac{F_{c,y}}{F_{c,y-1}}-1,\\\\\n\\bar g^L_{c,[a,b]}&=\\left(\\frac{F_{c,b}}{F_{c,a}}\\right)^{1/(b-a)}-1.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nP_{c,y}=P_{c,2025}\\frac{F_{c,y}}{F_{c,2025}},\\\\\ng^L_{c,y}=\\frac{F_{c,y}}{F_{c,y-1}}-1,\\\\\n\\bar g^L_{c,[a,b]}=\\left(\\frac{F_{c,b}}{F_{c,a}}\\right)^{1/(b-a)}-1.\n\\end{gathered}"
   },
   {
     "number": "3-3",
-    "tex": "\\begin{aligned}\n\\widehat C_{y,m}&=C_{2023,m}\\left(\\frac{C_{2023,m}}{C_{2024,m}}\\right)^{2023-y}\\\\\ny&=2021,2022.\n\\end{aligned}"
+    "tex": "\\widehat C_{y,m}=C_{2023,m}\\left(\\frac{C_{2023,m}}{C_{2024,m}}\\right)^{2023-y},\\qquad y=2021,2022."
   },
   {
     "number": "3-4",
-    "tex": "\\begin{aligned}\nC_{c,y}&=C_{c,2025}\\frac{V_y}{V_{2025}},\\qquad\ng^{\\mathrm{PV}}_y=\\frac{V_y}{V_{y-1}}-1,\\\\\n\\bar g^{\\mathrm{PV}}_{[a,b]}&=\\left(\\frac{V_b}{V_a}\\right)^{1/(b-a)}-1.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nC_{c,y}=C_{c,2025}\\frac{V_y}{V_{2025}},\\\\\ng^{\\mathrm{PV}}_y=\\frac{V_y}{V_{y-1}}-1,\\\\\n\\bar g^{\\mathrm{PV}}_{[a,b]}=\\left(\\frac{V_b}{V_a}\\right)^{1/(b-a)}-1.\n\\end{gathered}"
   },
   {
     "number": "3-5",
@@ -25,11 +25,11 @@
   },
   {
     "number": "3-7",
-    "tex": "\\begin{aligned}\n\\widehat E_\\mathrm{user}&=a\\sum_tP_{\\mathrm{net},t}\\Delta t+\\widehat E_\\mathrm{PV}\\\\\n\\eta_E&=\\frac{\\widehat E_\\mathrm{PV}}{\\widehat E_\\mathrm{user}}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\n\\widehat E_\\mathrm{user}=a\\sum_tP_{\\mathrm{net},t}\\Delta t+\\widehat E_\\mathrm{PV}\\\\\n\\eta_E=\\frac{\\widehat E_\\mathrm{PV}}{\\widehat E_\\mathrm{user}}.\n\\end{gathered}"
   },
   {
     "number": "3-8",
-    "tex": "\\begin{aligned}P^+&=\\max_t(P_t,0),\\quad P^-=\\max_t(-P_t,0),\\\\P^\\mathrm{abs}&=\\max(P^+,P^-).\\end{aligned}"
+    "tex": "\\begin{gathered}P^+=\\max_t(P_t,0),\\\\\nP^-=\\max_t(-P_t,0),\\\\P^\\mathrm{abs}=\\max(P^+,P^-).\\end{gathered}"
   },
   {
     "number": "3-9",
@@ -41,11 +41,11 @@
   },
   {
     "number": "3-11",
-    "tex": "\\begin{aligned}\nQ_{\\mathrm{sec}}&=P_{\\mathrm{feeder}}\\frac{S_{\\mathrm{sec}}}{S_{\\mathrm{feeder}}}\\\\\n&=8.2344\\times\\frac{5845}{6425}\\approx7.49\\ \\mathrm{MW},\\\\\nF_{\\mathrm{new}}&=\\frac{\\sqrt3\\,U I_{\\mathrm{allow}}\\cos\\varphi}{1000}\\\\\n&=\\frac{\\sqrt3\\times10\\times550\\times0.95}{1000}\n\\approx9.05\\ \\mathrm{MW},\\\\\nQ_{\\mathrm{ref}}&=\\min(Q_{\\mathrm{sec}},F_{\\mathrm{new}})=7.49\\ \\mathrm{MW}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nQ_{\\mathrm{sec}}=P_{\\mathrm{feeder}}\\frac{S_{\\mathrm{sec}}}{S_{\\mathrm{feeder}}}=8.2344\\times\\frac{5845}{6425}\\approx7.49\\ \\mathrm{MW},\\\\\nF_{\\mathrm{new}}=\\frac{\\sqrt3\\,U I_{\\mathrm{allow}}\\cos\\varphi}{1000}=\\frac{\\sqrt3\\times10\\times550\\times0.95}{1000}\n\\approx9.05\\ \\mathrm{MW},\\\\\nQ_{\\mathrm{ref}}=\\min(Q_{\\mathrm{sec}},F_{\\mathrm{new}})=7.49\\ \\mathrm{MW}.\n\\end{gathered}"
   },
   {
     "number": "3-12",
-    "tex": "\\begin{aligned}\n0\\leq q_{e,\\omega}&\\leq Q_{\\mathrm{ref}}x_{e,y},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{out}}}q_{e,\\omega}&\\leq L_{f,\\omega}^{\\mathrm{cut}},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{in}}}q_{e,\\omega}&\\leq\\max(0,F_f-P_{f,y}^{\\mathrm{ref}}),\\\\\n\\sum_{e\\in\\mathcal E_j^{\\mathrm{in}}}q_{e,\\omega}&\\leq R_{j,\\omega}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\n0\\leq q_{e,\\omega}\\leq Q_{\\mathrm{ref}}x_{e,y},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{out}}}q_{e,\\omega}\\leq L_{f,\\omega}^{\\mathrm{cut}},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{in}}}q_{e,\\omega}\\leq\\max(0,F_f-P_{f,y}^{\\mathrm{ref}}),\\\\\n\\sum_{e\\in\\mathcal E_j^{\\mathrm{in}}}q_{e,\\omega}\\leq R_{j,\\omega}.\n\\end{gathered}"
   },
   {
     "number": "4-1",
@@ -53,7 +53,7 @@
   },
   {
     "number": "4-2",
-    "tex": "\\begin{aligned}\nI_{T,iky}&=c_T S^\\mathrm{new}_{iky}\\,z_{iky}\\\\\n\\Delta S_{iky}&=\\left(S^\\mathrm{new}_{iky}-S^\\mathrm{old}_{ik,y-1}\\right)z_{iky}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nI_{T,iky}=c_T S^\\mathrm{new}_{iky}\\,z_{iky}\\\\\n\\Delta S_{iky}=\\left(S^\\mathrm{new}_{iky}-S^\\mathrm{old}_{ik,y-1}\\right)z_{iky}.\n\\end{gathered}"
   },
   {
     "number": "4-3",
@@ -65,7 +65,7 @@
   },
   {
     "number": "4-5",
-    "tex": "\\begin{aligned}\nc_B&=\\frac{2104562.62}{10000\\times10}\\approx21.05\\quad\\text{万元/柜}\\\\\nI_{B,iy}&=c_B\\Delta n_{iy}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nc_B=\\frac{2104562.62}{10000\\times10}\\approx21.05\\quad\\text{万元/柜}\\\\\nI_{B,iy}=c_B\\Delta n_{iy}.\n\\end{gathered}"
   },
   {
     "number": "4-6",
@@ -85,23 +85,23 @@
   },
   {
     "number": "5-2",
-    "tex": "\\begin{aligned}\nR_{c,s,y}&=S_{c,s,y}/P_{c,y},\\\\\n\\max\\{S_{c,\\mathrm{rigid},y-1},\\underline R_{c,y}P_{c,y}\\}&\\leq S_{c,\\mathrm{rigid},y},\\\\\nS_{c,\\mathrm{rigid},y}&\\leq\\max\\{S_{c,\\mathrm{rigid},y-1},2P_{c,y}\\},\\\\\nS_{c,\\mathrm{elastic},y}&\\geq\\max\\{S_{c,\\mathrm{elastic},y-1},\\underline R_{c,y}P_{c,y}\\},\\\\\nS_{c,\\mathrm{elastic},y}&\\leq\\sum_i S_{i,\\mathrm{candidate}}^{\\max}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nR_{c,s,y}=S_{c,s,y}/P_{c,y},\\\\\n\\max\\{S_{c,\\mathrm{rigid},y-1},\\underline R_{c,y}P_{c,y}\\}\\leq S_{c,\\mathrm{rigid},y},\\\\\nS_{c,\\mathrm{rigid},y}\\leq\\max\\{S_{c,\\mathrm{rigid},y-1},2P_{c,y}\\},\\\\\nS_{c,\\mathrm{elastic},y}\\geq\\max\\{S_{c,\\mathrm{elastic},y-1},\\underline R_{c,y}P_{c,y}\\},\\\\\nS_{c,\\mathrm{elastic},y}\\leq\\sum_i S_{i,\\mathrm{candidate}}^{\\max}.\n\\end{gathered}"
   },
   {
     "number": "5-3",
-    "tex": "\\begin{aligned}\nS_{i,y}&=\\sum_{j,r}r x_{i,j,r,y}+50z_{i,y},\\\\\n\\sum_r x_{i,j,r,y}&=1,\\\\\nn_{i,y}&\\geq n_{i,y-1}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nS_{i,y}=\\sum_{j,r}r x_{i,j,r,y}+50z_{i,y},\\\\\n\\sum_r x_{i,j,r,y}=1,\\\\\nn_{i,y}\\geq n_{i,y-1}.\n\\end{gathered}"
   },
   {
     "number": "5-4",
-    "tex": "\\begin{aligned}\n\\rho_i&=\\frac{Q_i^{\\mathrm{data}}}{Q_i^{\\mathrm{data}}+U_i},\\\\\n\\sum_{e\\in\\mathcal E_i^{\\mathrm{existing}}}(\\widehat q_{e,y}^{\\mathrm{normal}}+\\widehat q_{e,y}^{\\mathrm{extra}})&\\leq Q_i^{\\mathrm{data}}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\n\\rho_i=\\frac{Q_i^{\\mathrm{data}}}{Q_i^{\\mathrm{data}}+U_i},\\\\\n\\sum_{e\\in\\mathcal E_i^{\\mathrm{existing}}}(\\widehat q_{e,y}^{\\mathrm{normal}}+\\widehat q_{e,y}^{\\mathrm{extra}})\\leq Q_i^{\\mathrm{data}}.\n\\end{gathered}"
   },
   {
     "number": "5-5",
-    "tex": "\\begin{aligned}\nq_{e,\\omega}^{a\\to b}+q_{e,\\omega}^{b\\to a}&\\leq F_e x_{e,y},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{out}}}q_{e,\\omega}&\\leq P_{f,\\omega}^{\\mathrm{own}},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{in}}}q_{e,\\omega}&\\leq F_f-P_{f,y}^{\\mathrm{ref}}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nq_{e,\\omega}^{a\\to b}+q_{e,\\omega}^{b\\to a}\\leq F_e x_{e,y},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{out}}}q_{e,\\omega}\\leq P_{f,\\omega}^{\\mathrm{own}},\\\\\n\\sum_{e\\in\\mathcal E_f^{\\mathrm{in}}}q_{e,\\omega}\\leq F_f-P_{f,y}^{\\mathrm{ref}}.\n\\end{gathered}"
   },
   {
     "number": "5-6",
-    "tex": "\\begin{aligned}\nP'_{i,\\omega}&=P_{i,\\omega}-Q^{\\mathrm{out}}_{i,\\omega}+Q^{\\mathrm{in}}_{i,\\omega},\\\\\n\\sum_iQ^{\\mathrm{out}}_{i,\\omega}&=\\sum_iQ^{\\mathrm{in}}_{i,\\omega},\\\\\n\\sum_iP'_{i,\\omega}&=\\sum_iP_{i,\\omega}.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nP'_{i,\\omega}=P_{i,\\omega}-Q^{\\mathrm{out}}_{i,\\omega}+Q^{\\mathrm{in}}_{i,\\omega},\\\\\n\\sum_iQ^{\\mathrm{out}}_{i,\\omega}=\\sum_iQ^{\\mathrm{in}}_{i,\\omega},\\\\\n\\sum_iP'_{i,\\omega}=\\sum_iP_{i,\\omega}.\n\\end{gathered}"
   },
   {
     "number": "5-7",
@@ -113,7 +113,7 @@
   },
   {
     "number": "5-9",
-    "tex": "\\begin{aligned}\\min C_{\\mathrm{plan}}=\\sum_y\\bigl[&I_{T,y}A_T(y)+I_{B,y}A_B(y)\\\\&+I_{L,y}A_L(y)\\bigr].\\end{aligned}"
+    "tex": "\\min C_{\\mathrm{plan}}=\\sum_y\\bigl[I_{T,y}A_T(y)+I_{B,y}A_B(y)+I_{L,y}A_L(y)\\bigr]."
   },
   {
     "number": "5-10",
@@ -121,6 +121,6 @@
   },
   {
     "number": "5-11",
-    "tex": "\\begin{aligned}\nP_T&=250(1+\\bar g)^4,\\\\\nP_{i,\\mathrm{evening}}&=w_i^L P_T,\\\\\nP_{i,\\mathrm{day}}&=0.30w_i^L P_T-0.75\\eta_Cw_i^G P_T.\n\\end{aligned}"
+    "tex": "\\begin{gathered}\nP_T=250(1+\\bar g)^4,\\\\\nP_{i,\\mathrm{evening}}=w_i^L P_T,\\\\\nP_{i,\\mathrm{day}}=0.30w_i^L P_T-0.75\\eta_Cw_i^G P_T.\n\\end{gathered}"
   }
 ]

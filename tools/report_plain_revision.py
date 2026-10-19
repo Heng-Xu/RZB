@@ -61,7 +61,12 @@ def check_plain_document(root, settings, comment_ids):
 def block_key(node, parts):
     if node.xpath('.//w:instrText[contains(text(),"PAGEREF")]', namespaces=NS):
         return 'toc:'+''.join(node.xpath('.//w:hyperlink//w:t/text()', namespaces=NS))
-    return fingerprint(node, parts)
+    key = fingerprint(node, parts)
+    # 格式修正也须替换公式块，不能仅按文字相同误判为无需修改。
+    if node.xpath('./w:tblPr/w:tblCaption[@w:val="ReportEquation"]', namespaces=NS):
+        maths=node.xpath('.//m:oMath', namespaces={'m':'http://schemas.openxmlformats.org/officeDocument/2006/math'})
+        key += ':omml:'+hashlib.sha256(b''.join(E.tostring(m, method='c14n', exclusive=True) for m in maths)).hexdigest()
+    return key
 
 
 def stable_toc_anchors(goal, previous, headings):
@@ -100,7 +105,7 @@ def install_comments(parts, root, feedback):
     # WPS保存可能重排批注ID，按原批注内容定位，保留其原始ID及部件。
     targets = {
         '正常运行，主变不超过80%': '工程运行要求为：正常运行主变负载率不超过80%',
-        '这是谁': '其中，Zhenyu Zhu等对铜芯电缆',
+        '这是谁': '其中，Zhenyu Zhu等学者对铜芯电缆',
         '是否都是110kV变电站': '110 kV变电站',
         '有没有35kV的': '八义集变',
         '这十三项候选': '2025年4月《配电网规划设计技术导则（修订稿）》第6.2.2条将负荷增长',
@@ -252,9 +257,21 @@ def verify(final=False):
         if name.startswith('word/media/') or name == 'word/styles.xml':
             assert parts[name] == old[name], '未涉及图件或样式变化：'+name
     ns = {'m': 'http://schemas.openxmlformats.org/officeDocument/2006/math'}
-    math = lambda tree: [E.tostring(n, method='c14n') for n in tree.xpath('.//m:oMath', namespaces=ns)]
-    # 源稿本轮无公式修改，原生OMML逐对象保留。
+    math = lambda tree: [E.tostring(n, method='c14n', exclusive=True) for n in tree.xpath('.//m:oMath', namespaces=ns)]
+    # 原生公式结构及排版逐对象对应本轮源稿装配结果。
     assert math(root) == math(goal), '原生公式未对应本轮源稿'
+    if MODE_SETTINGS.get('仅公式排版及称谓'):
+        def formula_characters(tree):
+            result={}
+            for table in tree.xpath('.//w:tbl[w:tblPr/w:tblCaption[@w:val="ReportEquation"]]',namespaces=NS):
+                number=''.join(table.xpath('./w:tr/w:tc[3]//w:t/text()',namespaces=NS)).strip('（）')
+                value=''.join(table.xpath('.//m:t/text()',namespaces=ns))
+                value=re.sub(r'[\s\u200b\u2001\u2005\u2009]','',value)
+                # 将年份条件并入同一行时补充的分隔逗号不改变算式。
+                if number=='3-3':value=value.replace(',y=2021','y=2021')
+                result[number]=value
+            return result
+        assert formula_characters(root)==formula_characters(xml(old['word/document.xml'])),'排版修正改变了公式字符'
     tables = json.loads((ROOT/'研究报告/02图表/当前版/计算表.json').read_text())
     previous = json.loads((REVIEW/'修前原件/研究报告/02图表/当前版/计算表.json').read_text())
     assert set(tables) == set(previous)

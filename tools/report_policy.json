@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-19-local-transfer-wording",
+  "version": "2026-10-19-equation-row-centering",
   "forbidden_body_patterns": {
     "修订过程不得进入正文": "修正稿|(?<!配电网规划设计技术导则（)修订稿|上一轮|本轮修订",
     "取整和分档不反复解释": "显示取整|完整精度分档|显示为7%|不能据此将邳州|按显示精度取整",
@@ -81,7 +81,16 @@
     "zero_all_indents": true,
     "zero_cell_margins": true,
     "separate_right_equation_number": true,
-    "pdf_center_tolerance_pt": 1.0
+    "pdf_center_tolerance_pt": 1.0,
+    "multiline_independent_rows": "center",
+    "continuation_equations": [
+      "4-7",
+      "5-8"
+    ],
+    "single_line_equations": [
+      "3-3",
+      "5-9"
+    ]
   },
   "prose_review": {
     "正文逻辑": "按因果、条件、递进或转折组织句子，合并重复主语和孤立短句，不堆砌连词，不虚构因果。",
@@ -125,6 +134,6 @@
   "target_body_pages": 171,
   "body_page_tolerance": 3,
   "body_page_scope": "保留六章和46座站分析，案例扩展为2021—2035年60条年度记录；正文约171页，较2021—2025年版增加完整年度表与建设措施。",
-  "plain_delivery_review": "研究报告/05_review/当前版/1019区段说明与正文局部修正",
+  "plain_delivery_review": "研究报告/05_review/当前版/1019公式排版与学者称谓",
   "report_figure_count": 40
 }

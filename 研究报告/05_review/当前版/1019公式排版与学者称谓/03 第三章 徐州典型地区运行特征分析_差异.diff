@@ -1,0 +1,109 @@
+--- 修前/03 第三章 徐州典型地区运行特征分析.md
++++ 修后/03 第三章 徐州典型地区运行特征分析.md
+@@ -58,11 +58,11 @@
+ 
+ 2021—2025年实际容量与负荷用于现状分析，历史年度负荷直接进入地区案例。规划以2021年市区3113.50 MVA、邳州2027.00 MVA实际容量为共同起点，2022—2035年按上年在役设备和当年源荷选择新增措施。2026—2035年的区域负荷预测按相对2025年的比例换算为同范围110 kV电网规划预测峰值，负荷预测值、换算结果及对应增幅如下。
+ 
+-$$\begin{aligned}
+-P_{c,y}&=P_{c,2025}\frac{F_{c,y}}{F_{c,2025}},\\
+-g^L_{c,y}&=\frac{F_{c,y}}{F_{c,y-1}}-1,\\
+-\bar g^L_{c,[a,b]}&=\left(\frac{F_{c,b}}{F_{c,a}}\right)^{1/(b-a)}-1.
+-\end{aligned}\tag{3-21}$$
++$$\begin{gathered}
++P_{c,y}=P_{c,2025}\frac{F_{c,y}}{F_{c,2025}},\\
++g^L_{c,y}=\frac{F_{c,y}}{F_{c,y-1}}-1,\\
++\bar g^L_{c,[a,b]}=\left(\frac{F_{c,b}}{F_{c,a}}\right)^{1/(b-a)}-1.
++\end{gathered}\tag{3-21}$$
+ 
+ 式中，$F_{c,y}$为地区$c$第$y$年的区域负荷预测值，$P_{c,y}$为按同范围2025年网供最大负荷换算的110 kV电网规划预测峰值，单位MW；$g^L_{c,y}$为相邻年度负荷预测增幅，$\bar g^L_{c,[a,b]}$为$a$至$b$年的年最大净负荷平均增长率。比例换算保持对应增幅，未来阶段按2025—2030年、2030—2035年分别计算，与历史2021—2025年的统计增长率对应使用。
+ 
+@@ -82,10 +82,7 @@
+ 
+ 现有资料未提供2021—2022年的逐月末光伏装机记录，模型按同月2023、2024年的规模关系几何回推。先固定月份，再沿年份回推，可以保留年内季节性投运差异。月末装机回推按式（3-9）计算，结果用于分析装机发展条件。
+ 
+-$$\begin{aligned}
+-\widehat C_{y,m}&=C_{2023,m}\left(\frac{C_{2023,m}}{C_{2024,m}}\right)^{2023-y}\\
+-y&=2021,2022.
+-\end{aligned}\tag{3-9}$$
++$$\widehat C_{y,m}=C_{2023,m}\left(\frac{C_{2023,m}}{C_{2024,m}}\right)^{2023-y},\qquad y=2021,2022.\tag{3-9}$$
+ 
+ 式中，$\widehat C_{y,m}$为第$y$年第$m$月末光伏装机容量估计值，$C_{2023,m}$、$C_{2024,m}$为对应月份记录，单位MW；$y$为年份，$m$为月份。
+ 
+@@ -95,11 +92,11 @@
+ 
+ 光伏预测采用全市装机相对2025年的发展比例，以两地区2025年装机为基准形成规划情景。光伏装机年增幅与负荷增幅分别计算，装机发展通过日间出力影响净负荷。
+ 
+-$$\begin{aligned}
+-C_{c,y}&=C_{c,2025}\frac{V_y}{V_{2025}},\qquad
++$$\begin{gathered}
++C_{c,y}=C_{c,2025}\frac{V_y}{V_{2025}},\\
+ g^{\mathrm{PV}}_y=\frac{V_y}{V_{y-1}}-1,\\
+-\bar g^{\mathrm{PV}}_{[a,b]}&=\left(\frac{V_b}{V_a}\right)^{1/(b-a)}-1.
+-\end{aligned}\tag{3-22}$$
++\bar g^{\mathrm{PV}}_{[a,b]}=\left(\frac{V_b}{V_a}\right)^{1/(b-a)}-1.
++\end{gathered}\tag{3-22}$$
+ 
+ 式中，$V_y$为全市第$y$年的光伏装机容量预测值，$C_{c,y}$为地区$c$第$y$年的装机容量，单位均为MW；$g^{\mathrm{PV}}_y$为光伏装机年增幅，$\bar g^{\mathrm{PV}}_{[a,b]}$为$a$至$b$年的装机年平均增幅。2025—2030年、2030—2035年分别为9.32%、10.70%。光伏装机增幅用于源荷情景外推，推广矩阵的负荷发展参数仍采用第3.2.3节定义的年最大净负荷平均增长率。
+ 
+@@ -129,10 +126,10 @@
+ 
+ 在同范围、忽略损耗且其他电源已单独处理的条件下，用户电量可由净交换电量加本地发电量重建。现有逐时样本未完整覆盖区县全部用户，且缺少同范围用户年电量记录，因此先按样本覆盖系数估计区县净交换电量，再加本地光伏发电量。用户电量按式（3-4）估计。
+ 
+-$$\begin{aligned}
+-\widehat E_\mathrm{user}&=a\sum_tP_{\mathrm{net},t}\Delta t+\widehat E_\mathrm{PV}\\
+-\eta_E&=\frac{\widehat E_\mathrm{PV}}{\widehat E_\mathrm{user}}.
+-\end{aligned}\tag{3-4}$$
++$$\begin{gathered}
++\widehat E_\mathrm{user}=a\sum_tP_{\mathrm{net},t}\Delta t+\widehat E_\mathrm{PV}\\
++\eta_E=\frac{\widehat E_\mathrm{PV}}{\widehat E_\mathrm{user}}.
++\end{gathered}\tag{3-4}$$
+ 
+ 式中，$\widehat E_\mathrm{user}$为用户年用电量估计值，$\widehat E_\mathrm{PV}$为光伏年发电量估计值，单位MWh；$\eta_E$为分布式电源电量渗透率；$P_{\mathrm{net},t}$为时刻$t$的样本净交换功率，单位MW，$\Delta t$为1 h。$a$为按设备典型夜间负荷与样本最大净负荷构造的覆盖外推系数，邳州为1.01、市区为1.17。该参数按区县分布式光伏装机与110 kV样本净负荷估计。
+ 
+@@ -156,7 +153,8 @@
+ 
+ 净负荷序列以受电为正、反送为负。容量压力采用最大绝对值，同时列示正向和反向极值用于容量校核。由带符号序列分别提取方向峰值：
+ 
+-$$\begin{aligned}P^+&=\max_t(P_t,0),\quad P^-=\max_t(-P_t,0),\\P^\mathrm{abs}&=\max(P^+,P^-).\end{aligned}\tag{3-6}$$
++$$\begin{gathered}P^+=\max_t(P_t,0),\\
++P^-=\max_t(-P_t,0),\\P^\mathrm{abs}=\max(P^+,P^-).\end{gathered}\tag{3-6}$$
+ 
+ 式中，$P_t$为时刻$t$的净负荷，受电为正、反送为负；$P^+$和$P^-$分别为最大正向、反向净负荷，$P^\mathrm{abs}$为净负荷最大绝对值，单位均为MW。站级负载率按$P^{\mathrm{abs}}/(S\cos\varphi)$计算，$S$为本站主变总容量，功率因数取0.95。本章采用初始容量和所设静态工况，第五章采用方案配置容量；均为按视在功率折算的站级计算值。正反向运行分别校核网络、电压及保护条件[2][4]。
+ 
+@@ -317,25 +315,23 @@
+ 
+ 既有通道与新增候选分别记录馈线端点和有效容量，各通道共同校核源端可切负荷、共享馈线余量和接收站容量。新增联络单项参考能力以墩振线23—24杆拟设分段点下游的可转供区段为测算对象。根据已有配电变压器资料，该区段配电变压器额定容量合计占全馈线已识别总容量的90.97%。以该馈线2025年最大有功负荷8.23 MW为计算依据，按上述容量比例估算，区段负荷为7.49 MW。新增路径按550 A允许电流及0.95功率因数折算的有功容量为9.05 MW，因此取区段负荷7.49 MW作为单项新增联络的参考转供能力。
+ 
+-$$\begin{aligned}
+-Q_{\mathrm{sec}}&=P_{\mathrm{feeder}}\frac{S_{\mathrm{sec}}}{S_{\mathrm{feeder}}}\\
+-&=8.2344\times\frac{5845}{6425}\approx7.49\ \mathrm{MW},\\
+-F_{\mathrm{new}}&=\frac{\sqrt3\,U I_{\mathrm{allow}}\cos\varphi}{1000}\\
+-&=\frac{\sqrt3\times10\times550\times0.95}{1000}
++$$\begin{gathered}
++Q_{\mathrm{sec}}=P_{\mathrm{feeder}}\frac{S_{\mathrm{sec}}}{S_{\mathrm{feeder}}}=8.2344\times\frac{5845}{6425}\approx7.49\ \mathrm{MW},\\
++F_{\mathrm{new}}=\frac{\sqrt3\,U I_{\mathrm{allow}}\cos\varphi}{1000}=\frac{\sqrt3\times10\times550\times0.95}{1000}
+ \approx9.05\ \mathrm{MW},\\
+-Q_{\mathrm{ref}}&=\min(Q_{\mathrm{sec}},F_{\mathrm{new}})=7.49\ \mathrm{MW}.
+-\end{aligned}\tag{3-23}$$
++Q_{\mathrm{ref}}=\min(Q_{\mathrm{sec}},F_{\mathrm{new}})=7.49\ \mathrm{MW}.
++\end{gathered}\tag{3-23}$$
+ 
+ 式中，$P_{\mathrm{feeder}}$为2025年全馈线最大有功负荷，$Q_{\mathrm{sec}}$为估算的区段合计负荷，单位MW；$S_{\mathrm{sec}}$、$S_{\mathrm{feeder}}$分别为该区段及全馈线已识别的配电变压器额定容量合计，单位kVA；$U$为线电压，取10 kV，$I_{\mathrm{allow}}$为新增路径的研究允许电流，取550 A，$\cos\varphi$取0.95；$F_{\mathrm{new}}$为有功热限，$Q_{\mathrm{ref}}$为单项候选的参考转移规模，单位MW。
+ 
+ 新增联络的正向负荷转接还需逐工况满足共享资源约束：
+ 
+-$$\begin{aligned}
+-0\leq q_{e,\omega}&\leq Q_{\mathrm{ref}}x_{e,y},\\
+-\sum_{e\in\mathcal E_f^{\mathrm{out}}}q_{e,\omega}&\leq L_{f,\omega}^{\mathrm{cut}},\\
+-\sum_{e\in\mathcal E_f^{\mathrm{in}}}q_{e,\omega}&\leq\max(0,F_f-P_{f,y}^{\mathrm{ref}}),\\
+-\sum_{e\in\mathcal E_j^{\mathrm{in}}}q_{e,\omega}&\leq R_{j,\omega}.
+-\end{aligned}\tag{3-24}$$
++$$\begin{gathered}
++0\leq q_{e,\omega}\leq Q_{\mathrm{ref}}x_{e,y},\\
++\sum_{e\in\mathcal E_f^{\mathrm{out}}}q_{e,\omega}\leq L_{f,\omega}^{\mathrm{cut}},\\
++\sum_{e\in\mathcal E_f^{\mathrm{in}}}q_{e,\omega}\leq\max(0,F_f-P_{f,y}^{\mathrm{ref}}),\\
++\sum_{e\in\mathcal E_j^{\mathrm{in}}}q_{e,\omega}\leq R_{j,\omega}.
++\end{gathered}\tag{3-24}$$
+ 
+ 式中，$q_{e,\omega}$为工况$\omega$下通道$e$的转供功率，$x_{e,y}$为第$y$年投运状态；$\mathcal E_f^{\mathrm{out}}$、$\mathcal E_f^{\mathrm{in}}$为共用馈线$f$的转出、转入通道集合，$\mathcal E_j^{\mathrm{in}}$为接收站$j$的转入通道集合；$L_{f,\omega}^{\mathrm{cut}}$为源端可切负荷，$F_f$为馈线热限，$P_{f,y}^{\mathrm{ref}}$为接收余量计算所用负荷，$R_{j,\omega}$为接收站按第5.3.1节容量条件确定的可承接余量，单位均为MW。实际转供取上述条件共同允许的功率，新增工程费用按地区电缆长度占比计算。
+ 

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "defaults": {
+    "transition": {
+      "effect": "none",
+      "duration": 0.0
+    }
+  },
+  "slides": {
+    "slide_03": {
+      "groups": {
+        "shape-11": {
+          "effect": "entrance_wipe",
+          "duration": 0.5,
+          "delay": 0.0,
+          "order": 1,
+          "trigger": "after-previous",
+          "effect_options": {
+            "direction": "left"
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,9 @@ def body_policy_errors(sources,sections,tables,patterns):
     errors=[]
     def scan(value,location,stack=()):
         for equation in re.finditer(r'\\begin\{aligned\}([\s\S]*?)\\end\{aligned\}',value):
+            if not re.search(r'\\\\\s*&',equation[1]):
+                line_no=value[:equation.start()].count('\n')+1
+                errors.append(f'{location}:{line_no}: 独立多行关系须使用gathered逐行居中，连续推导保留aligned')
             for row in re.split(r'\\\\',equation[1]):
                 if len(re.findall(r'&(?:=|\\(?:leq|geq))',row))>1:
                     line_no=value[:equation.start()].count('\n')+1
@@ -146,7 +149,7 @@ def main():
     # 连续式中解释应合并到一段，不能用多个空行分列符号解释。
     if re.search(r'式中[^\n]*\n\s*\n式中',body):errors.append('相邻式中说明应合并')
     for equation in re.findall(r'\$\$([\s\S]*?)\$\$',body):
-        if equation.count(r'\qquad')>=2 and r'\begin{aligned}' not in equation:
+        if equation.count(r'\qquad')>=2 and not any(r'\begin{'+x+'}' in equation for x in ['aligned','gathered']):
             errors.append('包含多组关系的长公式须显式分行')
     for name in re.findall(r'\[\[FIG:([^|]+)\|',body):
         if not (asset/(name+'.png')).is_file():errors.append('缺少图件: '+name)
@@ -263,26 +266,26 @@ def main():
                 assert offset<=policy['figure_paragraph_format']['pdf_center_tolerance_pt'],('PDF图片未居中',page.number+1,offset)
                 offsets.append(offset)
             result['PDF图片最大居中偏差_pt']=round(max(offsets,default=0),4)
-            # 单行公式另外检查渲染位置；多行公式按对称栏宽核验并逐式目视复核。
+            # 单行及独立多行均核验渲染位置，连续推导另外逐式目视复核。
             manifest=json.loads((asset/'公式/公式清单.json').read_text())
             formula_offsets=[]
             for equation in manifest:
-                if r'\begin{aligned}' in equation['tex'] or r'\sum' in equation['tex']:continue
+                if any(r'\begin{'+x+'}' in equation['tex'] for x in ['aligned','gathered']):continue
+                if r'\sum' in equation['tex'] and equation['number'] not in policy['math_format']['single_line_equations']:continue
                 found=[]
                 for page in pdf:
                     found.extend((page,pymupdf.Rect(word[:4])) for word in page.get_text('words') if word[0]>468 and word[4]=='（'+equation['number']+'）')
                 assert len(found)==1,('独立式号缺失或重复',equation['number'])
-                page,number=found[0];spans=[]
-                for block in page.get_text('dict')['blocks']:
-                    for line in block.get('lines',[]):
-                        for span in line['spans']:
-                            x0,y0,x1,y1=span['bbox']
-                            if x0>125 and x1<470 and y0<number.y1+2 and y1>number.y0-15:spans.append(span)
+                page,number=found[0]
+                from report_math_layout import pdf_formula_spans
+                spans=pdf_formula_spans(page,number)
                 assert spans,('未找到公式主体',equation['number'])
                 offset=abs((min(s['bbox'][0] for s in spans)+max(s['bbox'][2] for s in spans))/2-(page.rect.width+left-right)/2)
                 assert offset<=policy['math_format']['pdf_center_tolerance_pt'],('PDF公式主体未居中',equation['number'],offset)
                 formula_offsets.append(dict(公式=equation['number'],页码=page.number+1,中心偏差_pt=round(offset,4)))
             result['PDF单行公式中心核验']=formula_offsets
+            from report_math_layout import check_pdf_equation_rows
+            result['PDF多行公式逐行中心核验']=check_pdf_equation_rows(doc,pdf,policy['math_format']['pdf_center_tolerance_pt'])
             toc=json.loads((review/'目录页码核对.json').read_text())
             norm=lambda x:re.sub(r'\s+','',x)
             pages=[norm(p.get_text()) for p in pdf]

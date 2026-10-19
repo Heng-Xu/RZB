@@ -201,7 +201,12 @@ class ProsePolicyTests(unittest.TestCase):
 
     def test_multiple_constraints_need_explicit_math_break(self):
         self.assertTrue(self.check(r'\begin{aligned} A&\leq B, C&\leq D.\end{aligned}'))
-        self.assertEqual(self.check(r'\begin{aligned} A&\leq B,\\ C&\leq D.\end{aligned}'),[])
+        self.assertEqual(self.check(r'\begin{gathered} A\leq B,\\ C\leq D.\end{gathered}'),[])
+
+    def test_independent_relations_centered_and_continuations_aligned(self):
+        self.assertTrue(self.check(r'\begin{aligned} A&=B,\\ C&=D.\end{aligned}'))
+        self.assertEqual(self.check(r'\begin{gathered} A=B,\\ C=D.\end{gathered}'),[])
+        self.assertEqual(self.check(r'\begin{aligned} A&=B\\&+C.\end{aligned}'),[])
 
     def test_reference_cycle_fails(self):
         with self.assertRaisesRegex(ValueError,'正文引用循环'):
@@ -258,6 +263,19 @@ class ProsePolicyTests(unittest.TestCase):
             self.assertEqual(self.check(value),[])
 
 class EquationLayoutTests(unittest.TestCase):
+    def matrix(self,t,alignments):
+        from docx.oxml import OxmlElement
+        from docx.oxml.ns import qn
+        m=t._tbl.xpath('.//m:oMath')[0];matrix=OxmlElement('m:m');pr=OxmlElement('m:mPr');cols=OxmlElement('m:mcs')
+        for alignment in alignments:
+            col=OxmlElement('m:mc');cp=OxmlElement('m:mcPr');jc=OxmlElement('m:mcJc');jc.set(qn('m:val'),alignment);cp.append(jc);col.append(cp);cols.append(col)
+        pr.append(cols);matrix.append(pr)
+        for _ in range(2):
+            row=OxmlElement('m:mr')
+            for _ in alignments:row.append(OxmlElement('m:e'))
+            matrix.append(row)
+        m.append(matrix)
+
     def sample(self):
         from docx import Document
         from docx.shared import Cm
@@ -277,6 +295,63 @@ class EquationLayoutTests(unittest.TestCase):
     def test_native_formula_is_centered_by_host_paragraph(self):
         from report_math_layout import check_equation_layout
         d,t=self.sample();self.assertEqual(len(check_equation_layout(d)),1)
+
+    def test_independent_rows_reject_relation_aligned_columns(self):
+        from report_math_layout import check_equation_layout
+        d,t=self.sample();t.cell(0,2).paragraphs[0].add_run('（3-2）');self.matrix(t,['right','left'])
+        with self.assertRaisesRegex(AssertionError,'逐行居中'):check_equation_layout(d)
+
+    def test_centered_rows_and_aligned_continuation_are_accepted(self):
+        from report_math_layout import check_equation_layout
+        for number,columns in [('3-2',['center']),('4-7',['right','left']),('5-8',['right','left'])]:
+            d,t=self.sample();t.cell(0,2).paragraphs[0].add_run('（'+number+'）');self.matrix(t,columns)
+            self.assertEqual(len(check_equation_layout(d)),1)
+
+    def test_short_objective_rejects_forced_line_break(self):
+        from report_math_layout import check_equation_layout
+        d,t=self.sample();t.cell(0,2).paragraphs[0].add_run('（5-9）');self.matrix(t,['center'])
+        with self.assertRaisesRegex(AssertionError,'不得强制分行'):check_equation_layout(d)
+
+    def pdf_rows(self,second_offset=0):
+        import pymupdf
+        d,t=self.sample();t.cell(0,2).paragraphs[0].add_run('（3-2）');self.matrix(t,['center'])
+        pdf=pymupdf.open();page=pdf.new_page()
+        page.insert_text((475,215),'（3-2）',fontname='china-s',fontsize=9)
+        for y,value,offset in [(200,'A = B',0),(230,'C = D',second_offset)]:
+            width=pymupdf.get_text_length(value,fontname='helv',fontsize=12)
+            page.insert_text(((page.rect.width-width)/2+offset,y),value,fontsize=12)
+        return d,pdf
+
+    def test_pdf_rows_use_each_visible_row_center(self):
+        from report_math_layout import check_pdf_equation_rows
+        d,pdf=self.pdf_rows();rows=check_pdf_equation_rows(d,pdf,1)
+        self.assertEqual(len(rows),2)
+        self.assertTrue(all(r['中心偏差_pt']<1 for r in rows))
+
+    def test_pdf_second_row_shift_is_rejected(self):
+        from report_math_layout import check_pdf_equation_rows
+        d,pdf=self.pdf_rows(second_offset=-18)
+        with self.assertRaisesRegex(AssertionError,'未逐行居中'):check_pdf_equation_rows(d,pdf,1)
+
+    def test_next_paragraph_accent_bbox_does_not_enter_formula(self):
+        from report_math_layout import pdf_formula_spans
+        spans=[dict(text='前文计算如下',bbox=(90,180,410,196)),
+               dict(text='A = B',bbox=(200,210,400,225)),
+               dict(text='式中变量说明',bbox=(90,240,410,255)),
+               dict(text='accent',bbox=(126,220,126,260))]
+        class Page:
+            def get_text(self,_):return {'blocks':[{'lines':[{'spans':spans}]}]}
+        self.assertEqual([s['text'] for s in pdf_formula_spans(Page(),(475,220,505,230))],['A = B'])
+
+    def test_local_assembly_detects_layout_but_ignores_unused_namespace(self):
+        from lxml import etree as E
+        from docx.oxml.ns import qn
+        from report_plain_revision import block_key
+        d,t=self.sample();self.matrix(t,['center']);left=E.fromstring(E.tostring(t._tbl))
+        right=E.fromstring(E.tostring(t._tbl).replace(b'<w:tbl ',b'<w:tbl xmlns:unused="urn:unused" ',1))
+        self.assertEqual(block_key(left,{}),block_key(right,{}))
+        right.find('.//'+qn('m:mcJc')).set(qn('m:val'),'left')
+        self.assertNotEqual(block_key(left,{}),block_key(right,{}))
 
     def test_asymmetric_widths_are_rejected(self):
         from report_math_layout import check_equation_layout

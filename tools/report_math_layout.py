@@ -1,6 +1,9 @@
 """独立公式：对称三栏承载原生OMML，由文字段落居中，消除显示数学与表格对齐叠加。"""
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from pathlib import Path
+import json
+import re
 
 MARKER='ReportEquation'
 INDENTS=['firstLine','firstLineChars','hanging','hangingChars','left','right','start','end',
@@ -47,8 +50,10 @@ def equation_tables(doc):
 
 def check_equation_layout(doc):
     tables=equation_tables(doc)
+    policy=json.loads((Path(__file__).parent/'report_policy.json').read_text())['math_format']
     for i,table in enumerate(tables,1):
         label=f'独立公式{i}'
+        number=table.cell(0,2).text.strip('（）')
         assert len(table.rows)==1 and len(table.columns)==3,label+'须采用对称三栏'
         t=table._tbl
         assert t.xpath('./w:tblPr/w:jc/@w:val')==['center'],label+'表格未居中'
@@ -69,4 +74,60 @@ def check_equation_layout(doc):
         assert len(p.xpath('./m:oMath'))==1 and not p.xpath('./m:oMathPara'),label+'须由宿主段落承载单个原生公式'
         assert not p.xpath('./w:r/w:t'),label+'公式主体不得混入式号或空格'
         assert tc[2].xpath('./w:p/w:pPr/w:jc/@w:val')==['right'],label+'式号未右置'
+        matrices=p.xpath('./m:oMath/m:m')
+        if number in policy.get('single_line_equations',[]):
+            assert not matrices,label+'可单行显示，不得强制分行：'+number
+        for matrix in matrices:
+            columns=[x.get(qn('m:val')) for x in matrix.findall('./'+ '/'.join(qn('m:'+tag) for tag in ['mPr','mcs','mc','mcPr','mcJc']))]
+            if number in policy.get('continuation_equations',[]):
+                assert columns==['right','left'],label+'连续推导须在关系符或运算符处对齐'
+            else:
+                assert columns==['center'],label+'独立多行关系须逐行居中：'+number
+                assert all(len(row)==1 for row in matrix.findall(qn('m:mr'))),label+'独立多行关系不得分成左右两列'
     return tables
+
+
+def pdf_formula_spans(page,mark):
+    """由相邻正文限定公式区域，避免下一段重音字形的字体外框误入公式。"""
+    yc=(mark[1]+mark[3])/2
+    spans=[s for b in page.get_text('dict')['blocks'] for line in b.get('lines',[]) for s in line['spans']]
+    prose=[s for s in spans if len(re.findall('[\u4e00-\u9fff]',s['text']))>=4]
+    lo=max((s['bbox'][3] for s in prose if s['bbox'][3]<yc),default=75)
+    hi=min((s['bbox'][1] for s in prose if s['bbox'][1]>yc),default=770)
+    return [s for s in spans if s['bbox'][0]>90 and s['bbox'][2]<470
+            and s['bbox'][1]>=lo and s['bbox'][3]<=hi and s['text'].strip()]
+
+
+def check_pdf_equation_rows(doc,pdf,tolerance):
+    """按关系符的实际基线划分公式行，核验各独立行的可见主体中心。"""
+    policy=json.loads((Path(__file__).parent/'report_policy.json').read_text())['math_format']
+    result=[]
+    for table in equation_tables(doc):
+        number=table.cell(0,2).text.strip('（）')
+        matrices=table._tbl.xpath('./w:tr/w:tc[2]/w:p/m:oMath/m:m')
+        if not matrices or number in policy.get('continuation_equations',[]):continue
+        expected=len(matrices[0].findall(qn('m:mr')))
+        found=[(page,w) for page in pdf for w in page.get_text('words')
+               if w[0]>468 and w[4]=='（'+number+'）']
+        assert len(found)==1,('多行公式式号缺失或重复',number)
+        page,mark=found[0]
+        formula=pdf_formula_spans(page,mark)
+        anchors=[]
+        for s in formula:
+            if s['size']>=11 and any(c in s['text'] for c in '=≤≥'):
+                y=s['origin'][1]
+                if not any(abs(y-v)<1 for v in anchors):anchors.append(y)
+        anchors.sort()
+        assert len(anchors)==expected,('多行公式实际行数与原生结构不对应',number,len(anchors),expected)
+        bands=[[] for _ in anchors]
+        for s in formula:
+            index=min(range(len(anchors)),key=lambda i:abs(s['origin'][1]-anchors[i]))
+            bands[index].append(s)
+        for index,band in enumerate(bands,1):
+            x0=min(s['bbox'][0] for s in band);x1=max(s['bbox'][2] for s in band)
+            center=(page.rect.width+doc.sections[0].left_margin.pt-doc.sections[0].right_margin.pt)/2
+            offset=abs((x0+x1)/2-center)
+            assert offset<=tolerance,('PDF独立多行公式未逐行居中',number,index,offset)
+            result.append(dict(公式=number,行=index,页码=page.number+1,左边界_pt=round(x0,3),
+                               右边界_pt=round(x1,3),中心偏差_pt=round(offset,4)))
+    return result
