@@ -21,6 +21,14 @@ def adjoining_bands(intervals):
 
 def assets(data, table, interval):
     """节点包络留存依据，正文按四档容量下界衔接规划推荐带。"""
+    from pathlib import Path
+    import json
+    root=Path(__file__).resolve().parents[1]
+    policy=json.loads((root/'tools/report_policy.json').read_text())['matrix_display']
+    if policy.get('output_kind')=='fixed_width_sliding_windows':
+        import pandas as pd
+        from matrix_planning_windows import assets as window_assets
+        return window_assets(pd.read_csv(root/policy['source_csv']),table)
     subset = data.copy()
     fields = ['年最大净负荷平均增长率', '分布式电源装机渗透率', '初始转供率', '电缆长度占比']
     cuts = [[.02, .04, .07], [1, 2], [.3, .5, .7], [.1, .3]]

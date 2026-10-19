@@ -76,6 +76,16 @@ def check_adjoining_matrix(value, location):
         assert all(lo <= hi for lo, hi in bands), f'{location}:{number}: 推荐带上下界倒置'
         assert all(left[0] == right[1] for left, right in zip(bands, bands[1:])), f'{location}:{number}: 相邻转供档推荐带须共用界值'
 
+def check_window_matrix(value, location, width='.20', step='.05'):
+    from decimal import Decimal
+    width,step=Decimal(str(width)),Decimal(str(step))
+    for number,line in enumerate(value.splitlines(),1):
+        if not line.startswith('|') or '～' not in line:continue
+        for cell in [c.strip() for c in line.strip('|').split('|')][-4:]:
+            low,high=map(Decimal,cell.split('～'))
+            assert high-low==width,f'{location}:{number}: 推荐窗口宽度须为{width}'
+            assert ((low+high)/2)%step==0,f'{location}:{number}: 窗口中心未落在滑动网格'
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',type=Path,default=ROOT)
@@ -133,11 +143,21 @@ def main():
     for key in ['new_baseline','new_pizhou_years','new_city_years','typical_transfer_matrix','current_transfer_sequence_second']:
         assert '[[TABLE:'+key+']]' in referenced,'第五章缺少已确认结果：'+key
     assert not re.search(r'\[\[TABLE:current_matrix_',referenced),'矩阵不得单独按线路费用分类'
-    assert all('[[TABLE:lookup_matrix_'+f'{c}_{kd:.2f}'+']]' in sections['new_matrix_tables']
-               for c in range(3) for kd in [1.,1.1,1.15]),'缺少电缆分区或负荷分散系数矩阵'
+    window_mode=policy['matrix_display'].get('output_kind')=='fixed_width_sliding_windows'
+    if window_mode:
+        from archive_extended_matrix_raw import raw_path
+        extended=json.loads((root/policy['plain_delivery_review']/'扩展数据独立核验.json').read_text())
+        assert extended['状态']=='通过' and extended['设计节点数']==127578 and extended['区间单元数']==288
+        assert extended['分散系数节点']==[round(1.05+.02*i,2) for i in range(11)],'分散系数须覆盖0.02间隔11点'
+        assert hashlib.sha256((root/policy['matrix_display']['source_csv']).read_bytes()).hexdigest()==extended['有效样本SHA256'],'扩展数据核验过期'
+        assert hashlib.sha256(raw_path().read_bytes()).hexdigest()==extended['原始库SHA256'],'扩展原始库与核验不符'
+    matrix_keys=([f'lookup_matrix_{c}_{kd}' for c in range(3) for kd in ['low','high']] if window_mode else
+                 [f'lookup_matrix_{c}_{kd:.2f}' for c in range(3) for kd in [1.,1.1,1.15]])
+    assert all('[[TABLE:'+key+']]' in sections['new_matrix_tables'] for key in matrix_keys),'缺少电缆分区或负荷分散系数矩阵'
     assert '线路成本系数' not in sections['new_matrix_tables']
-    for key in ['typical_transfer_matrix']+[f'lookup_matrix_{c}_{kd:.2f}' for c in range(3) for kd in [1.,1.1,1.15]]:
-        check_adjoining_matrix(tables[key], '计算表.json['+key+']')
+    for key in ['typical_transfer_matrix']+matrix_keys:
+        if window_mode:check_window_matrix(tables[key], '计算表.json['+key+']',policy['matrix_display']['window_width'],policy['matrix_display']['window_step'])
+        else:check_adjoining_matrix(tables[key], '计算表.json['+key+']')
     chapter_path=next(p for p in sources if p.name.startswith('05 '))
     errors.extend(matrix_policy_errors(chapter_five,str(chapter_path.relative_to(root)),sections,tables,
                                        policy['matrix_display']['forbidden_duration_pattern']))
@@ -175,7 +195,7 @@ def main():
             check_plain_document(doc.element,doc.settings.element,comment_ids)
         matrices=[tab for tab in doc.tables if len(tab.columns)==6 and len(tab.rows)==13
                   and [c.text for c in tab.rows[0].cells[:2]]==['年最大净负荷平均增长率','装机渗透率']]
-        assert len(matrices)==9,'原生Word须包含九张完整电缆分区矩阵'
+        assert len(matrices)==len(matrix_keys),'原生Word矩阵数量须对应当前电缆与分散系数分档'
         for tab in matrices:
             for i,row in enumerate(tab.rows):
                 for cell in row.cells:
@@ -238,7 +258,6 @@ def main():
             assert abs(body_pages-policy['target_body_pages'])<=policy['body_page_tolerance'],('六章正文篇幅偏离约160页',body_pages)
             result['六章正文页数']=body_pages
             matrix_pdf=[]
-            matrix_keys=[f'lookup_matrix_{c}_{kd:.2f}' for c in range(3) for kd in [1.,1.1,1.15]]
             compact_cell=lambda x:re.sub(r'\s+','',x or '').replace('～','~').replace('〜','~')
             for page in pdf:
                 compact=re.sub(r'\s+','',page.get_text())
@@ -253,7 +272,7 @@ def main():
                                   if line.startswith('|') and not re.fullmatch(r'[| :\-]+',line)]
                         assert [[compact_cell(c) for c in row] for row in tab.extract()]==[[compact_cell(c) for c in row] for row in expected],('PDF矩阵逐格数据不对应',key,page.number+1)
                         matrix_pdf.append(dict(页码=page.number+1,行数=tab.row_count,列数=tab.col_count))
-            assert len(matrix_pdf)==9,('WPS完整矩阵数量不符',len(matrix_pdf))
+            assert len(matrix_pdf)==len(matrix_keys),('WPS完整矩阵数量不符',len(matrix_pdf))
             result['PDF矩阵整表核验']=matrix_pdf
             assert len(pdf)>=policy['minimum_pdf_pages'],f'PDF篇幅不足：{len(pdf)}页'
             # 同时验证渲染后的图片位置，防止Word结构正确但导出排版偏移。

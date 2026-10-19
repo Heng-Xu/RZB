@@ -110,11 +110,11 @@ def install_comments(parts, root, feedback):
         '有没有35kV的': '八义集变',
         '这十三项候选': '2025年4月《配电网规划设计技术导则（修订稿）》第6.2.2条将负荷增长',
         '负荷分散系数取1是否合理': '负荷分散系数为各站最大正向净负荷之和',
-        '新增1回10kV线路': '新增联络能力的取值依据邳州局部六条10 kV馈线',
+        '新增1回10kV线路': '新增联络能力的取值依据邳州',
         '标题改为': '5.3.1 供电安全及供电能力约束',
         '为什么不把2021年的数据': '邳州逐年容量及措施',
         '要把2021年基期年的数据': '两地区共同基期及规划年度',
-        '为什么其他条件不变': '电缆长度占比≤10%、负荷分散系数1.00的容载比分档建议矩阵',
+        '为什么其他条件不变': MODE_SETTINGS.get('矩阵批注锚点','电缆长度占比≤10%、负荷分散系数1.00的容载比分档建议矩阵'),
     }
     comments = xml(feedback['word/comments.xml'])
     markers = {}
@@ -186,15 +186,26 @@ def apply():
     old_images = {hashlib.sha256(original['word/'+rel.get('Target')]).hexdigest(): rid
                   for rid, rel in oldrels.items() if 'word/'+rel.get('Target') in original
                   and '/image' in rel.get('Type', '')}
+    allowed_images={sha(ROOT/name):name for name in MODE_SETTINGS.get('允许更新图件',[])}
+    extra_parts={};merged_rels=xml(original['word/_rels/document.xml.rels'])
+    next_rid=max(int(r[3:]) for r in oldrels if re.fullmatch(r'rId\d+',r))+1
     for node in goal.xpath('.//*[@r:embed]', namespaces={'r': R}):
         rid=node.get('{'+R+'}embed')
-        digest=hashlib.sha256(candidate['word/'+newrels[rid].get('Target')]).hexdigest()
-        assert digest in old_images, '本轮未授权新增或重绘图件'
+        blob=candidate['word/'+newrels[rid].get('Target')]
+        digest=hashlib.sha256(blob).hexdigest()
+        if digest not in old_images:
+            assert digest in allowed_images, '图件变化超出本次登记范围'
+            media='media/update_'+digest[:20]+Path(newrels[rid].get('Target')).suffix
+            new_rid='rId'+str(next_rid);next_rid+=1
+            rel=deepcopy(newrels[rid]);rel.set('Id',new_rid);rel.set('Target',media)
+            merged_rels.append(rel);extra_parts['word/'+media]=blob;old_images[digest]=new_rid
         node.set('{'+R+'}embed', old_images[digest])
     for rid in goal.xpath('.//@r:id', namespaces={'r': R}):
         assert dict(oldrels[rid].attrib) == dict(newrels[rid].attrib)
         name = 'word/'+oldrels[rid].get('Target')
         if name in candidate: assert original[name] == candidate[name], '原有关系对象变化：'+name
+    original['word/_rels/document.xml.rels']=dump(merged_rels)
+    original.update(extra_parts)
     candidate['word/_rels/document.xml.rels']=original['word/_rels/document.xml.rels']
     candidate.update({name:data for name,data in original.items() if name.startswith('word/media/')})
     candidate['word/document.xml']=dump(goal)
@@ -274,9 +285,11 @@ def verify(final=False):
         assert formula_characters(root)==formula_characters(xml(old['word/document.xml'])),'排版修正改变了公式字符'
     tables = json.loads((ROOT/'研究报告/02图表/当前版/计算表.json').read_text())
     previous = json.loads((REVIEW/'修前原件/研究报告/02图表/当前版/计算表.json').read_text())
-    assert set(tables) == set(previous)
+    prefixes=tuple(MODE_SETTINGS.get('允许替换表键前缀',[]))
+    assert {k for k in tables if not k.startswith(prefixes)} == {k for k in previous if not k.startswith(prefixes)}
     allowed_tables={'forecast_load', 'forecast_pv', 'restore_pizhou_transfer', 'restore_city_transfer', 'current_necessary_transfers'}
-    assert {k for k in tables if tables[k] != previous[k]} <= allowed_tables
+    allowed_tables.update(MODE_SETTINGS.get('允许更新表键',[]))
+    assert {k for k in tables if not k.startswith(prefixes) and tables[k] != previous[k]} <= allowed_tables
     for key in ['restore_pizhou_transfer', 'restore_city_transfer', 'current_necessary_transfers']:
         rows=lambda value:[line for line in value.splitlines() if line.startswith('|')][2:]
         assert rows(tables[key]) == rows(previous[key]), '转供结果数值变化：'+key
@@ -285,7 +298,9 @@ def verify(final=False):
     before_sections=json.loads((REVIEW/'修前原件'/sections).read_text())
     after_sections=json.loads((ROOT/sections).read_text())
     normalize=lambda value:value.replace('固定区段预案','负荷转供方案')
-    assert {k:normalize(v) for k,v in before_sections.items()} == after_sections, '逐站分析发生本轮术语替换以外的变化'
+    allowed_sections=set(MODE_SETTINGS.get('允许更新生成段落',[]))
+    assert set(before_sections)==set(after_sections)
+    assert {k:normalize(v) for k,v in before_sections.items() if k not in allowed_sections} == {k:v for k,v in after_sections.items() if k not in allowed_sections}, '逐站分析发生本轮术语替换以外的变化'
     from report_math_layout import check_equation_layout
     doc = Document(TARGET); equations = check_equation_layout(doc)
     from check_report_policy import check_figure_paragraphs

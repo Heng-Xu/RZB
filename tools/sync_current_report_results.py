@@ -72,6 +72,13 @@ def controlled_sequences(d):
         results[name]=d.loc[mask].sort_values(FIELDS[index])
     return results
 
+def matrix_source():
+    policy=read(ROOT/'tools/report_policy.json')['matrix_display']
+    return ROOT/policy['source_csv'] if 'source_csv' in policy else PUBLIC/'统一有效样本.csv'
+
+def diversity_sequence():
+    return controlled_sequences(pd.read_csv(matrix_source()))['diversity']
+
 def parameter_assets():
     d=pd.read_csv(PUBLIC/'统一有效样本.csv')
     from report_parameter_selection import assets as selection_assets
@@ -81,6 +88,8 @@ def parameter_assets():
     nodes=pd.read_csv(CASE/'典型场景完整节点.csv')
     cells=[];index=[];rows=[]
     from report_matrix_display import adjoining_bands
+    window_mode=read(ROOT/'tools/report_policy.json')['matrix_display'].get('output_kind')=='fixed_width_sliding_windows'
+    from matrix_planning_windows import window,middle_node
     for i,r in enumerate(matrix.to_dict('records'),1):
         key=f'typical_transfer_{i}'
         bands=adjoining_bands([r[k] for k in LABELS[3]])
@@ -93,18 +102,30 @@ def parameter_assets():
             lo,hi=sub['容载比'].min(),sub['容载比'].max()
             assert interval(lo,hi)==r[label]
             cells.append(dict(场景=i,转供档=j,下界=float(lo),上界=float(hi),展示区间=r[label],推荐带=bands[j],有效样本数=len(sub)))
+            if window_mode:
+                bands[j]=window(middle_node(sub['容载比']))
+                cells[-1].update(原推荐带=cells[-1]['推荐带'],推荐带=bands[j],推荐窗口=bands[j],中位数=float(sub['容载比'].median()),代表节点容载比=middle_node(sub['容载比']))
+        if window_mode:rows[-1][-4:]=bands
         t['current_transfer_sequence' if i==1 else 'current_transfer_sequence_second']=table(
             f'表5-0 场景{i}的完整转供率节点及设备方案',
             ['初始转供率','主变/MVA','容载比','储能/MWh','新增联络/条','费用现值/万元'],
             [[pct(x['初始转供率']),f(x['主变_MVA']),f(x['容载比']),f(x['储能_MWh']),int(x['新增联络_条']),f(x['费用现值_万元'])] for x in group.to_dict('records')])
     t['typical_transfer_matrix']=table('表5-0 典型源荷条件下随初始转供率变化的容载比推荐范围',
         ['装机渗透率','年最大净负荷平均增长率','负荷分散系数']+LABELS[3],rows,
+        '两组均采用电缆长度占比50%和五站设备重新选配条件；按第5.6.2节的固定宽度窗口方法归纳。' if window_mode else
         '两组均采用电缆长度占比50%和五站设备重新选配条件；按第5.6.2节的相邻档共用界值方法划定推荐带。')
-    from report_matrix_display import assets as matrix_assets
-    mt,ms,lookup_cells,lookup_index=matrix_assets(d,table,interval)
+    if window_mode:
+        from matrix_planning_windows import assets as matrix_assets
+        mt,ms,lookup_cells,lookup_index=matrix_assets(pd.read_csv(matrix_source()),table)
+    else:
+        from report_matrix_display import assets as matrix_assets
+        mt,ms,lookup_cells,lookup_index=matrix_assets(d,table,interval)
     t.update(mt);s.update(ms)
     s['typical_matrix_summary']='在电缆长度占比50%的共同条件下，选取装机渗透率50%的两组典型源荷场景。每组包含10%～90%的九个初始转供率节点，按各档容量下界划定首尾相接的四档容载比推荐带，共形成8个区间单元。具体节点的设备配置与费用分别列示。\n'
+    if window_mode:
+        s['typical_matrix_summary']='在电缆长度占比50%的共同条件下，选取装机渗透率50%的两组典型源荷场景。每组包含10%～90%的九个初始转供率节点，按各档中位代表节点定位四个推荐窗口，共形成8个区间单元。具体节点的设备配置与费用分别列示。\n'
     seq=controlled_sequences(d)
+    if window_mode:seq['diversity']=diversity_sequence()
     heads=['参数节点','主变/MVA','容载比','储能额定功率/MW','新增联络/条','费用现值/万元']
     def show_node(r,label):return [label,f(r['主变容量_MVA']),f(r['容载比']),f(r['储能额定功率_MW']),int(r['新增联络合计_条']),f(r['费用现值_万元'])]
     eta_rows=[]
@@ -128,8 +149,12 @@ def parameter_assets():
         ['储能支撑持续时间/h','储能额定功率/MW','储能额定能量/MWh','费用现值/万元'],
         [[int(r[FIELDS[4]]),f(r['储能额定功率_MW']),f(r['储能额定能量_MWh']),f(r['费用现值_万元'])]
          for r in seq['duration'].to_dict('records')])
+    diversity=seq['diversity'];diversity_rows=[]
+    values=diversity[['主变容量_MVA','储能额定功率_MW','新增联络合计_条','费用现值_万元']].round(7)
+    for _,group in diversity.groupby(values.ne(values.shift()).any(axis=1).cumsum(),sort=False):
+        diversity_rows.append(show_node(group.iloc[0],'、'.join(f(v) for v in group[FIELDS[5]])))
     t['current_diversity_sequence']=table('表5-0 局部峰值分散程度对应的设备配置',heads,
-        [show_node(r,f(r[FIELDS[5]])) for r in seq['diversity'].to_dict('records')])
+        diversity_rows,'同列多个参数节点表示所列设备规模及费用相同。' if len(diversity_rows)<len(diversity) else '')
     t['new_template_assumptions']=table('表5-0 五站推广模板', ['项目','设置'],[
         ['区间矩阵设备','5站，每站保留2×50 MVA，允许更换63、80 MVA，并可扩建第三台50 MVA主变，初始总容量500 MVA'],
         ['典型转供对照设备','5站，每站两台在31.50、50、63、80 MVA中重新选配，基础最小总容量315 MVA'],
@@ -137,7 +162,7 @@ def parameter_assets():
         ['负荷权重','0.10、0.15、0.20、0.25、0.30'],['光伏权重','0.08、0.14、0.18、0.25、0.35'],
         ['日间负荷系数/光伏出力系数','0.30/0.75'],
         ['既有网络','相邻站环网；按基期可实现转供率标定通道和馈线余量'],
-        ['新增联络','单项3 km、7.49 MW；允许独立接收馈线，备用间隔按站限制'],
+        ['新增联络','单项3 km；工程限值8.00 MVA，区段有效转供7.49 MW；允许独立接收馈线，备用间隔按站限制' if window_mode else '单项3 km、7.49 MW；允许独立接收馈线，备用间隔按站限制'],
         ['经济参数','第四章统一工程价格与评价期费用'],['容载比','由满足正常及N-1约束、按费用目标比选的可行设备方案计算']])
     return {k:display_text(v) for k,v in t.items()},{k:display_text(v) for k,v in s.items()},cells,index,d
 
@@ -386,6 +411,9 @@ def case_assets():
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--check',action='store_true');args=ap.parse_args()
     pt,ps,cells,index,data=parameter_assets();ct,cs,evidence=case_assets()
+    policy=read(ROOT/'tools/report_policy.json')
+    window_mode=policy['matrix_display'].get('output_kind')=='fixed_width_sliding_windows'
+    target_review=ROOT/policy['plain_delivery_review'] if window_mode else REVIEW
     tables=read(A/'计算表.json');sections=read(A/'生成段落.json')
     newt=pt|ct;news=ps|cs
     if args.check:
@@ -395,11 +423,13 @@ def main():
         tables.update(newt);sections.update(news)
         tables={k:display_text(v) for k,v in tables.items()};sections={k:display_text(v) for k,v in sections.items()}
         for path,value in [(A/'计算表.json',tables),(A/'生成段落.json',sections),
-            (REVIEW/'定值展示矩阵.json',dict(说明='典型转供对照18节点8单元；区间查表另由锁定参数库归纳9表432单元',索引=index,单元=cells)),
-            (REVIEW/'逐站展示复算.json',evidence)]:
+            (target_review/('推荐窗口展示矩阵.json' if window_mode else '定值展示矩阵.json'),dict(说明='典型转供18节点8单元；完整查表由11点扩展库归纳六表288单元' if window_mode else '典型转供对照18节点8单元；区间查表另由锁定参数库归纳9表432单元',索引=index,单元=cells)),
+            (target_review/'逐站展示复算.json',evidence)]:
             path.write_text(json.dumps(value,ensure_ascii=False,indent=2,default=lambda x:x.item())+'\n')
-        (REVIEW/'六参数受控完整序列.json').write_text(json.dumps(
-            {k:v.to_dict('records') for k,v in controlled_sequences(data).items()},ensure_ascii=False,indent=2)+'\n')
+        sequences=controlled_sequences(data)
+        if window_mode:sequences['diversity']=diversity_sequence()
+        (target_review/'六参数受控完整序列.json').write_text(json.dumps(
+            {k:v.to_dict('records') for k,v in sequences.items()},ensure_ascii=False,indent=2)+'\n')
     print('报告资产核验通过：十三项指标筛选五参数、典型转供18节点8单元、46座站')
 
 if __name__=='__main__':main()

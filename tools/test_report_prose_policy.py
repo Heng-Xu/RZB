@@ -7,6 +7,16 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_extended_matrix_terms_locate_stale_scope_and_keep_real_definition(self):
+        for value in ['历史回算与未来预测均保留所采用的补值，年度规划峰值继续使用原统计值。',
+                      '其中1.15为本研究情景范围的上端。',
+                      '五参数矩阵共九张表432个单元。']:
+            self.assertTrue(any('生成段落.json[matrix]:1' in e for e in
+                                self.check('[[SECTION:matrix]]',sections={'matrix':value})))
+        for value in ['负荷分散系数在1.05—1.25内按0.02间隔取11个节点，以1.15划分两档。',
+                      '矩阵由六张表288个单元组成，窗口宽0.20。',
+                      '系数1.00对应各站正向峰值完全同时发生的边界情景。']:
+            self.assertEqual(self.check(value),[])
     def test_transfer_terms_use_engineering_names(self):
         for value in ['既有边/MW', '新增边/MW', '年度正常及事故追加区段预案', '其中，学者Zhu等']:
             self.assertTrue(any('计算表.json[transfer]:1' in e for e in

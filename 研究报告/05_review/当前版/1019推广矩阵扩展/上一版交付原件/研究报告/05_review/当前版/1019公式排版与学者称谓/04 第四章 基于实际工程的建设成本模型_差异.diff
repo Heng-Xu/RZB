@@ -1,0 +1,32 @@
+--- 修前/04 第四章 基于实际工程的建设成本模型.md
++++ 修后/04 第四章 基于实际工程的建设成本模型.md
+@@ -58,10 +58,10 @@
+ 
+ 对站$i$、主变安装位置$k$、投运年份$y$，若容量由$S^\mathrm{old}$更换为$S^\mathrm{new}$，工程投资按$c_T S^\mathrm{new}$计取。设备容量增加$S^\mathrm{new}-S^\mathrm{old}$，费用按整台新购容量计取。报告在年度表中并列主变净增容量和新购铭牌容量，使比值变化与实际采购费用可以分别复算。
+ 
+-$$\begin{aligned}
+-I_{T,iky}&=c_T S^\mathrm{new}_{iky}\,z_{iky}\\
+-\Delta S_{iky}&=\left(S^\mathrm{new}_{iky}-S^\mathrm{old}_{ik,y-1}\right)z_{iky}.
+-\end{aligned}\tag{4-2}$$
++$$\begin{gathered}
++I_{T,iky}=c_T S^\mathrm{new}_{iky}\,z_{iky}\\
++\Delta S_{iky}=\left(S^\mathrm{new}_{iky}-S^\mathrm{old}_{ik,y-1}\right)z_{iky}.
++\end{gathered}\tag{4-2}$$
+ 
+ 式中，$i$为站号，$k$为主变安装位置，$y$为投运年份；$I_{T,iky}$为更换投资，单位万元；$c_T$为单位采购容量工程投资，单位万元/MVA；$S^\mathrm{new}_{iky}$和$S^\mathrm{old}_{ik,y-1}$分别为更换后、更换前容量，$\Delta S_{iky}$为容量净增，单位MVA；$z_{iky}$为更换状态，发生更换取1，否则取0。未更换时投资为零；更换同一位置后，新容量在后续年份持续在役。
+ 
+@@ -119,10 +119,10 @@
+ 
+ 模型将10柜成套项目成交总投资线性折算为21.05万元/柜，再按相同柜型和单位价格进行规模外推，苏州单柜最高限价用于价格对照。
+ 
+-$$\begin{aligned}
+-c_B&=\frac{2104562.62}{10000\times10}\approx21.05\quad\text{万元/柜}\\
+-I_{B,iy}&=c_B\Delta n_{iy}.
+-\end{aligned}\tag{4-5}$$
++$$\begin{gathered}
++c_B=\frac{2104562.62}{10000\times10}\approx21.05\quad\text{万元/柜}\\
++I_{B,iy}=c_B\Delta n_{iy}.
++\end{gathered}\tag{4-5}$$
+ 
+ 式中，$c_B$为单柜参考投资，$I_{B,iy}$为站$i$第$y$年新增储能投资，单位万元；新增柜数$\Delta n$为非负整数；新增功率为 $0.10\Delta n$ MW，新增能量为 $\frac{215\Delta n}{1000}$ MWh。按能量折算的成交参考价为2104562.62/2150000≈0.98元/Wh。
+ 

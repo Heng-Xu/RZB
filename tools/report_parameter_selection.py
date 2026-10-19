@@ -82,7 +82,7 @@ def assets():
         [FIVE[1], '≤2%；(2%,4%]；(4%,7%]；>7%'],
         [FIVE[2], '≤10%；(10%,30%]；>30%'],
         [FIVE[3], '≤30%；(30%,50%]；(50%,70%]；>70%'],
-        [FIVE[4], '1.00；1.10；1.15']])
+        [FIVE[4], '≤1.15；>1.15' if json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('diversity_cut')==1.15 else '1.00；1.10；1.15']])
     t['extended_parameter_nodes'] = table('表3-0 候选指标的采样节点与点数',
         ['指标', '采样节点或计算方式', '点数'], [
         [METRICS[0], '0～3.00，步长0.125', 25],

@@ -1,0 +1,1742 @@
+{
+  "状态": "与完整库11点逐项核对通过",
+  "节点": [
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.05,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.24963862693402916,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 28150.08726169022,
+      "relative_gap": 0.0,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        2.537181679094825,
+        2.537181679094825,
+        3.805772518642236,
+        3.805772518642236,
+        5.07436335818965,
+        5.07436335818965,
+        6.342954197737058,
+        6.342954197737058,
+        7.611545037284472,
+        7.611545037284472
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 736.0,
+      "clr": 2.245963504267914,
+      "cost": 28150.08726169022,
+      "cost_components": {
+        "transformer": 9487.810292325747,
+        "storage": 17574.79517126835,
+        "line": 1087.4817980961257
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          63,
+          63,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        29,
+        0,
+        0,
+        780
+      ],
+      "storage_mw": 80.9,
+      "storage_mwh": 173.935,
+      "storage_effective_mw": 33.04765,
+      "line_count": 9,
+      "built": [
+        "F2-2-0",
+        "F2-2-1",
+        "F3-2-0",
+        "F3-2-1",
+        "F4-3-0",
+        "F4-3-1",
+        "N0-1",
+        "N1-0",
+        "N4-1"
+      ],
+      "matrix_violation": 7.993605777301127e-15,
+      "new_receiving_feeder_count": 6,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 5.684341886080802e-14,
+        "checked_pairs": 42,
+        "worst": [
+          0,
+          -1
+        ],
+        "new_receiving_bays": [
+          0,
+          2,
+          0,
+          2,
+          2
+        ],
+        "max_transfer_mw": 30.205212414568944,
+        "max_day_transfer_mw": 30.205212414568944,
+        "max_required_storage_effective_mw": 31.854347751056082
+      },
+      "flow_sha256": "63b0a455a5803630a5e1179ad1d990ee8e1019ac6c9ef0192933f08448bd06f4",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.07,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.3642715970054269,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 29580.257096941885,
+      "relative_gap": 0.0,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        2.209482676594824,
+        2.209482676594824,
+        3.314224014892236,
+        3.314224014892236,
+        4.418965353189648,
+        4.418965353189648,
+        5.523706691487057,
+        5.523706691487057,
+        6.628448029784472,
+        6.628448029784472
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 786.0,
+      "clr": 2.398542546677419,
+      "cost": 29580.257096941885,
+      "cost_components": {
+        "transformer": 10867.716200876737,
+        "storage": 17987.553030667732,
+        "line": 724.9878653974172
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          63,
+          63,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        0,
+        828
+      ],
+      "storage_mw": 82.80000000000001,
+      "storage_mwh": 178.02,
+      "storage_effective_mw": 33.8238,
+      "line_count": 6,
+      "built": [
+        "F3-2-1",
+        "F4-3-0",
+        "F4-3-1",
+        "F4-4-1",
+        "N1-0",
+        "N4-1"
+      ],
+      "matrix_violation": 0.0,
+      "new_receiving_feeder_count": 4,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 5.684341886080802e-14,
+        "checked_pairs": 42,
+        "worst": [
+          0,
+          2
+        ],
+        "new_receiving_bays": [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        "max_transfer_mw": 31.55324241446118,
+        "max_day_transfer_mw": 28.235760165625017,
+        "max_required_storage_effective_mw": 33.823800000000006
+      },
+      "flow_sha256": "e006892d3513543af7dcaf5567a0b60cc87c0704125944f6a7a359fa4ede0ef6",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.09,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.21137376001570374,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 30644.737892235025,
+      "relative_gap": 0.0,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        1.881783674094823,
+        1.881783674094823,
+        2.8226755111422364,
+        2.8226755111422364,
+        3.763567348189646,
+        3.763567348189646,
+        4.704459185237056,
+        4.704459185237056,
+        5.645351022284473,
+        5.645351022284473
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 786.0,
+      "clr": 2.398542546677419,
+      "cost": 30644.737892235025,
+      "cost_components": {
+        "transformer": 10867.716200876737,
+        "storage": 19052.03382596087,
+        "line": 724.9878653974172
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          63,
+          63,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        0,
+        877
+      ],
+      "storage_mw": 87.7,
+      "storage_mwh": 188.555,
+      "storage_effective_mw": 35.82545,
+      "line_count": 6,
+      "built": [
+        "F3-2-0",
+        "F4-3-0",
+        "F4-3-1",
+        "F4-4-1",
+        "N1-0",
+        "N4-1"
+      ],
+      "matrix_violation": 2.842170943040401e-14,
+      "new_receiving_feeder_count": 4,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 1.1368683772161603e-13,
+        "checked_pairs": 42,
+        "worst": [
+          4,
+          1
+        ],
+        "new_receiving_bays": [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        "max_transfer_mw": 28.11589383971984,
+        "max_day_transfer_mw": 28.11589383971984,
+        "max_required_storage_effective_mw": 35.82544999999999
+      },
+      "flow_sha256": "429779e0d802636dbf47394c002b4d58723f3afabd460b06fef153e07085668e",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.11,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.1676344769075513,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 31445.831967865895,
+      "relative_gap": 2.313806682430484e-16,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        1.5540846715948256,
+        1.5540846715948256,
+        2.331127007392233,
+        2.331127007392233,
+        3.108169343189651,
+        3.108169343189651,
+        3.885211678987055,
+        3.885211678987055,
+        4.662254014784466,
+        4.662254014784466
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 786.0,
+      "clr": 2.398542546677419,
+      "cost": 31445.8319678659,
+      "cost_components": {
+        "transformer": 10867.716200876737,
+        "storage": 20094.790523390882,
+        "line": 483.3252435982781
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          63,
+          63,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        0,
+        925
+      ],
+      "storage_mw": 92.5,
+      "storage_mwh": 198.875,
+      "storage_effective_mw": 37.786249999999995,
+      "line_count": 4,
+      "built": [
+        "F4-3-0",
+        "F4-3-1",
+        "F4-4-0",
+        "F4-4-1"
+      ],
+      "matrix_violation": 6.217248937900877e-15,
+      "new_receiving_feeder_count": 4,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 5.684341886080802e-14,
+        "checked_pairs": 42,
+        "worst": [
+          0,
+          -1
+        ],
+        "new_receiving_bays": [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        "max_transfer_mw": 24.306630369568932,
+        "max_day_transfer_mw": 24.306630369568932,
+        "max_required_storage_effective_mw": 37.752929796056094
+      },
+      "flow_sha256": "be654c7417b9f023ba6cf4620f0a3ad2c169a307bfbc1305b4e9b91ef7154a20",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.13,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.1200165239861235,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 32792.72603537967,
+      "relative_gap": 0.0,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        1.226385669094828,
+        1.226385669094828,
+        1.8395785036422403,
+        1.8395785036422403,
+        2.452771338189656,
+        2.452771338189656,
+        3.0659641727370683,
+        3.0659641727370683,
+        3.6791570072844806,
+        3.6791570072844806
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 786.0,
+      "clr": 2.398542546677419,
+      "cost": 32792.72603537967,
+      "cost_components": {
+        "transformer": 10867.716200876737,
+        "storage": 21441.68459090465,
+        "line": 483.3252435982781
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          63,
+          63,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        14,
+        973
+      ],
+      "storage_mw": 98.7,
+      "storage_mwh": 212.20499999999998,
+      "storage_effective_mw": 40.31895,
+      "line_count": 4,
+      "built": [
+        "F3-2-1",
+        "F4-3-0",
+        "F4-3-1",
+        "F4-4-1"
+      ],
+      "matrix_violation": 2.842170943040401e-14,
+      "new_receiving_feeder_count": 4,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 1.1368683772161603e-13,
+        "checked_pairs": 42,
+        "worst": [
+          3,
+          1
+        ],
+        "new_receiving_bays": [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        "max_transfer_mw": 22.34043635456896,
+        "max_day_transfer_mw": 22.34043635456896,
+        "max_required_storage_effective_mw": 39.71912381105605
+      },
+      "flow_sha256": "0e2b6bf7b4201eb8e6732eb707a2b74d3aecba418a2e37b867ee198b762d2d51",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.15,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.11201620195060968,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 34046.30128003221,
+      "relative_gap": 0.0,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        0.898686666594827,
+        0.898686666594827,
+        1.3480299998922405,
+        1.3480299998922405,
+        1.797373333189654,
+        1.797373333189654,
+        2.2467166664870675,
+        2.2467166664870675,
+        2.696059999784481,
+        2.696059999784481
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 820.0,
+      "clr": 2.5022962955158823,
+      "cost": 34046.30128003221,
+      "cost_components": {
+        "transformer": 11503.503429082593,
+        "storage": 22180.30391825091,
+        "line": 362.4939326987086
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        0,
+        1021
+      ],
+      "storage_mw": 102.10000000000001,
+      "storage_mwh": 219.515,
+      "storage_effective_mw": 41.70785,
+      "line_count": 3,
+      "built": [
+        "F3-2-0",
+        "F4-3-0",
+        "F4-3-1"
+      ],
+      "matrix_violation": 5.329070518200751e-15,
+      "new_receiving_feeder_count": 3,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 5.684341886080802e-14,
+        "checked_pairs": 42,
+        "worst": [
+          0,
+          -1
+        ],
+        "new_receiving_bays": [
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        "max_transfer_mw": 20.374242339568962,
+        "max_day_transfer_mw": 20.374242339568962,
+        "max_required_storage_effective_mw": 41.685317826056064
+      },
+      "flow_sha256": "482a5266797a43f6348c138d076fd1577cd67056cf14623ce23370473b3ec5c4",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.17,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.10558675404172391,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 35089.05797746222,
+      "relative_gap": 0.0,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        0.5709876640948259,
+        0.5709876640948259,
+        0.8564814961422371,
+        0.8564814961422371,
+        1.1419753281896519,
+        1.1419753281896519,
+        1.4274691602370666,
+        1.4274691602370666,
+        1.7129629922844742,
+        1.7129629922844742
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 820.0,
+      "clr": 2.5022962955158823,
+      "cost": 35089.05797746222,
+      "cost_components": {
+        "transformer": 11503.503429082593,
+        "storage": 23223.06061568092,
+        "line": 362.4939326987086
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        0,
+        1069
+      ],
+      "storage_mw": 106.9,
+      "storage_mwh": 229.835,
+      "storage_effective_mw": 43.66865,
+      "line_count": 3,
+      "built": [
+        "F3-2-1",
+        "F4-3-0",
+        "F4-3-1"
+      ],
+      "matrix_violation": 0.0,
+      "new_receiving_feeder_count": 3,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 1.1368683772161603e-13,
+        "checked_pairs": 42,
+        "worst": [
+          0,
+          1
+        ],
+        "new_receiving_bays": [
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        "max_transfer_mw": 18.40804832456895,
+        "max_day_transfer_mw": 18.40804832456895,
+        "max_required_storage_effective_mw": 43.65151184105605
+      },
+      "flow_sha256": "10dd88ad20dce203623e389ae5533484967d8d8105fdd5db5a5926da59f011ef",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.19,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.10851278295740485,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 36131.81416259775,
+      "relative_gap": 1.4178487384300499e-08,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        0.24328866159482487,
+        0.24328866159482487,
+        0.3649329923922373,
+        0.3649329923922373,
+        0.48657732318964975,
+        0.48657732318964975,
+        0.6082216539870657,
+        0.6082216539870657,
+        0.7298659847844746,
+        0.7298659847844746
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 820.0,
+      "clr": 2.5022962955158823,
+      "cost": 36131.81467489223,
+      "cost_components": {
+        "transformer": 11503.503429082593,
+        "storage": 24265.817313110932,
+        "line": 362.4939326987086
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        0,
+        1117
+      ],
+      "storage_mw": 111.7,
+      "storage_mwh": 240.155,
+      "storage_effective_mw": 45.62945,
+      "line_count": 3,
+      "built": [
+        "F4-3-0",
+        "F4-3-1",
+        "F4-4-0"
+      ],
+      "matrix_violation": 0.0,
+      "new_receiving_feeder_count": 3,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 1.1368683772161603e-13,
+        "checked_pairs": 42,
+        "worst": [
+          0,
+          -1
+        ],
+        "new_receiving_bays": [
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        "max_transfer_mw": 16.685142971163774,
+        "max_day_transfer_mw": 16.685142971163774,
+        "max_required_storage_effective_mw": 45.61770585605606
+      },
+      "flow_sha256": "acf24e62f530773ebdb491dc5c9ad577d24ca18551842bbea0397e89d1867b80",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.21,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.07878515892662108,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 37759.70137426173,
+      "relative_gap": 0.0,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 820.0,
+      "clr": 2.5022962955158823,
+      "cost": 37759.70137426173,
+      "cost_components": {
+        "transformer": 11503.503429082593,
+        "storage": 25047.884836183443,
+        "line": 1208.3131089956953
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        0,
+        1153
+      ],
+      "storage_mw": 115.30000000000001,
+      "storage_mwh": 247.895,
+      "storage_effective_mw": 47.100049999999996,
+      "line_count": 10,
+      "built": [
+        "F0-0-0",
+        "F0-0-1",
+        "F1-4-0",
+        "F1-4-1",
+        "F2-1-0",
+        "F2-1-1",
+        "F3-2-0",
+        "F3-2-1",
+        "F4-3-0",
+        "F4-3-1"
+      ],
+      "matrix_violation": 2.220446049250313e-16,
+      "new_receiving_feeder_count": 10,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 0.0,
+        "checked_pairs": 42,
+        "worst": null,
+        "new_receiving_bays": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "max_transfer_mw": 14.98212234,
+        "max_day_transfer_mw": 14.98212234,
+        "max_required_storage_effective_mw": 47.077437825625
+      },
+      "flow_sha256": "5e32191a34c82f1993727ede8662579866177402f6c61c915b8df838cf212f50",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.23,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.13059278402943164,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 37759.70137426173,
+      "relative_gap": 0.0,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 820.0,
+      "clr": 2.5022962955158823,
+      "cost": 37759.70137426173,
+      "cost_components": {
+        "transformer": 11503.503429082593,
+        "storage": 25047.884836183443,
+        "line": 1208.3131089956953
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        0,
+        1153
+      ],
+      "storage_mw": 115.30000000000001,
+      "storage_mwh": 247.895,
+      "storage_effective_mw": 47.100049999999996,
+      "line_count": 10,
+      "built": [
+        "F0-0-0",
+        "F0-0-1",
+        "F1-4-0",
+        "F1-4-1",
+        "F2-1-0",
+        "F2-1-1",
+        "F3-2-0",
+        "F3-2-1",
+        "F4-3-0",
+        "F4-3-1"
+      ],
+      "matrix_violation": 8.881784197001252e-16,
+      "new_receiving_feeder_count": 10,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 5.684341886080802e-14,
+        "checked_pairs": 42,
+        "worst": [
+          5,
+          2
+        ],
+        "new_receiving_bays": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "max_transfer_mw": 14.98212234,
+        "max_day_transfer_mw": 14.98212234,
+        "max_required_storage_effective_mw": 47.077437825625
+      },
+      "flow_sha256": "1ef4ba1bf24fab55b9cfd63dfd441d07c3bd10fa381f1ff1ac42406fd44df86e",
+      "record_origin": "11节点扩展独立求解"
+    },
+    {
+      "eta": 2.5,
+      "growth_rate": 0.07,
+      "cable_fraction": 0.1,
+      "initial_transfer_fraction": 0.5,
+      "support_duration_h": 4,
+      "diversity": 1.25,
+      "storage_price": 1.0,
+      "thermal_factor": 1.5,
+      "pf": 0.95,
+      "third": true,
+      "storage": true,
+      "existing": true,
+      "candidates": true,
+      "shape": "base",
+      "line_length_km": 3.0,
+      "clr_floor": 0.0,
+      "receiver_budget": true,
+      "network_synthesis": "realized_transfer",
+      "new_receiving_feeders": true,
+      "spare_bays": 2,
+      "node_purpose": "11点敏感性独立预核算",
+      "gap": 1e-07,
+      "seconds": 30,
+      "status": "Optimal",
+      "verified": true,
+      "elapsed": 0.17235375999007374,
+      "peak_mw": 327.69900250000006,
+      "cost_lower": 37759.70137426173,
+      "relative_gap": 0.0,
+      "storage_effective_per_module_mw": 0.04085,
+      "template": "五站负荷切换审查模板",
+      "variables": 2170,
+      "constraints": 3380,
+      "initial_transfer_audit": {
+        "station_transfer_mw": [
+          14.482758620689657,
+          21.724137931034484,
+          28.965517241379313,
+          34.48275862068966,
+          25.3448275862069
+        ],
+        "station_rates": [
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5793103448275863,
+          0.5517241379310346,
+          0.3379310344827587
+        ],
+        "weighted_rate": 0.5000000000000001
+      },
+      "joint_area_scenarios": [
+        "一般城镇及较弱网络参考"
+      ],
+      "joint_domain_passed": true,
+      "initial_network_scale": 0.5793103448275863,
+      "receiver_headroom_mw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "thermal_mw": [
+        19.74137931034483,
+        19.74137931034483,
+        29.612068965517242,
+        29.612068965517242,
+        39.48275862068966,
+        39.48275862068966,
+        49.35344827586207,
+        49.35344827586207,
+        59.224137931034484,
+        59.224137931034484
+      ],
+      "capacity_mva": 820.0,
+      "clr": 2.5022962955158823,
+      "cost": 37759.70137426173,
+      "cost_components": {
+        "transformer": 11503.503429082593,
+        "storage": 25047.884836183443,
+        "line": 1208.3131089956953
+      },
+      "units": [
+        [
+          50,
+          50,
+          0
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ],
+        [
+          80,
+          80,
+          50
+        ]
+      ],
+      "modules": [
+        0,
+        0,
+        0,
+        0,
+        1153
+      ],
+      "storage_mw": 115.30000000000001,
+      "storage_mwh": 247.895,
+      "storage_effective_mw": 47.100049999999996,
+      "line_count": 10,
+      "built": [
+        "F0-0-0",
+        "F0-0-1",
+        "F1-4-0",
+        "F1-4-1",
+        "F2-1-0",
+        "F2-1-1",
+        "F3-2-0",
+        "F3-2-1",
+        "F4-3-0",
+        "F4-3-1"
+      ],
+      "matrix_violation": 1.7763568394002505e-15,
+      "new_receiving_feeder_count": 10,
+      "physical_check": {
+        "violating_pairs": 0,
+        "max_violation_mw": 5.684341886080802e-14,
+        "checked_pairs": 42,
+        "worst": [
+          4,
+          -1
+        ],
+        "new_receiving_bays": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "max_transfer_mw": 14.982122340000002,
+        "max_day_transfer_mw": 14.982122340000002,
+        "max_required_storage_effective_mw": 47.077437825625
+      },
+      "flow_sha256": "8805d7d5883e7435cf9c125dec472b8196fa049c07518610f2c226a4a395f870",
+      "record_origin": "11节点扩展独立求解"
+    }
+  ]
+}

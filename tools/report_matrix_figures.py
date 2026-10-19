@@ -12,9 +12,11 @@ SOURCE = ROOT/'研究报告/数据来源/当前版/矩阵分区_20261016'
 
 
 def parameter_devices(save):
-    from sync_current_report_results import PUBLIC, controlled_sequences
+    from sync_current_report_results import PUBLIC, controlled_sequences,diversity_sequence,matrix_source
     path = PUBLIC/'统一有效样本.csv'
     sequences = controlled_sequences(pd.read_csv(path))
+    active=json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('output_kind')=='fixed_width_sliding_windows'
+    if active:sequences['diversity']=diversity_sequence()
     for name, field, key, title in [
         ('cable', '电缆长度占比', 'cable_device_response', '电缆造价条件与设备替代'),
         ('diversity', '负荷分散系数', 'diversity_device_response', '局部高峰条件与设备配置')]:
@@ -34,13 +36,14 @@ def parameter_devices(save):
         axes[2].legend(loc='upper left', fontsize=9); other.legend(loc='upper right', fontsize=9)
         for ax in axes: ax.grid(axis='y', alpha=.16)
         axes[2].set_xticks(x, labels); axes[2].set_xlabel(field)
-        save(fig, key, data, [path], '参数改变时哪些设备替代、容载比何处切换',
+        save(fig, key, data, [matrix_source() if name=='diversity' and active else path], '参数改变时哪些设备替代、容载比何处切换',
              '完整节点的比值曲线及设备分面图', '全部容载比大于2，完整保留响应及真实平台')
 
 
 def lookup_bounds(save):
     asset = ROOT/'研究报告/02图表/当前版'
-    table = json.loads((asset/'计算表.json').read_text())['lookup_matrix_2_1.10']
+    active=json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('output_kind')=='fixed_width_sliding_windows'
+    table = json.loads((asset/'计算表.json').read_text())['lookup_matrix_2_high' if active else 'lookup_matrix_2_1.10']
     rows = [[c.strip() for c in line.strip('|').split('|')] for line in table.splitlines() if line.startswith('|')]
     data = pd.DataFrame(rows[2:], columns=rows[0])
     low = data.iloc[:,2:].map(lambda x: float(x.split('～')[0])).to_numpy()
@@ -56,12 +59,15 @@ def lookup_bounds(save):
             for j in range(4):ax.text(j,i,f'{values[i,j]:.2f}',ha='center',va='center',fontsize=9,
                                     color='white' if values[i,j]>(vmin+vmax)/2 else '#333333')
     axes[0].set_ylabel('年最大净负荷平均增长率 / 装机渗透率')
-    fig.suptitle('电缆长度占比>30%、负荷分散系数1.10',fontsize=13)
+    fig.suptitle('电缆长度占比>30%、负荷分散系数(1.15,1.25]' if active else '电缆长度占比>30%、负荷分散系数1.10',fontsize=13)
     save(fig,'lookup_matrix_bounds',data,[asset/'计算表.json',ROOT/'研究报告/01研究推荐/当前版/参数联合情景_20261012/统一有效样本.csv'],
          '电缆分区内推荐带端点怎样分布','同色阶端点热图','同一行按转供档容量下界设置相邻档共用界值')
 
 
 def main():
+    if json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('output_kind')=='fixed_width_sliding_windows':
+        from refresh_extended_matrix_figures import main as refresh
+        refresh();return
     import expand_report_figures as figures
     SOURCE.mkdir(parents=True, exist_ok=True)
     figures.SOURCE = SOURCE
