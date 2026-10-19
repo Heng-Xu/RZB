@@ -23,8 +23,8 @@ def review_dir(root=ROOT):
 
 REVIEW = review_dir()
 MODE = REVIEW/'交付模式.json'
-BASE = REVIEW/'修前原件/研究报告/04_word/研究报告终稿.docx'
 MODE_SETTINGS = json.loads(MODE.read_text()) if MODE.exists() else {}
+BASE = REVIEW/MODE_SETTINGS.get('基线原件', '修前原件/研究报告/04_word/研究报告终稿.docx')
 FEEDBACK = REVIEW/MODE_SETTINGS.get('批注原件', '修前原件/研究报告/甲方反馈/10.17/10.17研究报告.docx')
 TARGET = ROOT/'研究报告/04_word/研究报告终稿.docx'
 GOAL = REVIEW/'装配目标.docx'
@@ -97,25 +97,31 @@ def anchor_comment(paragraph, ident):
 
 
 def install_comments(parts, root, feedback):
-    markers = {
-        '0': '工程运行要求为：正常运行主变负载率不超过80%',
-        '1': '其中，学者Zhu等对铜芯电缆',
-        '2': '110 kV变电站',
-        '3': '八义集变',
-        '4': '2025年4月《配电网规划设计技术导则（修订稿）》第6.2.2条将负荷增长',
-        '5': '负荷分散系数为各站最大正向净负荷之和',
-        '6': '新增联络能力的取值依据邳州局部六条10 kV馈线',
-        '7': '5.3.1 供电安全及供电能力约束',
-        '8': '邳州逐年容量及措施',
-        '9': '保留2021实际容量的代表年度汇总',
-        '10': '电缆长度占比≤10%、负荷分散系数1.00的容载比分档建议矩阵',
+    # WPS保存可能重排批注ID，按原批注内容定位，保留其原始ID及部件。
+    targets = {
+        '正常运行，主变不超过80%': '工程运行要求为：正常运行主变负载率不超过80%',
+        '这是谁': '其中，Zhenyu Zhu等对铜芯电缆',
+        '是否都是110kV变电站': '110 kV变电站',
+        '有没有35kV的': '八义集变',
+        '这十三项候选': '2025年4月《配电网规划设计技术导则（修订稿）》第6.2.2条将负荷增长',
+        '负荷分散系数取1是否合理': '负荷分散系数为各站最大正向净负荷之和',
+        '新增1回10kV线路': '新增联络能力的取值依据邳州局部六条10 kV馈线',
+        '标题改为': '5.3.1 供电安全及供电能力约束',
+        '为什么不把2021年的数据': '邳州逐年容量及措施',
+        '要把2021年基期年的数据': '两地区共同基期及规划年度',
+        '为什么其他条件不变': '电缆长度占比≤10%、负荷分散系数1.00的容载比分档建议矩阵',
     }
     comments = xml(feedback['word/comments.xml'])
+    markers = {}
+    for comment in comments:
+        matched = [marker for prefix, marker in targets.items() if text(comment).startswith(prefix)]
+        assert len(matched) == 1, ('批注内容未唯一对应', text(comment))
+        markers[comment.get(qn('id'))] = matched[0]
     assert {c.get(qn('id')) for c in comments} == set(markers)
     paragraphs = root.findall('.//'+qn('p'))
     locations = []
     for ident, marker in markers.items():
-        if ident in {'2', '3'}:
+        if marker in {'110 kV变电站', '八义集变'}:
             tables = [t for t in root.findall('.//'+qn('tbl')) if text(t).startswith('地区110 kV变电站最大正向净负荷/MW')]
             assert len(tables) == 1, '批注所指110 kV站级净负荷表未唯一定位'
             candidates = [p for p in tables[0].findall('.//'+qn('p')) if text(p) == marker]
@@ -171,10 +177,24 @@ def apply():
     # 相同关系ID须保持同一对象；不以重建覆盖原有媒体、字体和样式。
     oldrels = {n.get('Id'): n for n in xml(original['word/_rels/document.xml.rels'])}
     newrels = {n.get('Id'): n for n in xml(candidate['word/_rels/document.xml.rels'])}
-    for rid in goal.xpath('.//@r:embed|.//@r:id', namespaces={'r': R}):
+    # 删除图件后装配关系号会顺移，按媒体内容映射回原关系号。
+    old_images = {hashlib.sha256(original['word/'+rel.get('Target')]).hexdigest(): rid
+                  for rid, rel in oldrels.items() if 'word/'+rel.get('Target') in original
+                  and '/image' in rel.get('Type', '')}
+    for node in goal.xpath('.//*[@r:embed]', namespaces={'r': R}):
+        rid=node.get('{'+R+'}embed')
+        digest=hashlib.sha256(candidate['word/'+newrels[rid].get('Target')]).hexdigest()
+        assert digest in old_images, '本轮未授权新增或重绘图件'
+        node.set('{'+R+'}embed', old_images[digest])
+    for rid in goal.xpath('.//@r:id', namespaces={'r': R}):
         assert dict(oldrels[rid].attrib) == dict(newrels[rid].attrib)
         name = 'word/'+oldrels[rid].get('Target')
         if name in candidate: assert original[name] == candidate[name], '原有关系对象变化：'+name
+    candidate['word/_rels/document.xml.rels']=original['word/_rels/document.xml.rels']
+    candidate.update({name:data for name,data in original.items() if name.startswith('word/media/')})
+    candidate['word/document.xml']=dump(goal)
+    with ZipFile(GOAL,'w',ZIP_DEFLATED) as z:
+        for name,data in candidate.items():z.writestr(name,data)
     old_style_ids = set(xml(original['word/styles.xml']).xpath('./w:style/@w:styleId', namespaces=NS))
     assert set(goal.xpath('.//w:pStyle/@w:val|.//w:rStyle/@w:val|.//w:tblStyle/@w:val', namespaces=NS)) <= old_style_ids
     body = root.find(qn('body')); kept = changed = 0
@@ -234,19 +254,26 @@ def verify(final=False):
     ns = {'m': 'http://schemas.openxmlformats.org/officeDocument/2006/math'}
     math = lambda tree: [E.tostring(n, method='c14n') for n in tree.xpath('.//m:oMath', namespaces=ns)]
     # 源稿本轮无公式修改，原生OMML逐对象保留。
-    assert math(root) == math(xml(old['word/document.xml'])), '原生公式变化'
+    assert math(root) == math(goal), '原生公式未对应本轮源稿'
     tables = json.loads((ROOT/'研究报告/02图表/当前版/计算表.json').read_text())
     previous = json.loads((REVIEW/'修前原件/研究报告/02图表/当前版/计算表.json').read_text())
     assert set(tables) == set(previous)
-    assert {k for k in tables if tables[k] != previous[k]} <= {'forecast_load', 'forecast_pv'}
+    allowed_tables={'forecast_load', 'forecast_pv', 'restore_pizhou_transfer', 'restore_city_transfer', 'current_necessary_transfers'}
+    assert {k for k in tables if tables[k] != previous[k]} <= allowed_tables
+    for key in ['restore_pizhou_transfer', 'restore_city_transfer', 'current_necessary_transfers']:
+        rows=lambda value:[line for line in value.splitlines() if line.startswith('|')][2:]
+        assert rows(tables[key]) == rows(previous[key]), '转供结果数值变化：'+key
     verify_forecast_rows(previous, tables, MODE_SETTINGS.get('全市光伏单位换算系数', 1))
     sections = Path('研究报告/02图表/当前版/生成段落.json')
-    assert (ROOT/sections).read_bytes() == (REVIEW/'修前原件'/sections).read_bytes(), '逐站生成分析变化'
+    before_sections=json.loads((REVIEW/'修前原件'/sections).read_text())
+    after_sections=json.loads((ROOT/sections).read_text())
+    normalize=lambda value:value.replace('固定区段预案','负荷转供方案')
+    assert {k:normalize(v) for k,v in before_sections.items()} == after_sections, '逐站分析发生本轮术语替换以外的变化'
     from report_math_layout import check_equation_layout
     doc = Document(TARGET); equations = check_equation_layout(doc)
     from check_report_policy import check_figure_paragraphs
     policy = json.loads((ROOT/'tools/report_policy.json').read_text())
-    figures = check_figure_paragraphs(doc, policy, 41)
+    figures = check_figure_paragraphs(doc, policy, policy.get('report_figure_count',41))
     result = {'状态': '通过', '阶段': 'final' if final else 'docx', 'WordSHA256': sha(TARGET),
               '修订节点': 0, '原批注数': len(ids), '批注部件及锚点': '全部保留并对应有效正文',
               '锁定案例': frozen, '数据': assets, '原生公式': len(equations), '表格': len(doc.tables), **figures}

@@ -7,6 +7,14 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_transfer_terms_use_engineering_names(self):
+        for value in ['既有边/MW', '新增边/MW', '年度正常及事故追加区段预案', '其中，学者Zhu等']:
+            self.assertTrue(any('计算表.json[transfer]:1' in e for e in
+                                self.check('[[TABLE:transfer]]', tables={'transfer':value})))
+        for value in ['既有联络/MW', '新增联络/MW', '各年度正常运行和主变N-1时的负荷转供方案',
+                      '其中，Zhenyu Zhu等对线路进行寿命费用评价。']:
+            self.assertEqual(self.check(value), [])
+
     def test_verified_values_and_purpose_statements_locate_sources(self):
         for value in ['地区案例与通用模板的用途不同，分别保留其负荷来源和计算条件。',
                       '全市装机原截图未标单位，仅用于计算相对倍数。',
@@ -161,7 +169,7 @@ class ProsePolicyTests(unittest.TestCase):
             '当前候选集合内单靠联络无法弥补相关缺口。',
             '当前研究未开展逐时荷电状态仿真。',
             '现有资料缺少同范围用户年电量记录。',
-            '既有边不重复计建设费用，新增边按投运年计费。',
+            '既有联络不重复计建设费用，新增联络按投运年计费。',
             '储能额定功率保持0.50 MW。',
             '高渗透率情景下未取得可行方案。',
         ]

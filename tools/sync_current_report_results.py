@@ -303,7 +303,7 @@ def case_assets():
         t[f'restore_{region}_construction']=table(f'表5-0 {cn}逐年新增工程与费用',
             ['方案','年份','主变净增容量/MVA','主变新购容量/MVA','扩建主变/台','新增储能额定能量/MWh','新增联络/条','当年措施现值/万元'],construction)
         t[f'restore_{region}_transfer']=table(f'表5-0 {cn}正常方式下的分工况转接任务',
-            ['方案','年份','工况','转出站数','承接站数','转接合计/MW','既有边/MW','新增边/MW','单站最大转出/MW','单站最大承接/MW'],transfer)
+            ['方案','年份','工况','转出站数','承接站数','转接合计/MW','既有联络/MW','新增联络/MW','单站最大转出/MW','单站最大承接/MW'],transfer)
         final=selected[region,'弹性']['annual'][-1]
         first=selected[region,'弹性']['annual'][0]
         s[f'new_{region}_results']=(f'{cn}弹性方案2022年完成{f(first["capacity_mva"]-inp["initial_capacity_mva"])} MVA净增容量，'
@@ -364,7 +364,7 @@ def case_assets():
         [[pct(q),'3.00',f(24*(1-q)+180*q),'6.00',f(3*(24*(1-q)+180*q)+6)] for q in [.1,.3,.5,.8,.9]])
     amounts=pd.DataFrame(necessary)
     t['current_necessary_transfers']=table('表5-0 全部静态工况中的最大必要转供功率',
-        ['地区','方案','年份','正常总量/MW','正常既有边/MW','N-1总量/MW','N-1既有边/MW'],
+        ['地区','方案','年份','正常总量/MW','正常既有联络/MW','N-1总量/MW','N-1既有联络/MW'],
         [[r['地区'],r['方案'],r['年份'],f(r['正常总量']),f(r['正常既有']),f(r['故障总量']),f(r['故障既有'])] for r in necessary],
         '固定设备后逐工况最小化通道转供功率，分别取正常及N-1工况最大值；总量与既有边列分别取最大值。')
     annual=pd.read_csv(CASE/'逐年方案.csv');fees=pd.read_csv(CASE/'费用及精度.csv');rows=[]

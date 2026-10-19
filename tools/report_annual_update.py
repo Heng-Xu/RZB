@@ -128,7 +128,7 @@ def assets():
         tables[f'new_{region}_years'] = table(f'表5-0 {cn}逐年容量及措施', ['方案', '年份', '年网供最大负荷/MW', '主变容量/MVA', '容载比', '储能额定功率/MW', '累计新线/条'], years,
             '2021年为两方案共同的固定基期，储能及新线列为本次规划新增设备的累计在役规模。')
         tables[f'restore_{region}_construction'] = table(f'表5-0 {cn}逐年新增工程与费用', ['方案', '年份', '主变净增容量/MVA', '主变新购容量/MVA', '扩建主变/台', '新增储能额定能量/MWh', '新增联络/条', '当年措施现值/万元'], construction)
-        tables[f'restore_{region}_transfer'] = table(f'表5-0 {cn}正常方式下的分工况转接任务', ['方案', '年份', '工况', '转出站数', '承接站数', '转接合计/MW', '既有边/MW', '新增边/MW', '单站最大转出/MW', '单站最大承接/MW'], [r for r in transfer if r[1] in [2022, 2025, 2030, 2035]], '列示代表年度，转接合计为沿已采用区段预案转接的净功率幅值之和。')
+        tables[f'restore_{region}_transfer'] = table(f'表5-0 {cn}正常方式下的分工况转接任务', ['方案', '年份', '工况', '转出站数', '承接站数', '转接合计/MW', '既有联络/MW', '新增联络/MW', '单站最大转出/MW', '单站最大承接/MW'], [r for r in transfer if r[1] in [2022, 2025, 2030, 2035]], '列示代表年度，转接合计为沿负荷转供方案转接的净功率幅值之和。')
         sections[f'restore_{region}_transfer'] = ''
         first = plans[region, '弹性']['annual'][1]
         last = plans[region, '弹性']['annual'][-1]
@@ -177,7 +177,7 @@ def assets():
             h = int(margin.argmin())
             route = ''
             if abs(out[h, j]) + abs(inc[h, j]) > 1e-7:
-                route = f'该小时按采用的固定区段预案，本站转出{f(out[h, j])} MW、承接{f(inc[h, j])} MW，转接后净负荷为{f(net[h, j])} MW。'
+                route = f'该小时按采用的负荷转供方案，本站转出{f(out[h, j])} MW、承接{f(inc[h, j])} MW，转接后净负荷为{f(net[h, j])} MW。'
             else:
                 route = f'该小时本站未转接负荷，净负荷为{f(net[h, j])} MW。'
             network=[]
@@ -222,7 +222,7 @@ def assets():
     tables['new_annual_loading'] = table('表3-0 两地区站级负载率', ['地区', '年份', '中位数/%', '最大值/%'], loading)
     tables['restore_direction'] = table('表3-0 站级展示范围内的功率方向及相对压力', ['地区', '站数', '正向幅值较大站数', '反向幅值较大站数', '站级负载率超过100%的站数'], directions)
     tables['restore_station_loading_rank'] = table('表3-0 2025年站级负载率较高的站', ['地区', '变电站', '初始公用主变总容量/MVA', '最大正向净负荷/MW', '最大反向净负荷/MW', '站级负载率', '主导方向'], rank)
-    tables['current_necessary_transfers'] = table('表5-0 代表年度固定区段预案的最大转接功率', ['地区', '方案', '年份', '正常总量/MW', '正常既有边/MW', 'N-1总量/MW', 'N-1既有边/MW'], [row for row in necessary if row[2] in [2022, 2025, 2030, 2035]], '沿采用的正常固定及事故追加预案回代8760小时，分别列出各列最大值。')
+    tables['current_necessary_transfers'] = table('表5-0 代表年度正常及N-1工况的最大转接功率', ['地区', '方案', '年份', '正常总量/MW', '正常既有联络/MW', 'N-1总量/MW', 'N-1既有联络/MW'], [row for row in necessary if row[2] in [2022, 2025, 2030, 2035]], '按正常运行和主变N-1时的负荷转供方案回代8760小时，分别列出各列最大值。')
     tables['new_baseline'] = table('表5-0 两地区共同基期及规划年度', ['地区', '2021主变容量/MVA', '2021年网供最大负荷/MW', '2021容载比', '规划年度'], [[cn, f(plans[r,'刚性']['annual'][0]['capacity_mva']), f(plans[r,'刚性']['annual'][0]['peak_mw']), f(plans[r,'刚性']['annual'][0]['clr']), '2022—2035'] for r,cn in [('pizhou','邳州'),('city','市区')]])
     rigid = sum(plans[r, '刚性']['cost_npv_10k'] for r in inputs)
     elastic = sum(plans[r, '弹性']['cost_npv_10k'] for r in inputs)

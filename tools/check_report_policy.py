@@ -125,9 +125,9 @@ def main():
         assert '[[TABLE:'+key+']]' in actual_section, '第3.5节缺少筛选证据:'+key
     assert len(cells)==8 and len(index)==2
     chapter_five=next(p.read_text() for p in sources if p.name.startswith('05 '))
-    assert '### 5.4.8 保留2021实际容量的方案对照' in chapter_five
+    assert not re.search(r'^### 5\.4\.[78] ',chapter_five,re.M), '第5.4.7及5.4.8节已按用户要求删除'
     referenced='\n'.join(p.read_text() for p in sources)+'\n'+'\n'.join(sections.values())
-    for key in ['uncompressed_annual_summary','uncompressed_cost_summary','typical_transfer_matrix','current_transfer_sequence_second']:
+    for key in ['new_baseline','new_pizhou_years','new_city_years','typical_transfer_matrix','current_transfer_sequence_second']:
         assert '[[TABLE:'+key+']]' in referenced,'第五章缺少已确认结果：'+key
     assert not re.search(r'\[\[TABLE:current_matrix_',referenced),'矩阵不得单独按线路费用分类'
     assert all('[[TABLE:lookup_matrix_'+f'{c}_{kd:.2f}'+']]' in sections['new_matrix_tables']
