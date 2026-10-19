@@ -6,7 +6,7 @@ import pytest
 from verify_annual_report_update import check_capacity_period
 from report_matrix_display import adjoining_bands
 from check_report_policy import check_adjoining_matrix
-from report_plain_revision import anchor_comment, check_plain_document
+from report_plain_revision import anchor_comment, check_plain_document, verify_forecast_rows, stable_toc_anchors
 
 
 def test_adjoining_planning_bands_preserve_capacity_bounds_and_platforms():
@@ -62,6 +62,48 @@ def test_plain_document_accepts_python_docx_elements():
     doc = Document()
     anchor_comment(doc.add_paragraph('正文')._p, '0')
     check_plain_document(doc.element, doc.settings.element, ['0'])
+
+
+def test_pv_unit_conversion_keeps_regional_predictions_and_factors():
+    def data(pv_scale=1, city='491.18'):
+        value='| 年份 | 全市 | 倍数 | 市区 | 邳州 |\n|---|---|---|---|---|\n'
+        value+=''.join(f'| {y} | {709*pv_scale:.2f} | 1.00 | {city} | 1559.64 |\n' for y in range(2025,2036))
+        return {'forecast_load':'| 年份 | 负荷 |\n|---|---|\n| 2025 | 1528.82 |', 'forecast_pv':value}
+    verify_forecast_rows(data(),data(10),10)
+    with pytest.raises(AssertionError,match='地区光伏预测或增长比例变化'):
+        verify_forecast_rows(data(),data(10,city='4911.80'),10)
+    with pytest.raises(AssertionError,match='单位转换不对应'):
+        verify_forecast_rows(data(),data(),10)
+
+
+def test_deleted_note_keeps_original_toc_bookmarks():
+    def page(anchor):
+        return fixture('<w:p><w:hyperlink w:anchor="'+anchor+'"><w:r><w:t>第三章</w:t></w:r></w:hyperlink>'
+                       '<w:r><w:instrText>PAGEREF '+anchor+' \\h</w:instrText></w:r></w:p>'
+                       '<w:p><w:bookmarkStart w:id="1" w:name="'+anchor+'"/><w:r><w:t>第三章</w:t></w:r>'
+                       '<w:bookmarkEnd w:id="1"/></w:p>')
+    old,new=page('h250'),page('h249')
+    headings=stable_toc_anchors(new,old,[('第三章',1,'h249')])
+    assert headings==[('第三章',1,'h250')]
+    assert new.xpath('.//w:bookmarkStart/@w:name',namespaces=NS)==['h250']
+    assert new.xpath('.//w:hyperlink/@w:anchor',namespaces=NS)==['h250']
+    assert new.xpath('.//w:instrText/text()',namespaces=NS)==['PAGEREF h250 \\h']
+
+
+def test_auxiliary_cells_preserve_every_existing_source_value(tmp_path):
+    from openpyxl import Workbook,load_workbook
+    from report_source_lineage import check_auxiliary_cells
+    old,new=tmp_path/'old.xlsx',tmp_path/'new.xlsx'
+    w=Workbook();w.active['B3']=709.3475;w.save(old)
+    w.active['O4']=258.8296;w.save(new)
+    changes=[{'sheet':'Sheet','cell':'O4','before':None,'after':258.8296}]
+    check_auxiliary_cells(old,new,changes)
+    w.active['B3']=709;w.save(new)
+    with pytest.raises(AssertionError,match='已有单元格发生变化'):
+        check_auxiliary_cells(old,new,changes)
+    w.active['B3']=709.3475;w.active['P4']=1;w.save(new)
+    with pytest.raises(AssertionError,match='辅助列变化未逐项对应'):
+        check_auxiliary_cells(old,new,changes)
 
 
 def test_followup_reuses_unchanged_revision_id_and_date():

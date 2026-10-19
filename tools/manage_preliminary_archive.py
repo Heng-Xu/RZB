@@ -59,8 +59,9 @@ def archive():
 def verify():
     record = json.loads((AUDIT/'历史清理与保留登记.json').read_text())
     assert all(not (ROOT/r['path']).exists() for r in record['文件']), '已归档历史文件仍在活动目录'
+    from report_source_lineage import preserved_original
     for name, digest in record['保留资料与依赖SHA256'].items():
-        assert sha(ROOT/name) == digest, '原始资料或当前依赖发生变化: '+name
+        assert sha(preserved_original(ROOT,name,digest)) == digest, '原始资料或当前依赖发生变化: '+name
     if BACKUP.exists():
         assert sha(BACKUP) == record['备份SHA256']
     print(json.dumps({'状态': '通过', '归档移出文件': record['文件数'],

@@ -14,10 +14,18 @@ from docx import Document
 from revise_report_in_place import package, xml, dump, fingerprint, text, qn, NS, R, P
 
 ROOT = Path(__file__).resolve().parents[1]
-REVIEW = ROOT/'研究报告/05_review/当前版/1019七项表述与清稿'
+
+
+def review_dir(root=ROOT):
+    policy=json.loads((root/'tools/report_policy.json').read_text())
+    return root/policy.get('plain_delivery_review', '研究报告/05_review/当前版/1019七项表述与清稿')
+
+
+REVIEW = review_dir()
 MODE = REVIEW/'交付模式.json'
 BASE = REVIEW/'修前原件/研究报告/04_word/研究报告终稿.docx'
-FEEDBACK = REVIEW/'修前原件/研究报告/甲方反馈/10.17/10.17研究报告.docx'
+MODE_SETTINGS = json.loads(MODE.read_text()) if MODE.exists() else {}
+FEEDBACK = REVIEW/MODE_SETTINGS.get('批注原件', '修前原件/研究报告/甲方反馈/10.17/10.17研究报告.docx')
 TARGET = ROOT/'研究报告/04_word/研究报告终稿.docx'
 GOAL = REVIEW/'装配目标.docx'
 REVISION_NAMES = {'ins', 'del', 'moveFrom', 'moveTo', 'moveFromRangeStart',
@@ -34,7 +42,7 @@ def write(path, value):
 
 
 def active(root=ROOT):
-    marker = root/MODE.relative_to(ROOT)
+    marker = review_dir(root)/'交付模式.json'
     return marker.exists() and json.loads(marker.read_text())['修订模式'] is False
 
 
@@ -54,6 +62,29 @@ def block_key(node, parts):
     if node.xpath('.//w:instrText[contains(text(),"PAGEREF")]', namespaces=NS):
         return 'toc:'+''.join(node.xpath('.//w:hyperlink//w:t/text()', namespaces=NS))
     return fingerprint(node, parts)
+
+
+def stable_toc_anchors(goal, previous, headings):
+    """删改表注会改变装配段号，已有目录的真实书签按标题保持稳定。"""
+    def toc(tree):
+        result={}
+        for p in tree.xpath('.//w:body/w:p[.//w:instrText[contains(text(),"PAGEREF")]]', namespaces=NS):
+            title=''.join(p.xpath('.//w:hyperlink//w:t/text()', namespaces=NS))
+            alias=re.search(r'PAGEREF\s+(\w+)', ''.join(p.xpath('.//w:instrText/text()', namespaces=NS)))[1]
+            result[title]=alias
+        return result
+    original=toc(previous);current=toc(goal)
+    assert set(original)==set(current)=={title for title,level,alias in headings}, '目录标题发生未登记变化'
+    remap={current[title]:original[title] for title in current}
+    for node in goal.findall('.//'+qn('bookmarkStart')):
+        name=node.get(qn('name'))
+        if name in remap:node.set(qn('name'),remap[name])
+    for node in goal.findall('.//'+qn('hyperlink')):
+        name=node.get(qn('anchor'))
+        if name in remap:node.set(qn('anchor'),remap[name])
+    for node in goal.findall('.//'+qn('instrText')):
+        if node.text:node.text=re.sub(r'(PAGEREF\s+)(\w+)',lambda m:m[1]+remap.get(m[2],m[2]),node.text)
+    return [(title,level,original[title]) for title,level,alias in headings]
 
 
 def anchor_comment(paragraph, ident):
@@ -81,8 +112,6 @@ def install_comments(parts, root, feedback):
     }
     comments = xml(feedback['word/comments.xml'])
     assert {c.get(qn('id')) for c in comments} == set(markers)
-    for node in list(root.xpath('.//w:commentRangeStart|.//w:commentRangeEnd|.//w:commentReference', namespaces=NS)):
-        node.getparent().remove(node)
     paragraphs = root.findall('.//'+qn('p'))
     locations = []
     for ident, marker in markers.items():
@@ -93,7 +122,16 @@ def install_comments(parts, root, feedback):
         else:
             candidates = [p for p in paragraphs if marker in text(p)]
         assert len(candidates) == 1, ('批注定位不唯一', ident, marker, len(candidates))
-        paragraph = candidates[0]; anchor_comment(paragraph, ident)
+        paragraph = candidates[0]
+        existing=[root.xpath('.//w:'+tag+'[@w:id="'+ident+'"]', namespaces=NS)
+                  for tag in ['commentRangeStart','commentRangeEnd','commentReference']]
+        retained=all(len(nodes)==1 and next(nodes[0].iterancestors(qn('p')), None) is paragraph for nodes in existing)
+        if not retained:
+            for nodes in existing:
+                for node in nodes:
+                    parent=node.getparent();parent.remove(node)
+                    if parent.tag==qn('r') and not any(c.tag!=qn('rPr') for c in parent):parent.getparent().remove(parent)
+            anchor_comment(paragraph, ident)
         locations.append({'批注ID': ident, '锚定正文': text(paragraph), '范围': '对应内容段落'})
     names = [n for n in feedback if 'comment' in n.lower() or n == 'word/people.xml']
     assert all(not n.endswith('.rels') for n in names), '批注存在额外关系依赖，须逐项处理'
@@ -123,6 +161,12 @@ def apply():
     original, candidate, feedback = package(BASE), package(GOAL), package(FEEDBACK)
     root, goal = xml(original['word/document.xml']), xml(candidate['word/document.xml'])
     assert not has_revisions(root) and not has_revisions(goal)
+    headings_path=ROOT/'研究报告/05_review/当前版/目录标题.json'
+    headings=stable_toc_anchors(goal,root,json.loads(headings_path.read_text()))
+    write(headings_path,headings)
+    candidate['word/document.xml']=dump(goal)
+    with ZipFile(GOAL,'w',ZIP_DEFLATED) as z:
+        for name,data in candidate.items():z.writestr(name,data)
     before, after = list(root.find(qn('body'))), list(goal.find(qn('body')))
     # 相同关系ID须保持同一对象；不以重建覆盖原有媒体、字体和样式。
     oldrels = {n.get('Id'): n for n in xml(original['word/_rels/document.xml.rels'])}
@@ -195,8 +239,7 @@ def verify(final=False):
     previous = json.loads((REVIEW/'修前原件/研究报告/02图表/当前版/计算表.json').read_text())
     assert set(tables) == set(previous)
     assert {k for k in tables if tables[k] != previous[k]} <= {'forecast_load', 'forecast_pv'}
-    rows = lambda value: [line for line in value.splitlines() if line.startswith('|')][2:]
-    for key in ['forecast_load', 'forecast_pv']: assert rows(tables[key]) == rows(previous[key]), '预测表数值变化：'+key
+    verify_forecast_rows(previous, tables, MODE_SETTINGS.get('全市光伏单位换算系数', 1))
     sections = Path('研究报告/02图表/当前版/生成段落.json')
     assert (ROOT/sections).read_bytes() == (REVIEW/'修前原件'/sections).read_bytes(), '逐站生成分析变化'
     from report_math_layout import check_equation_layout
@@ -216,6 +259,19 @@ def verify(final=False):
         result['WPS版面'] = proof
     write(REVIEW/(('final' if final else 'docx')+'独立核验.json'), result)
     return result
+
+
+def verify_forecast_rows(previous, current, pv_scale=1):
+    """全市列仅作已登记单位转换，区域预测、相对倍数及负荷数据逐格保持。"""
+    from decimal import Decimal
+    rows=lambda value:[[c.strip() for c in line.strip('|').split('|')]
+                       for line in value.splitlines() if line.startswith('|')][2:]
+    assert rows(previous['forecast_load'])==rows(current['forecast_load']), '负荷预测表数值变化'
+    before,after=rows(previous['forecast_pv']),rows(current['forecast_pv'])
+    assert len(before)==len(after)==11
+    for a,b in zip(before,after):
+        assert a[0]==b[0] and a[2:]==b[2:], '地区光伏预测或增长比例变化：'+a[0]
+        assert Decimal(b[1])==Decimal(a[1])*Decimal(str(pv_scale)), '全市光伏单位转换不对应：'+a[0]
 
 
 def verify_release():

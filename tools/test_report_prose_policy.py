@@ -7,6 +7,19 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_verified_values_and_purpose_statements_locate_sources(self):
+        for value in ['地区案例与通用模板的用途不同，分别保留其负荷来源和计算条件。',
+                      '全市装机原截图未标单位，仅用于计算相对倍数。',
+                      '| 年份 | 全市装机数值 |',
+                      '原截图未标单位，本研究仅使用其相对2025年的增长倍数。']:
+            errors=self.check('[[TABLE:forecast]]', tables={'forecast':value})
+            self.assertTrue(any('计算表.json[forecast]:1' in e for e in errors))
+        for value in ['全市光伏装机容量预测为7090.00 MW。',
+                      '额定容量以MVA计，有功功率以MW计。',
+                      '现有资料未提供2021—2022年逐月光伏装机记录。',
+                      '推广仿真采用与地区案例相同的成本模型和寻优方法。']:
+            self.assertEqual(self.check(value), [])
+
     def test_annual_case_model_wording(self):
         for value in ['以该比例乘当年最大正向净负荷形成年度预算。']:
             errors=self.check('[[SECTION:annual]]',{'annual':value})
