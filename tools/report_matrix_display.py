@@ -25,7 +25,7 @@ def assets(data, table, interval):
     import json
     root=Path(__file__).resolve().parents[1]
     policy=json.loads((root/'tools/report_policy.json').read_text())['matrix_display']
-    if policy.get('output_kind')=='fixed_width_sliding_windows':
+    if policy.get('output_kind')=='adaptive_sliding_windows':
         import pandas as pd
         from matrix_planning_windows import assets as window_assets
         return window_assets(pd.read_csv(root/policy['source_csv']),table)

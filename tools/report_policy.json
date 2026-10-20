@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-19-eleven-diversity-nodes-windows",
+  "version": "2026-10-20-minor-power-window-sampling-fixes",
   "forbidden_body_patterns": {
     "修订过程不得进入正文": "修正稿|(?<!配电网规划设计技术导则（)修订稿|上一轮|本轮修订",
     "取整和分档不反复解释": "显示取整|完整精度分档|显示为7%|不能据此将邳州|按显示精度取整",
@@ -47,7 +47,9 @@
     "已核验光伏数据直接列值与单位": "全市装机数值|装机原截图未标单位|原截图未标单位，本研究仅使用",
     "转供结果采用工程名称及具体方案说明": "既有边|新增边|区段预案|事故追加预案|正常固定预案|学者Zhu",
     "删除指定源荷补值与规划峰值重复说明": "历史回算与未来预测均保留所采用的补值",
-    "推广矩阵采用11点两档": "1[.]15为本研究情景范围的上端|三个分散系数定值|九张表432个单元"
+    "推广矩阵采用11点两档": "1[.]15为本研究情景范围的上端|三个分散系数定值|九张表432个单元",
+    "新增联络采用折算后的8MW有功上限": "工程计算限值取8[.]00\\s*MVA|折算有功上限为7[.]60\\s*MW",
+    "采样表同步11点分散系数": "负荷分散系数\\s*\\|\\s*1[.]00、1[.]05、1[.]10、1[.]15"
   },
   "required_profile_hours": 8760,
   "profile_regions": [
@@ -127,15 +129,15 @@
     "cells": 288,
     "forbidden_duration_pattern": "储能支撑持续时间|支撑持续时间|储能持续时间|支撑时长|2、4、6\\s*h",
     "keep_table_together": true,
-    "output_kind": "fixed_width_sliding_windows",
-    "band_boundary_method": "选最接近样本中位数的实际节点，同距时取较大值，中心取最近0.05网格，宽0.20；同值保留同窗",
+    "output_kind": "adaptive_sliding_windows",
+    "band_boundary_method": "真实中位节点按0.02网格定位，基准宽0.10；同一行相邻不同代表水平距离小于0.10时以中点共用界值，局部缩窄；保留真实平台与较大间隔。",
     "diversity_cut": 1.15,
     "diversity_bins": [
       "≤1.15",
       ">1.15"
     ],
-    "window_width": 0.2,
-    "window_step": 0.05,
+    "window_width": 0.1,
+    "window_step": 0.02,
     "source_csv": "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/统一有效样本.csv"
   },
   "citations": {
@@ -152,6 +154,6 @@
   "target_body_pages": 169,
   "body_page_tolerance": 3,
   "body_page_scope": "保留六章和46座站分析，案例扩展为2021—2035年60条年度记录；正文约171页，较2021—2025年版增加完整年度表与建设措施。",
-  "plain_delivery_review": "研究报告/05_review/当前版/1019推广矩阵扩展",
+  "plain_delivery_review": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正",
   "report_figure_count": 40
 }

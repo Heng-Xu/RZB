@@ -1,0 +1,2206 @@
+{
+  "父交付登记": "研究报告/05_review/当前版/1019推广矩阵扩展/交付登记.json",
+  "父交付登记SHA256": "b9fbec7e6a6fcfb7bb7f4dea88cfab35eabd6958af4276b3b16467ec99f04e26",
+  "原件映射": {
+    ".githooks/pre-commit": {
+      "path": ".githooks/pre-commit",
+      "SHA256": "bfaf625f64ed408703d49a927e14cd5c2ad43dabf6984d2c2017b400181854e6"
+    },
+    ".github/workflows/report-policy.yml": {
+      "path": ".github/workflows/report-policy.yml",
+      "SHA256": "58a3e812d81e8c8fbac149095ae7e5380bb36a57cee8212e8dbf8146515280d1"
+    },
+    ".gitignore": {
+      "path": ".gitignore",
+      "SHA256": "62c9f248780ec809d3fcbc81553f7ceb40b7d25f6b2825571d3054fde67fa4cf"
+    },
+    "AGENTS.md": {
+      "path": "AGENTS.md",
+      "SHA256": "1cd11fc31d7378cc4f00d06ce9308b76583064196646066b71ee31cdd458c807"
+    },
+    "docs/CURRENT-WORKFLOW.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/docs/CURRENT-WORKFLOW.md",
+      "SHA256": "59bd47c50a6423925e8111a6fb3e02551ee8252be197e67560de5e6591f50d16"
+    },
+    "memory/archive/2026-10-18-甲方批注与案例更新前.md": {
+      "path": "memory/archive/2026-10-18-甲方批注与案例更新前.md",
+      "SHA256": "20b0eb88618c8277b529e2ce6de5d0362d9c5020ac345b1e241ba642947b31bc"
+    },
+    "memory/archive/2026-10-19-七项清稿修正前.md": {
+      "path": "memory/archive/2026-10-19-七项清稿修正前.md",
+      "SHA256": "f914136234888e658b8eb67590b855d535c31b3326589cd8f24961b64aee5061"
+    },
+    "memory/archive/2026-10-19-五项局部修正前.md": {
+      "path": "memory/archive/2026-10-19-五项局部修正前.md",
+      "SHA256": "495de1228e89e611d7f2e58e5a2a0c96c3fb828fbf41a9990c2a9702b293ea1e"
+    },
+    "memory/archive/2026-10-19-公式排版修正前.md": {
+      "path": "memory/archive/2026-10-19-公式排版修正前.md",
+      "SHA256": "22fd52bfccf8aed586877ece257bfa18b6ff41494e4ed7d2b1360fe4c94b36da"
+    },
+    "memory/archive/2026-10-19-区段说明修正前.md": {
+      "path": "memory/archive/2026-10-19-区段说明修正前.md",
+      "SHA256": "77f35a363f92df3dd249cc9b4fcad5e5109a14d4433ac81384f4e405329971a9"
+    },
+    "memory/archive/2026-10-19-推广矩阵扩展前.md": {
+      "path": "memory/archive/2026-10-19-推广矩阵扩展前.md",
+      "SHA256": "a931c114a04211775a0027df8fcc4820a45ee9b8ae1bd003cb00618eccf2c2b7"
+    },
+    "memory/archive/2026-10-19-表述约束与光伏单位修正前.md": {
+      "path": "memory/archive/2026-10-19-表述约束与光伏单位修正前.md",
+      "SHA256": "6727bb1f8ecdeea749edc0d89425c49da7ccba0307a2552ab758a0c5af9a34ed"
+    },
+    "memory/current.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/memory/current.md",
+      "SHA256": "51cd7f8254c777ebec66b447cf79d3557e320ba18ae022e13e8185badd5fe4a7"
+    },
+    "prompt.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/prompt.md",
+      "SHA256": "04c72b207e29512290a75be2ffce3a7e8064a6c7ee4047a3e967440608b61c68"
+    },
+    "tools/archive_extended_matrix_raw.py": {
+      "path": "tools/archive_extended_matrix_raw.py",
+      "SHA256": "d60ad034b4a44dd239040bfa1f62bdf744cade20322cb9b8fe2620abdc4d2182"
+    },
+    "tools/build_current_report.py": {
+      "path": "tools/build_current_report.py",
+      "SHA256": "121954bad8dbaf4c2d26041a0f875ad36e0570c8926f03756b2cf609747ff585"
+    },
+    "tools/check_report_policy.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/check_report_policy.py",
+      "SHA256": "b35c200729d061c310acdcaf2f8c6dfd9cf73b84a96e29399974e9dd92d7bc3f"
+    },
+    "tools/extend_matrix_scenarios.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/extend_matrix_scenarios.py",
+      "SHA256": "b42228b89a606a4f335b43570f13fb644ac87137096addbc33998ee2e7a957cf"
+    },
+    "tools/manage_preliminary_archive.py": {
+      "path": "tools/manage_preliminary_archive.py",
+      "SHA256": "816e963f64d702dfc2fb0f4a6a4a895a3ab0b21b65a11f9ade93501012d91f4f"
+    },
+    "tools/matrix_planning_windows.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/matrix_planning_windows.py",
+      "SHA256": "7c249958a199366805c51d6bc1d588743d87f0f975b505d1e8150e1c012ac0d7"
+    },
+    "tools/refresh_annual_report_figures.py": {
+      "path": "tools/refresh_annual_report_figures.py",
+      "SHA256": "b6c58a88672a80ff0e04739ab56412fdba4554d103730ecefc19a027ae39713a"
+    },
+    "tools/refresh_extended_matrix_figures.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/refresh_extended_matrix_figures.py",
+      "SHA256": "218923ede4735eabf172bc710da5ee9296de72ed7907317039677c470ff0fa0e"
+    },
+    "tools/report_annual_update.py": {
+      "path": "tools/report_annual_update.py",
+      "SHA256": "47823e5396c90f71e4235b5631cdb110ebce105636aa00ddf845befa3c7f50ce"
+    },
+    "tools/report_forecast_display.py": {
+      "path": "tools/report_forecast_display.py",
+      "SHA256": "c10855dead8848cb95328848ab7637d5701a923613a900196ed2c185d8028aec"
+    },
+    "tools/report_math_layout.py": {
+      "path": "tools/report_math_layout.py",
+      "SHA256": "6cc457030eeb67af4ff1549f2ab0e2893b9817a1966bf1ba494a97e40d22788e"
+    },
+    "tools/report_matrix_display.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/report_matrix_display.py",
+      "SHA256": "9a495dff6f7bc3f4f914815b1609e65a7e56d1f0fb0f95069281d8690c02f220"
+    },
+    "tools/report_matrix_figures.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/report_matrix_figures.py",
+      "SHA256": "a85f25726afef42bd25b19b50bbe81e15efa2190e1005e6ca810bb40a30a991a"
+    },
+    "tools/report_parameter_selection.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/report_parameter_selection.py",
+      "SHA256": "a87114e18a979f2dbb90f65a6b884e9ee2716ff2e6080810794791322c360a2e"
+    },
+    "tools/report_plain_revision.py": {
+      "path": "tools/report_plain_revision.py",
+      "SHA256": "646517e93791da822d8f2250bde5117322009fe10d407346aa64c2de46696365"
+    },
+    "tools/report_policy.json": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/report_policy.json",
+      "SHA256": "483c848b9bef9f6f559f34ee311ba30eb220b5a9095fc9f21edbc34652013d6c"
+    },
+    "tools/report_source_lineage.py": {
+      "path": "tools/report_source_lineage.py",
+      "SHA256": "07d7ffa9552a6a8e4fbd10a4aeeba04b7dc34fced4924efc18e96ed1c9ee9d7f"
+    },
+    "tools/revise_report_in_place.py": {
+      "path": "tools/revise_report_in_place.py",
+      "SHA256": "ef5744a4f76451c5776d4db1ea5e19f5ae1cb83cf2df5f4e54efcd165c24d50a"
+    },
+    "tools/sync_current_report_results.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/sync_current_report_results.py",
+      "SHA256": "fe4492c93b8c08b912f5c0a083ca0086096465ec8b1b4ec3448f1f627490048d"
+    },
+    "tools/test_matrix_planning_windows.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/test_matrix_planning_windows.py",
+      "SHA256": "d13032ee1f896827f2671f75b231e2b67d7b872eff52bf0c8639c096774d1539"
+    },
+    "tools/test_report_in_place.py": {
+      "path": "tools/test_report_in_place.py",
+      "SHA256": "14e23b59e53391c38380cc757cbd2200c969aa2a379c072954d6c9e698b387e7"
+    },
+    "tools/test_report_prose_policy.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/test_report_prose_policy.py",
+      "SHA256": "63338c5c4d8b8f0f43a359a6e5e1edb4537cf0c252604df81f2ccbc06d703a62"
+    },
+    "tools/update_extended_matrix_report.py": {
+      "path": "tools/update_extended_matrix_report.py",
+      "SHA256": "96cfe6ae5c417b1a56b935d9e361f887ce11ecdd4fb9eb951723e3e6f6dc6724"
+    },
+    "tools/verify_annual_report_update.py": {
+      "path": "tools/verify_annual_report_update.py",
+      "SHA256": "9a7949425c38d48d39fd8dbe1834bd9a153a58d678628b18494cdeec80d691e8"
+    },
+    "tools/verify_current_report.py": {
+      "path": "tools/verify_current_report.py",
+      "SHA256": "d002c9f86b795ceb29d8267fca06df5ed2dcd4d6e8a34e6236b91a7b40a219a1"
+    },
+    "tools/verify_extended_matrix.py": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/tools/verify_extended_matrix.py",
+      "SHA256": "5cbc1f3915e215aee85e75e3c8543e261ac461a2e2af6417b752457dbf672712"
+    },
+    "tools/verify_preliminary_baseline.py": {
+      "path": "tools/verify_preliminary_baseline.py",
+      "SHA256": "cdbaf7f63ffc8ba4b713a6765a59909d2e68d96a7e0127594532cfa73ee50233"
+    },
+    "tools/verify_report_release.py": {
+      "path": "tools/verify_report_release.py",
+      "SHA256": "ebd213ceda1522c72be942d75cf2effe3e287bb5a44dd74e2fed1b9047e488ae"
+    },
+    "tools/verify_report_review.py": {
+      "path": "tools/verify_report_review.py",
+      "SHA256": "c73d040de9dc166667d9f5d18c47c593439c6dd889a453b5ea8b8a00bb53bdcf"
+    },
+    "研究报告/01研究推荐/当前版/推广矩阵采用版本.json": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/01研究推荐/当前版/推广矩阵采用版本.json",
+      "SHA256": "220bd9db270a257dc5dc6148c76985a4f51d4a29d5d52225b18b1335ca7257ac"
+    },
+    "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/README.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/README.md",
+      "SHA256": "0ce7224d1e2102443dc6b55e1ac7bdb3a9c07127e3b52b7ec99fa6b28c55c52e"
+    },
+    "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/不可行节点.csv": {
+      "path": "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/不可行节点.csv",
+      "SHA256": "c2296e030ea6e726c31a71868a469a5a39df978110c7e34e7150123a1cefd6e2"
+    },
+    "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/六表288单元推荐窗口.csv": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/六表288单元推荐窗口.csv",
+      "SHA256": "e3bf428aaa11aa4dd457597ea1dad5130ef354927ed13acc3aa3ffc141edd5e3"
+    },
+    "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/推广矩阵与11点敏感性分析.xlsx": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/推广矩阵与11点敏感性分析.xlsx",
+      "SHA256": "5756033ebdc83dd622085818d4f45f99d6a46fb6343579e5fb7fd6fec45656d3"
+    },
+    "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/窗口与原始节点依据.json": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/窗口与原始节点依据.json",
+      "SHA256": "e371929b040e01dc1645af00ba962a8d9a3c57e509da8a83b3450c512d933138"
+    },
+    "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/统一有效样本.csv": {
+      "path": "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/统一有效样本.csv",
+      "SHA256": "563e8847bb44d8964695d11f90c2ef63323602d98baf36730b983cebd79cd6f6"
+    },
+    "研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/负荷分散系数11点完整序列.csv": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019/负荷分散系数11点完整序列.csv",
+      "SHA256": "592fccf144df7a3cb5a78886e9d102f29af929f09c6c6c58d74a018b077c5cd8"
+    },
+    "研究报告/02图表/当前版/annual_clr.png": {
+      "path": "研究报告/02图表/当前版/annual_clr.png",
+      "SHA256": "68b43b579a7bbec82a7a076be0c5729c8d5b539229145faeff859a0808df9bf1"
+    },
+    "研究报告/02图表/当前版/annual_model_pressure.png": {
+      "path": "研究报告/02图表/当前版/annual_model_pressure.png",
+      "SHA256": "576d57a39ee3276c4a43f2cd59fccca68681e10d0edfcad362bfeb4f40afcc84"
+    },
+    "研究报告/02图表/当前版/city_annual_new_measures.png": {
+      "path": "研究报告/02图表/当前版/city_annual_new_measures.png",
+      "SHA256": "29c265d7c1c67e24a2f8a08ebcee155851cf14ad53f1d5bfe59ffaf08d0734c1"
+    },
+    "研究报告/02图表/当前版/city_modeled_peaks.png": {
+      "path": "研究报告/02图表/当前版/city_modeled_peaks.png",
+      "SHA256": "b061f3ee587062749128f70a1a95d8be02f45b7915cf7cc5fc0e93584d27df78"
+    },
+    "研究报告/02图表/当前版/city_station_n1.png": {
+      "path": "研究报告/02图表/当前版/city_station_n1.png",
+      "SHA256": "fa039d4cae20d0fdfc4735d2d58eceae8da7ac512180f220f922321870150a5e"
+    },
+    "研究报告/02图表/当前版/diversity_device_response.png": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/02图表/当前版/diversity_device_response.png",
+      "SHA256": "af35ad3987af612a5e95c05ae8106d9dca70b1646be1c094efc0b8b61c760f5a"
+    },
+    "研究报告/02图表/当前版/initial_capacity_cost_comparison.png": {
+      "path": "研究报告/02图表/当前版/initial_capacity_cost_comparison.png",
+      "SHA256": "c95e9c017dcfad71e3ac40226ed4bef49a72d01d499fe097587436623c66e7fe"
+    },
+    "研究报告/02图表/当前版/lifecycle_components.png": {
+      "path": "研究报告/02图表/当前版/lifecycle_components.png",
+      "SHA256": "3fbfcea99db9108b3e68417e4a1dd99118c73ba01823114ee9a81aab028df07d"
+    },
+    "研究报告/02图表/当前版/lookup_matrix_bounds.png": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/02图表/当前版/lookup_matrix_bounds.png",
+      "SHA256": "e554ef04804998fcd1e1aff4d430a4a053527ba5c04e63a0e49814fdc437e982"
+    },
+    "研究报告/02图表/当前版/measure_comparison.png": {
+      "path": "研究报告/02图表/当前版/measure_comparison.png",
+      "SHA256": "036078c6d5765616489a58336574a102facccec01e1a67fe476f6ecb1221b46f"
+    },
+    "研究报告/02图表/当前版/pizhou_annual_new_measures.png": {
+      "path": "研究报告/02图表/当前版/pizhou_annual_new_measures.png",
+      "SHA256": "6dd84f26eb9d1f5d3ae5fcd7360ca87b5c96a7ea4f0682fc382a07ded47f040b"
+    },
+    "研究报告/02图表/当前版/pizhou_modeled_peaks.png": {
+      "path": "研究报告/02图表/当前版/pizhou_modeled_peaks.png",
+      "SHA256": "7e818ba839b22d8d78b11640d4adc0a39a9be7de80f7d532f4be9d92326ba735"
+    },
+    "研究报告/02图表/当前版/pizhou_station_n1.png": {
+      "path": "研究报告/02图表/当前版/pizhou_station_n1.png",
+      "SHA256": "a0f0eddeabc1774d66ebddd94e65b287b0ba5ed59c9ba8ca7be93b6909d6340c"
+    },
+    "研究报告/02图表/当前版/pizhou_storage_distribution.png": {
+      "path": "研究报告/02图表/当前版/pizhou_storage_distribution.png",
+      "SHA256": "ad24e5c4405349f83ce081a6737f62cd89fd1c775fee00ca9763d774d8243d26"
+    },
+    "研究报告/02图表/当前版/plan_cost_difference.png": {
+      "path": "研究报告/02图表/当前版/plan_cost_difference.png",
+      "SHA256": "170203abb7a7f4e4626644670afb48f10d47ed44432a29cc50dda1af2cc993a8"
+    },
+    "研究报告/02图表/当前版/xingtang_reverse_capacity.png": {
+      "path": "研究报告/02图表/当前版/xingtang_reverse_capacity.png",
+      "SHA256": "76708a356f2857c42f2ed7820486d06bcebb8efd191578668dee4fa5b857311b"
+    },
+    "研究报告/02图表/当前版/公式/公式清单.json": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/02图表/当前版/公式/公式清单.json",
+      "SHA256": "5458b964a06297caa891c09e83a953ebeacb936ff880d20bb04c5d26b6c8ea55"
+    },
+    "研究报告/02图表/当前版/生成段落.json": {
+      "path": "研究报告/02图表/当前版/生成段落.json",
+      "SHA256": "8ea299fd59a5d8762de7c1f80bfe3d8221338f5b82502ccc0259f3d71f0a8f7e"
+    },
+    "研究报告/02图表/当前版/计算表.json": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/02图表/当前版/计算表.json",
+      "SHA256": "f0b8b60c50697d2cd5d92f07e4f3a331a1f319ee2a2d2683cd4951e56927c30a"
+    },
+    "研究报告/03_MD/当前版/01 第一章 绪论.md": {
+      "path": "研究报告/03_MD/当前版/01 第一章 绪论.md",
+      "SHA256": "f6ecbf2a1acf3a4de283e0d5f6d1c6481ccc88667066ac798ba450f0aa557278"
+    },
+    "研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": {
+      "path": "研究报告/03_MD/当前版/02 第二章 国内外研究现状.md",
+      "SHA256": "2b7c9b75d5062ab8a0402f14ed5cc66258b95c80eb23bd18c5ad34f1943ee1c7"
+    },
+    "研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md",
+      "SHA256": "4fff9e6c9425c5963f48425936d45ad095339e2507399004972d7763151c8c62"
+    },
+    "研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/03_MD/当前版/04 第四章 基于实际工程的建设成本模型.md",
+      "SHA256": "51e55276972fe3010a830228cce6b824577b46436222c957e02ba3f55675d647"
+    },
+    "研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/03_MD/当前版/05 第五章 “一片一策”弹性容载比规划建议.md",
+      "SHA256": "f22725eb8775a9fd4dde94385fec1663c4ae56f687ddab13051bb2c0e084de0b"
+    },
+    "研究报告/03_MD/当前版/06 第六章 结论与建议.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/03_MD/当前版/06 第六章 结论与建议.md",
+      "SHA256": "b09c944caece39feed16172f8436aa18cbf39767c07c5327ba914d35771d9c99"
+    },
+    "研究报告/03_MD/当前版/研究报告装配稿.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/03_MD/当前版/研究报告装配稿.md",
+      "SHA256": "bf1d3251ee83457e3113c9b645ced0b3a71306c8e0e76803b93e69b1ddb895ac"
+    },
+    "研究报告/04_word/研究报告终稿.docx": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/04_word/研究报告终稿.docx",
+      "SHA256": "62230846f898fa66de8b111b2bbbec994211c5c41e2dead153869e9153c63953"
+    },
+    "研究报告/04_word/研究报告终稿.pdf": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/04_word/研究报告终稿.pdf",
+      "SHA256": "eb0dba2b5d93c5929a84d88f9be974f17b6e9fda8afb8e546ac9ae17895e4fc8"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/WPS最终视图核验.docx": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/WPS最终视图核验.docx",
+      "SHA256": "433bb16245a9e60eb9bd6c687f2f0f97176a42a0bfaefbaa5d6f890d5ae2daa5"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/WPS版面核验.json": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/WPS版面核验.json",
+      "SHA256": "634c0dddfa809dee7419c3e2597e40016bd541795bf38e6bfadeff0ada0c7e96"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/上一版交付衔接.json": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/上一版交付衔接.json",
+      "SHA256": "c89ff86626a7a0843fa07046cd82bf25a92b4bbaddbd0696352e8f578775105b"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/事实核验.json": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/事实核验.json",
+      "SHA256": "f603604baf8812c9dc67e2469ddc7637bb0bfb3866494995d782b56c97eb3e88"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前哈希.json": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/修前哈希.json",
+      "SHA256": "b23143df30822853d6480a1fb5b97d4f7f63dbe85cac781fdb59255f49b2a559"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/原文件修订核验.json": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/原文件修订核验.json",
+      "SHA256": "fde77326f6cf6630bc8fcf2fa322c6754bb2c99bd97a8c8a5567de6b77878103"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/批注处理说明.md": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/批注处理说明.md",
+      "SHA256": "5b40d4a4f6f89ad263cb23ec843d44c0dadc1b016e66ce62db484742ac0160b8"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/本轮图件及绘图数据.json": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/本轮图件及绘图数据.json",
+      "SHA256": "6b54a4de65a1c6c008dde73a15a6ce00afeb3aa281a734b785e2b167cfee28d6"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/本轮采用登记.json": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/本轮采用登记.json",
+      "SHA256": "912e48d8e7b6256ac1d35a978573c66b69536f5fe98494dd33bad5613eaf8ae3"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/正文逐段复核.json": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/正文逐段复核.json",
+      "SHA256": "32147a063f8e34d1f536b1b8d79f504ffcd3ad24d424b5a5f5e1cc58332eb237"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/源稿局部修改对照.json": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/源稿局部修改对照.json",
+      "SHA256": "bd7404d91cdc0be05859266e7e7481ca577caa6ff46c4550166e2a306e56c4f7"
+    },
+    "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/目标清稿.docx": {
+      "path": "研究报告/05_review/当前版/1017甲方批注与逐年案例更新/目标清稿.docx",
+      "SHA256": "24cd3017ab40f9b3c161f079b210557ac46727baa080122c5ff2ad099aca132f"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/五项修正说明.md": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/五项修正说明.md",
+      "SHA256": "94b18f6dd9021be4852955a669dec263913d77f29fd592d30f277bf3aa3ba9d2"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/五项局部修改对照.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/五项局部修改对照.json",
+      "SHA256": "7dfe05e554d9fa74e741b2a6ddc303903daf8bc26d86b419f1ba0c19ae82e39c"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/修前哈希.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/修前哈希.json",
+      "SHA256": "6ff1303201210480abce28073cf0331556195792f521a4112cdbd655dc2779ef"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/六参数受控完整序列.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/六参数受控完整序列.json",
+      "SHA256": "81368a95de5d85c0ee5135a441238c12387c714189a61169c6ed234d63bfddc7"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/定值展示矩阵.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/定值展示矩阵.json",
+      "SHA256": "45481e21009b40c2f87dce15ddd03238a6f7d76dce045c8e2554a207787046c6"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/局部事实与保留范围核验.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/局部事实与保留范围核验.json",
+      "SHA256": "d19c4f5a9ca037ef9d75a6c126104f1918055bf4847988d58fbf5f6cd19e95df"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/推荐带与原始节点包络.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/推荐带与原始节点包络.json",
+      "SHA256": "1dc3c734e020903c530910c7cc3b742de5c70f7726bdee3cf8db0360dc7666d3"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/本轮矩阵图件.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/本轮矩阵图件.json",
+      "SHA256": "d62abbc8690815846a662446aede67959d9562dc7ac00ccc91c343c65933466f"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/核验入口及交付索引.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/核验入口及交付索引.json",
+      "SHA256": "3102ada1a0b6eaa9f86f8f86af60ddd3196b441ac6c2df0749ac452d6d30bd2e"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-002.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-002.png",
+      "SHA256": "546e91be04e98faac48ec51e4d1975d88f3d6a3ae3d045c5e414af03d9553b50"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-003.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-003.png",
+      "SHA256": "01b6d4856e3ac97b4aebe28f229c8a77c35469f47e87687c772e3dda5cc0af59"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-038.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-038.png",
+      "SHA256": "b4c9079827251162c38b6690e3e6735ad229c029c44712843c8259a852f06343"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-041.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-041.png",
+      "SHA256": "688a96f74a5d4b7f98b412bca22f92e05ea16da29c38d0b0decb33ffe7b8b5b7"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-043.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-043.png",
+      "SHA256": "041b363a277c9c5bb4c5b98125f57ea24bafac462dd44d210f45ef79612fdc19"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-044.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-044.png",
+      "SHA256": "a314df08a954f2887a1810186cb7dd9b3de40c5bd578a5ba678271432996e9ba"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-062.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-062.png",
+      "SHA256": "8a8807e99ed0f1ad2f653c26f111b9ed02bf23519e22172c89151d7ba51ea693"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-063.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-063.png",
+      "SHA256": "0f26a449bd2af0c65e2fc327acb0e280c1b976480ab392608bffd05fe5cb6f26"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-075.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-075.png",
+      "SHA256": "e4b3b5cd9c6760847d288d6a2b31f828eb1ae3300d533c38bb672af01615cdd2"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-084.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-084.png",
+      "SHA256": "ffa392c55531cd02bd4890214d864bbee28ecfd2e76c053fd349c64224061bf5"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-086.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-086.png",
+      "SHA256": "3f11e65800125f353c9a8a1b4eac05885134de043c4621bd4c8651bb5f6ca6fd"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-087.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-087.png",
+      "SHA256": "384e781d9e82fa677ac66d51f78c4bb266335a6533500dd43447299db7a10730"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-089.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-089.png",
+      "SHA256": "1a63924c8066c7d735158553e2af1a3617220037518527cc355fa0d3010452f0"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-090.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-090.png",
+      "SHA256": "a0a8aaca22799d3e5b7f81bddf5f4da4e1ae8329fd8942e331752064bc7ef273"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-156.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-156.png",
+      "SHA256": "2a1c7d9d1d568d3befff535db7fbc088886dc515753b37f2b0e3c9fa6ceeebd3"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-157.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-157.png",
+      "SHA256": "1f0894430f2c64a11236f9ecc999b2382900b6f4edc6b18fb9b65d91f07ca362"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-158.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-158.png",
+      "SHA256": "dc826131d428ba00fdbf4dad79ba56de9f910aa934fcfaa2d125616cb7cb471a"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-159.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-159.png",
+      "SHA256": "8eec88685041afed675a3f9e53674d2afd5b5fbf07d24c145db66b87fa85dbbf"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-160.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-160.png",
+      "SHA256": "b04da8fa977ce89c2f47abf8edb586ec39beac7214a85f0c4ec70f8377f1ea62"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-161.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-161.png",
+      "SHA256": "79fdf6470f70534a0f237e64718d461ef7d8c408b43845375058211b0124cad3"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-162.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-162.png",
+      "SHA256": "41f8f055ef09d4b97666f441aa4256090aaf248649f4a46a0ffd3c1235c9cc8d"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-163.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-163.png",
+      "SHA256": "55caa7c54c5f607a39e12e7e9e046ae700eb5cf4288cca1cbc1879b93de0a45a"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-164.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-164.png",
+      "SHA256": "954cb8dbb02b78f35f912b3a0dbcb3fc149103c738801970987e0215ddb2426c"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-174.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-174.png",
+      "SHA256": "9603bf696630a2f9ca9d3931ffc6fd81cd197454e6fb56dbd6bea772309f5c8d"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-175.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-175.png",
+      "SHA256": "081bf529d8c87ed7485f16f0bb99570f17c2f1b66ebd0e290ba14fb56f6f7e5f"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-176.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-176.png",
+      "SHA256": "f0ebb62941f000c6ea7e288be5982c402ef974703543472fdcba400fd2821d6f"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/page-177.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/page-177.png",
+      "SHA256": "ea043d3bebf486a29792c22b38eb955ac243662728b4a47ed01418fa066beab8"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/总览1.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/总览1.png",
+      "SHA256": "6f9dc97f581332d74bd4f607858b5a1b97aff69b5972dd7c58610bb8ab742a89"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/总览2.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/总览2.png",
+      "SHA256": "717b9e2b0bbf5f04e9da0a1eafbd6254d7f8dc8cafbb153d16fe408e7f2b404e"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/总览3.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/总览3.png",
+      "SHA256": "e5a273b8fb81bf47585d8f969a17d637c2f88b906e058edfa2170447a3dc6907"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/总览4.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/总览4.png",
+      "SHA256": "01d6a6f21588c4291adf00d01d28348a8f3449e7b0f3670e9a5a08abbc0b1be8"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/总览5.png": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/总览5.png",
+      "SHA256": "d8779cd18f5e6551386aef0fc56c2e4c3bedfd518ef331098ecba844fb2f4f1e"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/版面/页面索引.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/版面/页面索引.json",
+      "SHA256": "533c26f5c3af20dbe118ba1808e8878a36c3a0ea367009e51ed7d239cf6357cf"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/直接核读依据.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/直接核读依据.json",
+      "SHA256": "57e0f7de3b8b51efd9c19e855167c0354b704fe395c65501d8facb91694e980e"
+    },
+    "研究报告/05_review/当前版/1018五项局部修正/逐站展示复算.json": {
+      "path": "研究报告/05_review/当前版/1018五项局部修正/逐站展示复算.json",
+      "SHA256": "18c2e3c99d0efecec4aa3e9599368545c835fd278496e56b7e2497b9763fb6a9"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/WPS实际导出输入.docx": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/WPS实际导出输入.docx",
+      "SHA256": "6116b36fbbb2a386cada3a8b0f98b8465d37f67da1002c472434be1e402c7091"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/WPS版面核验.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/WPS版面核验.json",
+      "SHA256": "48638a8bc924a2a533b41354f0eab2cfce7f021b25b7b26adc7749c0be5b4d46"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/七项修正说明.md": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/七项修正说明.md",
+      "SHA256": "5d31051a7ec328cdc5477f0ed43ab5527fd262358de597ee43b1486d3a822129"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/七项源稿局部对照.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/七项源稿局部对照.json",
+      "SHA256": "a9540bdf2da8f4b709329f4274b2f22eff8d9a9722b4ff82d65ea70e74dd949b"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/上一版交付衔接.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/上一版交付衔接.json",
+      "SHA256": "69b8e5425460db62757b29dafc046739e6bc47f1b222e6a0928683912cfd8af0"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/事实与历史措辞核对.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/事实与历史措辞核对.json",
+      "SHA256": "17e0e4a1c4d447ec729629666e58b3c0b7820e1f779f9cbc72068f3511b3a1bf"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/交付模式.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/交付模式.json",
+      "SHA256": "e84312da0f634946d7c0af48447c7124de7fb92bf13c58f0ef4d5e8ef2e6550f"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/修前哈希.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/修前哈希.json",
+      "SHA256": "812fbe6572066efe244eb6862f2fc2cc87d2b80b1c88f96aaa4a033b36c9d2a4"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/原版局部装配.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/原版局部装配.json",
+      "SHA256": "2378da450de8f6da0a925d98f9f5df39679d09fe75d0b5d109238590d11c5a26"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/核验入口及交付索引.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/核验入口及交付索引.json",
+      "SHA256": "4c7a909f4aecfe1e33303d5eb9cde68289ef7b58bb688c9d3d780c06b3aad330"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/正文逐段复核.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/正文逐段复核.json",
+      "SHA256": "018dd353e23f786946b87a31d13cec3f01277a3274a38d5ca3646827c26693f8"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/contact-1.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/contact-1.png",
+      "SHA256": "642c6abe694bf6a4846aa9fd0b02f74d4edbe41a5e3a988c19bd9e0e525dd8ee"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/contact-2.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/contact-2.png",
+      "SHA256": "4ae3a8c55cfc382431d973c2a2532984901075f1f2747def83a00d172120edb7"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/contact-3.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/contact-3.png",
+      "SHA256": "850f001b3c110275cb3a6dcf8c11440ba59c3a51eed7305d7d28f617f098ca63"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/contact-4.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/contact-4.png",
+      "SHA256": "f6451a4dd71e6823d68c2f2a98a8327f47ec4ff7301b52c76e081e41512aac28"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-002.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-002.png",
+      "SHA256": "546e91be04e98faac48ec51e4d1975d88f3d6a3ae3d045c5e414af03d9553b50"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-003.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-003.png",
+      "SHA256": "01b6d4856e3ac97b4aebe28f229c8a77c35469f47e87687c772e3dda5cc0af59"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-008.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-008.png",
+      "SHA256": "707a6c34ea4dacc51f526620d65739bc800569f40450b51a686580245afca977"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-011.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-011.png",
+      "SHA256": "06be9c89b705a234406654cf0109b5492148024ea20720a260e50f896d996de7"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-012.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-012.png",
+      "SHA256": "6ff008d7a31d4c8c609c4cbf193419f2978d21ce7883da743b3d79dc7bfd7cad"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-034.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-034.png",
+      "SHA256": "fd0acf8f6454ab158fa06f7214f2194205963a51abe234258bd82e21add67299"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-041.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-041.png",
+      "SHA256": "ea77142491e304c6bcd440187cd53b5f6c52d153e680870c442a6a488845cca2"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-043.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-043.png",
+      "SHA256": "c4fc57cc61d6c126c4b5f04636b3cad3a7429ed52f20300a2ec39b42eeefaa77"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-044.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-044.png",
+      "SHA256": "2cb1e6211d60792d866088aca298a0cf93306ff5f0f346238597db14ddcb59b8"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-062.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-062.png",
+      "SHA256": "8a8807e99ed0f1ad2f653c26f111b9ed02bf23519e22172c89151d7ba51ea693"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-089.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-089.png",
+      "SHA256": "1a63924c8066c7d735158553e2af1a3617220037518527cc355fa0d3010452f0"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-090.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-090.png",
+      "SHA256": "3f3543b7dea2db0ce61f42e74e47cc5676d61c93d4a06a6951a870ccc126bbda"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-157.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-157.png",
+      "SHA256": "1f0894430f2c64a11236f9ecc999b2382900b6f4edc6b18fb9b65d91f07ca362"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-158.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-158.png",
+      "SHA256": "dc826131d428ba00fdbf4dad79ba56de9f910aa934fcfaa2d125616cb7cb471a"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-159.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-159.png",
+      "SHA256": "8eec88685041afed675a3f9e53674d2afd5b5fbf07d24c145db66b87fa85dbbf"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-160.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-160.png",
+      "SHA256": "b04da8fa977ce89c2f47abf8edb586ec39beac7214a85f0c4ec70f8377f1ea62"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-161.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-161.png",
+      "SHA256": "79fdf6470f70534a0f237e64718d461ef7d8c408b43845375058211b0124cad3"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-174.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-174.png",
+      "SHA256": "9603bf696630a2f9ca9d3931ffc6fd81cd197454e6fb56dbd6bea772309f5c8d"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-175.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-175.png",
+      "SHA256": "081bf529d8c87ed7485f16f0bb99570f17c2f1b66ebd0e290ba14fb56f6f7e5f"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-177.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-177.png",
+      "SHA256": "ea043d3bebf486a29792c22b38eb955ac243662728b4a47ed01418fa066beab8"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-182.png": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/page-182.png",
+      "SHA256": "241b5bd604064fd9332367c1c9b3509e98fa10e34a41af51844dcc9b883f00d7"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/版面/页面索引.json": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/版面/页面索引.json",
+      "SHA256": "a7307267c01955f57dac6be32bbba51105860499a4ad75d94236e67296cdd78b"
+    },
+    "研究报告/05_review/当前版/1019七项表述与清稿/装配目标.docx": {
+      "path": "研究报告/05_review/当前版/1019七项表述与清稿/装配目标.docx",
+      "SHA256": "2009c4567b6e27e492aff6e610e7d3735939cb60fae33c0bc0cd3e2b15e6789d"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/01 第一章 绪论_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/01 第一章 绪论_差异.diff",
+      "SHA256": "780f062ee984642dbc96bb7a387c8bca2dfa93dfb64fcab5e485b198d32df0f2"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/02 第二章 国内外研究现状_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/02 第二章 国内外研究现状_差异.diff",
+      "SHA256": "6196c47041521333a8c4ee9b324b8485676db556154dfa0d42208defb4beabb4"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/03 第三章 徐州典型地区运行特征分析_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/03 第三章 徐州典型地区运行特征分析_差异.diff",
+      "SHA256": "1164a32656b5b36f97cb8a0e32a4dcb0f6ccf48f685ad359f49851a7ea98624b"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/04 第四章 基于实际工程的建设成本模型_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/04 第四章 基于实际工程的建设成本模型_差异.diff",
+      "SHA256": "eaa0f620870e8cef759bd81b5caabd929246800627e7c244af6cabd86347d70b"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/05 第五章 “一片一策”弹性容载比规划建议_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/05 第五章 “一片一策”弹性容载比规划建议_差异.diff",
+      "SHA256": "159d968e175ca6d38009d1743d09445551a943c714ea1e2ec55ddd92aa6a9543"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/06 第六章 结论与建议_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/06 第六章 结论与建议_差异.diff",
+      "SHA256": "780f062ee984642dbc96bb7a387c8bca2dfa93dfb64fcab5e485b198d32df0f2"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/WPS实际导出输入.docx": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/WPS实际导出输入.docx",
+      "SHA256": "97de0f22060221b3a43ac30cad3614a8f62f0560292a15a0ff34e531901c21ce"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/WPS版面核验.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/WPS版面核验.json",
+      "SHA256": "cabbe5557b8f8b444e46a37adeac242df76b0a3bd8250afcc34d5627fbd0d41d"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/docx独立核验.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/docx独立核验.json",
+      "SHA256": "34d6d00ea4a7020ba18087a79d4d9d22fac02fe2eef6291a97a282107ed2e9ba"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/docx约束检查.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/docx约束检查.json",
+      "SHA256": "5d201501781dac4653d98abc66f7b58f3219e3aa0471157280ea780099cd8b99"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/final约束检查.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/final约束检查.json",
+      "SHA256": "c34a05427aea8e779299dcd69d483b77a125fba54609c90694e8652a962ccc99"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/source约束检查.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/source约束检查.json",
+      "SHA256": "009392f66e7e95564bc823b93d17472e6a7fe4608e6da8dd6e892c9b8fe1a08c"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/上一版交付衔接.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/上一版交付衔接.json",
+      "SHA256": "dfef804a54c3659fc260d59013b0c0031cac3bbbfe94e725429817ed6ca334b7"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/事实与历史措辞核对.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/事实与历史措辞核对.json",
+      "SHA256": "0a5243ccda94e7d7dbcb4e34c535f10e71bb814bcbf07acdbbed255ea6e3fb6a"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/交付模式.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/交付模式.json",
+      "SHA256": "a01940b3e18c861c2e1cd9efbee8a7e6060eb676f0f443b57c86bf7b0b931b3c"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/修前哈希.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/修前哈希.json",
+      "SHA256": "18f7f2b8d5d521bdd867f43b518cf7221297ef9aed4e1a947476b13cce28fe4f"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/原始资料版本衔接.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/原始资料版本衔接.json",
+      "SHA256": "18ffd1bd5cd3f0368c5cd45cbf83e5a39c47876f8339801adc7969422439bbcd"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/原版局部装配.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/原版局部装配.json",
+      "SHA256": "3d7c72c991fd1cde44f1139a7149333bd2d2eb6d1a4326103d049f18884c20d5"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/局部正文复核.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/局部正文复核.json",
+      "SHA256": "a56a076cfd60e5add081986824e57f94499271b38aaef5bc1a56c94701151039"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/最终导出一致性.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/最终导出一致性.json",
+      "SHA256": "dee92c6845d98ce56cabc1c2111cb529490c4c752dfad654ddd01d06bbd4fd37"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/本轮修正说明.md": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/本轮修正说明.md",
+      "SHA256": "1948501df2f96715afbd3d256c8b6260855c0ba34da77887d196b81a410e0bec"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/正文逐段复核.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/正文逐段复核.json",
+      "SHA256": "aadd42724d04bea7b3f557647de513b5261954774ca4d79c0b877209be161731"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-1.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-1.png",
+      "SHA256": "5fc8834888a4d5ab4febc668b45c716287b5b3f6b6b6801f290c6ab200a523b5"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-10.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-10.png",
+      "SHA256": "52db8adef6542f2a4164c9d0885f3359f25575c085dc2d49809f7d6e5d216349"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-11.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-11.png",
+      "SHA256": "3756ea6f07c2c1a0d121e4e6bb5fc51f97262b5a2c6fb682b3a73f5f469468b0"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-12.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-12.png",
+      "SHA256": "8b4f23083a6b69802c6a5bad6a655476c78acb33c8282d052b62e78832e3c883"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-2.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-2.png",
+      "SHA256": "1b5443802549ffda82cf13b3d60443d02d4a88aa0c2974eb89a6592fc65a4f48"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-3.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-3.png",
+      "SHA256": "fc9202af3b9137dac9a16bd462dda34b4c03d223d496bda0a6f1b3994f55ff4b"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-4.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-4.png",
+      "SHA256": "cb3cf7db251132c14313533883522767cee9ebf578cec9ca86f6cd0be3986b62"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-5.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-5.png",
+      "SHA256": "1cac32aca6fa7d987eba9eebf723baa22353a01c24934e8bc6a70095d2838e1a"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-6.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-6.png",
+      "SHA256": "c2daf7ef600a446917bb49dd53c83e7e6b033ba943378fc299046e86ca928478"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-7.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-7.png",
+      "SHA256": "f8f2e9e7d3bce58a291618d41c4dd8344e8b2f48d09abf8ae45a1bd21fb7827a"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-8.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-8.png",
+      "SHA256": "6cf65ada2a9450cc71749151ebfee87be4e6e979e75b82ab208b31574ab489f9"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-9.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-3-9.png",
+      "SHA256": "527f2025fb74483eae8c4a061339269ea5ac3efe5dccaad00182698d91bb8134"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-1.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-1.png",
+      "SHA256": "68173f8c1fbc0d89d76f364cd2006aac851f3d6db4da0ffe0c5519c3f252979b"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-2.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-2.png",
+      "SHA256": "5668edd7ea174d0cc542ec5b858b59feb8447811b9ba331ab9e2def22126b0b1"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-3.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-3.png",
+      "SHA256": "93cc4e14849d5d2dd214a4093cf8077a8bb274a986e6b4d72be628854bd2e707"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-4.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-4.png",
+      "SHA256": "4a7eab3f90462f1a0443c40525ca468c5e4e16f4403a0b046adbab44bb06e9cc"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-5.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-5.png",
+      "SHA256": "cbc01bc46ea510ba65cd6a63ec02ea25d74b1053feeddbd2e61872907a6013a8"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-6.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-6.png",
+      "SHA256": "b063fd04d68df8ab2d92304a9a4672034275e2ae3400a32ee5de68acd76820f2"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-7.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-7.png",
+      "SHA256": "909d3f1eb697ef94442ae4b3c8cd527e50ccfd34899f82f8c69b43aba7100b16"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-8.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-4-8.png",
+      "SHA256": "ac8e3888518e258e3fa9333aa90fb3c05a5787cb6a166763919f3d6bae33d4f4"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-1.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-1.png",
+      "SHA256": "7aa287b9a3be0ef82647c9079ec435e6c2da447c15e1705f400fabd1482ce121"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-10.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-10.png",
+      "SHA256": "9a02c418cd367d7e3cb44594e3a88a02bd6681ffa3745e2b8a9c81a9c0a135ed"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-11.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-11.png",
+      "SHA256": "4d4b9d531b4ccc38ad03eacc83c2e6d1dd1f5ced5fe461a0796d28e2eca19764"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-2.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-2.png",
+      "SHA256": "16b241dd82538e67b7f3ba12601feab96729643f67751bfe18508acc91809eb9"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-3.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-3.png",
+      "SHA256": "6210c19d7116be9fb9349e26675b6d23b3386cd2005c0a47aa48cce2af4f3c61"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-4.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-4.png",
+      "SHA256": "8647ef810a0588f6a867e7c12d7ef810a2b3bb5252b7da167b9253a24776f7f3"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-5.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-5.png",
+      "SHA256": "41530a13b8da00f91fa89366424544a3175c35194213a7c687aea3f627eee68a"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-6.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-6.png",
+      "SHA256": "d68664f87729e11dbbed2e8fe9f11562fe5275c79b6ed8e9b66cf10ca02d5174"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-7.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-7.png",
+      "SHA256": "596e02fbef2046dc2139770712134e168d5e920df952b72d293028e1a03359f6"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-8.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-8.png",
+      "SHA256": "312ac51ae08ee2e1e4f4810f313bf648124b24a9a72543b87c8e617cb4ff72a7"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-9.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-5-9.png",
+      "SHA256": "5d7a613169f8b6fa15e331c59e6237425118e533a0dfa146822d9ee805e3b4b2"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-contact-1.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-contact-1.png",
+      "SHA256": "463b5c8050104312ab3f383321a55adbc5a96ccddce396bb56d7266d152e7474"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-contact-2.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-contact-2.png",
+      "SHA256": "85b6803f7f7117c45d0e41a313aae17acc19f220f41c545a3d250a17837628a3"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-contact-3.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-contact-3.png",
+      "SHA256": "00dd151808159b4c160872c698c7eb505d37e49e8541530c9c6caf473f76b3d7"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-contact-4.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/formula-contact-4.png",
+      "SHA256": "d430b00ecaa9c495dcac1ff2e3dfda46dfd3f0c754e9a8307a4b06c575e99da8"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-002.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-002.png",
+      "SHA256": "4dfc033609c87d40e0f8f0572979dbcf1ee01dc907935c050b634a2c0fdded41"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-003.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-003.png",
+      "SHA256": "e105e653695d80ff81cc4cf832aff2f13945c6f572717da86cfbd1a95661a377"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-036.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-036.png",
+      "SHA256": "ff3eb21077034625d50274975602195cbeae23c65751906ea33bf695829927a3"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-040.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-040.png",
+      "SHA256": "37e19ae9bd5d876b5984048c7df09769d4dbf52be2d39798261064d475dc60b5"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-041.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-041.png",
+      "SHA256": "a1a4e1dea49223744de3e3d33f64cb980ff0abb54d7828e187f06c798e53b843"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-042.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-042.png",
+      "SHA256": "39e0b9821ffa0adff89ab369035d4f11c2b29a153af7828eb037d61b6d937331"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-043.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-043.png",
+      "SHA256": "eb3c202656801f765c0b3210c43c0c2ed14c3bbd8db763805a5454fc945634c2"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-044.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-044.png",
+      "SHA256": "4e00de040045b66bb4ac63e2076485f5089769f8bdd0043a78e444715ea57211"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-045.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-045.png",
+      "SHA256": "3e0f2de006f6fe82bdc6231bb89529a1addbd2a70f2e3db60269893003b9995f"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-050.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-050.png",
+      "SHA256": "443721e80b73384165c72eceba8d78cd815c457cd94aaed728a9e9b906f85b38"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-060.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-060.png",
+      "SHA256": "b254b4499ada955528bc6baa3329c1a12a795e5b98acc5386694ddaa907ecf31"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-061.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-061.png",
+      "SHA256": "18bbd39fd62640820f7098a0436e44589a6abcf96edf7626ffee271f559d16d8"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-071.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-071.png",
+      "SHA256": "420f85e409dac519c15967f6a502345a845091b0e3cf67ed8d33b56d65641ca7"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-072.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-072.png",
+      "SHA256": "d0851018b5a7775dc10fbc3d12e2c1c454b366e6a237e7e8376d01bf2ffa9e0d"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-073.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-073.png",
+      "SHA256": "940278373e1cba2db4e129298ee54b669c15a5b6367a82f6486f68e1a451a16e"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-075.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-075.png",
+      "SHA256": "2ede2aea807bd7326b1447d03c7fca30707eca841a867ec95fe9d545a02346be"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-079.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-079.png",
+      "SHA256": "5212749faa37c1d62eebad25f1bd61b5d4538b012f684e861a7b84cc64b7e847"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-081.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-081.png",
+      "SHA256": "5a7829f1da836a2b0add982b61ceffa0fdd019f3c03b0395cf49e86c14fb3d86"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-083.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-083.png",
+      "SHA256": "f3cc87d6dead25cf4dd60a0bd4cbf11d5b537becdd4eebb3a4e8b3bf76e46b21"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-084.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-084.png",
+      "SHA256": "06b3293e209947ef2df912b7bffe93a4d22dcd51c7935789fe1cf8c3a8750948"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-086.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-086.png",
+      "SHA256": "023ebe2101dc39eb2f368b301f294df0fcf43376a145342e5ef65f67fb6b2c74"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-087.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-087.png",
+      "SHA256": "e6b832fa612a28d0e754921c36e0d70c2a080ff6a2ae15f1782417604410c984"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-088.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-088.png",
+      "SHA256": "fe12c6a4da27fb7b31ffd610ae087bcb58fff4812d46d25e71daaf55016dda63"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-089.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-089.png",
+      "SHA256": "0f23a3c3f622925298b7d068d295c47bd5146087a088bb4182ce81e0bec382a0"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-099.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-099.png",
+      "SHA256": "3a018f2b8ffd96d30fac578ce6afd92886627dc21f1481e2e0f24786c0bdbc1a"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-153.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-153.png",
+      "SHA256": "8c59937ab106301834ff4d1d787a88af44e584d8328620cfb63795a127ad6c67"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-contact-1.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-contact-1.png",
+      "SHA256": "082b10b2b4b4ea17e2a4e6317de1c3b278780da4de386947b21770fdf5d39d15"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-contact-2.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-contact-2.png",
+      "SHA256": "11e5780b86eb97d4dacd58db5cb6084bd966eb5423ae1f0ef43e7dc45fa9f6bb"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-contact-3.png": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/page-contact-3.png",
+      "SHA256": "cf099cc010a5a40c8af99ec8a912d47c6222998f68eafa5e0fd6483693b0ac68"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/公式目视索引.json": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/版面/公式目视索引.json",
+      "SHA256": "06f28f8f3020a9206171da74ef21cda404829d14bfc2aac4126879023aa12f6b"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/装配目标.docx": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/装配目标.docx",
+      "SHA256": "20ba1638fcbe7f455138fc840ffa0174d152bd80e0ac0179ccc6435035499394"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/验证_citation_tests.log": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/验证_citation_tests.log",
+      "SHA256": "921b60a7fd52e978fbb551cacd29df2d6708879400278e1fcc70fceeb0c6f8e0"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/验证_inplace_tests.log": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/验证_inplace_tests.log",
+      "SHA256": "7c10d89a29772cd0dac2641d18bb131ab5281218256747c16e0cdead96a919e8"
+    },
+    "研究报告/05_review/当前版/1019公式排版与学者称谓/验证_tests.log": {
+      "path": "研究报告/05_review/当前版/1019公式排版与学者称谓/验证_tests.log",
+      "SHA256": "f13a95cd6a0f515c8c3c0ab46d862c35cf627adc56454a35d195bcecefaeffe2"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/01 第一章 绪论.md.diff": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/01 第一章 绪论.md.diff",
+      "SHA256": "7a546a86ce31f691d965f4d0efd3d166a4fbb10d62752f3ec02cb37d70ee72dd"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/02 第二章 国内外研究现状.md.diff": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/02 第二章 国内外研究现状.md.diff",
+      "SHA256": "3396fe004fba7a3fef548fa94a805a6668baa140cc783abf33577391e6f257a7"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/03 第三章 徐州典型地区运行特征分析.md.diff": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/03 第三章 徐州典型地区运行特征分析.md.diff",
+      "SHA256": "5e594add1c4aa240cf84d581edb4ec5502b3c47b3f64fb00bc128c784cf6b1b8"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/04 第四章 基于实际工程的建设成本模型.md.diff": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/04 第四章 基于实际工程的建设成本模型.md.diff",
+      "SHA256": "22fb6d63bc8e7de69db4d8cf51fdd084beeeef09e7712feae0dd12b2cefb3c82"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/05 第五章 “一片一策”弹性容载比规划建议.md.diff": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/05 第五章 “一片一策”弹性容载比规划建议.md.diff",
+      "SHA256": "27d6ce00062cd3ebda7c36a3b5d2165195c96f3a334bba14d47e91e1c0885732"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/06 第六章 结论与建议.md.diff": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/06 第六章 结论与建议.md.diff",
+      "SHA256": "4f9c1a55f8fd1a8b3a834fb48fc5a7e21b066e7ea7f490d8743d8c7faa1470d4"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/WPS实际导出输入.docx": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/WPS实际导出输入.docx",
+      "SHA256": "cf63b4f7c06a9a84823c10e13df51685717de6cfaba89c6e8c07c19843ff5e66"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/WPS版面核验.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/WPS版面核验.json",
+      "SHA256": "a74d9ab85f2b81dca55a82b3b775c86a1716a0674ed223c08ce3e088cebe747c"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/docx独立核验.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/docx独立核验.json",
+      "SHA256": "6ffccaef06517d915abe6802b688a299563922f1d695c76d2ac4f0bcb81a3270"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/docx约束检查.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/docx约束检查.json",
+      "SHA256": "1f47986ada5b43bbb648e6256765a5ce19be56ff3e3ee3ae289d93a0ea0a5256"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/final独立核验.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/final独立核验.json",
+      "SHA256": "855aa4608c04ec3b11d759614dfd6be9b15f90c23ce0adb09bd169423ec7bb7c"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/final约束检查.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/final约束检查.json",
+      "SHA256": "364db68e4488c13ded7476d6e4473a3c788c563824f827e0c6697dd0373b57fc"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/source约束检查.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/source约束检查.json",
+      "SHA256": "ee5374f1115c3b1b15a7e2c0536bc5e287285ed96db0b4e7392a19a8642dbf47"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版_WPS版面核验.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版_WPS版面核验.json",
+      "SHA256": "a5b2e66dc71be5db6da923d7526f088e884287cd6435106412691412c228cfd7"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版_事实与历史措辞核对.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版_事实与历史措辞核对.json",
+      "SHA256": "1c0fdd27669a0d72f27e312c42b204e9410574845f29ace3b6e7497fc1b003a9"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版_交付模式.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版_交付模式.json",
+      "SHA256": "4972faf7b44849628f224cacce7d80f3d3205e42ba1f9a1f984ab2ffde4f84be"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版_正文逐段复核.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版_正文逐段复核.json",
+      "SHA256": "48b85abb0957d0424ecc790bab932c241bde0ffee238773a268e7da4e3972234"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版交付衔接.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/上一版交付衔接.json",
+      "SHA256": "fddf09027f46792bfaaa9c602533b4f76af32bb8b41d661485ed575220ea8109"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/事实与历史措辞核对.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/事实与历史措辞核对.json",
+      "SHA256": "2bf1c050feca0a31ab9f22cf1837347ac8273ed34736b3e7b95bad03f75d26e8"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/交付模式.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/交付模式.json",
+      "SHA256": "328131028927f76530376ebf7e18517054538cad15a460bce3b6d515de7d40c5"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/修前哈希.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/修前哈希.json",
+      "SHA256": "2237d624d62e627d736dcdb9671905d6f3b83e69f4211f018fa7a6914a6d0ac8"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/六项正文修正说明.md": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/六项正文修正说明.md",
+      "SHA256": "a931963fe042a5769863a5721b372188899d23dc80056e77201d933a2345102c"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/原始资料版本衔接.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/原始资料版本衔接.json",
+      "SHA256": "18ffd1bd5cd3f0368c5cd45cbf83e5a39c47876f8339801adc7969422439bbcd"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/原版局部装配.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/原版局部装配.json",
+      "SHA256": "ab7223b74ee3b906911d80bd5767c7093a56f83c06a29ba898e96c0434114ce3"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/局部正文复核.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/局部正文复核.json",
+      "SHA256": "486bf4f01805052d85e7bf3ca65b959bfe85143d1f84bf8513390a421405f50d"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/正文逐段复核.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/正文逐段复核.json",
+      "SHA256": "a902af0b315334073edec6c4fb626529b4ce47ffaf65e8d41d2aee9a05691139"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/contact-1.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/contact-1.png",
+      "SHA256": "d96d3110147129c671f5d65333868fa76e83482916250ea71cb5e5d12597f7ba"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/contact-2.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/contact-2.png",
+      "SHA256": "c5b54fe005d5670a7e9a29dbf57ee4b30a2cf301078bf4ab7e46bc44c241004c"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/contact-3.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/contact-3.png",
+      "SHA256": "903006d1ab72718ea37dab05400a85913e0e0cd2bc3aa7a578ab148ee13253be"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/contact-4.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/contact-4.png",
+      "SHA256": "0ec9a0c037ae8d7615f79df9bcbe7d562a4b0f48cfa7ff5dd3bfd88961c25687"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-002.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-002.png",
+      "SHA256": "3451469c7677cc92d0dbc8aec1829a3a73ebc6038496e4386a4b75c7b73ee93c"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-003.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-003.png",
+      "SHA256": "7d5e92305314c3e0f2c0d549c7b8424b91401c57fe3f1d4a52c841373467e878"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-010.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-010.png",
+      "SHA256": "901e626a6885063b19fd30f18f4c158fb280d0c73966bc2468785ace7c1125e3"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-036.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-036.png",
+      "SHA256": "6fcb9897cea7abe071a936fca152c31cac333c58af84502df7c39596509abb64"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-061.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-061.png",
+      "SHA256": "979a708c63b719ce49713c6ae521fa89602b09bc812061e9f60e8dfef67452c6"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-062.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-062.png",
+      "SHA256": "75f6ac6f17bd4dd3916374be924a9baa58f5c506272df542797cee57dc064ae1"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-063.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-063.png",
+      "SHA256": "7ce826d8431ffe70f98cad34ccddaa996b8e4f565eea1fc2d928aa25cef3d895"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-064.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-064.png",
+      "SHA256": "7a4aa457e1c0788bfddcb5694bf08bfa7c9cd4e0a1c024af1cc644910bcc1ff4"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-065.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-065.png",
+      "SHA256": "1f7448d4a803d7af493f6ef67e2ec6a4ab74acb1d8a2ae923354426d5cb20626"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-066.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-066.png",
+      "SHA256": "b665e0f8392808592d889043dffe7ca794cb71fcb625e7e37c05cac5251f6358"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-084.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-084.png",
+      "SHA256": "433aa3d4f3dad5928e2be728c435e8c49e4b33fbda3814d74c92391a08e1488f"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-085.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-085.png",
+      "SHA256": "85ca552909a8df66d70944951f2eb27a53754ae9b08db4cc7ee0a5fc46c5f380"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-148.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-148.png",
+      "SHA256": "a5ad50a825be7319dc7416ef3d03707a6caf9f2ef2da0b27e0c4dd6e6827b398"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-149.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-149.png",
+      "SHA256": "75b2407958355d19c2a87524ee14ca1d4b156c91af62fce06a01ec3576ad6741"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-150.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-150.png",
+      "SHA256": "fc15e6ea0b08f1dbdb2641aeedf14921a209c099fab1c743c8313c0abbe7169a"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-151.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-151.png",
+      "SHA256": "3c342305338aff48aa07ee4f4b7e1eb6eb1a314275b097be639881b26ce3ab80"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-152.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-152.png",
+      "SHA256": "46d5f60c2fa69df6388151067dd8baeb950bf7d0f10beda75356ac970d632fbb"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-153.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-153.png",
+      "SHA256": "0597321f68f87f2e8219e99b561316ab0580956aec3a50932fc9e46faa36337e"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-154.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-154.png",
+      "SHA256": "44bda2ebecd150fa77c13b42905da08c2ac708a1eef2d98a2a741ac6467e60bd"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-155.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-155.png",
+      "SHA256": "c035c158e788bbd3e26bc2a8f5bcdd73968b03b297207b1af6ace7c9045c3910"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-158.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-158.png",
+      "SHA256": "569e3f7d36c3f0973d4e63c496c834160f9dcf5e859c6ac4b8f46c583674f770"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-174.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-174.png",
+      "SHA256": "cd475bcf7fed9b4e12a15edd7618d5339b5eabe1dfa2cc777dfa2d41bec711f4"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-180.png": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/版面/page-180.png",
+      "SHA256": "aa4ffe77c30b6540810aba514467fa81c4065aad058c1d766f35b73691b3ffb5"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/用户另存核验.json": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/用户另存核验.json",
+      "SHA256": "09a8eb0d63e9e1e87770ed205a791db24fba1816acadc847eae7a5fbf4662eba"
+    },
+    "研究报告/05_review/当前版/1019区段说明与正文局部修正/装配目标.docx": {
+      "path": "研究报告/05_review/当前版/1019区段说明与正文局部修正/装配目标.docx",
+      "SHA256": "255f97265028c9c05cf39d5c8aad07783e4829ce63457598c0510150ef2d82bf"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/01 第一章 绪论_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/01 第一章 绪论_差异.diff",
+      "SHA256": "98913fc7591464a194e59b3d5c59cd5b8f4dce39c673ce1d0c6e6ec4c5331216"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/02 第二章 国内外研究现状_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/02 第二章 国内外研究现状_差异.diff",
+      "SHA256": "780f062ee984642dbc96bb7a387c8bca2dfa93dfb64fcab5e485b198d32df0f2"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/03 第三章 徐州典型地区运行特征分析_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/03 第三章 徐州典型地区运行特征分析_差异.diff",
+      "SHA256": "79d0288bf51b21a173535882dc99b44a5fac9d07c978a2423e80ebb972edf32f"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/04 第四章 基于实际工程的建设成本模型_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/04 第四章 基于实际工程的建设成本模型_差异.diff",
+      "SHA256": "c96378be132b63cc939a8aa3f165eec37b865fae15a041edc9c2f5958190bee2"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/05 第五章 “一片一策”弹性容载比规划建议_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/05 第五章 “一片一策”弹性容载比规划建议_差异.diff",
+      "SHA256": "fd1bfaeb1886592cc6baf0d91c3b5413dab6265c7ebf157995420a1c5114f7e9"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/06 第六章 结论与建议_差异.diff": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/06 第六章 结论与建议_差异.diff",
+      "SHA256": "f4a13d23fd151bf26b26a9401ef024e81518c6bd3be0d80c18033ed790365498"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/WPS实际导出输入.docx": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/WPS实际导出输入.docx",
+      "SHA256": "ac1ec36396872c59a4371702b6aeb88c138f2d5ee09c07535d0a020b293c8328"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/WPS版面核验.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/WPS版面核验.json",
+      "SHA256": "b336d8413b722f1bd375eb133e39a56a8fb0391e94a76ed328adf053fb890598"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/docx约束检查.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/docx约束检查.json",
+      "SHA256": "1d0e3c9518be212549cf36e835e24ab3244b3c2ae4600701467cfc4238517c90"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/final约束检查.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/final约束检查.json",
+      "SHA256": "c8b13550819af7f5005afc025cf42a28d28c843302cbf57b0d8c887e5dc2eec3"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/source约束检查.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/source约束检查.json",
+      "SHA256": "8722b0bd66faf15a7b5ac32267f0a48d4c30810380e1245812fb5ef479f4da85"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/上一版交付衔接.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/上一版交付衔接.json",
+      "SHA256": "d856913968fbf7de088dc2f42cbb50de9382564bbaa0b241bb390313211e0206"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/事实与历史措辞核对.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/事实与历史措辞核对.json",
+      "SHA256": "b36be135449186eb6f48a29fc25f08e4cd58b28cbbd7956daee953c22e81dd19"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/交付模式.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/交付模式.json",
+      "SHA256": "1d16f867560fc04e4fdf1c2126c72b331246797cb1312797b837e5ccb2aa86a9"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/交付登记维护.py": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/交付登记维护.py",
+      "SHA256": "77bbc3b7d36cc6fd8551bf87db68e4c6f1172be810ce02779b2d7ef918743494"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/低档窗口定位方法比较.csv": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/低档窗口定位方法比较.csv",
+      "SHA256": "fc137f90c98a5345363c920aa841107eb393dea1bfb33fb9da08d1fdfdd6e8d9"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/低档窗口定位方法比较.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/低档窗口定位方法比较.json",
+      "SHA256": "085302d0718971b7cb745768dd528557c6fd44dd49673e9d51226d2e604c8c9e"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/修前哈希.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/修前哈希.json",
+      "SHA256": "37a3a422b9448ca8bd82ccd6a90a4fb12caf853301c779f469e90d96c2184dde"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/历史定档原件/tools/report_parameter_selection.py": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/历史定档原件/tools/report_parameter_selection.py",
+      "SHA256": "8e5ad0aef99bf149d4f79a28d1df616d272fd13accc04a2406b919e4a0fbc57f"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/原始资料版本衔接.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/原始资料版本衔接.json",
+      "SHA256": "18ffd1bd5cd3f0368c5cd45cbf83e5a39c47876f8339801adc7969422439bbcd"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/原版局部装配.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/原版局部装配.json",
+      "SHA256": "731faa421b96c1c287d8f043a2abffd2a9895149d8b80d1acb4b012096b2d460"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/扩展数据独立核验.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/扩展数据独立核验.json",
+      "SHA256": "af1cc5f44c8c8cdf7e3d727f2ec7b9448dc692a9a233079073c2715db1d015d0"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/改动正文待复核.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/改动正文待复核.json",
+      "SHA256": "69cb5337da87aa1fbcc626e759fde288f7bdbe2ebd59552ceee3a254948dc48b"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/更新图件来源.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/更新图件来源.json",
+      "SHA256": "4ebbdd24a4c4a92b473bbdc9808a4d68fd0f7f2d34646bc8fb7e1a483003d104"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/最终导出一致性.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/最终导出一致性.json",
+      "SHA256": "99cd57511dac56fe6c3f1d6cf9cef7e6727f9cdb00c4b974650dc5112ccfb618"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/本次16段复核.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/本次16段复核.json",
+      "SHA256": "811835a4eaed077d70661b541e5322757ac23c974f4984f8244ec5c9122d6cc8"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/本次五项修正说明.md": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/本次五项修正说明.md",
+      "SHA256": "68903e755a0997cc5a4c9910410d95e94e8e54a8b1a0735fd5f0b7937391c7a0"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/正文复核记录维护.py": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/正文复核记录维护.py",
+      "SHA256": "d7c869d43aef132753d239ad83f880cc3cb172d5a619ba3241a7418631de7ffd"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/正文逐段复核.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/正文逐段复核.json",
+      "SHA256": "f4a1cb4ff2a2fed179e79a5c77fa46c5efd097bc38ab98813bc3b728f397ee42"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/求解核验.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/求解核验.json",
+      "SHA256": "1101012092e0b798d3c378889c2ba720eb92b8b1fb9a507472d15618acb5dcdf"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-1.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-1.png",
+      "SHA256": "5527e9f6098cd0e22b20633d7a33188d3d61c77904467aa8429067a9bbbdbcd7"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-2.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-2.png",
+      "SHA256": "5b06ebbfa3ae241e88de4e762ef3930aaa2820ecf32b16f8d17c4c1656129ade"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-3.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-3.png",
+      "SHA256": "552ec6d36841674b095f23fba833250861886057d1bc21dac31a36fed246310c"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-4.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-4.png",
+      "SHA256": "9b64d85b223c421fc7d483e449f9f10c86db28c37c572163fd9396bcc802af3a"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-5.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-contact-5.png",
+      "SHA256": "c5a80e095a4a137cbf1ddbfef563d5790d5d6e754885d58e5bf16592f4af0d26"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-002.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-002.png",
+      "SHA256": "cc51f86472cfb15a34424f21d93787e6dd678c519f90cb8aabb9e363989e896b"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-003.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-003.png",
+      "SHA256": "35e0335cb03580941427b68aada21c281b22056912de466e53faa1b6346f3c7b"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-061.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-061.png",
+      "SHA256": "1457cc41b7c4993901f974b3d63e532ea3153e790246dbec6b2821d169ac1449"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-074.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-074.png",
+      "SHA256": "e2ec33b8eb623b9ee4369c789c426165473c86b627c880c38db375b9826da7e9"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-091.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-091.png",
+      "SHA256": "f647d410ff24f30ee0c35ceedf6f6d59dda036a9174aef0178c42557d61e861e"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-153.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-153.png",
+      "SHA256": "3c276a56b2bd7156589fa5f8b6cd961c75ccbb7de6fbac2fa2b482602b571294"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-154.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-154.png",
+      "SHA256": "4039fe658c748d357785b02cbe86e248068340cbab38b9c334ee1e9816e310e3"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-155.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-155.png",
+      "SHA256": "f3456efac1f6f7e2396832afffb37b02c6161a15dcd05c1d3166a064d77ba26c"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-156.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-156.png",
+      "SHA256": "63238ce7823c379ee830aab1019e205a0420cc0311c1b75c9d1543993d5f8154"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-157.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-157.png",
+      "SHA256": "0b4ac584583a05dc7952301c4378c966bde9b34d8e66281e91ca88a277085913"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-161.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-161.png",
+      "SHA256": "6f952c1882b88e3c857ef0c0b680dc039472b3d28d2e0cf50b35cd48224f832b"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-162.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-162.png",
+      "SHA256": "e8a5e5ed1615ff83e61234f9e8bf02880bc9f5d227b7b858563434367671fe76"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-163.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-163.png",
+      "SHA256": "b37d6cef08baf3e3ce63d4ac42098348d67d04ba4e8df45d91e606462b87ffea"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-164.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-164.png",
+      "SHA256": "a71634199d68634b02a3c637da2cfbf0a222fb534cc8e014a61c77570b7b0ca9"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-165.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-165.png",
+      "SHA256": "ebff7c0354430323e9d3f4d95e5fdaa5ef446896d4a92f767a4c6612d6f801f6"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-166.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-166.png",
+      "SHA256": "ae41be46aba172c5f40e961487b62581ddea5ff72c8d26393ddcdd420a2b8407"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-167.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-167.png",
+      "SHA256": "40c071ff70a29019c9cc2f518fa3fbe87537a53ed9466950bbdcf06a55fcf9fa"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-168.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-168.png",
+      "SHA256": "133ad49ef9cd84e0e137ca2fba4abfbb2736e05d09d4bc7c80d8b985a4297301"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-169.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/changed-page-169.png",
+      "SHA256": "eeaecfa0d6bc071d12701dd263e5a11f01a967ddd06e5ea768b5ade2c2395c0e"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-1.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-1.png",
+      "SHA256": "5fc8834888a4d5ab4febc668b45c716287b5b3f6b6b6801f290c6ab200a523b5"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-10.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-10.png",
+      "SHA256": "52db8adef6542f2a4164c9d0885f3359f25575c085dc2d49809f7d6e5d216349"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-11.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-11.png",
+      "SHA256": "7def90d2e2e53f0d2d33f29c05e48e5d7ebb185b0734d9078c19d9a8d72302e8"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-12.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-12.png",
+      "SHA256": "1c8a0e622f0f0a6be0c531472013c46a31b5593f9dbcb36c01ae5fa7c6226037"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-2.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-2.png",
+      "SHA256": "1b5443802549ffda82cf13b3d60443d02d4a88aa0c2974eb89a6592fc65a4f48"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-3.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-3.png",
+      "SHA256": "fc9202af3b9137dac9a16bd462dda34b4c03d223d496bda0a6f1b3994f55ff4b"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-4.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-4.png",
+      "SHA256": "cb3cf7db251132c14313533883522767cee9ebf578cec9ca86f6cd0be3986b62"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-5.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-5.png",
+      "SHA256": "1cac32aca6fa7d987eba9eebf723baa22353a01c24934e8bc6a70095d2838e1a"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-6.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-6.png",
+      "SHA256": "c2daf7ef600a446917bb49dd53c83e7e6b033ba943378fc299046e86ca928478"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-7.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-7.png",
+      "SHA256": "f8f2e9e7d3bce58a291618d41c4dd8344e8b2f48d09abf8ae45a1bd21fb7827a"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-8.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-8.png",
+      "SHA256": "6cf65ada2a9450cc71749151ebfee87be4e6e979e75b82ab208b31574ab489f9"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-9.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-3-9.png",
+      "SHA256": "527f2025fb74483eae8c4a061339269ea5ac3efe5dccaad00182698d91bb8134"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-1.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-1.png",
+      "SHA256": "68173f8c1fbc0d89d76f364cd2006aac851f3d6db4da0ffe0c5519c3f252979b"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-2.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-2.png",
+      "SHA256": "5668edd7ea174d0cc542ec5b858b59feb8447811b9ba331ab9e2def22126b0b1"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-3.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-3.png",
+      "SHA256": "93cc4e14849d5d2dd214a4093cf8077a8bb274a986e6b4d72be628854bd2e707"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-4.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-4.png",
+      "SHA256": "4a7eab3f90462f1a0443c40525ca468c5e4e16f4403a0b046adbab44bb06e9cc"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-5.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-5.png",
+      "SHA256": "32f14eeea3ca03afb969c06dca4293dfd84cd25db9b69636ceb1043518817097"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-6.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-6.png",
+      "SHA256": "7816015ef5e2e7624a6662c41c2d2b147751330340c935cc161977f57fca675b"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-7.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-7.png",
+      "SHA256": "909d3f1eb697ef94442ae4b3c8cd527e50ccfd34899f82f8c69b43aba7100b16"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-8.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-4-8.png",
+      "SHA256": "ac8e3888518e258e3fa9333aa90fb3c05a5787cb6a166763919f3d6bae33d4f4"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-1.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-1.png",
+      "SHA256": "7aa287b9a3be0ef82647c9079ec435e6c2da447c15e1705f400fabd1482ce121"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-10.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-10.png",
+      "SHA256": "9a02c418cd367d7e3cb44594e3a88a02bd6681ffa3745e2b8a9c81a9c0a135ed"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-11.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-11.png",
+      "SHA256": "4d4b9d531b4ccc38ad03eacc83c2e6d1dd1f5ced5fe461a0796d28e2eca19764"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-2.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-2.png",
+      "SHA256": "16b241dd82538e67b7f3ba12601feab96729643f67751bfe18508acc91809eb9"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-3.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-3.png",
+      "SHA256": "6210c19d7116be9fb9349e26675b6d23b3386cd2005c0a47aa48cce2af4f3c61"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-4.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-4.png",
+      "SHA256": "8647ef810a0588f6a867e7c12d7ef810a2b3bb5252b7da167b9253a24776f7f3"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-5.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-5.png",
+      "SHA256": "41530a13b8da00f91fa89366424544a3175c35194213a7c687aea3f627eee68a"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-6.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-6.png",
+      "SHA256": "d68664f87729e11dbbed2e8fe9f11562fe5275c79b6ed8e9b66cf10ca02d5174"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-7.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-7.png",
+      "SHA256": "596e02fbef2046dc2139770712134e168d5e920df952b72d293028e1a03359f6"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-8.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-8.png",
+      "SHA256": "312ac51ae08ee2e1e4f4810f313bf648124b24a9a72543b87c8e617cb4ff72a7"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-9.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-5-9.png",
+      "SHA256": "5d7a613169f8b6fa15e331c59e6237425118e533a0dfa146822d9ee805e3b4b2"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-contact-1.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-contact-1.png",
+      "SHA256": "463b5c8050104312ab3f383321a55adbc5a96ccddce396bb56d7266d152e7474"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-contact-2.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-contact-2.png",
+      "SHA256": "c06d3f84a3633df609d17a6de58be17f178358b35b6f2de1e217931be714d526"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-contact-3.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-contact-3.png",
+      "SHA256": "8fec9aab674e0751f6f91f7c942de62c92d82390b738312956f4ba214f0778e3"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-contact-4.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/formula-contact-4.png",
+      "SHA256": "d430b00ecaa9c495dcac1ff2e3dfda46dfd3f0c754e9a8307a4b06c575e99da8"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-002.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-002.png",
+      "SHA256": "4dfc033609c87d40e0f8f0572979dbcf1ee01dc907935c050b634a2c0fdded41"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-003.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-003.png",
+      "SHA256": "ab2c98915b589f0c9cba754523ba16310e125ee2491a2d7d1fa6db7a4917d6fd"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-036.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-036.png",
+      "SHA256": "ff3eb21077034625d50274975602195cbeae23c65751906ea33bf695829927a3"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-040.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-040.png",
+      "SHA256": "37e19ae9bd5d876b5984048c7df09769d4dbf52be2d39798261064d475dc60b5"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-041.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-041.png",
+      "SHA256": "a1a4e1dea49223744de3e3d33f64cb980ff0abb54d7828e187f06c798e53b843"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-042.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-042.png",
+      "SHA256": "39e0b9821ffa0adff89ab369035d4f11c2b29a153af7828eb037d61b6d937331"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-043.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-043.png",
+      "SHA256": "eb3c202656801f765c0b3210c43c0c2ed14c3bbd8db763805a5454fc945634c2"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-044.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-044.png",
+      "SHA256": "4e00de040045b66bb4ac63e2076485f5089769f8bdd0043a78e444715ea57211"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-045.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-045.png",
+      "SHA256": "3e0f2de006f6fe82bdc6231bb89529a1addbd2a70f2e3db60269893003b9995f"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-050.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-050.png",
+      "SHA256": "443721e80b73384165c72eceba8d78cd815c457cd94aaed728a9e9b906f85b38"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-060.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-060.png",
+      "SHA256": "ea8fbafe4f02193948806ab024de69834090d542349be53ed5d5e32d8cbce4c6"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-061.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-061.png",
+      "SHA256": "6cc67b8343c6539564880fc0c46431a94fedaf59f5f2a5ec4d1b8fdc9ab4866d"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-071.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-071.png",
+      "SHA256": "420f85e409dac519c15967f6a502345a845091b0e3cf67ed8d33b56d65641ca7"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-072.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-072.png",
+      "SHA256": "d0851018b5a7775dc10fbc3d12e2c1c454b366e6a237e7e8376d01bf2ffa9e0d"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-073.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-073.png",
+      "SHA256": "940278373e1cba2db4e129298ee54b669c15a5b6367a82f6486f68e1a451a16e"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-075.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-075.png",
+      "SHA256": "572cba3a7b87ea4efb837322c8ce41e2d6d0a8d511ff8d2f8d7bfdda915d8427"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-079.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-079.png",
+      "SHA256": "5212749faa37c1d62eebad25f1bd61b5d4538b012f684e861a7b84cc64b7e847"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-081.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-081.png",
+      "SHA256": "5a7829f1da836a2b0add982b61ceffa0fdd019f3c03b0395cf49e86c14fb3d86"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-083.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-083.png",
+      "SHA256": "288e6f52c6037d76210834a1ea504a4ded3cb8a905e02271d18518e6d7fba959"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-084.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-084.png",
+      "SHA256": "06b3293e209947ef2df912b7bffe93a4d22dcd51c7935789fe1cf8c3a8750948"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-086.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-086.png",
+      "SHA256": "023ebe2101dc39eb2f368b301f294df0fcf43376a145342e5ef65f67fb6b2c74"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-087.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-087.png",
+      "SHA256": "e6b832fa612a28d0e754921c36e0d70c2a080ff6a2ae15f1782417604410c984"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-088.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-088.png",
+      "SHA256": "fe12c6a4da27fb7b31ffd610ae087bcb58fff4812d46d25e71daaf55016dda63"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-089.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-089.png",
+      "SHA256": "0f23a3c3f622925298b7d068d295c47bd5146087a088bb4182ce81e0bec382a0"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-099.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-099.png",
+      "SHA256": "3a018f2b8ffd96d30fac578ce6afd92886627dc21f1481e2e0f24786c0bdbc1a"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-153.png": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/page-153.png",
+      "SHA256": "91171a628ad25df5f139b6f961e9fa0e7d25aa97b74fe43748b1ceca3893e114"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/公式目视索引.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/公式目视索引.json",
+      "SHA256": "352d08b123380e20e4c90eb615131853fd259a3f7407c5994c365fb0eeda0783"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/版面/改动页面索引.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/版面/改动页面索引.json",
+      "SHA256": "15778ccfe65185665056c1f1de8666b426b3dc9093a03433d7348dfb8d30de12"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/独立LP核验.json": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/独立LP核验.json",
+      "SHA256": "7d4ad2e457929d9b863385f1cd7b343caa2e547f6daeeb461c32b1f483d88a83"
+    },
+    "研究报告/05_review/当前版/1019推广矩阵扩展/装配目标.docx": {
+      "path": "研究报告/05_review/当前版/1019推广矩阵扩展/装配目标.docx",
+      "SHA256": "a7054c7bf3aded690ca9e89b8d28ff7b1719bd248bb3fe82a26be7bce7c04f1b"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/WPS实际导出输入.docx": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/WPS实际导出输入.docx",
+      "SHA256": "df9961da7c6d7724a6eb03e7c94e4e8ea4fc0215187938880ef230674b2b83f2"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/WPS版面核验.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/WPS版面核验.json",
+      "SHA256": "a5b2e66dc71be5db6da923d7526f088e884287cd6435106412691412c228cfd7"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/上一版交付衔接.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/上一版交付衔接.json",
+      "SHA256": "b3c7fbc0677b2acea1e69fc3a9cdbc58b1ebc2732d3f1a78fcccb376235098ef"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/事实与历史措辞核对.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/事实与历史措辞核对.json",
+      "SHA256": "1c0fdd27669a0d72f27e312c42b204e9410574845f29ace3b6e7497fc1b003a9"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/交付模式.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/交付模式.json",
+      "SHA256": "4972faf7b44849628f224cacce7d80f3d3205e42ba1f9a1f984ab2ffde4f84be"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/修前哈希.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/修前哈希.json",
+      "SHA256": "90e87602ec83e5e8d42b4c348ae8a72600afb6e687c2e1f0da7aaa5118d9f301"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/原始资料版本衔接.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/原始资料版本衔接.json",
+      "SHA256": "18ffd1bd5cd3f0368c5cd45cbf83e5a39c47876f8339801adc7969422439bbcd"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/原版局部装配.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/原版局部装配.json",
+      "SHA256": "eae4dabb24d3ffe0c05e2be266e36fea27f270b4fb35659fed63a1f4594bc758"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/四项优化说明.md": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/四项优化说明.md",
+      "SHA256": "317b79551d01c07b249c9376abb9d23099f45f9b3cf89ada3186ddcc9c028083"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/四项表述源稿局部对照.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/四项表述源稿局部对照.json",
+      "SHA256": "7d809f683059932c6ec3715fe9306b78c8c2fb8a362d33cf432f4ec74edd4ef4"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/核验入口及交付索引.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/核验入口及交付索引.json",
+      "SHA256": "3c2f390e133f4ddd9b9d4b452bb0fc2537ff502351797c2bf6c4d2c974fef061"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/正文逐段复核.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/正文逐段复核.json",
+      "SHA256": "48b85abb0957d0424ecc790bab932c241bde0ffee238773a268e7da4e3972234"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/contact-1.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/contact-1.png",
+      "SHA256": "534f6e1f71882d918be8378a81b864cf9aa8d956997a8b0e13bdfa74e5ee88a8"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/contact-2.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/contact-2.png",
+      "SHA256": "67fc2d1d95aee4bc2e4f99e716d4762d9e4f4c7a17d446915c61da2e75410690"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/contact-3.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/contact-3.png",
+      "SHA256": "a42cdf698b5f09f9813be046709708ef1af10fd77f919df1808fa6c53e13b20d"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/contact-4.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/contact-4.png",
+      "SHA256": "24726f4a9f6341ad0d810d2741f8afb09ed4b59512c3df9b23687023228076e8"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-002.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-002.png",
+      "SHA256": "546e91be04e98faac48ec51e4d1975d88f3d6a3ae3d045c5e414af03d9553b50"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-003.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-003.png",
+      "SHA256": "01b6d4856e3ac97b4aebe28f229c8a77c35469f47e87687c772e3dda5cc0af59"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-034.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-034.png",
+      "SHA256": "83603ba9683abfa6f72d01b5eec59873c2582f309255c33d0bb0485b855be23b"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-041.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-041.png",
+      "SHA256": "9e8964ebadb06fc49caa864be813b016dc7ae60777dca5a7697afe138453429c"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-043.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-043.png",
+      "SHA256": "91c79288072786aeef6253e45d6c2830b974aae1456a66a73eb2c6cab2b3da11"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-044.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-044.png",
+      "SHA256": "28033c3d1997d5e2445e8ff132452e4dfc27b67aa3bbf1bf4326db08126470c6"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-062.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-062.png",
+      "SHA256": "8a8807e99ed0f1ad2f653c26f111b9ed02bf23519e22172c89151d7ba51ea693"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-084.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-084.png",
+      "SHA256": "ffa392c55531cd02bd4890214d864bbee28ecfd2e76c053fd349c64224061bf5"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-089.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-089.png",
+      "SHA256": "1a63924c8066c7d735158553e2af1a3617220037518527cc355fa0d3010452f0"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-090.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-090.png",
+      "SHA256": "3f3543b7dea2db0ce61f42e74e47cc5676d61c93d4a06a6951a870ccc126bbda"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-150.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-150.png",
+      "SHA256": "e6982aec1d0aeb1546eb756a67c4863ea0db5a65bed5ea6b7f2803987e078cd9"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-152.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-152.png",
+      "SHA256": "7b2d06cc740d246b4e20ab312abf674e0cdde5586cdf5f960b1cdb8c63c0fcdd"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-155.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-155.png",
+      "SHA256": "f51a73021224686fd627f80eb6c5dd97cedc51a1ea6d85cae1060e84ea96fb72"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-156.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-156.png",
+      "SHA256": "ec49475d81e4453f79be94dbb076a87a54b85cb19605dad08b793678514225a3"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-157.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-157.png",
+      "SHA256": "1f0894430f2c64a11236f9ecc999b2382900b6f4edc6b18fb9b65d91f07ca362"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-158.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-158.png",
+      "SHA256": "dc826131d428ba00fdbf4dad79ba56de9f910aa934fcfaa2d125616cb7cb471a"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-159.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-159.png",
+      "SHA256": "8eec88685041afed675a3f9e53674d2afd5b5fbf07d24c145db66b87fa85dbbf"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-160.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-160.png",
+      "SHA256": "b04da8fa977ce89c2f47abf8edb586ec39beac7214a85f0c4ec70f8377f1ea62"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-161.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-161.png",
+      "SHA256": "79fdf6470f70534a0f237e64718d461ef7d8c408b43845375058211b0124cad3"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-174.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-174.png",
+      "SHA256": "9603bf696630a2f9ca9d3931ffc6fd81cd197454e6fb56dbd6bea772309f5c8d"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-175.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-175.png",
+      "SHA256": "081bf529d8c87ed7485f16f0bb99570f17c2f1b66ebd0e290ba14fb56f6f7e5f"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-177.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-177.png",
+      "SHA256": "ea043d3bebf486a29792c22b38eb955ac243662728b4a47ed01418fa066beab8"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-182.png": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/page-182.png",
+      "SHA256": "241b5bd604064fd9332367c1c9b3509e98fa10e34a41af51844dcc9b883f00d7"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/页面索引.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/版面/页面索引.json",
+      "SHA256": "aef9ed92aada9cfbe2c6a3717b2c2639b2cda887fe8d0b7c4393b53e4be55b95"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/用户月表另存差异.json": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/用户月表另存差异.json",
+      "SHA256": "d5e626692d63c2693637dbcdcc9e5de2f3c66862f85508bfa7624de47df1ad87"
+    },
+    "研究报告/05_review/当前版/1019表述约束与光伏单位/装配目标.docx": {
+      "path": "研究报告/05_review/当前版/1019表述约束与光伏单位/装配目标.docx",
+      "SHA256": "5527b21ffacc9e6d6001907d53eb7d550b02bc018cd314b44eea742f5a75ec70"
+    },
+    "研究报告/05_review/当前版/WPS原生导出登记.json": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/05_review/当前版/WPS原生导出登记.json",
+      "SHA256": "ace15e2d01e3ac71d24c28dcd8598b11ad1ab6a5b981fa3a4ede2583d2aa527b"
+    },
+    "研究报告/05_review/当前版/更新目录缓存.py": {
+      "path": "研究报告/05_review/当前版/更新目录缓存.py",
+      "SHA256": "a6950fda3fc94bff4c2349d1fd595cd6251df80dd0fadaff068c74a067e166b2"
+    },
+    "研究报告/05_review/当前版/目录标题.json": {
+      "path": "研究报告/05_review/当前版/目录标题.json",
+      "SHA256": "15f1a67c3239fc599f383ce17bf0b4c0fe43f9e198e15dbdfce4dc3970ef1c41"
+    },
+    "研究报告/05_review/当前版/目录页码核对.json": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/05_review/当前版/目录页码核对.json",
+      "SHA256": "98fb507e6c0e987d2d9d700f8ec5966ba7bac70d3bb90a83ff6ebaa05d3241ad"
+    },
+    "研究报告/05_review/当前版/装配Word.py": {
+      "path": "研究报告/05_review/当前版/装配Word.py",
+      "SHA256": "332f20571efd4c5b7d909d36464a622e0904cf4653d918421b05389c5853e3bc"
+    },
+    "研究报告/05_review/当前版/装配源文件登记.json": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/05_review/当前版/装配源文件登记.json",
+      "SHA256": "9f5f8a2bf1c956a8f1439e32737229275d63ffb1774d79bb7d9b455114e9b64d"
+    },
+    "研究报告/AGENTS.md": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/AGENTS.md",
+      "SHA256": "8ea8e26eb8d1c943b90b02ff59d9b6cd9a1594f604dece374170944a6a947d31"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_clr.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/annual_clr.csv",
+      "SHA256": "24a34dc18c9a9c0679915c66b93c8ad7c9447582c884bae7f2ba7ba856b47f8d"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_clr.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/annual_clr.pdf",
+      "SHA256": "9c2700c602c4bf73c49d901b80a9fd45d09c8ed6bab1e8173f13e1b37a1e2f64"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_clr.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/annual_clr.svg",
+      "SHA256": "968161d49ad5268dd678aded716f3759da45e58a9d6f496bc0908d758bbf6466"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.csv",
+      "SHA256": "b6e163342323ef66e64627db0ba15e81817d9371eba47e3781be19b60ff7da34"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.pdf",
+      "SHA256": "61e10863a96378f840ed15eff533ae9e0c876a94362db3a96ebce57e340ca645"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/annual_model_pressure.svg",
+      "SHA256": "0c840197e15871e64f60b2d383bc532ef00e3c6bb3150e836a3082e7e6f47b9c"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.csv",
+      "SHA256": "cf5c4e9405f7d901c520c71445361c75964c5d01c0fbf42b47c285c16532a225"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.pdf",
+      "SHA256": "277b7626a4ba48e4a785a0bc778df44a6ffb7ac7fabdfffe7358a80eff546812"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/city_annual_new_measures.svg",
+      "SHA256": "ec1d5d170714b5fdf24f024f0e2f6075e2c157beb97558e291b1acf95eb3abff"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.csv",
+      "SHA256": "1fce0e3d88729da926f4fe4cdbe8ec83491bfa92582d10c2f527fc9f1dc12cbc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.pdf",
+      "SHA256": "8d1896b5174d37149b55ff46df43eb1d1527b328a95b181fb10f4a7072eb3a15"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/city_modeled_peaks.svg",
+      "SHA256": "2b28d93ed071818fa3a018847bda1022d0b94b4301ebec397299b9f7d1bf4869"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.csv",
+      "SHA256": "843db622bcc1598dabfe401a2d9c3b7dfaf7ff510fdf6ca0b53f0642a54ceb4c"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.pdf",
+      "SHA256": "c48476297d111e9c9b1b458b574dc1e7800745478dad8a3b6bd4bda6b3d9aa62"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/city_station_n1.svg",
+      "SHA256": "14674ecdde6832688437dd3248ff3d94cf5a017bc74f1ab52c4f79be6bbd25cc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.csv",
+      "SHA256": "24a34dc18c9a9c0679915c66b93c8ad7c9447582c884bae7f2ba7ba856b47f8d"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.pdf",
+      "SHA256": "ecaa135811f4b56453504794d503fb631871e3fc0f4aa603ee5886f305b005dc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/initial_capacity_cost_comparison.svg",
+      "SHA256": "21e6b0ae0af7a343fc0b726c0a75591fd950f2765855cedaef9904d9c6b75ab5"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.csv",
+      "SHA256": "635ebf3e94ee23c1d989f1dba724d8c03a72085dbd6de46bebd2f0159b9a6dfe"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.pdf",
+      "SHA256": "f60542513526311b1931113d26b00737f83818f359e7bb226cc98958c965cf5b"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/lifecycle_components.svg",
+      "SHA256": "030ae5cf26e93bab64b0494d3ec06e7c633314456c883c9d07a2137dff8ddb10"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.csv",
+      "SHA256": "24a34dc18c9a9c0679915c66b93c8ad7c9447582c884bae7f2ba7ba856b47f8d"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.pdf",
+      "SHA256": "b51d835a6eda678a6cf7777093f6758e62c9d456f352c3f183f8043af94afadc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/measure_comparison.svg",
+      "SHA256": "b34f3e2836df7523966f2c7e0822de509ee1f6f33e3e9d240aee6e838712cd31"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.csv",
+      "SHA256": "b4f2e936b5b3a09790e090b610e441074ed3e52eb6c4fa915429c403fd4dd7f9"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.pdf",
+      "SHA256": "4fa5a9572a352c97997be4bf9a9f3262b1be1888e5821b80f3228b906727804b"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_annual_new_measures.svg",
+      "SHA256": "3d2f2790d494523222b759aaff989c3d5cd847feb7dffaca76c6a5f5a2083d2b"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.csv",
+      "SHA256": "ee84595c240e714d77d848f1e210267af0d6b7cbe2fd133b5036237fada01f44"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.pdf",
+      "SHA256": "b8323a3bec9d1ccc431a1ac15dfde50a70bb6db6bd9cae56101732382adb80d6"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_modeled_peaks.svg",
+      "SHA256": "456399cd641bab7975e5b70fbfe7b186d55ede4005e2b3efe9fe929e951246dd"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.csv",
+      "SHA256": "44aa483ab3f0f032a3d3642fde8aee493c0924d285ae62bb731c98c9d919a4e2"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.pdf",
+      "SHA256": "e1d54a2038486f0c2dd748033765b802c59d26649d11c2f109c39fbe9da86c45"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_station_n1.svg",
+      "SHA256": "93cc33058c27fa780da46a0e499f5f9e263d52aeb2c928b4a6bcfbf45c0e8e0c"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.csv",
+      "SHA256": "de98d067d2bbc36bf1f356a73b31d68f43c6f1136a818b0f5d0411a01dc000dc"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.pdf",
+      "SHA256": "a17dd6550442e32604b7ffdb21ed1a4a996e95806d095f160b02e0864285dcd7"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/pizhou_storage_distribution.svg",
+      "SHA256": "2183ca373c926509273dca324538fd91e240b45c381bf31102b88d72f449ac07"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.csv",
+      "SHA256": "6a79d3b3261e5ad0ca8e72e82e82baf368e8674697e64a8fe9937993b710a467"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.pdf",
+      "SHA256": "51ced2ed415f5121788fa48071810df1fe0bcfe58406d1bba9573cabda5f78ee"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/plan_cost_difference.svg",
+      "SHA256": "1948aa9ffb7e675bf0f934a46b9b28721eb4921353898987c5e2eccff8bafd49"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.csv",
+      "SHA256": "7e8d153e6c5cc939367d8151e5639ba1c5651ce3f89c7630e7e6e9955ec9726d"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.pdf": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.pdf",
+      "SHA256": "9138807ddc58f979ee6c831d2ea52e8a2f0c02f3754023b8760990dddb8e3b1f"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.svg": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/xingtang_reverse_capacity.svg",
+      "SHA256": "f1b93de4f9933a81898b4268fd296361a5e2cbe73546a0a2728a7b4196853c53"
+    },
+    "研究报告/数据来源/当前版/1017报告案例更新/逐站2035核验.csv": {
+      "path": "研究报告/数据来源/当前版/1017报告案例更新/逐站2035核验.csv",
+      "SHA256": "8bcac4a644596f21b81bc6b40fbebf6c74eef9cd00249b87c5592330e004f0ce"
+    },
+    "研究报告/数据来源/当前版/1018五项局部修正/lookup_matrix_bounds.csv": {
+      "path": "研究报告/数据来源/当前版/1018五项局部修正/lookup_matrix_bounds.csv",
+      "SHA256": "59bd8c2a99f238e0f25188209ce81e294d58cafeacf9e124ab65b4162a8f858b"
+    },
+    "研究报告/数据来源/当前版/1018五项局部修正/lookup_matrix_bounds.pdf": {
+      "path": "研究报告/数据来源/当前版/1018五项局部修正/lookup_matrix_bounds.pdf",
+      "SHA256": "5943f50e0e16e81354cd5e2f11e8fda602046f560776781068dbbbf4b82fbcc5"
+    },
+    "研究报告/数据来源/当前版/1018五项局部修正/lookup_matrix_bounds.svg": {
+      "path": "研究报告/数据来源/当前版/1018五项局部修正/lookup_matrix_bounds.svg",
+      "SHA256": "218f54a5abe2408d27de3073480c0e878ab150a1b2f0d47b95172f5078fddbc5"
+    },
+    "研究报告/数据来源/当前版/1019光伏预测单位核验/全市光伏预测_MW.csv": {
+      "path": "研究报告/数据来源/当前版/1019光伏预测单位核验/全市光伏预测_MW.csv",
+      "SHA256": "b1a2beb3be48ae61f2e5647f5f2cdd3dd63cab7cda0d934bdf995b8225193bec"
+    },
+    "研究报告/数据来源/当前版/1019光伏预测单位核验/单位交叉核验.json": {
+      "path": "研究报告/数据来源/当前版/1019光伏预测单位核验/单位交叉核验.json",
+      "SHA256": "b14f422e5406306ac87626dab66fd341b0c580807920672340bae979bad0e1c3"
+    },
+    "研究报告/数据来源/当前版/1019光伏预测单位核验/逐月分县分布式光伏_核读原件.xlsx": {
+      "path": "研究报告/数据来源/当前版/1019光伏预测单位核验/逐月分县分布式光伏_核读原件.xlsx",
+      "SHA256": "2160554fb9c8c767baf754d51a1e3ef0eb52396b60282661ac52365348cc7269"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/11点序列独立预核算.json": {
+      "path": "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/11点序列独立预核算.json",
+      "SHA256": "33dfa59de4992d6e1a47940ffdf31879e9ab58c75212abbfd6123fa35fe776bc"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/8MVA工程限值原表核验.json": {
+      "path": "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/8MVA工程限值原表核验.json",
+      "SHA256": "b146d0c1fd2c1c50fac4ea2937e35a20c9e04c29fd7de1a3e3aa0b1fb2c36a39"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/diversity_device_response.csv": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/数据来源/当前版/负荷分散系数扩展_20261019/diversity_device_response.csv",
+      "SHA256": "592fccf144df7a3cb5a78886e9d102f29af929f09c6c6c58d74a018b077c5cd8"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/diversity_device_response.pdf": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/数据来源/当前版/负荷分散系数扩展_20261019/diversity_device_response.pdf",
+      "SHA256": "8d4a3953663923a2d53e9bbfddda6893334ad06ed56b30f2695cc08a9da55f24"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/diversity_device_response.svg": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/数据来源/当前版/负荷分散系数扩展_20261019/diversity_device_response.svg",
+      "SHA256": "d9f82e141215d8f8007ca31a1730db4a627aaa52862ec9f383c51209a9ee5377"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/lookup_matrix_bounds.csv": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/数据来源/当前版/负荷分散系数扩展_20261019/lookup_matrix_bounds.csv",
+      "SHA256": "65009ec491adab083201155b63d3639544ad5582a52bb390e4b44d825cc98c3f"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/lookup_matrix_bounds.pdf": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/数据来源/当前版/负荷分散系数扩展_20261019/lookup_matrix_bounds.pdf",
+      "SHA256": "ec444e2ab68d0a212e049ecdf42882028ed6b82d10d4414f81e1c485cd9f9f8a"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/lookup_matrix_bounds.svg": {
+      "path": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付原件/研究报告/数据来源/当前版/负荷分散系数扩展_20261019/lookup_matrix_bounds.svg",
+      "SHA256": "9dd325a47287a7e71fa05a28e70af7593febc6d48eac65c25b61e5299d7fbf5f"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/原始库无损归档.json": {
+      "path": "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/原始库无损归档.json",
+      "SHA256": "30cfde5a59703d2c44ed21d7123583fb34fa2a88eb827f1d9b51383d6a4638f2"
+    },
+    "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/计算来源.json": {
+      "path": "研究报告/数据来源/当前版/负荷分散系数扩展_20261019/计算来源.json",
+      "SHA256": "3efad725c818bed1c8809b0d8d35b31297187d2b149795ccd5f2eb7635e98ef2"
+    },
+    "研究报告/甲方反馈/10.17/10.17研究报告.docx": {
+      "path": "研究报告/甲方反馈/10.17/10.17研究报告.docx",
+      "SHA256": "e1adea42b9c1fed8d7e767a97a9d2306e5d3442c9d1a65153ac7836d89fa68cb"
+    },
+    "研究报告/甲方反馈/10.17/10.17研究报告_批注与修正意见.md": {
+      "path": "研究报告/甲方反馈/10.17/10.17研究报告_批注与修正意见.md",
+      "SHA256": "2ac6808c3f80616ec0e2c5d0c716222e5210916369baaf0c1d707daaf2049f42"
+    },
+    "研究报告/试算/20261019_负荷分散系数扩展/原始求解记录.jsonl.gz": {
+      "path": "研究报告/试算/20261019_负荷分散系数扩展/原始求解记录.jsonl.gz",
+      "SHA256": "ff10851ae1bc432563b20c046cdf5626749cdffe0a98e82a4723df4f8b3ae767"
+    },
+    "研究报告/试算/20261019_负荷分散系数扩展/试算设计.json": {
+      "path": "研究报告/试算/20261019_负荷分散系数扩展/试算设计.json",
+      "SHA256": "7b8ac5b07a3b7f891378758b13c63e65f9881d65f70f0a2f329ec1a19d23b026"
+    }
+  }
+}

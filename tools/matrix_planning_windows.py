@@ -1,4 +1,4 @@
-"""以有效节点容载比中位数定位固定宽度的滑动规划窗口。"""
+"""以真实中位节点定位窗口，在相邻容量水平接近时共用界值。"""
 from decimal import Decimal, ROUND_HALF_UP
 import math
 import json
@@ -11,8 +11,26 @@ ETA = ['≤1', '(1,2]', '>2']
 TRANSFER = ['≤30%', '(30%,50%]', '(50%,70%]', '>70%']
 CABLE = ['≤10%', '(10%,30%]', '>30%']
 DIVERSITY_LABELS = ['≤1.15', '>1.15']
-WIDTH = Decimal('.20')
-STEP = Decimal('.05')
+WIDTH = Decimal('.10')
+STEP = Decimal('.02')
+DIVERSITY_CONTROLS = {'分布式电源装机渗透率':2., '年最大净负荷平均增长率':.04,
+                      '电缆长度占比':.1, '初始转供率':.4, '储能支撑持续时间_h':4}
+
+
+def adjoining_windows(values):
+    """基准宽0.10；接近的代表水平以中点接续，不跨越较大容量间隔。"""
+    values = [Decimal(str(v)) for v in values]
+    centers = [(v/STEP).quantize(Decimal('1'), rounding=ROUND_HALF_UP)*STEP for v in values]
+    levels = sorted(set(centers))
+    result=[]
+    for value, center in zip(values, centers):
+        i=levels.index(center)
+        low, high=center-WIDTH/2, center+WIDTH/2
+        if i: low=max(low,(levels[i-1]+center)/2)
+        if i+1<len(levels): high=min(high,(center+levels[i+1])/2)
+        assert low <= value <= high, '局部缩窄后仍须包含真实代表节点'
+        result.append(f'{low:.2f}～{high:.2f}')
+    return result
 
 
 def window(value, width=WIDTH, step=STEP):
@@ -66,6 +84,17 @@ def records(data):
                             代表节点={f:float(representative[f]) for f in fields+['负荷分散系数','储能支撑持续时间_h']},
                             推荐窗口=band, 窗口内节点数=int(sub['容载比'].between(low-1e-9,high+1e-9).sum()),
                             窗口宽度=float(WIDTH), 滑动步长=float(STEP)))
+    # 同一行四个转供档共同确定接续边界，保留真实平台及局部回升。
+    for start in range(0,len(result),4):
+        row=result[start:start+4]
+        for item,band in zip(row,adjoining_windows([r['代表节点容载比'] for r in row])):
+            low,high=map(float,band.split('～'))
+            item.update(推荐窗口=band,窗口宽度=round(high-low,2),基准窗口宽度=float(WIDTH))
+            mask=np.ones(len(data),dtype=bool)
+            for field,idx in zip(fields,[item['增长档'],item['装机档'],item['转供档'],item['电缆档']]):
+                mask &= d['bin_'+field].eq(idx)
+            mask &= data['负荷分散系数'].le(1.15+1e-9) if item['分散档']==0 else data['负荷分散系数'].gt(1.15+1e-9)
+            item['窗口内节点数']=int(data.loc[mask,'容载比'].between(low-1e-9,high+1e-9).sum())
     assert len(result) == 288
     assert sum(r['有效样本数'] for r in result) == len(data)
     return result
@@ -112,8 +141,7 @@ def export(data, directory):
             candidate = flat.copy()
             candidate['候选窗口'] = candidate['代表节点容载比'].map(lambda v:window(v, width))
             candidate.to_excel(writer, sheet_name='窗口宽度'+width, index=False)
-        fields = {'分布式电源装机渗透率':2.5, '年最大净负荷平均增长率':.07,
-                  '电缆长度占比':.1, '初始转供率':.5, '储能支撑持续时间_h':4}
+        fields = DIVERSITY_CONTROLS
         mask = np.ones(len(data), dtype=bool)
         for field, value in fields.items():mask &= np.isclose(data[field], value, atol=1e-10, rtol=0)
         sequence = data.loc[mask].sort_values('负荷分散系数')

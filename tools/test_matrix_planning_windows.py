@@ -5,17 +5,17 @@ from decimal import Decimal
 import pandas as pd
 import pytest
 
-from matrix_planning_windows import records,window,middle_node
+from matrix_planning_windows import records,window,middle_node,adjoining_windows
 from check_report_policy import check_window_matrix
 
 
 def test_width_and_rounding_are_independent_of_transfer_column():
-    assert window(2.024)=='1.90～2.10'
-    assert window(2.025)=='1.95～2.15'
+    assert window(2.024)=='1.97～2.07'
+    assert window(2.03)=='1.99～2.09'
     assert window(2.025)==window(2.025)
     for value in [1.36,1.915,2.5,3.112]:
         a,b=map(Decimal,window(value).split('～'))
-        assert b-a==Decimal('.20') and a<=Decimal(str(value))<=b
+        assert b-a==Decimal('.10') and a<=Decimal(str(value))<=b
 
 
 def synthetic():
@@ -30,7 +30,7 @@ def test_full_design_counts_boundary_once_and_preserves_real_plateau():
     assert len(cells)==288 and sum(r['有效样本数'] for r in cells)==len(d)
     assert {r['分散节点数'] for r in cells if r['分散档']==0}=={6}
     assert {r['分散节点数'] for r in cells if r['分散档']==1}=={5}
-    assert {r['推荐窗口'] for r in cells}=={'1.90～2.10'}
+    assert {r['推荐窗口'] for r in cells}=={'1.95～2.05'}
 
 
 def test_missing_cell_must_not_be_filled():
@@ -42,13 +42,22 @@ def test_missing_cell_must_not_be_filled():
 
 def test_window_cannot_be_centered_in_a_gap_between_equipment_solutions():
     assert middle_node([1.4,1.7])==1.7
-    assert window(middle_node([1.4,1.7]))=='1.60～1.80'
+    assert window(middle_node([1.4,1.7]))=='1.65～1.75'
 
 
 def test_policy_rejects_wrong_width_and_accepts_overlapping_windows():
-    check_window_matrix('| A | B | 1.90～2.10 | 1.90～2.10 | 1.85～2.05 | 1.80～2.00 |','示例')
+    check_window_matrix('| A | B | 1.95～2.05 | 1.95～2.05 | 1.90～2.00 | 1.85～1.95 |','示例')
     with pytest.raises(AssertionError,match='窗口宽度'):
         check_window_matrix('| A | B | 1.90～2.11 | 1.90～2.10 | 1.85～2.05 | 1.80～2.00 |','问题示例')
+
+
+def test_close_levels_share_boundaries_and_include_actual_nodes():
+    values=[2.005,1.983,1.956,1.956]
+    bands=adjoining_windows(values)
+    assert bands==['1.99～2.05','1.97～1.99','1.91～1.97','1.91～1.97']
+    for value,band in zip(values,bands):
+        low,high=map(float,band.split('～'));assert low<=value<=high
+    assert adjoining_windows([2.,1.8,1.9,1.8])==['1.95～2.05','1.75～1.85','1.85～1.95','1.75～1.85']
 
 
 def test_solver_rechecks_tight_capacity_boundary_without_relaxing_audit():

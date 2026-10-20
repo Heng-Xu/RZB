@@ -7,6 +7,16 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_transfer_power_limit_and_diversity_sampling_remain_current(self):
+        for value in ['新增联络的工程计算限值取8.00 MVA，按0.95功率因数折算有功上限为7.60 MW。',
+                      '| 负荷分散系数 | 1.00、1.05、1.10、1.15 | 4 |']:
+            errors=self.check('[[TABLE:sample]]',tables={'sample':value})
+            self.assertTrue(any('计算表.json[sample]:1' in e for e in errors))
+        for value in ['新增联络采用折算后的有功上限8.00 MW。',
+                      '| 负荷分散系数 | 1.05～1.25，步长0.02 | 11 |',
+                      '功率因数取0.95，站级负载率按主变额定容量计算。']:
+            self.assertEqual(self.check(value),[])
+
     def test_extended_matrix_terms_locate_stale_scope_and_keep_real_definition(self):
         for value in ['历史回算与未来预测均保留所采用的补值，年度规划峰值继续使用原统计值。',
                       '其中1.15为本研究情景范围的上端。',

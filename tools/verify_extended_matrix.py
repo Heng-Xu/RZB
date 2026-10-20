@@ -14,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
 from extend_matrix_scenarios import TRIAL,PUBLIC,SOURCE,REVIEW,tasks,write,model
 from locked_parameter_results import key,public_frame,sha,independent_initial_check
-from matrix_planning_windows import records,export
+from matrix_planning_windows import records,export,adjoining_windows,WIDTH,STEP,DIVERSITY_CONTROLS
 from archive_extended_matrix_raw import raw_path,open_raw
 
 
@@ -76,11 +76,17 @@ def verify(lp=False,workers=8):
         assert math.isclose(float(np.median(sub['容载比'])),cell['中位数'],abs_tol=1e-12)
         assert math.isclose(float(sorted(sub['容载比'])[len(sub)//2]),cell['代表节点容载比'],abs_tol=1e-12)
         low,high=map(float,cell['推荐窗口'].split('～'))
-        assert math.isclose(high-low,.2,abs_tol=1e-12)
+        assert float(STEP)-1e-12<=high-low<=float(WIDTH)+1e-12
+        assert math.isclose(high-low,cell['窗口宽度'],abs_tol=1e-12)
         assert sub['容载比'].between(low-1e-9,high+1e-9).any(),('窗口内无真实方案',cell)
         for index in [sub['容载比'].idxmin(),sub['容载比'].idxmax(),sub.sort_values('容载比',kind='stable').index[len(sub)//2]]:
             selected.add(tuple(round(float(actual.loc[index,f]),9) for f in fields))
     for _,r in sequence.iterrows():selected.add(tuple(round(float(r[f]),9) for f in fields))
+    assert len(sequence)==11 and sorted(sequence['负荷分散系数'].round(2))==[round(1.05+i*.02,2) for i in range(11)]
+    for field,value in DIVERSITY_CONTROLS.items():assert np.allclose(sequence[field],value,atol=1e-12,rtol=0)
+    for start in range(0,len(cells),4):
+        row=cells[start:start+4]
+        assert [r['推荐窗口'] for r in row]==adjoining_windows([r['代表节点容载比'] for r in row])
     bykey={key(r):r for r in good}
     from openpyxl import load_workbook
     book=load_workbook(PUBLIC/'推广矩阵与11点敏感性分析.xlsx',read_only=True,data_only=True)
@@ -104,13 +110,15 @@ def verify(lp=False,workers=8):
     else:
         checks=json.loads((REVIEW/'独立LP核验.json').read_text())
         assert checks['原始库SHA256']==sha(library) and checks['状态']=='通过'
+        assert selected <= {tuple(r['节点']) for r in checks['节点']},'当前代表或敏感性节点缺少独立LP核验'
     write(REVIEW/'扩展数据独立核验.json',dict(状态='通过',设计节点数=len(rows),有效节点数=len(good),
         不可行节点数=len(rows)-len(good),分散系数节点=sorted(actual['负荷分散系数'].unique().tolist()),
-        查表矩阵数=6,区间单元数=len(cells),窗口宽度=.2,窗口滑动步长=.05,
+        查表矩阵数=6,区间单元数=len(cells),窗口基准宽度=float(WIDTH),窗口代表值步长=float(STEP),
+        实际窗口宽度=sorted({r['窗口宽度'] for r in cells}),敏感性背景=DIVERSITY_CONTROLS,
         原始库SHA256=sha(library),有效样本SHA256=sha(PUBLIC/'统一有效样本.csv'),
         窗口依据SHA256=sha(PUBLIC/'窗口与原始节点依据.json'),敏感性序列SHA256=sha(PUBLIC/'负荷分散系数11点完整序列.csv'),
         独立LP记录SHA256=sha(REVIEW/'独立LP核验.json'),
-        说明='窗口以最接近组内中位数的真实节点定位，偶数样本同距时取较大容载比；全体极值另列。相同代表值保留相同窗口。'))
+        说明='以真实中位节点定位0.10基准窗口，代表值按0.02网格定位，同一行接近水平按中点接续局部缩窄；较大间隔保留，真实平台不作偏移。全体极值及11点序列另列。'))
     print('扩展数据通过：',len(rows),'组设计，',len(good),'个有效节点，288单元、11点序列及费用独立复算。')
 
 

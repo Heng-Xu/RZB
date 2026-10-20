@@ -62,7 +62,7 @@ def main():
         axes[3].set_xticks(x,[f'{v:.2f}' for v in x],rotation=35)
         axes[3].set_xlabel('负荷分散系数')
         save(fig,'diversity_device_response',data,[source],
-             '固定装机渗透率2.50、增长7%、电缆10%、转供50%、时长4h的11点完整序列；四面板共用分散系数横轴，1.15标出分档界。')
+             '固定装机渗透率2.00、增长4%、电缆10%、转供40%、时长4h的11点完整序列；四面板共用分散系数横轴，1.15标出分档界。')
         table_path=assets/'计算表.json';table=json.loads(table_path.read_text())['lookup_matrix_2_high']
         rows=[[c.strip() for c in line.strip('|').split('|')] for line in table.splitlines() if line.startswith('|')]
         d=pd.DataFrame(rows[2:],columns=rows[0])
@@ -83,7 +83,7 @@ def main():
         axes[0].set_ylabel('年最大净负荷平均增长率 / 装机渗透率')
         fig.suptitle('电缆长度占比>30%、负荷分散系数>1.15',fontsize=12)
         save(fig,'lookup_matrix_bounds',d,[table_path,PUBLIC/'窗口与原始节点依据.json'],
-             '同一数据分档和共同色阶；端点逐格对应六表中电缆高档、分散高档，宽度均为0.20。')
+             '同一数据分档和共同色阶；端点逐格对应六表中电缆高档、分散高档，基准宽度0.10，同一行按相邻代表水平中点局部缩窄。')
     write(REVIEW/'更新图件来源.json',dict(状态='待实际图件及PDF目视核验',图件=provenance,
         使用技能='scientific-visualization：核对原始数据保留、诚实编码及输出元数据；未采用期刊投稿规格。'))
     print('仅重绘2图，保留绘图CSV、PDF及SVG。')

@@ -22,7 +22,7 @@ from 实验.研究.rebuild_2026.matrix_20261012 import model
 TRIAL = ROOT/'研究报告/试算/20261019_负荷分散系数扩展'
 PUBLIC = ROOT/'研究报告/01研究推荐/当前版/负荷分散系数扩展_20261019'
 SOURCE = ROOT/'研究报告/数据来源/当前版/负荷分散系数扩展_20261019'
-REVIEW = ROOT/'研究报告/05_review/当前版/1019推广矩阵扩展'
+REVIEW = ROOT/json.loads((ROOT/'tools/report_policy.json').read_text())['plain_delivery_review']
 DIVERSITY = [round(1.05+.02*i, 2) for i in range(11)]
 
 

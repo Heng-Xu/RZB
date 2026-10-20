@@ -15,7 +15,7 @@ def parameter_devices(save):
     from sync_current_report_results import PUBLIC, controlled_sequences,diversity_sequence,matrix_source
     path = PUBLIC/'统一有效样本.csv'
     sequences = controlled_sequences(pd.read_csv(path))
-    active=json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('output_kind')=='fixed_width_sliding_windows'
+    active=json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('output_kind')=='adaptive_sliding_windows'
     if active:sequences['diversity']=diversity_sequence()
     for name, field, key, title in [
         ('cable', '电缆长度占比', 'cable_device_response', '电缆造价条件与设备替代'),
@@ -42,7 +42,7 @@ def parameter_devices(save):
 
 def lookup_bounds(save):
     asset = ROOT/'研究报告/02图表/当前版'
-    active=json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('output_kind')=='fixed_width_sliding_windows'
+    active=json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('output_kind')=='adaptive_sliding_windows'
     table = json.loads((asset/'计算表.json').read_text())['lookup_matrix_2_high' if active else 'lookup_matrix_2_1.10']
     rows = [[c.strip() for c in line.strip('|').split('|')] for line in table.splitlines() if line.startswith('|')]
     data = pd.DataFrame(rows[2:], columns=rows[0])
@@ -65,7 +65,7 @@ def lookup_bounds(save):
 
 
 def main():
-    if json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('output_kind')=='fixed_width_sliding_windows':
+    if json.loads((ROOT/'tools/report_policy.json').read_text())['matrix_display'].get('output_kind')=='adaptive_sliding_windows':
         from refresh_extended_matrix_figures import main as refresh
         refresh();return
     import expand_report_figures as figures

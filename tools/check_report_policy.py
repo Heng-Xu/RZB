@@ -76,15 +76,15 @@ def check_adjoining_matrix(value, location):
         assert all(lo <= hi for lo, hi in bands), f'{location}:{number}: 推荐带上下界倒置'
         assert all(left[0] == right[1] for left, right in zip(bands, bands[1:])), f'{location}:{number}: 相邻转供档推荐带须共用界值'
 
-def check_window_matrix(value, location, width='.20', step='.05'):
+def check_window_matrix(value, location, width='.10', step='.02'):
     from decimal import Decimal
     width,step=Decimal(str(width)),Decimal(str(step))
     for number,line in enumerate(value.splitlines(),1):
         if not line.startswith('|') or '～' not in line:continue
         for cell in [c.strip() for c in line.strip('|').split('|')][-4:]:
             low,high=map(Decimal,cell.split('～'))
-            assert high-low==width,f'{location}:{number}: 推荐窗口宽度须为{width}'
-            assert ((low+high)/2)%step==0,f'{location}:{number}: 窗口中心未落在滑动网格'
+            assert step<=high-low<=width,f'{location}:{number}: 推荐窗口宽度须在{step}至{width}内'
+            assert low%(step/2)==high%(step/2)==0,f'{location}:{number}: 窗口端点未落在接续网格'
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
@@ -143,7 +143,7 @@ def main():
     for key in ['new_baseline','new_pizhou_years','new_city_years','typical_transfer_matrix','current_transfer_sequence_second']:
         assert '[[TABLE:'+key+']]' in referenced,'第五章缺少已确认结果：'+key
     assert not re.search(r'\[\[TABLE:current_matrix_',referenced),'矩阵不得单独按线路费用分类'
-    window_mode=policy['matrix_display'].get('output_kind')=='fixed_width_sliding_windows'
+    window_mode=policy['matrix_display'].get('output_kind')=='adaptive_sliding_windows'
     if window_mode:
         from archive_extended_matrix_raw import raw_path
         extended=json.loads((root/policy['plain_delivery_review']/'扩展数据独立核验.json').read_text())
@@ -151,6 +151,8 @@ def main():
         assert extended['分散系数节点']==[round(1.05+.02*i,2) for i in range(11)],'分散系数须覆盖0.02间隔11点'
         assert hashlib.sha256((root/policy['matrix_display']['source_csv']).read_bytes()).hexdigest()==extended['有效样本SHA256'],'扩展数据核验过期'
         assert hashlib.sha256(raw_path().read_bytes()).hexdigest()==extended['原始库SHA256'],'扩展原始库与核验不符'
+        node_rows=[line for line in tables['extended_parameter_nodes'].splitlines() if line.startswith('| 负荷分散系数 |')]
+        assert node_rows==['| 负荷分散系数 | 1.05～1.25，步长0.02 | 11 |'],'计算表.json[extended_parameter_nodes]: 负荷分散系数采样须同步11点'
     matrix_keys=([f'lookup_matrix_{c}_{kd}' for c in range(3) for kd in ['low','high']] if window_mode else
                  [f'lookup_matrix_{c}_{kd:.2f}' for c in range(3) for kd in [1.,1.1,1.15]])
     assert all('[[TABLE:'+key+']]' in sections['new_matrix_tables'] for key in matrix_keys),'缺少电缆分区或负荷分散系数矩阵'
