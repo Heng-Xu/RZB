@@ -41,7 +41,7 @@
   },
   {
     "number": "3-11",
-    "tex": "\\begin{gathered}\nQ_{\\mathrm{sec}}=P_{\\mathrm{feeder}}\\frac{S_{\\mathrm{sec}}}{S_{\\mathrm{feeder}}}=8.2344\\times\\frac{5845}{6425}\\approx7.49\\ \\mathrm{MW},\\\\\nF_{\\mathrm{new}}=8.00\\ \\mathrm{MW},\\\\\nQ_{\\mathrm{ref}}=\\min(Q_{\\mathrm{sec}},F_{\\mathrm{new}})=7.49\\ \\mathrm{MW}.\n\\end{gathered}"
+    "tex": "\\begin{gathered}\nQ_{\\mathrm{sec}}=P_{\\mathrm{feeder}}\\frac{S_{\\mathrm{sec}}}{S_{\\mathrm{feeder}}}=8.2344\\times\\frac{5845}{6425}\\approx7.49\\ \\mathrm{MW},\\\\\n\\begin{aligned}\nF_{\\mathrm{new}}&\\approx\\sqrt{3}U_N I_{\\mathrm{ref}}\\cos\\varphi\\\\\n&=\\sqrt{3}\\times10.00\\times0.485\\times0.95\\approx8.00\\ \\mathrm{MW},\n\\end{aligned}\\\\\nQ_{\\mathrm{ref}}=\\min(Q_{\\mathrm{sec}},F_{\\mathrm{new}})=7.49\\ \\mathrm{MW}.\n\\end{gathered}"
   },
   {
     "number": "3-12",
