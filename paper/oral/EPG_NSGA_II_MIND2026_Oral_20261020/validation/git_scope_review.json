@@ -1,0 +1,16 @@
+{
+  "scope": "oral presentation and corresponding prompt/current-state records only",
+  "general_hook": {
+    "command": "sh .githooks/pre-commit",
+    "exit": 1,
+    "failed_check": "tools/check_report_policy.py --stage final",
+    "reason": "Existing report Word formula characters lack explicit upright/italic math properties.",
+    "report_changed": false,
+    "report_acceptance_claimed": false
+  },
+  "dedicated_check": "paper/oral/check_release.py --staged-scope",
+  "permanent_hook_changed": false,
+  "permanent_git_config_changed": false,
+  "prior_paper_moves_included": false,
+  "cleanup": "Five old aliases archived as three unique payloads, hashes verified before removing duplicate copies."
+}

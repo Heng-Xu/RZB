@@ -1,0 +1,115 @@
+[
+  {
+    "name": "paper/oral/EPG_NSGA_II_MIND2026_Oral_20261020/sources/historical_model/results/ea_converge.csv",
+    "n_rows": 33600,
+    "n_cols": 5,
+    "columns": [
+      {
+        "name": "K",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 4,
+        "min": 10.0,
+        "max": 40.0,
+        "median": 25.0,
+        "has_zero": false,
+        "has_negative": false,
+        "tail_ratio": 1.6
+      },
+      {
+        "name": "algo",
+        "kind": "categorical",
+        "n_missing": 0,
+        "n_unique": 5,
+        "groups": {
+          "classic": 9600,
+          "nsga3": 9600,
+          "fg": 4800,
+          "repair_only": 4800,
+          "warmstart_only": 4800
+        }
+      },
+      {
+        "name": "seed",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 3,
+        "min": 1.0,
+        "max": 3.0,
+        "median": 2.0,
+        "has_zero": false,
+        "has_negative": false,
+        "tail_ratio": 1.5
+      },
+      {
+        "name": "gen",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 800,
+        "min": 1.0,
+        "max": 800.0,
+        "median": 280.5,
+        "has_zero": false,
+        "has_negative": false,
+        "tail_ratio": 2.8520499108734403
+      },
+      {
+        "name": "hv",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 32992,
+        "min": 0.0,
+        "max": 5278238.3,
+        "median": 757464.41,
+        "has_zero": true,
+        "has_negative": false,
+        "tail_ratio": 6.96829874818805
+      }
+    ],
+    "by_kind": {
+      "continuous": [
+        "K",
+        "seed",
+        "gen",
+        "hv"
+      ],
+      "categorical": [
+        "algo"
+      ]
+    },
+    "geo": false,
+    "temporal": [],
+    "scenarios": [],
+    "facets": [
+      {
+        "name": "algo",
+        "n_levels": 5,
+        "groups": {
+          "classic": 9600,
+          "nsga3": 9600,
+          "fg": 4800,
+          "repair_only": 4800,
+          "warmstart_only": 4800
+        }
+      }
+    ],
+    "wide_families": {},
+    "composition_sets": [],
+    "skewed": [],
+    "signed": [],
+    "decision_points": [
+      {
+        "key": "split:algo",
+        "fact": "algo has 5 levels, group n runs 4800-9600 (median 4800)",
+        "forces": "whether to split on it or pool over it, and -- if the group sizes above are uneven -- whether to drop the small ones, pool them, or keep them all. There is no default cutoff: any cutoff changes how many levels survive and therefore what number the figure states, so it is a decision to record, not one to inherit",
+        "settled": null
+      },
+      {
+        "key": "marks",
+        "fact": "smallest algo group has n = 4800, largest n = 9600",
+        "forces": "how each group is drawn. A fitted density needs enough points to be credible and the threshold is a judgement call, so decide it against these counts; showing the observations as well as the summary avoids the question entirely",
+        "settled": null
+      }
+    ]
+  }
+]

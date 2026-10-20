@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Arial" font-size="28" data-pptx-page-role="content">
+  <defs>
+    <marker id="p02-arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#087E83"/></marker>
+    <marker id="p02-arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#426D9B"/></marker>
+  </defs>
+  <rect id="p02-background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="p02-title" data-pptx-bounds="60 49 1160 82" fill="#102B46">
+    <text x="60" y="105" font-size="42" font-weight="bold">High PV calls for differentiated planning</text>
+  </g>
+  <g id="p02-context" data-pptx-bounds="60 144 1160 38" fill="#536774">
+    <text x="60" y="170" font-size="28">A fixed CLR cap of 2.0 misses station-level PV and transfer differences.</text>
+  </g>
+  <g id="p02-power-flow" data-pptx-bounds="60 202 590 368">
+    <rect x="213" y="209" width="282" height="64" fill="#F2F6F8"/>
+    <rect x="213" y="361" width="282" height="78" fill="#102B46"/>
+    <rect x="78" y="495" width="204" height="60" fill="#F2F6F8"/>
+    <rect x="422" y="495" width="204" height="60" fill="#F2F6F8"/>
+    <line x1="306" y1="350" x2="306" y2="284" stroke="#087E83" stroke-width="3" marker-end="url(#p02-arrow-teal)"/>
+    <line x1="402" y1="284" x2="402" y2="350" stroke="#426D9B" stroke-width="2" marker-end="url(#p02-arrow-blue)"/>
+    <line x1="247" y1="484" x2="289" y2="449" stroke="#087E83" stroke-width="3" marker-end="url(#p02-arrow-teal)"/>
+    <line x1="420" y1="449" x2="463" y2="484" stroke="#426D9B" stroke-width="2" marker-end="url(#p02-arrow-blue)"/>
+    <text x="354" y="251" text-anchor="middle" fill="#102B46">Upstream grid</text>
+    <text x="354" y="392" text-anchor="middle" font-size="30" font-weight="bold" fill="#FFFFFF">Station j</text>
+    <text x="354" y="426" text-anchor="middle" font-size="22" fill="#FFFFFF">110 kV substation</text>
+    <text x="180" y="534" text-anchor="middle" fill="#087E83">Distributed PV</text>
+    <text x="524" y="534" text-anchor="middle" fill="#102B46">Local load</text>
+    <text x="82" y="307" font-size="22" font-weight="bold" fill="#087E83">Midday export<tspan x="82" dy="30">Reverse flow</tspan></text>
+  </g>
+  <g id="p02-planning-brief" data-pptx-bounds="690 202 530 368">
+    <rect x="690" y="202" width="530" height="368" fill="#F2F6F8"/>
+    <text x="714" y="239" font-size="20" font-weight="bold" fill="#536774">JOINT STATION DECISIONS</text>
+    <text x="714" y="282" fill="#102B46" font-weight="bold">CLR Rj · Storage Pj (MW)</text>
+    <text x="714" y="321" font-size="22" fill="#172B3A">CLR = planned transformer capacity<tspan x="714" dy="30">divided by forecast peak load</tspan></text>
+    <line x1="714" y1="375" x2="1196" y2="375" stroke="#D3DFE4" stroke-width="1"/>
+    <text x="714" y="411" font-size="20" font-weight="bold" fill="#536774">MINIMIZE</text>
+    <text x="714" y="451" fill="#102B46">Annualized cost</text>
+    <text x="714" y="479" font-size="20" fill="#536774">million CNY/yr</text>
+    <text x="714" y="520" fill="#102B46">Expected energy not supplied</text>
+    <text x="714" y="550" font-size="20" fill="#536774">EENS · MWh/yr · N−1 inadequacy</text>
+  </g>
+  <g id="p02-constraints" data-pptx-bounds="60 589 1160 72" fill="#172B3A" font-size="22">
+    <line x1="60" y1="590" x2="1220" y2="590" stroke="#D3DFE4" stroke-width="1"/>
+    <text x="60" y="620"><tspan font-weight="bold" fill="#102B46">Feasibility:</tspan> station reverse-flow limits · aggregate CLR band 1.80–3.00</text>
+    <text x="60" y="650">Upstream reverse-flow limit included when enabled</text>
+  </g>
+  <g id="p02-footer" data-pptx-bounds="60 671 1160 23" data-pptx-role="footer" font-size="14" fill="#536774">
+    <text x="60" y="686">Source: camera-ready paper, Introduction and Section II-A. CLR is dimensionless.</text>
+    <text x="1220" y="686" text-anchor="end">02 / 05</text>
+  </g>
+</svg>

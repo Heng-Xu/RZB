@@ -1,4 +1,16 @@
-# 当前工作：项目整理与当前稿存档
+# 当前工作：MIND 2026 口头报告交付与整理
+
+当前口头报告交付位于 `paper/oral/`，入口为该目录的 `README.md`。
+修正版为 `EPG-NSGA-II_MIND2026_Oral_Corrected.pptx` 和同名 PDF，附英文逐字稿。
+论文原件、历史建模代码/CSV及来源哈希、SVG、备注、导出入口和核验记录均在专用工作区保留。
+
+本轮修正PDF导出时上下标挤叠，重新排版两处公式并保留PPT原生Office Math；放大图表文字、移开遮挡标注、调整封面节点下标位置。实际交付PDF逐页放大核读，字体嵌入和原生PPT结构检查通过；未声称已在Microsoft PowerPoint中进行实际渲染检查。历史选择规则的核验缺口保留在交付审计中。
+
+旧交付别名经依赖检查、逐字节备份和SHA256验证后移入专用工作区的 `archive/20261020_previous_delivery/`，清单在 `validation/cleanup_manifest.json`。原始资料及当前复现依据保留。用户 `prompt.md` 原文保留并补记本轮要求。Git整理范围限定于本轮口头报告及对应项目记录，论文目录此前已有的历史移动保持原状。
+
+Git通用报告钩子实际执行后在 `check_report_policy.py --stage final` 失败，原因是既有研究报告公式字符缺少明确正斜体属性；该问题与本轮PPT无关，未改报告或标记其验收通过。本次口头报告独立资料提交使用 `paper/oral/check_release.py --staged-scope` 检查交付哈希、原始依据、PDF字体、原生公式、备注和归档完整性。常规 `.githooks/pre-commit` 及永久Git配置保持。
+
+## 研究报告既有状态
 
 项目清理提交为a1e6083429006ab7c0fe653353d55723cf709b12，完整提交检查在该提交的干净副本通过。随后补存此前遗漏的当前Word、对应源稿和公式清单、prompt.md及相关原件和状态记录；补存属于当前状态归档，报告尚未验收，未推送。
 

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Arial" font-size="28" data-pptx-page-role="content">
+  <defs><marker id="p2-flow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#087E83"/></marker><marker id="p2-load" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#426D9B"/></marker></defs>
+  <rect id="p02-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="p02-title" data-pptx-bounds="60 33 1160 101" font-weight="bold">
+    <text x="60" y="53" font-size="18" fill="#087E83">01 / BACKGROUND &amp; PROBLEM</text>
+    <text x="60" y="113" font-size="42" fill="#102B46">High PV calls for differentiated planning</text>
+  </g>
+  <g id="p02-panel-a-title" data-pptx-bounds="60 162 590 40" fill="#102B46" font-size="24">
+    <text x="60" y="190"><tspan font-weight="bold">a</tspan>  Reverse-flow coupling and planning model</text>
+  </g>
+  <g id="p02-panel-b-title" data-pptx-bounds="700 162 520 40" fill="#102B46" font-size="24">
+    <text x="700" y="190"><tspan font-weight="bold">b</tspan>  Station heterogeneity | K = 20</text>
+  </g>
+  <g id="p02-planning-model" data-pptx-bounds="60 210 590 413">
+    <rect x="60" y="211" width="590" height="185" fill="#F2F6F8"/>
+    <g stroke="#102B46" stroke-width="2" fill="none">
+      <line x1="270" y1="251" x2="435" y2="251"/><line x1="352" y1="251" x2="352" y2="273"/>
+      <circle cx="352" cy="289" r="16"/><circle cx="352" cy="310" r="16"/>
+      <line x1="352" y1="326" x2="352" y2="347"/><line x1="173" y1="347" x2="536" y2="347"/>
+      <line x1="173" y1="347" x2="173" y2="364"/><line x1="536" y1="347" x2="536" y2="364"/>
+    </g>
+    <line x1="302" y1="326" x2="302" y2="272" stroke="#087E83" stroke-width="2.5" marker-end="url(#p2-flow)"/>
+    <line x1="400" y1="272" x2="400" y2="326" stroke="#426D9B" stroke-width="2" marker-end="url(#p2-load)"/>
+    <text x="352" y="238" text-anchor="middle" font-size="20" fill="#102B46">Upstream grid</text>
+    <text x="84" y="292" font-size="20" fill="#087E83" font-weight="bold">Midday PV export<tspan x="84" dy="29">Reverse flow</tspan></text>
+    <text x="173" y="387" text-anchor="middle" font-size="20" fill="#087E83">Distributed PV</text>
+    <text x="536" y="387" text-anchor="middle" font-size="20" fill="#426D9B">Local load</text>
+    <text x="452" y="296" font-size="18" fill="#536774">110 kV<tspan x="452" dy="25">substation</tspan></text>
+    <text x="60" y="433" font-size="22" fill="#172B3A">Decisions: <tspan font-weight="bold" fill="#102B46">CLR Rj</tspan> and <tspan font-weight="bold" fill="#102B46">storage power Pj (MW)</tspan></text>
+    <text x="60" y="464" font-size="18" fill="#536774">CLR = transformer capacity / forecast peak load</text>
+    <g id="aggregate-clr-equation" data-pptx-replace-with="formula" data-pptx-x="60" data-pptx-y="481" data-pptx-width="590" data-pptx-height="72" data-pptx-bounds="60 481 590 72">
+      <metadata type="application/json">{"latex":"1.8\\leq\\frac{\\sum_{j=1}^{K}R_jL_j^p}{\\sum_{j=1}^{K}L_j^p}\\leq3.0","display":"block","font_size":24,"color":"#102B46","align":"left"}</metadata>
+      <text x="60" y="523" font-size="24" fill="#102B46">1.8 ≤</text>
+      <text x="254" y="506" text-anchor="middle" font-size="24" fill="#102B46">Σ<tspan baseline-shift="sub" font-size="16">j</tspan> R<tspan baseline-shift="sub" font-size="16">j</tspan>L<tspan baseline-shift="sub" font-size="16">j</tspan><tspan baseline-shift="super" font-size="16">p</tspan></text>
+      <line x1="174" y1="516" x2="334" y2="516" stroke="#102B46" stroke-width="1.2"/>
+      <text x="254" y="546" text-anchor="middle" font-size="24" fill="#102B46">Σ<tspan baseline-shift="sub" font-size="16">j</tspan> L<tspan baseline-shift="sub" font-size="16">j</tspan><tspan baseline-shift="super" font-size="16">p</tspan></text>
+      <text x="356" y="523" font-size="24" fill="#102B46">≤ 3.0</text>
+    </g>
+    <text x="60" y="587" font-size="22" fill="#102B46" font-weight="bold">Minimize annualized cost and EENS</text>
+    <text x="60" y="617" font-size="18" fill="#536774">million CNY/yr · MWh/yr · N−1 supply inadequacy</text>
+  </g>
+  <g id="station-heterogeneity" data-pptx-bounds="700 203 520 425">
+    <text x="775" y="218" font-size="18" fill="#536774">Selected CLR</text>
+    <g id="station-heterogeneity-chartArea">
+      <g stroke="#E6EDF0" stroke-width="1">
+        <line x1="775" y1="227" x2="1165" y2="227"/><line x1="775" y1="315.33" x2="1165" y2="315.33"/><line x1="775" y1="403.67" x2="1165" y2="403.67"/>
+      </g>
+      <line x1="775" y1="227" x2="775" y2="492" stroke="#536774" stroke-width="1.2"/><line x1="775" y1="492" x2="1165" y2="492" stroke="#536774" stroke-width="1.2"/>
+      <line x1="775" y1="374.22" x2="1165" y2="374.22" stroke="#B87232" stroke-width="1.5" stroke-dasharray="6,5"/>
+      <!-- chart-plot-area: object=station-heterogeneity | 775,227,1165,492 -->
+      <circle cx="797.37" cy="440.47" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="874.14" cy="422.81" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="884.41" cy="380.11" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="892.62" cy="394.83" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="900.21" cy="362.44" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="901.24" cy="387.47" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="950.91" cy="331.53" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="958.71" cy="319.75" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="971.64" cy="372.75" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="988.68" cy="343.31" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1012.69" cy="331.53" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1013.72" cy="316.81" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1066.27" cy="319.75" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1072.22" cy="355.08" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1073.66" cy="305.03" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1082.07" cy="341.83" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1100.34" cy="280.00" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1108.55" cy="343.31" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1140.57" cy="352.14" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+      <circle cx="1142.83" cy="341.83" r="5.8" fill="#087E83" stroke="#FFFFFF" stroke-width="1.2"/>
+    </g>
+    <g font-size="16" fill="#536774" text-anchor="end"><text x="760" y="233">3.0</text><text x="760" y="321.33">2.4</text><text x="760" y="409.67">1.8</text><text x="760" y="498">1.2</text></g>
+    <g font-size="16" fill="#536774" text-anchor="middle"><text x="775" y="520">1.7</text><text x="836.58" y="520">2.0</text><text x="939.21" y="520">2.5</text><text x="1041.84" y="520">3.0</text><text x="1165" y="520">3.6</text></g>
+    <text x="970" y="553" text-anchor="middle" font-size="18" fill="#536774">Source-load ratio</text>
+    <text x="1165" y="364" text-anchor="end" font-size="18" fill="#B87232">2.0 cap reference</text>
+    <text x="700" y="591" font-size="22" fill="#102B46">20 stations · Selected CLR 1.55–2.64</text>
+    <text x="700" y="620" font-size="16" fill="#536774">Source-load ratio = installed PV capacity / current peak load</text>
+  </g>
+  <g id="p02-constraints" data-pptx-bounds="60 640 1160 29" font-size="18" fill="#536774"><text x="60" y="658">Constraints: station reverse flow · aggregate CLR band · optional upstream reverse-flow limit</text></g>
+  <g id="p02-footer" data-pptx-bounds="60 676 1160 24" data-pptx-role="footer" font-size="14" fill="#536774"><text x="60" y="691">Source: camera-ready paper, Sections I–II and Fig. 1. Public-data benchmark; all 20 station records shown.</text><text x="1220" y="691" text-anchor="end">02 / 05</text></g>
+</svg>

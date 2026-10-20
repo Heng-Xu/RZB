@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Arial" font-size="28" data-pptx-page-role="content">
+  <rect id="p03-background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="p03-title" data-pptx-bounds="60 49 1160 82" fill="#102B46">
+    <text x="60" y="105" font-size="42" font-weight="bold">Engineering priors guide the search</text>
+  </g>
+  <g id="p03-method-definition" data-pptx-bounds="60 144 1160 40" fill="#536774">
+    <text x="60" y="171">Standard NSGA-II + <tspan fill="#087E83" font-weight="bold">seeding</tspan> + <tspan fill="#087E83" font-weight="bold">feasibility repair</tspan></text>
+  </g>
+  <g id="p03-evolutionary-sequence" data-pptx-bounds="60 207 1160 204">
+    <g id="p03-seed-shape" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="60 218 270 138" data-pptx-av-adj="val 12000" fill="#087E83" stroke="none">
+      <path d="M 60 218 L 313.44 218 L 330 287 L 313.44 356 L 60 356 L 76.56 287 Z"/>
+    </g>
+    <g id="p03-variation-shape" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="344 218 220 138" data-pptx-av-adj="val 12000" fill="#F2F6F8" stroke="none">
+      <path d="M 344 218 L 547.44 218 L 564 287 L 547.44 356 L 344 356 L 360.56 287 Z"/>
+    </g>
+    <g id="p03-repair-shape" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="578 218 230 138" data-pptx-av-adj="val 12000" fill="#087E83" stroke="none">
+      <path d="M 578 218 L 791.44 218 L 808 287 L 791.44 356 L 578 356 L 594.56 287 Z"/>
+    </g>
+    <g id="p03-select-shape" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="chevron" data-pptx-frame="822 218 398 138" data-pptx-av-adj="val 12000" fill="#F2F6F8" stroke="none">
+      <path d="M 822 218 L 1203.44 218 L 1220 287 L 1203.44 356 L 822 356 L 838.56 287 Z"/>
+    </g>
+    <g text-anchor="middle">
+      <text x="195" y="267" font-weight="bold" fill="#FFFFFF">Seed &amp; repair</text>
+      <text x="195" y="308" font-size="20" fill="#FFFFFF">Initial population</text>
+      <text x="454" y="267" font-weight="bold" fill="#102B46">Variation</text>
+      <text x="454" y="308" font-size="20" fill="#536774">Standard operators</text>
+      <text x="693" y="267" font-weight="bold" fill="#FFFFFF">Repair</text>
+      <text x="693" y="308" font-size="20" fill="#FFFFFF">After variation</text>
+      <text x="1021" y="267" font-weight="bold" fill="#102B46">Evaluate &amp; select</text>
+      <text x="1021" y="308" font-size="20" fill="#536774">Cost, EENS, feasibility</text>
+    </g>
+    <text x="1220" y="399" font-size="20" text-anchor="end" fill="#536774">Next generation: return to variation</text>
+  </g>
+  <g id="p03-repair-priorities" data-pptx-bounds="60 442 1160 158">
+    <line x1="60" y1="444" x2="1220" y2="444" stroke="#D3DFE4" stroke-width="1"/>
+    <text x="60" y="478" font-size="20" font-weight="bold" fill="#087E83">REPAIR PRIORITIES</text>
+    <g fill="#102B46" font-weight="bold">
+      <text x="60" y="528">1  Aggregate CLR</text>
+      <text x="452" y="528">2  Station reverse flow</text>
+      <text x="874" y="528">3  Upstream flow</text>
+    </g>
+    <g font-size="22" fill="#536774">
+      <text x="60" y="570">Bounded common offset</text>
+      <text x="452" y="570">Increase storage power</text>
+      <text x="874" y="570">Allocate storage, if enabled</text>
+    </g>
+  </g>
+  <g id="p03-selection-policy" data-pptx-bounds="60 611 1160 44" fill="#172B3A">
+    <text x="60" y="638" font-size="22">Remaining violations use constraint domination; standard ranking and selection are retained.</text>
+  </g>
+  <g id="p03-footer" data-pptx-bounds="60 671 1160 23" data-pptx-role="footer" font-size="14" fill="#536774">
+    <text x="60" y="686">Source: camera-ready paper, Section II-B and Algorithm 1.</text>
+    <text x="1220" y="686" text-anchor="end">03 / 05</text>
+  </g>
+</svg>

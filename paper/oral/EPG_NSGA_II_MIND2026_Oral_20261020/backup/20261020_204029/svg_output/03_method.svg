@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Arial" font-size="28" data-pptx-page-role="content">
+  <defs><marker id="m-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#426D9B"/></marker></defs>
+  <rect id="p03-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="p03-title" data-pptx-bounds="60 33 1160 101" font-weight="bold">
+    <text x="60" y="53" font-size="18" fill="#087E83">02 / PROPOSED SOLUTION</text>
+    <text x="60" y="113" font-size="42" fill="#102B46">Engineering priors guide the search</text>
+  </g>
+  <g id="p03-introduction" data-pptx-bounds="60 156 1160 42" fill="#536774">
+    <text x="60" y="185">Standard NSGA-II + <tspan font-weight="bold" fill="#087E83">engineering-prior seeding</tspan> + <tspan font-weight="bold" fill="#087E83">feasibility repair</tspan></text>
+  </g>
+  <g id="p03-evolution" data-pptx-bounds="60 215 1160 210">
+    <g id="p03-seed" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="flowChartProcess" data-pptx-frame="60 225 245 118" fill="#087E83" stroke="none"><path d="M 60 225 L 305 225 L 305 343 L 60 343 Z"/></g>
+    <g id="p03-evaluate" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="flowChartProcess" data-pptx-frame="350 225 245 118" fill="#F2F6F8" stroke="none"><path d="M 350 225 L 595 225 L 595 343 L 350 343 Z"/></g>
+    <g id="p03-select" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="flowChartProcess" data-pptx-frame="640 225 245 118" fill="#F2F6F8" stroke="none"><path d="M 640 225 L 885 225 L 885 343 L 640 343 Z"/></g>
+    <g id="p03-vary-repair" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="flowChartProcess" data-pptx-frame="930 225 290 118" fill="#087E83" stroke="none"><path d="M 930 225 L 1220 225 L 1220 343 L 930 343 Z"/></g>
+    <g stroke="#426D9B" stroke-width="2"><line x1="313" y1="283" x2="341" y2="283" marker-end="url(#m-arrow)"/><line x1="603" y1="283" x2="631" y2="283" marker-end="url(#m-arrow)"/><line x1="893" y1="283" x2="921" y2="283" marker-end="url(#m-arrow)"/><line x1="472" y1="382" x2="472" y2="352" marker-end="url(#m-arrow)"/></g>
+    <line x1="1075" y1="343" x2="1075" y2="382" stroke="#426D9B" stroke-width="2"/>
+    <g id="p03-loop" data-pptx-authoring="preset" data-pptx-object="shape" data-pptx-prst="leftArrow" data-pptx-frame="472 373 603 18" fill="#426D9B" stroke="none"><path d="M 472 382 L 481 373 L 481 377.5 L 1075 377.5 L 1075 386.5 L 481 386.5 L 481 391 Z"/></g>
+    <g text-anchor="middle" font-weight="bold">
+      <text x="182" y="268" fill="#FFFFFF">Seed &amp; repair</text><text x="472" y="268" fill="#102B46">Evaluate</text><text x="762" y="268" fill="#102B46">Select</text><text x="1075" y="268" fill="#FFFFFF">Vary + repair</text>
+    </g>
+    <g text-anchor="middle" font-size="18">
+      <text x="182" y="300" fill="#FFFFFF">Sample CLR<tspan x="182" dy="24">Start storage at zero</tspan></text>
+      <text x="472" y="306" fill="#536774">Cost · EENS · Constraints</text>
+      <text x="762" y="306" fill="#536774">Non-dominated ranking</text>
+      <text x="1075" y="306" fill="#FFFFFF">Repair every offspring</text>
+      <text x="772" y="418" fill="#536774">Repeated evolutionary search</text>
+    </g>
+  </g>
+  <g id="p03-repair-mechanism" data-pptx-bounds="60 444 1160 194">
+    <line x1="60" y1="445" x2="1220" y2="445" stroke="#D3DFE4" stroke-width="1"/>
+    <text x="60" y="476" font-size="18" font-weight="bold" fill="#087E83">ENGINEERING-PRIOR REPAIR</text>
+    <g font-size="24" fill="#102B46" font-weight="bold">
+      <text x="60" y="522">1  Aggregate CLR</text><text x="410" y="522">2  Station reverse flow</text><text x="935" y="522">3  Upstream limit</text>
+    </g>
+    <g font-size="20" fill="#536774">
+      <text x="60" y="555">Bounded common offset</text><text x="410" y="555">Increase storage power</text><text x="935" y="555">Greedy allocation<tspan x="935" dy="30">when enabled</tspan></text>
+    </g>
+    <g id="station-repair-equation" data-pptx-replace-with="formula" data-pptx-x="60" data-pptx-y="574" data-pptx-width="850" data-pptx-height="62" data-pptx-bounds="60 574 850 62">
+      <metadata type="application/json">{"latex":"P_j\\leftarrow\\operatorname{clip}\\left(\\max\\left\\{P_j,\\left[r_j^0-\\beta R_jL_j^p\\right]^+\\right\\},0,P_{\\max}\\right)","display":"block","font_size":24,"color":"#102B46","align":"left"}</metadata>
+      <text x="60" y="614" font-size="24" fill="#102B46">P<tspan baseline-shift="sub" font-size="16">j</tspan> ← clip(max{P<tspan baseline-shift="sub" font-size="16">j</tspan>, [r<tspan baseline-shift="sub" font-size="16">j</tspan><tspan baseline-shift="super" font-size="16">0</tspan> − βR<tspan baseline-shift="sub" font-size="16">j</tspan>L<tspan baseline-shift="sub" font-size="16">j</tspan><tspan baseline-shift="super" font-size="16">p</tspan>]<tspan baseline-shift="super" font-size="16">+</tspan>}, 0, P<tspan baseline-shift="sub" font-size="16">max</tspan>)</text>
+    </g>
+    <text x="935" y="616" font-size="18" fill="#536774">β = 0.85</text>
+  </g>
+  <g id="p03-qualification" data-pptx-bounds="60 646 1160 24" font-size="18" fill="#536774"><text x="60" y="663">Residual violations: constraint domination. Standard variation and environmental selection are retained.</text></g>
+  <g id="p03-footer" data-pptx-bounds="60 677 1160 23" data-pptx-role="footer" font-size="14" fill="#536774"><text x="60" y="691">Source: Section II-B, Algorithm 1. r0: pre-storage reverse injection; Lp: forecast peak load; Pmax: storage rating bound.</text><text x="1220" y="691" text-anchor="end">03 / 05</text></g>
+</svg>

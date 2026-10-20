@@ -1,0 +1,1 @@
+Hello everyone. Today I will present Engineering-Prior-Guided NSGA-II, or EPG-NSGA-II, for differentiated capacity-load ratio optimization in county-level 110-kilovolt grids with high distributed photovoltaic penetration. This work jointly plans transformer capacity and storage power. I will briefly explain the planning problem, our algorithm, and the main experimental results.

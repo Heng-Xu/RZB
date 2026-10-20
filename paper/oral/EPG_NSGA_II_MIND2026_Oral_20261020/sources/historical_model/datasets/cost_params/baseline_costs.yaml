@@ -1,0 +1,177 @@
+# 基线成本参数（基于公开数据，2025-2026年价格）
+# 来源：国网年度造价指标、国家发改委输配电定价附表、CNESA储能白皮书、GB/T 45418-2025
+# 用途：双向Z4-LCC仿真器的Z1-Z5参数标定
+# 注意：所有数值供初步实验使用；正式投稿前应与甲方实际工程造价做交叉校核
+
+meta:
+  version: "1.0"
+  date: "2026-06-12"
+  currency: "CNY"
+  price_year: 2025
+  data_sources:
+    - "国家电网公司2024-2025年度典型造价指标"
+    - "国家发改委《输配电定价成本监审办法》附表"
+    - "CNESA《2024年度中国储能产业研究白皮书》"
+    - "GB/T 45418-2025 配电网通用技术导则附录"
+    - "DLT 2041-2025 分布式电源接入电力系统承载力评估导则"
+
+# ─── Z1: 110kV变电站建造成本 ──────────────────────────
+# 单位：万元/MVA（含一次设备+二次设备+土建）
+# 参考：国网典型造价，2×50MVA典型110kV站约6000-8000万元
+Z1_substation:
+  base_cost_per_mva: 150     # 万元/MVA 主变与配套
+  fixed_cost: 3000           # 万元 土建+二次系统的固定部分
+  scaling:
+    # 低容量档（修复F2：IEEE33级片区主变需求8-12MVA落在原表下限以下，导致A/B两方案Z1相同）
+    - {capacity_mva: 5,   cost_wan: 2800}    # 1x5MVA 小型站
+    - {capacity_mva: 10,  cost_wan: 4000}    # 2x5MVA
+    - {capacity_mva: 16,  cost_wan: 5200}    # 2x8MVA
+    - {capacity_mva: 20,  cost_wan: 6000}    # 2x10MVA典型
+    - {capacity_mva: 40,  cost_wan: 8000}    # 2x20MVA
+    - {capacity_mva: 100, cost_wan: 12000}   # 2x50MVA
+    - {capacity_mva: 160, cost_wan: 16000}   # 2x80MVA
+  expansion_factor: 0.6      # 在原站扩容/增容的成本系数（相比新建）；方案B弹性增容部分按此系数计
+
+# ─── Z2: 10kV线路建造成本 ──────────────────────────
+# 单位：万元/km
+Z2_line:
+  overhead_cable_per_km: 35   # 万元/km 架空线
+  underground_cable_per_km: 120 # 万元/km 电缆
+  default_mix: 0.6            # 城网平均60%电缆+40%架空
+  effective_cost_per_km: 86   # 加权后≈ 35*0.4 + 120*0.6
+
+# ─── Z3: 运维成本 ──────────────────────────
+# 占建造成本的年比例
+Z3_maintenance:
+  rate_substation: 0.018      # 变电站年运维率 1.8%
+  rate_line: 0.025            # 线路年运维率 2.5%
+  rate_storage: 0.030         # 储能年运维率 3.0%
+
+# ─── Z4: 双向电能损耗 ──────────────────────────
+# 本课题核心创新：分正反向独立建模
+Z4_loss:
+  electricity_price_yuan_per_kwh: 0.55   # 平均电价（含上网、过网）
+  curtailment_penalty_yuan_per_kwh: 0.4   # 弃光惩罚成本（部分省份适用）
+  alpha_forward: 1.0          # 正向损耗加权系数（基线）
+  alpha_reverse: 1.2          # 反向损耗加权系数（考虑反向时空载损耗占比上升）
+  loss_utilization_hours:
+    forward: 5000             # 正向年最大损耗利用时间 h
+    reverse: 1362             # 反向年最大损耗利用时间 h（经验值，徐州 PV=2.5MWp + 负荷峰4MW/谷1.2MW 经PVGIS+反送计算）
+    # 也可按片区动态计算，详见 pv_profile_analyzer.py
+  # 数据源：PVGIS 2005-2020 16年 + 简化日负荷模型
+  # 反向小时数计算：python pv_profile_analyzer.py --pv ... --installed-kwp ... --load-peak-kw ...
+
+# ─── 主变损耗参数（X2修复：110kV主变才是容载比的损耗载体） ──────────────────────────
+# 双绕组110kV主变典型损耗（参照 SZ11/SSZ 系列），按容量线性标定
+transformer_loss:
+  p0_coeff_kw_per_kva: 0.00070   # 空载损耗系数（恒定铁损，常年存在）→ 容载比越高P0越大
+  pk_coeff_kw_per_kva: 0.00450   # 额定负载损耗系数（铜损@额定）；实际负载损耗=Pk×β²
+  # 物理含义：S_rated↑（容载比↑）→ P0↑（恒损增加），但 β=负荷/S_rated↓ → 负载损耗↓
+  # 这构成"容载比-损耗"非线性耦合的真实通道（馈线R损耗仅为次要项）
+
+# ─── 可靠性参数（X4修复：正向重载/N-1 风险成本，启用VOLL） ──────────────────────────
+reliability:
+  voll_yuan_per_kwh: 15.0        # 失负荷价值 VOLL（与 penalties.outage_cost 同口径）
+  n1_equiv_hours: 90.0           # N-1故障期望缺供等效小时数/年（FOR≈0.0103，规划级含强迫停运+计划检修重合）
+  n1_overload_factor: 1.3        # N-1时单台主变可承担倍数（1.3=规程允许短时过载~130%；曾用1.0最保守口径会令降方向消失，敏感性见sensitivity_growth）
+  load_growth_rate: 0.05         # 年负荷增长率（规划级，增长型片区典型值5%/年；敏感性可取2%-8%）
+  growth_horizon_years: 5        # N-1充裕度校核年限（容载比按现状峰荷定，但应在规划期内保持N-1充裕）
+  # N-1可用容量 = n1_overload_factor×(S/台数)×(台数-1) + 联络度CD×峰荷可转供
+  # 校核对象=未来峰荷 peak×(1+g)^n：容载比按现状定，低R在负荷增长后N-1不足→可靠性代价（X4）；
+  # 联络度CD强→站间互济补足N-1缺口→低R仍可行（肖峻TSC机制，X3的梯度由此产生）
+  # 容载比2.0+2台 → N-1余一台=S/2=现状峰荷；负荷增长后需联络度CD或更高R补足
+
+# ─── 反向承载力校核（准入硬闸：只有通过校核的容载比方案才进入LCC比选与一片一策） ──────────────────────────
+# 来源：DLT 2041-2025 分布式电源接入承载力评估导则、GB/T 45418-2025、2025导则反向重载校验
+reverse_check:
+  # 主变反向重载（准入硬闸，R判据）：经本方案储能后主变反向视在 ≤ REVERSE_TX_LIMIT(0.85)×额定；
+  #   纯主变方案越限即不通过（不靠弃光补救）。容载比 tx=R×峰荷 控制限额，故对R单调区分。
+  # 电压：片区级旗标，与R无关，不参与R准入。IEEE33为高阻抗弱馈线，反送抬压主要是其阻抗假象，
+  #   非徐州真实值——公开数据上仅作方法演示，真实阈值待Phase2用徐州实测线路R/X标定。
+  voltage_limit_pu: 1.05         # 反送末端电压旗标阈值（标幺，10kV电压合格上限，仅供片区提示）
+
+# ─── Z5: 残值 ──────────────────────────
+Z5_salvage:
+  substation_lifetime_years: 25
+  line_lifetime_years: 30
+  storage_lifetime_years: 10
+  salvage_rate: 0.05          # 寿命末残值率5%
+
+# ─── 经济参数 ──────────────────────────
+economics:
+  discount_rate: 0.06         # 基线折现率
+  discount_rate_sensitivity:
+    - 0.04
+    - 0.05
+    - 0.06
+    - 0.07
+    - 0.08
+  inflation: 0.025
+  project_horizon_years: 25
+  annualization_method: "capital_recovery_factor"
+
+# ─── 储能成本（方案A配储用） ──────────────────────────
+storage_BESS:
+  energy_cost_yuan_per_kwh: 1200   # CNESA 2024白皮书中位价
+  power_cost_yuan_per_kw: 800       # PCS费用
+  default_dod: 0.85                 # 放电深度
+  cycle_efficiency: 0.88
+  cost_decline_2025_2030: 0.40      # 2025→2030年成本下行约40%
+  cost_sensitivity_factor:
+    - 1.0   # 基线
+    - 0.7   # 30%下行（中期）
+    - 0.5   # 50%下行（长期）
+
+# ─── 风险/惩罚成本 ──────────────────────────
+penalties:
+  outage_cost_yuan_per_kwh: 15      # 失负荷价值（VOLL）参考值
+  voltage_violation_yuan_per_kvar_h: 0.1
+  reliability_threshold_minutes_year: 9.0   # SAIDI ≤9分钟/年（高可靠性区域）
+
+# ─── 容载比分档（来源：2025导则） ──────────────────────────
+capacity_load_ratio:
+  rigid_constraint: 2.0       # 现行刚性约束
+  recommended_ranges:
+    saturated: [1.5, 1.7]
+    slow_growth: [1.6, 1.8]
+    medium_growth: [1.7, 1.9]
+    fast_growth: [1.8, 2.0]
+  elastic_extension:
+    high_pv_low_dist: [1.9, 2.3]    # 高PV+联络度低（容载比可上扬）
+    high_pv_high_dist: [1.4, 1.8]   # 高PV+联络度高（容载比可下压）
+
+# ─── 三维分类档位（决策矩阵的轴） ──────────────────────────
+classification:
+  source_load_ratio:           # 源荷比（装机渗透率）
+    low: [0.0, 1.0]
+    medium: [1.0, 2.0]
+    high: [2.0, 3.0]
+  energy_penetration:          # 电量渗透率
+    low: [0.0, 0.30]
+    medium: [0.30, 0.50]
+    high: [0.50, 0.80]
+  interconnection_degree:      # 联络度CD
+    weak: [0.0, 0.3]
+    medium: [0.3, 0.6]
+    strong: [0.6, 1.0]
+
+# ─── AHP判断矩阵模板 ──────────────────────────
+ahp_criteria:
+  - id: C1
+    name: "经济性（LCC）"
+    weight_init: 0.35
+  - id: C2
+    name: "可靠性（停电损失）"
+    weight_init: 0.25
+  - id: C3
+    name: "新能源消纳能力"
+    weight_init: 0.20
+  - id: C4
+    name: "工程可实施性"
+    weight_init: 0.15
+  - id: C5
+    name: "政策合规性"
+    weight_init: 0.05
+ahp_robustness:
+  perturbation_pct: 0.20        # ±20%扰动
+  perturbation_n: 100           # 蒙特卡洛次数

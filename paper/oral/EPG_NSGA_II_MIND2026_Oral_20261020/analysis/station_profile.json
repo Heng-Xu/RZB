@@ -1,0 +1,150 @@
+[
+  {
+    "name": "paper/oral/EPG_NSGA_II_MIND2026_Oral_20261020/sources/historical_model/results/ea_county_strategy_over2.csv",
+    "n_rows": 20,
+    "n_cols": 8,
+    "columns": [
+      {
+        "name": "station",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 20,
+        "min": 0.0,
+        "max": 19.0,
+        "median": 9.5,
+        "has_zero": true,
+        "has_negative": false,
+        "tail_ratio": 2.0
+      },
+      {
+        "name": "slr",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 20,
+        "min": 1.809,
+        "max": 3.492,
+        "median": 2.7995,
+        "has_zero": false,
+        "has_negative": false,
+        "tail_ratio": 1.2473656010001786
+      },
+      {
+        "name": "cd",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 20,
+        "min": 0.1,
+        "max": 0.45,
+        "median": 0.244,
+        "has_zero": false,
+        "has_negative": false,
+        "tail_ratio": 1.8442622950819674
+      },
+      {
+        "name": "peak_kw",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 20,
+        "min": 2324.0,
+        "max": 5508.0,
+        "median": 3421.5,
+        "has_zero": false,
+        "has_negative": false,
+        "tail_ratio": 1.609820254274441
+      },
+      {
+        "name": "R_star",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 16,
+        "min": 1.55,
+        "max": 2.64,
+        "median": 2.21,
+        "has_zero": false,
+        "has_negative": false,
+        "tail_ratio": 1.1945701357466063
+      },
+      {
+        "name": "P_BESS_MW",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 19,
+        "min": 0.03,
+        "max": 3.82,
+        "median": 0.9099999999999999,
+        "has_zero": false,
+        "has_negative": false,
+        "tail_ratio": 4.197802197802198
+      },
+      {
+        "name": "route",
+        "kind": "categorical",
+        "n_missing": 0,
+        "n_unique": 3,
+        "groups": {
+          "capacity-expansion": 15,
+          "storage": 4,
+          "tie-line": 1
+        }
+      },
+      {
+        "name": "feasible",
+        "kind": "continuous",
+        "n_missing": 0,
+        "n_unique": 1,
+        "min": 1.0,
+        "max": 1.0,
+        "median": 1.0,
+        "has_zero": false,
+        "has_negative": false,
+        "tail_ratio": 1.0
+      }
+    ],
+    "by_kind": {
+      "categorical": [
+        "route"
+      ],
+      "continuous": [
+        "station",
+        "slr",
+        "cd",
+        "peak_kw",
+        "R_star",
+        "P_BESS_MW",
+        "feasible"
+      ]
+    },
+    "geo": false,
+    "temporal": [],
+    "scenarios": [],
+    "facets": [
+      {
+        "name": "route",
+        "n_levels": 3,
+        "groups": {
+          "capacity-expansion": 15,
+          "storage": 4,
+          "tie-line": 1
+        }
+      }
+    ],
+    "wide_families": {},
+    "composition_sets": [],
+    "skewed": [],
+    "signed": [],
+    "decision_points": [
+      {
+        "key": "split:route",
+        "fact": "route has 3 levels, group n runs 1-15 (median 4)",
+        "forces": "whether to split on it or pool over it, and -- if the group sizes above are uneven -- whether to drop the small ones, pool them, or keep them all. There is no default cutoff: any cutoff changes how many levels survive and therefore what number the figure states, so it is a decision to record, not one to inherit",
+        "settled": null
+      },
+      {
+        "key": "marks",
+        "fact": "smallest route group has n = 1, largest n = 15",
+        "forces": "how each group is drawn. A fitted density needs enough points to be credible and the threshold is a judgement call, so decide it against these counts; showing the observations as well as the summary avoids the question entirely",
+        "settled": null
+      }
+    ]
+  }
+]

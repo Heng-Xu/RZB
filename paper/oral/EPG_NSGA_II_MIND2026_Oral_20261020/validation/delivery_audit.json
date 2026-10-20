@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "slides": 5,
+  "language": "English",
+  "words_by_slide": [
+    47,
+    191,
+    159,
+    214,
+    29
+  ],
+  "total_spoken_words": 640,
+  "minutes_at_130_wpm": 4.923076923076923,
+  "source_manifest_hashes_verified": 16,
+  "normalized_final_HV": {
+    "10": {
+      "classic": 1.0,
+      "nsga3": 0.9980443217463417,
+      "warmstart_only": 0.9962737798739063,
+      "repair_only": 1.003996780270475,
+      "fg": 1.0074189513527332
+    },
+    "20": {
+      "classic": 1.0,
+      "nsga3": 0.9908738345023941,
+      "warmstart_only": 0.9905280226884197,
+      "repair_only": 1.005651290619929,
+      "fg": 1.0071952645060376
+    },
+    "30": {
+      "classic": 1.0,
+      "nsga3": 0.9792016129618963,
+      "warmstart_only": 0.9876154584839871,
+      "repair_only": 1.0076584708917236,
+      "fg": 1.0089740836361967
+    },
+    "40": {
+      "classic": 1.0,
+      "nsga3": 0.9852605993928992,
+      "warmstart_only": 0.997784584923199,
+      "repair_only": 1.047797264787263,
+      "fg": 1.048141749319549
+    }
+  },
+  "cost_reduction_percent_unrounded": 3.3714043993231804,
+  "pptx_native_tables": 0,
+  "pptx_native_chevrons": 0,
+  "pptx_native_process_shapes": 4,
+  "pptx_native_math": 2,
+  "pptx_picture_count": 0,
+  "speaker_notes_match_script": true,
+  "preview_rendering": "Chromium vector PDF; all text fonts embedded; vector math previews; not an Office render",
+  "PDF_fonts": {
+    "AAAAAA+ArialMT": {
+      "type": "Type0",
+      "extension": "ttf",
+      "embedded": true
+    },
+    "BAAAAA+Arial-BoldMT": {
+      "type": "Type0",
+      "extension": "ttf",
+      "embedded": true
+    }
+  },
+  "provenance_qualification": "The camera-ready PDF governs the reported comparison. Archived CSV values match exactly; the historical rows are labelled selected(front=1) and min_EENS. The paper states the same knee-point rule, but that selection-rule history was not independently reconstructed. No optimization rerun was performed.",
+  "files": {
+    "EPG-NSGA-II_MIND2026_Oral_Corrected.pptx": {
+      "sha256": "a8700abdb4199cffaac6478d9de659af56a93f435c28fef555ee7a6de4a4adff",
+      "bytes": 45408
+    },
+    "EPG-NSGA-II_English_Script.md": {
+      "sha256": "d9efcde00278d583cf88a5f840cd1182c068689f78820196dbf5850af0564a1d",
+      "bytes": 4859
+    },
+    "EPG-NSGA-II_English_Script.docx": {
+      "sha256": "c668af154cbf76a3948e22b1d5ff7e4dce7fade9c9b5cb25ca214133d2264a4a",
+      "bytes": 38889
+    },
+    "EPG-NSGA-II_MIND2026_Oral_Corrected.pdf": {
+      "sha256": "96b84fd8f24b2d012b49a2b7dd93333a1bad80e257feec76c8c36627bf218a2f",
+      "bytes": 142891
+    }
+  }
+}

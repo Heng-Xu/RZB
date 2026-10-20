@@ -1,0 +1,7 @@
+High distributed PV penetration changes power flow. Electricity normally moves from the upstream grid toward local demand, but midday PV generation can create reverse flow through a substation. The planning challenge is that substations differ in PV penetration and transfer capability, while a fixed capacity-load ratio cap of two treats these differences uniformly.
+
+We therefore optimize two quantities at each station: its capacity-load ratio, or CLR, and its storage power rating in megawatts. CLR is dimensionless and means planned transformer capacity divided by forecast peak load. The paper uses a five-year forecast with five percent annual growth.
+
+The scatter shows all twenty stations in the reported design, with selected CLRs from one point five five to two point six four. Its source-load ratio divides installed PV capacity by current peak load. The dashed line marks the two-point-zero comparison cap.
+
+The objectives are annualized cost, in million yuan per year, and expected energy not supplied, or EENS, in megawatt-hours per year. EENS measures supply inadequacy under N-minus-one contingencies. Feasibility is defined by station reverse-flow limits, an aggregate CLR band from one point eight to three, and an upstream reverse-flow limit when enabled.

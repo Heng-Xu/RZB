@@ -1,0 +1,7 @@
+The experiments use a public-data benchmark, with loads scaled from the IEEE thirty-three-bus system and PV profiles derived from PVGIS. Population size is one hundred, and results are averaged over three independent runs.
+
+For forty substations, EPG-NSGA-II achieves four point eight percent higher mean final hypervolume than standard NSGA-II. The left panel shows convergence, with shading indicating one standard deviation across the three runs. Hypervolume is normalized to the standard baseline's final mean using a common reference point. The baselines run for eight hundred generations, while EPG-NSGA-II and its ablations run for four hundred. The mean EPG curve reaches the standard baseline's final hypervolume by generation eighty-four. The right panel shows every final run and its method mean. Repair-only nearly matches the full method, while seeding-only remains close to the baseline. Repair is therefore the main contributor to the final gain.
+
+The twenty-substation planning comparison is summarized above the plots. Annualized cost falls from two hundred thirty-six point four zero to two hundred twenty-eight point four three million yuan per year, a reduction of three point four percent. Modeled EENS falls from five hundred sixty-one to zero megawatt-hours per year relative to the two-point-zero-capped design.
+
+These results apply to the current model. Storage energy and state-of-charge limits, together with real-grid calibration, remain future work.

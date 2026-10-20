@@ -1,0 +1,72 @@
+{
+  "source_files": [
+    "sources/historical_model/results/ea_converge.csv",
+    "sources/historical_model/results/ea_county_strategy_over2.csv"
+  ],
+  "normalization": "all K=40 HV divided by mean NSGA-II final HV at generation 800",
+  "uncertainty": "sample SD across 3 independent runs at each generation, ddof=1",
+  "excluded_rows": "other K values excluded only for the preselected K=40 panel; all K=40 generations/runs used",
+  "missing": "none within the reported termination of each algorithm; EPG ends at 400 and is not extended to 800",
+  "geometry_simplification_tolerance_px": 0.45,
+  "smoothing": "none",
+  "endpoints": {
+    "classic": {
+      "gen": 800,
+      "mean": 1.0,
+      "sd": 0.005086368417485238,
+      "runs": [
+        0.9941271796492389,
+        1.0028761646431332,
+        1.002996655707628
+      ]
+    },
+    "nsga3": {
+      "gen": 800,
+      "mean": 0.9852605993928992,
+      "sd": 0.01295970142778814,
+      "runs": [
+        0.9704063880503004,
+        0.9942587445733998,
+        0.9911166655549974
+      ]
+    },
+    "warmstart_only": {
+      "gen": 400,
+      "mean": 0.997784584923199,
+      "sd": 0.004325655546402165,
+      "runs": [
+        1.0026186184204462,
+        0.9964563225163526,
+        0.9942788138327981
+      ]
+    },
+    "repair_only": {
+      "gen": 400,
+      "mean": 1.047797264787263,
+      "sd": 0.0004233199445072769,
+      "runs": [
+        1.0482780394614177,
+        1.047633307548552,
+        1.0474804473518196
+      ]
+    },
+    "fg": {
+      "gen": 400,
+      "mean": 1.048141749319549,
+      "sd": 0.0008149543326745667,
+      "runs": [
+        1.0488151842474651,
+        1.04723580904092,
+        1.0483742546702621
+      ]
+    }
+  },
+  "convergence_reference": 5032572.3533333335,
+  "station_n": 20,
+  "station_CLR_range": [
+    1.55,
+    2.64
+  ],
+  "figure_destination": "16:9 English conference slides P02 and P04, not journal submission",
+  "standalone_exports": "SVG and PDF vectors; PNG 450 dpi; no title/callout embedded in standalone data layers"
+}

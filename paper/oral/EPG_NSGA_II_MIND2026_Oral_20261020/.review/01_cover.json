@@ -1,0 +1,47 @@
+{
+  "page": "01_cover.svg",
+  "page_role": "cover",
+  "canvas": {
+    "view_box": [
+      0,
+      0,
+      1280,
+      720
+    ],
+    "width": 1280,
+    "height": 720,
+    "png_width": 1280,
+    "png_height": 720
+  },
+  "status": "fixed",
+  "iterations_run": 1,
+  "screenshot_paths": [
+    ".preview/01_cover.png"
+  ],
+  "findings": [
+    {
+      "iter": 1,
+      "rule": "H6",
+      "severity": "hard",
+      "evidence": "The bottom of P_j in the rightmost symbolic planning node meets the horizontal node border at y=569 in the initial PNG; the matching label block is vertically low in all three nodes.",
+      "fix_applied": {
+        "element": "#p01-graphical-abstract > g[fill=\"#F2F8FC\"][font-size=\"18\"][text-anchor=\"middle\"]",
+        "before": "No transform; symbol baselines at y=536 and y=560.",
+        "after": "transform=\"translate(0 -4)\"; both rows move up 4 px, retaining their spacing and clearing the border."
+      },
+      "verified_in_iter": null,
+      "backup_path": ".review/backup/01_cover.iter1.svg"
+    }
+  ],
+  "untouched_concerns": [],
+  "needs_human_items": [],
+  "design_intent_check": {
+    "spec_says": "Dark cover establishes EPG-NSGA-II, the full research title and authors, with a clear inputs → guided search → differentiated planning graphical abstract.",
+    "render_delivers": true,
+    "note": "One atomic position fix applied; orchestrator re-render is required to inspect the changed label group."
+  },
+  "post_fix_verification": {
+    "basis": "Parent re-rendered the cover and inspected actual delivered PDF node-detail crop after the 4px translation. Descenders clear the node border.",
+    "evidence": "validation/preview/cover_nodes_detail.png"
+  }
+}

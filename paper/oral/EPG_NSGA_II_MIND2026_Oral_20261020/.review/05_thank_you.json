@@ -1,0 +1,38 @@
+{
+  "page": "05_thank_you.svg",
+  "page_role": "closing",
+  "canvas": {
+    "view_box": [
+      0,
+      0,
+      1280,
+      720
+    ],
+    "width": 1280,
+    "height": 720,
+    "png_width": 1280,
+    "png_height": 720
+  },
+  "status": "ok",
+  "iterations_run": 1,
+  "screenshot_paths": [
+    ".preview/05_thank_you.png"
+  ],
+  "findings": [],
+  "untouched_concerns": [],
+  "needs_human_items": [],
+  "design_intent_check": {
+    "spec_says": "Dark ending, invitation to discussion, engineering-prior takeaway and bus-and-branch reprise.",
+    "render_delivers": true,
+    "note": "Ending symbolic labels render with true lowered subscripts (1, 2, j) inside each node box. Labels clear the node boundaries and wires. The title, invitation, takeaway, masthead and footer remain readable and unobstructed."
+  },
+  "sanity_check": {
+    "png_size": [
+      1280,
+      720
+    ],
+    "largest_single_color_fraction": 0.950462,
+    "all_background": false
+  },
+  "review_scope": "One-iteration visual review against H1-H4, H6-H9 and S1-S10. Static preconditions supplied as passing. No edits applied; raw chart geometry preserved."
+}

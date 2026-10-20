@@ -1,0 +1,28 @@
+[
+  {
+    "name": "aggregate_clr",
+    "latex_preview": "1.8\\leq\\frac{{\\sum}_{j=1}^{K}R_jL_j^p}{{\\sum}_{j=1}^{K}L_j^p}\\leq3.0",
+    "size": 28,
+    "bounds": [
+      60.0,
+      486.55596249999996,
+      247.8160197916667,
+      64.88807500000007
+    ],
+    "fragment": "figures/aggregate_clr_formula.fragment.svg",
+    "PPTX": "exact LaTeX marker remains native Office Math"
+  },
+  {
+    "name": "station_repair",
+    "latex_preview": "P_j\\leftarrow\\operatorname{clip}\\left(\\max\\left\\{P_j,\\left[r_j^0-\\beta R_jL_j^p\\right]^+\\right\\},0,P_{\\max}\\right)",
+    "size": 28,
+    "bounds": [
+      60.0,
+      586.401875,
+      568.7898814131972,
+      37.196249999999964
+    ],
+    "fragment": "figures/station_repair_formula.fragment.svg",
+    "PPTX": "exact LaTeX marker remains native Office Math"
+  }
+]

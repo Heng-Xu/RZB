@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Arial" font-size="28" data-pptx-page-role="content">
+  <rect id="p04-background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="p04-title" data-pptx-bounds="60 49 1160 82" fill="#102B46">
+    <text x="60" y="105" font-size="42" font-weight="bold">Better search, lower modeled planning cost</text>
+  </g>
+  <g id="p04-search-headline" data-pptx-bounds="60 173 590 152">
+    <text x="60" y="203" fill="#102B46" font-weight="bold">Search quality | K = 40</text>
+    <text x="60" y="293" font-size="76" font-weight="bold" fill="#087E83">+4.8%</text>
+    <text x="359" y="255" font-size="20" fill="#536774">vs standard NSGA-II<tspan x="359" dy="30">mean final hypervolume</tspan></text>
+  </g>
+  <g id="p04-planning-headline" data-pptx-bounds="710 173 510 152">
+    <text x="710" y="203" fill="#102B46" font-weight="bold">Planning outcome | K = 20</text>
+    <text x="710" y="293" font-size="76" font-weight="bold" fill="#087E83">−3.4%</text>
+    <text x="1027" y="282" font-size="20" fill="#536774">annualized cost</text>
+  </g>
+  <g id="hv-comparison" data-pptx-bounds="60 340 590 246" data-pptx-replace-with="table" data-pptx-fallback-sha256="f48a06b85961b009fec2ce90c5f373034fbc6b280404f19d0109f323cb9d1da8">
+    <metadata type="application/json">
+      {
+        "schema": "ppt-master.semantic-table.v2",
+        "name": "hv-comparison", "x": 60, "y": 340, "width": 590, "height": 246,
+        "strict_grid": true, "header_rows": 1,
+        "column_widths": [310, 120, 160], "row_heights": [41, 41, 41, 41, 41, 41],
+        "style": {"font_family": "Arial", "font_size": 22, "header_font_size": 22, "header_fill": "#F2F6F8", "header_text": "#536774", "body_fill": "#FFFFFF", "body_text": "#172B3A", "band_row": false},
+        "defaults": {"cell": {"align": "l", "valign": "middle", "padding": {"left": 16, "right": 16, "top": 0, "bottom": 0}, "borders": {"left": {"style": "none"}, "right": {"style": "none"}, "top": {"style": "none"}, "bottom": {"style": "solid", "color": "#E6EDF0", "width": 1}}}},
+        "cell_styles": {"selected": {"fill": "#087E83", "color": "#FFFFFF", "bold": true, "borders": {"left": {"style": "none"}, "right": {"style": "none"}, "top": {"style": "none"}, "bottom": {"style": "none"}}}},
+        "columns": [{"text": "Method", "bold": true}, {"text": "HV", "align": "r", "bold": true}, {"text": "Gen.", "align": "r", "bold": true}],
+        "rows": [
+          [{"text": "NSGA-II"}, {"text": "1.000", "align": "r"}, {"text": "800", "align": "r"}],
+          [{"text": "NSGA-III"}, {"text": "0.985", "align": "r"}, {"text": "800", "align": "r"}],
+          [{"text": "Seeding-only"}, {"text": "0.998", "align": "r"}, {"text": "400", "align": "r"}],
+          [{"text": "Repair-only"}, {"text": "1.048", "align": "r"}, {"text": "400", "align": "r"}],
+          [{"text": "EPG-NSGA-II", "cell_style": "selected"}, {"text": "1.048", "align": "r", "cell_style": "selected"}, {"text": "400", "align": "r", "cell_style": "selected"}]
+        ]
+      }
+    </metadata>
+    <rect x="60" y="340" width="590" height="41" fill="#F2F6F8"/>
+    <rect x="60" y="545" width="590" height="41" fill="#087E83"/>
+    <g stroke="#E6EDF0" stroke-width="1">
+      <line x1="60" y1="381" x2="650" y2="381"/>
+      <line x1="60" y1="422" x2="650" y2="422"/>
+      <line x1="60" y1="463" x2="650" y2="463"/>
+      <line x1="60" y1="504" x2="650" y2="504"/>
+      <line x1="60" y1="545" x2="650" y2="545"/>
+    </g>
+    <g font-size="22" fill="#536774" font-weight="bold">
+      <text x="76" y="368">Method</text><text x="474" y="368" text-anchor="end">HV</text><text x="634" y="368" text-anchor="end">Gen.</text>
+    </g>
+    <g font-size="22" fill="#172B3A">
+      <text x="76" y="409">NSGA-II</text><text x="474" y="409" text-anchor="end">1.000</text><text x="634" y="409" text-anchor="end">800</text>
+      <text x="76" y="450">NSGA-III</text><text x="474" y="450" text-anchor="end">0.985</text><text x="634" y="450" text-anchor="end">800</text>
+      <text x="76" y="491">Seeding-only</text><text x="474" y="491" text-anchor="end">0.998</text><text x="634" y="491" text-anchor="end">400</text>
+      <text x="76" y="532">Repair-only</text><text x="474" y="532" text-anchor="end">1.048</text><text x="634" y="532" text-anchor="end">400</text>
+    </g>
+    <g font-size="22" fill="#FFFFFF" font-weight="bold">
+      <text x="76" y="573">EPG-NSGA-II</text><text x="474" y="573" text-anchor="end">1.048</text><text x="634" y="573" text-anchor="end">400</text>
+    </g>
+  </g>
+  <g id="p04-cost-comparison" data-pptx-bounds="710 340 510 122">
+    <text x="710" y="363" font-size="22" fill="#536774">Annualized cost (million CNY/yr)</text>
+    <text x="710" y="421" font-size="42" fill="#536774">236.40</text>
+    <text x="933" y="416" font-size="32" fill="#536774">→</text>
+    <text x="1220" y="421" font-size="42" text-anchor="end" font-weight="bold" fill="#087E83">228.43</text>
+    <line x1="710" y1="458" x2="1220" y2="458" stroke="#D3DFE4" stroke-width="1"/>
+  </g>
+  <g id="p04-eens-comparison" data-pptx-bounds="710 488 510 98">
+    <text x="710" y="510" font-size="22" fill="#536774">Modeled EENS (MWh/yr)</text>
+    <text x="710" y="568" font-size="42" fill="#536774">561.00</text>
+    <text x="933" y="563" font-size="32" fill="#536774">→</text>
+    <text x="1220" y="568" font-size="42" text-anchor="end" font-weight="bold" fill="#087E83">0.00</text>
+  </g>
+  <g id="p04-search-conditions" data-pptx-bounds="60 597 590 37" fill="#536774" font-size="14">
+    <text x="60" y="609">HV normalized to NSGA-II at termination; common reference point.</text>
+    <text x="60" y="630">Population 100 · Three independent runs · Repair nearly matches the full method.</text>
+  </g>
+  <g id="p04-planning-conditions" data-pptx-bounds="710 597 510 37" fill="#536774">
+    <text x="710" y="621" font-size="20">2.0-capped → elastic CLR design</text>
+  </g>
+  <g id="p04-model-scope" data-pptx-bounds="60 642 1160 25" fill="#536774">
+    <text x="60" y="659" font-size="20">Public-data benchmark · Energy/SOC limits and real-grid calibration remain future work.</text>
+  </g>
+  <g id="p04-footer" data-pptx-bounds="60 675 1160 21" data-pptx-role="footer" font-size="14" fill="#536774">
+    <text x="60" y="688">Source: camera-ready paper, Table I and Section III-C. Values checked against archived experimental CSVs.</text>
+    <text x="1220" y="688" text-anchor="end">04 / 05</text>
+  </g>
+</svg>

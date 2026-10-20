@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Arial" font-size="28" data-pptx-page-role="cover">
+  <defs><marker id="c-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#66D5D0" /></marker></defs>
+  <rect id="p01-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#0B233B" />
+  <g id="p01-masthead" data-pptx-bounds="60 39 1160 57" font-size="20" fill="#F2F8FC">
+    <text x="60" y="66">MIND 2026</text><text x="1220" y="66" text-anchor="end" fill="#66D5D0">ENGINEERING-PRIOR-GUIDED OPTIMIZATION</text>
+    <line x1="60" y1="93" x2="1220" y2="93" stroke="#F2F8FC" stroke-opacity="0.22" stroke-width="1" />
+  </g>
+  <g id="p01-title" data-pptx-bounds="60 128 760 112" fill="#F2F8FC">
+    <text x="60" y="207" font-size="76" font-weight="bold">EPG-NSGA-II</text>
+  </g>
+  <g id="p01-research-title" data-pptx-bounds="60 263 760 214" fill="#F2F8FC">
+    <text font-size="34" x="60" y="295">Engineering-Prior-Guided NSGA-II for</text><text font-size="34" x="60" y="339">Differentiated Capacity-Load Ratio</text><text font-size="34" x="60" y="383">Optimization in County-Level 110 kV Grids</text><text font-size="34" x="60" y="427">with High Distributed PV Penetration</text></g>
+  <g id="p01-author-block" data-pptx-bounds="60 512 760 130" fill="#F2F8FC">
+    <text x="60" y="538" font-size="20">Dunbin Xu · Ke Wang · Yan Xu* · Ziyue Huang · Fei Geng · Rui Yuan</text>
+    <text x="60" y="575" font-size="16" fill="#66D5D0">State Grid Xuzhou Power Supply Company</text>
+    <text font-size="16" x="60" y="606">State Grid Jiangsu Electric Power Design &amp; Consulting Co., Ltd.</text><text font-size="16" x="60" y="630">Xuzhou Survey and Design Branch</text></g>
+  <g id="p01-graphical-abstract" data-pptx-bounds="850 133 370 500">
+    <rect x="850" y="133" width="370" height="500" fill="#F2F8FC" fill-opacity="0.035" />
+    <g stroke="#F2F8FC" stroke-opacity="0.10" stroke-width="1">
+      <line x1="875" y1="195" x2="1195" y2="195" /><line x1="875" y1="275" x2="1195" y2="275" /><line x1="875" y1="355" x2="1195" y2="355" /><line x1="875" y1="435" x2="1195" y2="435" /><line x1="875" y1="515" x2="1195" y2="515" />
+      <line x1="915" y1="170" x2="915" y2="594" /><line x1="995" y1="170" x2="995" y2="594" /><line x1="1075" y1="170" x2="1075" y2="594" /><line x1="1155" y1="170" x2="1155" y2="594" />
+    </g>
+    <text x="875" y="171" font-size="16" fill="#66D5D0">GRAPHICAL ABSTRACT</text>
+    <g stroke="#F2F8FC" stroke-width="2" fill="none">
+      <rect x="887" y="212" width="90" height="47" />
+      <line x1="917" y1="212" x2="917" y2="259" /><line x1="947" y1="212" x2="947" y2="259" /><line x1="887" y1="236" x2="977" y2="236" />
+      <line x1="932" y1="259" x2="932" y2="271" /><line x1="907" y1="271" x2="957" y2="271" />
+      <circle cx="1098" cy="225" r="17" /><circle cx="1098" cy="247" r="17" />
+      <line x1="1032" y1="201" x2="1165" y2="201" /><line x1="1098" y1="201" x2="1098" y2="208" />
+    </g>
+    <line x1="986" y1="236" x2="1068" y2="236" stroke="#66D5D0" stroke-width="2" marker-end="url(#c-arrow)" />
+    <text x="1035" y="304" text-anchor="middle" font-size="20" fill="#F2F8FC">PV-rich 110 kV substations</text>
+    <line x1="1035" y1="324" x2="1035" y2="352" stroke="#66D5D0" stroke-width="2" marker-end="url(#c-arrow)" />
+    <rect x="887" y="366" width="296" height="75" fill="none" stroke="#66D5D0" stroke-width="1.5" />
+    <text x="1035" y="397" text-anchor="middle" font-size="22" fill="#66D5D0" font-weight="bold">Seeding + feasibility repair</text>
+    <text x="1035" y="426" text-anchor="middle" font-size="18" fill="#F2F8FC">Engineering priors enter the search</text>
+    <line x1="1035" y1="454" x2="1035" y2="484" stroke="#66D5D0" stroke-width="2" marker-end="url(#c-arrow)" />
+    <g stroke="#F2F8FC" stroke-width="1.5" fill="none">
+      <rect x="902" y="510" width="76" height="59" /><rect x="997" y="510" width="76" height="59" /><rect x="1092" y="510" width="76" height="59" />
+    </g>
+    <g fill="#F2F8FC" font-size="18" text-anchor="middle" transform="translate(0 -4)">
+      <text x="940" y="536">R<tspan baseline-shift="sub" font-size="14">1</tspan></text><text x="940" y="560">P<tspan baseline-shift="sub" font-size="14">1</tspan></text>
+      <text x="1035" y="536">R<tspan baseline-shift="sub" font-size="14">2</tspan></text><text x="1035" y="560">P<tspan baseline-shift="sub" font-size="14">2</tspan></text>
+      <text x="1130" y="536">R<tspan baseline-shift="sub" font-size="14">j</tspan></text><text x="1130" y="560">P<tspan baseline-shift="sub" font-size="14">j</tspan></text>
+    </g>
+    <text x="1035" y="602" text-anchor="middle" font-size="20" fill="#F2F8FC">Differentiated CLR + storage</text>
+  </g>
+  <g id="p01-footer" data-pptx-bounds="60 669 1160 27" data-pptx-role="footer" font-size="14" fill="#F2F8FC">
+    <text x="60" y="687">* Corresponding author: Yan Xu</text><text x="1220" y="687" text-anchor="end">01 / 05</text>
+  </g>
+</svg>

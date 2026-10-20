@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "reviewed_at": "2026-10-20T21:10:19+08:00",
+  "basis": "Actual delivered PDF pages rendered at 2560×1440 and visually read individually; math and node-label details rendered at 5× PDF scale. Source render review independently covers all five pages.",
+  "fixed": [
+    "CairoSVG collapsed script runs; replaced PDF renderer with Chromium.",
+    "Both formula previews typeset as vector paths from LaTeX, including full summation limits, fraction, simultaneous scripts and scalable delimiters.",
+    "Chart ticks, values and annotations increased to 18px.",
+    "Cap reference label moved clear of scatter data; contrast increased.",
+    "Cover symbolic labels raised 4px so descenders clear node borders."
+  ],
+  "PDF_fonts": "ArialMT and Arial-BoldMT embedded; math outlined as vectors; no raster images on any PDF page.",
+  "PPTX_math": "Two native editable Office Math expressions; XML and export checked. Actual Microsoft PowerPoint rendering is not available in this environment.",
+  "remaining_issues": [],
+  "files": {
+    "EPG-NSGA-II_MIND2026_Oral_Corrected.pdf": "96b84fd8f24b2d012b49a2b7dd93333a1bad80e257feec76c8c36627bf218a2f",
+    "EPG-NSGA-II_MIND2026_Oral_Corrected.pptx": "a8700abdb4199cffaac6478d9de659af56a93f435c28fef555ee7a6de4a4adff"
+  },
+  "page_reports": [
+    ".review/01_cover.json",
+    ".review/02_problem.json",
+    ".review/03_method.json",
+    ".review/04_results.json",
+    ".review/05_thank_you.json"
+  ]
+}

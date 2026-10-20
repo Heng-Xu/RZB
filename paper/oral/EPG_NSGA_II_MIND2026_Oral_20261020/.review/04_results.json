@@ -1,0 +1,38 @@
+{
+  "page": "04_results.svg",
+  "page_role": "content",
+  "canvas": {
+    "view_box": [
+      0,
+      0,
+      1280,
+      720
+    ],
+    "width": 1280,
+    "height": 720,
+    "png_width": 1280,
+    "png_height": 720
+  },
+  "status": "ok",
+  "iterations_run": 1,
+  "screenshot_paths": [
+    ".preview/04_results.png"
+  ],
+  "findings": [],
+  "untouched_concerns": [],
+  "needs_human_items": [],
+  "design_intent_check": {
+    "spec_says": "Result strip, K=40 convergence and raw-run ablation, and separate K=20 planning outcomes.",
+    "render_delivers": true,
+    "note": "Rendered chart labels are readable at full PNG size. The SD annotation ends within the left chart; the EPG ablation label starts at x=800 with clear separation. Ablation x ticks retain visible gaps, and value labels clear the run markers. All data marks and text positions are retained."
+  },
+  "sanity_check": {
+    "png_size": [
+      1280,
+      720
+    ],
+    "largest_single_color_fraction": 0.923557,
+    "all_background": false
+  },
+  "review_scope": "One-iteration visual review against H1-H4, H6-H9 and S1-S10. Static preconditions supplied as passing. No edits applied; raw chart geometry preserved."
+}

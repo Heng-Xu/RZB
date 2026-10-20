@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Arial" font-size="28" data-pptx-page-role="content">
+  <rect id="p04-bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="p04-title" data-pptx-bounds="60 33 1160 101" font-weight="bold">
+    <text x="60" y="53" font-size="18" fill="#087E83">03 / EXPERIMENTAL EVIDENCE</text>
+    <text x="60" y="113" font-size="42" fill="#102B46">Better search, lower modeled planning cost</text>
+  </g>
+  <g id="p04-hv-metric" data-pptx-bounds="60 161 390 121">
+    <text x="60" y="183" font-size="20" fill="#536774">Mean final HV | K = 40</text><text x="60" y="242" font-size="54" fill="#087E83" font-weight="bold">+4.8%</text>
+    <text x="60" y="273" font-size="18" fill="#536774">EPG: 400 gen · NSGA-II: 800 gen</text>
+  </g>
+  <g id="p04-cost-metric" data-pptx-bounds="480 161 400 121">
+    <text x="480" y="183" font-size="20" fill="#536774">Annualized cost | K = 20</text><text x="480" y="242" font-size="54" fill="#087E83" font-weight="bold">−3.4%</text>
+    <text x="480" y="273" font-size="18" fill="#536774">236.40 → 228.43 million CNY/yr</text>
+  </g>
+  <g id="p04-eens-metric" data-pptx-bounds="920 161 300 121">
+    <text x="920" y="183" font-size="20" fill="#536774">Modeled EENS | K = 20</text><text x="920" y="242" font-size="54" fill="#087E83" font-weight="bold">0.00</text>
+    <text x="920" y="273" font-size="18" fill="#536774">561.00 → 0.00 MWh/yr</text>
+  </g>
+  <g id="p04-panel-headings" data-pptx-bounds="60 299 1160 37" font-size="24" fill="#102B46">
+    <line x1="60" y1="299" x2="1220" y2="299" stroke="#D3DFE4" stroke-width="1"/>
+    <text x="60" y="327"><tspan font-weight="bold">a</tspan>  Search dynamics | K = 40</text><text x="800" y="327"><tspan font-weight="bold">b</tspan>  Ablation | K = 40</text>
+  </g>
+  <g id="convergence-hv" data-pptx-bounds="60 336 700 314">
+    <g id="convergence-hv-chartArea">
+      <g stroke="#E6EDF0" stroke-width="1"><line x1="105" y1="354" x2="725" y2="354"/><line x1="105" y1="478.36" x2="725" y2="478.36"/></g>
+      <line x1="105" y1="374.73" x2="725" y2="374.73" stroke="#7C8791" stroke-width="1" stroke-dasharray="3,5"/>
+      <line x1="105" y1="354" x2="105" y2="582" stroke="#536774" stroke-width="1.2"/><line x1="105" y1="582" x2="725" y2="582" stroke="#536774" stroke-width="1.2"/>
+      <!-- chart-plot-area: object=convergence-hv | 105,354,725,582 -->
+      <polygon id="curve-classic-sd" points="105.78,551.65 106.55,555.45 107.33,533.71 108.10,560.37 108.88,548.57 109.65,549.07 110.42,554.47 111.20,535.51 111.97,535.53 113.53,549.48 115.08,534.77 115.85,537.41 116.62,533.33 117.40,533.53 118.95,536.90 121.28,526.80 122.83,511.45 123.60,511.01 124.38,506.07 129.80,491.70 132.90,480.19 135.22,477.13 137.55,469.43 139.10,468.22 141.43,462.80 143.75,461.45 145.30,458.14 148.40,456.38 150.72,450.82 154.60,444.27 157.70,443.30 160.80,440.75 163.90,435.79 169.32,434.00 173.97,430.74 178.62,429.01 182.50,426.39 184.05,420.87 185.60,420.27 188.70,417.33 194.12,414.29 197.22,413.37 198.00,410.01 200.32,409.33 201.10,408.38 204.20,407.78 204.98,405.76 208.07,405.06 211.18,403.71 211.95,402.61 218.15,400.49 231.32,397.10 232.10,395.47 235.97,394.86 244.50,391.85 247.60,391.73 254.57,389.81 270.07,388.30 275.50,386.45 318.90,382.03 352.23,379.78 414.23,377.18 485.53,375.90 725.00,373.67 725.00,375.78 584.73,376.42 384.77,379.44 343.70,381.36 320.45,383.76 311.92,385.73 300.30,386.82 294.10,387.84 291.77,388.95 277.05,390.86 263.88,394.19 253.80,398.28 249.15,398.96 247.60,400.21 242.18,400.97 237.53,402.57 236.75,403.55 225.12,406.99 217.38,411.46 209.62,414.07 206.53,416.23 203.43,416.59 199.55,418.32 198.00,420.20 191.80,423.12 189.48,426.06 181.72,429.08 179.40,432.06 177.85,432.86 174.75,436.80 173.97,439.16 172.43,440.10 170.10,443.19 160.80,449.27 159.25,452.75 156.15,455.32 154.60,460.22 151.50,462.18 148.40,468.45 146.07,470.65 144.53,474.40 142.97,475.73 141.43,480.60 136.78,486.59 135.22,487.40 130.57,496.92 129.80,502.89 127.47,509.55 126.70,515.57 125.92,515.54 125.15,518.89 122.83,532.05 121.28,546.95 120.50,549.54 119.72,543.23 118.17,550.67 117.40,539.07 116.62,548.88 115.85,541.20 114.30,556.58 113.53,552.36 111.97,560.32 111.20,558.52 110.42,561.18 109.65,559.33 108.88,561.49 107.33,580.21 105.78,564.08" fill="#102B46" fill-opacity="0.10"/>
+      <polyline id="curve-classic-mean" points="105.78,557.86 106.55,564.91 107.33,556.96 108.10,563.25 108.88,555.03 109.65,554.20 110.42,557.82 111.20,547.02 113.53,550.92 115.85,539.31 116.62,541.10 117.40,536.30 118.17,542.55 118.95,541.98 119.72,537.71 120.50,539.99 122.83,521.75 127.47,503.54 129.80,497.30 130.57,492.31 132.90,486.24 137.55,477.27 146.07,464.39 148.40,462.41 152.28,454.84 155.38,451.43 156.15,449.51 159.25,447.22 163.90,441.51 170.10,438.21 176.30,432.13 182.50,427.46 184.05,424.62 191.80,419.42 197.22,417.02 198.00,415.10 199.55,413.88 212.72,407.68 242.18,396.83 274.73,389.05 294.10,386.09 328.20,382.13 357.65,380.09 418.88,377.84 490.95,376.70 725.00,374.73" fill="none" stroke="#102B46" stroke-width="2"/>
+      <polygon id="curve-fg-sd" points="105.78,552.07 106.55,485.49 108.10,476.97 111.20,438.95 112.75,430.94 114.30,426.72 116.62,411.14 119.72,404.63 120.50,401.13 125.15,394.56 127.47,392.58 128.25,390.49 137.55,384.48 138.32,382.98 142.20,380.10 159.25,375.37 175.53,372.98 201.88,369.65 241.40,366.61 291.00,365.07 415.00,364.58 415.00,364.92 294.88,366.08 240.62,367.70 214.27,369.28 180.95,372.91 167.00,375.92 162.35,377.36 161.57,378.65 149.95,381.54 140.65,384.72 132.12,389.01 126.70,395.82 122.05,399.66 120.50,403.93 115.85,423.32 115.08,430.37 111.97,445.41 108.10,486.34 106.55,495.00 105.78,552.07" fill="#087E83" fill-opacity="0.10"/>
+      <polyline id="curve-fg-mean" points="105.78,552.07 106.55,490.25 108.10,481.66 111.20,445.05 116.62,415.37 122.05,399.26 126.70,394.60 129.80,390.31 139.10,383.91 146.85,380.56 162.35,376.24 176.30,373.35 201.88,370.05 225.12,368.09 291.00,365.63 415.00,364.75" fill="none" stroke="#087E83" stroke-width="2.8"/>
+      <line x1="170.10" y1="374.69" x2="170.10" y2="582" stroke="#087E83" stroke-width="1" stroke-dasharray="3,5"/>
+      <circle cx="170.10" cy="374.69" r="5" fill="#087E83"/>
+    </g>
+    <g font-size="18" fill="#536774" text-anchor="end"><text x="91" y="360">1.1</text><text x="91" y="381">1.0</text><text x="91" y="484">0.5</text><text x="91" y="588">0.0</text></g>
+    <g font-size="18" fill="#536774" text-anchor="middle"><text x="105" y="609">0</text><text x="260" y="609">200</text><text x="415" y="609">400</text><text x="570" y="609">600</text><text x="725" y="609">800</text></g>
+    <text x="415" y="637" text-anchor="middle" font-size="18" fill="#536774">Generation</text>
+    <text x="121" y="352" font-size="18" fill="#536774">Normalized HV</text>
+    <text x="185" y="549" font-size="22" fill="#087E83" font-weight="bold">84</text><text x="185" y="574" font-size="18" fill="#536774">generations</text>
+    <g font-size="18" fill="#172B3A"><line x1="466" y1="479" x2="496" y2="479" stroke="#087E83" stroke-width="2.8"/><text x="508" y="485">EPG-NSGA-II</text><line x1="466" y1="510" x2="496" y2="510" stroke="#102B46" stroke-width="2"/><text x="508" y="516">NSGA-II</text></g>
+    <text x="466" y="548" font-size="18" fill="#536774">Mean ± 1 SD · n = 3 runs</text>
+  </g>
+  <g id="ablation-hv" data-pptx-bounds="800 342 420 308">
+    <g id="ablation-hv-chartArea">
+      <g stroke="#E6EDF0" stroke-width="1"><line x1="1000" y1="349" x2="1000" y2="565"/><line x1="1138.18" y1="349" x2="1138.18" y2="565"/><line x1="1190" y1="349" x2="1190" y2="565"/></g>
+      <line x1="1069.09" y1="349" x2="1069.09" y2="565" stroke="#7C8791" stroke-width="1" stroke-dasharray="3,5"/>
+      <line x1="1000" y1="565" x2="1190" y2="565" stroke="#536774" stroke-width="1.2"/>
+      <!-- chart-plot-area: object=ablation-hv | 1000,349,1190,565 -->
+      <circle cx="1058.95" cy="367.00" r="4.5" fill="#FFFFFF" stroke="#102B46" stroke-width="1.6"/><circle cx="1074.06" cy="371.00" r="4.5" fill="#FFFFFF" stroke="#102B46" stroke-width="1.6"/><circle cx="1074.27" cy="375.00" r="4.5" fill="#FFFFFF" stroke="#102B46" stroke-width="1.6"/><line x1="1069.09" y1="363" x2="1069.09" y2="379" stroke="#102B46" stroke-width="3"/>
+      <circle cx="1017.97" cy="410.00" r="4.5" fill="#FFFFFF" stroke="#426D9B" stroke-width="1.6"/><circle cx="1059.17" cy="414.00" r="4.5" fill="#FFFFFF" stroke="#426D9B" stroke-width="1.6"/><circle cx="1053.75" cy="418.00" r="4.5" fill="#FFFFFF" stroke="#426D9B" stroke-width="1.6"/><line x1="1043.63" y1="406" x2="1043.63" y2="422" stroke="#426D9B" stroke-width="3"/>
+      <circle cx="1073.61" cy="453.00" r="4.5" fill="#FFFFFF" stroke="#7C8791" stroke-width="1.6"/><circle cx="1062.97" cy="457.00" r="4.5" fill="#FFFFFF" stroke="#7C8791" stroke-width="1.6"/><circle cx="1059.21" cy="461.00" r="4.5" fill="#FFFFFF" stroke="#7C8791" stroke-width="1.6"/><line x1="1065.26" y1="449" x2="1065.26" y2="465" stroke="#7C8791" stroke-width="3"/>
+      <circle cx="1152.48" cy="496.00" r="4.5" fill="#FFFFFF" stroke="#B87232" stroke-width="1.6"/><circle cx="1151.37" cy="500.00" r="4.5" fill="#FFFFFF" stroke="#B87232" stroke-width="1.6"/><circle cx="1151.10" cy="504.00" r="4.5" fill="#FFFFFF" stroke="#B87232" stroke-width="1.6"/><line x1="1151.65" y1="492" x2="1151.65" y2="508" stroke="#B87232" stroke-width="3"/>
+      <circle cx="1153.41" cy="539.00" r="4.5" fill="#FFFFFF" stroke="#087E83" stroke-width="1.6"/><circle cx="1150.68" cy="543.00" r="4.5" fill="#FFFFFF" stroke="#087E83" stroke-width="1.6"/><circle cx="1152.65" cy="547.00" r="4.5" fill="#FFFFFF" stroke="#087E83" stroke-width="1.6"/><line x1="1152.24" y1="535" x2="1152.24" y2="551" stroke="#087E83" stroke-width="3"/>
+    </g>
+    <g font-size="18" fill="#172B3A"><text x="800" y="377">NSGA-II</text><text x="800" y="420">NSGA-III</text><text x="800" y="463">Seeding-only</text><text x="800" y="506">Repair-only</text><text x="800" y="549" font-weight="bold" fill="#087E83">EPG-NSGA-II</text></g>
+    <g font-size="18" fill="#536774" text-anchor="end"><text x="1220" y="377">1.000</text><text x="1220" y="420">0.985</text><text x="1220" y="463">0.998</text><text x="1220" y="506">1.048</text><text x="1220" y="549" fill="#087E83" font-weight="bold">1.048</text></g>
+    <g font-size="18" fill="#536774" text-anchor="middle"><text x="1000" y="598">0.96</text><text x="1069.09" y="598">1.00</text><text x="1138.18" y="598">1.04</text><text x="1190" y="598">1.07</text></g>
+    <text x="1095" y="637" font-size="18" text-anchor="middle" fill="#536774">Final normalized HV</text>
+    <text x="800" y="626" font-size="18" fill="#536774">○ run · | mean</text>
+  </g>
+  <g id="p04-conditions" data-pptx-bounds="60 652 1160 23" font-size="18" fill="#536774"><text x="60" y="668">Population 100 · Three independent runs · HV normalized to NSGA-II final mean · Common reference point</text></g>
+  <g id="p04-footer" data-pptx-bounds="60 678 1160 22" data-pptx-role="footer" font-size="14" fill="#536774"><text x="60" y="691">Table I / Section III. Public-data model; storage energy/SOC limits and real-grid calibration remain future work.</text><text x="1220" y="691" text-anchor="end">04 / 05</text></g>
+</svg>
