@@ -10,6 +10,9 @@
 *.jpg binary
 *.jpeg binary
 
+# Matplotlib exports include spaces in wrapped SVG path data; retain source hashes.
+研究报告/PPT/成果汇报_20261019/figures/*.svg whitespace=-blank-at-eol
+
 # Raw user text and patch evidence preserve their original whitespace.
 研究报告/05_review/当前版/1015研究报告数据定稿/继承基线/prompt_用户编辑原件.md -whitespace
 研究报告/05_review/当前版/1015研究报告数据定稿/用户确认及治理变更.diff -whitespace

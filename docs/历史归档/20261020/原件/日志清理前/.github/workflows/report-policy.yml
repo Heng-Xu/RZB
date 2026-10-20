@@ -1,0 +1,48 @@
+name: Report policy
+on: [push, pull_request]
+jobs:
+  report-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install python-docx==1.2.0 PyMuPDF==1.28.2 openpyxl==3.1.5 numpy pandas scipy highspy==1.15.1 pytest Pillow==12.3.0
+      - run: python tools/test_report_prose_policy.py
+      - run: python tools/test_report_citations.py
+      - run: python tools/test_discussion_revisions.py
+      - run: python -m pytest -q tools/test_report_in_place.py
+      - run: python -m pytest -q tools/test_matrix_planning_windows.py
+      - run: python tools/verify_extended_matrix.py
+      - run: python tools/check_report_policy.py --stage final
+      - run: python tools/verify_current_report.py
+      - run: python tools/revise_current_discussion.py
+      - run: python tools/verify_report_review.py
+      - run: python tools/manage_preliminary_archive.py
+      - run: python tools/verify_preliminary_baseline.py
+      - run: python tools/locked_parameter_results.py
+      - run: python tools/extend_indicator_analysis.py --verify
+      - run: python -m pytest -q 实验/研究/rebuild_2026/indicator_extension_20261014/test_model.py
+      - run: python -m pytest -q 实验/研究/rebuild_2026/case_parameters_20261012/test_model.py 实验/研究/rebuild_2026/case_parameters_20261012/test_transfer_diagnostic.py 实验/研究/rebuild_2026/static_actual_20261010/test_rules.py 实验/研究/rebuild_2026/network_case_20261010/test_network.py
+      - run: python -m 实验.研究.rebuild_2026.case_parameters_20261012.capacity_verify
+      - run: python -m 实验.研究.rebuild_2026.case_parameters_20261012.transfer_diagnostic --verify
+      - run: python -m pytest -q 实验/研究/rebuild_2026/review_20261015
+      - run: python -m 实验.研究.rebuild_2026.review_20261015.lock_review
+      - run: python -m 实验.研究.rebuild_2026.review_20261015.verify
+      - run: python -m pytest -q 实验/研究/rebuild_2026/review_20261015_followup/test_rules.py
+      - run: python -m 实验.研究.rebuild_2026.review_20261015_followup.lock_review
+      - run: python -m 实验.研究.rebuild_2026.review_20261015_followup.verify
+      - run: python -m pytest -q 实验/研究/rebuild_2026/recommend_20261015/test_model.py
+      - run: python -m 实验.研究.rebuild_2026.recommend_20261015.lock_review
+      - run: python -m 实验.研究.rebuild_2026.recommend_20261015.verify
+      - run: python -m pytest -q 实验/研究/rebuild_2026/economic_two_districts_20261015/test_model.py
+      - run: python -m 实验.研究.rebuild_2026.economic_two_districts_20261015.lock_review
+      - run: python -m 实验.研究.rebuild_2026.economic_two_districts_20261015.verify
+      - run: python -m pytest -q 实验/研究/rebuild_2026/static_joint_20261015/test_model.py
+      - run: python -m 实验.研究.rebuild_2026.static_joint_20261015.lock_review
+      - run: python -m 实验.研究.rebuild_2026.static_joint_20261015.verify
+      - run: python tools/verify_adopted_report_results.py
+      - run: python tools/verify_future_case_results.py
+      - run: python -m pytest -q tools/test_future_case_results.py
+      - run: python -m pytest -q tools/test_report_adoption_governance.py

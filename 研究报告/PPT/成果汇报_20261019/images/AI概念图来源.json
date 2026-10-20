@@ -1,0 +1,27 @@
+{
+  "note": "设计摘要用于资产说明；原始完整提示词未落盘，不将摘要冒称逐字提示词。",
+  "assets": [
+    {
+      "asset": "images/A1_双向容量任务.png",
+      "origin": "/home/xh/.codex/generated_images/01a15345-4341-7571-a71f-00aa451441a7/exec-f018f9df-61fa-4342-9e7c-9bd26a71a863.png",
+      "page": 3,
+      "design_brief": "白底科研概念图，日间与晚间两组110kV主变和分布式光伏场景；晚间光伏弱化，图片中移除所有功率箭头，箭头与中文由PPT原生元素承载。",
+      "editing": "初始图的箭头方向未采用，通过image_gen修改并保留最终无箭头图。",
+      "generator": "本会话image_gen工具",
+      "sha256": "a6d703104f17ea2aabfc2d9e50cbdff994148ae7d6a7892ffd93ebe0c6ea1298",
+      "evidence_role": "概念示意；不作为真实站点拓扑、设备铭牌或数值结果",
+      "exact_prompt_retained": false
+    },
+    {
+      "asset": "images/A2_三类规划资源.png",
+      "origin": "/home/xh/.codex/generated_images/01a15345-4341-7571-a71f-00aa451441a7/exec-765829c0-08e4-45b8-a5bb-417f6431e589.png",
+      "page": 14,
+      "design_brief": "白底技术设备概念图，依次为主变补强、联络线路和储能柜；PPT原生文字说明措施与约束。",
+      "editing": "直接生成，未对图像内容作程序化修改。",
+      "generator": "本会话image_gen工具",
+      "sha256": "126670a2dd8df8c63c18b85955addd827f1f0bc27e3742fe2c2d0a6dca6e8cb6",
+      "evidence_role": "概念示意；不作为真实站点拓扑、设备铭牌或数值结果",
+      "exact_prompt_retained": false
+    }
+  ]
+}

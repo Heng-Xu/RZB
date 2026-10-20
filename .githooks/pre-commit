@@ -4,6 +4,10 @@ export PYTHONDONTWRITEBYTECODE=1
 cd "$(git rev-parse --show-toplevel)"
 REPORT_PYTHON=${REPORT_PYTHON:-/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python}
 if [ ! -x "$REPORT_PYTHON" ]; then REPORT_PYTHON=python3; fi
+"$REPORT_PYTHON" -m pytest -p no:cacheprovider -q tools/test_archived_logs.py
+REPORT_LOG_STATE=$(mktemp /tmp/xuzhou-log-evidence.XXXXXX.json)
+trap '"$REPORT_PYTHON" tools/archive_log_evidence.py --cleanup "$REPORT_LOG_STATE"' EXIT
+"$REPORT_PYTHON" tools/archive_log_evidence.py --materialize "$REPORT_LOG_STATE"
 git diff --quiet -- tools/report_policy.json tools/check_report_policy.py tools/revise_current_discussion.py 研究报告/甲方反馈/10.11/供电公司讨论稿.docx 研究报告/03_MD/当前版 研究报告/02图表/当前版 研究报告/04_word 研究报告/数据来源/当前版/区域时序 || {
   echo '报告文件存在未暂存修改；请将本版源稿、图表与成果一起暂存后再提交。' >&2
   exit 1

@@ -1,0 +1,30 @@
+{
+  "原因": "用户要求删除无用日志；保持锁定模型和原报告哈希核验。",
+  "原登记": "docs/历史归档/20261020/原件/日志清理前/交付登记.json",
+  "原登记SHA256": "bf77a2f4ba823ad5ac005868b863998e6825021638f42816dde451b83830e403",
+  "现登记": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/交付登记.json",
+  "现登记SHA256": "ed15fbb0352840a58c31721aada3506d0c3a2fbb44906ba0237a4eb9a8f6827a",
+  "维护文件": [
+    {
+      "path": ".githooks/pre-commit",
+      "原SHA256": "bfaf625f64ed408703d49a927e14cd5c2ad43dabf6984d2c2017b400181854e6",
+      "现SHA256": "76ba5c7d7a369ba464849cbdf7ca2018a8502545ea2675ec658a918647ba7eea",
+      "原件": "docs/历史归档/20261020/原件/日志清理前/.githooks/pre-commit"
+    },
+    {
+      "path": ".github/workflows/report-policy.yml",
+      "原SHA256": "58a3e812d81e8c8fbac149095ae7e5380bb36a57cee8212e8dbf8146515280d1",
+      "现SHA256": "b56b66f53355cbeca6a6069f8996389e21f2bc9c46948582ad821317fb63b550",
+      "原件": "docs/历史归档/20261020/原件/日志清理前/.github/workflows/report-policy.yml"
+    },
+    {
+      "path": "tools/build_current_report.py",
+      "原SHA256": "121954bad8dbaf4c2d26041a0f875ad36e0570c8926f03756b2cf609747ff585",
+      "现SHA256": "541b73fb2dd9027d30a69a670c136d4dd6b1174248636f5dca50689fc1569e68",
+      "原件": "docs/历史归档/20261020/原件/日志清理前/tools/build_current_report.py"
+    }
+  ],
+  "旧日志摘要": "保留全部原SHA256；压缩归档后仅在核验期间临时恢复，结束清理",
+  "原有检查": "全部保留；增加临时文件不覆盖及不误删检查",
+  "模型代码和数据": "保持，未重新求解"
+}

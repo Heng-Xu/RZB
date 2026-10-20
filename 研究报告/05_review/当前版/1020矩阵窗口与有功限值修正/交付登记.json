@@ -6,8 +6,8 @@
     "研究报告/04_word/研究报告终稿.pdf"
   ],
   "当前文件SHA256": {
-    ".githooks/pre-commit": "bfaf625f64ed408703d49a927e14cd5c2ad43dabf6984d2c2017b400181854e6",
-    ".github/workflows/report-policy.yml": "58a3e812d81e8c8fbac149095ae7e5380bb36a57cee8212e8dbf8146515280d1",
+    ".githooks/pre-commit": "76ba5c7d7a369ba464849cbdf7ca2018a8502545ea2675ec658a918647ba7eea",
+    ".github/workflows/report-policy.yml": "b56b66f53355cbeca6a6069f8996389e21f2bc9c46948582ad821317fb63b550",
     ".gitignore": "62c9f248780ec809d3fcbc81553f7ceb40b7d25f6b2825571d3054fde67fa4cf",
     "AGENTS.md": "1cd11fc31d7378cc4f00d06ce9308b76583064196646066b71ee31cdd458c807",
     "docs/CURRENT-WORKFLOW.md": "3eec2b9f10837cf8692dbe05627a07249d1bec9c04447df5d682a7126e8b0f23",
@@ -22,7 +22,7 @@
     "memory/current.md": "874d118d4557440c1c21e153d22d32dffd638fe49a06bf0e130fad4b344b0df2",
     "prompt.md": "772c572319f96f4d1bbcfedd5dc1df8f5893aa8660ea9e564f79a582450e5a98",
     "tools/archive_extended_matrix_raw.py": "d60ad034b4a44dd239040bfa1f62bdf744cade20322cb9b8fe2620abdc4d2182",
-    "tools/build_current_report.py": "121954bad8dbaf4c2d26041a0f875ad36e0570c8926f03756b2cf609747ff585",
+    "tools/build_current_report.py": "541b73fb2dd9027d30a69a670c136d4dd6b1174248636f5dca50689fc1569e68",
     "tools/check_report_policy.py": "65f927334abe308fc005d357e75e0fc4f085d97ff2275d7cc9eb6de28b2ad1ca",
     "tools/extend_matrix_scenarios.py": "7bd0a7e7af76acf804dace4b09651fcf4f4345fc6b2e93c405a13739dd096c0b",
     "tools/manage_preliminary_archive.py": "816e963f64d702dfc2fb0f4a6a4a895a3ab0b21b65a11f9ade93501012d91f4f",
@@ -500,7 +500,7 @@
     "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/final约束检查.json": "0cbde9e8d6c0cf0f45da1f5b58e2c4b86cc9821765866b6c5e0d6500f992f1fb",
     "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/source约束检查.json": "51a0551ff4c1b78e4051e50ea01bc8070aee49465411b89900553812d2dfc60f",
     "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/source约束检查.log": "b62ee797ec2cd40fa6982756e0c7f4c094890caa266e74f080d84738a02c87fa",
-    "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付衔接.json": "e51c35a8689dc7b80e768bb68ae851c887c3736524df5f0d32989d73b7a0173d",
+    "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/上一版交付衔接.json": "e08e76a4975fd515d3ce4fbd5b7a7a811b2e863098c5aa5d1ef3d7b6ede33b22",
     "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/事实与历史措辞核对.json": "238609275867adb0cb528c6edc6f05b167b15e66f1a45da8bbf9fcbafe609839",
     "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/交付模式.json": "ef6f1e2d70706902e9abd22258e80e52fb194e8cb96c0716221e6a3db52a13ef",
     "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正/交付登记维护.py": "094e9c8537f788d7f8cf7e3889e283235046246689619124bb22ecf3ab5128b4",
@@ -610,7 +610,11 @@
     "研究报告/甲方反馈/10.17/10.17研究报告.docx": "e1adea42b9c1fed8d7e767a97a9d2306e5d3442c9d1a65153ac7836d89fa68cb",
     "研究报告/甲方反馈/10.17/10.17研究报告_批注与修正意见.md": "2ac6808c3f80616ec0e2c5d0c716222e5210916369baaf0c1d707daaf2049f42",
     "研究报告/试算/20261019_负荷分散系数扩展/原始求解记录.jsonl.gz": "ff10851ae1bc432563b20c046cdf5626749cdffe0a98e82a4723df4f8b3ae767",
-    "研究报告/试算/20261019_负荷分散系数扩展/试算设计.json": "7b8ac5b07a3b7f891378758b13c63e65f9881d65f70f0a2f329ec1a19d23b026"
+    "研究报告/试算/20261019_负荷分散系数扩展/试算设计.json": "7b8ac5b07a3b7f891378758b13c63e65f9881d65f70f0a2f329ec1a19d23b026",
+    "tools/archive_log_evidence.py": "dba8bcdead895a645da1451a0fc456c614ed87694acb1e5a8b2457c2ead3d21c",
+    "tools/test_archived_logs.py": "f982827b0a31478ff901cba674e7ee57bca01b529e2fe61f7e8351277b331894",
+    "docs/历史归档/20261020/锁定日志归档.json": "e8b7961739adfff68b44ba9f1d36c089542e560f8ea1a9a911d1e7a98f231099",
+    "研究报告/05_review/历史归档/20261020_锁定核验日志.tar.gz": "dfca5ee9fb22814d8600f12993c51a4e2c90a5414e74ef1525c48339f6689efd"
   },
   "历史定档原件": {
     "AGENTS.md": {
@@ -618,7 +622,7 @@
       "原SHA256": "27b52fcc564b89d326d68731e10fca3b39d390ee05091fcb120944110c6d420d"
     },
     "README.md": {
-      "原件归档": "README.md",
+      "原件归档": "docs/历史归档/20261020/原件/README.md",
       "原SHA256": "1ee116b74356741d3e3e48ec1cfc90a69306a4633b93d2f46b070d286454b14f"
     },
     "docs/CURRENT-WORKFLOW.md": {
@@ -626,7 +630,7 @@
       "原SHA256": "8eea72ce6e333c6b7968f50d48eae5193fc826964f897039c761caa7a3a56c3c"
     },
     "docs/PROJECT-REPOSITORY-MAP.md": {
-      "原件归档": "docs/PROJECT-REPOSITORY-MAP.md",
+      "原件归档": "docs/历史归档/20261020/原件/docs/PROJECT-REPOSITORY-MAP.md",
       "原SHA256": "b777664a259d7bc3e21fd4b4868c2e7f178e87429cbbc708fb2c1c1ffa3cd7c8"
     },
     "prompt.md": {

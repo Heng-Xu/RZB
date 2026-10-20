@@ -9,6 +9,8 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install python-docx==1.2.0 PyMuPDF==1.28.2 openpyxl==3.1.5 numpy pandas scipy highspy==1.15.1 pytest Pillow==12.3.0
+      - run: python -m pytest -q tools/test_archived_logs.py
+      - run: python tools/archive_log_evidence.py --materialize /tmp/xuzhou-log-evidence-ci.json
       - run: python tools/test_report_prose_policy.py
       - run: python tools/test_report_citations.py
       - run: python tools/test_discussion_revisions.py
@@ -46,3 +48,5 @@ jobs:
       - run: python tools/verify_future_case_results.py
       - run: python -m pytest -q tools/test_future_case_results.py
       - run: python -m pytest -q tools/test_report_adoption_governance.py
+      - if: always()
+        run: python tools/archive_log_evidence.py --cleanup /tmp/xuzhou-log-evidence-ci.json

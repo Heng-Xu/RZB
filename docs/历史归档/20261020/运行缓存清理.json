@@ -1,0 +1,1205 @@
+{
+  "状态": "备份校验后移出",
+  "备份": "研究报告/试算/历史本地备份/20261020_运行缓存.tar.gz",
+  "备份SHA256": "5a189a1419175e7e21c6908af2814b07af4b7a3b997c81590ee51cc780a6a0de",
+  "目录数": 24,
+  "文件数": 239,
+  "字节数": 3633463,
+  "文件": [
+    {
+      "path": ".pytest_cache/.gitignore",
+      "bytes": 37,
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd"
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "bytes": 191,
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4"
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "bytes": 302,
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad"
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "bytes": 475,
+      "sha256": "f3ca6a14cdd0aad9f3db40eb8ed3d430ec0dde7cfab1cccdbc0f6c4ec57a97b8"
+    },
+    {
+      "path": ".pytest_cache/v/cache/stepwise",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "tools/__pycache__/adjust_discussion_revision_dates.cpython-313.pyc",
+      "bytes": 13530,
+      "sha256": "810ef248e6aeb9fc3f70e7bdf04ed9802aab9a14688a8be83a744e319a8d715b"
+    },
+    {
+      "path": "tools/__pycache__/archive_extended_matrix_raw.cpython-313.pyc",
+      "bytes": 4566,
+      "sha256": "9dbc269d3a38796c23a8d074cac5b9d0eaa68a022daae138c9acddc896610ad5"
+    },
+    {
+      "path": "tools/__pycache__/build_current_report.cpython-313.pyc",
+      "bytes": 8435,
+      "sha256": "b4f4c69131a5a611aae62c55f270cf57b1d205a6c15d2a6a8bb3f3f29444eeb9"
+    },
+    {
+      "path": "tools/__pycache__/build_discussion_brief.cpython-313.pyc",
+      "bytes": 19577,
+      "sha256": "4c3233c59fb42ccd15672cf6732090d1945c660d4a41f42109fabe2f85470a80"
+    },
+    {
+      "path": "tools/__pycache__/build_md_table_docx.cpython-313.pyc",
+      "bytes": 11853,
+      "sha256": "49471c44977352a42c5b49d3c4b9931a2af034d40c8de5da1017b8885d6ef9ca"
+    },
+    {
+      "path": "tools/__pycache__/check_report_policy.cpython-313.pyc",
+      "bytes": 49136,
+      "sha256": "2fdbf96674d7d307783bbb386cf5ce717292773e392a2661673411607ae096d5"
+    },
+    {
+      "path": "tools/__pycache__/compare_five_parameter_matrices.cpython-313.pyc",
+      "bytes": 36900,
+      "sha256": "025a40a358bdf70c33b99ea0f4023066a909f6b4678fd8dbb1117ebf017e67ad"
+    },
+    {
+      "path": "tools/__pycache__/convert_to_md.cpython-313.pyc",
+      "bytes": 18145,
+      "sha256": "0e0ac84f061255953dc329f85a30bcf8c03f21b4de82a19d3facdc74da5bc71e"
+    },
+    {
+      "path": "tools/__pycache__/discussion_expansion.cpython-313.pyc",
+      "bytes": 22031,
+      "sha256": "97e900aa6ff230dc590d0e14333bc19971c391308ffe8821dac7b939c0b968da"
+    },
+    {
+      "path": "tools/__pycache__/expand_indicator_backgrounds.cpython-313.pyc",
+      "bytes": 35954,
+      "sha256": "2ce050bc4d97b709277f8bf4768dde6d558effa01b56768cced2bbe494098704"
+    },
+    {
+      "path": "tools/__pycache__/expand_report_figures.cpython-313.pyc",
+      "bytes": 58341,
+      "sha256": "d10541c4adabaabe5b7cb8a3f69d4fbe13b69b1e8c75f0c2403ad8f903203007"
+    },
+    {
+      "path": "tools/__pycache__/export_adopted_report_summary.cpython-313.pyc",
+      "bytes": 6581,
+      "sha256": "7a30f88269ac4f5fe49088c82e6d25daabb7b467a268e8ee7343410e5dd4e66a"
+    },
+    {
+      "path": "tools/__pycache__/export_case_parameter_comparison.cpython-313.pyc",
+      "bytes": 19957,
+      "sha256": "0a8a73a5544719ddb2686be188365f8d3a5270a11c8b0283205ef494e3b0363a"
+    },
+    {
+      "path": "tools/__pycache__/extend_indicator_analysis.cpython-313.pyc",
+      "bytes": 33304,
+      "sha256": "0189bcd86dd82a529c19c83ecf1910f102f87fee86d5d27dfa6d40e18a86101f"
+    },
+    {
+      "path": "tools/__pycache__/extend_matrix_scenarios.cpython-313.pyc",
+      "bytes": 15555,
+      "sha256": "3491f6f8daa341c1bdf8ee77ed001db98986da9b22bebf5c132c8823ecd460a0"
+    },
+    {
+      "path": "tools/__pycache__/locked_parameter_results.cpython-313.pyc",
+      "bytes": 46502,
+      "sha256": "cc80aa22f834d6c560c979c5b9bfd8d9730a82f046a1ac7e8fa1fd748d43afe3"
+    },
+    {
+      "path": "tools/__pycache__/manage_preliminary_archive.cpython-313.pyc",
+      "bytes": 8210,
+      "sha256": "18e4854560ace5cfedaaec3ff653e213e74abab77d021679fb3884012fe1377a"
+    },
+    {
+      "path": "tools/__pycache__/matrix_planning_windows.cpython-313.pyc",
+      "bytes": 16717,
+      "sha256": "b699b6dd2cc7989c1ddfd473bb1dc8220815818f55689f27386ca5e1301b04de"
+    },
+    {
+      "path": "tools/__pycache__/prepare_case_correlations.cpython-313.pyc",
+      "bytes": 10816,
+      "sha256": "924f4a4b3c57ffa2277ed098e4b982a83b638e3f811f8229baab5fd22aed8fd3"
+    },
+    {
+      "path": "tools/__pycache__/prepare_discussion_figures.cpython-313.pyc",
+      "bytes": 5810,
+      "sha256": "b35e42bd345fed46e8b146a19f3e83ee2de81ac52f30c053fd4c0bb5143b0bfd"
+    },
+    {
+      "path": "tools/__pycache__/prepare_regional_profiles.cpython-313.pyc",
+      "bytes": 15918,
+      "sha256": "2bf78d5bf85d1b991f4ea4989df078bdbe97f3272f6170fddc8683da46b07957"
+    },
+    {
+      "path": "tools/__pycache__/refresh_annual_report_figures.cpython-313.pyc",
+      "bytes": 21519,
+      "sha256": "82ca2f9c8774800ea33f9d261337df4897a9c31dc2b0006fcd7e9f4061d0eced"
+    },
+    {
+      "path": "tools/__pycache__/refresh_extended_matrix_figures.cpython-313.pyc",
+      "bytes": 10829,
+      "sha256": "babad0797cceea0431d9849adac83486f3fab6969a58284ee1d884efe463c47d"
+    },
+    {
+      "path": "tools/__pycache__/refresh_report_comparison_figures.cpython-313.pyc",
+      "bytes": 12521,
+      "sha256": "cea2a42c5c0fa62bce4c08c811aed098eabfcf73fa286c6664bdd9477e453e51"
+    },
+    {
+      "path": "tools/__pycache__/report_annual_update.cpython-313.pyc",
+      "bytes": 40164,
+      "sha256": "8080a4eeae7365d2059f7cf6cb3e4cb974dc0cf54e34eb4f372dbf0b61333a1e"
+    },
+    {
+      "path": "tools/__pycache__/report_citations.cpython-313.pyc",
+      "bytes": 11692,
+      "sha256": "d442dee633b71d3a77139ae63199ba0911a37c8591c0fbc6d92c5e3f2b76861b"
+    },
+    {
+      "path": "tools/__pycache__/report_forecast_display.cpython-313.pyc",
+      "bytes": 3855,
+      "sha256": "53d8f77a1fca18a4b192586de7fe57f58b01d62203da145e7ccc03c7ab578293"
+    },
+    {
+      "path": "tools/__pycache__/report_math_layout.cpython-313.pyc",
+      "bytes": 16428,
+      "sha256": "ceb77bb19356bee3d5241396e957e83136e58399133a207c10f6f963c3a67d83"
+    },
+    {
+      "path": "tools/__pycache__/report_matrix_display.cpython-313.pyc",
+      "bytes": 8243,
+      "sha256": "cfffef4b2fa84aef2e2aa85f8ecdd3c2bab8f96fff0a5433bac6ec0f6708cac0"
+    },
+    {
+      "path": "tools/__pycache__/report_matrix_figures.cpython-313.pyc",
+      "bytes": 10994,
+      "sha256": "a05fd961a67fc720b9af9c71d8db40f7953e204b346aeccebd51b7e4d22a3e53"
+    },
+    {
+      "path": "tools/__pycache__/report_parameter_selection.cpython-313.pyc",
+      "bytes": 22814,
+      "sha256": "a7e3e8d9c3e8b827ad68acba1edd47785ed20f7f204b9a5d7f54d0edfb8bf235"
+    },
+    {
+      "path": "tools/__pycache__/report_plain_revision.cpython-313.pyc",
+      "bytes": 41527,
+      "sha256": "9b7898c50707c29f820ade681c63652724b91a1582365e53989e17b95ce864b8"
+    },
+    {
+      "path": "tools/__pycache__/report_prose_review.cpython-312.pyc",
+      "bytes": 7268,
+      "sha256": "2ec6e32c9a8edadf8bcc4b9b9a2700aa3c0a4b3be8cb106a7e833354bc4f35e8"
+    },
+    {
+      "path": "tools/__pycache__/report_prose_review.cpython-313.pyc",
+      "bytes": 7278,
+      "sha256": "bc422549970e4116c3cce7fcca94efa9ebb5344a2a16981339698bdc6f2f79e6"
+    },
+    {
+      "path": "tools/__pycache__/report_source_lineage.cpython-313.pyc",
+      "bytes": 3915,
+      "sha256": "356efa2c37671659fb05b5ec2f5b5201bba92923b2426eaa5e54b7ea42d92c03"
+    },
+    {
+      "path": "tools/__pycache__/report_storage_display.cpython-312.pyc",
+      "bytes": 2042,
+      "sha256": "91ca106975f006d3291564251a7ff39e7eeb7f8058ec418ceb6204492cd267c1"
+    },
+    {
+      "path": "tools/__pycache__/report_storage_display.cpython-313.pyc",
+      "bytes": 1882,
+      "sha256": "cf50d56fffefd07252ec132f55093ec1b1021607fd435a1fd5e6a88d6b7b9d9f"
+    },
+    {
+      "path": "tools/__pycache__/report_work_context.cpython-313.pyc",
+      "bytes": 5453,
+      "sha256": "f4a6b9a77930b7959e45eb4311adac0cfadfb2c05f88d31cb16179475f89f68b"
+    },
+    {
+      "path": "tools/__pycache__/revise_current_discussion.cpython-313.pyc",
+      "bytes": 66620,
+      "sha256": "511bc2ccd8f4027250e0150f617d1cd432b5631799f53fec6100e2518fd4affd"
+    },
+    {
+      "path": "tools/__pycache__/revise_discussion_report_section.cpython-313.pyc",
+      "bytes": 49317,
+      "sha256": "778b9a8036cc5134a8d2c4ba7d10af8de316ec12d52fce9a27422ed9fd6cbe2c"
+    },
+    {
+      "path": "tools/__pycache__/revise_discussion_selection.cpython-313.pyc",
+      "bytes": 38032,
+      "sha256": "7ba26a003c274b444bc49a5ec0cd5a06ca60e8874eab3c2c2b317835065385e7"
+    },
+    {
+      "path": "tools/__pycache__/revise_report_in_place.cpython-313.pyc",
+      "bytes": 45879,
+      "sha256": "6e7b8069cc705c7ac4a5c53c0ea786257782b4ca7d0610a14846e688141fea29"
+    },
+    {
+      "path": "tools/__pycache__/sync_current_report_results.cpython-313.pyc",
+      "bytes": 60159,
+      "sha256": "0f941a907d182b131ba7286cc90b9d4cc02a103c6efde7f5b629d317315a7dbf"
+    },
+    {
+      "path": "tools/__pycache__/test_discussion_revisions.cpython-313.pyc",
+      "bytes": 10259,
+      "sha256": "0223fef87db26304d87e58334608b38f34b56f59768821389715dfe98cc1e5a7"
+    },
+    {
+      "path": "tools/__pycache__/test_future_case_results.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 7390,
+      "sha256": "063aabcddc9d223f911a728474287a3cc66b5cc3a9353b2914f4a51b8add1315"
+    },
+    {
+      "path": "tools/__pycache__/test_future_case_results.cpython-313.pyc",
+      "bytes": 4147,
+      "sha256": "12f4f8a5315e1b98315f9022583048fcb49bc2e5245e26cbe7383e408b71b07c"
+    },
+    {
+      "path": "tools/__pycache__/test_indicator_backgrounds.cpython-313.pyc",
+      "bytes": 5742,
+      "sha256": "a96c555203a2dbe914d3e1bb53145c2005e0cec8ebcee1e1bed38c460c7697a5"
+    },
+    {
+      "path": "tools/__pycache__/test_matrix_planning_windows.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 19607,
+      "sha256": "5249cdce10b8157229e7858311904e156c8ea4fced395e19a408916d2529c400"
+    },
+    {
+      "path": "tools/__pycache__/test_matrix_planning_windows.cpython-313.pyc",
+      "bytes": 5012,
+      "sha256": "b8f93feb76270b7d87db0d8ec34a4bc11cfe3356ef1eaad284036b886d890dc7"
+    },
+    {
+      "path": "tools/__pycache__/test_report_adoption_governance.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 2749,
+      "sha256": "70124380e7afa4dafca549ac827abc60cff13e0459894b07fc94e416134714bf"
+    },
+    {
+      "path": "tools/__pycache__/test_report_adoption_governance.cpython-313.pyc",
+      "bytes": 2483,
+      "sha256": "7f93c9d81939e76821329c6b5173b3ac4ed3c7834614d46883eca752d5db41ef"
+    },
+    {
+      "path": "tools/__pycache__/test_report_citations.cpython-313.pyc",
+      "bytes": 2650,
+      "sha256": "34f877a45f9f9395339db4266513b46a25ccd99987c21e8e986795b96ac6306a"
+    },
+    {
+      "path": "tools/__pycache__/test_report_in_place.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 41471,
+      "sha256": "59443bd83bf45b594ca43ba7d090d5d10af0ed4a343ed085f6765ca475d543a9"
+    },
+    {
+      "path": "tools/__pycache__/test_report_in_place.cpython-313.pyc",
+      "bytes": 16635,
+      "sha256": "6e7cc4d22fda1b8fafa4fc7ed0430b9db202ef7c0d63de2f05e9e13b5d13dffe"
+    },
+    {
+      "path": "tools/__pycache__/test_report_prose_policy.cpython-313.pyc",
+      "bytes": 40971,
+      "sha256": "face59cbc02e6be91a5096c2b231b4e47099cf80e341beda0626a1cdcdb6e88d"
+    },
+    {
+      "path": "tools/__pycache__/test_report_work_context.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 7945,
+      "sha256": "1caad67ac5358ccc02d91285467bfbe2b89feb385bc2623bb6f5f52d7853c072"
+    },
+    {
+      "path": "tools/__pycache__/test_report_work_context.cpython-313.pyc",
+      "bytes": 5949,
+      "sha256": "dfdf4eee410f827e8290c15fa80bd185922cc7a6d2efb4e9f374dbd20483d5e2"
+    },
+    {
+      "path": "tools/__pycache__/update_extended_matrix_report.cpython-313.pyc",
+      "bytes": 23653,
+      "sha256": "6bef87947e30d11178be19fdcd25af936d011550911da9d708e4de1cb55cd7fd"
+    },
+    {
+      "path": "tools/__pycache__/verify_adopted_report_results.cpython-313.pyc",
+      "bytes": 9743,
+      "sha256": "0f3e5f7f09450dc2d156e6dc8aead110b72b5f9e0db0874e0e7115152000b58a"
+    },
+    {
+      "path": "tools/__pycache__/verify_annual_report_update.cpython-313.pyc",
+      "bytes": 22560,
+      "sha256": "1dec29aba0c83e3c1f424aa0ccfaec0948db4ea466b7d83366c8f38726d64742"
+    },
+    {
+      "path": "tools/__pycache__/verify_current_report.cpython-313.pyc",
+      "bytes": 12665,
+      "sha256": "fca096b909f837127b2d76d47de883ff16619f8370eec1ce526333c6cb3743dd"
+    },
+    {
+      "path": "tools/__pycache__/verify_extended_matrix.cpython-313.pyc",
+      "bytes": 15035,
+      "sha256": "fca1bd3f05b626112a0cd8063871e6c51dcbe3342e6f5d149c718816fe4519df"
+    },
+    {
+      "path": "tools/__pycache__/verify_future_case_results.cpython-313.pyc",
+      "bytes": 7662,
+      "sha256": "cc827adc53735f6df4e2e0597c28e4726c3dc9213a8c40d9ea6e6971bf969c96"
+    },
+    {
+      "path": "tools/__pycache__/verify_preliminary_baseline.cpython-313.pyc",
+      "bytes": 4968,
+      "sha256": "342a59a0793a2204a3dfe1ba96e64069536a11f86203634a5871b06ae8a08938"
+    },
+    {
+      "path": "tools/__pycache__/verify_report_expansion.cpython-313.pyc",
+      "bytes": 10521,
+      "sha256": "fa55c22a9f6a30303538441ddbdbf40ed044d2cece10b399d6c3f3f2094f0b79"
+    },
+    {
+      "path": "tools/__pycache__/verify_report_release.cpython-313.pyc",
+      "bytes": 14980,
+      "sha256": "1a15268d12ccb626899fc00e0e9e23dc450e4a9f23b4aea195b8b96d42ece043"
+    },
+    {
+      "path": "tools/__pycache__/verify_report_review.cpython-313.pyc",
+      "bytes": 9582,
+      "sha256": "261ba91d45f48824e7cdaf28463e57413f5399b23e31a68279ba2507b33489f6"
+    },
+    {
+      "path": "实验/研究/.pytest_cache/.gitignore",
+      "bytes": 37,
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd"
+    },
+    {
+      "path": "实验/研究/.pytest_cache/CACHEDIR.TAG",
+      "bytes": 191,
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4"
+    },
+    {
+      "path": "实验/研究/.pytest_cache/README.md",
+      "bytes": 302,
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad"
+    },
+    {
+      "path": "实验/研究/.pytest_cache/v/cache/nodeids",
+      "bytes": 3440,
+      "sha256": "d40dca2ed40c6da2d8d8834fa70216921c3e568f79f6dde136d3478d4c63f0e8"
+    },
+    {
+      "path": "实验/研究/.pytest_cache/v/cache/stepwise",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 368,
+      "sha256": "f8699a421029bbdee5ea4a2e316aa52de6ed2f060e65c4e7c6b473694cb0dac8"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/annual_forward_scenes.cpython-313.pyc",
+      "bytes": 5877,
+      "sha256": "b21ee0092ec419f3d880cf9539029d03a47bb8d98ee16009f9b1f6f49796d77b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/annual_no_tie_investment_submodel.cpython-313.pyc",
+      "bytes": 31039,
+      "sha256": "5ba4ee456ba67cfd5ee0bda02c4592e9d64b32d778bd66e9b7787ddcca9296eb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/asset_2025.cpython-313.pyc",
+      "bytes": 9424,
+      "sha256": "f210b5adc30ad823df5a2b40cf7c48cff36dd743865570b50d56d7bb33738412"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/baseline_2021.cpython-313.pyc",
+      "bytes": 11965,
+      "sha256": "9ad72a64a7d2cea2585f2ca29ef248f959521a8732ad50d35a2754c420342ada"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/city_district_calibration.cpython-313.pyc",
+      "bytes": 6956,
+      "sha256": "8ce100e6ea64d1c17060be681e928b684d6c96f08274ec5addd4fd6970e31b5d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/city_mapping_audit.cpython-313.pyc",
+      "bytes": 13836,
+      "sha256": "836f6e68ef021f06f93dc514078d7e2ed814294c944c51c4952a0c0adb6ceafa"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/cost_references.cpython-313.pyc",
+      "bytes": 4978,
+      "sha256": "b4c120f62ab57f54ba11c17c23e3f17ccbcfd900e53814125c9c8fd90fb323a5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/current_economic_assumptions.cpython-313.pyc",
+      "bytes": 2131,
+      "sha256": "36c6fc0483fec585ef31710bf471b1d9cdb28c8dc1a2d8f3c4dfd1ecf4f214e5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/feeder_2025.cpython-313.pyc",
+      "bytes": 8151,
+      "sha256": "148bffd679e8a85353958bb9ce18c0006073dff0d6b229bfd4f485e424743573"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/hourly_source_profile.cpython-313.pyc",
+      "bytes": 12807,
+      "sha256": "e81ab580bd8127eef5620307fca6301bf47f5a1e029ad457ed0cd951fb23b6fc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/incremental_cost.cpython-313.pyc",
+      "bytes": 19730,
+      "sha256": "6fc255f3cf57c40a52b0b84de9959f0fc9e2827e3eecdf8c44cd3c022f3f9d43"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/joint_lifecycle_optimizer.cpython-313.pyc",
+      "bytes": 54073,
+      "sha256": "e25e5f1d64f28f71345b46b166269a0814b3c80ba014ec8aebcaab48857084ba"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/load_reallocation.cpython-313.pyc",
+      "bytes": 2572,
+      "sha256": "17073a97c308183104a8748e5276875783e43be2513b13d1a763d6a726c4b6a2"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/new_line_section_audit.cpython-313.pyc",
+      "bytes": 5347,
+      "sha256": "2312a253b76dc8f094b6cccd96f5c8296b01b0e6888939feff176e7ff6ad07e9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/official_annual.cpython-313.pyc",
+      "bytes": 5169,
+      "sha256": "13a124537ed05208cad04ce1044379394f6586095e82e3bc57678719d2c384e1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/pizhou_existing_ties.cpython-313.pyc",
+      "bytes": 11646,
+      "sha256": "136e4113777bbd6166af01432391f163ffc2c1658a6afc67d5e16aaf75f1de3f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/pizhou_transfer_fraction.cpython-313.pyc",
+      "bytes": 3215,
+      "sha256": "f4e67c5ceb3e4411ebbd942a85db24018a892bd064ec1de7d7367c5177594727"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/planning_load_profile.cpython-313.pyc",
+      "bytes": 3459,
+      "sha256": "d6476fac31125a276fbb9fdcccaff4ff1fc2d5a8ddced60b1e8884234c556871"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/regional_static_milp_v2.cpython-313.pyc",
+      "bytes": 69089,
+      "sha256": "ba6aea7cb9e8224247923cbffc3f30bfc7efc32db91ecbcda3be78faa973aee8"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/regional_static_milp_v2_audit.cpython-313.pyc",
+      "bytes": 31062,
+      "sha256": "74ce69a0a076278dc84ab6f8ff1d53b39030cd0a7a08c5d40a566239694d9fd9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/reverse_screen_2025.cpython-313.pyc",
+      "bytes": 4940,
+      "sha256": "616eeda539c97858d52b37629f932ca1817d7ae3e50408ef6d514df98fe7fd0f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/station_grid_feasibility.cpython-313.pyc",
+      "bytes": 6570,
+      "sha256": "50dfe6ac165b18219f45aeda79bd664b1d5f438e2d420e8a2997dd0fbff1857c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/station_transfer_equivalent.cpython-313.pyc",
+      "bytes": 15623,
+      "sha256": "65b4afb0588c416f922a990ce62cff70cb658827281975358e463ec70f36c4f3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/tie_section_audit.cpython-313.pyc",
+      "bytes": 4935,
+      "sha256": "1cf3ec010102a2e83645562dad7af4c2e83f339e1042746589371a7524de34d0"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/transformer_only_path_2021_2025.cpython-313.pyc",
+      "bytes": 7563,
+      "sha256": "41a690b1d5a58648e6b85fae748b7c192ee14301bcf4eead12db2e6323e79eed"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/two_district_ordered_guide_run.cpython-313.pyc",
+      "bytes": 6921,
+      "sha256": "ea3a4ff8cfd908be246f10c1b920e73c72090c82de1370168dc1706fe31eaa1b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/__pycache__/two_district_source_audit.cpython-313.pyc",
+      "bytes": 5234,
+      "sha256": "180477df30b74fe9fc331398bbd920f767bf16e1b64cba64b4048b1367e56933"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 395,
+      "sha256": "028e802faa9614dc84b375d67d1c63b75d86960bea0df80a4c22a5041ec906b1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/audit.cpython-313.pyc",
+      "bytes": 5174,
+      "sha256": "50da0361c736079a98ff65bcfb4121b0f5e7bb679ad58015447f4026c46fa113"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/capacity.cpython-313.pyc",
+      "bytes": 16838,
+      "sha256": "5ae07166b8d21abe19b9d15c466715721ea151983e349502c9f6ceeb72795acd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/export.cpython-313.pyc",
+      "bytes": 22795,
+      "sha256": "692712fba1ddc40d2f09c21e4e1771554a789eda90bda8f48af862d9a9209456"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/model.cpython-313.pyc",
+      "bytes": 3540,
+      "sha256": "6a06c2440415e31556694cfa70eee48824f08dced4b10940fee331be0acfdb8c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/prepare.cpython-313.pyc",
+      "bytes": 6009,
+      "sha256": "63ad11af361ff2a9de1c937e6f569fac523bf54364e4befb4d4458918c5a13cb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/run.cpython-313.pyc",
+      "bytes": 24710,
+      "sha256": "0c5d83abca62660bd48ca001700c348b979eef7d71d0e20a37f7e7489991a82f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/spotcheck.cpython-313.pyc",
+      "bytes": 4390,
+      "sha256": "7e3788be2c9683a3a4b1cf954e141fc4632d3e4c27fa5b33818ed2f973b6563d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/test_model.cpython-313.pyc",
+      "bytes": 8850,
+      "sha256": "8a6f7396bb52caef2527cc5fae7ee9fce5cad77b0b9c516a9c5a1048e5d5b4dd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_bounded_transfer_2035_20261017/__pycache__/verify.cpython-313.pyc",
+      "bytes": 12342,
+      "sha256": "55cae311f24c8b5fe53ed3829a951a76580ff0a3c6e5f8b7c8b0397bb00e229b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 416,
+      "sha256": "d34e6514b41feabb5e940beb525a6cd7e6eda91df0d003c822d1b63d1f6d0ad1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/audit.cpython-313.pyc",
+      "bytes": 17187,
+      "sha256": "7ec413e5687b097c79de95b196f137e61d013df4485f2751b6e0c0dc166ec20e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/export.cpython-313.pyc",
+      "bytes": 31555,
+      "sha256": "a28b7e5a6a509ab03e63954956527fa9802d347671af8aede1b0496b3da1ef3c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/model.cpython-313.pyc",
+      "bytes": 1539,
+      "sha256": "a932ce5e361c844182033fba98252dc2e203bbfde1397e09420c11b7da872332"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/prepare.cpython-313.pyc",
+      "bytes": 4807,
+      "sha256": "699d81212d9ffc31eb71ad0869338892d60b39d6e1b8cc9435216dcca4938aca"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/preview.cpython-313.pyc",
+      "bytes": 5567,
+      "sha256": "c2ccc2a960c7b3ee3fbba87fefa5bb53f45c6c0ef5fb481750071523908d1839"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/probe.cpython-313.pyc",
+      "bytes": 7702,
+      "sha256": "92060aeafbdfe101f9e1994f56e6ca47fa44de869308198992a7588de549ba10"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/repair.cpython-313.pyc",
+      "bytes": 5188,
+      "sha256": "2c079a270a7a017d179b67f4bbf329859432f8619a1673eb85eb00a99f989735"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/run.cpython-313.pyc",
+      "bytes": 19223,
+      "sha256": "beb2a039fb64d874bb53a0b083518d245ede75aed8c86c1d529129cc598a2b4e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/sources.cpython-313.pyc",
+      "bytes": 5391,
+      "sha256": "6aae7545953c635812965666aad93df565fba5e598533fb90f7f1ad64658b8bc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/test_model.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 23882,
+      "sha256": "43c865697b7fcd285850af309259518808cec71b3fde2f74f78c89c05ba6fbb3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/test_model.cpython-313.pyc",
+      "bytes": 5146,
+      "sha256": "e8a6b9690aad13db550e1f5f470b9ddd813427c09251ef340db1729041c58585"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_cost_interval_2035_20261017/__pycache__/verify.cpython-313.pyc",
+      "bytes": 16303,
+      "sha256": "8fd3067d1b6ea8a46d6afed2f37bfd24a31e06c62dd74cc71054849635cc34d9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 383,
+      "sha256": "7f53bd277913af820028f076de962538818ebff9f8722ee6968e9e0312c8ffe9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/audit.cpython-313.pyc",
+      "bytes": 7965,
+      "sha256": "a0224869551f2913cfa845f57a9199a2a1a7af81cec48e482986d3d674ffad93"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/baseline.cpython-313.pyc",
+      "bytes": 10919,
+      "sha256": "0345e0cd2177955673553a9f0dfd5fa7ae51ce20e345054272739c6126d752df"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/capacity.cpython-313.pyc",
+      "bytes": 17599,
+      "sha256": "ce4a97bf5a72a26e6cc0ec15b62040db81007ab215356ba1c923bf983c972595"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/export.cpython-313.pyc",
+      "bytes": 27378,
+      "sha256": "70bcf5e5ffd2d87079e4b3a3d68c485f942f6d5a902eae2835769896428cc718"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/model.cpython-313.pyc",
+      "bytes": 28248,
+      "sha256": "66d00aac0b4830a616cf294e3810cfc4b377c116702636fdefbffa552db98133"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/prepare.cpython-313.pyc",
+      "bytes": 7729,
+      "sha256": "7c28eb6b058140ecad807fe4d1dec879678c45b3af84c45161e24af18aa62426"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/preview.cpython-313.pyc",
+      "bytes": 6422,
+      "sha256": "db26e8cb2bc4aef78cfbdd5660e32f74800ac58bfd1db8260449fd5a72cc948e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/run.cpython-313.pyc",
+      "bytes": 26382,
+      "sha256": "c0475947cff0d09ed7e0028d4cf2c8b2d0e52e10c0d80b1b2e87682bbb2bcc20"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/solver.cpython-313.pyc",
+      "bytes": 9238,
+      "sha256": "45b2d7bdab44b3bc7cbcc1a50aa83fa47e238c6d9827c93628225149eadd3315"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/test_model.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 11962,
+      "sha256": "6346a68ca61697b32852cd8006be022816f6d336e8869971afeb419a434e835c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/test_model.cpython-313.pyc",
+      "bytes": 11849,
+      "sha256": "64caf3f44cbd6055d44a929c4f3554a63bc3b6c71cd8c984fac406250437d94a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_demand_driven_2035_20261017/__pycache__/verify.cpython-313.pyc",
+      "bytes": 19677,
+      "sha256": "5217d769eca033ddb537cdb078d0d34ec6ed15ab51216ec70d9578555180c4f6"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 391,
+      "sha256": "90e49688049133945fd1b920868f799c085882e6db406edce10496fe12f611d7"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/audit.cpython-313.pyc",
+      "bytes": 6096,
+      "sha256": "ea0802a90c9e2be40e6b5aaf7cd63033d27fad4fc0d3768870bff82e8f3c4a75"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/capacity.cpython-313.pyc",
+      "bytes": 16828,
+      "sha256": "4a48de83151d95b393ae4e05bc97cc44dd2ee56e4db96f099ee348b67c00f33d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/export.cpython-313.pyc",
+      "bytes": 25869,
+      "sha256": "5365161e5dd9ed85384fe8d3543a450cfa90a5faefb01050dc7aab45e1313a0b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/model.cpython-313.pyc",
+      "bytes": 3735,
+      "sha256": "f34a7971cc67cf19b116f5f2957f5b6a62bad688ed8905aff5b5f320d1c3ad49"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/prepare.cpython-313.pyc",
+      "bytes": 6783,
+      "sha256": "7e75f3b117f6aa7ecb4d2b86613d1be94e4a9b0575362899899fcffdec0e33fc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/run.cpython-313.pyc",
+      "bytes": 24700,
+      "sha256": "1f86dbcc2553c9510d2a79d11ab7cdcd6c1780b5bf3c3eb5621734dfe37155a5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/spotcheck.cpython-313.pyc",
+      "bytes": 4380,
+      "sha256": "2e581d127ba8eb8a0266c47fe84b2fe98387316cb89bc0131191d5a4c45d03b7"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/test_model.cpython-313.pyc",
+      "bytes": 6545,
+      "sha256": "0c102e29f62bcb3c5d80849fbfa0c11d640890fef64c739632f53bab17b9983f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_phased_2035_20261017/__pycache__/verify.cpython-313.pyc",
+      "bytes": 13869,
+      "sha256": "af0e2a01befb3fef80ca150584397bc69f492795d66bd2609d0fe6b1a6e61a04"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_transfer_2035_20261017/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 412,
+      "sha256": "78e77ef6181d7dbfe068c81f04d09708c94edbd40e791c99487a2d99377d5026"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_transfer_2035_20261017/__pycache__/export.cpython-313.pyc",
+      "bytes": 40490,
+      "sha256": "2aaf5b9c244047391b1aa3406109fe8a51707ae847be5819b7c0b65d30a58281"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_transfer_2035_20261017/__pycache__/model.cpython-313.pyc",
+      "bytes": 24877,
+      "sha256": "7291e05a682c29cfe58741f8528131f030a325ed9888b251a45d3f1eb998e97f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_transfer_2035_20261017/__pycache__/prepare.cpython-313.pyc",
+      "bytes": 15154,
+      "sha256": "fcce10ba8b01d9c82bafea0c6faae80eae967b5506963495a5cd9d3dff82e354"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_transfer_2035_20261017/__pycache__/reserve.cpython-313.pyc",
+      "bytes": 16537,
+      "sha256": "34a6df491c6e5a7af082792c808dff54fd9b29aa14e7d95c2351bf01966ae3b4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_transfer_2035_20261017/__pycache__/run.cpython-313.pyc",
+      "bytes": 24702,
+      "sha256": "1e17547ca53d13da7dd0354292e7e315c5e5d59b8ff88304877affe684c1a4f2"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_transfer_2035_20261017/__pycache__/stress.cpython-313.pyc",
+      "bytes": 5484,
+      "sha256": "f95bfb5a5221b63f5ce08072f7e7d45a3b2f6faffc744a6b0fa734e4bc326449"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_transfer_2035_20261017/__pycache__/test_model.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 24215,
+      "sha256": "c1609307aa7da70c91df13c4fa80511bbaa53d8ef5c0edb1fe488e990eb173e4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/annual_transfer_2035_20261017/__pycache__/verify.cpython-313.pyc",
+      "bytes": 10033,
+      "sha256": "e872b808eece320a734150650da7c3decec925f021d15b492fc093a8a4a1a4b5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 397,
+      "sha256": "e3206997abbc3d81dcc9420fccf509975f981dbd448dc2176dee0d5b4de33e3d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__pycache__/capacity_audit.cpython-313.pyc",
+      "bytes": 17043,
+      "sha256": "ffcb914171ac07be159bad207f5e683df46af212509ab5ef2f28c750688a0737"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__pycache__/capacity_run.cpython-313.pyc",
+      "bytes": 20972,
+      "sha256": "3345da3d83e5bf195370ffca053682336957b69d57bc633463b2acb921341f7e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__pycache__/report.cpython-313.pyc",
+      "bytes": 21291,
+      "sha256": "d6f6196cd3583c7397491fa6441190f16a8c187988e47080d2a9a74f4651ba03"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__pycache__/report_version.cpython-313.pyc",
+      "bytes": 8528,
+      "sha256": "e66a30f593333a7f229bdd82ec32834f18fb53357c5c9960116ceb2d91dad2c5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__pycache__/run.cpython-313.pyc",
+      "bytes": 32386,
+      "sha256": "10be24d44efe464876859bdb7cc5b134a71ba0013369ebfd8bb71dc2520be4bd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__pycache__/test_model.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 23203,
+      "sha256": "264d2738d30390dbc88256c3d5545e283c444bf853b3a70751cbbfae5f681f29"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__pycache__/test_transfer_diagnostic.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 11306,
+      "sha256": "b9cbcb02fd26ea20728cc942fc020a9baf702efb6b2aeea7a9cf1c5740c657fe"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/case_parameters_20261012/__pycache__/transfer_diagnostic.cpython-313.pyc",
+      "bytes": 76826,
+      "sha256": "27594496b24fe01acc6dfd90cf6d51a6e562ad7dfeb1c322021f97d55c0c57bd"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/economic_two_districts_20261015/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 414,
+      "sha256": "3b8eea8a20862e4a70d2d71eaf759bf4014b71040489567cdf556a104e51f0db"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/economic_two_districts_20261015/__pycache__/export.cpython-313.pyc",
+      "bytes": 23310,
+      "sha256": "be0a21a02eb4805c69fee593f6038c41cf34c49cdfa3f2ebc7daecd6c8f1fcf9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/economic_two_districts_20261015/__pycache__/lock_review.cpython-313.pyc",
+      "bytes": 3659,
+      "sha256": "015862c9b52d173f8ecbcd22d653e4d27615f518e1a2cdd4658ccbabe85a29a8"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/economic_two_districts_20261015/__pycache__/matrices.cpython-313.pyc",
+      "bytes": 12571,
+      "sha256": "2a9b2a6ff0c67baf399307f6532ecadef378f349cac7c99ccdc237369523128c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/economic_two_districts_20261015/__pycache__/memo.cpython-313.pyc",
+      "bytes": 16243,
+      "sha256": "44ee230124aabd600540e1be2af700a74831ee7b2820df0cc36650aa8f2fbfdc"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/economic_two_districts_20261015/__pycache__/model.cpython-313.pyc",
+      "bytes": 12178,
+      "sha256": "9b4e77d8b94ba1bb9844711ac7bb84f6fb3e90222492b2f3018a706449bcb969"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/economic_two_districts_20261015/__pycache__/test_model.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 11817,
+      "sha256": "d116e1ba237ac8ade22d838b4ead067dd9aad92c3601e93032a0d9d6c87388b5"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/economic_two_districts_20261015/__pycache__/verify.cpython-313.pyc",
+      "bytes": 15645,
+      "sha256": "c279c520546ee426e807cb338ad5037f1ce697b6915f61ab4e45d56b61eb59c4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/forecast_2035_20261017/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 393,
+      "sha256": "e730b5f5a95b4b4e42e4730f1443910b619c9d8292da088ec07762d490976c87"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/forecast_2035_20261017/__pycache__/export.cpython-313.pyc",
+      "bytes": 35707,
+      "sha256": "5c74b6b96981f0c2bee97dc5740bae2cbce3587e8139f03bf95afa8730fcac8c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/forecast_2035_20261017/__pycache__/rolling.cpython-313.pyc",
+      "bytes": 19762,
+      "sha256": "acd5c81a0ea527b357b2778b84f59092f9fb9fe9eed6e8acdb1da18ff964eb51"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/forecast_2035_20261017/__pycache__/run.cpython-313.pyc",
+      "bytes": 28944,
+      "sha256": "81d757e76f808f4a57677bdebba0358d5f5b0f427ac58ed80efef42c1d17211f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/forecast_2035_20261017/__pycache__/seed.cpython-313.pyc",
+      "bytes": 10852,
+      "sha256": "9ea004b6a0b8afb0e5adda8384a8ce282e5aa051795bee97bf2c24b2e5ddafdf"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/forecast_2035_20261017/__pycache__/test_inputs.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 19429,
+      "sha256": "35e108e2e47e4f2959e4d5bdb1c5ff80c9fdc365a3d8d8c4c071e955649b3f21"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/forecast_2035_20261017/__pycache__/test_inputs.cpython-313.pyc",
+      "bytes": 4042,
+      "sha256": "3ed0628fe685be0edaf379ba09fea6b9a46eeffc67f12dc8f9f4f74574541435"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/matrix_20261012/__pycache__/model.cpython-313.pyc",
+      "bytes": 37190,
+      "sha256": "d87b9ac48d8cb1cd3b206a826069fd4a330a5a86f5927798db018e2a3efc3d4f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 403,
+      "sha256": "4c41aceae3e64b0d51c852144ff86b220e62fb758d8d019a04f783beff1bfffa"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/__pycache__/run.cpython-313.pyc",
+      "bytes": 35606,
+      "sha256": "c9a66c0f887ee3d4d59bf88bf81d7ba044b92080ab4a8220033598295f52d4a2"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/__pycache__/soc_check.cpython-313.pyc",
+      "bytes": 14290,
+      "sha256": "9113206f4b9d76dc31790f4e54a2d690ed95aa2591f21723c581df8f96b0ff5f"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/__pycache__/solver.cpython-313.pyc",
+      "bytes": 8758,
+      "sha256": "0baa448855fdb584d50c5b8c31f6149f200f0c79ebe4795cc0303d96dde5f6b4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/network_case_20261010/__pycache__/test_network.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 9034,
+      "sha256": "2176586dd2aa3bdeb5d19f83e6ececbf56ffc268779741a82be6d56c9d7e982d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/pilot_20261009/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 380,
+      "sha256": "78864df3ef9829e4eb1db64096f2764f0a44a0aea080a17079ec3aa375745566"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/pilot_20261009/__pycache__/run.cpython-313.pyc",
+      "bytes": 55357,
+      "sha256": "58a581e0f84a9426551500fde62f518c4386fa8588262e1b79e04ca2d6c3176e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/recommend_20261015/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 382,
+      "sha256": "2ed0e733f8d421bbab33ca5220636002021ce99f94823e0e768465ceee4be020"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/recommend_20261015/__pycache__/export.cpython-313.pyc",
+      "bytes": 18019,
+      "sha256": "f01bbc0ccea93b7f9422be1c40bd0be8b0750cc0f533e7e32f7c5fb6795858af"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/recommend_20261015/__pycache__/lock_review.cpython-313.pyc",
+      "bytes": 3658,
+      "sha256": "e7b5070140002c0d457ba13bb622c740f5053246c4d4348650bbc4a4a1ec9a43"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/recommend_20261015/__pycache__/matrices.cpython-313.pyc",
+      "bytes": 13165,
+      "sha256": "d99ff00215e4ae8699784140a733d2f95da1f7ef50ea9e029dd4330fc7353164"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/recommend_20261015/__pycache__/memo.cpython-313.pyc",
+      "bytes": 16181,
+      "sha256": "9d740bddad6d6b3f54d5fe550f30a1d9baaf099a6ee96562646d284f84b153be"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/recommend_20261015/__pycache__/model.cpython-313.pyc",
+      "bytes": 20259,
+      "sha256": "71ac8f3f8675b54a5144562acc27cf1a9a91c4329437c7ffe84851f1706187ad"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/recommend_20261015/__pycache__/test_model.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 11638,
+      "sha256": "8eed655250a33909eb8938e3d2d4aa38819f98f837b297e9dc07908c07bcd8f3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/recommend_20261015/__pycache__/verify.cpython-313.pyc",
+      "bytes": 16977,
+      "sha256": "a33af3ddad0259795f10b06cfc9052eb400ff2927955089fe11f191aad122a2e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 399,
+      "sha256": "afaf6bae3f79c46ea990a640543170e83bd7021d33d50e1168b335b7242027e1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/cases.cpython-313.pyc",
+      "bytes": 33892,
+      "sha256": "2d86de90291ccf1b387c991ff0afbe3cdaa4a7471c8bd3a22b30cd124e1e2584"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/export.cpython-313.pyc",
+      "bytes": 38178,
+      "sha256": "fdec15cdf6582a1eccaf8f26c1e5a996c8785d33a60d2e7fda4f23355abdec1d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/lock_review.cpython-313.pyc",
+      "bytes": 4059,
+      "sha256": "4a95e26d36d1f0d5eba8b1b5305975481f5267a8c60c80c2c10069dea620bb91"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/matrix.cpython-313.pyc",
+      "bytes": 35600,
+      "sha256": "a2ea343bde3ab5a36f514b359c927b89c1fa33d94ad4632396ae94ebd5978835"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/memo.cpython-313.pyc",
+      "bytes": 18011,
+      "sha256": "f869aaad5cf8073fe753d8beef2c83caeb526cc9458008d15af0f6df78793662"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/target_warm.cpython-313.pyc",
+      "bytes": 17969,
+      "sha256": "8a1b59684270a0f29d6c477e4d89058a3a1571cadb6685934a2871895064e1e6"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/test_baseline_successor.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 2785,
+      "sha256": "b58bf6ce7342c23b91bc4e81aa45863c5d24491ef3b2c15cd458b8cb3a1fd605"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/test_models.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 24990,
+      "sha256": "a8244a37df8beab56b7c9d2f313f764ff34a5cf29afbbff62c7bb3f8d8cc9b8d"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015/__pycache__/verify.cpython-313.pyc",
+      "bytes": 21632,
+      "sha256": "02aab01e427906d43d4af0893d59fac4fcfcd0d9e984663bb9662ad2cab1e2b8"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015_followup/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 394,
+      "sha256": "0bfd867b10359e25cb30a6bcd19118376c144531a86c3f5233e84a9d297c723c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015_followup/__pycache__/audit.cpython-313.pyc",
+      "bytes": 17086,
+      "sha256": "2912f30c31277e587f6628338580051708919266d2af48f3469cadf93401a8fa"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015_followup/__pycache__/cases.cpython-313.pyc",
+      "bytes": 20908,
+      "sha256": "17a23e1cb6a9f40b5fbbabc664de32fe915e598b12be9a66ce23d801b3b4597b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015_followup/__pycache__/lock_review.cpython-313.pyc",
+      "bytes": 3638,
+      "sha256": "93ea739fb36f229ea45db5be7045a09f9f875adb1c276527f2ac40534e0045f4"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015_followup/__pycache__/matrix_audit.cpython-313.pyc",
+      "bytes": 20090,
+      "sha256": "8648a45d11e9f3ce1853322986b3c90230f8b576b66ae8fa9147b730736c84f6"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015_followup/__pycache__/memo.cpython-313.pyc",
+      "bytes": 23056,
+      "sha256": "b327d1cd13de1fe2b68f8671b7e0a893e979ef83d25a31d7ebab107bcb3efc22"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015_followup/__pycache__/test_rules.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 11406,
+      "sha256": "396c3b4e3827d763385079c27f0782c1ee0eb6f2291511426520f99c4409d698"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/review_20261015_followup/__pycache__/verify.cpython-313.pyc",
+      "bytes": 14075,
+      "sha256": "03723f6de192b352de8fc261ba09243023c3e7b0e9d50890b86dab12f2122417"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_actual_20261010/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 398,
+      "sha256": "f058d1b71cc960df53db058f17f7c74aaa5f12913f71e8881b8a18a7a5635491"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_actual_20261010/__pycache__/run.cpython-313.pyc",
+      "bytes": 27411,
+      "sha256": "3345d26237dbe864f14d3acc170f0af099da59ca9664e179304f977691fc3024"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_actual_20261010/__pycache__/test_rules.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 9182,
+      "sha256": "c9adca445b1a48c1742675d4fd9bd9d8de11d81de3a0b3ea5826446eebc6b790"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_joint_20261015/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 361,
+      "sha256": "91008173db0d31258aae8946b0bfa3c7e72462c6a9927ad0978a61fdd1c79e97"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_joint_20261015/__pycache__/choose.cpython-313.pyc",
+      "bytes": 10121,
+      "sha256": "d6b7202a5f71c8111b211770053b5081fa89dc0a1f5a93d0d242a8fbd08f0de0"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_joint_20261015/__pycache__/export.cpython-313.pyc",
+      "bytes": 38141,
+      "sha256": "23e192d261310d6711a1ca72f2a6aa936a374695c9625668c43bea2210a88a96"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_joint_20261015/__pycache__/lock_review.cpython-313.pyc",
+      "bytes": 3639,
+      "sha256": "5949349f6124849a8572701eb4eddbe879065eb51b18a5910f5cef154531dc62"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_joint_20261015/__pycache__/model.cpython-313.pyc",
+      "bytes": 17549,
+      "sha256": "9df7b42932660e832664b4c0d49929b81ec7cdf65fee4abaf6142a8fe46b7fd3"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_joint_20261015/__pycache__/test_model.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 15016,
+      "sha256": "b75bae3c2d8c0fbf31bd629c11474228841924891e2f19fd6d50e375e0b9cfb1"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_joint_20261015/__pycache__/verify.cpython-313.pyc",
+      "bytes": 17046,
+      "sha256": "66a028eb6b2f3591be111956f7b27494b7b60cbe0065aefbb08e1f9c5d0f67a9"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/static_substitution_audit_20261015/__pycache__/audit.cpython-313.pyc",
+      "bytes": 15123,
+      "sha256": "568281dbd9313bd43133d27a4d27dcd307959334bf5da625a5fe745a316be247"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/synchronous_20261009/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 393,
+      "sha256": "144029c137c49a8795edf01e93adf8378ff6005a9ff98d7fd90f4b69207d877a"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/synchronous_20261009/__pycache__/model.cpython-313.pyc",
+      "bytes": 31667,
+      "sha256": "4db26fce3ea047abbed0475d919ba7129ab95e7b8cd99f0823cac40a2d28b67b"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/synchronous_20261009/__pycache__/prepare.cpython-313.pyc",
+      "bytes": 16585,
+      "sha256": "5fcfcd53784c2abd8f46f9c744afb4bb8466ef7bfe9556be324b3da32a8518fa"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/transfer_review_20261017/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 399,
+      "sha256": "32b6aa5bba411673e253d3c1012f6f2f282681c745c2cdd4a138b0aeaa7cfc0e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/transfer_review_20261017/__pycache__/audit.cpython-313.pyc",
+      "bytes": 15859,
+      "sha256": "46343ec4e4a07acb73ed17f90e28d4c2ea71f433f1e03b3eaca3f0c66dee44ae"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/transfer_review_20261017/__pycache__/choose.cpython-313.pyc",
+      "bytes": 6961,
+      "sha256": "de52007e3d39372494abebdc1895b5bfb075ba79b5d0eb0a47bf3c6a731c989c"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/transfer_review_20261017/__pycache__/probe.cpython-313.pyc",
+      "bytes": 9692,
+      "sha256": "144163a3dbbebc78447058de334bf0622db472100e8a1ec0e160e973ddcecdbb"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/transfer_review_20261017/__pycache__/report.cpython-313.pyc",
+      "bytes": 17920,
+      "sha256": "b7ee29de201f96c953b0f78a87b5d14dfda99147a4ff6f1ce6598052f64f5f8e"
+    },
+    {
+      "path": "实验/研究/rebuild_2026/transfer_review_20261017/__pycache__/test_audit.cpython-313-pytest-8.3.4.pyc",
+      "bytes": 13569,
+      "sha256": "d222fe8148e02d57908ce038d9d005f3557e4d2258f3f81f95eac50f8431f108"
+    },
+    {
+      "path": "研究报告/05_review/当前版/__pycache__/装配Word.cpython-313.pyc",
+      "bytes": 43941,
+      "sha256": "e7ea050839b1af7b1277ce211b7db6a16d0d78701ae77dd3a90670e6134c68ca"
+    }
+  ]
+}

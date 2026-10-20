@@ -19,6 +19,10 @@ def main():
  parser.add_argument('--docx-only',action='store_true',help='装配原生DOCX，供WPS打开导出；完成导出后使用--accept-wps-pdf')
  parser.add_argument('--accept-wps-pdf',type=Path,help='接收由当前原生DOCX在WPS中直接导出的PDF，并同步目录缓存')
  args=parser.parse_args();root=args.root.resolve()
+ from archive_log_evidence import temporary_logs
+ with temporary_logs(root):return maintain(args,parser,root)
+
+def maintain(args,parser,root):
  from report_plain_revision import active as plain_active
  plain=args.plain_report or plain_active(root)
  if plain and args.feedback_report:parser.error('本轮普通模式清稿与历史修订稿模式不能同时使用')
