@@ -1,0 +1,96 @@
+{
+  "性质": "用户要求将历史会话修正一并纳入Git，按当前文件状态存档",
+  "用户指示": "历史会话的修正 也一起GIT",
+  "范围": [
+    "论文CameraReady资料及原文件归档",
+    "英文口头报告PPT修改",
+    "成果汇报文字增强和公式释义版本及配套脚本、图件和记录"
+  ],
+  "文件检查": {
+    "新文件": 838,
+    "PDF可读取": 13,
+    "Python语法": 20,
+    "JSON可读取": 57,
+    "Office包完整": 9
+  },
+  "论文归档逐字节核对": [
+    {
+      "原路径": "paper/02_论文大纲_v2_EPG-NSGA-II_中文.md",
+      "归档路径": "paper/历史/02_论文大纲_v2_EPG-NSGA-II_中文.md",
+      "SHA256": "77eb37b347a93802104cea9b7af8453f626a4a4ac867f06ab012ed8f8f6583b8"
+    },
+    {
+      "原路径": "paper/Bib_YaoHU.txt",
+      "归档路径": "paper/历史/Bib_YaoHU.txt",
+      "SHA256": "afa5a606693679e797fcf2dc96474d6e8fc7903771c66f65cbcc4f56e7ed24e4"
+    },
+    {
+      "原路径": "paper/apply_2page_revision.py",
+      "归档路径": "paper/历史/apply_2page_revision.py",
+      "SHA256": "80644eb5d4d6234264a5a93346e289c239ff182580683a3ec27a040d42d253f9"
+    },
+    {
+      "原路径": "paper/epg-nsga-ii-paper_final_compressed.docx",
+      "归档路径": "paper/历史/epg-nsga-ii-paper_final_compressed.docx",
+      "SHA256": "3899026f4e3122aba9e2a58f956d468be4b883a4915b69cbae3c3fc1b0b89a0b"
+    },
+    {
+      "原路径": "paper/make_table1_full.py",
+      "归档路径": "paper/历史/make_table1_full.py",
+      "SHA256": "62294770daec22f01075ab2c841dc5b9ea8651827360f5152a7b8d0637254140"
+    },
+    {
+      "原路径": "paper/revision_log_老师意见_v3.md",
+      "归档路径": "paper/历史/revision_log_老师意见_v3.md",
+      "SHA256": "c4f0ab9d769f77249fe66cc821303d5d45bfd48fde390fd0e963b41d88760560"
+    },
+    {
+      "原路径": "paper/table1_full.docx",
+      "归档路径": "paper/历史/table1_full.docx",
+      "SHA256": "ded3feecd7224d985fd5a8d53222640486da75f142d3c2383f85ca6f079ecc2a"
+    },
+    {
+      "原路径": "paper/table1_full.pdf",
+      "归档路径": "paper/历史/table1_full.pdf",
+      "SHA256": "19a3240d2760f616a352beea0d6838def10e4b3cbf71d0a546c0feb3d5a5254d"
+    },
+    {
+      "原路径": "paper/第二轮修正_变更日志.md",
+      "归档路径": "paper/历史/第二轮修正_变更日志.md",
+      "SHA256": "e9807a4ee7e16013a0fbff46590ec9b838ed282c3c40e3bb1f37f26470fea557"
+    },
+    {
+      "原路径": "paper/老师修改意见_逐字句修正说明书.md",
+      "归档路径": "paper/历史/老师修改意见_逐字句修正说明书.md",
+      "SHA256": "5c9e3e411457430cc4ecdf23193f4fa16c3e9178f8892ef150f9f7ecc9b5b693"
+    },
+    {
+      "原路径": "paper/许恒-EPG-NSGA-II-终稿.docx",
+      "归档路径": "paper/历史/许恒-EPG-NSGA-II-终稿.docx",
+      "SHA256": "fbdbb3570912e8ed8479cc5a0394c172efced1483f581cdbad35edf5b44c4e54"
+    },
+    {
+      "原路径": "paper/许恒-Engineering-Prior-Guided NSGA-II for Elastic Capacity-Load Ratio Planning under High Distributed Photovoltaic Penetration.pdf",
+      "归档路径": "paper/历史/许恒-Engineering-Prior-Guided NSGA-II for Elastic Capacity-Load Ratio Planning under High Distributed Photovoltaic Penetration.pdf",
+      "SHA256": "5cc9bc7a254ae167ff92e2ae52b16e69a515032d02710ba823855b94334e9e16"
+    },
+    {
+      "原路径": "paper/许恒预定的会议-元宝纪要.txt",
+      "归档路径": "paper/历史/许恒预定的会议-元宝纪要.txt",
+      "SHA256": "5a410b25f9264a4c21c66502691be30760daf8c960367eb90c153f381cfc723c"
+    },
+    {
+      "原路径": "paper/论文第二轮高精度修正说明书_供Agent执行.md",
+      "归档路径": "paper/历史/论文第二轮高精度修正说明书_供Agent执行.md",
+      "SHA256": "349f4c5b9c14c0298df9d44234f43aee3ebd2ce9b674cfe442d2d013c80eac23"
+    },
+    {
+      "原路径": "paper/逐项修正_执行日志.md",
+      "归档路径": "paper/历史/逐项修正_执行日志.md",
+      "SHA256": "26161ad98f2c695b6202d299e41b7ff7b120c1d90cd7f20183b3a6170a0c30e5"
+    }
+  ],
+  "交付记录保留说明": "保留历史审阅记录原字节，不将当前存档标记为重新验收。公式释义目录的历史交付清单所列带版本名PPTX及PDF当前缺失，现存通用名PPTX与历史交付哈希不同，均按当前状态及原记录存档，不改写旧核验哈希。",
+  "原研究报告状态": "既有公式字形与Word/PDF同步待办保持",
+  "实际记录时间UTC": "2026-10-23T12:36:06.282530+00:00"
+}

@@ -1,0 +1,539 @@
+{
+  "user_authorization": "20261021参照统计分析PPT，适当增加可见文字并保留旧稿",
+  "main_pages": 25,
+  "appendix_pages": 11,
+  "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+  "pages": [
+    {
+      "page": 1,
+      "title": "成果汇报封面",
+      "source_slide": 1,
+      "svg": "slide_01.svg",
+      "mode": "referenced",
+      "source": "项目名称及原逻辑参考稿署名",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 2,
+      "title": "汇报目录",
+      "source_slide": 2,
+      "svg": "slide_02.svg",
+      "mode": "referenced",
+      "source": "确认的五部分汇报逻辑",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 3,
+      "title": "双向容量任务",
+      "source_slide": 3,
+      "svg": "slide_03.svg",
+      "mode": "edited",
+      "source": "研究报告1.1—1.2、1.4",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "运行变化：日间光伏优先供应本地负荷，剩余电力经主变反送；晚间光伏退出，主变继续承担正向供电任务。",
+          "规划问题：区域容载比由主变容量和年网供最大负荷共同决定，站级需求还受主变台数、局部峰值和邻站支援影响。",
+          "研究任务：结合邳州与市区源荷特征，在正常运行和主变N-1条件下联合比选主变、储能与10 kV联络，形成分片区的容量规划建议。"
+        ]
+      }
+    },
+    {
+      "page": 4,
+      "title": "研究目标与技术路线",
+      "source_slide": 4,
+      "svg": "slide_04.svg",
+      "mode": "edited",
+      "source": "研究报告1.4—1.5、图1-1",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "blocks": [
+          [
+            "① 运行资料",
+            "整理年度容量、同范围负荷和光伏，匹配46座站的设备、净负荷与既有转供资料。"
+          ],
+          [
+            "② 运行任务",
+            "按同小时功率关系识别正向供电、日间反送及局部近峰过程，明确站级容量需求。"
+          ],
+          [
+            "③ 工程费用",
+            "区分主变更换与扩建，按储能柜数和新增联络项目计费，并统一折算投运批次费用。"
+          ],
+          [
+            "④ 联合比选",
+            "逐年承接已投运设备，在正常与主变N-1约束下共同选择主变、储能和联络措施。"
+          ],
+          [
+            "⑤ 结果解释",
+            "联系设备台数组合、建设节点与分项费用，解释地区差异及各措施的替代关系。"
+          ],
+          [
+            "⑥ 条件推荐",
+            "由十三项候选指标筛选五项参数，按片区条件组织推荐矩阵，再落实具体工程方案。"
+          ]
+        ]
+      }
+    },
+    {
+      "page": 5,
+      "title": "研究对象及数据范围",
+      "source_slide": 5,
+      "svg": "slide_05.svg",
+      "mode": "edited",
+      "source": "研究报告3.1、3.3、5.1",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "统计与仿真：现状统计描述实际容量与源荷；逐年方案以2021年实际容量为共同起点，2022—2025年为历史回算，2026—2035年为预测条件规划。",
+          "指标含义：装机渗透率为光伏装机与用户最大负荷之比，电量渗透率为光伏年发电量占用户年用电量的比例；本页两项均为报告估计值。"
+        ]
+      }
+    },
+    {
+      "page": 6,
+      "title": "历史容量负荷变化",
+      "source_slide": 6,
+      "svg": "slide_06.svg",
+      "mode": "edited",
+      "source": "研究报告3.1、表3-1—3-2、3.7",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "邳州：2021—2025年容量增加112.50 MVA、负荷增加224.68 MW，负荷增长快于容量增长，容载比由2.77降至2.24。",
+          "市区：同期容量增加587.50 MVA，负荷增加79.05 MW，容载比由2.15升至2.42；年度比值需结合容量投放与负荷回落共同解释。"
+        ]
+      }
+    },
+    {
+      "page": 7,
+      "title": "光伏发展与渗透水平",
+      "source_slide": 7,
+      "svg": "slide_07.svg",
+      "mode": "edited",
+      "source": "研究报告3.3、表3-6、表3-12",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "地区差异：2025年邳州光伏装机1559.64 MW、市区491.18 MW，装机与电量渗透水平均为邳州较高，日间反送任务更突出。",
+          "规划作用：光伏出力改变正反向净负荷，容量校核需同时覆盖日间反送和晚间供电；未来装机按报告预测情景输入，并与负荷预测共同作用。"
+        ]
+      }
+    },
+    {
+      "page": 8,
+      "title": "净负荷与95%峰值",
+      "source_slide": 8,
+      "svg": "slide_08.svg",
+      "mode": "edited",
+      "source": "研究报告3.4、表3-10及区域8760小时序列",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "近峰过程：以区域净负荷绝对峰值的95%为阈值，邳州最长连续2 h、累计7 h，市区分别为6 h、11 h，反映两地区持续支撑任务的差异。",
+          "计算关系：先按同一小时汇总站级净负荷再取区域峰值，统计使用补齐后的8760小时序列；年度容载比继续采用年度统计峰值。"
+        ]
+      }
+    },
+    {
+      "page": 9,
+      "title": "46站运行压力",
+      "source_slide": 9,
+      "svg": "slide_09.svg",
+      "mode": "edited",
+      "source": "研究报告3.4、3.6、表3-8、表3-22—3-23",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "空间差异：46座站分别呈现正向与反向容量任务，邳州4座、市区1座站反向幅值较大，区域容量储备与少数站局部压力可以同时存在。",
+          "设备判断：本站可用能力取决于主变结构及N-1剩余容量，邻站支援还受路径和受端余量限制；应把站级净负荷、设备与转供条件共同纳入比选。"
+        ]
+      }
+    },
+    {
+      "page": 10,
+      "title": "十三项至五项筛选",
+      "source_slide": 10,
+      "svg": "slide_10.svg",
+      "mode": "edited",
+      "source": "研究报告3.5.2—3.5.5、表3-14—3-20",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "统计说明：采用受控组内Pearson相关、节点等权并保留零响应组。0.40与0.70用于本研究参数归纳，筛选结果结合计算关系和规划含义解释。"
+        ]
+      }
+    },
+    {
+      "page": 11,
+      "title": "五参数相关与分类",
+      "source_slide": 11,
+      "svg": "slide_11.svg",
+      "mode": "edited",
+      "source": "研究报告3.5.4—3.5.5、表3-19、3-21",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "五项参数分别保留电源规模、负荷发展、联络造价、既有支援和局部峰值分布的信息。有效情景库内最大参数间Pearson绝对值为0.29，结合计算关系核验后用于推广分档。"
+        ]
+      }
+    },
+    {
+      "page": 12,
+      "title": "工程费用输入",
+      "source_slide": 12,
+      "svg": "slide_12.svg",
+      "mode": "edited",
+      "source": "研究报告4.2—4.3、表4-2—4-3",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "blocks": [
+          [
+            "主变更换",
+            "按整台新购铭牌容量计价，净增容量扣除同期被替换容量，采购支出与增容效果分别核算。"
+          ],
+          [
+            "主变扩建",
+            "按完整扩建项目计费，50 MVA扩建参考投资1223.00万元，实际方案还受预留位置限制。"
+          ],
+          [
+            "新增联络",
+            "以电缆长度占比折算3 km项目费用，既有工程不重复计建设费，新增项目按投运年计费。"
+          ]
+        ],
+        "paragraphs": [
+          "地区造价：邳州、市区单项新增联络参考投资分别为128.38、452.40万元。电缆占比提高使联络支援成本上升，进而影响其与站内补强、配储的费用比较。"
+        ]
+      }
+    },
+    {
+      "page": 13,
+      "title": "储能有效功率",
+      "source_slide": 13,
+      "svg": "slide_13.svg",
+      "mode": "edited",
+      "source": "研究报告4.4.3—4.4.4、图4-5",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "采购规模：同样承担1.00 MW连续支撑任务，2 h、4 h、6 h分别需要13、25、37柜。较长持续时间受可用电量限制，柜数按整数取值，进而形成对应投资。"
+        ]
+      }
+    },
+    {
+      "page": 14,
+      "title": "三类资源联合配置",
+      "source_slide": 14,
+      "svg": "slide_14.svg",
+      "mode": "edited",
+      "source": "研究报告5.2—5.3、表5-3",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "blocks": [
+          [
+            "主变补强",
+            "更换或扩建改变本站容量与最大单台停运后的剩余能力，设备按可选额定容量、台数和整台投运。"
+          ],
+          [
+            "联络支援",
+            "切换具体源荷区段至有余量的受端，支援能力由可切负荷、共享通道和接收主变共同限制。"
+          ],
+          [
+            "储能支撑",
+            "以额定功率和可用电量共同折算有效功率，按整数柜配置，并与同年的主变及转供方案衔接。"
+          ]
+        ]
+      }
+    },
+    {
+      "page": 15,
+      "title": "逐年方案比较边界",
+      "source_slide": 15,
+      "svg": "slide_15.svg",
+      "mode": "edited",
+      "source": "研究报告5.1—5.3、表4-1、表5-1、表5-3",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "blocks": [
+          [
+            "共同起点与承接",
+            "以2021年实际容量为基期，邳州2027.00 MVA、市区3113.50 MVA。后续各年承接已投运设备，源荷输入与安全要求保持一致。"
+          ],
+          [
+            "刚性基准",
+            "新增扩容按当年负荷两倍控制，负荷回落时保留上年在役容量；局部任务继续由储能和联络共同承担。"
+          ],
+          [
+            "弹性方案",
+            "放宽2.0新增容量控制，在相同正常和故障承载要求下比较措施组合，结合站级缺口和受端承接能力形成设备方案。"
+          ],
+          [
+            "统一费用评价",
+            "投运批次折算至2021年末，评价截止2041年，折现率6.00%。建设和固定运维计入费用，比较完整建设路径的新增支出。"
+          ]
+        ]
+      }
+    },
+    {
+      "page": 16,
+      "title": "邳州逐年方案",
+      "source_slide": 16,
+      "svg": "slide_16.svg",
+      "mode": "edited",
+      "source": "研究报告5.4.1、表5-4、5-5、5-9—5-11",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "容量路径：弹性方案在局部需求出现时增加站内容量，2035年达到2901.00 MVA、容载比2.06；刚性分别为2678.00 MVA、1.90。",
+          "措施替代：期末弹性储能545.67 MWh、累计新增联络21条，均低于刚性。储能及联络支出下降抵消较多主变投入，全期费用减少848.32万元。"
+        ]
+      }
+    },
+    {
+      "page": 17,
+      "title": "市区逐年方案",
+      "source_slide": 17,
+      "svg": "slide_17.svg",
+      "mode": "edited",
+      "source": "研究报告5.4.2、表5-6、5-7、5-9—5-11",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "建设时序：弹性前期以站内补强承接局部需求，2030年累计费用16806.54万元，高于刚性14819.77万元；费用优势由后续各年工程支出共同形成。",
+          "期末组合：2035年弹性储能109.65 MWh高于刚性92.88 MWh，累计新增联络由66条减至35条；联络费用下降支持全期减少2050.35万元。"
+        ]
+      }
+    },
+    {
+      "page": 18,
+      "title": "措施费用比较",
+      "source_slide": 18,
+      "svg": "slide_18.svg",
+      "mode": "edited",
+      "source": "研究报告5.4.4、表5-9、5-11",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "费用来源：邳州由储能和联络费用下降共同抵消较多主变支出，市区主要由联络费用下降形成优势。两地区合计减少2898.67万元，降幅2.96%。"
+        ]
+      }
+    },
+    {
+      "page": 19,
+      "title": "期末设备组合",
+      "source_slide": 19,
+      "svg": "slide_19.svg",
+      "mode": "edited",
+      "source": "研究报告5.4.3—5.4.4、表5-10",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "邳州组合：弹性主变容量较大，期末储能由刚性568.25 MWh减至545.67 MWh，累计新增联络由58条减至21条，站内容量与配套支撑共同调整。",
+          "市区组合：弹性主变仅较刚性多21.50 MVA，储能增加而联络减少。区域容量接近时，各站缺口和建设时点仍会形成不同的支撑配置与费用。"
+        ]
+      }
+    },
+    {
+      "page": 20,
+      "title": "代表站差异分析",
+      "source_slide": 20,
+      "svg": "slide_20.svg",
+      "mode": "edited",
+      "source": "研究报告5.4.5对应逐站分析、表5-13、5-15、5-31",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "blocks": [
+          [
+            "结构作用",
+            "扩建第三台与更换已有主变，对最大单台停运后剩余容量的改善不同。兴塘变的71.50与81.50 MVA对应两方案实际设备组合。"
+          ],
+          [
+            "局部任务",
+            "八义集变两方案主变容量相同，年度固定转接任务与配储需求仍有差异。逐站分析需联系本站源荷、受端承接和设备状态解释。"
+          ]
+        ]
+      }
+    },
+    {
+      "page": 21,
+      "title": "联络约束与资源共享",
+      "source_slide": 21,
+      "svg": "slide_21.svg",
+      "mode": "edited",
+      "source": "研究报告3.6、4.3.3、5.5",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "共同校核：区段内负荷与光伏一同切换，源端可切负荷、路径共享和受端主变余量共同限制转供；正常与N-1分别采用年度固定方案。",
+          "工程取值：10 kV、485 A及功率因数0.95折算有功7.98 MW，工程上限取8.00 MW；示例区段有效转供7.49 MW，新增项目按投运年计费。"
+        ]
+      }
+    },
+    {
+      "page": 22,
+      "title": "推荐矩阵查表",
+      "source_slide": 22,
+      "svg": "slide_22.svg",
+      "mode": "edited",
+      "source": "研究报告5.6.2、表5-63",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "窗口用于容量初选，再按站级缺口、主变结构与可实施措施落实设备方案。"
+        ]
+      }
+    },
+    {
+      "page": 23,
+      "title": "完整参数响应",
+      "source_slide": 23,
+      "svg": "slide_23.svg",
+      "mode": "edited",
+      "source": "研究报告5.6.3—5.6.8、表5-69—5-75",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "paragraphs": [
+          "受控对照：两组均固定装机渗透率50%、电缆长度占比50%，采用设备重新选配条件，保留初始转供率10%—90%的九个细节点。",
+          "响应机制：转供改善总体降低容量需求，平台与局部回升对应真实设备组合。其他参数分别改变反向任务、负荷规模、线路造价和局部高峰，触发不同措施替代。"
+        ]
+      }
+    },
+    {
+      "page": 24,
+      "title": "成果与应用条件",
+      "source_slide": 24,
+      "svg": "slide_24.svg",
+      "mode": "edited",
+      "source": "研究报告第六章、5.7",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b",
+      "visible_additions": {
+        "blocks": [
+          [
+            "运行特征与参数",
+            "完成46站正反向任务分析，经两层筛选形成五项参数，把电源、负荷、网络和局部峰值条件与容量规划联系起来。"
+          ],
+          [
+            "工程费用与联合配置",
+            "建立主变更换、扩建、储能柜和联络项目的统一费用关系，在正常与N-1条件下逐年承接设备，解释措施替代。"
+          ],
+          [
+            "地区方案与推荐矩阵",
+            "两地区弹性方案费用现值合计减少2898.67万元、降幅2.96%。六表288单元提供有条件的容量初选窗口。"
+          ],
+          [
+            "一片一策落地",
+            "先核定同范围源荷与网络参数，再查表并落实设备、间隔和投运时点；结合真实馈线与储能运行资料滚动更新。"
+          ]
+        ]
+      }
+    },
+    {
+      "page": 25,
+      "title": "谢谢",
+      "source_slide": 25,
+      "svg": "slide_25.svg",
+      "mode": "referenced",
+      "source": "模板封底",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 26,
+      "title": "备查邳州逐年配置",
+      "source_slide": 26,
+      "svg": "slide_26.svg",
+      "mode": "referenced",
+      "source": "表5-4",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 27,
+      "title": "备查市区逐年配置",
+      "source_slide": 27,
+      "svg": "slide_27.svg",
+      "mode": "referenced",
+      "source": "表5-6",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 28,
+      "title": "备查采样及经济参数",
+      "source_slide": 28,
+      "svg": "slide_28.svg",
+      "mode": "referenced",
+      "source": "表3-14、表3-15、表4-1",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 29,
+      "title": "备查电缆长度占比≤10%、分散系数≤1.15矩阵",
+      "source_slide": 29,
+      "svg": "slide_29.svg",
+      "mode": "referenced",
+      "source": "表5-63",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 30,
+      "title": "备查电缆长度占比≤10%、分散系数>1.15矩阵",
+      "source_slide": 30,
+      "svg": "slide_30.svg",
+      "mode": "referenced",
+      "source": "表5-64",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 31,
+      "title": "备查电缆长度占比(10%,30%]、分散系数≤1.15矩阵",
+      "source_slide": 31,
+      "svg": "slide_31.svg",
+      "mode": "referenced",
+      "source": "表5-65",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 32,
+      "title": "备查电缆长度占比(10%,30%]、分散系数>1.15矩阵",
+      "source_slide": 32,
+      "svg": "slide_32.svg",
+      "mode": "referenced",
+      "source": "表5-66",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 33,
+      "title": "备查电缆长度占比>30%、分散系数≤1.15矩阵",
+      "source_slide": 33,
+      "svg": "slide_33.svg",
+      "mode": "referenced",
+      "source": "表5-67",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 34,
+      "title": "备查电缆长度占比>30%、分散系数>1.15矩阵",
+      "source_slide": 34,
+      "svg": "slide_34.svg",
+      "mode": "referenced",
+      "source": "表5-68",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 35,
+      "title": "备查四类参数响应",
+      "source_slide": 35,
+      "svg": "slide_35.svg",
+      "mode": "referenced",
+      "source": "表5-72—5-75",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    },
+    {
+      "page": 36,
+      "title": "备查负荷分散系数完整设备响应",
+      "source_slide": 36,
+      "svg": "slide_36.svg",
+      "mode": "referenced",
+      "source": "表5-75及对应11节点原始序列",
+      "report_sha256": "4a9880aab102f3c436325867ebbc9148e6a258f38b179cd5aa822b4d19f0e92b"
+    }
+  ]
+}
