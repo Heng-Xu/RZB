@@ -12,6 +12,8 @@ jobs:
       - run: python -m pytest -q tools/test_archived_logs.py
       - run: python tools/archive_log_evidence.py --materialize /tmp/xuzhou-log-evidence-ci.json
       - run: python tools/test_report_prose_policy.py
+      - run: python -m pytest -p no:cacheprovider -q tools/test_summary_restructure.py
+      - run: python tools/build_current_report.py --summary --check-only
       - run: python tools/test_report_citations.py
       - run: python tools/test_discussion_revisions.py
       - run: python -m pytest -q tools/test_report_in_place.py

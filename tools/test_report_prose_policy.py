@@ -7,6 +7,16 @@ from check_report_policy import body_policy_errors
 POLICY=json.loads((Path(__file__).with_name('report_policy.json')).read_text())
 
 class ProsePolicyTests(unittest.TestCase):
+    def test_summary_prose_rules_locate_only_explicit_matches(self):
+        from report_summary import summary_prose_errors
+        patterns=POLICY['summary']['forbidden_patterns']
+        for value in ['说白了，弹性方案费用较低。','已证全局最优。','弹性费用各年度均低于刚性。','撰稿人：']:
+            errors=summary_prose_errors('标题\n'+value,'成果总结.md',patterns)
+            self.assertTrue(any('成果总结.md:2:' in e for e in errors))
+        for value in ['一、现状形势分析','一是明确容量配置。','建议范围内不能满足供电安全准则时，可适当提高。',
+                      '现有资料缺少连续荷电状态数据。','弹性方案全期费用较低，2030年累计费用较高。']:
+            self.assertEqual(summary_prose_errors(value,'成果总结.md',patterns),[])
+
     def test_transfer_power_limit_and_diversity_sampling_remain_current(self):
         for value in ['新增联络的工程计算限值取8.00 MVA，按0.95功率因数折算有功上限为7.60 MW。',
                       '| 负荷分散系数 | 1.00、1.05、1.10、1.15 | 4 |']:

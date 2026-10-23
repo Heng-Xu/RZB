@@ -90,7 +90,14 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',type=Path,default=ROOT)
     parser.add_argument('--stage',choices=['source','docx','final'],default='source')
+    parser.add_argument('--summary',action='store_true',help='检查独立成果总结，使用相同正文规则及成果总结模板规则')
     args=parser.parse_args();root=args.root.resolve()
+    if args.summary:
+        from report_summary import source_check,docx_check,final_check
+        result={'source':source_check,'docx':docx_check,'final':final_check}[args.stage](root)
+        if args.stage=='final':assert result['人工版面审阅']=='通过','最终检查须完成对应PDF的逐页审阅'
+        print(json.dumps(result,ensure_ascii=False,indent=2))
+        return
     policy=json.loads((root/'tools/report_policy.json').read_text())
     report=root/'研究报告';text=report/'03_MD/当前版';asset=report/'02图表/当前版';review=report/'05_review/当前版'
     tables=json.loads((asset/'计算表.json').read_text());sections=json.loads((asset/'生成段落.json').read_text())

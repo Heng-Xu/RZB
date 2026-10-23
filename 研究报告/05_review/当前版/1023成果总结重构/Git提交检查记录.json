@@ -1,0 +1,18 @@
+{
+  "状态": "常规Git提交被原研究报告既有检查阻止",
+  "命令": "git commit -m 依据10.23反馈重构凝练成果总结并保留批注修订",
+  "成果总结三阶段及逐页审阅": "通过",
+  "修订恢复与数学删除回归测试": 2,
+  "表述测试": 41,
+  "引文测试": 3,
+  "讨论稿修订测试": 5,
+  "原位维护测试": 14,
+  "矩阵窗口测试": 7,
+  "扩展矩阵独立复算": "通过",
+  "阻止入口": "tools/check_report_policy.py --stage final",
+  "阻止对象": "研究报告/04_word/研究报告终稿.docx",
+  "原因": "公式字符须保留明确的正斜体字形",
+  "处理": "未修改原研究报告，不绕过钩子；成果文件及记录已暂存。",
+  "日志SHA256": "c13048ccbfe7d99c14e966524527b5ea0c66e58894e9d3d6800f839ab665b9a8",
+  "错误原文": "Traceback (most recent call last):\n  File \"/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/tools/check_report_policy.py\", line 346, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/home/xh/postgraduate/干活/徐州电科院项目咨询/徐州地区分布式新能源高渗透率地区110kV电网容载比弹性指标优化研究/tools/check_report_policy.py\", line 218, in main\n    assert run.find(qn('m:rPr')).find(qn('m:nor')) is not None,'公式字符须保留明确的正斜体字形'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 公式字符须保留明确的正斜体字形"
+}

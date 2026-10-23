@@ -13,6 +13,10 @@ git diff --quiet -- tools/report_policy.json tools/check_report_policy.py tools/
   exit 1
 }
 "$REPORT_PYTHON" tools/test_report_prose_policy.py
+if [ -f 研究报告/03_MD/成果总结/成果总结.md ]; then
+  "$REPORT_PYTHON" -m pytest -p no:cacheprovider -q tools/test_summary_restructure.py
+  "$REPORT_PYTHON" tools/build_current_report.py --summary --check-only
+fi
 "$REPORT_PYTHON" tools/test_report_citations.py
 "$REPORT_PYTHON" tools/test_discussion_revisions.py
 "$REPORT_PYTHON" -m pytest -p no:cacheprovider -q tools/test_report_in_place.py
