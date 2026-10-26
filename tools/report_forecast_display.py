@@ -20,7 +20,9 @@ def assets(table, shown, inputs):
     data = forecasts()
     rows = {r: {int(x['year']): x for x in data[r]} for r in data}
     load, pv = [], []
-    for year in range(2025, 2036):
+    from case_horizon import end_year
+    last_year = end_year()
+    for year in range(2025, last_year + 1):
         values = [year]
         for region in ['city', 'pizhou']:
             row = rows[region][year]
@@ -33,7 +35,7 @@ def assets(table, shown, inputs):
         pv.append([year, shown(float(row['pv_index'])*PV_FORECAST_TO_MW), shown(factor),
                    shown(491.18*factor), shown(1559.64*factor)])
     load_avg = []
-    for first, last in [(2025, 2030), (2030, 2035)]:
+    for first, last in [(a, b) for a, b in [(2025, 2030), (2030, 2035)] if b <= last_year]:
         load_avg.append([f'{first}—{last}'] + [shown(100*average(
             {y: float(row['forecast_load_mw']) for y, row in rows[r].items()}, first, last))+'%'
             for r in ['city', 'pizhou']])

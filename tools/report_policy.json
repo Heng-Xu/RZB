@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-20-minor-power-window-sampling-fixes",
+  "version": "2026-10-26-case-display-through-2030",
   "forbidden_body_patterns": {
     "修订过程不得进入正文": "修正稿|(?<!配电网规划设计技术导则（)修订稿|上一轮|本轮修订",
     "取整和分档不反复解释": "显示取整|完整精度分档|显示为7%|不能据此将邳州|按显示精度取整",
@@ -151,24 +151,32 @@
       "final"
     ]
   },
-  "target_body_pages": 169,
+  "target_body_pages": 164,
   "body_page_tolerance": 3,
-  "body_page_scope": "保留六章和46座站分析，案例扩展为2021—2035年60条年度记录；正文约171页，较2021—2025年版增加完整年度表与建设措施。",
-  "plain_delivery_review": "研究报告/05_review/当前版/1020矩阵窗口与有功限值修正",
+  "body_page_scope": "六章与46座站分析保留；案例只展示2021—2030年40条年度记录，2031—2035原结果保留核验资料，不进入本轮案例正文。",
+  "plain_delivery_review": "研究报告/05_review/当前版/1026案例2030同步",
   "report_figure_count": 40,
   "summary": {
-    "mode": "feedback_restructure",
-    "baseline": "研究报告/甲方反馈/10.23/成果总结.docx",
-    "review": "研究报告/05_review/当前版/1023成果总结重构",
+    "mode": "feedback_amendment",
+    "baseline": "研究报告/甲方反馈/10.26/10.26成果总结.docx",
+    "review": "研究报告/05_review/当前版/1026成果总结局部修订",
     "source": "研究报告/03_MD/成果总结/成果总结.md",
     "template": "研究报告/甲方反馈/10.22/绿电进园区需求分析与服务策略研究 0905.docx",
-    "docx": "研究报告/04_word/成果总结.docx",
-    "pdf": "研究报告/04_word/成果总结.pdf",
+    "docx": "研究报告/04_word/10.26成果总结_修订稿.docx",
+    "pdf": "研究报告/04_word/10.26成果总结_修订稿.pdf",
     "forbidden_patterns": {
       "成果总结直接陈述研究内容": "说白了|说穿了|先说结论|接下来我们将|下文将从以下|需要强调的是|值得注意的是",
       "成果总结不作无依据全局最优判断": "已证全局最优|始终低于刚性|各年度均低于刚性",
       "成果总结保留实测与规划结果区别": "规划投运实绩|实际投运的弹性方案",
       "成果总结不保留编辑占位": "待补充|待填写|TODO|TBD|撰稿人：\\s*$"
     }
+  },
+  "case_display": {
+    "end_year": 2030,
+    "evaluation_end_year": 2041,
+    "source_version": "20261017-annual-demand-driven-2035",
+    "method": "只读2021—2030年原方案前缀，原锁定全序列保留",
+    "cost_presentation": "按邳州、市区分别说明，不列两地合计",
+    "同步依据": "10.26底稿及用户明确指示：方案不改、截止2030、按区县分别说明费用；报告与PPT普通修改"
   }
 }

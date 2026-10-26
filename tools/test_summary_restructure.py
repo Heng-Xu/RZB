@@ -30,3 +30,28 @@ def test_equation_deletion_wraps_math_inside_math_paragraph():
     ids={n.get(q('id'))for n in revision_nodes(doc)}
     restored=reject_new(doc,ids)
     assert E.tostring(restored.xpath('.//*[local-name()="oMath"]')[0])==original
+
+
+def test_rejecting_amendment_keeps_client_format_history():
+    from report_summary_amendment import amend_text
+    doc,body=document();p=E.SubElement(body,q('p'));r=E.SubElement(p,q('r'))
+    pr=E.SubElement(r,q('rPr'));change=E.SubElement(pr,q('rPrChange'),
+        {q('id'):'9',q('author'):'甲方',q('date'):'2026-10-26T11:00:00Z'})
+    E.SubElement(change,q('rPr'));E.SubElement(r,q('t')).text='2035年配置，原有技术说明。'
+    before=deepcopy(doc);revision=Reviser(doc);amend_text(p,'2030年配置，原有技术说明。',revision)
+    assert len({n.get(q('id'))for n in revision_nodes(doc)})==len(revision_nodes(doc))
+    ids={n.get(q('id'))for n in revision_nodes(doc)}-{'9'}
+    restored=reject_new(doc,ids)
+    assert text(restored)==text(before)
+    assert restored.xpath('.//w:rPrChange/@w:id',namespaces=NS)==['9']
+
+
+def test_horizon_extraction_preserves_locked_plan_and_common_valuation():
+    from case_horizon import through_year
+    original={'annual':[{'year':2030,'added_lifecycle_npv_10k':8.,'cumulative_lifecycle_npv_10k':8.},
+                        {'year':2035,'added_lifecycle_npv_10k':3.,'cumulative_lifecycle_npv_10k':11.}],
+              'cost_npv_10k':11.,'evaluation_end_year':2041}
+    result=through_year(original,2030)
+    assert result['cost_npv_10k']==8. and result['evaluation_end_year']==2041
+    result['annual'][0]['year']=2029
+    assert original['annual'][0]['year']==2030 and original['cost_npv_10k']==11.

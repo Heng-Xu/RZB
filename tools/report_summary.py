@@ -67,6 +67,8 @@ def inputs(root=ROOT):
 
 
 def source_check(root=ROOT):
+    from report_summary_amendment import active as amendment_active,source_check as amendment_check
+    if amendment_active(root):return amendment_check(root)
     from report_summary_restructure import active,source_check as feedback_source_check
     if active(root):return feedback_source_check(root)
     text=(root/SOURCE).read_text()
@@ -235,6 +237,8 @@ def make_table(data,proto):
 
 
 def build(root=ROOT):
+    from report_summary_amendment import active as amendment_active,build as amendment_build
+    if amendment_active(root):return amendment_build(root)
     from report_summary_restructure import active,build as feedback_build
     if active(root):return feedback_build(root)
     result=source_check(root);tables,plans,proof=inputs(root);parts,doc,protos=template_parts(root);body=doc.find(Q('body'));sect=deepcopy(body.find(Q('sectPr')))
@@ -299,6 +303,8 @@ def build(root=ROOT):
 
 
 def docx_check(root=ROOT):
+    from report_summary_amendment import active as amendment_active,docx_check as amendment_check
+    if amendment_active(root):return amendment_check(root)
     from report_summary_restructure import active,docx_check as feedback_docx_check
     if active(root):return feedback_docx_check(root)
     result=source_check(root);tables,_,_=inputs(root);_,template,protos=template_parts(root)
@@ -349,6 +355,8 @@ def docx_check(root=ROOT):
 
 
 def final_check(root=ROOT):
+    from report_summary_amendment import active as amendment_active,final_check as amendment_check
+    if amendment_active(root):return amendment_check(root)
     from report_summary_restructure import active,final_check as feedback_final_check
     if active(root):return feedback_final_check(root)
     import pymupdf
@@ -389,6 +397,8 @@ def final_check(root=ROOT):
 
 
 def main(argv=None):
+    from report_summary_amendment import active as amendment_active,main as amendment_main
+    if amendment_active():return amendment_main(argv)
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--rebuild',action='store_true');parser.add_argument('--stage',choices=['source','docx','final'],default='final');parser.add_argument('--accept-wps-pdf',type=Path)
     args=parser.parse_args(argv);root=args.root.resolve()
     if args.rebuild:build(root);return

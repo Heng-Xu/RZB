@@ -63,7 +63,7 @@ def block_key(node, parts):
         return 'toc:'+''.join(node.xpath('.//w:hyperlink//w:t/text()', namespaces=NS))
     key = fingerprint(node, parts)
     # 格式修正也须替换公式块，不能仅按文字相同误判为无需修改。
-    if node.xpath('./w:tblPr/w:tblCaption[@w:val="ReportEquation"]', namespaces=NS):
+    if node.xpath('.//m:oMath',namespaces={'m':'http://schemas.openxmlformats.org/officeDocument/2006/math'}):
         maths=node.xpath('.//m:oMath', namespaces={'m':'http://schemas.openxmlformats.org/officeDocument/2006/math'})
         key += ':omml:'+hashlib.sha256(b''.join(E.tostring(m, method='c14n', exclusive=True) for m in maths)).hexdigest()
     return key
@@ -75,6 +75,13 @@ def stable_toc_anchors(goal, previous, headings):
         result={}
         for p in tree.xpath('.//w:body/w:p[.//w:instrText[contains(text(),"PAGEREF")]]', namespaces=NS):
             title=''.join(p.xpath('.//w:hyperlink//w:t/text()', namespaces=NS))
+            if not title:
+                # WPS保存后可将hyperlink转为HYPERLINK复杂域；标题仍在页码域前。
+                fragments=[]
+                for n in p.iter():
+                    if n.tag==qn('instrText')and 'PAGEREF'in(n.text or ''):break
+                    if n.tag==qn('t'):fragments.append(n.text or '')
+                title=''.join(fragments)
             alias=re.search(r'PAGEREF\s+(\w+)', ''.join(p.xpath('.//w:instrText/text()', namespaces=NS)))[1]
             result[title]=alias
         return result
@@ -172,6 +179,16 @@ def apply():
     original, candidate, feedback = package(BASE), package(GOAL), package(FEEDBACK)
     root, goal = xml(original['word/document.xml']), xml(candidate['word/document.xml'])
     assert not has_revisions(root) and not has_revisions(goal)
+    if MODE_SETTINGS.get('案例展示截取'):
+        old_styles={n.get(qn('styleId')):n for n in xml(original['word/styles.xml']).findall(qn('style'))}
+        new_styles={n.get(qn('styleId')):n for n in xml(candidate['word/styles.xml']).findall(qn('style'))}
+        for node in goal.xpath('.//w:pStyle|.//w:rStyle|.//w:tblStyle',namespaces=NS):
+            sid=node.get(qn('val'))
+            if sid in old_styles:continue
+            name=new_styles[sid].find(qn('name')).get(qn('val')).casefold()
+            matches=[key for key,style in old_styles.items()if style.find(qn('name')).get(qn('val')).casefold()==name]
+            assert len(matches)==1,'WPS样式名称未唯一对应：'+name
+            node.set(qn('val'),matches[0])
     headings_path=ROOT/'研究报告/05_review/当前版/目录标题.json'
     headings=stable_toc_anchors(goal,root,json.loads(headings_path.read_text()))
     write(headings_path,headings)
@@ -186,6 +203,17 @@ def apply():
     old_images = {hashlib.sha256(original['word/'+rel.get('Target')]).hexdigest(): rid
                   for rid, rel in oldrels.items() if 'word/'+rel.get('Target') in original
                   and '/image' in rel.get('Type', '')}
+    if MODE_SETTINGS.get('案例展示截取'):
+        # WPS可能重压图片。未更新的源PNG逐字节一致时，沿用同序原图片关系。
+        source_dir=ROOT/'研究报告/02图表/当前版'
+        backup_dir=REVIEW/'修前原件/研究报告/02图表/当前版'
+        unchanged={sha(p)for p in source_dir.glob('*.png')if(backup_dir/p.name).exists()and sha(p)==sha(backup_dir/p.name)}
+        previous_blips=root.xpath('.//*[@r:embed]',namespaces={'r':R})
+        current_blips=goal.xpath('.//*[@r:embed]',namespaces={'r':R})
+        assert len(previous_blips)==len(current_blips),'数据同步不得增删图件'
+        for a,b in zip(previous_blips,current_blips):
+            rid=b.get('{'+R+'}embed');digest=hashlib.sha256(candidate['word/'+newrels[rid].get('Target')]).hexdigest()
+            if digest in unchanged:old_images[digest]=a.get('{'+R+'}embed')
     allowed_images={sha(ROOT/name):name for name in MODE_SETTINGS.get('允许更新图件',[])}
     extra_parts={};merged_rels=xml(original['word/_rels/document.xml.rels'])
     next_rid=max(int(r[3:]) for r in oldrels if re.fullmatch(r'rId\d+',r))+1
@@ -200,7 +228,18 @@ def apply():
             rel=deepcopy(newrels[rid]);rel.set('Id',new_rid);rel.set('Target',media)
             merged_rels.append(rel);extra_parts['word/'+media]=blob;old_images[digest]=new_rid
         node.set('{'+R+'}embed', old_images[digest])
-    for rid in goal.xpath('.//@r:id', namespaces={'r': R}):
+    if MODE_SETTINGS.get('案例展示截取'):
+        for node in goal.xpath('.//*[@r:id]',namespaces={'r':R}):
+            rel=newrels[node.get('{'+R+'}id')]
+            prior_refs=[n.get('{'+R+'}id')for n in root.xpath('.//*[@r:id]',namespaces={'r':R})
+                        if n.tag==node.tag and n.get(qn('type'))==node.get(qn('type'))]
+            candidates=[(rid,r)for rid,r in oldrels.items()if r.get('Type')==rel.get('Type')
+                        and r.get('TargetMode')==rel.get('TargetMode')
+                        and(not rel.get('Type','').endswith(('/header','/footer'))or rid in prior_refs)
+                        and (r.get('Type','').endswith(('/header','/footer'))or r.get('Target')==rel.get('Target'))]
+            assert len(candidates)==1,'原有页眉页脚或链接未唯一对应'
+            node.set('{'+R+'}id',candidates[0][0])
+    for rid in ([]if MODE_SETTINGS.get('案例展示截取')else goal.xpath('.//@r:id', namespaces={'r': R})):
         assert dict(oldrels[rid].attrib) == dict(newrels[rid].attrib)
         name = 'word/'+oldrels[rid].get('Target')
         if name in candidate: assert original[name] == candidate[name], '原有关系对象变化：'+name
@@ -208,6 +247,10 @@ def apply():
     original.update(extra_parts)
     candidate['word/_rels/document.xml.rels']=original['word/_rels/document.xml.rels']
     candidate.update({name:data for name,data in original.items() if name.startswith('word/media/')})
+    if MODE_SETTINGS.get('案例展示截取'):
+        for rel in oldrels.values():
+            if rel.get('Type','').endswith(('/header','/footer')):
+                target='word/'+rel.get('Target');candidate[target]=original[target]
     candidate['word/document.xml']=dump(goal)
     with ZipFile(GOAL,'w',ZIP_DEFLATED) as z:
         for name,data in candidate.items():z.writestr(name,data)
@@ -224,6 +267,28 @@ def apply():
             changed += len(blocks)
             changes.append({'类型': op, '原块': [text(n) for n in before[i:j]], '新块': [text(n) for n in after[a:b]]})
         for node in blocks: body.append(deepcopy(node))
+    if MODE_SETTINGS.get('案例展示截取'):
+        # 混合保留原块与新块后，按范围成对分配ID；书签名称及链接目标保持。
+        pending={};next_bookmark=1
+        for node in root.iter():
+            if node.tag==qn('bookmarkStart'):
+                old_id=node.get(qn('id'));pending.setdefault(old_id,[]).append(str(next_bookmark))
+                node.set(qn('id'),str(next_bookmark));next_bookmark+=1
+            elif node.tag==qn('bookmarkEnd'):
+                old_id=node.get(qn('id'));assert pending.get(old_id),'书签结束标记无开始范围'
+                node.set(qn('id'),pending[old_id].pop())
+        assert not any(pending.values()),'书签范围未闭合'
+        figure_policy=json.loads((ROOT/'tools/report_policy.json').read_text())['figure_paragraph_format']
+        for p in root.xpath('.//w:body//w:p',namespaces=NS):
+            if not p.xpath('.//w:drawing',namespaces=NS)and not re.match(r'^图\d+-',text(p)):continue
+            pr=p.find(qn('pPr'))
+            if pr is None:pr=E.Element(qn('pPr'));p.insert(0,pr)
+            ind=pr.find(qn('ind'))
+            if ind is None:ind=E.SubElement(pr,qn('ind'))
+            for key in figure_policy['zero_indent_attributes']:ind.set(qn(key),'0')
+            jc=pr.find(qn('jc'))
+            if jc is None:jc=E.SubElement(pr,qn('jc'))
+            jc.set(qn('val'),'center')
     locations = install_comments(original, root, feedback)
     original['word/document.xml'] = dump(root)
     settings = xml(original['word/settings.xml'])
@@ -265,8 +330,13 @@ def verify(final=False):
         node = root.xpath('.//w:commentRangeStart[@w:id="'+row['批注ID']+'"]', namespaces=NS)[0]
         assert text(node.getparent()) == row['锚定正文'], '批注与对应内容脱离'
     for name in old:
-        if name.startswith('word/media/') or name == 'word/styles.xml':
+        # WPS包可含空目录条目；核验实际媒体部件，不要求ZIP目录占位符。
+        if name.startswith('word/media/') and not name.endswith('/'):
             assert parts[name] == old[name], '未涉及图件或样式变化：'+name
+        elif name == 'word/styles.xml':
+            # XML声明引号/结尾换行可随目录缓存序列化变化；所有样式节点须相同。
+            canonical=lambda blob:E.tostring(xml(blob),method='c14n')
+            assert canonical(parts[name]) == canonical(old[name]), '原有样式节点变化'
     ns = {'m': 'http://schemas.openxmlformats.org/officeDocument/2006/math'}
     math = lambda tree: [E.tostring(n, method='c14n', exclusive=True) for n in tree.xpath('.//m:oMath', namespaces=ns)]
     # 原生公式结构及排版逐对象对应本轮源稿装配结果。
@@ -292,8 +362,12 @@ def verify(final=False):
     assert {k for k in tables if not k.startswith(prefixes) and tables[k] != previous[k]} <= allowed_tables
     for key in ['restore_pizhou_transfer', 'restore_city_transfer', 'current_necessary_transfers']:
         rows=lambda value:[line for line in value.splitlines() if line.startswith('|')][2:]
-        assert rows(tables[key]) == rows(previous[key]), '转供结果数值变化：'+key
-    verify_forecast_rows(previous, tables, MODE_SETTINGS.get('全市光伏单位换算系数', 1))
+        oldrows=rows(previous[key])
+        if MODE_SETTINGS.get('案例展示截取'):
+            year_column=2 if key=='current_necessary_transfers'else 1
+            oldrows=[line for line in oldrows if int(line.strip('|').split('|')[year_column])<=MODE_SETTINGS['案例展示截取']]
+        assert rows(tables[key]) == oldrows, '转供结果数值变化：'+key
+    verify_forecast_rows(previous, tables, MODE_SETTINGS.get('全市光伏单位换算系数', 1), MODE_SETTINGS.get('案例展示截取'))
     sections = Path('研究报告/02图表/当前版/生成段落.json')
     before_sections=json.loads((REVIEW/'修前原件'/sections).read_text())
     after_sections=json.loads((ROOT/sections).read_text())
@@ -320,14 +394,17 @@ def verify(final=False):
     return result
 
 
-def verify_forecast_rows(previous, current, pv_scale=1):
+def verify_forecast_rows(previous, current, pv_scale=1, last_year=None):
     """全市列仅作已登记单位转换，区域预测、相对倍数及负荷数据逐格保持。"""
     from decimal import Decimal
     rows=lambda value:[[c.strip() for c in line.strip('|').split('|')]
                        for line in value.splitlines() if line.startswith('|')][2:]
-    assert rows(previous['forecast_load'])==rows(current['forecast_load']), '负荷预测表数值变化'
+    prior_load=rows(previous['forecast_load'])
+    if last_year:prior_load=[r for r in prior_load if int(r[0])<=last_year]
+    assert prior_load==rows(current['forecast_load']), '负荷预测表数值变化'
     before,after=rows(previous['forecast_pv']),rows(current['forecast_pv'])
-    assert len(before)==len(after)==11
+    if last_year:before=[r for r in before if int(r[0])<=last_year]
+    assert len(before)==len(after)==((last_year-2024)if last_year else 11)
     for a,b in zip(before,after):
         assert a[0]==b[0] and a[2:]==b[2:], '地区光伏预测或增长比例变化：'+a[0]
         assert Decimal(b[1])==Decimal(a[1])*Decimal(str(pv_scale)), '全市光伏单位转换不对应：'+a[0]
@@ -338,13 +415,23 @@ def verify_release():
     release = json.loads((REVIEW/'交付登记.json').read_text())
     assert release['状态'] == '三阶段核验及逐段复核通过'
     for name, digest in release['当前文件SHA256'].items(): assert sha(ROOT/name) == digest, '交付文件变化：'+name
-    link = json.loads((REVIEW/'上一版交付衔接.json').read_text())
-    assert sha(ROOT/link['父交付登记']) == link['父交付登记SHA256']
-    parent = json.loads((ROOT/link['父交付登记']).read_text())
-    assert set(link['原件映射']) == set(parent['当前文件SHA256'])
-    for name, digest in parent['当前文件SHA256'].items():
-        row = link['原件映射'][name]
-        assert row['SHA256'] == digest and sha(ROOT/row['path']) == digest, '上一版原件变化：'+name
+    if MODE_SETTINGS.get('案例展示截取'):
+        # 本轮用户指定的是当前已保存底稿，保留其真实字节，不冒用旧验收稿哈希。
+        baseline=json.loads((REVIEW/'修前文件哈希.json').read_text())
+        assert release['当前底稿说明']['来源']=='用户指定的当前研究报告终稿'
+        for row in baseline:
+            assert sha(REVIEW/'修前原件'/row['path'])==row['sha256'],'当前底稿原件变化：'+row['path']
+        assert release['当前底稿说明']['WordSHA256']==sha(BASE)
+        lineage_count=len(baseline)
+    else:
+        link = json.loads((REVIEW/'上一版交付衔接.json').read_text())
+        assert sha(ROOT/link['父交付登记']) == link['父交付登记SHA256']
+        parent = json.loads((ROOT/link['父交付登记']).read_text())
+        assert set(link['原件映射']) == set(parent['当前文件SHA256'])
+        for name, digest in parent['当前文件SHA256'].items():
+            row = link['原件映射'][name]
+            assert row['SHA256'] == digest and sha(ROOT/row['path']) == digest, '上一版原件变化：'+name
+        lineage_count=len(parent['当前文件SHA256'])
     for name, item in release['历史定档原件'].items(): assert sha(ROOT/item['原件归档']) == item['原SHA256'], name
     from report_prose_review import collect
     current = collect(ROOT, include_discussion=False)
@@ -362,7 +449,7 @@ def verify_release():
         for key, dk in [('审定依据', 'SHA256'), ('原始文件', '原始文件SHA256')]:
             if dk in row: assert sha(ROOT/row[key]) == row[dk]
     assert release['文字复核']['规则扫描代替逐段判断'] is False
-    print(json.dumps({'状态': '通过', '正文复核': len(current), '历史原件衔接': len(parent['当前文件SHA256']),
+    print(json.dumps({'状态': '通过', '正文复核': len(current), '基线原件核对': lineage_count,
                       '原批注': result['原批注数'], '历史及新增修订': 0}, ensure_ascii=False))
     return release
 

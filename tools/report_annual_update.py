@@ -15,10 +15,12 @@ from 实验.研究.rebuild_2026.case_parameters_20261012 import transfer_diagnos
 
 REPORT = ROOT / '研究报告'
 ASSET = REPORT / '02图表/当前版'
-REVIEW = REPORT / '05_review/当前版/1017甲方批注与逐年案例更新'
-SOURCE = REPORT / '数据来源/当前版/1017报告案例更新'
+REVIEW = REPORT / '05_review/当前版/1026案例2030同步'
+SOURCE = REPORT / '数据来源/当前版/1026案例2030同步'
 PUBLIC = REPORT / '01研究推荐/当前版/逐年需求驱动2035_20261017'
 LABELS = {'刚性': 'rigid', '弹性': 'elastic_capacity'}
+from case_horizon import end_year, through_year
+END_YEAR = end_year()
 
 
 def f(value):
@@ -43,8 +45,8 @@ def load():
         inputs[region], powers[region] = prepare.load(region)
         for label, code in LABELS.items():
             folder = prepare.RAW / region / code
-            plans[region, label] = json.loads((folder / 'summary.json').read_text())
-            fixed[region, label] = {year: json.loads((folder / str(year) / 'adopted.json').read_text()) for year in range(2022, 2036)}
+            plans[region, label] = through_year(json.loads((folder / 'summary.json').read_text()), END_YEAR)
+            fixed[region, label] = {year: json.loads((folder / str(year) / 'adopted.json').read_text()) for year in range(2022, END_YEAR + 1)}
     return names, inputs, powers, plans, fixed
 
 
@@ -120,7 +122,7 @@ def assets():
                     fault_total = max(fault_total, float((existing + added).max()))
                     fault_existing = max(fault_existing, float(existing.max()))
                 necessary.append([cn, label, year, f((normal[3] + normal[4]).max()), f(normal[3].max()), f(fault_total), f(fault_existing)])
-            final_record = fixed[region, label][2035]
+            final_record = fixed[region, label][END_YEAR]
             units = np.array(final_record['units'])
             modules = np.array(final_record['modules'])
             thirds = sum(units[j, 2] > 0 for j in show)
@@ -128,18 +130,18 @@ def assets():
         tables[f'new_{region}_years'] = table(f'表5-0 {cn}逐年容量及措施', ['方案', '年份', '年网供最大负荷/MW', '主变容量/MVA', '容载比', '储能额定功率/MW', '累计新线/条'], years,
             '2021年为两方案共同的固定基期，储能及新线列为本次规划新增设备的累计在役规模。')
         tables[f'restore_{region}_construction'] = table(f'表5-0 {cn}逐年新增工程与费用', ['方案', '年份', '主变净增容量/MVA', '主变新购容量/MVA', '扩建主变/台', '新增储能额定能量/MWh', '新增联络/条', '当年措施现值/万元'], construction)
-        tables[f'restore_{region}_transfer'] = table(f'表5-0 {cn}正常方式下的分工况转接任务', ['方案', '年份', '工况', '转出站数', '承接站数', '转接合计/MW', '既有联络/MW', '新增联络/MW', '单站最大转出/MW', '单站最大承接/MW'], [r for r in transfer if r[1] in [2022, 2025, 2030, 2035]], '列示代表年度，转接合计为沿负荷转供方案转接的净功率幅值之和。')
+        tables[f'restore_{region}_transfer'] = table(f'表5-0 {cn}正常方式下的分工况转接任务', ['方案', '年份', '工况', '转出站数', '承接站数', '转接合计/MW', '既有联络/MW', '新增联络/MW', '单站最大转出/MW', '单站最大承接/MW'], [r for r in transfer if r[1] in [2022, 2025, END_YEAR]], '列示代表年度，转接合计为沿负荷转供方案转接的净功率幅值之和。')
         sections[f'restore_{region}_transfer'] = ''
         first = plans[region, '弹性']['annual'][1]
         last = plans[region, '弹性']['annual'][-1]
         sections[f'new_{region}_results'] = (f'{cn}两方案2021年均保留{f(initial.sum())} MVA实际地区容量，2022年起按当年源荷选择新增工程。'
-            f'弹性方案2022年净增{f(first["net_capacity_increment_mva"])} MVA，至2035年主变容量为{f(last["capacity_mva"])} MVA。年末配置与当年新增措施分别列示。\n')
+            f'弹性方案2022年净增{f(first["net_capacity_increment_mva"])} MVA，至2030年主变容量为{f(last["capacity_mva"])} MVA。年末配置与当年新增措施分别列示。\n')
         profiles = []
         for j in show:
             sid, name = ids[j], names[ids[j]]
             profile_rows, actions, storage_actions = [], [], []
             previous_u, previous_n = initial[j], 0
-            for year in range(2022, 2036):
+            for year in range(2022, END_YEAR + 1):
                 record = fixed[region, '弹性'][year]
                 units = np.array(record['units'])[j]
                 changes = [f'{f(previous_u[k])} MVA更换为{f(units[k])} MVA' for k in [0, 1] if units[k] > previous_u[k] + 1e-7]
@@ -152,7 +154,7 @@ def assets():
                     storage_actions.append(f'{year}年{f((n - previous_n) * .1)} MW')
                 previous_u, previous_n = units, n
             for label in LABELS:
-                for year in [2021, 2025, 2030, 2035]:
+                for year in sorted({2021, 2025, END_YEAR}):
                     if year == 2021:
                         units, n, out, inc, net = initial[j], 0, 0., 0., None
                     else:
@@ -164,11 +166,11 @@ def assets():
                     profile_rows.append([label, year, '+'.join(f(x) for x in units if x > 0), f(units.sum()), f(n * .1), '—' if year == 2021 else f(out), '—' if year == 2021 else f(inc), '—' if net is None else f(net)])
             key = f'restore_{region}_{sid}_profile'
             tables[key] = table(f'表5-0 {name}代表年度配置与正向峰值正常转接', ['方案', '年份', '主变组合/MVA', '总容量/MVA', '储能额定功率/MW', '转出/MW', '承接/MW', '转接后净负荷/MW'], profile_rows)
-            elastic = fixed[region, '弹性'][2035]
-            rigid = fixed[region, '刚性'][2035]
+            elastic = fixed[region, '弹性'][END_YEAR]
+            rigid = fixed[region, '刚性'][END_YEAR]
             eu, ru = np.array(elastic['units'])[j], np.array(rigid['units'])[j]
             em, rm = elastic['modules'][j], rigid['modules'][j]
-            power = powers[region][2035]
+            power = powers[region][END_YEAR]
             net, out, inc, _, _ = served(inp, power, elastic, j)
             bp = min(.1, .215 * .76 / max(1, inp['stations'][sid]['forward_duration_h'])) * em
             bn = min(.1, .215 * .76 / max(1, inp['stations'][sid]['reverse_duration_h'])) * em
@@ -202,40 +204,42 @@ def assets():
                 implication='两方案本站最终主变和储能规模相同，局部设备采用结果保持一致。'
             difference = ('两方案本站主变总容量相同。' if abs(eu.sum() - ru.sum()) < 1e-7 else
                 f'弹性方案本站主变容量较刚性'+('增加' if eu.sum() > ru.sum() else '减少')+f'{f(abs(eu.sum() - ru.sum()))} MVA。')
-            action_text = '；'.join(actions) + '。' if actions else '2022—2035年保留初始主变组合。'
+            action_text = '；'.join(actions) + '。' if actions else '2022—2030年保留初始主变组合。'
             storage_text = ('储能按本地支撑需求分批增加，新增额定功率为' + '、'.join(storage_actions) + '。') if storage_actions else '本站弹性方案各年未新增储能。'
             paragraphs = [f'#### {name}规划分析',
                 f'该站2021年主变组合为' + '+'.join(f(x) for x in initial[j] if x > 0) + ' MVA。弹性方案' + action_text + storage_text,
-                f'2025年最大正向、反向净负荷分别为{f(pp[j])} MW、{f(max(0, pn[j]))} MW，2035年分别为{f(power[:, j].max())} MW、{f(max(0, -power[:, j].min()))} MW。2035年刚性方案主变容量{f(ru.sum())} MVA、储能额定功率{f(rm * .1)} MW，弹性方案分别为{f(eu.sum())} MVA和{f(em * .1)} MW。' + difference,
+                f'2025年最大正向、反向净负荷分别为{f(pp[j])} MW、{f(max(0, pn[j]))} MW，2030年分别为{f(power[:, j].max())} MW、{f(max(0, -power[:, j].min()))} MW。2030年刚性方案主变容量{f(ru.sum())} MVA、储能额定功率{f(rm * .1)} MW，弹性方案分别为{f(eu.sum())} MVA和{f(em * .1)} MW。' + difference,
                 f'[[TABLE:{key}]]',
-                f'2035年最大单台主变N-1后，弹性方案剩余主变容量为{f(eu.sum() - eu.max())} MVA，按0.95功率因数折算为{f(remain)} MW。储能正向有效支撑功率为{f(bp)} MW、反向有效吸收功率为{f(bn)} MW。全年本站故障工况中最小余量为{f(max(0, margin.min()))} MW。' + route,
+                f'2030年最大单台主变N-1后，弹性方案剩余主变容量为{f(eu.sum() - eu.max())} MVA，按0.95功率因数折算为{f(remain)} MW。储能正向有效支撑功率为{f(bp)} MW、反向有效吸收功率为{f(bn)} MW。全年本站故障工况中最小余量为{f(max(0, margin.min()))} MW。' + route,
                 implication]
             profiles.append('\n\n'.join(paragraphs))
-            evidence.append({'地区':cn,'站名':name,'station':sid,'最小余量_MW':float(margin.min()),'2035主变_MVA':float(eu.sum()),'2035刚性主变_MVA':float(ru.sum()),'储能正向有效功率_MW':float(bp),'储能反向有效功率_MW':float(bn),'最紧小时':h,'转接后净负荷_MW':float(net[h,j])})
+            evidence.append({'地区':cn,'站名':name,'station':sid,'最小余量_MW':float(margin.min()),'2030主变_MVA':float(eu.sum()),'2030刚性主变_MVA':float(ru.sum()),'储能正向有效功率_MW':float(bp),'储能反向有效功率_MW':float(bn),'最紧小时':h,'转接后净负荷_MW':float(net[h,j])})
         sections[f'restore_{region}_profiles'] = '\n\n'.join(profiles) + '\n'
     assert len(evidence) == 46
-    tables['new_cost_comparison'] = table('表5-0 两地区2022—2035年新增方案费用比较', ['地区', '方案', '评价期费用现值/万元'], costs)
-    tables['new_case_measures'] = table('表5-0 2035年在役措施及累计建设规模', ['地区', '方案', '在役主变/MVA', '累计新购主变/MVA', '储能功率/MW', '储能能量/MWh', '新增联络/条'], measures)
+    tables['new_cost_comparison'] = table('表5-0 两地区2022—2030年新增方案费用比较', ['地区', '方案', '评价期费用现值/万元'], costs)
+    tables['new_case_measures'] = table('表5-0 2030年在役措施及累计建设规模', ['地区', '方案', '在役主变/MVA', '累计新购主变/MVA', '储能功率/MW', '储能能量/MWh', '新增联络/条'], measures)
     tables['restore_cost_components'] = table('表5-0 主变、储能及联络费用现值', ['地区', '方案', '主变/万元', '储能/万元', '联络/万元', '合计/万元'], components)
-    tables['restore_clr_decomposition'] = table('表5-0 规划容载比年度变化分解', ['地区', '方案', '年份', '容量变化贡献', '负荷变化贡献', '容载比净变化'], [row for row in decomposition if row[2] in [2022, 2023, 2024, 2025, 2030, 2035]], '列示历史回算年度及2030、2035年相对上一年的比值变化。')
-    tables['restore_equipment_mix'] = table('表5-0 2035年站级展示范围内主变台数与配储站数', ['地区', '方案', '站数', '两台主变站数', '三台主变站数', '三台主变站占比', '配储站数', '储能额定功率/MW'], mix)
+    tables['restore_clr_decomposition'] = table('表5-0 规划容载比年度变化分解', ['地区', '方案', '年份', '容量变化贡献', '负荷变化贡献', '容载比净变化'], [row for row in decomposition if row[2] in [2022, 2023, 2024, 2025, END_YEAR]], '列示历史回算年度及2030、2030年相对上一年的比值变化。')
+    tables['restore_equipment_mix'] = table('表5-0 2030年站级展示范围内主变台数与配储站数', ['地区', '方案', '站数', '两台主变站数', '三台主变站数', '三台主变站占比', '配储站数', '储能额定功率/MW'], mix)
     tables['new_annual_loading'] = table('表3-0 两地区站级负载率', ['地区', '年份', '中位数/%', '最大值/%'], loading)
     tables['restore_direction'] = table('表3-0 站级展示范围内的功率方向及相对压力', ['地区', '站数', '正向幅值较大站数', '反向幅值较大站数', '站级负载率超过100%的站数'], directions)
     tables['restore_station_loading_rank'] = table('表3-0 2025年站级负载率较高的站', ['地区', '变电站', '初始公用主变总容量/MVA', '最大正向净负荷/MW', '最大反向净负荷/MW', '站级负载率', '主导方向'], rank)
-    tables['current_necessary_transfers'] = table('表5-0 代表年度正常及N-1工况的最大转接功率', ['地区', '方案', '年份', '正常总量/MW', '正常既有联络/MW', 'N-1总量/MW', 'N-1既有联络/MW'], [row for row in necessary if row[2] in [2022, 2025, 2030, 2035]], '按正常运行和主变N-1时的负荷转供方案回代8760小时，分别列出各列最大值。')
-    tables['new_baseline'] = table('表5-0 两地区共同基期及规划年度', ['地区', '2021主变容量/MVA', '2021年网供最大负荷/MW', '2021容载比', '规划年度'], [[cn, f(plans[r,'刚性']['annual'][0]['capacity_mva']), f(plans[r,'刚性']['annual'][0]['peak_mw']), f(plans[r,'刚性']['annual'][0]['clr']), '2022—2035'] for r,cn in [('pizhou','邳州'),('city','市区')]])
-    rigid = sum(plans[r, '刚性']['cost_npv_10k'] for r in inputs)
-    elastic = sum(plans[r, '弹性']['cost_npv_10k'] for r in inputs)
-    sections['new_case_comparison'] = f'两地区2022—2035年新增工程按共同2041年评价截止期折现，刚性方案费用现值合计{f(rigid)}万元，弹性为{f(elastic)}万元，减少{f(rigid-elastic)}万元，降幅{f(100*(1-elastic/rigid))}%。\n'
+    tables['current_necessary_transfers'] = table('表5-0 代表年度正常及N-1工况的最大转接功率', ['地区', '方案', '年份', '正常总量/MW', '正常既有联络/MW', 'N-1总量/MW', 'N-1既有联络/MW'], [row for row in necessary if row[2] in [2022, 2025, END_YEAR]], '按正常运行和主变N-1时的负荷转供方案回代8760小时，分别列出各列最大值。')
+    tables['new_baseline'] = table('表5-0 两地区共同基期及规划年度', ['地区', '2021主变容量/MVA', '2021年网供最大负荷/MW', '2021容载比', '规划年度'], [[cn, f(plans[r,'刚性']['annual'][0]['capacity_mva']), f(plans[r,'刚性']['annual'][0]['peak_mw']), f(plans[r,'刚性']['annual'][0]['clr']), '2022—2030'] for r,cn in [('pizhou','邳州'),('city','市区')]])
+    sections['new_case_comparison'] = '\n\n'.join(
+        f'{cn}2022—2030年新增工程按2041年评价截止期折现，刚性方案费用现值为{f(plans[r,"刚性"]["cost_npv_10k"])}万元，弹性为{f(plans[r,"弹性"]["cost_npv_10k"])}万元，弹性较刚性'
+        + ('减少' if plans[r,'弹性']['cost_npv_10k'] <= plans[r,'刚性']['cost_npv_10k'] else '增加')
+        + f'{f(abs(plans[r,"刚性"]["cost_npv_10k"]-plans[r,"弹性"]["cost_npv_10k"]))}万元。'
+        for r,cn in [('pizhou','邳州'),('city','市区')])+'\n'
     texts = []
     for region, cn in [('pizhou','邳州'),('city','市区')]:
         delta = [sum(row[key] for row in plans[region,'弹性']['annual'])-sum(row[key] for row in plans[region,'刚性']['annual']) for key in ['transformer_npv_10k','storage_npv_10k','line_npv_10k']]
         parts = '、'.join(name + ('增加' if v >= 0 else '减少') + f(v if v >= 0 else -v) + '万元' for name,v in zip(['主变','储能','联络'],delta))
-        texts.append(f'{cn}弹性方案相对刚性的费用变化为{parts}，合计减少{f(-sum(delta))}万元。费用差由各年度实际采购及投运批次形成，具体替代关系结合逐站设备与通道配置分析。')
+        texts.append(f'{cn}弹性方案相对刚性的费用变化为{parts}，合计{'减少' if sum(delta) <= 0 else '增加'}{f(abs(sum(delta)))}万元。费用差由各年度实际采购及投运批次形成，具体替代关系结合逐站设备与通道配置分析。')
     sections['restore_cost_components'] = '\n\n'.join(texts)
-    sections['restore_equipment_mix'] = '表中两台、三台主变站数按2035年实际采用组合统计。相同台数的站点仍可能采用不同额定容量，故障后剩余能力还需结合最大单台容量判断。配储站数与储能规模分别反映补充支撑的空间范围和总量。'
+    sections['restore_equipment_mix'] = '表中两台、三台主变站数按2030年实际采用组合统计。相同台数的站点仍可能采用不同额定容量，故障后剩余能力还需结合最大单台容量判断。配储站数与储能规模分别反映补充支撑的空间范围和总量。'
     aggregate=[]
-    for year in [2021,2025,2030,2035]:
+    for year in sorted({2021,2025,END_YEAR}):
         for r,cn in [('pizhou','邳州'),('city','市区')]:
             for label in LABELS:
                 row=next(x for x in plans[r,label]['annual'] if x['year']==year)
@@ -243,7 +247,7 @@ def assets():
     tables['uncompressed_annual_summary'] = table('表5-0 保留2021实际容量的代表年度汇总', ['地区','方案','年份','年末主变/MVA','容载比','年末储能/MWh','累计新联络/条'], aggregate)
     tables['uncompressed_cost_summary'] = table('表5-0 保留2021实际容量的方案费用', ['地区','方案','评价期费用现值/万元'], costs)
     tables['new_case_assumptions'] = table('表5-0 两地区共同计算条件', ['参数','设置','依据'], [
-        ['基期/规划年度','2021/2022—2035','基期设备固定，年度承接上年在役资产'],
+        ['基期/规划年度','2021/2022—2030','基期设备固定，年度承接上年在役资产'],
         ['源荷序列','每年8760小时','历史模板回算及区域预测同比缩放'],
         ['正向储能支撑持续时间','邳州2.00 h、市区6.00 h','地区95%峰值持续时间'],
         ['储能规格','100.00 kW/215.00 kWh','采购资料'],
@@ -278,9 +282,9 @@ def sync(check=False):
         REVIEW.mkdir(parents=True,exist_ok=True)
         (REVIEW/'逐站固定预案回代核验.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
         SOURCE.mkdir(parents=True,exist_ok=True)
-        pd.DataFrame(evidence).to_csv(SOURCE/'逐站2035核验.csv',index=False)
+        pd.DataFrame(evidence).to_csv(SOURCE/'逐站2030核验.csv',index=False)
     assert all(r['最小余量_MW'] > -1e-5 for r in evidence)
-    return {'状态':'通过','地区':2,'主方案':4,'年度记录':60,'逐站分析':46,'未求解或更改模型':True}
+    return {'状态':'通过','地区':2,'主方案':4,'年度记录':4*(END_YEAR-2020),'逐站分析':46,'未求解或更改模型':True}
 
 
 if __name__ == '__main__':
