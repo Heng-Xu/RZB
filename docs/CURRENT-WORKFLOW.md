@@ -2,7 +2,7 @@
 
 当前有效约束为根目录及研究报告目录的 `AGENTS.md`。正式源是六章Markdown、计算表及生成段落JSON；不要从历史正文快照恢复覆盖。环境使用 `/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python`。
 
-独立成果总结以甲方10.27原件完成第三部分重排，再以用户查看的`04_word/10.26成果总结_修订稿.docx`作为细节修正底稿。当前`summary.mode=case_structure_prose`调用`tools/report_summary_case_prose.py`增量修正导则名称及第三部分两处衔接，上一轮`case_structure_detail`调用`tools/report_summary_case_detail.py`，以修订方式合并供电能力短段、整合费用表述并复用研究报告导则推荐表；批注和既有修订保留，拒绝本轮恢复底稿内容。以`tools/build_current_report.py --summary --rebuild`构建，在WPS导出最终视图只读副本并完成源、原生Word、PDF和逐页检查。证据及修前原件在`05_review/当前版/1027成果总结第三部分重排`。
+独立成果总结以甲方10.27原件完成第三部分重排，再以用户查看的`04_word/10.26成果总结_修订稿.docx`作为细节修正底稿。当前`summary.mode=case_structure_cost_prose`调用`tools/report_summary_case_cost.py`增量修正两处市区费用表述，上一轮`case_structure_prose`调用`tools/report_summary_case_prose.py`修正导则名称及第三部分衔接，上一轮`case_structure_detail`调用`tools/report_summary_case_detail.py`，以修订方式合并供电能力短段、整合费用表述并复用研究报告导则推荐表；批注和既有修订保留，拒绝本轮恢复底稿内容。以`tools/build_current_report.py --summary --rebuild`构建，在WPS导出最终视图只读副本并完成源、原生Word、PDF和逐页检查。证据及修前原件在`05_review/当前版/1027成果总结第三部分重排`。
 
 地区案例的原锁定完整序列保持，当前展示终年由`report_policy.json`的`case_display.end_year`控制为2030。`case_horizon.py`只取原记录前缀，2041年评价截止年、折现基准及经济参数保持。`report_annual_update.py`同步年度表、年末配置及46站段落，`refresh_annual_report_figures.py`按原样式更新受终年影响的图。新来源和核验资料在`数据来源/当前版/1026案例2030同步`、`05_review/当前版/1026案例2030同步`，历史来源和原模型不覆盖。费用按邳州、市区分别说明。
 

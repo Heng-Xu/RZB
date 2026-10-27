@@ -67,6 +67,8 @@ def inputs(root=ROOT):
 
 
 def source_check(root=ROOT):
+    from report_summary_case_cost import active as cost_active,source_check as cost_check
+    if cost_active(root):return cost_check(root)
     from report_summary_case_prose import active as prose_active,source_check as prose_check
     if prose_active(root):return prose_check(root)
     from report_summary_case_detail import active as detail_active,source_check as detail_check
@@ -243,6 +245,8 @@ def make_table(data,proto):
 
 
 def build(root=ROOT):
+    from report_summary_case_cost import active as cost_active,build as cost_build
+    if cost_active(root):return cost_build(root)
     from report_summary_case_prose import active as prose_active,build as prose_build
     if prose_active(root):return prose_build(root)
     from report_summary_case_detail import active as detail_active,build as detail_build
@@ -315,6 +319,8 @@ def build(root=ROOT):
 
 
 def docx_check(root=ROOT):
+    from report_summary_case_cost import active as cost_active,docx_check as cost_check
+    if cost_active(root):return cost_check(root)
     from report_summary_case_prose import active as prose_active,docx_check as prose_check
     if prose_active(root):return prose_check(root)
     from report_summary_case_detail import active as detail_active,docx_check as detail_check
@@ -373,6 +379,8 @@ def docx_check(root=ROOT):
 
 
 def final_check(root=ROOT):
+    from report_summary_case_cost import active as cost_active,final_check as cost_check
+    if cost_active(root):return cost_check(root)
     from report_summary_case_prose import active as prose_active,final_check as prose_check
     if prose_active(root):return prose_check(root)
     from report_summary_case_detail import active as detail_active,final_check as detail_check
@@ -421,6 +429,8 @@ def final_check(root=ROOT):
 
 
 def main(argv=None):
+    from report_summary_case_cost import active as cost_active,main as cost_main
+    if cost_active():return cost_main(argv)
     from report_summary_case_prose import active as prose_active,main as prose_main
     if prose_active():return prose_main(argv)
     from report_summary_case_detail import active as detail_active,main as detail_main

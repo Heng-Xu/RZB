@@ -4,8 +4,8 @@
   "当前文件SHA256": {
     "研究报告/04_word/研究报告终稿.docx": "2f490d380773237fe10fd6da9b7d72536dc879759d671c221e65feedefe16e52",
     "研究报告/04_word/研究报告终稿.pdf": "421361ef5a3f514d371c89fdbb6e99bdc43770ad779095390920b936d568f2ff",
-    "研究报告/04_word/10.26成果总结_修订稿.docx": "f56271835d063dab3d3f6ad62f5f8c32c868e52f0149efca554dd90510b56f42",
-    "研究报告/04_word/10.26成果总结_修订稿.pdf": "fded2ef03857acdd8c52494540169e9af2d1b09caa0128356c1857d3c8cc511c",
+    "研究报告/04_word/10.26成果总结_修订稿.docx": "8f577ecb529887026184cb7c88ba6cd2dd3607ea55ecae1a4880ad17d5d49453",
+    "研究报告/04_word/10.26成果总结_修订稿.pdf": "1a3dfd52fd9560895ca3842f0f15876551d7b4345cbe06500ebab9ff73a042d0",
     "研究报告/03_MD/当前版/01 第一章 绪论.md": "bc25148a90d8cb789a2a58825650495b2b61409a9519fa62e4b3d90483e177fa",
     "研究报告/03_MD/当前版/02 第二章 国内外研究现状.md": "2b7c9b75d5062ab8a0402f14ed5cc66258b95c80eb23bd18c5ad34f1943ee1c7",
     "研究报告/03_MD/当前版/03 第三章 徐州典型地区运行特征分析.md": "5d9c212e4f02610e6d216d19ead9353454e607bf7b8c249a992cae289fbed65d",
@@ -14,7 +14,7 @@
     "研究报告/03_MD/当前版/06 第六章 结论与建议.md": "bef51257b4c1487a934375884c07012a58f64a4d185d592a3d1b7b7f73bde02d",
     "研究报告/03_MD/当前版/参考文献.md": "af93c84864dd92949d99db6e5d288dd3c75bdf9115a3eab88145b7dfea4ad615",
     "研究报告/03_MD/当前版/研究报告装配稿.md": "679d588070df5cf21e639170fe03084ad751a7daae7d7bf49a9ffa783cfc28ae",
-    "研究报告/03_MD/成果总结/成果总结.md": "3467a66dc4428119429040d042e250fa0f53c07c046234952d5b283baf23a6ff",
+    "研究报告/03_MD/成果总结/成果总结.md": "74934dae12cada4cc9d688f589825fe1d9dff9c9c41d67f77ed0b95c9fbf7b63",
     "研究报告/02图表/当前版/图件原始数值.json": "dc54d304345e736c96e1f9a199840e29c7e29b8611abdb4b99f4ce15fc8d869e",
     "研究报告/02图表/当前版/指标复算.json": "17b96701df5bf50bb6cd52df73cd4fe0ec515431a2472a325d252f240c2a8868",
     "研究报告/02图表/当前版/生成段落.json": "17453ec67061547ef8f77bbf324a8bbe450ca0964090517188e91c9682da683c",
@@ -67,10 +67,10 @@
     "研究报告/02图表/当前版/xingtang_reverse_capacity.png": "43a4f53d27e8179c36b6db20064c6e5b54f87b64b796c668f2f45f8cea0c7674",
     "研究报告/PPT/徐州110kV容载比弹性指标优化研究_成果汇报.pptx": "b026ad217708719ad561c83abd8eec40e84a2c6e69103ea2dc7e0845309ed193",
     "研究报告/PPT/徐州110kV容载比弹性指标优化研究_成果汇报.pdf": "235bd3e7d9a17a1093ca7c9a985dc058599bca7f55ea54f6c64c255f7ee95d3d",
-    "tools/report_policy.json": "7e07fc16e387c8d0eba6a74f18f4c6d514c366c8e1d78a999b32929323e23a22",
-    "prompt.md": "46bcd9886a582f9711c0edd4fb226f24a13558d4aa017b61ded2979b4a286ca1",
-    "memory/current.md": "7ff5e3158e867aa0df63ff512c59d9dcef34f7a1cac4ef766d5125846ec61579",
-    "docs/CURRENT-WORKFLOW.md": "6af243c4614a4624faa638a0f8c8b9f9f2673fa4b6c39f45527422eb0174e3e7",
+    "tools/report_policy.json": "4c21785d60ec6f15e4754605f29f53dd9aaf205b4dafc91f48053563f04379f8",
+    "prompt.md": "e32b3e7f539fb1d0a13e280376b4b72254cb652bd48dcf47f899c5bf6bc94987",
+    "memory/current.md": "14af74998161249e9617b64de62be427f0269810018307e4165a026703d51a21",
+    "docs/CURRENT-WORKFLOW.md": "ce0609a24cf592fc8633009a619abc6dcd92eaef1dd9e31c7b6b5c1469e97c08",
     "tools/report_plain_revision.py": "5ea4f09e771d929dd624fb7f61dfcd755df4e63a8a83ce1378d832796810fb49",
     "研究报告/PPT/scripts/align_planning_recommendations.py": "792244656568143b8e7d2400c4dd579b0b8c0620314e46cfc8de4a315f1e472d"
   },
@@ -2861,6 +2861,6 @@
   "普通模式": "研究报告0修订，11条批注保留；PPT只修改第28页文字与备注。",
   "用户另存与交付优先级": "三份材料均已处理；总结用户另存稿只读原生核验及WPS PDF重新核验通过，原Word不变。",
   "总结另存依据": "研究报告/05_review/当前版/1026成果总结局部修订/1027行内公式修正/用户另存衔接.json",
-  "总结最新增量依据": "研究报告/05_review/当前版/1027成果总结第三部分表述修正/局部修订登记.json",
-  "总结最新核验": "研究报告/05_review/当前版/1027成果总结第三部分表述修正/最终WPS核验.json"
+  "总结最新增量依据": "研究报告/05_review/当前版/1027成果总结费用文字修正/局部修订登记.json",
+  "总结最新核验": "研究报告/05_review/当前版/1027成果总结费用文字修正/最终WPS核验.json"
 }
