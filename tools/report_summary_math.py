@@ -106,6 +106,37 @@ def equation_table(root,block):
 def math_text(node_):return ''.join(n.text or ''for n in node_.iter(qm('t')))
 
 
+INLINE_KEYS={r'C_\mathrm{plan}':'Cplan',r'C_e':'Ce',r'\mathcal E_T':'ET',
+             r'\mathcal E_B':'EB',r'\mathcal E_L':'EL',**{k:k for k in 'CIyLqrTkte'}}
+
+
+def inline_segments(value):
+    """正文美元标记只承载已出现在成本公式中的符号。"""
+    pieces=re.split(r'(\$[^$]+\$)',value)
+    result=[]
+    for piece in pieces:
+        if not piece:continue
+        if piece.startswith('$'):
+            token=piece[1:-1];assert token in INLINE_KEYS,'未登记的行内符号：'+token
+            result.append((True,token,INLINE_KEYS[token]))
+        else:result.append((False,piece,piece))
+    return result
+
+
+def inline_math(root,token,size=32):
+    """复用原公式的变量、下标和花体，生成行内原生OMML。"""
+    key=INLINE_KEYS[token];reference=reference_math(root,'2'if key in ['Cplan','Ce','ET','EB','EL','e']else'1')
+    if len(key)>1:
+        choices=[n for n in reference.iter(qm('sSub'))if math_text(n)==key]
+    else:choices=[n for n in reference.iter(qm('r'))if math_text(n)==key]
+    assert choices,'原公式中未找到行内符号：'+token
+    result=E.Element(qm('oMath'),nsmap=NS);result.append(deepcopy(choices[0]));normalize_math(result)
+    for run in result.iter(qm('r')):
+        pr=run.find(qw('rPr'))
+        for tag in ['sz','szCs']:pr.find(qw(tag)).set(qw('val'),str(size))
+    return result
+
+
 def check_native(root,path):
     from docx import Document
     from report_math_layout import check_equation_layout,equation_tables

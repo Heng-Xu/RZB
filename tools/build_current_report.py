@@ -10,6 +10,7 @@ def run(script,root):
 def main():
  parser=argparse.ArgumentParser(description=__doc__)
  parser.add_argument('--summary',action='store_true',help='按10.22指定模板维护独立成果总结，不改六章研究报告')
+ parser.add_argument('--inline-math',action='store_true',help='仅对当前成果总结的符号解释作原生行内公式修正')
  parser.add_argument('--discussion',action='store_true',help='维护当前讨论稿；以终稿DOCX为内容依据')
  parser.add_argument('--feedback-report',action='store_true',help='在10.17甲方原文件内以xh增量修订；保留批注和甲方既有修订')
  parser.add_argument('--plain-report',action='store_true',help='在已交付清稿基础上局部修改，保留批注，全部历史修订接受')
@@ -20,9 +21,11 @@ def main():
  parser.add_argument('--docx-only',action='store_true',help='装配原生DOCX，供WPS打开导出；完成导出后使用--accept-wps-pdf')
  parser.add_argument('--accept-wps-pdf',type=Path,help='接收由当前原生DOCX在WPS中直接导出的PDF，并同步目录缓存')
  args=parser.parse_args();root=args.root.resolve()
+ if args.inline_math and not args.summary:parser.error('--inline-math须与--summary同时使用')
  if args.summary:
   from report_summary import main as summary_main
   options=['--root',str(root)]
+  if args.inline_math:options.append('--inline-math')
   if args.rebuild or args.docx_only:options.append('--rebuild')
   if args.accept_wps_pdf:options+=['--accept-wps-pdf',str(args.accept_wps_pdf)]
   return summary_main(options)

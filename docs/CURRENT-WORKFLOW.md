@@ -2,7 +2,7 @@
 
 当前有效约束为根目录及研究报告目录的 `AGENTS.md`。正式源是六章Markdown、计算表及生成段落JSON；不要从历史正文快照恢复覆盖。环境使用 `/home/xh/anaconda3/envs/xuzhou110kv_clr/bin/python`。
 
-独立成果总结以`甲方反馈/10.26/10.26成果总结.docx`为增量修订基线，正文源锚点对应该原稿，使用`tools/build_current_report.py --summary --rebuild`在原包内最小化增改。`summary.mode=feedback_amendment`调用`tools/report_summary_amendment.py`，只读提取批注和修订，保留全部原有修订身份、批注部件，并核验拒绝本轮恢复。补充均取自研究报告和PPT已有内容。新增修订仅在用户指定日期区间显示，实际时间另记。WPS选择“最终状态”导出，不输出批注；交付Word保留修订和批注。用`--summary --accept-wps-pdf <PDF>`接收，再完成源稿、原生Word、WPS最终PDF和逐页审阅。本轮证据在`05_review/当前版/1026成果总结局部修订`。
+独立成果总结以`甲方反馈/10.26/10.26成果总结.docx`为增量修订基线，正文源锚点对应该原稿，使用`tools/build_current_report.py --summary --rebuild`在原包内最小化增改。`summary.mode=feedback_amendment`调用`tools/report_summary_amendment.py`，只读提取批注和修订，保留全部原有修订身份、批注部件，并核验拒绝本轮恢复。补充均取自研究报告和PPT已有内容。新增修订仅在用户指定日期区间显示，实际时间另记。WPS选择“最终状态”导出，不输出批注；交付Word保留修订和批注。用`--summary --accept-wps-pdf <PDF>`接收，再完成源稿、原生Word、WPS最终PDF和逐页审阅。本轮证据在`05_review/当前版/1026成果总结局部修订`。 在用户当前另存稿上局部修正符号解释时，使用`--summary --inline-math`，按本次真实底稿保留修订和批注，原生行内公式从研究报告同一公式复用，并重新导出核验PDF。
 
 地区案例的原锁定完整序列保持，当前展示终年由`report_policy.json`的`case_display.end_year`控制为2030。`case_horizon.py`只取原记录前缀，2041年评价截止年、折现基准及经济参数保持。`report_annual_update.py`同步年度表、年末配置及46站段落，`refresh_annual_report_figures.py`按原样式更新受终年影响的图。新来源和核验资料在`数据来源/当前版/1026案例2030同步`、`05_review/当前版/1026案例2030同步`，历史来源和原模型不覆盖。费用按邳州、市区分别说明。
 

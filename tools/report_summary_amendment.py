@@ -114,6 +114,9 @@ def source_check(root=ROOT):
         original=next(e for e in re.findall(r'\$\$([\s\S]*?)\$\$',chapter)if r'\tag{'+tag+'}'in e)
         assert latex_key(eq)==latex_key(original)
     assert len(equations)==2
+    from report_summary_math import inline_segments
+    symbols=[x for x in items if x['kind']=='symbols']
+    assert [sum(s[0]for s in inline_segments(x['text']))for x in symbols]==[9,6], '两处式中释义须使用15个原生行内符号'
     base=list(final_view(E.fromstring(package(root/BASE)['word/document.xml'])).find(q('body')))
     # 表格原矩阵不改值；本轮配置表仅取同一锁定序列的2030年。
     original=E.fromstring(package(root/BASE)['word/document.xml'])
@@ -169,7 +172,7 @@ def format_change(p,revision,center=False,keep=False):
     mark=revision.mark('pPrChange');mark.append(old);current.append(mark)
 
 
-def paragraph(template,value,kind,revision):
+def paragraph(template,value,kind,revision,root=ROOT):
     p=E.Element(q('p'));pp=clean_properties(template.find(q('pPr')));p.append(pp)
     # 新段落只继承有效格式，不复制旧修订、书签或批注。
     for old in list(pp.findall(q('rPr'))):pp.remove(old)
@@ -180,7 +183,12 @@ def paragraph(template,value,kind,revision):
     E.SubElement(pr,q('rFonts'),{q('ascii'):'Times New Roman',q('hAnsi'):'Times New Roman',q('eastAsia'):font,q('cs'):'Times New Roman'})
     E.SubElement(pr,q('sz'),{q('val'):'24'if kind=='caption'else'32'})
     if kind=='h2':E.SubElement(pr,q('b'))
-    E.SubElement(r,q('t'),{'{http://www.w3.org/XML/1998/namespace}space':'preserve'}).text=value;p.append(ins)
+    from report_summary_math import inline_segments,inline_math
+    for is_math,token,plain in inline_segments(value):
+        if is_math:ins.append(inline_math(root,token))
+        else:
+            piece=deepcopy(r);E.SubElement(piece,q('t'),{'{http://www.w3.org/XML/1998/namespace}space':'preserve'}).text=plain;ins.append(piece)
+    p.append(ins)
     if kind=='caption':zero_center(p)
     if kind=='symbols':
         for old in list(pp.findall(q('ind'))):pp.remove(old)
@@ -230,14 +238,14 @@ def build(root=ROOT):
                 key,caption=re.fullmatch(r'\[\[FIG:([^|]+)\|(.+)\]\]',value).groups()
                 node=image_paragraph(root/'研究报告/02图表/当前版'/(key+'.png'),revision,parts)
                 anchor.addnext(node);anchor=node
-                node=paragraph(base[55],caption,'caption',revision)
+                node=paragraph(base[55],caption,'caption',revision,root)
             elif kind=='equation':
                 from report_summary_math import equation_table
                 node=equation_table(root,value)
                 for tr in node.findall(q('tr')):
                     pr=tr.find(q('trPr'));pr.append(revision.mark('ins'))
                 new_equations.append(node)
-            else:node=paragraph(base[111]if kind=='h2'else base[17],value,kind,revision)
+            else:node=paragraph(base[111]if kind=='h2'else base[17],value,kind,revision,root)
             anchor.addnext(node);anchor=node;newblocks[i,item['seq']]=node
         ids=[n.get(q('id'))for n in revision_nodes(doc)if int(n.get(q('id')))>=first and n.get(q('id'))not in oldids]
         if ids:time_map.append({'块':i,'新增修订ID':ids,'显示日期':revision.date})
@@ -260,10 +268,54 @@ def build(root=ROOT):
     docx_check(root)
 
 
+def amend_inline_math(root=ROOT):
+    """仅在当前用户另存稿的两处释义中转换符号，不重建底稿。"""
+    from report_summary_math import inline_segments,inline_math
+    audit=root/REVIEW/'1027行内公式修正';backup=audit/'修前原件'/OUT
+    assert backup.exists()and sha(backup)==sha(root/OUT),'当前增量底稿与备份不一致'
+    parts=package(root/OUT);doc=E.fromstring(parts['word/document.xml']);revision=Reviser(doc)
+    revision.date='2026-10-27T08:10:00+08:00';oldids={n.get(q('id'))for n in revision_nodes(doc)};changed=[]
+    for item in [x for x in spec(root)if x['kind']=='symbols']:
+        segments=inline_segments(item['text']);plain=''.join(x[2]for x in segments)
+        matches=[p for p in doc.xpath('//w:body/w:p',namespaces=NS)if text(p)==plain]
+        assert len(matches)==1,'释义未唯一对应当前稿件'
+        p=matches[0];runs=p.xpath('.//w:r[w:t and not(ancestor::w:del)]',namespaces=NS)
+        assert len(runs)==1 and text(runs[0])==plain,'释义段落含其他修订，须单独核对'
+        run=runs[0];parent=run.getparent();at=parent.index(run);parent.remove(run);nodes=[]
+        for is_math,token,value in segments:
+            piece=deepcopy(run);piece.find(q('t')).text=value
+            if not is_math:nodes.append(piece);continue
+            piece.find(q('t')).tag=q('delText');deletion=revision.mark('del');deletion.append(piece)
+            insertion=revision.mark('ins');insertion.append(inline_math(root,token));nodes.extend([deletion,insertion])
+        for n in nodes:parent.insert(at,n);at+=1
+        changed.append({'锚点':f"{item['mode']}:{item['index']}:{item['seq']}",'原文':plain,'源':item['text'],'行内公式数':sum(x[0]for x in segments)})
+    # 当前WPS另存会省略部分显式零缩进，补齐原图及图题属性，显示位置保持。
+    normalized=[]
+    for p in doc.find(q('body')).findall(q('p')):
+        if not(p.xpath('.//w:drawing',namespaces=NS)or re.match('^图[0-9]+ ',text(p))):continue
+        ind=p.find(q('pPr')).find(q('ind'))
+        if all(ind.get(q(k))=='0'for k in INDENTS):continue
+        assert all(ind.get(q(k),'0')=='0'for k in INDENTS),'原稿图片段落存在非零缩进'
+        format_change(p,revision,center=True);normalized.append(text(p)or'图片段落')
+    assert signature(doc)==signature(E.fromstring(parts['word/document.xml'])),'转换行内公式改变了字符内容'
+    parts['word/document.xml']=serialize(doc);save(root/OUT,parts)
+    ids=[n.get(q('id'))for n in revision_nodes(doc)if n.get(q('id'))not in oldids]
+    reg=read(root/REVIEW/'局部修订登记.json')
+    reg.update(当前增量底稿=str(backup.relative_to(root)),当前增量底稿SHA256=sha(backup),
+        正文源SHA256=sha(root/SOURCE),WordSHA256=sha(root/OUT),新增修订ID=ids,
+        增量说明='在用户WPS另存的当前稿上，仅将两处式中解释的15个符号改为原生行内OMML。',
+        实际操作UTC=datetime.now(timezone.utc).isoformat(),原有修订数=len(oldids),行内公式修正=changed,零缩进属性补齐=normalized)
+    (root/REVIEW/'局部修订登记.json').write_text(json.dumps(reg,ensure_ascii=False,indent=2))
+    (audit/'增量修订登记.json').write_text(json.dumps(reg,ensure_ascii=False,indent=2))
+    docx_check(root)
+
+
 def docx_check(root=ROOT):
-    result=source_check(root);old=package(root/BASE);new=package(root/OUT)
+    result=source_check(root);reg=read(root/REVIEW/'局部修订登记.json')
+    incremental=reg.get('当前增量底稿');old=package(root/(incremental or BASE));new=package(root/OUT)
     baseline=E.fromstring(old['word/document.xml']);doc=E.fromstring(new['word/document.xml'])
-    reg=read(root/REVIEW/'局部修订登记.json');ids=set(reg['新增修订ID'])
+    ids=set(reg['新增修订ID'])
+    if incremental:assert sha(root/incremental)==reg['当前增量底稿SHA256']
     assert reg['WordSHA256']==sha(root/OUT)and reg['正文源SHA256']==sha(root/SOURCE)
     oldrevs=revision_nodes(baseline);revs=revision_nodes(doc)
     assert len({n.get(q('id'))for n in revs})==len(revs),'修订ID重复'
@@ -273,7 +325,22 @@ def docx_check(root=ROOT):
     events=lambda d:{(revision_identity(n),''.join(n.xpath('.//w:t/text()|.//w:delText/text()',namespaces=NS)))for n in revision_nodes(d)}
     assert events(restored)==events(baseline),'原有修订文本未恢复'
     for name,value in old.items():
-        if name not in ['word/document.xml','word/settings.xml','word/_rels/document.xml.rels']:assert new[name]==value,'原部件发生非必要变化：'+name
+        allowed=['word/document.xml']if incremental else['word/document.xml','word/settings.xml','word/_rels/document.xml.rels']
+        if name not in allowed:assert new[name]==value,'原部件发生非必要变化：'+name
+    if incremental:
+        before=list(baseline.find(q('body')));after=list(doc.find(q('body')))
+        assert len(before)==len(after)
+        changed=[(a,b)for a,b in zip(before,after)if E.tostring(a)!=E.tostring(b)]
+        explanations=[(a,b)for a,b in changed if text(a).startswith('式中，')]
+        assert len(explanations)==2,'两处释义未完整修正'
+        for a,b in changed:
+            if text(a).startswith('式中，'):continue
+            # 其余差异只允许将WPS省略的图段零缩进属性显式写回。
+            assert a.xpath('.//w:drawing',namespaces=NS)or re.match('^图[0-9]+ ',text(a))
+            ca,cb=deepcopy(a),deepcopy(b)
+            ca.remove(ca.find(q('pPr')));cb.remove(cb.find(q('pPr')))
+            assert E.tostring(ca)==E.tostring(cb),'图段内容发生额外变化'
+        assert signature(doc)==signature(baseline),'符号格式修改改变了正文内容'
     for n in revs:
         if n.get(q('id'))not in ids:continue
         assert n.get(q('author'))=='xh';date=datetime.fromisoformat(n.get(q('date')))
@@ -292,12 +359,23 @@ def docx_check(root=ROOT):
     eqs=[t for t in body.findall(q('tbl'))if t.xpath('.//*[local-name()="oMath"]')]
     assert len(eqs)==2
     for i,t in enumerate(eqs,1):assert math_text(t)==math_text(reference_math(root,str(i)))
+    from report_summary_math import inline_segments,qm,inline_math
+    for item in [s for s in spec(root)if s['kind']=='symbols']:
+        segments=inline_segments(item['text']);plain=''.join(x[2]for x in segments)
+        matches=[p for p in body.findall(q('p'))if ''.join(p.xpath('.//w:t/text()|.//m:t/text()',namespaces={**NS,'m':qm('')[1:-1]}))==plain]
+        assert len(matches)==1,'释义文字或行内公式不对应源稿'
+        maths=matches[0].findall('.//'+qm('oMath'));expected=[s[1]for s in segments if s[0]]
+        assert len(maths)==len(expected)
+        for m,token in zip(maths,expected):
+            assert E.tostring(m,method='c14n',exclusive=True)==E.tostring(inline_math(root,token),method='c14n',exclusive=True),'释义行内公式与源式字形不一致'
     for cid in ['0','1','2','3','4']:
-        assert len(final.xpath('.//w:commentRangeStart[@w:id="'+cid+'"]',namespaces=NS))==1
-        assert len(final.xpath('.//w:commentRangeEnd[@w:id="'+cid+'"]',namespaces=NS))==1
+        for tag in ['commentRangeStart','commentRangeEnd']:
+            assert len(doc.xpath('.//w:'+tag+'[@w:id="'+cid+'"]',namespaces=NS))==1
+            expected_count=len(final_view(baseline).xpath('.//w:'+tag+'[@w:id="'+cid+'"]',namespaces=NS))if incremental else 1
+            assert len(final.xpath('.//w:'+tag+'[@w:id="'+cid+'"]',namespaces=NS))==expected_count
         assert len(doc.xpath('.//w:commentReference[@w:id="'+cid+'"]',namespaces=NS))==1
     result.update(阶段='docx',WordSHA256=sha(root/OUT),保留原有修订=len(oldrevs),新增修订=len(ids),原批注数=5,
-                  拒绝本轮恢复='通过',原批注部件='字节一致',表格逐格及原生公式='通过')
+                  拒绝本轮恢复='通过',原批注部件='字节一致',表格逐格及原生公式='通过',式中行内公式数=15)
     (root/REVIEW/'原生Word核验.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     return result
 
@@ -306,10 +384,12 @@ def final_check(root=ROOT):
     import pymupdf
     result=docx_check(root);pdf=pymupdf.open(root/PDF)
     assert 'wps'in str(pdf.metadata).lower()or'kingsoft'in str(pdf.metadata).lower()
-    compact=lambda s:re.sub(r'\s+','',s).replace('−','-').replace('－','-')
+    import unicodedata
+    compact=lambda s:re.sub(r'\s+','',unicodedata.normalize('NFKC',s)).replace('−','-').replace('－','-')
     full=compact(''.join(p.get_text()for p in pdf));doc=final_view(E.fromstring(package(root/OUT)['word/document.xml']))
     for p in doc.xpath('//w:body//w:p',namespaces=NS):
-        s=compact(text(p))
+        if p.xpath('ancestor::w:tbl[.//*[local-name()="oMath"]]',namespaces=NS):continue
+        s=compact(''.join(p.xpath('.//w:t/text()|.//*[local-name()="oMath"]//*[local-name()="t"]/text()',namespaces=NS)))
         if s:assert s in full,'PDF缺少最终文字：'+s[:100]
     assert '2035'not in full,'最终视图残留2035年案例'
     pictures=[]
@@ -344,8 +424,10 @@ def final_check(root=ROOT):
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--root',type=Path,default=ROOT)
+    parser.add_argument('--inline-math',action='store_true',help='在当前成果总结增量修正两处式中行内公式')
     parser.add_argument('--rebuild',action='store_true');parser.add_argument('--stage',choices=['source','docx','final'],default='final')
     parser.add_argument('--accept-wps-pdf',type=Path);args=parser.parse_args(argv);root=args.root.resolve()
+    if args.inline_math:amend_inline_math(root);print('两处释义行内公式局部修正完成，待WPS核验');return
     if args.rebuild:build(root);print('10.26成果总结局部修订完成，待WPS核验');return
     if args.accept_wps_pdf:shutil.copy2(args.accept_wps_pdf,root/PDF)
     result={'source':source_check,'docx':docx_check,'final':final_check}[args.stage](root)
