@@ -55,3 +55,28 @@ def test_horizon_extraction_preserves_locked_plan_and_common_valuation():
     assert result['cost_npv_10k']==8. and result['evaluation_end_year']==2041
     result['annual'][0]['year']=2029
     assert original['annual'][0]['year']==2030 and original['cost_npv_10k']==11.
+
+
+def test_saved_math_accepts_equal_runs_but_preserves_subscript():
+    from summary_saved_copy import math_shape
+    from report_summary_math import qm
+    def symbol(split=False,subscript=True):
+        m=E.Element(qm('oMath'));parent=m
+        if subscript:
+            s=E.SubElement(m,qm('sSub'));base=E.SubElement(s,qm('e'))
+            r=E.SubElement(base,qm('r'));E.SubElement(r,qm('t')).text='C'
+            parent=E.SubElement(s,qm('sub'))
+        for value in list('plan')if split else['plan']:
+            r=E.SubElement(parent,qm('r'));E.SubElement(r,qm('t')).text=value
+        return m
+    assert math_shape(symbol(True))==math_shape(symbol())
+    assert math_shape(symbol())!=math_shape(symbol(subscript=False))
+
+
+def test_saved_math_does_not_hide_loss_of_calligraphic_symbol():
+    from summary_saved_copy import math_shape
+    from report_summary_math import qm
+    a=E.Element(qm('oMath'));r=E.SubElement(a,qm('r'));pr=E.SubElement(r,qm('rPr'))
+    E.SubElement(pr,qm('scr'),{qm('val'):'script'});E.SubElement(r,qm('t')).text='E'
+    b=deepcopy(a);b.find('.//'+qm('scr')).getparent().remove(b.find('.//'+qm('scr')))
+    assert math_shape(a)!=math_shape(b)

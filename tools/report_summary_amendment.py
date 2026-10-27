@@ -310,13 +310,19 @@ def amend_inline_math(root=ROOT):
     docx_check(root)
 
 
-def docx_check(root=ROOT):
+def docx_check(root=ROOT,path=None):
+    from summary_saved_copy import MARKER,verify as verify_saved
+    if path is None and(root/MARKER).exists():
+        result=verify_saved(root,root/OUT,sha,docx_check)
+        (root/REVIEW/'原生Word核验.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
+        return result
     result=source_check(root);reg=read(root/REVIEW/'局部修订登记.json')
-    incremental=reg.get('当前增量底稿');old=package(root/(incremental or BASE));new=package(root/OUT)
+    target=path or root/OUT
+    incremental=reg.get('当前增量底稿');old=package(root/(incremental or BASE));new=package(target)
     baseline=E.fromstring(old['word/document.xml']);doc=E.fromstring(new['word/document.xml'])
     ids=set(reg['新增修订ID'])
     if incremental:assert sha(root/incremental)==reg['当前增量底稿SHA256']
-    assert reg['WordSHA256']==sha(root/OUT)and reg['正文源SHA256']==sha(root/SOURCE)
+    assert reg['WordSHA256']==sha(target)and reg['正文源SHA256']==sha(root/SOURCE)
     oldrevs=revision_nodes(baseline);revs=revision_nodes(doc)
     assert len({n.get(q('id'))for n in revs})==len(revs),'修订ID重复'
     assert {revision_identity(n)for n in oldrevs}<={revision_identity(n)for n in revs},'原有修订身份丢失'
@@ -374,9 +380,9 @@ def docx_check(root=ROOT):
             expected_count=len(final_view(baseline).xpath('.//w:'+tag+'[@w:id="'+cid+'"]',namespaces=NS))if incremental else 1
             assert len(final.xpath('.//w:'+tag+'[@w:id="'+cid+'"]',namespaces=NS))==expected_count
         assert len(doc.xpath('.//w:commentReference[@w:id="'+cid+'"]',namespaces=NS))==1
-    result.update(阶段='docx',WordSHA256=sha(root/OUT),保留原有修订=len(oldrevs),新增修订=len(ids),原批注数=5,
+    result.update(阶段='docx',WordSHA256=sha(target),保留原有修订=len(oldrevs),新增修订=len(ids),原批注数=5,
                   拒绝本轮恢复='通过',原批注部件='字节一致',表格逐格及原生公式='通过',式中行内公式数=15)
-    (root/REVIEW/'原生Word核验.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
+    if path is None:(root/REVIEW/'原生Word核验.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
     return result
 
 

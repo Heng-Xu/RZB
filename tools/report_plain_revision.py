@@ -69,7 +69,7 @@ def block_key(node, parts):
     return key
 
 
-def stable_toc_anchors(goal, previous, headings):
+def stable_toc_anchors(goal, previous, headings, renames=None):
     """删改表注会改变装配段号，已有目录的真实书签按标题保持稳定。"""
     def toc(tree):
         result={}
@@ -86,6 +86,9 @@ def stable_toc_anchors(goal, previous, headings):
             result[title]=alias
         return result
     original=toc(previous);current=toc(goal)
+    renames=renames or {}
+    assert set(renames)<=set(original),'登记的原目录标题不存在'
+    original={renames.get(title,title):alias for title,alias in original.items()}
     assert set(original)==set(current)=={title for title,level,alias in headings}, '目录标题发生未登记变化'
     remap={current[title]:original[title] for title in current}
     for node in goal.findall('.//'+qn('bookmarkStart')):
@@ -190,7 +193,7 @@ def apply():
             assert len(matches)==1,'WPS样式名称未唯一对应：'+name
             node.set(qn('val'),matches[0])
     headings_path=ROOT/'研究报告/05_review/当前版/目录标题.json'
-    headings=stable_toc_anchors(goal,root,json.loads(headings_path.read_text()))
+    headings=stable_toc_anchors(goal,root,json.loads(headings_path.read_text()),MODE_SETTINGS.get('目录标题对应',{}))
     write(headings_path,headings)
     candidate['word/document.xml']=dump(goal)
     with ZipFile(GOAL,'w',ZIP_DEFLATED) as z:
