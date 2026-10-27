@@ -67,6 +67,12 @@ def inputs(root=ROOT):
 
 
 def source_check(root=ROOT):
+    from report_summary_case_prose import active as prose_active,source_check as prose_check
+    if prose_active(root):return prose_check(root)
+    from report_summary_case_detail import active as detail_active,source_check as detail_check
+    if detail_active(root):return detail_check(root)
+    from report_summary_case_structure import active as case_active,source_check as case_check
+    if case_active(root):return case_check(root)
     from report_summary_amendment import active as amendment_active,source_check as amendment_check
     if amendment_active(root):return amendment_check(root)
     from report_summary_restructure import active,source_check as feedback_source_check
@@ -237,6 +243,12 @@ def make_table(data,proto):
 
 
 def build(root=ROOT):
+    from report_summary_case_prose import active as prose_active,build as prose_build
+    if prose_active(root):return prose_build(root)
+    from report_summary_case_detail import active as detail_active,build as detail_build
+    if detail_active(root):return detail_build(root)
+    from report_summary_case_structure import active as case_active,build as case_build
+    if case_active(root):return case_build(root)
     from report_summary_amendment import active as amendment_active,build as amendment_build
     if amendment_active(root):return amendment_build(root)
     from report_summary_restructure import active,build as feedback_build
@@ -303,6 +315,12 @@ def build(root=ROOT):
 
 
 def docx_check(root=ROOT):
+    from report_summary_case_prose import active as prose_active,docx_check as prose_check
+    if prose_active(root):return prose_check(root)
+    from report_summary_case_detail import active as detail_active,docx_check as detail_check
+    if detail_active(root):return detail_check(root)
+    from report_summary_case_structure import active as case_active,docx_check as case_check
+    if case_active(root):return case_check(root)
     from report_summary_amendment import active as amendment_active,docx_check as amendment_check
     if amendment_active(root):return amendment_check(root)
     from report_summary_restructure import active,docx_check as feedback_docx_check
@@ -355,6 +373,12 @@ def docx_check(root=ROOT):
 
 
 def final_check(root=ROOT):
+    from report_summary_case_prose import active as prose_active,final_check as prose_check
+    if prose_active(root):return prose_check(root)
+    from report_summary_case_detail import active as detail_active,final_check as detail_check
+    if detail_active(root):return detail_check(root)
+    from report_summary_case_structure import active as case_active,final_check as case_check
+    if case_active(root):return case_check(root)
     from report_summary_amendment import active as amendment_active,final_check as amendment_check
     if amendment_active(root):return amendment_check(root)
     from report_summary_restructure import active,final_check as feedback_final_check
@@ -397,6 +421,12 @@ def final_check(root=ROOT):
 
 
 def main(argv=None):
+    from report_summary_case_prose import active as prose_active,main as prose_main
+    if prose_active():return prose_main(argv)
+    from report_summary_case_detail import active as detail_active,main as detail_main
+    if detail_active():return detail_main(argv)
+    from report_summary_case_structure import active as case_active,main as case_main
+    if case_active():return case_main(argv)
     from report_summary_amendment import active as amendment_active,main as amendment_main
     if amendment_active():return amendment_main(argv)
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--rebuild',action='store_true');parser.add_argument('--stage',choices=['source','docx','final'],default='final');parser.add_argument('--accept-wps-pdf',type=Path)

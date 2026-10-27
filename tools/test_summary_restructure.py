@@ -80,3 +80,12 @@ def test_saved_math_does_not_hide_loss_of_calligraphic_symbol():
     E.SubElement(pr,qm('scr'),{qm('val'):'script'});E.SubElement(r,qm('t')).text='E'
     b=deepcopy(a);b.find('.//'+qm('scr')).getparent().remove(b.find('.//'+qm('scr')))
     assert math_shape(a)!=math_shape(b)
+
+
+def test_formula_pdf_boundary_excludes_numeric_prose_line():
+    from report_summary_math import prose_bounds
+    spans=[{'text':'分别为', 'size':16,'bbox':(90,100,200,118)},
+           {'text':'40 年和25 年。','size':16,'bbox':(90,120,200,138)},
+           {'text':'I/(1+r)','size':14,'bbox':(230,150,350,170)},
+           {'text':'式中，','size':16,'bbox':(90,210,180,228)}]
+    assert prose_bounds(spans,165)==(138,210)

@@ -156,6 +156,14 @@ def check_native(root,path):
     return records
 
 
+def prose_bounds(spans,yc):
+    # 数字较多的正文行也会只有一两个汉字，仍须排除在公式边界之外。
+    prose=[s for s in spans if s['size']>=15.5 and re.search('[\u4e00-\u9fff]',s['text'])]
+    low=max((s['bbox'][3]for s in prose if s['bbox'][3]<yc),default=70)
+    high=min((s['bbox'][1]for s in prose if s['bbox'][1]>yc),default=775)
+    return low,high
+
+
 def check_pdf(root,path,pdf):
     from docx import Document
     from report_math_layout import equation_tables
@@ -167,10 +175,8 @@ def check_pdf(root,path,pdf):
         page,mark=marks[0]
         all_spans=[s for b in page.get_text('dict')['blocks']for line in b.get('lines',[])for s in line['spans']]
         # 公式内“i为故障站”是下标条件；正文边界用16磅正文识别。
-        prose=[s for s in all_spans if s['size']>=15.5 and len(re.findall('[\u4e00-\u9fff]',s['text']))>=4]
         yc=(mark[1]+mark[3])/2
-        low=max((s['bbox'][3]for s in prose if s['bbox'][3]<yc),default=70)
-        high=min((s['bbox'][1]for s in prose if s['bbox'][1]>yc),default=775)
+        low,high=prose_bounds(all_spans,yc)
         spans=[s for s in all_spans if s['bbox'][0]>90 and s['bbox'][2]<460 and s['bbox'][1]>=low and s['bbox'][3]<=high and s['text'].strip()]
         assert spans,('PDF公式无可读主体',number)
         left=min(s['bbox'][0]for s in spans);right=max(s['bbox'][2]for s in spans)
